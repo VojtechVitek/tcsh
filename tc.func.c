@@ -1943,11 +1943,12 @@ getremotehost()
 	else
 	    host = inet_ntoa(saddr.sin_addr);
     }
-#ifdef UTHOST
+#if defined(UTHOST) && !defined(HAVENOUTMP)
     else {
 	char *ptr, *sptr;
 	char *name = utmphost();
-	if (name != NULL && *name != '\0') {
+	/* Avoid empty names and local X displays */
+	if (name != NULL && *name != '\0' && *name != ':') {
 	    /* Look for host:display.screen */
 	    if ((sptr = strchr(name, ':')) != NULL)
 		*sptr = '\0';

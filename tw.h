@@ -78,7 +78,7 @@
 #define ON		1
 #define OFF		0
 #define FILSIZ		512	/* Max reasonable file name length */
-#define ESC		'\033'
+#define ESC             CTL_ESC('\033')
 #define equal(a, b)	(strcmp(a, b) == 0)
 
 #define is_set(var)	adrof(var)

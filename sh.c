@@ -464,8 +464,8 @@ main(argc, argv)
 	    }
 	    else
 		cp2 = cp;
-	    if (!((Strncmp(cp2, STRtty, 3) == 0) && Isalpha(cp2[3])) ||
-		!((Strncmp(cp, STRpts, 3) == 0) && cp[3] == '/')) {
+	    if (!(((Strncmp(cp2, STRtty, 3) == 0) && Isalpha(cp2[3])) ||
+		  ((Strncmp(cp, STRpts, 3) == 0) && cp[3] == '/'))) {
 		if (getenv("DISPLAY") == NULL) {
 		    /* NOT on X window shells */
 		    set(STRautologout, Strsave(STRdefautologout), 
@@ -1599,7 +1599,8 @@ goodbye(v, c)
 	(void) sigset(SIGHUP, SIG_IGN);
 	setintr = 0;		/* No interrupts after "logout" */
 	/* Trap errors inside .logout */
-	if ((reenter = setexit()) != 0)
+	reenter = setexit();
+	if (reenter != 0)
 	    exitstat();
 	if (!(adrof(STRlogout)))
 	    set(STRlogout, Strsave(STRnormal), VAR_READWRITE);

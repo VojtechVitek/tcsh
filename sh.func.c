@@ -106,8 +106,8 @@ isbfunc(t)
 	int i;
 
 	bp = bp1 + ((bp2 - bp1) >> 1);
-	if ((i = *cp - *bp->bname) == 0 &&
-	    (i = Strcmp(cp, str2short(bp->bname))) == 0)
+	if ((i = ((char) *cp) - *bp->bname) == 0 &&
+	    (i = StrQcmp(cp, str2short(bp->bname))) == 0)
 	    return bp;
 	if (i < 0)
 	    bp2 = bp;
@@ -1630,7 +1630,11 @@ doumask(v, c)
 #  if defined(BSD4_4) && !defined(__386BSD__)
     typedef quad_t RLIM_TYPE;
 #  else
-    typedef unsigned long RLIM_TYPE;
+#   if defined(SOLARIS2)
+#    define RLIM_TYPE rlim_t
+#   else
+     typedef unsigned long RLIM_TYPE
+#   endif /* SOLARIS2 */
 #  endif /* BSD4_4 && !__386BSD__  */
 # endif /* BSDLIMIT */
 

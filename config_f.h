@@ -129,7 +129,7 @@
  *		This can be much slower and no memory statistics will be
  *		provided.
  */
-#if defined(PURIFY) || defined(MALLOC_TRACE)
+#if defined(PURIFY) || defined(MALLOC_TRACE) || defined(_OSD_POSIX)
 # define SYSMALLOC
 #else
 # undef SYSMALLOC

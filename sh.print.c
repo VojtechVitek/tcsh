@@ -196,6 +196,7 @@ flush()
 {
     register int unit;
     static int interrupted = 0;
+    size_t sz;
 
     /* int lmode; */
 
@@ -223,7 +224,10 @@ flush()
     }
 #endif
 #endif
-    (void) write(unit, linbuf, (size_t) (linp - linbuf));
+    sz = (size_t) (linp - linbuf);
+    if (write(unit, linbuf, sz) != sz && !haderr)
+	stderror(ERR_SYSTEM, progname, strerror(errno));
+
     linp = linbuf;
     interrupted = 0;
 }

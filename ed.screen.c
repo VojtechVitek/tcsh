@@ -831,6 +831,20 @@ DefaultArrowKeys()
     static Char stOD[] = {033, 'O', 'D', '\0'};
 
     CStr cs;
+#ifdef _OSD_POSIX
+    if (strA[0] == 033)
+    {
+	strA[0] = CTL_ESC('\033');
+	strB[0] = CTL_ESC('\033');
+	strC[0] = CTL_ESC('\033');
+	strD[0] = CTL_ESC('\033');
+	stOA[0] = CTL_ESC('\033');
+	stOB[0] = CTL_ESC('\033');
+	stOC[0] = CTL_ESC('\033');
+	stOD[0] = CTL_ESC('\033');
+    }
+#endif
+
     cs.len = 3;
 
     cs.buf = strA; AddXkey(&cs, &arrow[A_K_UP].fun, arrow[A_K_UP].type);
@@ -1363,7 +1377,7 @@ Beep()
 	/* what termcap says we should use */
 	(void) tputs(Str(T_bl), 1, putpure);
     else
-	(void) putraw('\007');	/* an ASCII bell; ^G */
+	(void) putraw(CTL_ESC('\007'));	/* an ASCII bell; ^G */
 }
 
 void

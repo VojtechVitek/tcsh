@@ -10,7 +10,7 @@
  */
 #include "sh.h"
 RCSID("$Id$")
-#ifdef _VMS_POSIX
+#if defined(_VMS_POSIX) || defined(_OSD_POSIX)
 /*    efth      1988-Apr-29
 
     - Correct when TERM != name and TERMCAP is defined   [tgetent]
@@ -215,7 +215,7 @@ char	**area;
 				case '\\' :
 					switch(*++cp) {
 					case 'E' :
-						**area = '\033';
+						**area = CTL_ESC('\033');
 						break;
 					case 'n' :
 						**area = '\n';

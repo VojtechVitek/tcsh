@@ -1091,7 +1091,7 @@ v_search(dir)
     for (ch = 0;ch == 0;) {
 	if (GetNextChar(&ch) != 1)
 	    return(e_send_eof(0));
-	switch (ch) {
+	switch (ASC(ch)) {
 	case 0010:	/* Delete and backspace */
 	case 0177:
 	    if (tmplen > 1) {
@@ -1110,8 +1110,13 @@ v_search(dir)
 	    break;
 
 	case 0033:	/* ESC */
+#ifndef _OSD_POSIX
 	case '\r':	/* Newline */
 	case '\n':
+#else
+	case '\012':    /* Newline */
+	case '\015':    /* Return */
+#endif
 	    break;
 
 	default:

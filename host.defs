@@ -947,6 +947,13 @@ machtype: defined(M_mipseb)				: "mipseb"
 machtype:						: "mips"
 enddef	:
 
+newdef	: defined(_OSD_POSIX)
+comment	: Siemens Nixdorf Informationssysteme BS2000 POSIX (mainframe, EBCDIC)
+vendor	:						: "sni"
+hosttype: defined(M_intel)				: "bs2000"
+ostype	: 						: "posix"
+machtype:						: "bs2000"
+enddef	:
 
 newdef  : !defined(SOLARIS2) && (SYSVREL == 4)
 comment : Unix System V Release 4.0
@@ -960,7 +967,7 @@ newdef	: defined(__uxp__) || defined(__uxps__)
 comment	: FUJITSU DS/90 7000
 vendor	:						: "fujitsu"
 hosttype:						: "ds90"
-ostype	:						: "sysv4""
+ostype	:						: "sysv4"
 machtype:						: "sparc"
 enddef	:
 

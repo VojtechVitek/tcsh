@@ -60,8 +60,11 @@
 # include <limits.h>
 #endif /* atp vmsposix */
 
-#ifdef DECOSF1
+#if defined(DECOSF1) || defined(HPUXVERSION)
 # include <sys/signal.h>
+#endif /* DECOSF1 || HPUXVERSION */
+
+#ifdef DECOSF1
 # include <sys/ioctl.h>
 #endif /* DECOSF1 */
 
@@ -147,7 +150,7 @@ struct ucred {
 # include <signal.h>
 # if !defined(hp9000s500) && !(defined(SIGRTMAX) || defined(SIGRTMIN))
 /*
- * hpux < 7 || hpux >= 10
+ * hpux < 7
  */
 #  include <sys/bsdtty.h>
 # endif /* !hp9000s500 && !(SIGRTMAX || SIGRTMIN) */

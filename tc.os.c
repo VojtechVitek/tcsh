@@ -551,7 +551,7 @@ dodmmode(v, c)
     else {
 	if (cp[1] != '\0')
 	    stderror(ERR_NAME | ERR_STRING, 
-		     CGETS(23, 30, "Too many arguments");
+		     CGETS(23, 30, "Too many arguments"));
 	else
 	    switch(*cp) {
 	    case '0':
@@ -562,7 +562,7 @@ dodmmode(v, c)
 		break;
 	    default:
 		stderror(ERR_NAME | ERR_STRING, 
-			 CGETS(23, 31, "Invalid argument");
+			 CGETS(23, 31, "Invalid argument"));
 	    }
     }
 }

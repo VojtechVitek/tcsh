@@ -56,7 +56,7 @@ RCSID("$Id$")
 #define FALSE 0
 #endif
 
-#define ESC	'\033'
+#define ESC     CTL_ESC('\033')
 
 typedef enum {
     LIST, RECOGNIZE
@@ -456,7 +456,14 @@ static void
 beep()
 {
     if (adrof(STRnobeep) == 0)
+#ifndef _OSD_POSIX
 	(void) write(SHOUT, "\007", 1);
+#else /*_OSD_POSIX*/
+    {
+	unsigned char beep_ch = CTL_ESC('\007');
+	(void) write(SHOUT, &beep_ch, 1);
+    }
+#endif /*_OSD_POSIX*/
 }
 
 /*

@@ -197,8 +197,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			/* prompt stuff */
     static Char *olddir = NULL, *olduser = NULL;
     extern int tlength;	/* cache cleared */
-    int updirs, pdirs;
-    size_t sz;
+    size_t updirs, pdirs, sz;
 
     for (; *cp; cp++) {
 	if (p >= ep)
