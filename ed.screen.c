@@ -1252,17 +1252,16 @@ so_write(cp, n)
 		/* force the wrap to avoid the "magic" situation */
 		Char c;
 		if ((c = Display[CursorV][CursorH]) != '\0') {
-		    so_write(&Display[CursorV][CursorH], 1);
+		    so_write(&c, 1);
 #ifdef DSPMBYTE
 		    if (CursorH > 0 && (c = Display[CursorV][CursorH]) != 0)
 			if (Ismbyte2(c))
-			    so_write(&Display[CursorV][CursorH], 1);
+			    so_write(&c, 1);
 #endif
 		}
-		else {
+		else
 		    (void) putraw(' ');
-		    CursorH = 1;
-		}
+		CursorH = 1;
 	    }
 	}
 	else			/* no wrap, but cursor stays on screen */
