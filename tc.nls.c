@@ -31,8 +31,6 @@
  * SUCH DAMAGE.
  */
 #include "sh.h"
-#include <stdlib.h>
-#include <wchar.h>
 
 RCSID("$Id$")
 
