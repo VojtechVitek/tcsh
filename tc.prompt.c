@@ -520,7 +520,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		break;
 	    case '$':
 		sz = (int) (ep - p);
-		(void) expdollar(&p, &cp, &pdirs, attributes);
+		(void) expdollar(&p, &cp, &sz, attributes);
 		break;
 	    case '%':
 		*p++ = attributes | '%';
