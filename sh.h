@@ -102,6 +102,9 @@ typedef int sigret_t;
 #endif
 
 #include <sys/types.h>
+#ifdef _SEQUENT_
+# include <sys/procstats.h>
+#endif /* _SEQUENT_ */
 #if defined(POSIX) || SVID > 0
 # include <sys/times.h>
 #endif				/* POSIX || SVID > 0 */
@@ -299,8 +302,8 @@ bool    chkstop;		/* Warned of stopped jobs... allow exit */
 
 #ifndef FIOCLEX
 bool    didcch;			/* Have closed unused fd's for child */
-
 #endif
+
 bool    didfds;			/* Have setup i/o fd's for child */
 bool    doneinp;		/* EOF indicator after reset from readc */
 bool    exiterr;		/* Exit if error or non-zero exit status */
@@ -341,12 +344,12 @@ struct rusage ru0;
 # ifdef _SEQUENT_
 timeval_t time0;		/* Time at which the shell started */
 struct process_stats ru0;
-#else				/* _SEQUENT_ */
-# ifndef POSIX
+# else				/* _SEQUENT_ */
+#  ifndef POSIX
 time_t  time0;			/* time at which shell started */
-# else				/* POSIX */
+#  else				/* POSIX */
 clock_t time0;			/* time at which shell started */
-# endif				/* POSIX */
+#  endif			/* POSIX */
 struct tms shtimes;		/* shell and child times for process timing */
 # endif				/* _SEQUENT_ */
 #endif				/* BSDTIMES */

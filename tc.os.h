@@ -209,7 +209,6 @@ struct ucred {
 #endif /* L_XTND */
 
 #ifdef _SEQUENT_
-# include <sys/procstats.h>
 # define NEEDgethostname
 #endif /* _SEQUENT_ */
 
