@@ -1043,7 +1043,7 @@ again:
 #ifndef O_EXCL
 # define O_EXCL 0
 #endif
-    if (open(tmp, O_RDWR|O_CREAT|O_EXCL|O_TEMPORARY) == -1) {
+    if (open(tmp, O_RDWR|O_CREAT|O_EXCL|O_TEMPORARY, 0600) == -1) {
 	int oerrno = errno;
 #ifndef WINNT_NATIVE
 	if (errno == EEXIST) {
