@@ -2450,8 +2450,7 @@ const char *s;
     static char *buf = NULL;
     static size_t buf_size = 0;
   
-    char *orig, *dest, *p;
-    const char *src;
+    char *src, *orig, *dest, *p;
     size_t src_size, dest_size;
   
     orig = catgets(catd, set_id, msg_id, s);
@@ -2459,6 +2458,8 @@ const char *s;
         return orig;
     src = orig;
     src_size = strlen(src) + 1;
+    if (buf == NULL && (buf = xmalloc(buf_size = src_size + 32)) == NULL)
+	return orig;
     dest = buf;
     while (src_size != 0) {
         dest_size = buf + buf_size - dest;
@@ -2466,12 +2467,9 @@ const char *s;
 	    == (size_t)-1) {
 	    switch (errno) {
 	    case E2BIG:
-		if (buf == NULL)
-		    p = xmalloc(buf_size = 32);
-		else
-		    p = xrealloc(buf, buf_size *= 2);
-		if (p == NULL)
+		if ((p = xrealloc(buf, buf_size * 2)) == NULL)
 		    return orig;
+		buf_size *= 2;
 		dest = p + (dest - buf);
 		buf = p;
 		break;
