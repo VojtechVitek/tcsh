@@ -33,9 +33,11 @@
 #ifndef _h_tc_os
 #define _h_tc_os
 
+#ifndef __STDC__
 #ifndef WINNT_NATIVE
 #define NEEDstrerror		/* Too hard to find which systems have it */
 #endif /* WINNT_NATIVE */
+#endif
 
 
 #ifdef notdef 
