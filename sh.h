@@ -26,9 +26,6 @@
 #ifndef _h_sh
 #define _h_sh
 
-#ifndef __STDC__
-# define volatile
-#endif /* __STDC__ */
 /*
  * Sanity
  */

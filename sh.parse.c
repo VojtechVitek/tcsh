@@ -56,7 +56,7 @@ void
 alias(lex)
 	register struct wordent *lex;
 {
-	volatile int aleft = 21;
+	int aleft = 21;
 	jmp_buf osetexit;
 
 	getexit(osetexit);

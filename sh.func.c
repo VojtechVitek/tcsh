@@ -235,8 +235,8 @@ doaliases(v)
 	Char **v;
 {
 	jmp_buf oldexit;
-	volatile Char *p = (Char *) 0;
-	volatile int n = 0;
+	Char *p = (Char *) 0;
+	int n = 0;
 	Char **vec, *lp;
 	int fd;
 	Char buf[BUFSIZ], line[BUFSIZ];
