@@ -387,8 +387,8 @@ putn(n)
 	n = -n;
 	*putp++ = '-';
     }
-    num = 2;			/* comfuse lint */
-    if (sizeof(int) == num && n == -32768) {
+    num = 2;			/* confuse lint */
+    if (sizeof(int) == num && ((unsigned int) n) == 32768) {
 	*putp++ = '3';
 	n = 2768;
 #ifdef pdp11
@@ -396,8 +396,8 @@ putn(n)
 #else
     }
     else {
-	num = 4;		/* comfuse lint */
-	if (sizeof(int) == num && n == -2147483648) {
+	num = 4;		/* confuse lint */
+	if (sizeof(int) == num && ((unsigned int) n) == 2147483648) {
 	    *putp++ = '2';
 	    n = 147483648;
 	}

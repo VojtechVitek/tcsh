@@ -1199,7 +1199,7 @@ gettilde(us)
     tcache[tlength++].hlen = Strlen(hd);
 
     (void) qsort((ptr_t) tcache, (size_t) tlength, sizeof(struct tildecache),
-		 tildecompare);
+		 (int (*) __P((const void *, const void *))) tildecompare);
 
     if (tlength == tsize) {
 	tsize += TILINCR;

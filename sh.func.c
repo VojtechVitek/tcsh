@@ -1442,6 +1442,7 @@ getval(lp, v)
 
     register float f;
     double  atof();
+    static int lmin = 0x80000000, lmax = 0x7fffffff;
     Char   *cp = *v++;
 
     f = atof(short2str(cp));
@@ -1529,7 +1530,7 @@ badscal:
 # if defined(convex) || defined(__convex__)
     return ((RLIM_TYPE) restrict_limit((f + 0.5)));
 # else
-    if ((f + 0.5) >= (float) 0x7fffffff || (f + 0.5) < (float) 0x80000000)
+    if ((f + 0.5) >= (float) lmax || (f + 0.5) < (float) lmin)
 	stderror(ERR_NAME | ERR_SCALEF);
     return ((RLIM_TYPE) (f + 0.5));
 # endif /* convex */
