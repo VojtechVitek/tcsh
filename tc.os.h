@@ -636,8 +636,10 @@ extern int gethostname();
 extern int getrlimit();
 extern int setrlimit();
 extern int getrusage();
+# ifndef IRIS4D
 extern int gettimeofday();
 extern int wait3();
+# endif
 #endif /* SYSVREL == 4 */
 
 #endif /* _h_tc_os */
