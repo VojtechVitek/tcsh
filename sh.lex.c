@@ -283,7 +283,8 @@ word()
     Char c, c1;
     Char *wp;
     Char    wbuf[BUFSIZE];
-    Char    hbuf[12], h;
+    Char    hbuf[12];
+    int	    h;
     bool dolflg;
     int i;
 
@@ -1007,7 +1008,7 @@ dosub(sc, en, global)
      * ANSI mode HP/UX compiler chokes on
      * return &enthist(HIST_PURGE, &lexi, 0)->Hlex;
      */
-    hst = enthist(HIST_PURGE, &lexi, 0);
+    hst = enthist(HIST_PURGE, &lexi, 0, 0);
     return &(hst->Hlex);
 }
 

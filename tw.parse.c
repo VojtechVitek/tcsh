@@ -175,7 +175,7 @@ tenematch(inputline, num_read, command)
 		}
 	    }
 	    if (qu != '\'' && cmap(*cp, _Q1)) {
-		if (backq ^= 1) {
+		if ((backq ^= 1) != 0) {
 		    ocmd_start = cmd_start;
 		    oword_start = word_start;
 		    oword = word;
@@ -1171,7 +1171,7 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
 	gpat = 0;	/* pattern holds the pathname to be used */
 	copyn(exp_dir, pat, MAXNAMLEN);
 	catn(exp_dir, dir, MAXNAMLEN);
-	dir[0] = '\0';
+	/* dir[0] = '\0'; */
 	break;
 
     case TW_VARLIST:
@@ -1192,22 +1192,24 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
 	break;
     }
 
-    /*
-     * let fignore work only when we are not using a pattern
-     */
-    flags |= (gpat == 0) ? TW_IGN_OK : TW_PAT_OK;
-
     if ((*word == '~') && (Strchr(word, '/') == NULL)) {
 	looking = TW_LOGNAME;
 	target = name;
+	gpat = 0;	/* Override pattern mechanism */
     }
     else if ((target = Strrchr(name, '$')) != 0 && 
 	     (Strchr(name, '/') == NULL)) {
 	target++;
 	looking = TW_VARIABLE;
+	gpat = 0;	/* Override pattern mechanism */
     }
     else
 	target = name;
+
+    /*
+     * let fignore work only when we are not using a pattern
+     */
+    flags |= (gpat == 0) ? TW_IGN_OK : TW_PAT_OK;
 
 #ifdef TDEBUG
     xprintf("looking = %d\n", looking);

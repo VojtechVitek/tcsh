@@ -325,7 +325,9 @@ static char *errorlist[] =
     "Illegal %s: '%c'",
 #define ERR_COMPINC	127
     "Incomplete %s: \"%s\"",
-#define ERR_INVALID	128
+#define ERR_MFLAG	128
+    "No operand for -m flag",
+#define ERR_INVALID	129
     "Invalid Error"
 };
 

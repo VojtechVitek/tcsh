@@ -79,7 +79,7 @@ strsave(s)
 
     if (s == NULL)
 	s = (const char *) "";
-    for (p = (char *) s; *p++;)
+    for (p = (char *) s; *p++ != '\0';)
 	continue;
     n = p = (char *) xmalloc((size_t) ((p - s) * sizeof(char)));
     while ((*p++ = *s++) != '\0')
@@ -199,11 +199,15 @@ strspl(cp, dp)
 	cp = "";
     if (!dp)
 	dp = "";
-    for (p = cp; *p++;);
-    for (q = dp; *q++;);
+    for (p = cp; *p++ != '\0';)
+	continue;
+    for (q = dp; *q++ != '\0';)
+	continue;
     ep = (char *) xmalloc((size_t) (((p - cp) + (q - dp) - 1) * sizeof(char)));
-    for (p = ep, q = cp; *p++ = *q++;);
-    for (p--, q = dp; *p++ = *q++;);
+    for (p = ep, q = cp; (*p++ = *q++) != '\0';)
+	continue;
+    for (p--, q = dp; (*p++ = *q++) != '\0';)
+	continue;
     return (ep);
 }
 
@@ -423,7 +427,7 @@ strip(cp)
 
     if (!cp)
 	return (cp);
-    while (*dp++ &= TRIM)
+    while ((*dp++ &= TRIM) != '\0')
 	continue;
     return (cp);
 }

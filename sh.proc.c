@@ -47,7 +47,7 @@ RCSID("$Id$")
 # define HZ 16
 #endif /* aiws */
 
-#if (defined(_BSD) && defined(_BSD_INCLUDES)) || (defined(IRIS4D) && __STDC__)
+#if (defined(_BSD) && defined(_BSD_INCLUDES)) || (defined(IRIS4D) && __STDC__) || defined(__lucid)
 # define BSDWAIT
 #endif
 #ifndef WTERMSIG
@@ -189,7 +189,7 @@ loop:
 #ifdef BSDJOBS
 # ifdef BSDTIMES
     /* both a wait3 and rusage */
-#  if !defined(BSDWAIT) || defined(NeXT) || defined(MACH) || (defined(IRIS4D) && __STDC__ && SYSVREL <= 3)
+#  if !defined(BSDWAIT) || defined(NeXT) || defined(MACH) || (defined(IRIS4D) && __STDC__ && SYSVREL <= 3) || defined(__lucid)
     pid = wait3(&w,
        (setintr && (intty || insource) ? WNOHANG | WUNTRACED : WNOHANG), &ru);
 #  else /* BSDWAIT */
@@ -1912,9 +1912,11 @@ pfork(t, wanttty)
 	     */
 	    pgrp = pcurrjob ? pcurrjob->p_jobid : pid;
 	    if (setpgid(pid, pgrp) == -1 && errno == EPERM) {
-		pflush(pcurrjob);
-		pcurrjob = NULL;
-		if (setpgid(pid, pgrp = pid) == -1) {
+		if (pcurrjob) {
+		    pflush(pcurrjob);
+		    pcurrjob = NULL;
+		}
+		if (mygetpgrp() != pid && setpgid(pid, pgrp = pid) == -1) {
 		    stderror(ERR_SYSTEM, "setpgid parent:", strerror(errno));
 		    xexit(0);
 		}

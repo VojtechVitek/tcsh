@@ -141,6 +141,7 @@ extern	void		  donewgrp	__P((Char **, struct command *));
 #endif
 extern	void		  donohup	__P((Char **, struct command *));
 extern	void		  doonintr	__P((Char **, struct command *));
+extern	void		  doprintenv	__P((Char **, struct command *));
 extern	void		  dorepeat	__P((Char **, struct command *));
 extern	void		  dosetenv	__P((Char **, struct command *));
 extern	void		  dosuspend	__P((Char **, struct command *));
@@ -183,11 +184,11 @@ extern	int		  sortscmp	__P((Char **, Char **));
  * sh.hist.c
  */
 extern	void	 	  dohist	__P((Char **, struct command *));
-extern  struct Hist 	 *enthist	__P((int, struct wordent *, bool));
-extern	void	 	  savehist	__P((struct wordent *));
+extern  struct Hist 	 *enthist	__P((int, struct wordent *, bool, bool));
+extern	void	 	  savehist	__P((struct wordent *, bool));
 extern	void		  fmthist	__P((int, ptr_t, char *));
 extern	void		  rechist	__P((Char *));
-extern	void		  loadhist	__P((Char *));
+extern	void		  loadhist	__P((Char *, bool));
 
 
 /*

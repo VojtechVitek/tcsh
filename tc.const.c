@@ -73,10 +73,12 @@ Char STRprompt3[]       = { 'p', 'r', 'o', 'm', 'p', 't', '3', '\0' };
 Char STRcwd[]           = { 'c', 'w', 'd', '\0' };
 Char STRstar[]          = { '*', '\0' };
 Char STRdot[]           = { '.', '\0' };
-Char STRhistory[] 	= { 'h', 'i', 's', 't', 'o', 'r', 'y', '\0' };
-Char STRhistfile[] 	= { 'h', 'i', 's', 't', 'f', 'i', 'l', 'e', '\0' };
+Char STRhistory[]       = { 'h', 'i', 's', 't', 'o', 'r', 'y', '\0' };
+Char STRhistfile[]      = { 'h', 'i', 's', 't', 'f', 'i', 'l', 'e', '\0' };
 Char STRsource[]        = { 's', 'o', 'u', 'r', 'c', 'e', '\0' };
 Char STRmh[]            = { '-', 'h', '\0' };
+Char STRmm[]            = { '-', 'm', '\0' };
+Char STRmerge[]         = { 'm', 'e', 'r', 'g', 'e', '\0' };
 Char STRtildothist[]    = { '~', '/', '.', 'h', 'i', 's', 't', 'o', 'r', 
 		            'y', '\0' };
 

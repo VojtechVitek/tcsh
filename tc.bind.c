@@ -517,7 +517,7 @@ parseescape(ptr)
 
     if ((p[1] & CHAR) == 0) {
 	xprintf("Something must follow: %c\n", *p);
-	return 0;
+	return -1;
     }
     if ((*p & CHAR) == '\\') {
 	p++;
@@ -596,6 +596,7 @@ parsestring(str, buf)
 {
     Char   *b;
     Char   *p;
+    int    es;
 
     b = buf;
     if (*str == 0) {
@@ -605,12 +606,13 @@ parsestring(str, buf)
 
     for (p = str; *p != 0; p++) {
 	if ((*p & CHAR) == '\\' || (*p & CHAR) == '^') {
-	    if ((*b++ = parseescape(&p)) == 0)
+	    if ((es = parseescape(&p)) == -1)
 		return 0;
+	    else
+		*b++ = es;
 	}
-	else {
+	else
 	    *b++ = *p & CHAR;
-	}
     }
     *b = 0;
     return buf;

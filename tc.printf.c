@@ -60,7 +60,9 @@ doprnt(addchar, sfmt, ap)
 {
     register char *bp;
     register const char *f;
+#ifdef SHORT_STRINGS
     register Char *Bp;
+#endif /* SHORT_STRINGS */
     register long l;
     register unsigned long u;
     register int i;

@@ -47,6 +47,20 @@
 
 
 /***
+ *** LynxOS 2.1
+ ***/
+#ifdef Lynx
+# ifndef _SIGMASK_T
+#  define _SIGMASK_T
+    typedef long sigmask_t;
+# endif /* _SIGMASK_T */
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif
+
+
+/***
  *** Suns running sunos3.x - sunos4.1.x
  ***/
 #if (defined(sun) || defined(__sun__)) && SYSVREL == 0
@@ -68,8 +82,10 @@
 # endif /* _SIZE_T */
 # ifndef __sys_stdtypes_h
 #  define __sys_stdtypes_h
-    typedef int pid_t;
-    typedef unsigned int speed_t;
+#   ifndef __lucid
+     typedef int pid_t;
+     typedef unsigned int speed_t;
+#   endif
 # endif /* __sys_stdtypes.h */
 # ifndef _PID_T
 #  define _PID_T
@@ -475,6 +491,7 @@ typedef char * caddr_t;
 #ifdef apollo
 # ifndef _PID_T
 #  define _PID_T
+   typedef int pid_t;	/* Older versions might not like that */
 # endif /* _PID_T */
 #endif /* apollo */
 

@@ -402,8 +402,8 @@ quotspec:
     return (c);
 }
 
-static Char *nulvec[] = {0};
-static struct varent nulargv = {nulvec, STRargv, 0};
+static Char *nulvec[] = { NULL };
+static struct varent nulargv = {nulvec, STRargv, { NULL, NULL, NULL }, 0 };
 
 static void
 dolerror(s)
@@ -971,7 +971,7 @@ heredoc(term)
 	    c = readc(1);	/* 1 -> Want EOF returns */
 	    if (c < 0 || c == '\n')
 		break;
-	    if (c &= TRIM) {
+	    if ((c &= TRIM) != 0) {
 		*lbp++ = (Char) c;
 		if (--lcnt < 0) {
 		    setname("<<");

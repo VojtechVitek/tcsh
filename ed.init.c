@@ -568,7 +568,30 @@ Cookedmode()
 #ifdef BSDSIGS
     orig_intr = (sigret_t (*)()) signal(SIGINT, SIG_IGN);
 #else
+# ifdef SIG_HOLD
+    /*
+     * sigset doesn't return the previous handler if the signal is held,
+     * it will return SIG_HOLD instead. So instead of restoring the
+     * the signal we would end up installing a blocked SIGINT with a
+     * SIG_IGN signal handler. This is what happened when Cookedmode
+     * was called from sched_run, disabling interrupt for the rest
+     * of your session.
+     *
+     * This is what we do:
+     * - if the signal is blocked, keep it that way
+     * - else set it to SIG_IGN
+     *
+     * Casper Dik (casper@fwi.uva.nl)
+     */
+    orig_intr = (sigret_t (*)()) sigset(SIGINT, SIG_HOLD);
+    if (orig_intr != SIG_HOLD)
+	(void) sigset(SIGINT, SIG_IGN); /* returns SIG_HOLD */
+# else /* !SIG_HOLD */
+    /*
+     * No SIG_HOLD; probably no reliable signals as well.
+     */
     orig_intr = (sigret_t (*)()) sigset(SIGINT, SIG_IGN);
+# endif /* SIG_HOLD */
 #endif /* BSDSIGS */
     if (tty_setty(SHTTY, &extty) == -1) {
 #ifdef DEBUG_TTY

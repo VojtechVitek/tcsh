@@ -404,12 +404,18 @@ tw_dollar(str, wl, nwl, buffer, sep, msg)
     Char *sp, *bp = buffer, *ebp = &buffer[MAXPATHLEN];
 
     for (sp = str; *sp && *sp != sep && bp < ebp;)
-	if (sp[0] == '$' && sp[1] == ':' && Isdigit(sp[2])) {
-	    int num;
+	if (sp[0] == '$' && sp[1] == ':' && Isdigit(sp[sp[2] == '-' ? 3 : 2])) {
+	    int num, neg = 0;
 	    sp += 2;
+	    if (*sp == '-') {
+		neg = 1;
+		sp++;
+	    }
 	    for (num = *sp++ - '0'; Isdigit(*sp); num += 10 * num + *sp++ - '0')
 		continue;
-	    if (num < nwl) {
+	    if (neg)
+		num = nwl - num - 1;
+	    if (num >= 0 && num < nwl) {
 		Char *ptr;
 		for (ptr = wl[num]; *ptr && bp < ebp - 1; *bp++ = *ptr++)
 		    continue;

@@ -409,7 +409,7 @@ putn(n)
 	*putp++ = '-';
     }
     num = 2;			/* confuse lint */
-    if (sizeof(int) == num && ((unsigned int) n) == 32768) {
+    if (sizeof(int) == num && ((unsigned int) n) == 0x8000) {
 	*putp++ = '3';
 	n = 2768;
 #ifdef pdp11
@@ -418,7 +418,7 @@ putn(n)
     }
     else {
 	num = 4;		/* confuse lint */
-	if (sizeof(int) == num && ((unsigned int) n) == 2147483648) {
+	if (sizeof(int) == num && ((unsigned int) n) == 0x80000000) {
 	    *putp++ = '2';
 	    n = 147483648;
 	}

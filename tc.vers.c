@@ -65,6 +65,18 @@ gethosttype()
     hosttype = "vax";
 # endif /* vax || __vax && !_havehosttype_ */
 
+# ifdef __hp_osf				/* HP running OSF/1 */
+#  ifdef __pa_risc
+#   define _havehosttype_
+    hosttype = str2short("hp9000s700-osf1");	/* Snake */
+#  endif
+#  ifndef _havehosttype_
+#   define _havehosttype_
+    hosttype = str2short("hp-osf1");
+#  endif
+# endif  /* __hp_osf */
+
+
 # ifdef hp9000 /* hp9000 running MORE/bsd */
 #  ifdef hp300
 #   define _havehosttype_
@@ -467,6 +479,41 @@ gethosttype()
 #  define _havehosttype_
     hosttype = "sysV88";
 # endif /* sysV88 */
+
+# if defined(Lynx)
+#  if defined(i386)
+#   define _havehosttype_
+    hosttype = "lynxos-i386";
+#  endif
+#  if defined(i860)
+#   define _havehosttype_
+    hosttype = "lynxos-i860";
+#  endif
+#  if defined(m68k)
+#   define _havehosttype_
+    hosttype = "lynxos-m68k";
+#  endif
+#  if defined(m88k)
+#   ifndef _havehosttype_
+#    define _havehosttype_
+#   endif
+    hosttype = "lynxos-m88k";
+#  endif
+#  if defined(sparc)
+#   define _havehosttype_
+    hosttype = "lynxos-sparc";
+#  endif
+#  if defined(mips)
+#   ifndef _havehosttype_
+#    define _havehosttype_
+#   endif
+    hosttype = "lynxos-mips";
+#  endif
+#  ifndef _havehosttype_
+#   define _havehosttype_
+    hosttype = "lynxos-unknown";
+#  endif
+# endif /* Lynx */
 
 # if defined(i860) && !defined(_havehosttype_)
 #  define _havehosttype_
