@@ -836,7 +836,7 @@ char *concat_args_and_quote(char **args, char **poriginalPtr,char **cstr,
 			// If it's not the same heap block, re-adjust the pointers.
             if (tempptr != *poriginalPtr) {
 				cmdstr = tempptr + (cmdstr - *poriginalPtr);
-                cmdend = cmdstr + (cmdend- *poriginalPtr);
+                cmdend = tempptr + (cmdend- *poriginalPtr);
 				*poriginalPtr = tempptr;
             }
 			dprintf("after realloc: original %p, cmdstr %p\n",
