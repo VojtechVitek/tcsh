@@ -1070,11 +1070,6 @@ int
 sortscmp(a, b)
     register Char **a, **b;
 {
-#if defined(NLS) && !defined(NOSTRCOLL)
-    char    buf[2048];
-
-#endif
-
     if (!a)			/* check for NULL */
 	return (b ? 1 : 0);
     if (!b)
@@ -1085,12 +1080,7 @@ sortscmp(a, b)
     if (!*b)
 	return (-1);
 
-#if defined(NLS) && !defined(NOSTRCOLL)
-    (void) strcpy(buf, short2str(*a));
-    return ((int) strcoll(buf, short2str(*b)));
-#else
-    return ((int) Strcmp(*a, *b));
-#endif
+    return (int) collate(a, b);
 }
 
 #endif

@@ -504,18 +504,7 @@ execute(t, wanttty, pipein, pipeout)
 			(void) signal(SIGQUIT, SIG_IGN);
 		    }
 
-# ifdef _SEQUENT_
-		    /*
-		     * On some machines (POSIX) the process group leader
-		     * cannot be a zombie. On those machines, the following
-		     * might help. Note that BACKPIPE will break if the
-		     * last process exits too soon.
-		     * (From Jaap)
-		     */
-		    pgetty(_gv.wanttty ? _gv.wanttty : 1, pgrp);
-# else /* _SEQUENT_ */
 		    pgetty(_gv.wanttty, pgrp);
-# endif /* _SEQUENT_ */
 
 		    if (t->t_dflg & F_NOHUP)
 			(void) signal(SIGHUP, SIG_IGN);
@@ -567,10 +556,8 @@ execute(t, wanttty, pipein, pipeout)
 #endif /* BSDSIGS */
 		nosigchld = 0;
 	    }
-	    if ((t->t_dflg & F_AMPERSAND) == 0) {
-		forepid = pid;
+	    if ((t->t_dflg & F_AMPERSAND) == 0)
 		pwait();
-	    }
 	    break;
 	}
 

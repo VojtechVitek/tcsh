@@ -364,8 +364,9 @@ dnormalize(cp, exp)
 		    if (*cp)
 		        cp++;
 	        }
-	        else 
-	   	    *dp++ = *cp++;
+	        else /* skip to the next path component */
+		    while (*cp != '/' && *cp != '\0')
+			*dp++ = *cp++;
 
 	    *dp = '\0';
 	    while (dotdot > 0) 

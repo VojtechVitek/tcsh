@@ -955,6 +955,8 @@ EXTERN Char   *STR_BSHELL;
 EXTERN Char   *STR_WORD_CHARS;
 EXTERN Char  **STR_environ;
 
+extern int     dont_free;	/* Tell free that we are in danger if we free */
+
 #include "tc.h"
 #include "sh.decls.h"
 

@@ -408,6 +408,11 @@ stderror(va_alist)
     id = va_arg(va, unsigned int);
 #endif
 
+    /*
+     * Reset don't free flag for buggy os's
+     */
+    dont_free = 0;
+
     flags = id & ERR_FLAGS;
     id &= ~ERR_FLAGS;
 

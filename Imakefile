@@ -58,6 +58,9 @@ ones.  Please send in your fixes and additions! */
 
 #ifdef SGIArchitecture
 #define ConfigH sgi
+#ifdef you_are_using_yp
+# define UseSunLib 
+#endif
 #endif
 
 #ifdef IBMArchitecture
@@ -244,7 +247,7 @@ platform, unless you have a really weird architecture. */
 #ifdef MyCC
 CC = MyCC
 #else
-# if defined(HasGcc) || defined(HasGCC)
+# if HasGcc || HasGCC
 #  ifdef HasGcc2
 CC = gcc 
 #  else

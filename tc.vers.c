@@ -200,6 +200,11 @@ gethosttype()
 # endif /* i386 */
 #endif /* _MINIX */
 
+# ifdef __386BSD__
+# define _havehosttype_
+    hosttype = "386BSD";
+# endif /* __386BSD__ */
+
 # if defined(i386) && SYSVREL > 0
 
 #  if !defined(_havehosttype_) && (defined(ISC) || defined(ISC202))
@@ -492,16 +497,21 @@ fix_version()
 #else
 # define SMSTR  ""
 #endif 
+#ifdef HASHBANG
+# define HBSTR	",hb"
+#else
+# define HBSTR  ""
+#endif 
 /* if you want your local version to say something */
 #ifndef LOCALSTR
 # define LOCALSTR ""
 #endif /* LOCALSTR */
 
     xsprintf(version,
-	     "tcsh %d.%.2d.%.2d (%s) %s (%s) options %s%s%s%s%s%s%s%s%s%s%s",
+	     "tcsh %d.%.2d.%.2d (%s) %s (%s) options %s%s%s%s%s%s%s%s%s%s%s%s",
 	     REV, VERS, PATCHLEVEL, ORIGIN, DATE, gethosttype(),
 	     SSSTR, NLSSTR, LFSTR, DLSTR, VISTR, DTRSTR,
-	     BYESTR, ALSTR, KANSTR, SMSTR, LOCALSTR);
+	     BYESTR, ALSTR, KANSTR, SMSTR, HBSTR, LOCALSTR);
     set(STRversion, SAVE(version));
     xsprintf(version, "%d.%.2d.%.2d", REV, VERS, PATCHLEVEL);
     set(STRtcsh, SAVE(version));

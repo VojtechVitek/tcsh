@@ -569,9 +569,53 @@ exp6(vp, ignore)
 #endif
 		    break;
 
+		/* 
+		 * ARGH!!! sgi defines (-s == ! -z) Why? Can you change it? 
+		 * Here I am not going to be compatible; they should fix it!
+		 */
 		case 's':
-#ifdef S_ISSOCK
+# ifdef S_ISSOCK
 		    i = S_ISSOCK(stb.st_mode);
+# else
+		    i = 0;
+# endif
+		    break;
+
+		case 'b':
+#ifdef S_ISBLK
+		    i = S_ISBLK(stb.st_mode);
+#else
+		    i = 0;
+#endif
+		    break;
+
+		case 'c':
+#ifdef S_ISCHR
+		    i = S_ISCHR(stb.st_mode);
+#else
+		    i = 0;
+#endif
+		    break;
+
+		case 'u':
+#ifdef S_ISUID
+		    i = (S_ISUID & stb.st_mode) != 0;
+#else
+		    i = 0;
+#endif
+		    break;
+
+		case 'g':
+#ifdef S_ISGID
+		    i = (S_ISGID & stb.st_mode) != 0;
+#else
+		    i = 0;
+#endif
+		    break;
+
+		case 'k':
+#ifdef S_ISVTX
+		    i = (S_ISVTX & stb.st_mode) != 0;
 #else
 		    i = 0;
 #endif

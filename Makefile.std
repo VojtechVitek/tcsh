@@ -241,9 +241,9 @@ static: tcsh.a
 tcsh.a:$(P) ${OBJS}
 	$(LD) -x -r -o tcsh.a ${OBJS}
 
-tcsh.ps: tcsh.1
+tcsh.ps: tcsh.man
 	rm -f tcsh.ps
-	-ptroff -man tcsh.1 > tcsh.ps
+	-ptroff -man tcsh.man > tcsh.ps
 
 
 .c.${SUF}:

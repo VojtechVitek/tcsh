@@ -54,6 +54,13 @@ static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
 #undef RCHECK
 #undef DEBUG
 
+/*
+ * Lots of os routines are busted and try to free invalid pointers. 
+ * Although our free routine is smart enough and it will pick bad 
+ * pointers most of the time, in cases where we know we are going to get
+ * a bad pointer, we'd rather leak.
+ */
+int dont_free = 0;
 
 #ifndef NULL
 #define	NULL 0
@@ -280,7 +287,11 @@ free(cp)
     register int size;
     register union overhead *op;
 
-    if (cp == NULL)
+    /*
+     * the don't free flag is there so that we avoid os bugs in routines
+     * that free invalid pointers!
+     */
+    if (cp == NULL || dont_free)
 	return;
     CHECK(!memtop || !membot, "free(%lx) called before any allocations.", cp);
     CHECK(cp > (ptr_t) memtop, "free(%lx) above top of memory.", cp);

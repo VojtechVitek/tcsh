@@ -1728,14 +1728,7 @@ int
 fcompare(file1, file2)
     Char  **file1, **file2;
 {
-#if defined(NLS) && !defined(NOSTRCOLL)
-    char    buf[2048];
-
-    (void) strcpy(buf, short2str(*file1));
-    return ((int) strcoll(buf, short2str(*file2)));
-#else
-    return (StrQcmp(*file1, *file2));
-#endif
+    return (int) collate(*file1, *file2);
 } /* end fcompare */
 
 

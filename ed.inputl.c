@@ -210,6 +210,14 @@ Inputl()
 			    Refresh();
 			    break;
 			}
+			else if (ch == 'a') {
+			    xprintf("abort\n");
+			    *LastChar = '\0';
+			    Cursor = LastChar;
+			    printprompt(0, NULL);
+			    Refresh();
+			    break;
+			}
 			xprintf("no\n");
 		    }
 		    flush();
