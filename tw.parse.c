@@ -76,7 +76,6 @@ static bool SearchNoDirErr = 0;	/* t_search returns -2 if dir is unreadable */
 extern Char NeedsRedraw;	/* from ed.h */
 extern int TermH;		/* from the editor routines */
 extern int lbuffed;		/* from sh.print.c */
-extern bool relatives_in_path;	/* set true if PATH has relative elements */
 
 static	void	 free_items		__P((Char **, int));
 static	void	 extract_dir_and_name	__P((Char *, Char *, Char *));
