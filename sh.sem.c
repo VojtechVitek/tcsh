@@ -654,6 +654,13 @@ execute(t, wanttty, pipein, pipeout, do_glob)
 	    func(t, bifunc);
 	    if (forked)
 		exitstat();
+	    else {
+		if (adrof(STRprintexitvalue)) {
+		    int rv = getn(varval(STRstatus));
+		    if (rv != 0)
+			xprintf(CGETS(17, 2, "Exit %d\n"), rv);
+		}
+	    }
 	    break;
 	}
 	if (t->t_dtyp != NODE_PAREN) {
