@@ -122,7 +122,7 @@ enthist(event, lp, docopy, mflg)
     struct Hist *p = NULL, *pp = &Histlist;
     int n, r;
     register struct Hist *np;
-    char *dp;
+    Char *dp;
     
     if ((dp = value(STRhistdup)) != STRNULL) {
 	if (eq(dp, STRall)) {
@@ -130,7 +130,7 @@ enthist(event, lp, docopy, mflg)
 		if (heq(lp, &(p->Hlex)))
 		    break;
 	}
-	else if (dp, STRprev)) {
+	else if (eq(dp, STRprev)) {
 	    if (pp->Hnext && heq(lp, &(pp->Hnext->Hlex)))
 		p = pp->Hnext;
 	}
