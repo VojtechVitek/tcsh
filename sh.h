@@ -381,14 +381,20 @@ struct tms shtimes;		/* shell and child times for process timing */
  * Miscellany
  */
 Char   *doldol;			/* Character pid for $$ */
+time_t  chktim;			/* Time mail last checked */
+
+/*
+ * Ideally these should be uid_t, gid_t, pid_t. I cannot do that right now
+ * cause pid's could be unsigned and that would break our -1 flag, and 
+ * uid_t and gid_t are not defined in all the systems so I would have to
+ * make special cases for them. In the future...
+ */
 int     uid;			/* Invokers uid */
 int     gid;			/* Invokers gid */
-time_t  chktim;			/* Time mail last checked */
-int     shpgrp;			/* Pgrp of shell */
-int     tpgrp;			/* Terminal process group */
-
-/* If tpgrp is -1, leave tty alone! */
-int     opgrp;			/* Initial pgrp and tty pgrp */
+int     opgrp,			/* Initial pgrp and tty pgrp */
+        shpgrp,			/* Pgrp of shell */
+        tpgrp;			/* Terminal process group */
+				/* If tpgrp is -1, leave tty alone! */
 
 Char    PromptBuf[256];		/* buffer for the actual printed prompt. this
 				 * is used in tenex.c and sh.c for pegets.c */

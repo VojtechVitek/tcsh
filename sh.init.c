@@ -95,7 +95,9 @@ struct	biltins bfunc[] = {
 #endif
     { "jobs",	dojobs,		0,	1, },
     { "kill",	dokill,		1,	INF, },
+#ifndef HAVENOLIMIT
     { "limit",	dolimit,	0,	3, },
+#endif /* ! HAVENOLIMIT */
     { "linedit",	doecho,		0,	INF, },
 #ifndef KAI
     { "log",	dolog,		0,	0, },
@@ -150,7 +152,9 @@ struct	biltins bfunc[] = {
 #ifdef masscomp
     { "universe",	douniverse,	0,	1, },
 #endif
+#ifndef HAVENOLIMIT
     { "unlimit",	dounlimit,	0,	INF, },
+#endif /* !HAVENOLIMIT */
     { "unset",	unset,		1,	INF, },
     { "unsetenv",	dounsetenv,	1,	INF, },
 #ifdef apollo
