@@ -111,7 +111,7 @@ typedef int sigret_t;
  */
 #if defined(WINNT_NATIVE) || defined(__CYGWIN__)
 # define ABSOLUTEP(p)	((p)[0] == '/' || \
-    (Isalpha((p)[0]) && (p)[1] == ':' && (p)[2] == '/'))
+    (Isalpha((p)[0]) && (p)[1] == ':'))
 #else /* !WINNT_NATIVE && !__CYGWIN__ */
 # define ABSOLUTEP(p)	(*(p) == '/')
 #endif /* WINNT_NATIVE || __CYGWIN__ */
