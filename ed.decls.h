@@ -92,6 +92,7 @@ extern	void	TellTC			__P((char *));
 extern	void	SetTC			__P((char *, char *));
 extern	void	EchoTC			__P((Char **));
 extern	int 	SetArrowKeys		__P((Char *, XmapVal *, int));
+extern	int 	IsArrowKey		__P((Char *));
 extern	void	ResetArrowKeys		__P((void));
 extern	void	DefaultArrowKeys	__P((void));
 extern	int 	ClearArrowKeys		__P((Char *));

@@ -755,6 +755,16 @@ SetArrowKeys(name, fun, type)
     return -1;
 }
 
+int
+IsArrowKey(name)
+    Char *name;
+{
+    int i;
+    for (i = 0; i < 4; i++)
+	if (Strcmp(name, arrow[i].name) == 0)
+	    return 1;
+    return 0;
+}
 
 int
 ClearArrowKeys(name)
