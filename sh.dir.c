@@ -268,11 +268,12 @@ dnormalize(cp)
     Char   *cp;
 {
 
-#define UC (unsigned char)
-#define ISDOT(c) (UC(c)[0] == '.' && ((UC(c)[1] == '\0') || (UC(c)[1] == '/')))
-#define ISDOTDOT(c) (UC(c)[0] == '.' && ISDOT(&((c)[1])))
+#define TRM(a) ((a) & TRIM)
+#define ISDOT(c) (TRM((c)[0]) == '.' && ((TRM((c)[1]) == '\0') || \
+		  (TRM((c)[1]) == '/')))
+#define ISDOTDOT(c) (TRM((c)[0]) == '.' && ISDOT(&((c)[1])))
 
-    if ((unsigned char) cp[0] == '/')
+    if (TRM(cp[0]) == '/')
 	return (Strsave(cp));
 
 #ifdef S_IFLNK
@@ -320,7 +321,7 @@ dnormalize(cp)
 		break;
 
 	if (*cp) {
-	    if (((unsigned char) cwd[(dotdot = Strlen(cwd)) - 1]) != '/')
+	    if ((TRM(cwd[(dotdot = Strlen(cwd)) - 1])) != '/')
 		cwd[dotdot++] = '/';
 	    cwd[dotdot] = '\0';
 	    dp = Strspl(cwd, cp);
