@@ -2107,7 +2107,7 @@ getremotehost()
     const char *host = NULL;
 #ifdef INET6
     struct sockaddr_storage saddr;
-    int len = sizeof(struct sockaddr_storage);
+    socklen_t len = sizeof(struct sockaddr_storage);
     static char hbuf[NI_MAXHOST];
 #else
     struct hostent* hp;

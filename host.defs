@@ -723,12 +723,22 @@ machtype: defined(sparc)   || defined(__sparc__)	: "sparc"
 enddef	:
 
 
-newdef	: defined(__APPLE__)
+newdef	: defined(RHAPSODY)
 comment	: Rhapsody
 vendor	:						: "apple"
 hosttype: defined(__i386__)				: "intel-pc"
 hosttype: defined(__ppc__)				: "macintosh"
-ostype	:						: "rhapsody"
+ostype	:						: "darwin"
+machtype: defined(__i386__)				: "i386"
+machtype: defined(__ppc__)				: "powerpc"
+enddef	:
+
+newdef	: defined(DARWIN)
+comment	: Darwin
+vendor	:						: "apple"
+hosttype: defined(__i386__)				: "intel-pc"
+hosttype: defined(__ppc__)				: "macintosh"
+ostype	:						: "darwin"
 machtype: defined(__i386__)				: "i386"
 machtype: defined(__ppc__)				: "powerpc"
 enddef	:

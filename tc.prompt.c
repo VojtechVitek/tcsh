@@ -196,8 +196,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			/* prompt stuff */
     static Char *olddir = NULL, *olduser = NULL;
     extern int tlength;	/* cache cleared */
-    int updirs, sz;
-    size_t pdirs;
+    int updirs;
+    size_t pdirs, sz;
 
     for (; *cp; cp++) {
 	if (p >= ep)
@@ -529,7 +529,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			if (p >= ep) break;
 		break;
 	    case '$':
-		sz = (int) (ep - p);
+		sz = ep - p;
 		(void) expdollar(&p, &cp, &sz, attributes);
 		/* cp should point the last char of currnet % sequence */
 		cp--;

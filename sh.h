@@ -270,8 +270,10 @@ typedef int sigret_t;
  * by now, but in some systems we use the
  * old routines...
  */
+# if !defined(__APPLE__)
 # define getpgrp __getpgrp
 # define setpgrp __setpgrp
+# endif
 # include <unistd.h>
 # undef getpgrp
 # undef setpgrp
@@ -281,7 +283,7 @@ typedef int sigret_t;
  * redefines malloc(), so we define the following
  * to avoid it.
  */
-# if defined(linux) || defined(sgi) || defined(_OSD_POSIX)
+# if defined(SYSMALLOC) || defined(linux) || defined(sgi) || defined(_OSD_POSIX)
 #  define NO_FIX_MALLOC
 #  include <stdlib.h>
 # else /* linux */
