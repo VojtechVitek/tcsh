@@ -111,6 +111,19 @@ blkpr(av)
     }
 }
 
+void
+blkexpand(av, str)
+    register Char **av;
+    Char *str;
+{
+    *str = '\0';
+    for (; *av; av++) {
+	(void) Strcat(str, *av);
+	if (av[1])
+	    (void) Strcat(str, STRspace);
+    }
+}
+
 int
 blklen(av)
     register Char **av;

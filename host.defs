@@ -661,6 +661,14 @@ hosttype:						: "gould_np1"
 machtype:						: "gould"
 enddef	:
 
+newdef	: defined(MULTIFLOW)
+comment	: Multiflow running 4.3BSD
+vendor	:						: "multiflow"
+hosttype:						: "multiflow"
+machtype:						: "multiflow"
+ostype	:						: "bsd43"
+enddef	:
+
 
 newdef	: defined(SXA)
 comment	: PFU/Fujitsu A-xx computer
@@ -684,6 +692,14 @@ comment	: Stellar
 vendor	:						: "stellar"
 hosttype:						: "stellar"
 ostype	:						: "stellix"
+enddef	:
+
+newdef	: defined(atari)
+comment	: Atari TT running SVR4. This machine was never
+comment	: commercially available.
+vendor	:						: "atari"
+hosttype:						: "atari"
+ostype	:						: "asv"
 enddef	:
 
 

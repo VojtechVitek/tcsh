@@ -54,13 +54,30 @@ extern bool Tty_raw_mode;
 static Char mismatch[] = 
     {'!', '^' , '\\', '-', '%', '\0', '"', '\'', '`', '\0' };
 
+static	int	Repair		__P((void));
 static	int	GetNextCommand	__P((KEYCMD *, Char *));
 static	int	SpellLine	__P((int));
 static	int	CompleteLine	__P((void));
 static	void	RunCommand	__P((Char *));
-static void 	doeval1		__P((Char **));
+static  void 	doeval1		__P((Char **));
 
 static bool rotate = 0;
+
+
+static int
+Repair()
+{
+    if (NeedsRedraw) {
+	ClearLines();
+	ClearDisp();
+	NeedsRedraw = 0;
+    }
+    Refresh();
+    Argument = 1;
+    DoingArg = 0;
+    curchoice = -1;
+    return LastChar - InputBuf;
+}
 
 /* CCRETVAL */
 int
@@ -305,31 +322,13 @@ Inputl()
 	case CC_CORRECT:
 	    if (tenematch(InputBuf, Cursor - InputBuf, SPELL) < 0)
 		Beep();		/* Beep = No match/ambiguous */
-	    if (NeedsRedraw) {
-		ClearLines();
-		ClearDisp();
-		NeedsRedraw = 0;
-	    }
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
 	    break;
 
 	case CC_CORRECT_L:
 	    if (SpellLine(FALSE) < 0)
 		Beep();		/* Beep = No match/ambiguous */
-	    if (NeedsRedraw) {
-		ClearLines();
-		ClearDisp();
-		NeedsRedraw = 0;
-	    }
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
 	    break;
 
 
@@ -465,56 +464,31 @@ Inputl()
 	case CC_LIST_GLOB:
 	    if (tenematch(InputBuf, Cursor - InputBuf, GLOB) < 0)
 		Beep();
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
 	    break;
 
 	case CC_EXPAND_GLOB:
 	    if (tenematch(InputBuf, Cursor - InputBuf, GLOB_EXPAND) <= 0)
 		Beep();		/* Beep = No match */
-	    if (NeedsRedraw) {
-		ClearLines();
-		ClearDisp();
-		NeedsRedraw = 0;
-	    }
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
 	    break;
 
 	case CC_NORMALIZE_PATH:
 	    if (tenematch(InputBuf, Cursor - InputBuf, PATH_NORMALIZE) <= 0)
 		Beep();		/* Beep = No match */
-	    if (NeedsRedraw) {
-		ClearLines();
-		ClearDisp();
-		NeedsRedraw = 0;
-	    }
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
 	    break;
 
 	case CC_EXPAND_VARS:
 	    if (tenematch(InputBuf, Cursor - InputBuf, VARS_EXPAND) <= 0)
 		Beep();		/* Beep = No match */
-	    if (NeedsRedraw) {
-		ClearLines();
-		ClearDisp();
-		NeedsRedraw = 0;
-	    }
-	    Refresh();
-	    Argument = 1;
-	    DoingArg = 0;
-	    curchoice = -1;
-	    curlen = LastChar - InputBuf;
+	    curlen = Repair();
+	    break;
+
+	case CC_NORMALIZE_COMMAND:
+	    if (tenematch(InputBuf, Cursor - InputBuf, COMMAND_NORMALIZE) <= 0)
+		Beep();		/* Beep = No match */
+	    curlen = Repair();
 	    break;
 
 	case CC_HELPME:

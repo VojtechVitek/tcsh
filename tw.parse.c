@@ -391,7 +391,7 @@ tenematch(inputline, num_read, command)
 			if (InsertStr(quote_meta(ptr[i], 0, 0)) < 0 ||
 			    InsertStr(STRspace) < 0) {
 			    blkfree(ptr);
-			    return (-1);
+			    return -1;
 			}
 		    }
 	    }
@@ -403,10 +403,10 @@ tenematch(inputline, num_read, command)
 	if (dollar(buffer, wordp)) {
 	    DeleteBack(str_end - word_start);
 	    if (InsertStr(quote_meta(buffer, qu, 0)) < 0)
-		return (-1);
-	    return (1);
+		return -1;
+	    return 1;
 	}
-	return (0);
+	return 0;
 
     case PATH_NORMALIZE:
 	if ((bptr = dnormalize(wordp, symlinks == SYM_IGNORE ||
@@ -415,10 +415,19 @@ tenematch(inputline, num_read, command)
 	    xfree((ptr_t) bptr);
 	    DeleteBack(str_end - word_start);
 	    if (InsertStr(quote_meta(buffer, 0, 0)) < 0)
-		return (-1);
-	    return (1);
+		return -1;
+	    return 1;
 	}
-	return (0);
+	return 0;
+
+    case COMMAND_NORMALIZE:
+	if (!cmd_expand(wordp, buffer))
+	    return 0;
+
+	DeleteBack(str_end - word_start);
+	if (InsertStr(quote_meta(buffer, 0, 0)) < 0)
+	    return -1;
+	return 1;
 
     case LIST:
     case LIST_ALL:

@@ -1874,7 +1874,7 @@ process(catch)
 	 * If had a tellwhat from twenex() then do
 	 */
 	if (tellwhat) {
-	    tellmewhat(&paraml);
+	    (void) tellmewhat(&paraml, NULL);
 	    reset();
 	}
 

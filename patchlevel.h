@@ -8,7 +8,7 @@
 #define ORIGIN "Cornell"
 #define REV 6
 #define VERS 4
-#define PATCHLEVEL 12
-#define DATE "94/04/27"
+#define PATCHLEVEL 13
+#define DATE "94/05/07"
 
 #endif /* _h_patchlevel */

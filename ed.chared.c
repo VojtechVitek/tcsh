@@ -1826,6 +1826,17 @@ e_normalize_path(c)
     *LastChar = '\0';		/* just in case */
     return(CC_NORMALIZE_PATH);
 }
+
+/*ARGSUSED*/
+CCRETVAL
+e_normalize_command(c)
+    int c;
+{
+    USE(c);
+    *LastChar = '\0';		/* just in case */
+    return(CC_NORMALIZE_COMMAND);
+}
+
 /*ARGSUSED*/
 CCRETVAL
 e_expand_vars(c)

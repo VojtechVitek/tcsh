@@ -265,8 +265,10 @@ PFCmd   CcFuncTbl[] = {		/* table of available commands */
 #define		F_COMPLETE_BACK	109
     e_delnext_list,
 #define		F_DELNEXT_LIST	110
+    e_normalize_command,
+#define		F_COMMAND_NORM	111
     0				/* DUMMY VALUE */
-#define		F_NUM_FNS	111
+#define		F_NUM_FNS	112
 };
 
 KEYCMD  NumFuns = F_NUM_FNS;
@@ -1201,6 +1203,8 @@ struct KeyFuncs FuncNames[] = {
       "Execute command" },
     { "normalize-path", F_PATH_NORM,
       "Expand pathnames, eliminating leading .'s and ..'s" },
+    { "normalize-command", F_COMMAND_NORM,
+      "Expand commands to the resulting pathname or alias" },
     { "overwrite-mode", F_INSOVR,
       "Switch from insert to overwrite mode or vice versa" },
     { "prefix-meta", F_METANEXT,
@@ -1455,6 +1459,8 @@ ed_InitEmacsMaps()
     AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
     buf[1] = 'N';
     AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
+    buf[1] = '?';
+    AddXkey(buf, XmapCmd(F_COMMAND_NORM),  XK_CMD);
     buf[1] = '\t';
     AddXkey(buf, XmapCmd(F_COMPLETE_ALL),  XK_CMD);
     buf[1] = 004;	/* ^D */
