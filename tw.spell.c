@@ -40,9 +40,6 @@ RCSID("$Id$")
 
 #include "tw.h"
 
-extern Char **command_list;
-extern int numcommands;
-
 /* spell_me : return corrrectly spelled filename.  From K&P spname */
 int
 spell_me(oldname, oldsize, looking_for_cmd)
@@ -87,7 +84,8 @@ spell_me(oldname, oldsize, looking_for_cmd)
 	 */
 	/* (*should* say "looking for directory" whenever '/' is next...) */
 	retval = t_search(guess, p, SPELL, FILSIZ,
-			  looking_for_cmd && (foundslash || *old != '/'), 1);
+			  looking_for_cmd && (foundslash || *old != '/') ?
+			  TW_COMMAND : TW_ZERO, 1, STRNULL);
 	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
 	for (p = ws; *new = *p++;)

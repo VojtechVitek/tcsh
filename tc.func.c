@@ -190,7 +190,7 @@ dolist(v, c)
     struct stat st;
 
     if (*++v == NULL) {
-	(void) t_search(STRNULL, NULL, LIST, 0, 0, 0);
+	(void) t_search(STRNULL, NULL, LIST, 0, TW_ZERO, 0, STRNULL);
 	return;
     }
     gflag = 0;
@@ -302,7 +302,7 @@ dolist(v, c)
 		else 
 		    dp[-1] &= TRIM;
 		*dp = '\0';
-		(void) t_search(buf, NULL, LIST, 0, 0, 0);
+		(void) t_search(buf, NULL, LIST, 0, TW_ZERO, 0, STRNULL);
 		i = k + 1;
 	    }
 	    xfree((ptr_t) tmp);
@@ -1446,7 +1446,7 @@ doaliases(v, c)
 
 eof:
     (void) close(fd);
-    tw_clear_comm_list();
+    tw_cmd_free();
     if (gargv)
 	blkfree(gargv), gargv = 0;
     resexit(oldexit);

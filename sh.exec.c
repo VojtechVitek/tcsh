@@ -609,7 +609,7 @@ dohash(vv, c)
 #endif /* FASTHASH */
 
     (void) getusername(NULL);	/* flush the tilde cashe */
-    tw_clear_comm_list();
+    tw_cmd_free();
     havhash = 1;
     if (v == NULL)
 	return;

@@ -238,7 +238,7 @@ doalias(v, c)
 	    stderror(ERR_NAME | ERR_DANGER);
 	}
 	set1(strip(p), saveblk(v), &aliases);
-	tw_clear_comm_list();
+	tw_cmd_free();
     }
 }
 
@@ -249,7 +249,7 @@ unalias(v, c)
     struct command *c;
 {
     unset1(v, &aliases);
-    tw_clear_comm_list();
+    tw_cmd_free();
 }
 
 /*ARGSUSED*/

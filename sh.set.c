@@ -191,7 +191,7 @@ doset(v, c)
 	    bslash_quote = 1;
 	}
 	else if (eq(vp, STRrecognize_only_executables)) {
-	    tw_clear_comm_list();
+	    tw_cmd_free();
 	}
 	else if (eq(vp, STRwatch)) {
 	    resetwatch();
@@ -577,7 +577,7 @@ unset(v, c)
     if (adrof(STRbackslash_quote) == 0)
 	bslash_quote = 0;
     if (did_only && adrof(STRrecognize_only_executables) == 0)
-	tw_clear_comm_list();
+	tw_cmd_free();
 }
 
 void

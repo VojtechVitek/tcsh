@@ -390,15 +390,15 @@ extern int gethostname();
 #endif
 
 # ifdef BSDSIGS
-#  if defined(_AIX370) || defined(MACH) || defined(NeXT) || defined(_AIXPS2)
+#  if defined(_AIX370) || defined(MACH) || defined(NeXT) || defined(_AIXPS2) || defined(ardent)
 extern int sigvec();
 extern int sigpause();
-#  else	/* _AIX370 || MACH || NeXT || _AIXPS2 */
+#  else	/* _AIX370 || MACH || NeXT || _AIXPS2 || ardent */
 #   if !defined(apollo) || !defined(__STDC__)
-# ifndef fps500
+#    ifndef fps500
 extern sigret_t sigvec();
 extern void sigpause();
-# endif /* fps500 */
+#    endif /* fps500 */
 #   endif /* !apollo || !__STDC__ */
 #  endif /* _AIX370 || MACH || NeXT || _AIXPS2 */
 extern sigmask_t sigblock();

@@ -398,7 +398,7 @@ printprompt(promptno, str)
 		break;
 	    }
 	}
-	else if (*cp == '\\' | *cp == '^') {
+	else if (*cp == '\\' || *cp == '^') {
 	    *p++ = attributes | parseescape(&cp);
 	}
 	else if (*cp == '!') {	/* EGS: handle '!'s in prompts */
