@@ -160,7 +160,11 @@ struct saved_state {
 };
 
 static	int		  srccat	__P((Char *, Char *));
+#ifndef WINNT_NATIVE
 static	int		  srcfile	__P((char *, bool, int, Char **));
+#else
+int		  srcfile	__P((char *, bool, int, Char **));
+#endif /*WINNT_NATIVE*/
 static	sigret_t	  phup		__P((int));
 static	void		  srcunit	__P((int, bool, int, Char **));
 static	void		  mailchk	__P((void));
@@ -1443,7 +1447,11 @@ srccat(cp, dp)
 /*
  * Source to a file putting the file descriptor in a safe place (> 2).
  */
+#ifndef WINNT_NATIVE
 static int
+#else
+int
+#endif /*WINNT_NATIVE*/
 srcfile(f, onlyown, flag, av)
     char   *f;
     bool    onlyown;
