@@ -48,8 +48,6 @@
 # define NT_NUM_KEYS	256
 #endif /* WINNT */
 
-extern int errno;
-
 /****************************************************************************/
 /* stuff for the different states returned by the character editor routines */
 /****************************************************************************/
