@@ -117,7 +117,20 @@
  *		be used with SHORT_STRINGS
  *
  */
-#define KANJI
+#undef KANJI
+
+/*
+ * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
+ *		only output, when "dspmbyte" is set.
+ */
+#define DSPMBYTE
+
+/*
+ * MBYTEDEBUG	when "dspmbyte" is changed, set multi-byte checktable to
+ *		variable "mbytemap".
+ *		(use for multi-byte table check)
+ */
+#define MBYTEDEBUG
 
 /*
  * NEWGRP	Provide a newgrp builtin.
@@ -169,18 +182,5 @@
 #else
 # define RCSID(id)	/* Nothing */
 #endif /* !lint && !SABER */
-
-/*
- * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
- *		only output, when "dspmbyte" is set.
- */
-#define DSPMBYTE
-
-/*
- * MBYTEDEBUG	when "dspmbyte" is changed, set multi-byte checktable to
- *		variable "mbytemap".
- *		(use for multi-byte table check)
- */
-#define MBYTEDEBUG
 
 #endif /* _h_config_f */
