@@ -1496,8 +1496,10 @@ readc(wanteof)
 	    }
 	    numeof = numeof * 10 + *ptr++ - '0';
 	}
+	if (numeof != 0)
+	    numeof++;
     } 
-    if (numeof < 1) numeof = 26;	/* Sanity check */
+    if (numeof < 0) numeof = 26;	/* Sanity check */
 
 top:
     aret = TCSH_F_SEEK;
@@ -1605,7 +1607,7 @@ reread:
 		int     ctpgrp;
 #endif /* BSDJOBS */
 
-		if (++sincereal >= numeof)	/* Too many EOFs?  Bye! */
+		if (numeof != 0 && ++sincereal >= numeof)	/* Too many EOFs?  Bye! */
 		    goto oops;
 #ifdef BSDJOBS
 		if (tpgrp != -1 &&
