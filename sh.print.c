@@ -194,7 +194,7 @@ draino()
 void
 flush()
 {
-    register int unit;
+    int unit, nw;
     static int interrupted = 0;
     size_t sz;
 
@@ -225,9 +225,26 @@ flush()
 #endif
 #endif
     sz = (size_t) (linp - linbuf);
-    if (write(unit, linbuf, sz) != sz && !haderr)
-	/* XXX: This ends up to cause an infinite loop if we lose our tty */
-	stderror(ERR_SILENT);
+    if (write(unit, linbuf, sz) == -1)
+	switch (errno) {
+#ifdef EIO
+	/* We lost our tty */
+	case EIO:
+#endif
+#ifdef ENXIO
+	/*
+	 * Deal with Digital Unix 4.0D bogocity, returning ENXIO when
+	 * we lose our tty.
+	 */
+	case ENXIO:
+#endif
+	/* Nothing to do, but die */
+	    xexit(1);
+	    break;
+	default:
+	    stderror(ERR_SILENT);
+	    break;
+	}
 
     linp = linbuf;
     interrupted = 0;
