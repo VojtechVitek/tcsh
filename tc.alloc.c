@@ -257,10 +257,10 @@ morecore(bucket)
     nblks = 1 << (rnu - (bucket + 3));	/* how many blocks to get */
     memtop = (char *) sbrk(1 << rnu);	/* PWP */
     op = (union overhead *) memtop;
-    memtop += (long) (1 << rnu);
     /* no more room! */
     if ((long) op == -1)
 	return;
+    memtop += (long) (1 << rnu);
     /*
      * Round up to minimum allocation size boundary and deduct from block count
      * to reflect.
@@ -595,7 +595,7 @@ showall(v, c)
     register union overhead *p;
     int     totfree = 0, totused = 0;
 
-    xprintf(CGETS(19, 8, "tcsh current memory allocation:\nfree:\t"));
+    xprintf(CGETS(19, 8, "%s current memory allocation:\nfree:\t"), progname);
     for (i = 0; i < NBUCKETS; i++) {
 	for (j = 0, p = nextf[i]; p; p = p->ov_next, j++)
 	    continue;

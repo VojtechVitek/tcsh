@@ -62,7 +62,7 @@ static void
 dstart(from)
     const char *from;
 {
-    xprintf(CGETS(12, 1, "tcsh: Trying to start from \"%s\"\n"), from);
+    xprintf(CGETS(12, 1, "%s: Trying to start from \"%s\"\n"), progname, from);
 }
 
 /*
@@ -80,7 +80,7 @@ dinit(hp)
     /* Don't believe the login shell home, because it may be a symlink */
     tcp = (char *) getwd(path);
     if (tcp == NULL || *tcp == '\0') {
-	xprintf("tcsh: %s\n", path);
+	xprintf("%s: %s\n", progname, path);
 	if (hp && *hp) {
 	    tcp = short2str(hp);
 	    dstart(tcp);

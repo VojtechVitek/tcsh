@@ -408,7 +408,7 @@ tenematch(inputline, num_read, command)
 	return search_ret;
 
     default:
-	xprintf(CGETS(30, 4, "tcsh: Internal match error.\n"));
+	xprintf(CGETS(30, 4, "%s: Internal match error.\n"), progname);
 	return 1;
 
     }
@@ -1605,7 +1605,8 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
 
     default:
 	xprintf(CGETS(30, 9,
-		"\ntcsh internal error: I don't know what I'm looking for!\n"));
+		"\n%s internal error: I don't know what I'm looking for!\n"),
+		progname);
 	NeedsRedraw = 1;
 	return (-1);
     }
@@ -2152,10 +2153,15 @@ tgetenv(str)
     int     len, res;
 
     len = (int) Strlen(str);
+    /* Search the STR_environ for the entry matching str. */
     for (var = STR_environ; var != NULL && *var != NULL; var++)
-	if ((*var)[len] == '=') {
+	if (Strlen(*var) >= len && (*var)[len] == '=') {
+	  /* Temporarily terminate the string so we can copy the variable
+	     name. */
 	    (*var)[len] = '\0';
 	    res = StrQcmp(*var, str);
+	    /* Restore the '=' and return a pointer to the value of the
+	       environment variable. */
 	    (*var)[len] = '=';
 	    if (res == 0)
 		return (&((*var)[len + 1]));

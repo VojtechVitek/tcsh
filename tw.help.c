@@ -130,8 +130,13 @@ do_help(command)
 	    if (f != -1) {
 		/* so cat it to the terminal */
 		orig_intr = (sigret_t (*)()) sigset(SIGINT, cleanf);
-		while (f != -1 && (len = read(f, (char *) buf, 512)) != 0)
+		while (f != -1 && (len = read(f, (char *) buf, 512)) > 0)
 		    (void) write(SHOUT, (char *) buf, (size_t) len);
+#ifdef convex
+		/* print error in case file is migrated */
+		if (len == -1)
+		    stderror(ERR_SYSTEM, progname, strerror(errno));
+#endif /* convex */
 		(void) sigset(SIGINT, orig_intr);
 		if (f != -1)
 		    (void) close(f);

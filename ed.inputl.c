@@ -243,7 +243,17 @@ Inputl()
 		    Beep();
 		    printprompt(2, short2str(Change));
 		    Refresh();
-		    (void) read(SHIN, (char *) &tch, 1);
+		    if (read(SHIN, (char *) &tch, 1) < 0)
+#ifdef convex
+		        /*
+			 * need to print error message in case file
+			 * is migrated
+			 */
+                        if (errno && errno != EINTR)
+                            stderror(ERR_SYSTEM, progname, strerror(errno));
+#else
+			break;
+#endif
 		    ch = tch;
 		    if (ch == 'y' || ch == ' ') {
 			LastChar = CorrChar;	/* Restore the corrected end */
@@ -723,6 +733,11 @@ GetNextChar(cp)
 	if (!tried && fixio(SHIN, errno) != -1)
 	    tried = 1;
 	else {
+#ifdef convex
+            /* need to print error message in case the file is migrated */
+            if (errno != EINTR)
+                stderror(ERR_SYSTEM, progname, strerror(errno));
+#endif  /* convex */
 	    *cp = '\0';
 	    return -1;
 	}

@@ -56,7 +56,6 @@ extern bool GotTermCaps;
 static int zlast = -1;
 
 static	void	islogin		__P((void));
-static	void	reexecute	__P((struct command *));
 static	void	preread		__P((void));
 static	void	doagain		__P((void));
 static  char   *isrchx		__P((int));
@@ -417,7 +416,7 @@ doif(v, kp)
  * Reexecute a command, being careful not
  * to redo i/o redirection, which is already set up.
  */
-static void
+void
 reexecute(kp)
     register struct command *kp;
 {
@@ -1560,7 +1559,7 @@ Unsetenv(name)
 {
     register Char **ep = STR_environ;
     register Char *cp, *dp;
-    Char  **oep = ep;
+    Char **oep = ep;
 
     for (; *ep; ep++) {
 	for (cp = name, dp = *ep; *cp && *cp == *dp; cp++, dp++)
@@ -1570,6 +1569,7 @@ Unsetenv(name)
 	cp = *ep;
 	*ep = 0;
 	STR_environ = blkspl(STR_environ, ep + 1);
+	blkfree((Char **) environ);
 	environ = short2blk(STR_environ);
 	*ep = cp;
 	xfree((ptr_t) cp);
@@ -1606,7 +1606,7 @@ doumask(v, c)
 # ifndef BSDLIMIT
    typedef long RLIM_TYPE;
 #  ifndef RLIM_INFINITY
-#   if !defined(_MINIX) && !defined(__clipper__)
+#   if !defined(_MINIX) && !defined(__clipper__) && !defined(_CRAY)
     extern RLIM_TYPE ulimit();
 #   endif /* ! _MINIX && !__clipper__ */
 #   define RLIM_INFINITY 0x003fffff
@@ -2094,7 +2094,7 @@ retry:
 /* This is the dreaded EVAL built-in.
  *   If you don't fiddle with file descriptors, and reset didfds,
  *   this command will either ignore redirection inside or outside
- *   its aguments, e.g. eval "date >x"  vs.  eval "date" >x
+ *   its arguments, e.g. eval "date >x"  vs.  eval "date" >x
  *   The stuff here seems to work, but I did it by trial and error rather
  *   than really knowing what was going on.  If tpgrp is zero, we are
  *   probably a background eval, e.g. "eval date &", and we want to

@@ -140,6 +140,12 @@ static Char getCtmp;
 time_t Htime = (time_t)0;
 static time_t a2time_t __P((Char *));
 
+/*
+ * for history event processing
+ * in the command 'echo !?foo?:1 !$' we want the !$ to expand from the line
+ * 'foo' was found instead of the last command
+ */
+static int uselastevent = 1;
 
 int
 lex(hp)
@@ -149,6 +155,7 @@ lex(hp)
     int     c;
 
 
+    uselastevent = 1;
     histvalid = 0;
     histlinep = histline;
     *histlinep = '\0';
@@ -741,7 +748,12 @@ getexcl(sc)
 	}
     }
     quesarg = -1;
-    lastev = eventno;
+
+    if (uselastevent) {
+	uselastevent = 0;
+	lastev = eventno;
+    }
+	lastev = eventno;
     hp = gethent(sc);
     if (hp == 0)
 	return;
@@ -1308,7 +1320,7 @@ gethent(sc)
 	    }
 	    np = lhsb;
 	    event = 0;
-	    while (!cmap(c, _ESC | _META | _QF | _QB) && !any("${}:#", c)) {
+	    while (!cmap(c, _ESC | _META | _QF | _QB) && !any("^*0-%${}:#", c)) {
 		if (event != -1 && Isdigit(c))
 		    event = event * 10 + c - '0';
 		else
@@ -1627,7 +1639,8 @@ reread:
 					"\nUse \"logout\" to logout.\n"));
 		   	} else {
 				xprintf(CGETS(16, 3,
-					"\nUse \"exit\" to leave tcsh.\n"));
+					"\nUse \"exit\" to leave %s.\n"),
+					progname);
 			}
 			reset();
 		} else {
@@ -1686,6 +1699,10 @@ bgetc()
 	    do
 		c = read(SHIN, tbuf, BUFSIZE);
 	    while (c < 0 && errno == EINTR);
+#ifdef convex
+	    if (c < 0)
+		stderror(ERR_SYSTEM, progname, strerror(errno));
+#endif /* convex */
 	    if (c <= 0)
 		return (-1);
 	    for (i = 0; i < c; i++)

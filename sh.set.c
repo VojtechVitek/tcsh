@@ -757,22 +757,29 @@ static void
 exportpath(val)
     Char  **val;
 {
-    Char    exppath[BUFSIZE];
+  Char    	*exppath;
+  size_t	exppath_size = BUFSIZE;
+  exppath = (Char *)xmalloc(sizeof(Char)*exppath_size);
 
     exppath[0] = 0;
     if (val)
 	while (*val) {
-	    if (Strlen(*val) + Strlen(exppath) + 2 > BUFSIZE) {
+	  while (Strlen(*val) + Strlen(exppath) + 2 > exppath_size) {
+	    if ((exppath
+		 = (Char *)xrealloc(exppath, sizeof(Char)*(exppath_size *= 2)))
+		 == NULL) {
 		xprintf(CGETS(18, 1,
 			      "Warning: ridiculously long PATH truncated\n"));
 		break;
+	      }
 	    }
 	    (void) Strcat(exppath, *val++);
 	    if (*val == 0 || eq(*val, STRRparen))
-		break;
+	      break;
 	    (void) Strcat(exppath, STRsep);
-	}
-    tsetenv(STRKPATH, exppath);
+	  }
+  tsetenv(STRKPATH, exppath);
+  free(exppath);
 }
 
 #ifndef lint

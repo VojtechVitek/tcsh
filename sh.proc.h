@@ -61,7 +61,7 @@ struct process {
 #ifdef BSDTIMES
     struct timeval p_btime;	/* begin time */
     struct timeval p_etime;	/* end time */
-    struct rusage p_rusage;
+    struct sysrusage p_rusage;
 #else				/* BSDTIMES */
 # ifdef _SEQUENT_
     timeval_t p_btime;		/* begin time */

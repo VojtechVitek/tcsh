@@ -239,7 +239,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 
 		    /* "DING!" stuff by Hans also */
 		    if (t->tm_min || print_prompt_did_ding || 
-			what != FMT_PROMPT) {
+			what != FMT_PROMPT || adrof(STRnoding)) {
 			if (t->tm_min)
 			    print_prompt_did_ding = 0;
 			Itoa(hr, buff);
@@ -396,7 +396,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			    *p++ = attributes | '+';
 			} else
 			    *p++ = attributes | ('0' + updirs);
-			*p++ = attributes | '>';
+			*p++ = attributes | tcsh ? '>' : '%';
 		    }
 		}
 		

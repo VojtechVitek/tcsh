@@ -307,6 +307,7 @@ parsebind(s, str)
 	    *b++ = '\033';
 	    while ((*b++ = *s++) != '\0')
 		continue;
+	    b--;
 	    break;
 
 	case 'C': case 'c':	/* Turn into ^c */
@@ -770,7 +771,7 @@ parsekey(sp)
 		c = '\177';
 	    else {
 		xprintf(CGETS(20, 35,
-			"bad key specification -- unknown name \"%S\"\n", s));
+			"bad key specification -- unknown name \"%S\"\n"), s);
 		return -1;	/* error */
 	    }
 	}

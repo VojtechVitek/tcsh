@@ -550,7 +550,8 @@ dodmmode(v, c)
     }
     else {
 	if (cp[1] != '\0')
-	    stderror(ERR_DMMODE);
+	    stderror(ERR_NAME | ERR_STRING, 
+		     CGETS(23, 30, "Too many arguments");
 	else
 	    switch(*cp) {
 	    case '0':
@@ -560,7 +561,8 @@ dodmmode(v, c)
 		dmmode(1);
 		break;
 	    default:
-		stderror(ERR_DMMODE);
+		stderror(ERR_NAME | ERR_STRING, 
+			 CGETS(23, 31, "Invalid argument");
 	    }
     }
 }
@@ -646,7 +648,7 @@ dowarp(v, c)
  *** Masscomp or HCX
  ***/
 /* Added, DAS DEC-90. */
-#if defined(masscomp) || defined(hcx)
+#if defined(masscomp) || defined(_CX_UX)
 /*ARGSUSED*/
 void
 douniverse(v, c)
@@ -654,17 +656,117 @@ douniverse(v, c)
     struct command *c;
 {
     register Char *cp = v[1];
+    register Char *cp2;		/* dunno how many elements v comes in with */
     char    ubuf[100];
+#ifdef BSDSIGS
+    register sigmask_t omask = 0;
+#endif /* BSDSIGS */
 
     if (cp == 0) {
 	(void) getuniverse(ubuf);
 	xprintf("%s\n", ubuf);
     }
-    else if (*cp == '\0' || setuniverse(short2str(cp)) != 0)
+    else {
+	cp2 = v[2];
+	if (cp2 == 0) {
+	    if (*cp == '\0' || setuniverse(short2str(cp)) != 0)
+		stderror(ERR_NAME | ERR_STRING, CGETS(23, 12, "Illegal universe"));
+	    }
+	else {
+	    (void) getuniverse(ubuf);
+	    if (*cp == '\0' || setuniverse(short2str(cp)) != 0)
 	stderror(ERR_NAME | ERR_STRING, CGETS(23, 12, "Illegal universe"));
+	    if (setintr)
+#ifdef BSDSIGS
+		omask = sigblock(sigmask(SIGINT)) & ~sigmask(SIGINT);
+#else /* !BSDSIGS */
+		(void) sighold(SIGINT);
+#endif /* BSDSIGS */
+	    lshift(v, 2);
+	    if (setintr)
+#ifdef BSDSIGS
+		(void) sigsetmask(omask);
+#else /* !BSDSIGS */
+		(void) sigrelse (SIGINT);
+#endif /* BSDSIGS */
+	    reexecute(c);
+	    (void) setuniverse(ubuf);
+	}
+    }
 }
-#endif /* masscomp || hcx */
+#endif /* masscomp || _CX_UX */
 
+#if defined(_CX_UX)
+/*ARGSUSED*/
+void
+doatt(v, c)
+    register Char **v;
+    struct command *c;
+{
+    register Char *cp = v[1];
+    char    ubuf[100];
+#ifdef BSDSIGS
+    register sigmask_t omask = 0;
+#endif /* BSDSIGS */
+
+    if (cp == 0)
+	(void) setuniverse("att");
+    else {
+	(void) getuniverse(ubuf);
+	(void) setuniverse("att");
+	if (setintr)
+#ifdef BSDSIGS
+	    omask = sigblock(sigmask(SIGINT)) & ~sigmask(SIGINT);
+#else /* !BSDSIGS */
+	    (void) sighold(SIGINT);
+#endif /* BSDSIGS */
+	lshift(v, 1);
+	if (setintr)
+#ifdef BSDSIGS
+	    (void) sigsetmask(omask);
+#else /* !BSDSIGS */
+	    (void) sigrelse (SIGINT);
+#endif /* BSDSIGS */
+	reexecute(c);
+	(void) setuniverse(ubuf);
+    }
+}
+
+/*ARGSUSED*/
+void
+doucb(v, c)
+    register Char **v;
+    struct command *c;
+{
+    register Char *cp = v[1];
+    char    ubuf[100];
+#ifdef BSDSIGS
+    register sigmask_t omask = 0;
+#endif /* BSDSIGS */
+
+    if (cp == 0)
+	(void) setuniverse("ucb");
+    else {
+	(void) getuniverse(ubuf);
+	(void) setuniverse("ucb");
+	if (setintr)
+#ifdef BSDSIGS
+	    omask = sigblock(sigmask(SIGINT)) & ~sigmask(SIGINT);
+#else /* !BSDSIGS */
+	    (void) sighold(SIGINT);
+#endif /* BSDSIGS */
+	lshift(v, 1);
+	if (setintr)
+#ifdef BSDSIGS
+	    (void) sigsetmask(omask);
+#else /* !BSDSIGS */
+	    (void) sigrelse (SIGINT);
+#endif /* BSDSIGS */
+	reexecute(c);
+	(void) setuniverse(ubuf);
+    }
+}
+#endif /* _CX_UX */
 
 #ifdef _SEQUENT_
 /*

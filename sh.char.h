@@ -71,6 +71,8 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 #define _PUN	0x8000		/* punctuation */
 
 #if defined(SHORT_STRINGS) && defined(KANJI)
+extern Char STRnokanji[];
+
 #define cmap(c, bits)	\
 	((((c) & QUOTE) || (c>127 && adrof(STRnokanji))) ? \
 	0 : (_cmap[(unsigned char)(c)] & (bits)))

@@ -642,6 +642,11 @@ Load_input_line()
 	    Input_Line = Strsave(str2short(buf));
 	    PushMacro(Input_Line);
 	}
+#ifdef convex
+        /* need to print errno message in case file is migrated */
+        if (chrs < 0)
+            stderror(ERR_SYSTEM, progname, strerror(errno));
+#endif
     }
 #endif  /* FIONREAD && !OREO */
     return chrs > 0;

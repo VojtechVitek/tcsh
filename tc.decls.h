@@ -77,9 +77,9 @@ extern	int		  resetdisc	__P((int));
 /*
  * tc.func.c
  */
-extern	Char		 *expand_lex	__P((Char *, int, struct wordent *, 
+extern	Char		 *expand_lex	__P((Char *, size_t, struct wordent *, 
 					     int, int));
-extern	Char		 *sprlex	__P((Char *, struct wordent *));
+extern	Char		 *sprlex	__P((Char *, size_t, struct wordent *));
 extern	void		  Itoa		__P((int, Char *));
 extern	void		  dolist	__P((Char **, struct command *));
 extern	void		  dotelltc	__P((Char **, struct command *));
@@ -141,6 +141,11 @@ extern	void 		  dodmmode	__P((Char **, struct command *));
 #if defined(masscomp) || defined(hcx)
 extern	void		  douniverse	__P((Char **, struct command *));
 #endif /* masscomp */
+
+#if defined(hcx)
+extern	void		  doatt		__P((Char **, struct command *));
+extern	void		  doucb		__P((Char **, struct command *));
+#endif /* hcx */
 
 #ifdef _SEQUENT_
 extern	void	 	  pr_stat_sub	__P((struct process_stats *, 

@@ -163,6 +163,7 @@ extern	int		  srchx		__P((Char *));
 extern	void		  unalias	__P((Char **, struct command *));
 extern	void		  wfree		__P((void));
 extern	void		  dobuiltins	__P((Char **, struct command *));
+extern	void		  reexecute	__P((struct command *));
 
 /*
  * sh.glob.c
@@ -342,9 +343,11 @@ extern	void		  plist		__P((struct varent *, int));
 extern	void		  donice	__P((Char **, struct command *));
 extern	void		  dotime	__P((Char **, struct command *));
 #ifdef BSDTIMES
-extern	void		  prusage	__P((struct rusage *, struct rusage *, 
+extern	void		  prusage	__P((struct sysrusage *,
+					     struct sysrusage *, 
 					     timeval_t *, timeval_t *));
-extern	void		  ruadd		__P((struct rusage *, struct rusage *));
+extern	void		  ruadd		__P((struct sysrusage *,
+					     struct sysrusage *));
 #else /* BSDTIMES */
 # ifdef _SEQUENT_
 extern	void		  prusage	__P((struct process_stats *,

@@ -335,20 +335,20 @@ errinit()
     elst[ERR_TCNARGS] = CSAVS(1, 120, "`%s' requires %d arguments");
     elst[ERR_TCUSAGE] = CSAVS(1, 121,
 	"Usage: echotc [-v|-s] [<capability> [<args>]]");
-    elst[ERR_ARCH] = CSAVS(1, 122, "%s: %s. Wrong Architecture");
+    elst[ERR_ARCH] = CSAVS(1, 122, "%s: %s. Binary file not executable");
     elst[ERR_HISTLOOP] = CSAVS(1, 123, "!# History loop");
     elst[ERR_FILEINQ] = CSAVS(1, 124, "Malformed file inquiry");
     elst[ERR_SELOVFL] = CSAVS(1, 125, "Selector overflow");
 #ifdef apollo
     elst[ERR_TCSHUSAGE] = CSAVS(1, 126,
-"Unknown option: `-%s'\nUsage: tcsh [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]");
+"Unknown option: `-%s'\nUsage: %s [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]");
 #else /* !apollo */
 # ifdef convex
     elst[ERR_TCSHUSAGE] = CSAVS(1, 127,
-"Unknown option: `-%s'\nUsage: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]");
+"Unknown option: `-%s'\nUsage: %s [ -bcdefFilmnqstvVxX ] [ argument ... ]");
 # else /* rest */
     elst[ERR_TCSHUSAGE] = CSAVS(1, 128,
-"Unknown option: `-%s'\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]");
+"Unknown option: `-%s'\nUsage: %s [ -bcdefilmnqstvVxX ] [ argument ... ]");
 # endif /* convex */
 #endif /* apollo */
     elst[ERR_COMPCOM] = CSAVS(1, 129, "\nInvalid completion: \"%s\"");

@@ -542,6 +542,15 @@ typedef char * caddr_t;
 #endif /* pdp11 */
 
 /***
+ *** a Harris, running CX/UX
+ ***/
+#ifdef _CX_UX
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* _CX_UX */
+
+/***
  *** Catch all for non POSIX and/or non ANSI systems.
  *** Systems up to spec *should* define these automatically
  *** I am open to suggestions on how to do this correctly!

@@ -443,8 +443,8 @@ char *inpath, *path;
 	    insert(pe, n, path);
 	else
 	    xprintf(CGETS(10, 4, "setpath: %s not found in %s\n",
-		    inpath, pe->pname);
-	}
+		    inpath, pe->pname));
+    }
 }
 
 static void

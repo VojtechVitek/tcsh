@@ -433,7 +433,8 @@ texec(sf, st)
 	 * it, don't feed it to the shell if it looks like a binary!
 	 */
 	if ((fd = open(f, O_RDONLY)) != -1) {
-	    if (read(fd, (char *) pref, 2) == 2) {
+	    int nread;
+	    if ((nread = read(fd, (char *) pref, 2)) == 2) {
 		if (!Isprint(pref[0]) && (pref[0] != '\n' && pref[0] != '\t')) {
 		    (void) close(fd);
 		    /*
@@ -441,6 +442,12 @@ texec(sf, st)
 		     */
 		    stderror(ERR_ARCH, f, strerror(errno));
 		}
+	    }
+	    else if (nread < 0 && errno != EINTR) {
+#ifdef convex
+		/* need to print error incase the file is migrated */
+		stderror(ERR_SYSTEM, CMDname, strerror(errno));
+#endif
 	    }
 #ifdef _PATH_BSHELL
 	    else {

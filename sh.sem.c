@@ -508,12 +508,14 @@ execute(t, wanttty, pipein, pipeout)
 			(void) signal(SIGHUP, SIG_IGN);
 		    if (t->t_dflg & F_HUP)
 			(void) signal(SIGHUP, SIG_DFL);
-		    if (t->t_dflg & F_NICE)
+		    if (t->t_dflg & F_NICE) {
+			int nval = SIGN_EXTEND_CHAR(t->t_nice);
 # ifdef BSDNICE
-			(void) setpriority(PRIO_PROCESS, 0, t->t_nice);
+			(void) setpriority(PRIO_PROCESS, 0, nval);
 # else /* !BSDNICE */
-			(void) nice(t->t_nice);
+			(void) nice(nval);
 # endif /* BSDNICE */
+		    }
 # ifdef F_VER
 		    if (t->t_dflg & F_VER) {
 			tsetenv(STRSYSTYPE, t->t_systype ? STRbsd43 : STRsys53);
@@ -789,6 +791,10 @@ doio(t, pipein, pipeout)
 	    xfree((ptr_t) cp);
 	    if ((fd = open(tmp, O_RDONLY)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
+#ifdef O_LARGEFILE
+	    /* allow input files larger than 2Gb  */
+	    (void) fcntl(fd, O_LARGEFILE, 0);
+#endif /* O_LARGEFILE */
 	    (void) dmove(fd, 0);
 	}
 	else if (flags & F_PIPEIN) {
@@ -832,7 +838,7 @@ doio(t, pipein, pipeout)
 	    fd = open(tmp, O_WRONLY | O_APPEND);
 #else /* !O_APPEND */
 	    fd = open(tmp, O_WRONLY);
-	    (void) lseek(1, (off_t) 0, L_XTND);
+	    (void) lseek(fd, (off_t) 0, L_XTND);
 #endif /* O_APPEND */
 	}
 	else
@@ -845,6 +851,10 @@ doio(t, pipein, pipeout)
 	    }
 	    if ((fd = creat(tmp, 0666)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
+#ifdef O_LARGEFILE
+	    /* allow input files larger than 2Gb  */
+	    (void) fcntl(fd, O_LARGEFILE, 0);
+#endif /* O_LARGEFILE */
 	}
 	(void) dmove(fd, 1);
 	is1atty = isatty(1);
