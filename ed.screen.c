@@ -38,29 +38,6 @@ RCSID("$Id$")
 #include "tc.h"
 #include "ed.defns.h"
 
-#ifndef POSIX
-/*
- * We don't prototype these, cause some systems have them wrong!
- */
-extern int   tgetent	__P(());
-extern char *tgetstr	__P(());
-extern int   tgetflag	__P(());
-extern int   tgetnum	__P(());
-extern char *tgoto	__P(());
-# define PUTPURE putpure
-# define PUTRAW putraw
-#else
-extern int   tgetent	__P((char *, char *));
-extern char *tgetstr	__P((char *, char **));
-extern int   tgetflag	__P((char *));
-extern int   tgetnum	__P((char *));
-extern char *tgoto	__P((char *, int, int));
-extern void  tputs	__P((char *, int, void (*)(int)));
-# define PUTPURE ((void (*)__P((int))) putpure)
-# define PUTRAW ((void (*)__P((int))) putraw)
-#endif
-
-
 /* #define DEBUG_LITERAL */
 
 /*
