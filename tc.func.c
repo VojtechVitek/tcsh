@@ -2131,7 +2131,7 @@ getremotehost()
 	host = hbuf;
 #else
     if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1 &&
-	saddr.ss_family == AF_INET) {
+	saddr.sin_family == AF_INET) {
 #if 0
 	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, sizeof(struct in_addr),
 				AF_INET)) != NULL)
