@@ -527,6 +527,8 @@ veryclean: clean
 
 distclean: veryclean
 
+cleandir: veryclean
+
 tags:	/tmp
 	${CTAGS} sh*.c
 
