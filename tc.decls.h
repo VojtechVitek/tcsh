@@ -64,6 +64,11 @@ extern	unsigned char    *unparsestring	__P((Char *, unsigned char *, Char *));
 extern	void		  dobind	__P((Char **, struct command *));
 #endif
 
+/*
+ * tc.defs.c:
+ */
+extern	void		  getmachine	__P((void));
+
 
 /*
  * tc.disc.c
@@ -286,10 +291,9 @@ extern	char		 *short2qstr	__P((const Char *));
 
 
 /*
- * tc.vers.h:
+ * tc.vers.c:
  */
 extern	void		  fix_version	__P((void));
-extern	char		 *gethosttype	__P((void));
 
 /*
  * tc.who.c

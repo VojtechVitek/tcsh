@@ -439,6 +439,12 @@ main(argc, argv)
     (void) sigset(SIGALRM, alrmcatch);
 
     set(STRstatus, Strsave(STR0), VAR_READWRITE);
+
+    /*
+     * get and set machine specific envirnment variables
+     */
+    getmachine();
+
     fix_version();		/* publish the shell version */
 
     /*
@@ -526,10 +532,6 @@ main(argc, argv)
 	    tsetenv(STRHOST, str2short("unknown"));
     }
 
-    /*
-     * HOSTTYPE, too. Just set it again.
-     */
-    tsetenv(STRHOSTTYPE, str2short(gethosttype()));
 
 #ifdef REMOTEHOST
     /*
@@ -1533,6 +1535,13 @@ int snum;
     if (snum)
 	(void) sigset(snum, SIG_IGN);
 #endif /* UNRELSIGS */
+
+    set(STRlogout, STRhangup, VAR_READWRITE);
+#ifdef _PATH_DOTLOGOUT
+    (void) srcfile(_PATH_DOTLOGOUT, 0, 0, NULL);
+#endif
+    if (adrof(STRhome))
+	(void) srccat(value(STRhome), STRsldtlogout);
 
     record();
 

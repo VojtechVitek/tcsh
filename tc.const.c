@@ -43,6 +43,7 @@ Char STRautologout[]    = { 'a', 'u', 't', 'o', 'l', 'o', 'g', 'o', 'u', 't',
 			    '\0' };
 Char STRdefautologout[] = { '6', '0', '\0' };
 Char STRautomatic[]     = { 'a', 'u', 't', 'o', 'm', 'a', 't', 'i', 'c', '\0' };
+Char STRhangup[]	= { 'h', 'a', 'n', 'g', 'u', 'p', '\0' };
 Char STRaout[]          = { 'a', '.', 'o', 'u', 't', '\0' };
 Char STRtty[]           = { 't', 't', 'y', '\0' };
 Char STRany[]           = { 'a', 'n', 'y', '\0' };
@@ -63,12 +64,16 @@ Char STRterm[]          = { 't', 'e', 'r', 'm', '\0' };
 Char STRversion[]       = { 'v', 'e', 'r', 's', 'i', 'o', 'n', '\0' };
 Char STRuid[]           = { 'u', 'i', 'd', '\0' };
 Char STRgid[]           = { 'g', 'i', 'd', '\0' };
+Char STRunknown[]	= { 'u', 'n', 'k', 'n', 'o', 'w', 'n', '\0' };
 Char STRHOST[]          = { 'H', 'O', 'S', 'T', '\0' };
 #ifdef REMOTEHOST
 Char STRREMOTEHOST[]	= { 'R', 'E', 'M', 'O', 'T', 'E', 'H', 
 			    'O', 'S', 'T', '\0' };
 #endif /* REMOTEHOST */
-Char STRHOSTTYPE[]      = { 'H', 'O', 'S', 'T', 'T', 'Y', 'P', 'E', '\0' };
+Char STRHOSTTYPE[]	= { 'H', 'O', 'S', 'T', 'T', 'Y', 'P', 'E', '\0' };
+Char STRVENDOR[]	= { 'V', 'E', 'N', 'D', 'O', 'R', '\0' };
+Char STRMACHTYPE[]	= { 'M', 'A', 'C', 'H', 'T', 'Y', 'P', 'E', '\0' };
+Char STROSTYPE[]	= { 'O', 'S', 'T', 'Y', 'P', 'E', '\0' };
 Char STRedit[]          = { 'e', 'd', 'i', 't', '\0' };
 Char STRaddsuffix[]     = { 'a', 'd', 'd', 's', 'u', 'f', 'f', 'i', 'x', '\0' };
 Char STRnostat[]        = { 'n', 'o', 's', 't', 'a', 't', '\0' };

@@ -76,6 +76,10 @@
 # undef NEEDstrerror
 #endif /* linux */
 
+#ifdef NetBSD
+# undef NEEDstrerror
+#endif
+
 #ifdef OREO
 # include <sys/time.h>
 # ifdef notdef

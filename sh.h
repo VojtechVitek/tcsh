@@ -67,7 +67,7 @@ typedef char Char;
 #endif 
 
 /* Elide unused argument warnings */
-#define USE(a)	((void) (a))
+#define USE(a)	(void) (a)
 /*
  * If your compiler complains, then you can either
  * throw it away and get gcc or, use the following define
@@ -960,7 +960,9 @@ EXTERN Char    HISTSUB;		/* auto-substitute character */
  * To print system call errors...
  */
 #ifndef linux
+#ifdef NEEDstrerror
 extern char *sys_errlist[];
+#endif
 extern int errno, sys_nerr;
 #endif /* !linux */
 
