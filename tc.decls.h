@@ -183,7 +183,7 @@ extern	void 		  sigpause	__P((int));
 # ifdef SXA
 extern	void 		  sigpause	__P((int));
 # endif
-extern	int 		  ourwait	__P((int *));
+extern	pid_t 		  ourwait	__P((int *));
 #endif
 #ifdef NEEDsignal
 extern	sigret_t	(*xsignal	__P((int, sigret_t (*)(int)))) ();

@@ -74,7 +74,7 @@ RCSID("$Id$")
 static struct mysigstack {
     int     s_w;		/* wait report			 */
     int     s_errno;		/* errno returned;		 */
-    int     s_pid;		/* pid returned			 */
+    pid_t   s_pid;		/* pid returned			 */
 }       stk[MAX_CHLD];
 static int stk_ptr = -1;
 
@@ -90,7 +90,7 @@ sig_ch_queue()
     flush();
 #endif /* JOBDEBUG */
     stk_ptr++;
-    stk[stk_ptr].s_pid = wait(&stk[stk_ptr].s_w);
+    stk[stk_ptr].s_pid = (pid_t) wait(&stk[stk_ptr].s_w);
     stk[stk_ptr].s_errno = errno;
     (void) signal(SIGCHLD, sig_ch_queue);
     /* shut up the compiler */
@@ -202,11 +202,11 @@ sigpause(what)
 
 /* return either awaiting processes or do a wait now
  */
-int
+pid_t
 ourwait(w)
     int    *w;
 {
-    int     pid;
+    pid_t pid;
 
 #ifdef JOBDEBUG
     xprintf("our wait %d\n", stk_ptr);
@@ -215,7 +215,7 @@ ourwait(w)
 
     if (stk_ptr == -1) {
 	/* stack empty return signal from stack */
-	pid = wait(w);
+	pid = (pid_t) wait(w);
 #ifdef JOBDEBUG
 	xprintf("signal(SIGCHLD, pchild);\n");
 #endif /* JOBDEBUG */
