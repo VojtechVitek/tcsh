@@ -83,9 +83,15 @@ static char *rcsid()
 # define HZ	100		/* for division into seconds */
 #endif
 
+#if (defined(_BSD) && defined(_BSD_INCLUDES)) || defined(BSD)
+# define BSDWAIT
+#endif /* (_BSD && _BSD_INCLUDES) || BSD */
+
 #ifndef WTERMSIG
 # define WTERMSIG(w)	(((union wait *) &(w))->w_termsig)
-# define BSDWAIT
+# ifndef BSDWAIT
+#  define BSDWAIT
+# endif /* BSDWAIT */
 #endif /* !WTERMSIG */
 #ifndef WEXITSTATUS
 # define WEXITSTATUS(w)	(((union wait *) &(w))->w_retcode)
