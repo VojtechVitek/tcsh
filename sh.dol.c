@@ -841,8 +841,10 @@ setDolp(cp)
 	    dolmod[i] = rhsub[-1] = delim;
 	    if (didmod)
 		dolmcnt--;
+#ifdef notdef
 	    else
 		break;
+#endif
         } else {
 	    int didmod = 0;
 
@@ -866,8 +868,10 @@ setDolp(cp)
 	    dp = cp;
 	    if (didmod)
 		dolmcnt--;
+#ifdef notdef
 	    else
 		break;
+#endif
 	}
     }
 #endif /* COMPAT */

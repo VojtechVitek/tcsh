@@ -1117,12 +1117,12 @@ tw_list_items(looking, numitems, list_max)
 	    max_items = max_items * 10 + *ptr++ - '0';
 	}
 	if ((max_items > 0) && (numitems > max_items) && list_max)
-	    max_rows = numitems;
+	    max_items = numitems;
 	else
-	    max_rows = 0;
+	    max_items = 0;
     }
 
-    if (max_rows == 0 && (ptr = value(STRlistmaxrows)) != STRNULL) {
+    if (max_items == 0 && (ptr = value(STRlistmaxrows)) != STRNULL) {
 	int rows = 0;
 
 	while (*ptr) {

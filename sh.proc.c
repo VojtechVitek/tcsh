@@ -259,13 +259,9 @@ loop:
 #endif /* BSDJOBS */
 
 #ifdef JOBDEBUG
-    {
-	char    buffer[100];
-	xsprintf(buffer, "pid %d, retval %x termsig %x retcode %x\n",
-		 pid, w, WTERMSIG(w), WEXITSTATUS(w));
-	xprintf(buffer);
-	flush();
-    }
+    xprintf("parent %d pid %d, retval %x termsig %x retcode %x\n",
+	    getpid(), pid, w, WTERMSIG(w), WEXITSTATUS(w));
+    flush();
 #endif /* JOBDEBUG */
 
     if (pid <= 0) {
@@ -564,7 +560,8 @@ pjwait(pp)
 	if ((jobflags & PRUNNING) == 0)
 	    break;
 #ifdef JOBDEBUG
-	xprintf("starting to sigpause for  SIGCHLD on %d\n", fp->p_procid);
+	xprintf("%d starting to sigpause for  SIGCHLD on %d\n",
+		getpid(), fp->p_procid);
 #endif /* JOBDEBUG */
 #ifdef BSDSIGS
 	/* sigpause(sigblock((sigmask_t) 0) &~ sigmask(SIGCHLD)); */
@@ -2013,6 +2010,10 @@ pgetty(wanttty, pgrp)
     sigmask_t omask = 0;
 # endif /* BSDSIGS && POSIXJOBS */
 
+# ifdef JOBDEBUG
+    xprintf("wanttty %d pid %d opgrp%d pgrp %d tpgrp %d\n", 
+	    wanttty, getpid(), pgrp, mygetpgrp(), tcgetpgrp(FSHTTY));
+# endif /* JOBDEBUG */
 # ifdef POSIXJOBS
     /*
      * christos: I am blocking the tty signals till I've set things
@@ -2069,8 +2070,8 @@ pgetty(wanttty, pgrp)
 # endif /* POSIXJOBS */
 
 # ifdef JOBDEBUG
-    xprintf("pid %d pgrp %d tpgrp %d\n", getpid(), mygetpgrp(),
-	    tcgetpgrp(FSHTTY));
+    xprintf("wanttty %d pid %d pgrp %d tpgrp %d\n", 
+	    wanttty, getpid(), mygetpgrp(), tcgetpgrp(FSHTTY));
 # endif /* JOBDEBUG */
 
     if (tpgrp > 0)
