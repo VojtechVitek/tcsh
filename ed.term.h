@@ -450,9 +450,10 @@
 /*
  * fix for hpux10 inconsistency: it has VWERASE, but TIOCSLTC returns
  * EINVAL if one tries to change it
+ * Also for RH6.2 on the alpha, defined TIOCGLTC, but does not have
+ * struct ltchars
  */
-#if defined(hpux) && defined(VSUSP) && defined(VDSUSP) && defined(VWERASE) && d
-efined(VLNEXT)
+#if (defined(hpux) || defined(__linux__)) && defined(VSUSP) && defined(VDSUSP) && defined(VWERASE) && defined(VLNEXT)
 # undef TIOCGLTC       /* not really needed */
 # undef TIOCSLTC
 #endif
