@@ -432,7 +432,7 @@ sigret_t (*parterm) ();		/* Parents terminate catch */
  * Lexical definitions.
  *
  * All lexical space is allocated dynamically.
- * The eighth/sizteenth bit of characters is used to prevent recognition,
+ * The eighth/sixteenth bit of characters is used to prevent recognition,
  * and eventually stripped.
  */
 #define		META		0200
