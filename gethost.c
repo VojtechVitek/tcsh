@@ -38,7 +38,20 @@
 
 RCSID("$Id$")
 
+#ifdef SCO
+# define perror __perror
+# define rename __rename
+# define getopt __getopt
+# define system __system
+#endif
 #include <stdio.h>
+#ifdef SCO
+# undef perror
+# undef rename
+# undef getopt
+# undef system
+#endif
+
 #include <ctype.h>
 
 /* Some people don't bother to declare these */
