@@ -145,7 +145,7 @@ extern	int		  vfork		__P((void));
 extern	void		  doinlib	__P((Char **, struct command *));
 extern	void		  dover		__P((Char **, struct command *));
 extern	void		  dorootnode	__P((Char **, struct command *));
-extern	int		  getv		__P((Char **, struct command *));
+extern	int		  getv		__P((Char *));
 #endif
 
 
