@@ -903,6 +903,15 @@ ostype	:						: "ndix"
 enddef	:
 
 
+newdef	: defined(AMIGA)
+comment	: Amiga running AmigaOS+GG
+vendor	:						: "commodore"
+hosttype:						: "amiga"
+ostype	:						: "AmigaOS"
+machtype:						: "m68k"
+enddef	:
+
+
 newdef	: defined(uts)
 comment	: Amdahl running uts 2.1
 vendor	: 						: "amdahl"

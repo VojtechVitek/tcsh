@@ -812,6 +812,20 @@ SpellLine(cmdonly)
 	     */
 	    if((Cursor - InputBuf) != 2 || (char)InputBuf[1] != ':')
 #endif /* WINNT */
+	    {
+#ifdef HASH_SPELL_CHECK
+		Char save;
+		size_t len = Cursor - InputBuf;
+
+		save = InputBuf[len];
+		InputBuf[len] = '\0';
+		if (find_cmd(InputBuf, 0) != 0) {
+		    InputBuf[len] = save;
+		    argptr = Cursor;
+		    continue;
+		}
+		InputBuf[len] = save;
+#endif /* HASH_SPELL_CHECK */
 		switch (tenematch(InputBuf, Cursor - InputBuf, SPELL)) {
 		case 1:		/* corrected */
 		    matchval = 1;
@@ -823,7 +837,7 @@ SpellLine(cmdonly)
 		default:		/* was correct */
 		    break;
 		}
-
+	    }
 	    if (LastChar != OldLastChar) {
 		if (argptr < OldCursor)
 		    OldCursor += (LastChar - OldLastChar);

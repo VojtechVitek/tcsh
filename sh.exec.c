@@ -922,7 +922,8 @@ executable(dir, name, dir_ok)
 	    int has_ext = 0;
 
 	    while (*ptr++)
-	    	continue;
+		continue;
+	    --ptr;
 
 	    while(ptr > p2) { 
 		if (*ptr == '/')

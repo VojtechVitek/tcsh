@@ -1596,7 +1596,12 @@ tsetenv(name, val)
 	nt_set_env(name,val);
 #endif /* WINNT */
     for (; *ep; ep++) {
+#ifdef WINNT
+	for (cp = name, dp = *ep; *cp && Tolower(*cp & TRIM) == Tolower(*dp);
+				cp++, dp++)
+#else
 	for (cp = name, dp = *ep; *cp && (*cp & TRIM) == *dp; cp++, dp++)
+#endif WINNT
 	    continue;
 	if (*cp != 0 || *dp != '=')
 	    continue;
