@@ -2106,7 +2106,7 @@ getremotehost()
 #else
     struct hostent* hp;
     struct sockaddr_in saddr;
-    int len = sizeof(struct sockaddr_in);
+    socklen_t len = sizeof(struct sockaddr_in);
 #endif
 #ifdef HAVE_STRUCT_UTMP_UT_HOST
     char *sptr = NULL;
