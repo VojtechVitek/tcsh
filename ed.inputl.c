@@ -42,7 +42,7 @@ RCSID("$Id$")
 
 /* ed.inputl -- routines to get a single line from the input. */
 
-extern bool MapsAreInited;
+extern int MapsAreInited;
 
 /* mismatched first character */
 static Char mismatch[] = 
@@ -55,7 +55,7 @@ static	int	CompleteLine	__P((void));
 static	void	RunCommand	__P((Char *));
 static  void 	doeval1		__P((Char **));
 
-static bool rotate = 0;
+static int rotate = 0;
 
 
 static int

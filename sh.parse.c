@@ -141,7 +141,7 @@ asyn3(p1, p2)
 {
     struct varent *ap;
     struct wordent alout;
-    bool redid;
+    int redid;
 
     if (p1 == p2)
 	return;
@@ -496,7 +496,7 @@ syn3(p1, p2, flags)
     int l;
     Char  **av;
     int     n, c;
-    bool    specp = 0;
+    int    specp = 0;
 
     if (p1 != p2) {
 	p = p1;

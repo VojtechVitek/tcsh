@@ -245,7 +245,7 @@ extern void  tputs	__P((const char *, int, void (*)(int)));
 #endif
 
 #ifdef DSPMBYTE
-extern bool dspmbyte_utf8;
+extern int dspmbyte_utf8;
 #endif
 
 #endif /* _h_ed */

@@ -349,7 +349,7 @@ terminit()
  * No Wrap         no      --              yes             yes
  */
 
-static bool me_all = 0;		/* does two or more of the attributes use me */
+static int me_all = 0;		/* does two or more of the attributes use me */
 
 static	void	ReBufferDisplay	__P((void));
 static	void	TCalloc		__P((struct termcapstr *, char *)); 
@@ -775,7 +775,7 @@ EchoTC(v)
     }
 }
 
-bool    GotTermCaps = 0;
+int    GotTermCaps = 0;
 
 static struct {
     Char   *name;

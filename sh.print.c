@@ -111,8 +111,8 @@ p2dig(i)
 
 char    linbuf[2048];		/* was 128 */
 char   *linp = linbuf;
-bool    output_raw = 0;		/* PWP */
-bool    xlate_cr   = 0;		/* HE */
+int    output_raw = 0;		/* PWP */
+int    xlate_cr   = 0;		/* HE */
 
 #ifdef WIDE_STRINGS
 void

@@ -206,7 +206,7 @@ EchoTC(v)
 
 }
 
-bool    GotTermCaps = 0;
+int    GotTermCaps = 0;
 
 
 	void

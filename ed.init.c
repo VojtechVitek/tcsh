@@ -50,7 +50,7 @@ static unsigned char vdisable;	/* The value of _POSIX_VDISABLE from
 
 int     Tty_eight_bit = -1;	/* does the tty handle eight bits */
 
-extern bool GotTermCaps;
+extern int GotTermCaps;
 
 static ttydata_t extty, edtty, tstty;
 #define qutty tstty

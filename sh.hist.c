@@ -36,11 +36,11 @@ RCSID("$Id$")
 
 #include "tc.h"
 
-extern bool histvalid;
+extern int histvalid;
 extern Char histline[];
 Char HistLit = 0;
 
-static	bool	heq	__P((struct wordent *, struct wordent *));
+static	int	heq	__P((struct wordent *, struct wordent *));
 static	void	hfree	__P((struct Hist *));
 static	void	dohist1	__P((struct Hist *, int *, int));
 static	void	phist	__P((struct Hist *, int));
@@ -60,7 +60,7 @@ static	void	phist	__P((struct Hist *, int));
 void
 savehist(sp, mflg)
     struct wordent *sp;
-    bool mflg;
+    int mflg;
 {
     struct Hist *hp, *np;
     int histlen = 0;
@@ -90,7 +90,7 @@ savehist(sp, mflg)
 	    hp = np;
 }
 
-static bool
+static int
 heq(a0, b0)
     struct wordent *a0, *b0;
 {
@@ -113,8 +113,8 @@ struct Hist *
 enthist(event, lp, docopy, mflg)
     int     event;
     struct wordent *lp;
-    bool    docopy;
-    bool    mflg;
+    int    docopy;
+    int    mflg;
 {
     struct Hist *p = NULL, *pp = &Histlist;
     int n, r;
@@ -295,7 +295,7 @@ dohist1(hp, np, hflg)
     struct Hist *hp;
     int    *np, hflg;
 {
-    bool    print = (*np) > 0;
+    int    print = (*np) > 0;
 
     for (; hp != 0; hp = hp->Hnext) {
 	(*np)--;
@@ -472,7 +472,7 @@ rechist(fname, ref)
 void
 loadhist(fname, mflg)
     Char *fname;
-    bool mflg;
+    int mflg;
 {
     static Char   *loadhist_cmd[] = {STRsource, NULL, NULL, NULL};
     loadhist_cmd[1] = mflg ? STRmm : STRmh;

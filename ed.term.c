@@ -1092,7 +1092,7 @@ tty_setdisc(fd, dis)
     int fd;
     int dis;
 {
-    static bool edit_discipline = 0;
+    static int edit_discipline = 0;
     static union txname tx_disc;
     extern char strPOSIX[];
 

@@ -68,7 +68,7 @@ dosched(v, c)
     time_t  cur_time;
     int     count, hours, minutes, dif_hour, dif_min;
     Char   *cp;
-    bool    relative;		/* time specified as +hh:mm */
+    int    relative;		/* time specified as +hh:mm */
     struct tm *ltp;
 
     USE(c);

@@ -775,7 +775,7 @@ int nt_try_fast_exec(struct command *t) {
     register char *f;
 	register struct varent *v;
 	register int hashval,i;
-	register bool slash;
+	register int slash;
 	int rc;
 	Char *vp;
 	Char   *blk[2];
@@ -1151,7 +1151,7 @@ BOOL is_nt_executable(char *path,char *extension) {
 int
 executable(dir, name, dir_ok)
     Char   *dir, *name;
-    bool    dir_ok;
+    int    dir_ok;
 {
 	struct stat stbuf;
 	Char    path[MAXPATHLEN + 1];

@@ -322,7 +322,7 @@ dnormalize(cp, expnd)
 	Char   *dp, *cwd, *start = cp, buf[MAXPATHLEN];
 	struct stat sb;
 # ifdef apollo
-	bool slashslash;
+	int slashslash;
 # endif /* apollo */
 
 	/*
@@ -832,9 +832,9 @@ dcanon(cp, p)
 {
     Char *sp;
     Char *p1, *p2;	/* general purpose */
-    bool    slash;
+    int    slash;
 #ifdef apollo
-    bool    slashslash;
+    int    slashslash;
 #endif /* apollo */
     size_t  clen;
 

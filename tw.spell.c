@@ -48,7 +48,7 @@ spell_me(oldname, oldsize, looking, pat, suf)
     Char    guess[FILSIZ + 1], newname[FILSIZ + 1];
     Char *new = newname, *old = oldname;
     Char *p, *cp, *ws;
-    bool    foundslash = 0;
+    int    foundslash = 0;
     int     retval;
 
     for (;;) {

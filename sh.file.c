@@ -86,7 +86,7 @@ static	int	 ignored		__P((Char *));
  * completion by default.  Filec controls completion, nobeep controls
  * ringing the terminal bell on incomplete expansions.
  */
-bool    filec = 0;
+int    filec = 0;
 
 static void
 setup_tty(on)

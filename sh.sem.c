@@ -88,9 +88,9 @@ execute(t, wanttty, pipein, pipeout, do_glob)
     struct command *t;
     int     wanttty;
     int *pipein, *pipeout;
-    bool do_glob;
+    int do_glob;
 {
-    bool    forked = 0;
+    int    forked = 0;
     struct biltins *bifunc;
     int     pid = 0;
     int     pv[2];
@@ -518,7 +518,7 @@ execute(t, wanttty, pipein, pipeout, do_glob)
 		else {		/* child */
 		    /* this is from pfork() */
 		    int     pgrp;
-		    bool    ignint = 0;
+		    int    ignint = 0;
 		    if (nosigchld) {
 # ifdef BSDSIGS
 			(void) sigsetmask(csigmask);

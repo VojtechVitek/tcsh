@@ -1812,9 +1812,9 @@ CheckMaps()
 
 #endif
 
-bool    MapsAreInited = 0;
-bool    NLSMapsAreInited = 0;
-bool    NoNLSRebind;
+int    MapsAreInited = 0;
+int    NLSMapsAreInited = 0;
+int    NoNLSRebind;
 
 void
 ed_InitNLSMaps()

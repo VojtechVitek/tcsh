@@ -116,7 +116,7 @@ struct process {
 #define	AREASON		0200
 
 EXTERN struct process proclist IZERO_STRUCT;/* list head of all processes */
-EXTERN bool    pnoprocesses IZERO;	/* pchild found nothing to wait for */
+EXTERN int    pnoprocesses IZERO;	/* pchild found nothing to wait for */
 
 EXTERN struct process *pholdjob IZERO;	/* one level stack of current jobs */
 
@@ -127,7 +127,7 @@ EXTERN struct process *pprevious IZERO;	/* previous job in table */
 EXTERN int   pmaxindex IZERO;		/* current maximum job index */
 
 #ifndef BSDTIMES
-EXTERN bool    timesdone;	/* shtimes buffer full ? */
+EXTERN int    timesdone;	/* shtimes buffer full ? */
 #endif /* BSDTIMES */
 
 #endif /* _h_sh_proc */

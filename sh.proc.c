@@ -1054,7 +1054,7 @@ pendjob()
 static int
 pprint(pp, flag)
     struct process *pp;
-    bool    flag;
+    int    flag;
 {
     int status, reason;
     struct process *tp;
@@ -1784,7 +1784,7 @@ pstart(pp, foregnd)
 
 void
 panystop(neednl)
-    bool    neednl;
+    int    neednl;
 {
     struct process *pp;
 
@@ -1901,7 +1901,7 @@ pfork(t, wanttty)
     int     wanttty;
 {
     int pid;
-    bool    ignint = 0;
+    int    ignint = 0;
     int     pgrp;
 #ifdef BSDSIGS
     sigmask_t omask = 0;
