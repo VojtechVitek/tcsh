@@ -393,6 +393,9 @@ typedef int sigret_t;
 # include <netinet/in.h>
 # include <arpa/inet.h>
 # include <sys/socket.h>
+# if defined(_SS_SIZE) || defined(_SS_MAXSIZE)
+#  define INET6
+# endif
 # include <sys/uio.h>	/* For struct iovec */
 #endif /* REMOTEHOST */
 
