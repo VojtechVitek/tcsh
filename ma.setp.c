@@ -87,7 +87,9 @@ RCSID("$Id$")
 #ifdef MACH
 
 #define MAXDIRS 64		/* max directories on a path */
-#define NULL 0
+#ifndef NULL
+# define NULL 0
+#endif
 
 static int npaths;		/* # pathlist arguments */
 

@@ -69,11 +69,11 @@
 # endif /* !_PATH_DOTCSHRC */
 #endif /* NeXT */
 
-#if defined(sgi) || defined(OREO) || defined(cray) || defined(AMIX)
+#if defined(sgi) || defined(OREO) || defined(cray) || defined(AMIX) || defined(CDC)
 # ifndef _PATH_DOTLOGIN
 #  define _PATH_DOTLOGIN	"/etc/cshrc"
 # endif /* !_PATH_DOTLOGIN */
-#endif /* sgi || OREO || cray || AMIX */
+#endif /* sgi || OREO || cray || AMIX || CDC */
 
 #if defined(_CRAYCOM) && !defined(_PATH_TCSHELL)
 # define _PATH_TCSHELL		"/bin/tcsh"		/* 1st class shell */

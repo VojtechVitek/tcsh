@@ -276,7 +276,11 @@ struct	mesg mesg[] = {
 /* 19 */	"APOLLO",  	"Apollo-specific fault",
 #  else
 /* 18 */	"CHLD",		"Child exited",
+#  ifdef SOLARIS2
+/* 19 */	"LOST",  	"Resource Lost",
+#  else /* !SOLARIS2 */
 /* 19 */	"PWR",  	"Power failure",
+#  endif /* SOLARIS2 */
 #  endif /* apollo */
 # endif /* !IBMAIX && !cray && !__EMX__ && !linux */
 
@@ -486,7 +490,13 @@ struct	mesg mesg[] = {
 /* 29 */	"PROF",		"Profiling timer expired",
 /* 30 */	"XCPU",		"CPU time limit exceeded",
 /* 31 */	"XFSZ", 	"File size limit exceeded",
+#ifdef SOLARIS2
+/* 32 */	"WAITING",	"Process's lwps are blocked",
+/* 33 */	"LWP",		"Special LWP signal",
+/* 34 */	0,		"Maximum number of signals",
+#else /* !SOLARIS2 */
 /* 32 */	0,		"Maximum number of signals",
+#endif /* SOLARIS2 */
 # endif /* SYSVREL > 3 */
 
 # if defined(ISC) && defined(POSIX) 
