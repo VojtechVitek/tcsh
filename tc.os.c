@@ -695,11 +695,12 @@ osinit()
 #endif /* OREO */
 
 #ifdef aiws
-    struct sigstack inst;
-
-    inst.ss_sp = xmalloc(4192) + 4192;
-    inst.ss_onstack = 0;
-    sigstack(&inst, NULL);
+    {
+	struct sigstack inst;
+	inst.ss_sp = xmalloc(4192) + 4192;
+	inst.ss_onstack = 0;
+	sigstack(&inst, NULL);
+    }
 #endif /* aiws */
 
 #ifdef hpux
