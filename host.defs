@@ -184,6 +184,11 @@ getmachine()
 endcode	:
 
 
+newdef	: defined(HOSTTYPE)
+hosttype:						: HOSTTYPE
+enddef	:
+
+
 newdef	: defined(__PARAGON__)
 comment	: Intel Paragon running OSF/1
 vendor	:						: "intel"
