@@ -350,8 +350,10 @@ ReBufferDisplay()
 	    xfree((ptr_t) * bufp);
 	xfree((ptr_t) b);
     }
-    /* make this public, -1 to avoid wraps */
-    TermH = Val(T_co) - 1;
+    TermH = Val(T_co);
+    if (adrof(STRmargin_bug) != NULL)
+	/* make this public, -1 to avoid wraps */
+	TermH--;
     TermV = (INBUFSIZE * 4) / TermH + 1;
     b = (Char **) xmalloc((size_t) (sizeof(Char *) * (TermV + 1)));
     for (i = 0; i < TermV; i++)

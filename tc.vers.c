@@ -394,6 +394,12 @@ gethosttype()
    hosttype = str2short("nd500");
 # endif /* NDIX */
 
+# if defined(i860) && !defined(_havehosttype_)
+#  define _havehosttype_
+   /* Tasos Kotsikonas <tasos@avs.com> */
+   hosttype = str2short("vistra800"); /* Stardent Vistra */
+#endif /* i860  && !_havehosttype_ */
+
 # ifndef _havehosttype_
 #  define _havehosttype_
     /* Default to something reasonable */

@@ -54,7 +54,6 @@ RCSID("$Id$")
 struct tms times0;
 #endif /* BSDTIMES */
 
-static 	void tvadd	__P((timeval_t *, timeval_t *));
 #if !defined(BSDTIMES) && !defined(_SEQUENT_)
 # ifdef POSIX
 static	void	pdtimet	__P((clock_t, clock_t));
@@ -62,6 +61,7 @@ static	void	pdtimet	__P((clock_t, clock_t));
 static	void	pdtimet	__P((time_t, time_t));
 # endif /* ! POSIX */
 #else /* BSDTIMES || _SEQUENT_ */
+static 	void 	tvadd	__P((timeval_t *, timeval_t *));
 static	void	pdeltat	__P((timeval_t *, timeval_t *));
 #endif /* BSDTIMES || _SEQUENT_ */
 

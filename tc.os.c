@@ -742,33 +742,57 @@ xstrerror(i)
 #endif /* strerror */
     
 #ifdef gethostname
-#include <sys/utsname.h>
+# ifndef _MINIX
+#  include <sys/utsname.h>
+# endif
 
 int
 xgethostname(name, namlen)
     char   *name;
     int     namlen;
 {
+#ifndef _MINIX
     int     i, retval;
     struct utsname uts;
 
     retval = uname(&uts);
 
-#ifdef DEBUG
+# ifdef DEBUG
     xprintf("sysname:  %s\n", uts.sysname);
     xprintf("nodename: %s\n", uts.nodename);
     xprintf("release:  %s\n", uts.release);
     xprintf("version:  %s\n", uts.version);
     xprintf("machine:  %s\n", uts.machine);
-#endif				/* DEBUG */
+# endif	/* DEBUG */
     i = strlen(uts.nodename) + 1;
     (void) strncpy(name, uts.nodename, i < namlen ? i : namlen);
 
     return retval;
-}				/* end gethostname */
+#else /* _MINIX */
+    if (namlen > 0) {
+	(void) strncpy(name, "minix", namlen);
+	name[namlen-1] = '\0';
+    }
+    return(0);
+#endif /* _MINIX */
+} /* end xgethostname */
+#endif /* gethostname */
 
-#endif				/* gethostname */
-
+#ifdef nice
+# ifdef _MINIX
+#  include <lib.h>
+# endif /* _MINIX */
+int 
+xnice(incr)
+    int incr;
+{
+#if defined(_MINIX) && defined(NICE)
+    return callm1(MM, NICE, incr, 0, 0, NIL_PTR, NIL_PTR, NIL_PTR);
+#else
+    return incr ? 0 : 0;
+#endif /* _MINIX && NICE */
+} /* end xnice */
+#endif /* nice */
 
 #ifdef getwd
 static char *strrcpy __P((char *, char *));

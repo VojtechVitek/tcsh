@@ -864,9 +864,13 @@ tellmewhat(lex)
 	while (--i)
 	    pv++;
 	if (pv[0][0] == 0 || eq(pv[0], STRdot)) {
-	    sp->word = Strspl(STRdotsl, sp->word);
-	    prlex(lex);
-	    xfree((ptr_t) sp->word);
+	    if (!slash) {
+		sp->word = Strspl(STRdotsl, sp->word);
+		prlex(lex);
+		xfree((ptr_t) sp->word);
+	    }
+	    else
+		prlex(lex);
 	    sp->word = s0;	/* we save and then restore this */
 	    return;
 	}

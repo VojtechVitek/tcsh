@@ -77,10 +77,10 @@ static struct {				/* Current element pointer	*/
 
 #ifdef BSDSIGS
 static sigmask_t tw_omask;
-# define TW_HOLD()	tw_omask = sighold(SIGINT)
+# define TW_HOLD()	tw_omask = sigblock(sigmask(SIGINT))
 # define TW_RELS()	(void) sigsetmask(tw_omask)
 #else /* !BSDSIGS */
-# define TW_HOLD()	(void) sigblock(SIGINT)
+# define TW_HOLD()	(void) sighold(SIGINT)
 # define TW_RELS()	(void) sigrelse(SIGINT)
 #endif /* BSDSIGS */
 
@@ -770,4 +770,4 @@ tw_bind_next(dir, flags)
 	return(tw_retname);
     }
     return NULL;
-} /* end tw_var_next */
+} /* end tw_bind_next */

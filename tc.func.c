@@ -468,6 +468,7 @@ fg_proc_entry(pp)
 #endif
     jmp_buf osetexit;
     bool    ohaderr;
+    bool    oGettingInput;
 
     getexit(osetexit);
 
@@ -476,6 +477,8 @@ fg_proc_entry(pp)
 #else
     (void) sighold(SIGINT);
 #endif
+    oGettingInput = GettingInput;
+    GettingInput = 0;
 
     ohaderr = haderr;		/* we need to ignore setting of haderr due to
 				 * process getting stopped by a signal */
@@ -487,6 +490,7 @@ fg_proc_entry(pp)
 
     resexit(osetexit);
     haderr = ohaderr;
+    GettingInput = oGettingInput;
 
 #ifdef BSDSIGS
     (void) sigsetmask(omask);
