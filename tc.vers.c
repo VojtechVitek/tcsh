@@ -137,14 +137,14 @@ gethosttype()
 #   define _havehosttype_
    hosttype = str2short("hp9000s700");
 #  endif /* __hp9000s700 */
-#  if defined(hp9000s800) && !defined(_havehosttype_)
+#  if (defined(__hp9000s800) || defined(hp9000s800)) && !defined(_havehosttype_)
 #   define _havehosttype_
    hosttype = str2short("hp9000s800");	/* maybe "spectrum" */
-#  endif /* hp9000s800 */
-#  if defined(hp9000s300) && !defined(_havehosttype_)
+#  endif /* __hp9000s800 || hp9000s800 */
+#  if (defined(__hp9000s300) || defined(hp9000s300)) && !defined(_havehosttype_)
 #   define _havehosttype_
    hosttype = str2short("hp9000s300");
-#  endif /* hp9000s300 */
+#  endif /* __hp9000s800 || hp9000s300 */
 # if defined(hp9000s500) && !defined(_havehosttype_)
 #  define _havehosttype_
    hosttype = str2short("hp9000s500");
@@ -189,7 +189,7 @@ gethosttype()
 # endif /* i386 */
 #endif /* _MINIX */
 
-# if defined(i386) && SVID > 0
+# if defined(i386) && SYSVREL > 0
 
 #  if !defined(_havehosttype_) && (defined(ISC) || defined(ISC202))
 #   define _havehosttype_

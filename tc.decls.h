@@ -182,7 +182,7 @@ extern	void		  sched_run	__P((void));
  * tc.sig.c
  */
 #ifndef BSDSIGS
-# if SVID < 3 || defined(UNIXPC)
+# if SYSVREL < 3 || defined(UNIXPC)
 extern	sigret_t	(*sigset	__P((int, sigret_t (*)(int)))) ();
 extern	void		  sigrelse	__P((int));
 extern	void		  sighold	__P((int));

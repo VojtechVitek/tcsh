@@ -66,11 +66,17 @@ int     end;
 static Char STRCPATH[] = {'C', 'P', 'A', 'T', 'H', '\0'};
 static Char STRLPATH[] = {'L', 'P', 'A', 'T', 'H', '\0'};
 static Char STRMPATH[] = {'M', 'P', 'A', 'T', 'H', '\0'};
+#if EPATH
 static Char STREPATH[] = {'E', 'P', 'A', 'T', 'H', '\0'};
+#endif
 #endif				/* MACH */
 
-static Char *syspaths[] = {STRPATH, STRCPATH, STRLPATH, STRMPATH, STREPATH, 0};
-#define LOCALSYSPATH	"/usr/cs"
+static Char *syspaths[] = {STRPATH, STRCPATH, STRLPATH, STRMPATH, 
+#if EPATH
+	STREPATH,
+#endif
+	 0};
+#define LOCALSYSPATH	"/usr/local"
 
 /*ARGSUSED*/
 void
@@ -81,7 +87,6 @@ dosetpath(arglist, c)
     extern char *getenv();
     sigmask_t omask;
     Char  **pathvars, **cmdargs;
-    Char  **paths;
     char  **spaths, **cpaths, **cmds;
     char   *tcp;
     unsigned int npaths, ncmds;
@@ -120,8 +125,6 @@ dosetpath(arglist, c)
 
     spaths = (char **) xmalloc(npaths * sizeof *spaths);
     setzero((char *) spaths, npaths * sizeof *spaths);
-    paths = (Char **) xmalloc((npaths + 1) * sizeof *paths);
-    setzero((char *) paths, (npaths + 1) * sizeof *paths);
     cpaths = (char **) xmalloc((npaths + 1) * sizeof *cpaths);
     setzero((char *) cpaths, (npaths + 1) * sizeof *cpaths);
     cmds = (char **) xmalloc((ncmds + 1) * sizeof *cmds);
@@ -158,12 +161,6 @@ abortpath:
 		    xfree((ptr_t) spaths[i]);
 	    xfree((ptr_t) spaths);
 	}
-	if (paths) {
-	    for (i = 0; i < npaths; i++)
-		if (paths[i])
-		    xfree((ptr_t) paths[i]);
-	    xfree((ptr_t) paths);
-	}
 	if (cpaths)
 	    xfree((ptr_t) cpaths);
 	if (cmds) {
@@ -173,24 +170,20 @@ abortpath:
 	    xfree((ptr_t) cmds);
 	}
 
-	for (i = 0; i < npaths; i++) {
-	    paths[i] = SAVE(cpaths[i]);
-	    xfree((ptr_t) cpaths[i]);
-	}
 	(void) sigsetmask(omask);
 	donefds();
 	return;
     }
 
     for (i = 0; i < npaths; i++) {
-	Char   *val;
+	char	*val;
 
-	for (val = paths[i]; val && *val && *val != '='; val++);
+	for (val = cpaths[i]; val && *val && *val != '='; val++);
 	if (val && *val == '=') {
 	    *val++ = '\0';
-	    setenv(paths[i], val);
-	    if (Strcmp(paths[i], STRPATH) == 0) {
-		importpath(val);
+	    setenv(cpaths[i], val, 1);
+	    if (Strcmp(str2short(cpaths[i]), STRPATH) == 0) {
+		importpath(str2short(val));
 		if (havhash)
 		    dohash(NULL, NULL);
 	    }

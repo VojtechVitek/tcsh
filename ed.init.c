@@ -182,7 +182,7 @@ ed_Setup(rst)
 	else 
 	    vdisable = pcret;
 	if (vdisable != _POSIX_VDISABLE && rst != 0)
-	    for (rst = 0; rst < C_NCC - 2; rst++) {
+	    for (rst = 0; rst < C_NCC; rst++) {
 		if (ttychars[ED_IO][rst] == _POSIX_VDISABLE)
 		    ttychars[ED_IO][rst] = vdisable;
 		if (ttychars[EX_IO][rst] == _POSIX_VDISABLE)
@@ -251,16 +251,16 @@ ed_Setup(rst)
 	if (tty_cooked_mode(&tstty)) {
 	    tty_getchar(&tstty, ttychars[TS_IO]);
 	    /*
-	     * Don't affect CMIN and CTIME
+	     * Don't affect CMIN and CTIME for the editor mode
 	     */
-	    for (rst = 0; rst < C_NCC - 2; rst++) {
-		if (ttychars[TS_IO][rst] != vdisable &&
-		    ttychars[EX_IO][rst] != vdisable)
-		    ttychars[EX_IO][rst] = ttychars[TS_IO][rst];
+	    for (rst = 0; rst < C_NCC - 2; rst++) 
 		if (ttychars[TS_IO][rst] != vdisable &&
 		    ttychars[ED_IO][rst] != vdisable)
 		    ttychars[ED_IO][rst] = ttychars[TS_IO][rst];
-	    }
+	    for (rst = 0; rst < C_NCC; rst++) 
+		if (ttychars[TS_IO][rst] != vdisable &&
+		    ttychars[EX_IO][rst] != vdisable)
+		    ttychars[EX_IO][rst] = ttychars[TS_IO][rst];
 	}
 	tty_setchar(&extty, ttychars[EX_IO]);
 	if (tty_setty(SHTTY, &extty) == -1) {

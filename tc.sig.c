@@ -89,7 +89,7 @@ sig_ch_rel()
 #endif /* SIGVOID */
 }
 
-/* libc.a contains these functions in SVID >= 3. */
+/* libc.a contains these functions in SYSVREL >= 3. */
 sigret_t
 (*sigset(a, b)) ()
     int     a;
@@ -109,7 +109,7 @@ sigrelse(what)
     if (what == SIGCHLD)
 	sig_ch_rel();
 
-#ifdef notdef	/* XXX: Should not need that when compiled with SVID=1 */
+#ifdef notdef	/* XXX: Should not need that when compiled with SYSVREL=1 */
 # ifdef UNIXPC	
     if (what == SIGINT)
     	(void)signal(SIGINT, pintr);
@@ -127,7 +127,7 @@ sighold(what)
     if (what == SIGCHLD)
 	(void) signal(SIGCHLD, sig_ch_queue);
 
-#ifdef notdef	/* XXX: Should not need that when compiled with SVID=1 */
+#ifdef notdef	/* XXX: Should not need that when compiled with SYSVREL=1 */
 # ifdef UNIXPC	
     if (what == SIGINT)
     	(void)signal(SIGINT, SIG_IGN);
@@ -170,8 +170,8 @@ sigpause(what)
 
 #ifdef SXA
 /*
- * SX/A is SVID3 but does not have sys5-sigpause().
- * I've heard that sigpause() is not defined in SVID3.
+ * SX/A is SYSVREL3 but does not have sys5-sigpause().
+ * I've heard that sigpause() is not defined in SYSVREL3.
  */
 /* This is not need if you make tcsh by BSD option's cc. */
 void

@@ -791,7 +791,7 @@ doio(t, pipein, pipeout)
 	else {
 	    (void) close(0);
 	    (void) dup(OLDSTD);
-#ifdef FIOCLEX
+#ifdef FIONCLEX
 # ifdef CLEX_DUPS
 	    /*
 	     * PWP: Unlike Bezerkeley 4.3, FIONCLEX for Pyramid is preserved
@@ -844,7 +844,7 @@ doio(t, pipein, pipeout)
 	(void) close(1);
 	(void) dup(SHOUT);
 	is1atty = isoutatty;
-#ifdef FIOCLEX
+#ifdef FIONCLEX
 # ifdef CLEX_DUPS
 	(void) ioctl(1, FIONCLEX, NULL);
 # endif /* CLEX_DUPS */
@@ -859,7 +859,7 @@ doio(t, pipein, pipeout)
     else {
 	(void) dup(SHDIAG);
 	is2atty = isdiagatty;
-#ifdef FIOCLEX
+#ifdef FIONCLEX
 # ifdef CLEX_DUPS
 	(void) ioctl(2, FIONCLEX, NULL);
 # endif /* CLEX_DUPS */

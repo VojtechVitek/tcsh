@@ -2430,9 +2430,10 @@ and then
 if the shell was a login shell.
 .sp
 Note: On 
-.I convexos
-and
+.I convexos,
 .I stellix
+and
+.I INTEL
 the names of the system default files are
 .I "/etc/cshrc",
 .I "/etc/login"
@@ -2755,6 +2756,7 @@ Prompt the user before execution of `rm *'.
 .TP 10
 .B savehist 
 number of history items to save between login sessions.
+If it is just set, the number of items is taken from $history.
 .TP 10
 .B shlvl
 Integer value indicating the number

@@ -1034,7 +1034,7 @@ xecho(sep, v)
 	register int c;
 
 	while (c = *cp++) {
-#if SVID > 0
+#if SYSVREL > 0
 #ifndef OREO
 	    if (c == '\\') {
 		switch (c = *cp++) {
@@ -1080,18 +1080,18 @@ xecho(sep, v)
 		}
 	    }
 #endif /* OREO */
-#endif /* SVID > 0 */
+#endif /* SYSVREL > 0 */
 	    xputchar(c | QUOTE);
 
 	}
 	if (*v)
 	    xputchar(sep | QUOTE);
     }
-#if SVID > 0
+#if SYSVREL > 0
 #ifndef OREO
 done:
 #endif /* OREO */
-#endif /* SVID > 0 */
+#endif /* SYSVREL > 0 */
     if (sep && nonl == 0)
 	xputchar('\n');
     else

@@ -258,7 +258,7 @@ loop:
      * but then again, SVR4 falls into the POSIX/BSDJOBS category.
      */
     pid = wait(&w.w_status);
-#  endif /* SVID >= 3 */
+#  endif /* SYSVREL >= 3 */
 # endif /* HAVEwait3 */
 # endif	/* BSDTIMES */
 # ifndef BSDSIGS

@@ -576,9 +576,29 @@ tglob(t)
 	else if (*p == '{' &&
 		 (p[1] == '\0' || (p[1] == '}' && p[2] == '\0')))
 	    continue;
-	while (c = *p++)
-	    if (isglob(c))
-		gflag |= (c == '{' || c == '`') ? G_CSH : G_GLOB;
+	while (c = *p++) {
+	    /*
+	     * eat everything inside the matching backquotes
+	     */
+	    if (c == '`') {
+		gflag |= G_CSH;
+		while (*p && *p != '`') 
+		    if (*p++ == '\\') {
+			if (*p)		/* Quoted chars */
+			    p++;
+			else
+			    break;
+		    }
+		if (*p)			/* The matching ` */
+		    p++;
+		else
+		    break;
+	    }
+	    else if (c == '{')
+		gflag |= G_CSH;
+	    else if (isglob(c))
+		gflag |= G_GLOB;
+	}
     }
 }
 

@@ -51,7 +51,7 @@ static	Char    	*skipslist	__P((Char *));
 static	void		 nextslist 	__P((Char *, Char *));
 
 static char *h_ext[] = {
-    ".help", ".1", ".8", ".6", NULL
+    ".help", ".1", ".8", ".6", "", NULL
 };
 
 void

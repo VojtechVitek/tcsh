@@ -43,7 +43,7 @@
  * We try to use the system's wait.h when we can...
  */
 
-#if SVID > 0
+#if SYSVREL > 0
 # ifdef hpux
 #  ifndef __hpux
 #   define NEEDwait
@@ -63,9 +63,9 @@
 #   define NEEDwait
 #  endif /* OREO || IRIS4D || POSIX */
 # endif	/* hpux */
-#else /* SVID == 0 */
+#else /* SYSVREL == 0 */
 # include <sys/wait.h>
-#endif /* SVID == 0 */
+#endif /* SYSVREL == 0 */
 
 #ifdef _MINIX
 # undef NEEDwait
