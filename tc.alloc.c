@@ -54,7 +54,7 @@ int dont_free = 0;
 #ifndef SYSMALLOC
 
 #undef RCHECK
-#define DEBUG
+#undef DEBUG
 
 #ifdef SX
 extern void* sbrk();
