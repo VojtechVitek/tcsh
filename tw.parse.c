@@ -701,7 +701,7 @@ t_search(word, wp, command, max_word_length, looking_for_command, list_max)
 	 */
 	if (command == SPELL && getpwnam(short2str(&word[1])) != NULL) {
 #ifdef YPBUGS
-	    fix_ypbugs();
+	    fix_yp_bugs();
 #endif /* YPBUGS */
 	    return (0);
 	}
