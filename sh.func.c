@@ -78,6 +78,14 @@ isbfunc(t)
     static struct biltins foregnd = {"%job", dofg1, 0, 0};
     static struct biltins backgnd = {"%job &", dobg1, 0, 0};
 
+    /*
+     * We never match a builtin that has quoted the first
+     * character; this has been the traditional way to escape 
+     * builtin commands.
+     */
+    if (*cp & QUOTE)
+	return NULL;
+
     if (*cp != ':' && lastchr(cp) == ':') {
 	label.bname = short2str(cp);
 	return (&label);
