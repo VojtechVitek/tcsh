@@ -45,7 +45,7 @@ RCSID("$Id$")
 #endif
 
 #if !defined(HAVE_STDINT_H) && !defined(HAVE_INTTYPES_H)
-typedef unsigned lont intptr_t;
+typedef unsigned long intptr_t;
 #endif
 
 #ifdef WIDE_STRINGS
