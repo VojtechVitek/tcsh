@@ -961,6 +961,25 @@ if ($?_complete) then
 	complete dvilj	'p/*/f:*.dvi/'
     endif
 
+    if ($?P4CLIENT && -X perl) then
+	# This is from Greg Allen.
+	set p4cmds=(add branch branches commands change changes client clients \
+	    counter counters delete depot depots describe diff diff2 \
+	    edit filelog files fix fixes fstat group groups have help \
+	    info integrate integrated job jobs jobspec label labels \
+	    labelsync lock obliterate opened passwd print protect rename \
+	    reopen resolve resolved revert review reviews set submit \
+	    sync triggers unlock user users verify where)
+	complete p4 'p/1/$p4cmds/' 'n/help/$p4cmds/' \
+	    'n%{-l,label}%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
+	    'n%-t%`p4 $:1s | sed "s/[^ ]* \([^ ]*\) .*/\1/"`%' \
+	    'c%*@%`p4 labels | sed "s/Label \([^ ]*\) .*/\1/"`%' \
+	    'c@//*/*@`p4 files $:-0... |& perl -nle "m%\Q$:-0\E([^#][^/# ] \
+	    *)%;print "\$"1 if \\\!/no such/&&\!"\$"h{"\$"1}++"`@@' \
+	    'c@//@`p4 depots | sed "s/Depot \([^ ]*\) .*/\1/"`@/@'
+    endif
+
+
     unset noglob
     unset _complete
 endif
