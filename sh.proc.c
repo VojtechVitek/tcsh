@@ -65,11 +65,7 @@ RCSID("$Id$")
 #  endif /* OREO || IRIS4D || POSIX */
 # endif	/* hpux */
 #else /* SVID == 0 */
-# ifndef _IBMR2 /* IBM RS/6000 headers are broken */
-#  include <sys/wait.h>
-# else
-#  include "tc.wait.h"
-# endif
+# include <sys/wait.h>
 #endif /* SVID == 0 */
 
 #if !defined(NSIG) && defined(SIGMAX)
