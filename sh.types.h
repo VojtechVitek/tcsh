@@ -142,6 +142,7 @@
 #  define _SPEED_T
 # endif /* _SPEED_T */
 
+# if HPUXVERSION < 1100	/* XXX: Not true for 11.0 */
 extern uid_t getuid(), geteuid();
 extern gid_t getgid(), getegid();
 extern sigmask_t sigblock();
@@ -155,6 +156,7 @@ extern void qsort();
 extern void free();
 extern unsigned int alarm();
 extern unsigned int sleep();
+# endif /* HPUXVERSION < 1100 */
 # if HPUXVERSION < 800	/* XXX: Not true for 8.0 */
 extern void sigpause();
 extern sigmask_t sigspace();
