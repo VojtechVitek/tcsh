@@ -394,6 +394,9 @@ libglob(vl)
     char   *ptr;
     int     nonomatch = adrof(STRnonomatch) != 0, magic = 0, match = 0;
 
+    if (!vl || !vl[0])
+	return(vl);
+
     globv.gl_offs = 0;
     globv.gl_pathv = 0;
     globv.gl_pathc = 0;
