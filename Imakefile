@@ -270,7 +270,7 @@ platform, unless you have a really weird architecture. */
 CC = MyCC
 #else
 # if HasGcc || HasGCC
-#  ifdef HasGcc2
+#  if HasGcc2
 CC = gcc 
 #  else
 CC = gcc -fcombine-regs -finline-functions -fstrength-reduce
@@ -337,7 +337,7 @@ MANDIR = $(TCSHTOP)/man/man$(MANSUFFIX)
 #ifdef CDebugFlags
 CDEBUGFLAGS = CDebugFlags
 #else
-# ifdef HasGcc2
+# if HasGcc2
 CDEBUGFLAGS = -O2
 # else
 CDEBUGFLAGS = -O

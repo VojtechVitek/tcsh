@@ -108,7 +108,6 @@ static bool    nverbose = 0;
 static bool    nexececho = 0;
 static bool    quitit = 0;
 static bool    rdirs = 0;
-bool    arun = 0;
 bool    fast = 0;
 static bool    batch = 0;
 static bool    mflag = 0;

@@ -443,6 +443,16 @@ gethosttype()
 #  endif
 # endif /* sgi */
 
+# if defined(sysV68)
+#  define _havehosttype_
+    hosttype = "sysV68";
+# endif /* sysV68 */
+
+# if defined(sysV88)
+#  define _havehosttype_
+    hosttype = "sysV88";
+# endif /* sysV88 */
+
 # ifdef uts
 #  define _havehosttype_
     hosttype = "amdahl";
@@ -453,7 +463,7 @@ gethosttype()
     hosttype = "tek4300";
 # endif /* UTek */
 
-# ifdef UTekV
+# ifdef UTekV /* Must appear after sysV88 & m88k or conflicts can occur. */
 #  define _havehosttype_
     hosttype = "tekXD88";
 # endif /* UTekV */
@@ -479,16 +489,6 @@ gethosttype()
    /* B|rje Josefsson <bj@dc.luth.se> */
    hosttype = "nd500";
 # endif /* NDIX */
-
-# if defined(sysV68)
-#  define _havehosttype_
-    hosttype = "sysV68";
-# endif /* sysV68 */
-
-# if defined(sysV88)
-#  define _havehosttype_
-    hosttype = "sysV88";
-# endif /* sysV88 */
 
 # if defined(Lynx)
 #  if defined(i386)
