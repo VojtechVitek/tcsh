@@ -413,13 +413,13 @@ libglob(vl)
 	}
 	if (!nonomatch && (globv.gl_matchc == 0) &&
 	    (globv.gl_flags & GLOB_MAGCHAR)) {
-	    globfree(&globv);
-	    return (NULL);
+	    xfree((ptr_t) globv.gl_pathv[--globv.gl_pathc]);
+	    globv.gl_pathv[globv.gl_pathc] = NULL;
 	}
 	gflgs |= GLOB_APPEND;
     }
     while (*++vl);
-    vl = blk2short(globv.gl_pathv);
+    vl = (globv.gl_pathc == 0) ? NULL : blk2short(globv.gl_pathv);
     globfree(&globv);
     return (vl);
 }
