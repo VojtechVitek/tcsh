@@ -343,11 +343,12 @@ dologin(v, c)
     Char  **v;
     struct command *c;
 {
-    USE(c);
 #ifdef WINNT_NATIVE
+    USE(c);
     USE(v);
 #else /* !WINNT_NATIVE */
     char **p = short2blk(v);
+    USE(c);
     islogin();
     rechist(NULL, adrof(STRsavehist) != NULL);
     (void) signal(SIGTERM, parterm);
