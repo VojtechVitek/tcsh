@@ -9,8 +9,8 @@ $set 17
 6 Sortie %-25d
 7 Fait
 8 BUG: état=%-9o
-9 \020(core dumped)
-10 \020(wd: 
+9 \040(core dumped)
+10 \040(wd:
 11 wd maintenant: 
 12 %S: Déjà suspendu\n
 13 %S: Déjà arrêté\n

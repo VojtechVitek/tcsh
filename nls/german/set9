@@ -9,4 +9,4 @@ $set 9
 6 Enumerate: BUG!! Null ptr passed\n!
 7 keine Eingabe
 8 Es muﬂ noch etwas folgen: %c\n
-9 Octal-Konstante paﬂt nicht in ein Zeichen.\n
+9 Oktal-Konstante paﬂt nicht in ein Zeichen.\n

@@ -4,4 +4,4 @@ $set 15
 1 %s: %s: Can't %s%s limit\n
 2 remove
 3 set
-4 \020hard
+4 \040hard

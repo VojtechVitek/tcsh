@@ -6,7 +6,7 @@ $set 30
 3 complete %d %S\n
 4 %s: Internal match error.\n
 5 items
-6 rows)
+6 rows
 7 There are %d %s, list them anyway? [n/y] 
 8 looking = %d\n
 9 \ntcsh internal error: I don't know what I'm looking for!\n

@@ -64,7 +64,7 @@ $set 1
 61 No job matches pattern
 62 Fork nesting > %d; maybe `...` loop
 63 No job control in subshells
-64 Sunc fault: Process %d not found
+64 Sync fault: Process %d not found
 65 %sThere are suspended jobs
 66 %sThere are stopped jobs
 67 No other directory
