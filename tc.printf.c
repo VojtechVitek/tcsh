@@ -141,7 +141,7 @@ doprnt(addchar, sfmt, ap)
 		    l = -l;
 		}
 		do {
-		    *bp++ = l % 10 + '0';
+		    *bp++ = (char) (l % 10) + '0';
 		} while ((l /= 10) > 0);
 		if (sign)
 		    *bp++ = '-';
@@ -165,12 +165,12 @@ doprnt(addchar, sfmt, ap)
 		    u = (unsigned long) (va_arg(ap, unsigned int));
 		if (fmt == 'u') {	/* unsigned decimal */
 		    do {
-			*bp++ = u % 10 + '0';
+			*bp++ = (char) (u % 10) + '0';
 		    } while ((u /= 10) > 0);
 		}
 		else if (fmt == 'o') {	/* octal */
 		    do {
-			*bp++ = u % 8 + '0';
+			*bp++ = (char) (u % 8) + '0';
 		    } while ((u /= 8) > 0);
 		    if (hash)
 			*bp++ = '0';

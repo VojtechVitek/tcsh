@@ -576,7 +576,7 @@ Dgetdol()
 		stderror(ERR_VARALNUM);
 	}
 	for (;;) {
-	    *np++ = c;
+	    *np++ = (Char) c;
 	    c = DgetC(0);
 	    if (!alnum(c))
 		break;
@@ -613,7 +613,7 @@ Dgetdol()
 		stderror(ERR_INCBR);
 	    if (np >= &name[sizeof(name) / sizeof(Char) - 2])
 		stderror(ERR_VARTOOLONG);
-	    *np++ = c;
+	    *np++ = (Char) c;
 	}
 	*np = 0, np = name;
 	if (dolp || dolcnt)	/* $ exp must end before ] */
@@ -733,7 +733,7 @@ fixDolMod()
 		int delimcnt = 2;
 		int delim = DgetC(0);
 		dolmod[dolnmod++] = (Char) c;
-		dolmod[dolnmod++] = delim;
+		dolmod[dolnmod++] = (Char) delim;
 		
 		if (!delim || letter(delim)
 		    || Isdigit(delim) || any(" \t\n", delim)) {
@@ -822,7 +822,7 @@ setDolp(cp)
 		    np = (Char *) xmalloc((size_t)
 					  ((Strlen(cp) + 1 - lhlen + rhlen) *
 					  sizeof(Char)));
-		    (void) Strncpy(np, cp, dp - cp);
+		    (void) Strncpy(np, cp, (size_t) (dp - cp));
 		    (void) Strcpy(np + (dp - cp), rhsub);
 		    (void) Strcpy(np + (dp - cp) + rhlen, dp + lhlen);
 
@@ -838,7 +838,7 @@ setDolp(cp)
 	    /*
 	     * restore dolmod for additional words
 	     */
-	    dolmod[i] = rhsub[-1] = delim;
+	    dolmod[i] = rhsub[-1] = (Char) delim;
 	    if (didmod)
 		dolmcnt--;
 #ifdef notdef

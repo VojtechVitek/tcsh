@@ -55,7 +55,7 @@ static	struct command	*syn3	 __P((struct wordent *, struct wordent *, int));
 #define ALEFT	51		/* max of 50 alias expansions	 */
 #define HLEFT	11		/* max of 10 history expansions */
 /*
- * Perform aliasing on the word list lex
+ * Perform aliasing on the word list lexp
  * Do a (very rudimentary) parse to separate into commands.
  * If word 0 of a command has an alias, do it.
  * Repeat a maximum of 50 times.
@@ -63,8 +63,8 @@ static	struct command	*syn3	 __P((struct wordent *, struct wordent *, int));
 static int aleft;
 extern int hleft;
 void
-alias(lex)
-    register struct wordent *lex;
+alias(lexp)
+    register struct wordent *lexp;
 {
     jmp_buf_t osetexit;
 
@@ -78,7 +78,7 @@ alias(lex)
     }
     if (--aleft == 0)
 	stderror(ERR_ALIASLOOP);
-    asyntax(lex->next, lex);
+    asyntax(lexp->next, lexp);
     resexit(osetexit);
 }
 

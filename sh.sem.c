@@ -297,7 +297,7 @@ execute(t, wanttty, pipein, pipeout)
 #ifdef BSDSIGS
 		    csigmask = sigblock(sigmask(SIGCHLD));
 #else /* !BSDSIGS */
-		    sighold(SIGCHLD);
+		    (void) sighold(SIGCHLD);
 #endif /* BSDSIGS */
 
 		    nosigchld = 1;

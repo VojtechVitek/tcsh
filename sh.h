@@ -42,6 +42,7 @@
 #ifndef EXTERN
 # define EXTERN extern
 #endif /* EXTERN */
+
 /*
  * Sanity
  */
@@ -64,7 +65,6 @@ typedef short Char;
 typedef char Char;
 # define SAVE(a) (strsave(a))
 #endif 
-
 
 /*
  * If your compiler complains, then you can either
@@ -902,15 +902,15 @@ extern struct limits {
  * Variables for filename expansion
  */
 extern Char **gargv;		/* Pointer to the (stack) arglist */
-extern long gargc;		/* Number args in gargv */
+extern int    gargc;		/* Number args in gargv */
 
 /*
  * Variables for command expansion.
  */
 extern Char **pargv;		/* Pointer to the argv list space */
-EXTERN Char   *pargs;		/* Pointer to start current word */
-EXTERN long    pnleft;		/* Number of chars left in pargs */
-EXTERN Char   *pargcp;		/* Current index into pargs */
+EXTERN Char  *pargs;		/* Pointer to start current word */
+EXTERN long   pnleft;		/* Number of chars left in pargs */
+EXTERN Char  *pargcp;		/* Current index into pargs */
 
 /*
  * History list

@@ -727,7 +727,7 @@ search(type, level, goal)
     register Char *aword = wordbuf;
     register Char *cp;
 
-    Stype = type;
+    Stype = (Char) type;
     Sgoal = goal;
     if (type == TC_GOTO) {
 	struct Ain a;

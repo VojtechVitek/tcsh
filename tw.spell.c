@@ -156,7 +156,7 @@ spdir(extended_name, tilded_dir, item, name)
     (void) Strcpy(path, tilded_dir);
     oldch = *s;
     *s = '/';
-    catn(path, name, sizeof(path) / sizeof(Char));
+    catn(path, name, (int) (sizeof(path) / sizeof(Char)));
     if (access(short2str(path), F_OK) == 0) {
 	(void) Strcpy(extended_name, name);
 	return 1;

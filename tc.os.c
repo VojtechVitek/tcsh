@@ -441,7 +441,8 @@ domigrate(v, c)
     char   *s;
     Char   *cp;
     struct process *pp;
-    int     pid, err1 = 0;
+    int    err1 = 0;
+    int    pid = 0;
     siteno_t new_site = 0;
     sigmask_t omask;
 
@@ -820,7 +821,7 @@ xstrerror(i)
     if (i >= 0 && i < sys_nerr) 
 	return sys_errlist[i];
     else {
-	xsprintf(errbuf, "Unknown Error: %d", i);
+	(void) xsprintf(errbuf, "Unknown Error: %d", i);
 	return errbuf;
     }
 }
@@ -959,9 +960,9 @@ xgetwd(pathname)
 	}
 
 	if (*pnptr == '\0')		/* current dir == root dir */
-		strcpy(pathname, "/");
+		(void) strcpy(pathname, "/");
 	else {
-		strcpy(pathname, pnptr);
+		(void) strcpy(pathname, pnptr);
 		if (chdir(pnptr) < 0) {
         		(void) xsprintf(pathname,
                         "getwd: Cannot change back to \".\" (%s)",

@@ -3595,7 +3595,8 @@ Fixes and Ports for Tek, m88k, Titan, Masscomp.
 .sp
 Mark Linderman, Cornell University, 1992
 .br
-OS/2 Port
+OS/2 Port, (he does not run OS/2 anymore so he cannot help you
+porting tcsh on it)
 .sp
 Mika Liljeberg, liljeber@kruuna.Helsinki.FI, 1992
 .br

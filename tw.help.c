@@ -117,13 +117,13 @@ do_help(command)
 	     * /bar/foo.1, /bar/foo.8, then finally /bar/foo.6.  This is so
 	     * that you don't spit a binary at the tty when $HPATH == $PATH.
 	     */
-	    copyn(full, curdir, sizeof(full) / sizeof(Char));
-	    catn(full, STRslash, sizeof(full) / sizeof(Char));
-	    catn(full, name, sizeof(full) / sizeof(Char));
+	    copyn(full, curdir, (int) (sizeof(full) / sizeof(Char)));
+	    catn(full, STRslash, (int) (sizeof(full) / sizeof(Char)));
+	    catn(full, name, (int) (sizeof(full) / sizeof(Char)));
 	    ep = &full[Strlen(full)];
 	    for (sp = h_ext; *sp; sp++) {
 		*ep = '\0';
-		catn(full, str2short(*sp), sizeof(full) / sizeof(Char));
+		catn(full, str2short(*sp), (int) (sizeof(full) / sizeof(Char)));
 		if ((f = open(short2str(full), O_RDONLY)) != -1)
 		    break;
 	    }

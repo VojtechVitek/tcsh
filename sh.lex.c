@@ -196,7 +196,7 @@ lex(hp)
 
 static time_t
 a2time_t(word)
-    Char * word;
+    Char *word;
 {
     /* Attempt to distinguish timestamps from other possible entries.
      * Format: "+NNNNNNNNNN" (10 digits, left padded with ascii '0') */
@@ -650,7 +650,7 @@ getdol()
 	    if (c == 's') {
 		int delimcnt = 2;
 		int delim = getC(0);
-		*np++ = delim;
+		*np++ = (Char) delim;
 		
 		if (!delim || letter(delim)
 		    || Isdigit(delim) || any(" \t\n", delim)) {
@@ -1444,7 +1444,7 @@ void
 unreadc(c)
     int    c;
 {
-    peekread = c;
+    peekread = (Char) c;
 }
 
 int

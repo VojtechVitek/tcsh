@@ -110,10 +110,8 @@ struct who {
 };
 
 static struct who whohead, whotail;
-static int watch_period = 0;
+static time_t watch_period = 0;
 static time_t stlast = 0;
-extern char *month_list[];
-extern char *day_list[];
 #ifdef WHODEBUG
 static	void	debugwholist	__P((struct who *, struct who *));
 #endif
@@ -489,7 +487,7 @@ who_info(ptr, c, wbuf)
 	case OFFLINE:
 	    return "logged off";
 	case CHANGED:
-	    xsprintf(wbuf, "replaced %s on", wp->who_name);
+	    (void) xsprintf(wbuf, "replaced %s on", wp->who_name);
 	    return wbuf;
 	default:
 	    break;
@@ -530,7 +528,7 @@ who_info(ptr, c, wbuf)
 
     default:
 	wbuf[0] = '%';
-	wbuf[1] = c;
+	wbuf[1] = (char) c;
 	wbuf[2] = '\0';
 	return wbuf;
     }

@@ -418,7 +418,7 @@ stderror(va_alist)
      */
     dont_free = 0;
 
-    flags = id & ERR_FLAGS;
+    flags = (int) id & ERR_FLAGS;
     id &= ~ERR_FLAGS;
 
     /* Pyramid's OS/x has a subtle bug in <varargs.h> which prevents calling

@@ -392,7 +392,7 @@ operate(op, vp, p)
     if (op != '=') {
 	if (*vp)
 	    *v++ = vp;
-	opr[0] = op;
+	opr[0] = (Char) op;
 	opr[1] = 0;
 	*v++ = opr;
 	if (op == '<' || op == '>')

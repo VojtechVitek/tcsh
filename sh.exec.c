@@ -853,19 +853,19 @@ executable(dir, name, dir_ok)
 }
 
 void
-tellmewhat(lex)
-    struct wordent *lex;
+tellmewhat(lexp)
+    struct wordent *lexp;
 {
     register int i;
     register struct biltins *bptr;
-    register struct wordent *sp = lex->next;
+    register struct wordent *sp = lexp->next;
     bool    aliased = 0;
     Char   *s0, *s1, *s2;
     Char    qc;
 
     if (adrof1(sp->word, &aliases)) {
-	alias(lex);
-	sp = lex->next;
+	alias(lexp);
+	sp = lexp->next;
 	aliased = 1;
     }
 
@@ -899,7 +899,7 @@ tellmewhat(lex)
     for (bptr = bfunc; bptr < &bfunc[nbfunc]; bptr++) {
 	if (eq(sp->word, str2short(bptr->bname))) {
 	    if (aliased)
-		prlex(lex);
+		prlex(lexp);
 	    xprintf("%S: shell built-in command.\n", sp->word);
 	    flush();
 	    sp->word = s0;	/* we save and then restore this */
@@ -923,23 +923,23 @@ tellmewhat(lex)
 	if (pv[0][0] == 0 || eq(pv[0], STRdot)) {
 	    if (!slash) {
 		sp->word = Strspl(STRdotsl, sp->word);
-		prlex(lex);
+		prlex(lexp);
 		xfree((ptr_t) sp->word);
 	    }
 	    else
-		prlex(lex);
+		prlex(lexp);
 	    sp->word = s0;	/* we save and then restore this */
 	    return;
 	}
 	s1 = Strspl(*pv, STRslash);
 	sp->word = Strspl(s1, sp->word);
 	xfree((ptr_t) s1);
-	prlex(lex);
+	prlex(lexp);
 	xfree((ptr_t) sp->word);
     }
     else {
 	if (aliased)
-	    prlex(lex);
+	    prlex(lexp);
 	xprintf("%S: Command not found.\n", sp->word);
 	flush();
     }

@@ -634,15 +634,15 @@ static Char *Input_Line = NULL;
 int
 Load_input_line()
 {
-#ifdef SUNOS
+#ifdef SUNOS4
     long chrs = 0;
-#else
+#else /* !SUNOS4 */
     /* 
      * *Everyone* else has an int, but SunOS wants long!
      * This breaks where int != long (alpha)
      */
     int chrs = 0;
-#endif
+#endif /* SUNOS4 */
 
     if (Input_Line)
 	xfree((ptr_t) Input_Line);
@@ -652,7 +652,7 @@ Load_input_line()
 	return 0;
 
 #if defined(FIONREAD) && !defined(OREO)
-    (void) ioctl(SHIN, FIONREAD, &chrs);
+    (void) ioctl(SHIN, FIONREAD, (ioctl_t) &chrs);
     if (chrs > 0) {
 	char    buf[BUFSIZE];
 

@@ -100,15 +100,15 @@ Inputl()
 
 #if defined(FIONREAD) && !defined(OREO)
     if (!Tty_raw_mode && MacroLvl < 0) {
-# ifdef SUNOS
+# ifdef SUNOS4
 	long chrs = 0;
-# else
+# else /* !SUNOS4 */
 	/* 
 	 * *Everyone* else has an int, but SunOS wants long!
 	 * This breaks where int != long (alpha)
 	 */
 	int chrs = 0;
-# endif
+# endif /* SUNOS4 */
 
 	(void) ioctl(SHIN, FIONREAD, (ioctl_t) & chrs);
 	if (chrs == 0) {

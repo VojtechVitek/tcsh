@@ -618,12 +618,12 @@ fix_version()
 # define LOCALSTR ""
 #endif /* LOCALSTR */
 
-    xsprintf(version,
+    (void) xsprintf(version,
 	     "tcsh %d.%.2d.%.2d (%s) %s (%s) options %s%s%s%s%s%s%s%s%s%s%s%s",
 	     REV, VERS, PATCHLEVEL, ORIGIN, DATE, gethosttype(),
 	     SSSTR, NLSSTR, LFSTR, DLSTR, VISTR, DTRSTR,
 	     BYESTR, ALSTR, KANSTR, SMSTR, HBSTR, LOCALSTR);
     set(STRversion, SAVE(version), VAR_READWRITE);
-    xsprintf(version, "%d.%.2d.%.2d", REV, VERS, PATCHLEVEL);
+    (void) xsprintf(version, "%d.%.2d.%.2d", REV, VERS, PATCHLEVEL);
     set(STRtcsh, SAVE(version), VAR_READWRITE);
 }

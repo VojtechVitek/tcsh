@@ -314,11 +314,11 @@ fmthist(fmt, ptr, buf)
     struct Hist *hp = (struct Hist *) ptr;
     switch (fmt) {
     case 'h':
-	xsprintf(buf, "%6d", hp->Hnum);
+	(void) xsprintf(buf, "%6d", hp->Hnum);
 	break;
     case 'R':
 	if (HistLit && hp->histline)
-	    xsprintf(buf, "%S", hp->histline);
+	    (void) xsprintf(buf, "%S", hp->histline);
 	else {
 	    Char ibuf[BUFSIZE], *ip;
 	    char *p;

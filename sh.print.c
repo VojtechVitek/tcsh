@@ -59,14 +59,14 @@ psecs(l)
 {
     register int i;
 
-    i = l / 3600;
+    i = (int) (l / 3600);
     if (i) {
 	xprintf("%d:", i);
-	i = l % 3600;
+	i = (int) (l % 3600);
 	p2dig(i / 60);
 	goto minsec;
     }
-    i = l;
+    i = (int) l;
     xprintf("%d", i / 60);
 minsec:
     i %= 60;
@@ -90,14 +90,14 @@ pcsecs(l)			/* PWP: print mm:ss.dd, l is in sec*100 */
 {
     register int i;
 
-    i = l / 360000;
+    i = (int) (l / 360000);
     if (i) {
 	xprintf("%d:", i);
-	i = (l % 360000) / 100;
+	i = (int) ((l % 360000) / 100);
 	p2dig(i / 60);
 	goto minsec;
     }
-    i = l / 100;
+    i = (int) (l / 100);
     xprintf("%d", i / 60);
 minsec:
     i %= 60;
@@ -179,7 +179,7 @@ putpure(c)
 {
     c &= CHAR;
 
-    *linp++ = c;
+    *linp++ = (char) c;
     if (linp >= &linbuf[sizeof linbuf - 10])
 	flush();
     return (1);
