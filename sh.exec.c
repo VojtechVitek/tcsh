@@ -918,14 +918,14 @@ find_cmd(cmd, prt)
     Char *sv;
     int hashval, i, ex, rval = 0;
 
-    if (any(short2str(cmd), '/') && !prt) {
+    if (prt && any(short2str(cmd), '/')) {
 	xprintf("where: / in command makes no sense\n");
 	return 0;
     }
 
     /* first, look for an alias */
 
-    if (adrof1(cmd, &aliases) && !prt) {
+    if (prt && adrof1(cmd, &aliases)) {
 	if ((var = adrof1(cmd, &aliases)) != NULL) {
 	    xprintf("%s is aliased to ", short2str(cmd));
 	    blkpr(var->vec);

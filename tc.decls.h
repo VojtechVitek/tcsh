@@ -215,17 +215,15 @@ extern	pid_t 		  ourwait	__P((int *));
 extern	sigret_t	(*xsignal	__P((int, sigret_t (*)(int)))) ();
 #define signal(a, b)	  xsignal(a, b)
 #endif
-#ifdef _SEQUENT_
+#if defined(_SEQUENT_) || defined(linux)
 extern	sigmask_t	  sigsetmask	__P((sigmask_t));
 extern	sigmask_t	  sigblock	__P((sigmask_t));
 extern	void		  bsd_sigpause	__P((sigmask_t));
 extern  sigret_t        (*bsd_signal    __P((int, sigret_t (*)(int)))) ();
-#endif
+#endif /* _SEQUENT_ || linux */
 #ifdef SIGSYNCH
 extern	sigret_t	  synch_handler	__P((int));
 #endif
-
-
 
 
 /*

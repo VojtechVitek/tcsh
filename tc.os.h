@@ -502,4 +502,11 @@ extern int ioctl __P((int, int, ...));
 extern int readlink __P((const char *, char *, size_t));
 # endif /* sun && __GNUC__ == 2 */
 
+#ifdef linux
+extern int		tcgetpgrp	__P((int));
+extern int		tcsetpgrp	__P((int, int));
+extern int		gethostname	__P((char *, int));
+extern int		readlink	__P(());
+#endif /* linux */
+
 #endif /* _h_tc_os */

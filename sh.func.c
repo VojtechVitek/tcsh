@@ -938,6 +938,9 @@ wfree()
 {
     struct Ain    o;
     struct whyle *nwp;
+#ifdef lint
+    nwp = NULL;	/* sun lint is dumb! */
+#endif
 
 #ifdef FDEBUG
     static char foo[] = "IAFE";
@@ -1552,7 +1555,9 @@ getval(lp, v)
 # endif /* convex */
 
     register float f;
+#ifndef atof	/* This can be a macro on linux */
     extern double  atof __P((const char *));
+#endif /* atof */
     static int lmin = 0x80000000, lmax = 0x7fffffff;
     Char   *cp = *v++;
 

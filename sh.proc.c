@@ -282,6 +282,11 @@ loop:
 	    goto loop;
 	}
 	pnoprocesses = pid == -1;
+#ifdef linux
+# ifdef UNRELSIGS
+	(void) sigset(SIGCHLD, pchild);
+# endif /* UNRELSIGS */
+#endif /* linux */
 #ifndef SIGVOID
 	return (0);
 #else /* !SIGVOID */
@@ -535,7 +540,6 @@ pjwait(pp)
 #ifdef UNRELSIGS
     sigret_t (*inthandler)();
 #endif /* UNRELSIGS */
-
     while (pp->p_procid != pp->p_jobid)
 	pp = pp->p_friends;
     fp = pp;

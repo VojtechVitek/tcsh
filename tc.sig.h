@@ -131,6 +131,9 @@ typedef struct sigvec sigvec_t;
 #  define 	killpg(a, b)	kill(-getpgrp(a), b)
 #  define	NEEDsignal
 # endif	/* aiws */
+# ifdef linux
+#  define	sigpause(a)	bsd_sigpause(a)
+# endif /* linux */
 #endif /* BSDSIGS */
 
 

@@ -34,10 +34,11 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#ifdef FILEC
 #include "sh.h"
 
 RCSID("$Id$")
+
+#ifdef FILEC
 
 /*
  * Tenex style file name recognition, .. and more.

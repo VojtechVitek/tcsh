@@ -141,7 +141,7 @@ main(argc, argv)
     sigvec_t osv;
 #endif /* BSDSIGS */
 
-#if !defined(BSDTIMES) && defined(POSIX)
+#if !(defined(BSDTIMES) || defined(_SEQUENT_)) && defined(POSIX)
 # ifdef _SC_CLK_TCK
     clk_tck = (clock_t) sysconf(_SC_CLK_TCK);
 # else /* ! _SC_CLK_TCK */

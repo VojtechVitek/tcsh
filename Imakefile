@@ -416,8 +416,8 @@ shar:
 	mkdir tcsh-${VERSION} tcsh-${VERSION}/config
 	cp ${ALLSRCS} tcsh-${VERSION}
 	cp ${CONFSRCS} tcsh-${VERSION}/config
-	MAKESHAR ${VERSION} tcsh-${VERSION}/[a-zA-Z]* \
-			    tcsh-${VERSION}/config/config.*
+	MAKESHAR -v -n tcsh-${VERSION} tcsh-${VERSION} \
+		 tcsh-${VERSION}/* tcsh-${VERSION}/config/*
 	rm -rf tcsh-${VERSION}
 
 world:

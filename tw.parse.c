@@ -840,7 +840,7 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
 		default:
 		    break;
 		}
-		if (tw_item_find(buf))
+		if (looking == TW_COMMAND && tw_item_find(buf))
 		    break;
 		else {
 		    /* maximum length 1 (NULL) + 1 (~ or $) + 1 (filetype) */
