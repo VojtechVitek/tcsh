@@ -117,7 +117,9 @@ execute(t, wanttty, pipein, pipeout)
     {
         if (!t->t_dcdr && !t->t_dcar && !t->t_dflg && !didfds &&
             (intty || intact) && (t->t_dtyp == NODE_COMMAND)
+	 		&& (!((t->t_dcom[0][0] & (QUOTE | TRIM)) == QUOTE))
                 && !isbfunc(t)) {
+			Dfix(t);
             if (nt_try_fast_exec(t) == 0)
                 return;
         }

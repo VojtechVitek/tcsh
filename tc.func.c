@@ -42,6 +42,9 @@ RCSID("$Id$")
 #include "ed.defns.h"		/* for the function names */
 #include "tw.h"
 #include "tc.h"
+#ifdef WINNT
+#include "nt.const.h"
+#endif WINNT
 
 #ifdef AFS
 #define PASSMAX 16
@@ -349,7 +352,7 @@ dolist(v, c)
 #endif /* WINNT */
 	    if (
 #ifdef WINNT
-		((char)tmp[1] == ':') &&
+		((char)tmp[1] != ':') &&
 		(!is_unc) &&
 #endif /* WINNT */
 		stat(short2str(tmp), &st) == -1) {
@@ -1957,7 +1960,7 @@ hashbang(fd, vp)
 	    }
 	    sargv[sargc] = NULL;
 	    ws = NULL;
-	    if (sargc > 0)
+	    if (sargc > 0) {
 		*vp = blk2short(sargv);
 		return 0;
 	    }

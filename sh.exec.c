@@ -429,11 +429,7 @@ texec(sf, st)
 
     case ENOEXEC:
 #ifdef WINNT
-	{
-		extern int nt_feed_to_cmd __P((char *, char **));
-		int rc;
-		rc = nt_feed_to_cmd(f,t);
-	}
+		nt_feed_to_cmd(f,t);
 #endif /* WINNT */
 	/*
 	 * From: casper@fwi.uva.nl (Casper H.S. Dik) If we could not execute
@@ -842,7 +838,7 @@ iscommand(name)
     hashval = havhash ? hashname(name) : 0;
     i = 0;
     do {
-	if (!slash && pv[0][0] == '/' && havhash) {
+	if (!slash && ABSOLUTEP(pv[0]) && havhash) {
 #ifdef FASTHASH
 	    if (!bit(hashval, i))
 		goto cont;
@@ -1202,5 +1198,16 @@ nt_check_name_and_hash(is_windir, file, i)
 nodot:
     hashval = hashname(str2short(file));
     bis(hashval, i);
+}
+int hashval_extern(cp)
+	Char *cp;
+{
+	return havhash?hashname(cp):0;
+}
+int bit_extern(val,i)
+	int val;
+	int i;
+{
+	return bit(val,i);
 }
 #endif /* WINNT */

@@ -41,6 +41,9 @@ RCSID("$Id$")
 #include "ed.h"
 #include "tw.h"
 #include "tc.h"
+#ifdef WINNT
+#include "nt.const.h"
+#endif WINNT
 
 /*
  * C shell
