@@ -149,7 +149,7 @@ sh_access(fname, mode)
 
 # ifdef NGROUPS_MAX
     else {
-#  if defined(__386BSD__) || defined(BSD4_4) || defined(__NetBSD__)
+#  if (defined(__386BSD__) || defined(BSD4_4)) && !defined(__NetBSD__)
     /*
      * These two decided that setgroup() should take an array of int's
      * and they define _SC_NGROUPS_MAX without having sysconf
