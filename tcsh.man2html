@@ -1,4 +1,4 @@
-#!/bin/sh # -*- perl -*-
+: # -*- perl -*-
 # $Id$
 
 # tcsh.man2html, Dave Schweisguth <dcs@proton.chem.yale.edu>
@@ -820,7 +820,7 @@ only the word "help".
 <A HREF="TOPFILEHERE">Up</A>
 </BODY>
 END
-#!/bin/sh
+: # -*- perl -*-
 
 # Emulate #!/usr/local/bin/perl on systems without #!
 
