@@ -727,7 +727,7 @@ tw_grpname_next(dir, flags)
 #endif /* atp vmsposix */
     TW_RELS();
 
-    if (pw == NULL) {
+    if (gr == NULL) {
 #ifdef YPBUGS
 	fix_yp_bugs();
 #endif
