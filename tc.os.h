@@ -63,9 +63,14 @@
 # ifdef ARG_MAX
 #  define NCARGS ARG_MAX
 # else
-#  define NCARGS 1024
+#  ifdef _MINIX
+#   define NCARGS 80
+#  else /* !_MINIX */
+#   define NCARGS 1024
+#  endif /* _MINIX */
 # endif /* ARG_MAX */
 #endif /* NCARGS */
+
 #ifdef titan
 extern int end;
 #endif /* titan */
@@ -314,6 +319,14 @@ struct ucred {
 #  define	NOFILE	64
 # endif	/* NOFILE */
 #endif /* SXA */
+
+#ifdef _MINIX
+# ifndef NOFILE
+#  define NOFILE 64
+# endif /* NOFILE */
+extern int nice();
+#endif /* _MINIX */
+
 
 #ifndef POSIX
 # define mygetpgrp()    getpgrp(0)

@@ -41,7 +41,6 @@ RCSID("$Id$")
 Char STRlogout[]        = { 'l', 'o', 'g', 'o', 'u', 't', '\0' };
 Char STRautologout[]    = { 'a', 'u', 't', 'o', 'l', 'o', 'g', 'o', 'u', 't', 
 			    '\0' };
-Char STRlock[]    	= { 'l', 'o', 'c', 'k', '\0' };
 Char STRdefautologout[] = { '6', '0', '\0' };
 Char STRautomatic[]     = { 'a', 'u', 't', 'o', 'm', 'a', 't', 'i', 'c', '\0' };
 Char STRaout[]          = { 'a', '.', 'o', 'u', 't', '\0' };
@@ -153,6 +152,8 @@ Char STRspand2sp[]	= { ' ', '&', '&', ' ', '\0' };
 Char STRsporsp[]	= { ' ', '|', ' ', '\0' };
 Char STRsemisp[]	= { ';', ' ', '\0' };
 Char STRsemi[]		= { ';', '\0' };
+Char STRQQ[]		= { '"', '"', '\0' };
+Char STRBB[]		= { '[', ']', '\0' };
 Char STRspLarrow2sp[]	= { ' ', '<', '<', ' ', '\0' };
 Char STRspLarrowsp[]	= { ' ', '<', ' ', '\0' };
 Char STRspRarrow2[]	= { ' ', '>', '>', '\0' };
@@ -207,7 +208,6 @@ Char STRautocorrect[]	= { 'a', 'u', 't', 'o', 'c', 'o', 'r', 'r', 'e', 'c',
 Char STRautolist[]	= { 'a', 'u', 't', 'o', 'l', 'i', 's', 't', '\0' };
 Char STRbeepcmd[]	= { 'b', 'e', 'e', 'p', 'c', 'm', 'd', '\0' };
 Char STRmatchbeep[]	= { 'm', 'a', 't', 'c', 'h', 'b', 'e', 'e', 'p', '\0' };
-Char STRnever[]		= { 'n', 'e', 'v', 'e', 'r', '\0' };
 Char STRnomatch[]	= { 'n', 'o', 'm', 'a', 't', 'c', 'h', '\0' };
 Char STRambiguous[]	= { 'a', 'm', 'b', 'i', 'g', 'u', 'o', 'u', 's', '\0' };
 Char STRnotunique[]	= { 'n', 'o', 't', 'u', 'n', 'i', 'q', 'u', 'e', '\0' };

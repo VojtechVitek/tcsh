@@ -67,6 +67,11 @@
 # include <sys/wait.h>
 #endif /* SVID == 0 */
 
+#ifdef _MINIX
+# undef NEEDwait
+# include <minix-wait.h>
+#endif /* _MINIX */
+
 #ifdef NEEDwait
 /*
  *	This wait is for big-endians and little endians

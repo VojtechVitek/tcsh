@@ -92,6 +92,16 @@ extern KEYCMD NumFuns;		/* number of KEYCMDs in above table */
 #define CC_REFRESH		14
 #define CC_EXPAND_VARS		15
 
+typedef union Xmapval {		/* value passed to the Xkey routines */
+    KEYCMD cmd;
+    Char *str;
+} XmapVal;
+
+#define XK_NOD	-1		/* Internal tree node */
+#define XK_CMD	 0		/* X-key was an editor command */
+#define XK_STR	 1		/* X-key was a string macro */
+#define XK_EXE	 2		/* X-key was a unix command */
+
 /****************************/
 /* Editor state and buffers */
 /****************************/

@@ -2722,11 +2722,19 @@ e_cleardisp(c)
 CCRETVAL
 e_tty_int(c)
     int c;
-{
+{			
+#ifdef _MINIX
+    /* SAK PATCH: erase all of current line, start again */
+    ResetInLine();		/* reset the input pointers */
+    xputchar('\n');
+    ClearDisp();
+    return (CC_REFRESH);
+#else /* !_MINIX */
     /* do no editing */
-    return(CC_NORM);
+    return (CC_NORM);
+#endif /* _MINIX */
 }
-
+  
 /*ARGSUSED*/
 CCRETVAL
 e_insovr(c)

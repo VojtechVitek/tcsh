@@ -247,7 +247,11 @@ loop:
 #  ifdef UNRELSIGS
     /* no wait3, therefore no rusage */
     /* on Sys V, this may hang.  I hope it's not going to be a problem */
+#   ifdef _MINIX
+    pid = wait(&w);
+#   else /* !_MINIX */
     pid = ourwait(&w.w_status);
+#   endif /* _MINIX */
 #  else	/* UNRELSIGS */
     /* 
      * XXX: for greater than 3 we should use waitpid(). 

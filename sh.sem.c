@@ -728,8 +728,11 @@ splicepipe(t, cp)
 	}
     }
     else {
-	blk[0] = globone(blk[1] = Dfix1(cp), G_ERROR);
+	Char buf[BUFSIZ];
+
+	(void) Strcpy(buf, blk[1] = Dfix1(cp));
 	xfree((ptr_t) blk[1]);
+	blk[0] = globone(buf, G_ERROR);
     }
     return(blk[0]);
 }

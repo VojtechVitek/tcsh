@@ -1368,7 +1368,7 @@ ed_InitMetaBindings()
     for (i = 0200; i <= 0377; i++) {
 	if (map[i] != F_INSERT && map[i] != F_UNASSIGNED && map[i] != F_XKEY) {
 	    buf[1] = i & ASCII;
-	    AddXkeyCmd(buf, (Char) map[i]);
+	    AddXkey(buf, XmapCmd((int) map[i]), XK_CMD);
 	}
     }
     map[buf[0]] = F_XKEY;
@@ -1407,15 +1407,15 @@ ed_InitEmacsMaps()
     buf[0] = 030;
     buf[2] = 0;
     buf[1] = 030;
-    AddXkeyCmd(buf, F_EXCHANGE_MARK);
+    AddXkey(buf, XmapCmd(F_EXCHANGE_MARK), XK_CMD);
     buf[1] = '*';
-    AddXkeyCmd(buf, F_EXPAND_GLOB);
+    AddXkey(buf, XmapCmd(F_EXPAND_GLOB),   XK_CMD);
     buf[1] = '$';
-    AddXkeyCmd(buf, F_EXPAND_VARS);
+    AddXkey(buf, XmapCmd(F_EXPAND_VARS),   XK_CMD);
     buf[1] = 'G';
-    AddXkeyCmd(buf, F_LIST_GLOB);
+    AddXkey(buf, XmapCmd(F_LIST_GLOB),     XK_CMD);
     buf[1] = 'g';
-    AddXkeyCmd(buf, F_LIST_GLOB);
+    AddXkey(buf, XmapCmd(F_LIST_GLOB),     XK_CMD);
     BindArrowKeys();
 }
 

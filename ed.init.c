@@ -170,7 +170,7 @@ ed_Setup(rst)
     if (havesetup) 	/* if we have never been called */
 	return(0);
 
-#ifdef _PC_VDISABLE
+#if defined(POSIX) && defined(_PC_VDISABLE)
     { 
 	long pcret;
 
@@ -186,9 +186,9 @@ ed_Setup(rst)
 		    ttychars[EX_IO][rst] = vdisable;
 	    }
     }
-#else /* !_PC_VDISABLE */
+#else /* ! POSIX || !_PC_VDISABLE */
     vdisable = _POSIX_VDISABLE;
-#endif /* _PC_VDISABLE */
+#endif /* POSIX && _PC_VDISABLE */
 	
     inputmode = MODE_INSERT;	/* start out in insert mode */
     ed_InitMaps();

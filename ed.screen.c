@@ -653,7 +653,7 @@ BindArrowKeys()
 	     */
 	    if (p[1] && (dmap[(unsigned char) *p] == map[(unsigned char) *p] ||
 			 map[(unsigned char) *p] == F_XKEY)) {
-		AddXkeyCmd(str2short(p), ar[i].fun);
+		AddXkey(str2short(p), XmapCmd(ar[i].fun), XK_CMD);
 		map[(unsigned char) *p] = F_XKEY;
 	    }
 	    else if (map[(unsigned char) *p] == F_UNASSIGNED) {

@@ -180,6 +180,15 @@ gethosttype()
     hosttype = str2short("att3b2");
 # endif /* u3b2 */
 
+#ifdef _MINIX
+# define _havehosttype_
+# ifdef i386
+    hosttype = str2short("minix386");
+# else /* minix ? amoeba or mac? */
+    hosttype = str2short("minix");
+# endif /* i386 */
+#endif /* _MINIX */
+
 # if defined(i386) && SVID > 0
 
 #  if !defined(_havehosttype_) && (defined(ISC) || defined(ISC202))

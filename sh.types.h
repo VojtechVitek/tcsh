@@ -152,6 +152,10 @@ extern char *sbrk();
 #endif
 #endif /* __hpux */
 
+#ifdef _MINIX
+typedef char * caddr_t;
+#endif /* _MINIX */
+
 /***
  *** hp9000s500 running hpux-5.2
  ***/

@@ -234,12 +234,13 @@ extern	void	PastBottom		__P((void));
 /*
  * ed.xmap.c
  */
-extern	void	AddXkeyCmd		__P((Char *, int));
-extern	void	AddXkey			__P((Char *, Char *));
-extern	void	ClearXkey		__P((KEYCMD *, Char *));
-extern	int	GetXkey			__P((Char *, Char **));
-extern	void	ResetXmap		__P((int));
-extern	int	DeleteXkey		__P((Char *));
-extern	void	PrintXkey		__P((Char *));
+extern  XmapVal *XmapStr		__P((Char *));
+extern  XmapVal *XmapCmd		__P((int));
+extern	void	 AddXkey		__P((Char *, XmapVal *, int));
+extern	void	 ClearXkey		__P((KEYCMD *, Char *));
+extern	int	 GetXkey		__P((Char *, XmapVal *));
+extern	void	 ResetXmap		__P((int));
+extern	int	 DeleteXkey		__P((Char *));
+extern	void	 PrintXkey		__P((Char *));
 
 #endif /* _h_ed_decls */
