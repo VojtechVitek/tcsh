@@ -786,6 +786,12 @@ int nt_try_fast_exec(struct command *t) {
 
 	blk[0] = t->t_dcom[0];
 	blk[1] = 0;
+
+    // don't do backtick
+    if(Strchr(t->t_dcom[0],'`') )
+        return 1;
+
+
 	gflag = 0, tglob(blk);
 	if (gflag) {
 		pv = globall(blk);
