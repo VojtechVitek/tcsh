@@ -862,7 +862,9 @@ doio(t, pipein, pipeout)
 	    if ((fd = open(tmp, O_RDONLY|O_LARGEFILE)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
 	    /* allow input files larger than 2Gb  */
+#ifndef WINNT_NATIVE
 	    (void) fcntl(fd, O_LARGEFILE, 0);
+#endif /*!WINNT_NATIVE*/
 	    (void) dmove(fd, 0);
 	}
 	else if (flags & F_PIPEIN) {
@@ -920,7 +922,9 @@ doio(t, pipein, pipeout)
 	    if ((fd = creat(tmp, 0666)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
 	    /* allow input files larger than 2Gb  */
+#ifndef WINNT_NATIVE
 	    (void) fcntl(fd, O_LARGEFILE, 0);
+#endif /*!WINNT_NATIVE*/
 	}
 	(void) dmove(fd, 1);
 	is1atty = isatty(1);
