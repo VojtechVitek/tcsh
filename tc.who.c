@@ -236,8 +236,10 @@ watch_login(force)
      * Don't open utmp all the time, stat it first...
      */
     if (stat(_PATH_UTMP, &sta)) {
-	xprintf(CGETS(26, 1, "cannot stat %s.  Please \"unset watch\".\n"),
-		_PATH_UTMP);
+	if (!force)
+	    xprintf(CGETS(26, 1,
+			  "cannot stat %s.  Please \"unset watch\".\n"),
+		    _PATH_UTMP);
 # ifdef BSDSIGS
 	(void) sigsetmask(omask);
 # else
@@ -255,8 +257,10 @@ watch_login(force)
     }
     stlast = sta.st_mtime;
     if ((utmpfd = open(_PATH_UTMP, O_RDONLY)) < 0) {
-	xprintf(CGETS(26, 2, "%s cannot be opened.  Please \"unset watch\".\n"),
-		_PATH_UTMP);
+	if (!force)
+	    xprintf(CGETS(26, 2,
+			  "%s cannot be opened.  Please \"unset watch\".\n"),
+		    _PATH_UTMP);
 # ifdef BSDSIGS
 	(void) sigsetmask(omask);
 # else
