@@ -45,7 +45,7 @@
 # define _PATH_LOCAL		"/usr/lbin"
 #endif /* _CRAYCOM && !_PATH_LOCAL */
 
-#if defined(convex) || defined(__convex__) || defined(stellar) || defined(INTEL)
+#if defined(convex) || defined(stellar) || defined(INTEL)
 # ifndef _PATH_DOTLOGIN
 #  define _PATH_DOTLOGIN	"/etc/login"
 # endif /* !_PATH_DOTLOGIN */
@@ -55,7 +55,7 @@
 # ifndef _PATH_DOTCSHRC
 #  define _PATH_DOTCSHRC	"/etc/cshrc"
 # endif /* !_PATH_DOTCSHRC */
-#endif /* convex || __convex__ || stellar || INTEL */
+#endif /* convex || stellar || INTEL */
 
 #ifdef NeXT
 # ifndef _PATH_DOTLOGIN

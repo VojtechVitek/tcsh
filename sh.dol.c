@@ -462,7 +462,17 @@ Dgetdol()
 	setDolp(doldol);
 	goto eatbrac;
 
-    case '<' | QUOTE:
+#ifdef COHERENT
+    /* Coherent compiler doesn't allow case-labels that are not 
+       constant-expressions */
+#ifdef SHORT_STRINGS
+    case 0100074:
+#else /* !SHORT_STRINGS */
+    case 0274:
+#endif
+#else /* !COHERENT */
+    case '<'|QUOTE:
+#endif
 	if (bitset)
 	    stderror(ERR_NOTALLOWED, "$?<");
 	if (dimen)

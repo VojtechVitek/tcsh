@@ -96,7 +96,7 @@ union wait {
 #  define w_stopval     w_S.w_Stopval
 #  define w_stopsig     w_S.w_Stopsig
 # else /* _SEQUENT_ */
-#  if defined(vax) || defined(i386)
+#  if defined(vax) || defined(i386) || defined(_I386)
     union {
 	struct {
 	    unsigned int w_Termsig:7;
@@ -129,7 +129,7 @@ union wait {
 	    unsigned int w_Stopval:8;
 	}       w_S;
     }       w_P;
-#  endif /* vax || i386 */
+#  endif /* vax || i386 || _I386 */
 };
 
 #  define w_termsig	w_P.w_T.w_Termsig

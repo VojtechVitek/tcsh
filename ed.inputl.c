@@ -513,8 +513,14 @@ RunCommand(str)
     cmd[0] = str;
     cmd[1] = NULL;
 
+    (void) Cookedmode();
+    GettingInput = 0;
+
     doeval1(cmd);
     
+    (void) Rawmode();
+    GettingInput = 1;
+
     ClearLines();
     ClearDisp();
     NeedsRedraw = 1;

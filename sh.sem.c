@@ -102,9 +102,9 @@ execute(t, wanttty, pipein, pipeout)
     int     wanttty;
     int *pipein, *pipeout;
 {
-#if defined(convex) || defined(__convex__)
+#ifdef convex
     extern bool use_fork;	/* use fork() instead of vfork()? */
-#endif 
+#endif /* convex */
 
     bool    forked;
     struct biltins *bifunc;
@@ -383,14 +383,14 @@ execute(t, wanttty, pipein, pipeout)
 # ifdef SAVESIGVEC
 		savesm = savesigvec(savesv);
 # endif /* SAVESIGVEC */
-# if defined(convex) || defined(__convex__)
+# ifdef convex
 		if (use_fork)
 		    pid = fork();
 		else
 		    pid = vfork();
-# else /* !convex && !__convex__ */
+# else /* !convex */
 		pid = vfork();
-# endif /* convex || __CONVEX__ */
+# endif /* convex */
 
 		if (pid < 0) {
 # ifdef BSDSIGS
@@ -686,11 +686,15 @@ int snum;
 {
     register Char **v;
 
-    if ((v = gargv) != 0)
-	gargv = 0, xfree((ptr_t) v);
+    if ((v = gargv) != 0) {
+	gargv = 0;
+	xfree((ptr_t) v);
+    }
 
-    if ((v = pargv) != 0)
-	pargv = 0, xfree((ptr_t) v);
+    if ((v = pargv) != 0) {
+	pargv = 0;
+	xfree((ptr_t) v);
+    }
 
     _exit(1);
 #ifndef SIGVOID

@@ -8,7 +8,7 @@
 # things; Paul Placeway, CIS Dept., Ohio State University
 #
 SHELL=/bin/sh
-VERSION=6.02
+VERSION=6.03
 BUILD=tcsh
 #BUILD=jump	# Build tcsh.a and link it with jump table libraries (linux)
 #BUILD=nojump	# Build tcsh.a and link it with shared libraries (linux)

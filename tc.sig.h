@@ -51,12 +51,12 @@
 # define SAVESIGVEC
 #endif /* SUNOS4 || DGUX || hp800 */
 
-#if (SYSVREL > 0 && SYSVREL < 3 && !defined(BSDSIGS)) || defined(_MINIX)
+#if (SYSVREL > 0 && SYSVREL < 3 && !defined(BSDSIGS)) || defined(_MINIX) || defined(COHERENT)
 /*
  * If we have unreliable signals...
  */
 # define UNRELSIGS
-#endif /* SYSVREL > 0 && SYSVREL < 3 && !BSDSIGS */
+#endif /* SYSVREL > 0 && SYSVREL < 3 && !BSDSIGS || _MINIX || COHERENT */
 
 #ifdef BSDSIGS
 /*
@@ -163,7 +163,7 @@ typedef struct sigvec sigvec_t;
 # endif /* SIGWINDOW */
 #endif /* SIGWINCH */
 
-#if defined(convex) || defined(__convex__)
+#ifdef convex
 # ifdef notdef
 /* Does not seem to work right... Christos */
 #  define SIGSYNCH       0 
@@ -174,7 +174,7 @@ typedef struct sigvec sigvec_t;
 #  define SYNCHMASK 	(sigmask(SIGCHLD))
 # endif
 extern sigret_t synch_handler();
-#endif /* convex || __convex__ */
+#endif /* convex */
 
 #ifdef SAVESIGVEC
 # define NSIGSAVED 7

@@ -52,7 +52,7 @@ static	void	p2dig	__P((int));
  * C Shell
  */
 
-#ifdef RLIMIT_CPU
+#ifdef BSDLIMIT
 void
 psecs(l)
     long    l;

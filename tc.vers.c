@@ -225,6 +225,15 @@ gethosttype()
    hosttype = "bsd386"; /* BSD/386*/
 # endif /* i386 && bsdi */
 
+# ifdef COHERENT
+#  define _havehosttype_
+#  ifdef _I386
+    hosttype = "coh386";
+#  else
+    hosttype = "coherent";
+#  endif /* _I386 */
+# endif /* COHERENT */
+
 # if defined(i386) && SYSVREL > 0
 
 #  if !defined(_havehosttype_) && (defined(ISC) || defined(ISC202))
@@ -305,7 +314,7 @@ gethosttype()
 #  endif /* ns32000 */
 # endif /* sequent */
 
-# if defined(convex) || defined(__convex__)
+# ifdef convex
 #  define _havehosttype_
     /* From: Brian Allison <uiucdcs!convex!allison@RUTGERS.EDU> */
     hosttype = "convex";

@@ -141,12 +141,12 @@
  * Work around convex weirdness where turning off IEXTEN makes us
  * lose all postprocessing!
  */
-#if defined(convex) || defined(__convex__)
+#ifdef convex
 # if defined(IEXTEN) && IEXTEN != 0
 #  undef IEXTEN
 #  define IEXTEN 0
 # endif /* IEXTEN != 0 */
-#endif /* convex || __convex__ */
+#endif /* convex */
 
 
 # else /* SGTTY */

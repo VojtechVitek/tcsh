@@ -50,15 +50,16 @@ RCSID("$Id$")
 static char buf[128];
 
 static	void	xaddchar	__P((int));
-static	void	doprnt		__P((void (*) __P((int)), char *, va_list));
+static	void	doprnt		__P((void (*) __P((int)), const char *, va_list));
 
 static void
 doprnt(addchar, sfmt, ap)
     void    (*addchar)();
-    char   *sfmt;
+    const char   *sfmt;
     va_list ap;
 {
-    register char *f, *bp;
+    register char *bp;
+    register const char *f;
     register Char *Bp;
     register long l;
     register unsigned long u;
@@ -360,19 +361,19 @@ int
 fprintf(FILE *fp, const char* fmt, ...)
 #else
 fprintf(va_alist)
+    va_dcl
 #endif
-va_dcl
 {
     va_list va;
 #if __STDC__
     va_start(va, fmt);
 #else
     FILE *fp;
-    char   *fmt;
+    const char   *fmt;
 
     va_start(va);
     fp = va_arg(va, FILE *);
-    fmt = va_arg(va, char *);
+    fmt = va_arg(va, const char *);
 #endif
     doprnt(xputchar, fmt, va);
     va_end(va);
@@ -382,7 +383,7 @@ va_dcl
 int 
 vfprintf(fp, fmt, va)
     FILE *fp;
-    char   *fmt;
+    const char   *fmt;
     va_list va;
 {
     doprnt(xputchar, fmt, va);

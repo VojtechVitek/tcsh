@@ -271,14 +271,27 @@ TryNode(ptr, string, val, ntype)
 	    PutFreeNode(ptr->next);	/* lose longer Xkeys with this prefix */
 	    ptr->next = NULL;
 	}
+
+	switch (ptr->type) {
+	case XK_STR:
+	case XK_EXE:
+	    if (ptr->val.str != NULL)
+		xfree((ptr_t) ptr->val.str);
+	    break;
+	case XK_NOD:
+	case XK_CMD:
+	    break;
+	default:
+	    abort();
+	    break;
+	}
+
 	switch (ptr->type = ntype) {
 	case XK_CMD:
 	    ptr->val = *val;
 	    break;
 	case XK_STR:
 	case XK_EXE:
-	    if (ptr->val.str)
-		xfree((ptr_t) ptr->val.str);
 	    ptr->val.str = Strsave(val->str);
 	    break;
 	default:

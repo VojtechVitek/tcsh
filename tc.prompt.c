@@ -333,7 +333,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 
 			/* RWM - if *q == '~' and *z != '~' then print */
 			/*       out the '~' ahead of the partial path */
-			if ((*q == '~') && (*z != '~'))
+			if (pdirs && (*q == '~') && (*z != '~'))
 			    *p++ = attributes | '~';
 			
 			/* RWM - tell you how many dirs we've ignored */

@@ -306,9 +306,9 @@ extern int setpgrp();
 # endif
 # define dirent direct
 #endif /* DIRENT */
-#if defined(hpux) || defined(sgi) || defined(OREO)
+#if defined(hpux) || defined(sgi) || defined(OREO) || defined(COHERENT)
 # include <stdio.h>	/* So the fgetpwent() prototypes work */
-#endif /* hpux || sgi || OREO */
+#endif /* hpux || sgi || OREO || COHERENT */
 #include <pwd.h>
 #ifdef PW_SHADOW
 # include <shadow.h>
@@ -380,7 +380,7 @@ extern void		DebugFree	__P((ptr_t, char *, int));
 # define xrealloc(p, i)((p) ? DebugRealloc(p, i, __FILE__, __LINE__) : \
 			      DebugMalloc(i, __FILE__, __LINE__))
 # define xcalloc(n, s)	DebugCalloc(n, s, __FILE__, __LINE__)
-# define xfree(p)    	if (p) DebugFree(p, __FILE__, __LINE__); else
+# define xfree(p)    	if (p) DebugFree(p, __FILE__, __LINE__)
 #else
 # ifdef SYSMALLOC
 #  define xmalloc(i)		smalloc(i)

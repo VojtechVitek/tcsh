@@ -313,11 +313,11 @@ static char *errorlist[] =
 #ifdef apollo
     "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]",
 #else /* !apollo */
-# if defined(__convex__) || defined(convex)
+# ifdef convex
     "Unknown option: -%s\nUsage: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]",
 # else /* rest */
     "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]",
-# endif /* __convex__ || convex */
+# endif /* convex */
 #endif /* apollo */
 #define ERR_COMPCOM	125
     "Illegal completion: \"%s\"",

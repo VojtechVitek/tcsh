@@ -165,9 +165,9 @@ struct ucred {
 # endif /* INTEL || att || isc || sco */
 #endif /* !linux && !_VMS_POSIX */
 
-#ifdef UNIXPC
+#if defined(UNIXPC) || defined(COHERENT)
 # define NEEDgethostname
-#endif /* UNIXPC */
+#endif /* UNIXPC || COHERENT */
 
 #ifdef IRIS4D
 # include <sys/time.h>
@@ -609,7 +609,7 @@ extern void bcopy	__P((char *, char *, int));
 # define memmove(a, b, c) (bcopy((char *) (b), (char *) (a), (int) (c)), a)
 #endif
 
-#if !defined(hpux) && ((SYSVREL < 4) || defined(_SEQUENT_)) && !defined(__386BSD__) && !defined(memmove)
+#if !defined(hpux) && !defined(COHERENT) && ((SYSVREL < 4) || defined(_SEQUENT_)) && !defined(__386BSD__) && !defined(memmove)
 # define NEEDmemmove
 #endif
 

@@ -2408,6 +2408,7 @@ v_action(c)
     }
 #endif
 }
+
 #ifdef COMMENT
 /* by: Brian Allison <uiucdcs!convex!allison@RUTGERS.EDU> */
 static void
@@ -2427,7 +2428,7 @@ c_get_word(begin, end)
 	*begin = ++cp;
     }
 }
-#endif				/* COMMENT */
+#endif /* COMMENT */
 
 /*ARGSUSED*/
 CCRETVAL
