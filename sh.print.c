@@ -244,8 +244,8 @@ flush()
 #ifdef ENOTTY
 	case ENOTTY:
 #endif
-#ifdef EBADF:
-	case EBADF::
+#ifdef EBADF
+	case EBADF:
 #endif
 	/* Nothing to do, but die */
 	    xexit(1);

@@ -275,8 +275,10 @@ PFCmd   CcFuncTbl[] = {		/* table of available commands */
 #define		F_PASTE_CLIP	114
 	e_dosify_next,
 #define		F_DOSIFY_NEXT	115
+	e_dosify_prev,
+#define		F_DOSIFY_PREV	116
     0				/* DUMMY VALUE */
-#define		F_NUM_FNS	116
+#define		F_NUM_FNS	117
 
 };
 
