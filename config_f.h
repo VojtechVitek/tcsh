@@ -113,14 +113,14 @@
  *		be used with SHORT_STRINGS
  *
  */
-#undef KANJI
+#define KANJI
 
 /*
  * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
  *		only output, when "dspmbyte" is set. Should be used with
  *		KANJI
  */
-#undef DSPMBYTE
+#define DSPMBYTE
 
 /*
  * MBYTEDEBUG	when "dspmbyte" is changed, set multi-byte checktable to

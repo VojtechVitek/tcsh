@@ -1251,6 +1251,7 @@ autoset_dspmbyte(pcp)
 	{ STRLANGSJIS, STRKSJIS },
 	{ STRLANGSJISB, STRKSJIS },
 	{ STRLANGBIG5, STRKBIG5 },
+	{ STRSTARKUTF8, STRKUTF8 },
 	{ NULL, NULL }
     };
 
@@ -1258,7 +1259,8 @@ autoset_dspmbyte(pcp)
 	return;
 
     for (i = 0; dspmt[i].n; i++) {
-	if (Strcasecmp(pcp, dspmt[i].n) == 0) {
+	Char *estr;
+	if (t_pmatch(pcp, dspmt[i].n, &estr, 1) > 0) {
 	    set(CHECK_MBYTEVAR, Strsave(dspmt[i].v), VAR_READWRITE);
 	    update_dspmbyte_vars();
 	    break;

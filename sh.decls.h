@@ -179,6 +179,7 @@ extern	void		  trim		__P((Char **));
 extern	int		  sortscmp	__P((Char **, Char **));
 #endif
 extern	void		  nlsinit	__P((void));
+extern  int	  	  t_pmatch	__P((Char *, Char *, Char **, int));
 
 /*
  * sh.hist.c
