@@ -39,6 +39,7 @@ RCSID("$Id$")
 
 extern Char HistLit;
 extern bool GotTermCaps;
+int numeof = 0;
 
 static	void		 update_vars	__P((Char *));
 static	Char		*getinx		__P((Char *, int *));
@@ -122,7 +123,7 @@ update_vars(vp)
 	ed_Init();		/* reset the editor */
     }
     else if (eq(vp, STRhome)) {
-	register Char *cp;
+	Char *cp;
 
 	cp = Strsave(varval(vp));	/* get the old value back */
 
@@ -147,6 +148,18 @@ update_vars(vp)
     else if (eq(vp, STRshlvl)) {
 	tsetenv(STRKSHLVL, varval(vp));
     }
+    else if (eq(vp, STRignoreeof)) {
+	Char *cp;
+	numeof = 0;
+    	for ((cp = varval(STRignoreeof)); cp && *cp; cp++) {
+	    if (!Isdigit(*cp)) {
+		numeof = 0;
+		break;
+	    }
+	    numeof = numeof * 10 + *cp - '0';
+	}
+	if (numeof <= 0) numeof = 26;	/* Sanity check */
+    } 
     else if (eq(vp, STRbackslash_quote)) {
 	bslash_quote = 1;
     }
@@ -732,6 +745,8 @@ unset(v, c)
 	HIST = '!';
 	HISTSUB = '^';
     }
+    if (adrof(STRignoreeof) == 0)
+	numeof = 0;
     if (adrof(STRpromptchars) == 0) {
 	PRCH = '>';
 	PRCHROOT = '#';
