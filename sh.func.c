@@ -834,6 +834,7 @@ search(type, level, goal)
     register Char *aword = wordbuf;
     register Char *cp;
     struct whyle *wp;
+    int wlevel = 0;
 
     Stype = (Char) type;
     Sgoal = goal;
@@ -871,20 +872,24 @@ search(type, level, goal)
 
 	case TC_FOREACH:
 	case TC_WHILE:
+	    wlevel++;
 	    if (type == TC_BREAK)
 		level++;
 	    break;
 
 	case TC_END:
 	    if (type == TC_BRKSW) {
-		wp = whyles;
-		if (wp) {
-			whyles = wp->w_next;
-			wpfree(wp);
+		if (wlevel == 0) {
+		    wp = whyles;
+		    if (wp) {
+			    whyles = wp->w_next;
+			    wpfree(wp);
+		    }
 		}
 	    }
 	    if (type == TC_BREAK)
 		level--;
+	    wlevel--;
 	    break;
 
 	case TC_SWITCH:
