@@ -706,10 +706,6 @@ fix_yp_bugs()
 void
 osinit()
 {
-    extern ptr_t membot;
-
-    membot = (ptr_t) sbrk(0);
-
 #ifdef OREO
     set42sig();
     sigignore(SIGIO);		/* ignore SIGIO */
