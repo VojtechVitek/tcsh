@@ -265,8 +265,11 @@ tw_cmd_cmd()
 	    if (dp->d_ino == 0 || (recexec && !executable(dir, name, 0)))
 		continue;
             len = (int) Strlen(name) + 2;
-            if (name[0] == '#' || name[0] == '.' || name[len - 3] == '~') 
-                continue;    /* Emacs temp's and backups, .files */
+            if (name[0] == '#' ||	/* emacs temp files	*/
+		name[0] == '.' ||	/* .files		*/
+		name[len - 3] == '~' ||	/* emacs backups	*/
+		name[len - 3] == '%')	/* textedit backups	*/
+                continue;		/* Ignore!		*/
             tw_cmd_add(name);
 	}
 	(void) closedir(dirp);

@@ -240,7 +240,8 @@ lcase_s:
 		for (i = 0; *bp && i < prec; i++) {
 		    if (fmt == 'q' && *bp & QUOTE)
 			(*addchar) ((int) ('\\' | attributes));
-		    (*addchar) ((int) ((*bp & TRIM) | attributes));
+		    (*addchar) ((int) (((unsigned char) *bp & TRIM) |
+				   	attributes));
 		    bp++;
 		}
 		if (flush_left)

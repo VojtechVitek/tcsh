@@ -1043,8 +1043,8 @@ pmatch(string, pattern, estr)
 		if (match)
 		    continue;
 		if (rangec == '-' && *(pattern-2) != '[' && *pattern  != ']') {
-		    match = (stringc <= (*pattern & TRIM) &&
-			      (*(pattern-2) & TRIM) <= stringc);
+		    match = (globcharcoll(stringc, *pattern & TRIM) <= 0 &&
+		    globcharcoll(*(pattern-2) & TRIM, stringc) <= 0);
 		    pattern++;
 		}
 		else 

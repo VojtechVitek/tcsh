@@ -185,9 +185,9 @@ tprintf(what, buf, fmt, siz, str, tim, info)
     Char   *z, *q;
     Char    attributes = 0;
     static int print_prompt_did_ding = 0;
-    const char   *cz;
+    const unsigned char   *cz;
     Char    buff[BUFSIZE];
-    char    cbuff[BUFSIZE];
+    unsigned char    cbuff[BUFSIZE];
 
     Char *p  = buf;
     Char *ep = &p[siz];
@@ -208,9 +208,9 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	    switch (*cp) {
 	    case 'R':
 		if (what == FMT_HISTORY)
-		    fmthist('R', info, str = cbuff, sizeof(cbuff));
+		    fmthist('R', info, str = (char *) cbuff, sizeof(cbuff));
 		if (str != NULL)
-		    for (; *str; *p++ = attributes | *str++)
+		    for (; *str; *p++ = attributes | (unsigned char) *str++)
 			if (p >= ep) break;
 		break;
 	    case '#':

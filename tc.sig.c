@@ -304,6 +304,7 @@ sigsetmask(mask)
 }
 #endif /* __PARAGON__ */
 
+#ifndef __DGUX__
 /*
  * sigblock(mask)
  *
@@ -341,6 +342,7 @@ sigblock(mask)
 
     return (m);
 }
+#endif /* __DGUX__ */
 
 
 /*

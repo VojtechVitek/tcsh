@@ -38,7 +38,7 @@
 #ifndef _h_tc_sig
 #define _h_tc_sig
 
-#if (SYSVREL > 0) || defined(BSD4_4) || defined(_MINIX) || defined(WINNT)
+#if (SYSVREL > 0) || defined(BSD4_4) || defined(_MINIX) || defined(DGUX) || defined(WINNT)
 # include <signal.h>
 # ifndef SIGCHLD
 #  define SIGCHLD SIGCLD

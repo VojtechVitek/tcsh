@@ -901,6 +901,16 @@ hosttype: 						: "tekXD88"
 enddef	:
 
 
+newdef	: defined(__DGUX__)
+comment	: Data-General AViiON running DGUX
+hosttype:						: "aviion"
+ostype	:						: "dgux"
+vendor	:						: "dg"
+machtype: defined(__m88k__)				: "m88k"
+machtype: defined(__i386__)				: "pentium"
+enddef	:
+
+
 newdef	: defined(sysV68)
 comment	: Motorola MPC running System V/68 R32V2 (SVR3/68020 based)
 vendor	:						: "motorola"

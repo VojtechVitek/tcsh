@@ -355,7 +355,7 @@ typedef int sigret_t;
 #ifdef PW_AUTH
 # include <auth.h>
 #endif /* PW_AUTH */
-#ifdef BSD
+#if defined(BSD) && !defined(POSIX)
 # include <strings.h>
 # define strchr(a, b) index(a, b)
 # define strrchr(a, b) rindex(a, b)
@@ -432,7 +432,7 @@ typedef int bool;
 # ifndef POSIX
 extern pid_t getpgrp __P((int));
 # else /* POSIX */
-#  if defined(BSD) || defined(SUNOS4) || defined(IRIS4D) || defined(DGUX)
+#  if (defined(BSD) && !defined(BSD4_4)) || defined(SUNOS4) || defined(IRIS4D) || defined(DGUX)
 extern pid_t getpgrp __P((int));
 #  else /* !(BSD || SUNOS4 || IRIS4D || DGUX) */
 extern pid_t getpgrp __P((void));

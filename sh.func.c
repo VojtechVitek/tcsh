@@ -1318,11 +1318,13 @@ dosetenv(v, c)
 # ifdef LC_COLLATE
 	(void) setlocale(LC_COLLATE, "");
 # endif
-# if defined(NLS_CATALOGS) && defined(LC_MESSAGES)
+# ifdef NLS_CATALOGS
+#  ifdef LC_MESSAGES
 	(void) setlocale(LC_MESSAGES, "");
+#  endif /* LC_MESSAGES */
 	(void) catclose(catd);
 	nlsinit();
-# endif /* NLS_CATALOGS && LC_MESSAGES */
+# endif /* NLS_CATALOGS */
 # ifdef LC_CTYPE
 	(void) setlocale(LC_CTYPE, ""); /* for iscntrl */
 # endif /* LC_CTYPE */
@@ -1492,11 +1494,13 @@ dounsetenv(v, c)
 # ifdef LC_COLLATE
 		    (void) setlocale(LC_COLLATE, "");
 # endif
-# if defined(NLS_CATALOGS) && defined(LC_MESSAGES)
+# ifdef NLS_CATALOGS
+#  ifdef LC_MESSAGES
 		    (void) setlocale(LC_MESSAGES, "");
+#  endif /* LC_MESSAGES */
 		    (void) catclose(catd);
 		    nlsinit();
-# endif /* NLS_CATALOGS && LC_MESSAGES */
+# endif /* NLS_CATALOGS */
 # ifdef LC_CTYPE
 	(void) setlocale(LC_CTYPE, ""); /* for iscntrl */
 # endif /* LC_CTYPE */
