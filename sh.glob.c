@@ -439,7 +439,7 @@ handleone(str, vl, action)
     int     action;
 {
 
-    Char   *cp, **vlp = vl;
+    Char   **vlp = vl;
     int chars;
     Char **t, *p, *strp;
 

@@ -74,11 +74,13 @@ ones.  Please send in your fixes and additions! */
 #      define ConfigH sol22
 #     endif
 #    else
-#     define ConfigH sol23
+#     if (OSMinorVersion < 4)
+#      define ConfigH sol23
+#     else
+#      define ConfigH sol24
+#     endif
+#     define NoCombineRegs
 #    endif
-#    define NoCombineRegs
-#   else
-#    define ConfigH sol24
 #   endif
 #  endif
 # endif
