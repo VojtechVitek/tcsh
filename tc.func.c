@@ -708,6 +708,9 @@ xgetpass(prm)
 #ifndef __STDC__
     extern char *crypt __P(());
 #endif
+#ifdef __linux__
+#include <crypt.h>
+#endif
 #endif
 
 /*
