@@ -131,7 +131,7 @@ blkcpy(oav, bv)
     return (oav);
 }
 
-Char  **
+static Char  **
 blkcat(up, vp)
     Char  **up, **vp;
 {
