@@ -180,6 +180,8 @@ parseLS_COLORS(value)
     Extension *e;		/* pointer in extensions */
     jmp_buf_t osetexit;
 
+    (void) &e;
+
     /* init */
     if (extensions)
         xfree((ptr_t) extensions);
