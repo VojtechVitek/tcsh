@@ -59,6 +59,15 @@
 # endif /* _PID_T */
 #endif
 
+/***
+ *** MachTen 
+ ***/
+#ifdef __MACHTEN__
+# ifndef _PID_T
+#  define _PID_T
+# endif
+#endif
+
 
 /***
  *** Suns running sunos3.x - sunos4.1.x

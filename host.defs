@@ -796,6 +796,15 @@ hosttype:						: "masscomp"
 ostype	:						: "masscomp"
 enddef	:
 
+newdef	: defined(__MACHTEN__)
+comment	: Machintosh
+vendor	:						: "Tenon"
+hosttype:						: "Macintosh"
+ostype	: 						: "MachTen"
+machtype:						: "Macintosh"
+enddef	:
+
+
 
 newdef	: defined(GOULD_NP1)
 comment	: Gould

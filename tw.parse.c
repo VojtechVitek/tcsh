@@ -870,9 +870,7 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
     struct varent *vp;
     int len, enhanced;
     int cnt = 0;
-#ifdef WINNT
-    int igncase;
-#endif /* WINNT */
+    int igncase = 0;
 
 
     flags = 0;
@@ -973,12 +971,8 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
 		Strcmp(*(vp->vec), STRigncase) == 0;
 #endif /* WINNT */
 	    enhanced = (vp = adrof(STRcomplete)) != NULL && !Strcmp(*(vp->vec),STRenhance);
-	    if (enhanced
-#ifdef WINNT
-		|| igncase
-#endif /* WINNT */
-	    ) {
-	        if (!is_prefixmatch(target, item, 0)) 
+	    if (enhanced || igncase) {
+	        if (!is_prefixmatch(target, item, igncase)) 
 		    break;
      	    } else {
 	        if (!is_prefix(target, item)) 

@@ -1360,11 +1360,11 @@ dosetenv(v, c)
 	xfree((ptr_t) lp);
 	return;
     }
-    if (eq(vp, STRNTonlystartexes)) {
+    if (eq(vp, STRtcshonlystartexes)) {
 	__nt_only_start_exes = 1;
 	xfree((ptr_t) lp);
 	return;
-    }
+	}
 #endif /* WINNT */
     if (eq(vp, STRKTERM)) {
 	char *t;
@@ -1529,7 +1529,7 @@ dounsetenv(v, c)
 		    nls_dll_unload();
 		    nlsinit();
 		}
-		else if (eq(name,(STRNTonlystartexes))) {
+		else if (eq(name,(STRtcshonlystartexes))) {
 			__nt_only_start_exes = 0;
 		}
 #endif /* WINNT */
@@ -1601,6 +1601,9 @@ Unsetenv(name)
     register Char *cp, *dp;
     Char **oep = ep;
 
+#ifdef WINNT
+	nt_set_env(name,NULL);
+#endif /*WINNT */
     for (; *ep; ep++) {
 	for (cp = name, dp = *ep; *cp && *cp == *dp; cp++, dp++)
 	    continue;

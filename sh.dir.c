@@ -53,7 +53,7 @@ static  void 			 dextract	__P((struct directory *));
 static  int 			 skipargs	__P((Char ***, char *, char *));
 static	void			 dgetstack	__P((void));
 
-static struct directory dhead;		/* "head" of loop */
+static struct directory dhead INIT_ZERO_STRUCT;		/* "head" of loop */
 static int    printd;			/* force name to be printed */
 
 int     bequiet = 0;		/* do not print dir stack -strike */
