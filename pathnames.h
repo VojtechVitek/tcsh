@@ -144,9 +144,13 @@
 #  define _PATH_TCSHELL		"/usr/local/bin/tcsh"
 #endif /* !_PATH_TCSHELL */
 
-#ifndef _PATH_LOGIN
-# define _PATH_LOGIN		"/bin/login"
-#endif /* !_PATH_LOGIN */
+#ifndef _PATH_BIN_LOGIN
+# define _PATH_BIN_LOGIN	"/bin/login"
+#endif /* !_PATH_BIN_LOGIN */
+
+#ifndef _PATH_USRBIN_LOGIN
+# define _PATH_USRBIN_LOGIN	"/usr/bin/login"
+#endif /* !_PATH_USRBIN_LOGIN */
 
 #ifndef _PATH_BIN_NEWGRP
 # define _PATH_BIN_NEWGRP	"/bin/newgrp"

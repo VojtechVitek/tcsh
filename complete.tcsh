@@ -309,6 +309,24 @@ n@public@'`[ -r /usr/man/manp ]&& \ls -1 /usr/man/manp | sed s%\\.p.\*\$%%`'@ \
     # there's no need to clutter the user's shell with these
     unset _elispdir _maildir _ypdir _domain
 
+    complete make \
+	'n/-f/f/' \
+      	'c/*=/f/' \
+	'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^     #].*:/s/:.*//p"`@'
+
+    if ( -f /etc/printcap ) then
+	set printers=(`sed -n -e "/^[^     #].*:/s/:.*//p" /etc/printcap`)
+
+	complete lpr    'c/-P/$printers/'
+	complete lpq    'c/-P/$printers/'
+	complete lprm   'c/-P/$printers/'
+	complete lpquota        'p/1/(-Qprlogger)/' 'c/-P/$printers/'
+	complete dvips  'c/-P/$printers/' 'n/-o/f:*.{ps,PS}/' 'n/*/f:*.dvi/'
+
+    endif
+
+
+
     unset noglob
     unset complete
 endif

@@ -263,8 +263,11 @@ Dword()
 		    break;
 		if (c == '\n' || c == DEOF)
 		    stderror(ERR_UNMATCHED, c1);
-		if ((c & (QUOTE | TRIM)) == ('\n' | QUOTE))
-		    --wp, ++i;
+		if ((c & (QUOTE | TRIM)) == ('\n' | QUOTE)) {
+		    if ((wp[-1] & TRIM) == '\\')
+			--wp;
+		    ++i;
+		}
 		if (--i <= 0)
 		    stderror(ERR_WTOOLONG);
 		switch (c1) {

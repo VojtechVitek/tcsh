@@ -134,6 +134,10 @@ extern	void		  domigrate	__P((Char **, struct command *));
 extern	void 		  dowarp	__P((Char **, struct command *));
 #endif /* WARP */
 
+#ifdef _CRAY
+extern	void 		  dodmmode	__P((Char **, struct command *));
+#endif /* _CRAY */
+
 #if defined(masscomp) || defined(hcx)
 extern	void		  douniverse	__P((Char **, struct command *));
 #endif /* masscomp */

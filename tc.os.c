@@ -528,6 +528,45 @@ done:
 #endif /* TCF */
 
 /***
+ *** CRAY ddmode <velo@sesun3.epfl.ch> (Martin Ouwehand EPFL-SIC/SE)
+ ***/
+#ifdef _CRAY
+void
+dodmmode(v, c)
+    Char  **v;
+    struct command *c;
+{
+    Char *cp = v[1];
+
+    USE(c);
+
+    if ( !cp ) {
+	int mode;
+
+	mode = dmmode(0);
+	dmmode(mode);
+	xprintf("%d\n",mode);
+    }
+    else {
+	if (cp[1] != '\0')
+	    stderror(ERR_DMMODE);
+	else
+	    switch(*cp) {
+	    case '0':
+		dmmode(0);
+		break;
+	    case '1':
+		dmmode(1);
+		break;
+	    default:
+		stderror(ERR_DMMODE);
+	    }
+    }
+}
+#endif /* _CRAY */
+
+
+/***
  *** CONVEX Warps.
  ***/
 

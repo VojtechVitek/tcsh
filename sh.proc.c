@@ -475,7 +475,7 @@ pnote()
 
 static void
 pfree(pp)
-    struct proc *pp;
+    struct process *pp;
 {	
     xfree((ptr_t) pp->p_command);
     if (pp->p_cwd && --pp->p_cwd->di_count == 0)
@@ -1373,7 +1373,7 @@ dofg(v, c)
 	pp = pfind(*v);
 	if (!pstart(pp, 1)) {
 	    pp->p_procid = 0;
-	    stderr(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
+	    stderror(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
 	    continue;
 	}
 #ifndef BSDSIGS
@@ -1402,7 +1402,7 @@ dofg1(v, c)
     pp = pfind(v[0]);
     if (!pstart(pp, 1)) {
 	pp->p_procid = 0;
-	stderr(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
+	stderror(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
 	return;
     }
 #ifndef BSDSIGS
@@ -1432,7 +1432,7 @@ dobg(v, c)
 	pp = pfind(*v);
 	if (!pstart(pp, 0)) {
 	    pp->p_procid = 0;
-	    stderr(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
+	    stderror(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
 	}
     } while (*v && *++v);
 }
@@ -1452,7 +1452,7 @@ dobg1(v, c)
     pp = pfind(v[0]);
     if (!pstart(pp, 0)) {
 	pp->p_procid = 0;
-	stderr(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
+	stderror(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
     }
 }
 
@@ -1587,7 +1587,8 @@ pkill(v, signum)
 	    case SIGCONT:
 		if (!pstart(pp, 0)) {
 		    pp->p_procid = 0;
-		    stderr(ERR_NAME|ERR_BADJOB, pp->p_command, strerror(errno));
+		    stderror(ERR_NAME|ERR_BADJOB, pp->p_command,
+			     strerror(errno));
 		}
 		goto cont;
 	    default:

@@ -795,7 +795,7 @@ enddef	:
 
 newdef	: defined(__clipper__)
 comment	: Clipper Chipset (Intergraph)
-vendor	:						: "integraph"
+vendor	:						: "intergraph"
 hosttype:						: "clipper"
 machtype:						: "clipper"
 enddef	:

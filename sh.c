@@ -584,7 +584,7 @@ main(argc, argv)
      * Re-initialize path if set in environment
      */
     if ((tcp = getenv("PATH")) == NULL)
-	set1(STRpath, defaultpath(), &shvhed, VAR_READWRITE);
+	setq(STRpath, defaultpath(), &shvhed, VAR_READWRITE);
     else
 	/* Importpath() allocates memory for the path, and the
 	 * returned pointer from SAVE() was discarded, so
@@ -1241,7 +1241,7 @@ importpath(cp)
 	    dp++;
 	}
     pv[i] = 0;
-    set1(STRpath, pv, &shvhed, VAR_READWRITE);
+    setq(STRpath, pv, &shvhed, VAR_READWRITE);
 }
 
 /*
@@ -1594,7 +1594,9 @@ int snum;
 		    np->p_flags &= ~PHUP;
 		    if (killpg(np->p_jobid, SIGHUP) != -1) {
 			/* In case the job was suspended... */
+#ifdef SIGCONT
 			(void) killpg(np->p_jobid, SIGCONT);
+#endif
 			break;
 		    }
 		}
