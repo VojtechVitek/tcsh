@@ -424,6 +424,7 @@ int fork(void) {
 	rc = ResumeThread(hThread);
 
 	__forked=0;
+    dprintf("forked process %d\n",pi.dwProcessId);
 	start_sigchild_thread(hProc,pi.dwProcessId);
 	close_copied_fds();
 

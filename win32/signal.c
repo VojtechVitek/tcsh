@@ -574,6 +574,13 @@ int kill (int pid, int sig) {
 	int ret =0;
 
 	errno = EPERM;
+    if(pid < 0)
+    {
+        if (pid == -1)
+            return -1;
+        pid = -pid; //no groups that we can actually do anything with.
+          
+    }
 
 	switch(sig) {
 		case 0:
@@ -582,7 +589,11 @@ int kill (int pid, int sig) {
 			if (hproc  == NULL) {
 				errno = ESRCH;
 				ret = -1;
+            dprintf("proc %d not found\n",pid);
 			}
+            else{
+            dprintf("proc %d found\n",pid);
+            }
 			if (sig == 7) {
 				if (!TerminateProcess(hproc,0xC000013AL) ) {
 					ret = -1;
