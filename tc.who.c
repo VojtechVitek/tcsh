@@ -61,6 +61,8 @@ RCSID("$Id$")
 #  if defined (__MVS__) || defined (linux)
 #   define ut_time ut_tv.tv_sec
 #   define ut_name ut_user
+#  elif defined (__CYGWIN__)
+#   define ut_name ut_user
 #  else
 #   define ut_time ut_xtime
 #  endif /* __MVS__ */
@@ -68,7 +70,9 @@ RCSID("$Id$")
 #   define getutent getutxent
 #   define setutent setutxent
 #   define endutent endutxent
-#   define utmpname utmpxname
+#   if !defined(__CYGWIN__)
+#    define utmpname utmpxname
+#   endif /* !__CYGWIN */
 #  endif /* HAVE_UTMPNAME */
 # else
 #  ifdef HAVE_UTMP_H
