@@ -602,13 +602,6 @@ pjwait(pp)
 	while ((fp = (fp->p_friends)) != pp);
 	if ((jobflags & PRUNNING) == 0)
 	    break;
-	if (kill(-fp->p_procid, 0) == -1 && errno == ESRCH) {
-#ifdef JOBDEBUG
-	    xprintf("%d child %d already exited\n",
-		    getpid(), fp->p_procid);
-#endif /* JOBDEBUG */
-	    break;
-	}
 #ifdef JOBDEBUG
 	xprintf("%d starting to sigpause for SIGCHLD on %d\n",
 		getpid(), fp->p_procid);
