@@ -122,15 +122,15 @@ enthist(event, lp, docopy, mflg)
     struct Hist *p = NULL, *pp = &Histlist;
     int n, r;
     register struct Hist *np;
-    struct varent* hist;
+    char *dp;
     
-    if ((hist = adrof(STRhistory)) != NULL && hist->vec[1] != NULL) {
-	if (eq(hist->vec[1], STRall)) {
+    if ((dp = value(STRhistdup)) != STRNULL) {
+	if (eq(dp, STRall)) {
 	    for (p = pp; (p = p->Hnext) != NULL;)
 		if (heq(lp, &(p->Hlex)))
 		    break;
 	}
-	else if (eq(hist->vec[1], STRprev)) {
+	else if (dp, STRprev)) {
 	    if (pp->Hnext && heq(lp, &(pp->Hnext->Hlex)))
 		p = pp->Hnext;
 	}
