@@ -123,7 +123,7 @@ EXTF=ma.setp.c vms.termcap.c
 /* Maybe conditional on MACH? */
 SYSSRCS=ma.setp.c
 SYSOBJS=ma.setp.${SUF}
-EXTF=mi.termios.c mi.wait.h vms.termcap.c
+EXTF=mi.termios.c mi.wait.h mi.varargs.h vms.termcap.c
 # endif
 #endif /* !ConfigH */
 
