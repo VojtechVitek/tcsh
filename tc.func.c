@@ -1575,10 +1575,12 @@ gethomedir(us)
     fix_yp_bugs();
 #endif /* YPBUGS */
     if (pp != NULL) {
+#if 0
 	/* Don't return if root */
 	if (pp->pw_dir[0] == '/' && pp->pw_dir[1] == '\0')
 	    return NULL;
 	else
+#endif
 	    return Strsave(str2short(pp->pw_dir));
     }
 #ifdef HESIOD
@@ -1610,10 +1612,13 @@ gethomedir(us)
 	}
 	for (res1 = res; *res1; res1++)
 	    free(*res1);
+#if 0
+	/* Don't return if root */
 	if (rp != NULL && rp[0] == '/' && rp[1] == '\0') {
 	    xfree((ptr_t)rp);
 	    rp = NULL;
 	}
+#endif
 	return rp;
     }
 #endif /* HESIOD */
