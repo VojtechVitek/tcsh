@@ -108,16 +108,16 @@ NLSFrom(const Char *p, int l, NLSChar *cp)
 
     if (l == -1) {
         for (i = 0; i < MB_CUR_MAX && *p; i++)
-	    b[i] = p[i]; 
+	    b[i] = p[i] & CHAR;
     } else {
         for (i = 0; i < MB_CUR_MAX && i < (size_t)l; i++)
-	    b[i] = p[i]; 
+	    b[i] = p[i] & CHAR;
     }
     mbtowc(0, 0, 0);
     len = rt_mbtowc(&c, b, i);
     if (len <= 0) {
 	if (cp)
-	  *cp = *p ? *p | 0x40000000 : 0;
+	  *cp = *p ? *p | NLS_ILLEGAL : 0;
         return 1;
     }
     if (cp) 

@@ -125,7 +125,7 @@ extern Char *NLSChangeCase __P((Char *, int));
 #ifdef WIDE_STRINGS
 
 # define NLSSize(s, l) 1
-# define NLSFrom(s, l, cp) (USE (l), (*cp = *s), 1)
+# define NLSFrom(s, l, cp) (USE (l), (*(cp) = *(s) & CHAR), 1)
 # define NLSFinished(s, l, c) (l != 0 && c != CHAR_ERR ? 2 : 1)
 # define NLSChars(s) Strlen(s)
 # define NLSQuote(s)
@@ -154,7 +154,7 @@ extern void NLSQuote __P((Char *));
 
 # else
 #  define NLSSize(s, l) 1
-#  define NLSFrom(s, l, cp) (USE (l), (*cp = *s), 1)
+#  define NLSFrom(s, l, cp) (USE (l), (*(cp) = *(s) & CHAR), 1)
 #  define NLSFinished(s, l, c) (l != 0 && c != CHAR_ERR ? 2 : 1)
 #  define NLSChars(s) Strlen(s)
 #  define NLSStringWidth(s) Strlen(s)
