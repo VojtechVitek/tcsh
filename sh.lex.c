@@ -580,10 +580,11 @@ getdol()
 		seterror(ERR_VARILL);
 	    else {
 		ungetD(c);
-		*--np = 0;
-		addla(name);
-		return;
+		--np;
 	    }
+	    *np = 0;
+	    addla(name);
+	    return;
 	}
 	if (toolong) {
 	    seterror(ERR_VARTOOLONG);

@@ -287,6 +287,9 @@ Char STRwho[]		= { 'w', 'h', 'o', '\0' };
 Char STRsched[]		= { 's', 'c', 'h', 'e', 'd', '\0' };
 Char STRrmstar[]	= { 'r', 'm', 's', 't', 'a', 'r', '\0' };
 Char STRrm[]		= { 'r', 'm', '\0' };
+
+Char STRimplicitcd[] = { 'i', 'm', 'p', 'l', 'i', 'c', 'i', 't',
+                         'c', 'd', '\0' };
 Char STRshlvl[]		= { 's', 'h', 'l', 'v', 'l', '\0' };
 Char STRKSHLVL[]	= { 'S', 'H', 'L', 'V', 'L', '\0' };
 Char STRLANG[]		= { 'L', 'A', 'N', 'G', '\0' };

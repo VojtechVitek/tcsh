@@ -45,6 +45,7 @@ extern	void		  do_help		__P((Char *));
 /*
  * tw.parse.c
  */
+extern	 Char		 *dollar		__P((Char *, Char *));
 extern	 int		  tenematch		__P((Char *, int, COMMAND));
 extern	 int		  t_search		__P((Char *, Char *, COMMAND, 
 						     int, int, int, Char *, 

@@ -105,7 +105,6 @@ extern int lbuffed;		/* from sh.print.c */
 
 static	void	 extract_dir_and_name	__P((Char *, Char *, Char *));
 static	int	 insert_meta		__P((Char *, Char *, Char *, bool));
-static	Char	*dollar			__P((Char *, Char *));
 static	Char	*tilde			__P((Char *, Char *));
 static  int      expand_dir		__P((Char *, Char *, DIR  **, COMMAND));
 static	bool	 nostat			__P((Char *));
@@ -1688,7 +1687,7 @@ extract_dir_and_name(path, dir, name)
  * 	expand "/$old1/$old2/old3/"
  * 	to "/value_of_old1/value_of_old2/old3/"
  */
-static Char *
+Char *
 dollar(new, old)
     Char   *new, *old;
 {

@@ -505,6 +505,7 @@ EXTERN bool    isdiagatty;	/* is SHDIAG a tty */
 EXTERN bool    is1atty;		/* is file descriptor 1 a tty (didfds mode) */
 EXTERN bool    is2atty;		/* is file descriptor 2 a tty (didfds mode) */
 EXTERN bool    arun;		/* Currently running multi-line-aliases */
+EXTERN int     implicit_cd;	/* implicit cd enabled? (1=enabled,2=verbose) */
 EXTERN bool    inheredoc;	/* Currently parsing a heredoc */
 
 /*
@@ -889,6 +890,7 @@ EXTERN struct varent {
 #define VAR_ALL		-1
 #define VAR_READONLY	1
 #define VAR_READWRITE	2
+#define VAR_NOGLOB	4
     struct varent *v_link[3];	/* The links, see below */
     int     v_bal;		/* Balance factor */
 }       shvhed, aliases;

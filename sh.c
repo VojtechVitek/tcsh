@@ -462,6 +462,8 @@ main(argc, argv)
 	    if ((cp2 = Strrchr(cp, (Char) '/')) != NULL) {
 		cp = cp2 + 1;
 	    }
+	    else
+		cp2 = cp;
 	    if (!((Strncmp(cp2, STRtty, 3) == 0) && Isalpha(cp2[3])) ||
 		!((Strncmp(cp, STRpts, 3) == 0) && cp[3] == '/')) {
 		if (getenv("DISPLAY") == NULL) {

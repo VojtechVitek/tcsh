@@ -670,7 +670,7 @@ auto_lock()
 #if defined(PW_AUTH) && !defined(XCRYPT)
 
     struct authorization *apw;
-    extern const char *crypt16();
+    extern char *crypt16();
 
 # define XCRYPT(a, b) crypt16(a, b)
 
@@ -683,7 +683,7 @@ auto_lock()
 #if defined(PW_SHADOW) && !defined(XCRYPT)
 
     struct spwd *spw;
-    extern const char *crypt();
+    extern char *crypt();
 
 # define XCRYPT(a, b) crypt(a, b)
 
@@ -694,7 +694,7 @@ auto_lock()
 #endif /* PW_SHADOW && !XCRYPT */
 
 #ifndef XCRYPT
-    extern const char *crypt();
+    extern char *crypt();
 
 #define XCRYPT(a, b) crypt(a, b)
 

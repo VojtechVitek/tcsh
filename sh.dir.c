@@ -137,7 +137,7 @@ dinit(hp)
     dp->di_next = dp->di_prev = &dhead;
     printd = 0;
     dnewcwd(dp, 0);
-    set(STRdirstack, Strsave(dp->di_name), VAR_READWRITE);
+    set(STRdirstack, Strsave(dp->di_name), VAR_READWRITE|VAR_NOGLOB);
 }
 
 static void
@@ -148,8 +148,8 @@ Char *dp;
      * Don't call set() directly cause if the directory contains ` or
      * other junk characters glob will fail. 
      */
-    set(STRowd, Strsave(varval(STRcwd)), VAR_READWRITE);
-    set(STRcwd, Strsave(dp), VAR_READWRITE);
+    set(STRowd, Strsave(varval(STRcwd)), VAR_READWRITE|VAR_NOGLOB);
+    set(STRcwd, Strsave(dp), VAR_READWRITE|VAR_NOGLOB);
 
     tsetenv(STRPWD, dp);
 }
@@ -1345,10 +1345,10 @@ recdirs(fname, def)
 
 	if (cdflag == 0) {
 	    cdflag = 1;
-	    xprintf("cd %S\n", dp->di_name);
+	    xprintf("cd '%S'\n", dp->di_name);
 	}
 	else
-	    xprintf("pushd %S\n", dp->di_name);
+	    xprintf("pushd '%S'\n", dp->di_name);
 
 	if (num-- == 0)
 	    break;

@@ -185,7 +185,7 @@ doexec(t)
 #endif /* VFORK */
 
     v = adrof(STRpath);
-    if (v == 0 && expath[0] != '/') {
+    if (v == 0 && expath[0] != '/' && expath[0] != '.') {
 	blkfree(pv);
 	pexerr();
     }

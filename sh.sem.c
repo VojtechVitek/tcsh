@@ -40,6 +40,7 @@
 RCSID("$Id$")
 
 #include "tc.h"
+#include "tw.h"
 
 #ifdef CLOSE_ON_EXEC
 # ifndef SUNOS4
@@ -121,6 +122,54 @@ execute(t, wanttty, pipein, pipeout)
 
     if (t == 0) 
 	return;
+
+    /*
+     * Ed hutchins@sgi.com & Dominic dbg@sgi.com
+     * Sat Feb 25 03:13:11 PST 1995
+     * try implicit cd if we have a 1 word command 
+     */
+    if (implicit_cd && (intty || intact) && t->t_dcom && t->t_dcom[0] &&
+	 t->t_dcom[0][0] && (blklen(t->t_dcom) == 1) && !noexec) {
+	Char sCName[MAXPATHLEN];
+	Char *pCN;
+	struct stat stbuf;
+
+	dollar(sCName, t->t_dcom[0]);
+	pCN = sCName;
+	if (pCN[0] == '~') {
+	    Char sCPath[MAXPATHLEN];
+	    Char *pCP = sCPath;
+
+	    ++pCN;
+	    while (*pCN && *pCN != '/')
+		*pCP++ = *pCN++;
+	    *pCP = 0;
+	    if (sCPath[0])
+		gethdir(sCPath);
+	    else
+		(void) Strcpy(sCPath, varval(STRhome));
+	    catn(sCPath, pCN, MAXPATHLEN);
+	    (void) Strcpy(sCName, sCPath);
+	}
+    
+	/* if this is a dir, tack a "cd" on as the first arg */
+	if (stat(short2str(sCName), &stbuf) != -1) {
+	    if (S_ISDIR(stbuf.st_mode)) {
+		Char sCCD[3] = { 'c', 'd', '\0' };
+		Char *vCD[2];
+		Char **ot_dcom = t->t_dcom;
+	    
+		vCD[0] = Strsave(sCCD);
+		vCD[1] = NULL;
+		t->t_dcom = blkspl(vCD, ot_dcom);
+		if (implicit_cd > 1) {
+		    blkpr(t->t_dcom);
+		    xputchar( '\n' );
+		}
+		xfree((ptr_t) ot_dcom);
+	    }
+	}
+    }
 
     VOL_SAVE();
     _gv.forked = 0;

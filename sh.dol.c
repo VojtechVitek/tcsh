@@ -709,6 +709,18 @@ Dgetdol()
     if (dimen) {
 	Char   *cp = putn(upb - lwb + 1);
 
+	/* this is a kludge. It prevents Dgetdol() from */
+	/* pushing erroneous ${#<error> values into the labuf. */
+	if (sc == '{') {
+	    c = Dredc();
+	    if (c != '}')
+	    {
+		xfree((ptr_t) cp);
+		stderror(ERR_MISSING, '}');
+	        return;
+	    }
+	    unDredc(c);
+	}
 	addla(cp);
 	xfree((ptr_t) cp);
     }

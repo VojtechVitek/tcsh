@@ -815,7 +815,7 @@ tenex(inputline, inputline_size)
 	if (command == LIST)	/* Always retype after a LIST */
 	    should_retype = TRUE;
 	if (should_retype)
-	    printprompt();
+	    printprompt(0, NULL);
 	pushback(inputline);
 	if (should_retype)
 	    retype();
