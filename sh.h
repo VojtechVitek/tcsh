@@ -297,7 +297,7 @@ typedef int sigret_t;
 # include <limits.h>
 #endif /* POSIX && !WINNT_NATIVE */
 
-#if SYSVREL > 0 || defined(_IBMR2) || defined(_MINIX)
+#if SYSVREL > 0 || defined(_IBMR2) || defined(_MINIX) || defined(linux)
 # if !defined(pyr) && !defined(stellar)
 #  include <time.h>
 #  ifdef _MINIX
