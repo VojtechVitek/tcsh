@@ -259,14 +259,13 @@ struct ucred {
 #endif /* DGUX */
 
 #ifdef SXA
-# ifndef BSDNICE
+# ifndef _BSDX_
 /*
- * We check BSDNICE cause this is not defined in config.sxa.
  * Only needed in the system V environment.
  */
-#  define setrlimit(a, b) 	bsd_setrlimit(a, b)
-#  define getrlimit(a, b)	bsd_getrlimit(a, b)
-# endif	/* BSDNICE */
+#  define setrlimit 	bsd_setrlimit
+#  define getrlimit	bsd_getrlimit
+# endif	/* _BSDX_ */
 # ifndef NOFILE
 #  define	NOFILE	64
 # endif	/* NOFILE */
