@@ -49,7 +49,7 @@
 /***
  *** Suns running sunos4.1
  ***/
-#ifdef sun
+#if defined(sun) || defined(__sun__)
 /* This used to be long, but lint dissagrees... */
 # ifndef _SIGMASK_T
 #  define _SIGMASK_T
@@ -89,7 +89,7 @@
 #   endif /* _GID_T */
 #  endif /* !MACH */
 # endif /* !SUNOS4 */
-#endif /* sun */
+#endif /* sun || __sun__ */
 
 
 /***
@@ -163,9 +163,9 @@ typedef char * caddr_t;
 # endif /* _PTR_T */
 #endif /* hp9000s500 */
 
-
 /***
  *** Data General 88000, running dgux ???
+ *** ISN'T_THIS_REALLY_UGLY_OR_IS_IT_JUST_ME?
  ***/
 #ifdef DGUX
 /*
@@ -225,6 +225,8 @@ typedef char * caddr_t;
 #  define _SIZE_T
 # endif /* _SIZE_T */
 #endif /* BSD */
+
+
 /***
  *** BSD RENO advertises itself as POSIX, but
  *** it is missing speed_t 
@@ -278,7 +280,7 @@ typedef char * caddr_t;
 # ifndef _PID_T
 #  define _PID_T
 # endif /* _PID_T */
-#endif /* ultrix */
+#endif /* ultrix || __ultrix */
 
 
 /***
@@ -402,6 +404,36 @@ typedef char * caddr_t;
 # endif /* __SIZE_T && !_SIZE_T */
 #endif /* convex || __convex__ */
 
+/*
+ * Alliant FX-2800
+ */
+#if defined(i860) && defined(alliant)                 /* FX-2800 */
+# ifndef _PID_T
+#  define _PID_T
+   typedef short pid_t;
+# endif /* _PID_T */
+#endif       /* FX-2800 */
+
+/*
+ * DNIX
+ */
+#ifdef DNIX
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* DNIX */
+
+/*
+ *  Apollo running Domain/OS SR10.3 or greater
+ */
+#ifdef apollo
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* apollo */
+
+
+
 /***
  *** Catch all for non POSIX and/or non ANSI systems.
  *** Systems up to spec *should* define these automatically
@@ -421,10 +453,6 @@ typedef char * caddr_t;
 
 # ifndef _PID_T
 #  define _PID_T
-#if defined(i860) && defined(alliant)                 /* FX-2800 */
-# define _PID_T
-   typedef short pid_t;
-# endif       /* FX-2800 */
     typedef int pid_t;
 # endif /* _PID_T */
 

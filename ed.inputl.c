@@ -87,7 +87,7 @@ Inputl()
     if (GettingInput)
 	MacroLvl = -1;		/* editor was interrupted during input */
 
-#ifdef FIONREAD
+#if defined(FIONREAD) && !defined(linux) && !defined(OREO)
     if (!Tty_raw_mode && MacroLvl < 0) {
 	long    chrs = 0;
 
@@ -447,7 +447,7 @@ doeval1(v)
     Char   *oevalp;
     int     my_reenter;
     Char  **savegv;
-    jmp_buf osetexit;
+    jmp_buf_t osetexit;
 
     oevalvec = evalvec;
     oevalp = evalp;
@@ -531,7 +531,7 @@ GetNextCommand(cmdnum, ch)
 #ifdef	KANJI
 	if (!adrof(STRnokanji) && (*ch & META)) {
 	    MetaNext = 0;
-	    cmd = CcViMap[' '];
+	    cmd = F_INSERT;
 	    break;
 	}
 	else
@@ -607,9 +607,9 @@ GetNextChar(cp)
 	case EWOULDBLOCK:
 #endif /* EWOULDBLOCK */
 #if defined(POSIX) && defined(EAGAIN)
-# if defined(EWOULDBLOCK) && EAGAIN != EWOULDBLOCK
+# if !defined(EWOULDBLOCK) || EAGAIN != EWOULDBLOCK
 	case EAGAIN:
-# endif /* EWOULDBLOCK && EAGAIN != EWOULDBLOCK */
+# endif /* !EWOULDBLOCK || EAGAIN != EWOULDBLOCK */
 #endif /* POSIX && EAGAIN */
 #ifdef TRY_AGAIN
 	    if (!tried) {

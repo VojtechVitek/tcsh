@@ -677,7 +677,7 @@ tty_setty(fd, td)
 	return -1;
 #else
 # ifdef TERMIO
-    if (ioctl(fd, TCSETA,    (ioctl_t) &td->d_t) == -1)
+    if (ioctl(fd, TCSETAW,    (ioctl_t) &td->d_t) == -1)
 	return -1;
 # else
 #  ifdef TIOCSETN

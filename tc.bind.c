@@ -480,7 +480,7 @@ parsecmd(str)
 	    return fp->func;
 	}
     }
-    xprintf("Bad command name: %s\n", short2str(str));
+    xprintf("Bad command name: %S\n", str);
     return 0;
 }
 
@@ -555,7 +555,7 @@ parseescape(ptr)
 	    break;
 	}
     }
-    else if ((*p & CHAR) == '^') {
+    else if ((*p & CHAR) == '^' && Isalpha(p[1])) {
 	p++;
 	c = (*p == '?') ? '\177' : ((*p & CHAR) & 0237);
     }

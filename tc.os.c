@@ -480,7 +480,7 @@ domigrate(v, c)
 	    if (*cp == '%') {
 		pp = pfind(cp);
 		if (kill3((pid_t) - pp->p_jobid, SIGMIGRATE, new_site) < 0) {
-		    xprintf("%s: %s\n", short2str(cp), strerror(errno));
+		    xprintf("%S: %s\n", cp, strerror(errno));
 		    err1++;
 		}
 	    }
@@ -1092,7 +1092,7 @@ dover(v, c)
     if (!*v) {
 	if (!(p = Getenv(STRSYSTYPE)))
 	    stderror(ERR_NAME | ERR_STRING, "System type is not set");
-	xprintf("%s\n", short2str(p));
+	xprintf("%S\n", p);
     }
     else {
 	Setenv(STRSYSTYPE, getv(*v) ? STRbsd43 : STRsys53);

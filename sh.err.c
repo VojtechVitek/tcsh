@@ -200,7 +200,7 @@ static char *errorlist[] =
 #define ERR_BADDIR	68
     "Bad directory",
 #define ERR_DIRUS	69
-    "Usage: %s [-lvn]%s",
+    "Usage: %s [-%s]%s",
 #define ERR_HFLAG	70
     "No operand for -h flag",
 #define ERR_NOTLOGIN	71
@@ -218,7 +218,7 @@ static char *errorlist[] =
 #define ERR_NOHOME	77
     "No $home variable set",
 #define ERR_HISTUS	78
-    "Usage: history [-rht] [# number of events]",
+    "Usage: history [-%s] [# number of events]",
 #define ERR_SPDOLLT	79
     "$, ! or < not allowed with $# or $?",
 #define ERR_NEWLINE	80

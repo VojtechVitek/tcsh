@@ -74,11 +74,6 @@
 #undef KAI
 
 /*
- * CSHDIRS    save a history like stack of directories
- */
-#define CSHDIRS
-
-/*
  * TESLA	drops DTR on logout. Historical note:
  *		tesla.ee.cornell.edu was a vax11/780 with a develcon
  *		switch that sometimes would not hang up.

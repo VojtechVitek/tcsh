@@ -187,6 +187,8 @@ extern	void		  xvsprintf	__P((char *, char *, va_list));
  * tc.prompt.c
  */
 extern	void		  printprompt	__P((int, char *));
+extern	void		  tprintf	__P((int, Char *, Char *, size_t, 
+					     char *, time_t, ptr_t));
 
 /*
  * tc.sched.c
@@ -257,7 +259,7 @@ extern	char		 *short2qstr	__P((Char *));
  * tc.vers.h:
  */
 extern	void		  fix_version	__P((void));
-extern	Char		 *gethosttype	__P((void));
+extern	char		 *gethosttype	__P((void));
 
 /*
  * tc.who.c
@@ -265,6 +267,7 @@ extern	Char		 *gethosttype	__P((void));
 extern	void		  initwatch	__P((void));
 extern	void		  resetwatch	__P((void));
 extern	void		  watch_login	__P((void));
+extern	char 		 *who_info	__P((ptr_t, int, char *));
 extern	void		  dolog		__P((Char **, struct command *));
 
 #endif				/* _h_tc_decls */

@@ -104,7 +104,7 @@ blkpr(av)
 {
 
     for (; *av; av++) {
-	xprintf("%s", short2str(*av));
+	xprintf("%S", *av);
 	if (av[1])
 	    xprintf(" ");
     }

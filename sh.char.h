@@ -60,7 +60,7 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 #define	_DIG  	0x0100		/* 0-9 */
 #define	_LET  	0x0200		/* a-z, A-Z, _ */
 #define	_UP   	0x0400		/* A-Z */
-#define	_LOW  	0x0800		/* a-z */
+#define	_DOW  	0x0800		/* a-z */
 #define	_XD 	0x1000		/* 0-9, a-f, A-F */
 #define	_CMD	0x2000		/* lex end of command chars, ;&(|` */
 #define _CTR	0x4000		/* control */
@@ -100,7 +100,7 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 # define Isspace(c)	cmap(c, _SP|_NL)
 # define Isdigit(c)	cmap(c, _DIG)
 # define Isalpha(c)	(cmap(c,_LET) && !(((c) & META) && AsciiOnly))
-# define Islower(c)	(cmap(c,_LOW) && !(((c) & META) && AsciiOnly))
+# define Islower(c)	(cmap(c,_DOW) && !(((c) & META) && AsciiOnly))
 # define Isupper(c)	(cmap(c, _UP) && !(((c) & META) && AsciiOnly))
 # define Tolower(c)	(_cmap_lower[(unsigned char)(c)])
 # define Toupper(c)	(_cmap_upper[(unsigned char)(c)])

@@ -64,9 +64,13 @@
 # define _PATH_DOTCSHRC		"/etc/cshrc.std"
 #endif /* NeXT */
 
-#ifndef _PATH_DOTLOGIN
+#ifndef _PATH_DOTCSHRC
 # define _PATH_DOTCSHRC		"/etc/csh.cshrc"
+#endif
+#ifndef _PATH_DOTLOGIN
 # define _PATH_DOTLOGIN		"/etc/csh.login"
+#endif
+#ifndef _PATH_DOTLOGOUT
 # define _PATH_DOTLOGOUT	"/etc/csh.logout"
 #endif
 

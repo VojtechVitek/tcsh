@@ -84,7 +84,7 @@ do_help(command)
 	return;
 
     if (adrof1(STRhelpcommand, &aliases)) {	/* if we have an alias */
-	jmp_buf osetexit;
+	jmp_buf_t osetexit;
 
 	getexit(osetexit);	/* make sure to come back here */
 	if (setexit() == 0)
@@ -101,7 +101,7 @@ do_help(command)
 
 	for (;;) {
 	    if (!*hpath) {
-		xprintf("No help file for %s\n", short2str(name));
+		xprintf("No help file for %S\n", name);
 		break;
 	    }
 	    nextslist(hpath, curdir);

@@ -376,7 +376,7 @@ print_by_column(dir, items, count)
 	    if (i < count) {
 		register int w;
 
-		xprintf("%s", short2str(items[i]));
+		xprintf("%S", items[i]);
 		xputchar(dir ? filetype(dir, items[i]) : ' ');
 		if (c < columns - 1) {	/* last column? */
 		    w = Strlen(items[i]) + 1;
@@ -480,13 +480,13 @@ print_recognized_stuff(recognized_part)
 	break;
 
     case 1:			/* overstrike the ^, erase the [ */
-	xprintf("%s", short2str(recognized_part));
+	xprintf("%S", recognized_part);
 	putraw(' ');
 	putraw('\b');
 	break;
 
     default:			/* overstrike both Characters ^[ */
-	xprintf("%s", short2str(recognized_part));
+	xprintf("%S", recognized_part);
 	break;
     }
     flush();

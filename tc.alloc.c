@@ -112,10 +112,6 @@ union overhead {
 #define	NBUCKETS ((sizeof(long) << 3) - 3)
 static union overhead *nextf[NBUCKETS];
 
-#ifdef sun
-extern ptr_t sbrk __P((int));
-#endif
-
 /*
  * nmalloc[i] is the difference between the number of mallocs and frees
  * for a given block size.

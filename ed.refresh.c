@@ -293,12 +293,7 @@ Refresh()
 #endif /* DEBUG_REFRESH */
     if (OldvcV > new_vcv) {
 	for (; cur_line <= OldvcV; cur_line++) {
-	    MoveToLine(cur_line);
-	    MoveToChar(0);
-	    ClearEOL(Strlen(Display[cur_line]));
-#ifdef DEBUG_REFRESH
-	    so_write(str2short("C\b"), 2);
-#endif /* DEBUG_REFRESH */
+	    update_line(Display[cur_line], STRNULL, cur_line);
 	    *Display[cur_line] = '\0';
 	}
     }

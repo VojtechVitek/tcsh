@@ -115,6 +115,9 @@ typedef struct sigvec sigvec_t;
 #if !defined(NSIG) && defined(_NSIG)
 # define NSIG _NSIG
 #endif /* !NSIG && _NSIG */
+#if !defined(MAXSIG) && defined(NSIG)
+# define MAXSIG NSIG
+#endif /* !MAXSIG && NSIG */
 
 #ifdef BSDSIGS
 /*
@@ -124,23 +127,21 @@ typedef struct sigvec sigvec_t;
 #  undef sigmask
 # endif				/* sigmask */
 # define	sigmask(s)	(1 << ((s)-1))
-# ifdef _SEQUENT_
+# if defined(_SEQUENT_) || defined(linux)
 #  define 	sigpause(a)	bsd_sigpause(a)
 #  define 	signal(a, b)	bsd_signal(a, b)
-# else /* _SEQUENT_ */
+# endif /* _SEQUENT_ */
+# ifndef _SEQUENT_
 #  define	sighold(s)	sigblock(sigmask(s))
 #  define	sigignore(s)	signal(s, SIG_IGN)
 #  define 	sigset(s, a)	signal(s, a)
-# endif	/* _SEQUENT_ */
+# endif	/* !_SEQUENT_ */
 # ifdef aiws
 #  define 	sigrelse(a)	sigsetmask(sigblock(0) & ~sigmask(a))
 #  undef	killpg
 #  define 	killpg(a, b)	kill(-getpgrp(a), b)
 #  define	NEEDsignal
 # endif	/* aiws */
-# ifdef linux
-#  define	sigpause(a)	bsd_sigpause(a)
-# endif /* linux */
 #endif /* BSDSIGS */
 
 

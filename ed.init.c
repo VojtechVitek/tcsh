@@ -618,7 +618,7 @@ Load_input_line()
     if (Tty_raw_mode)
 	return 0;
 
-#ifdef FIONREAD
+#if defined(FIONREAD) && !defined(linux) && !defined(OREO)
     (void) ioctl(SHIN, FIONREAD, &chrs);
     if (chrs > 0) {
 	char    buf[BUFSIZE];

@@ -49,11 +49,11 @@ RCSID("$Id$")
 # endif /* !SUNOS4 */
 #endif /* FIOCLEX */
 
-#ifdef sparc
+#if defined(__sparc__) || defined(sparc)
 # ifndef MACH
 #  include <vfork.h>
 # endif /* !MACH */
-#endif /* sparc */
+#endif /* __sparc__ || sparc */
 
 #ifdef VFORK
 static	sigret_t	vffree	__P((int));

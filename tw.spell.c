@@ -42,9 +42,9 @@ RCSID("$Id$")
 
 /* spell_me : return corrrectly spelled filename.  From K&P spname */
 int
-spell_me(oldname, oldsize, looking_for_cmd)
+spell_me(oldname, oldsize, looking)
     Char   *oldname;
-    int     oldsize, looking_for_cmd;
+    int     oldsize, looking;
 {
     /* The +1 is to fool hp's optimizer */
     Char    guess[FILSIZ + 1], newname[FILSIZ + 1];
@@ -84,8 +84,8 @@ spell_me(oldname, oldsize, looking_for_cmd)
 	 */
 	/* (*should* say "looking for directory" whenever '/' is next...) */
 	retval = t_search(guess, p, SPELL, FILSIZ,
-			  looking_for_cmd && (foundslash || *old != '/') ?
-			  TW_COMMAND : TW_ZERO, 1, STRNULL, 0);
+			  looking == TW_COMMAND && (foundslash || *old != '/') ?
+			  TW_COMMAND : looking, 1, STRNULL, 0);
 	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
 	for (p = ws; (*new = *p++) != '\0'; new++)

@@ -344,6 +344,17 @@ tw_result(act, pat)
 	res = Strsave(act);
 	if ((act = Strchr(&res[1], '`')) != NULL)
 	    *++act = '\0';
+	
+	if (didfds == 0) {
+	    /*
+	     * Make sure that we have some file descriptors to
+	     * play with, so that the processes have at least 0, 1, 2
+	     * open
+	     */
+	    (void) dcopy(SHIN, 0);
+	    (void) dcopy(SHOUT, 1);
+	    (void) dcopy(SHDIAG, 2);
+	}
 	if ((act = globone(res, G_APPEND)) != NULL) {
 	    xfree((ptr_t) res), res = NULL;
 	    *pat = res = Strsave(act);

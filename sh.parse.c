@@ -66,7 +66,7 @@ void
 alias(lex)
     register struct wordent *lex;
 {
-    jmp_buf osetexit;
+    jmp_buf_t osetexit;
 
     aleft = ALEFT;
     hleft = HLEFT;
