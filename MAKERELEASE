@@ -58,6 +58,7 @@ cleanit()
 {
     (cd tcsh && rm -f \
 	Announce* \
+	BUG-TRACKING \
 	Copyright \
 	MAKERELEASE \
 	Makefile.ADMIN \
