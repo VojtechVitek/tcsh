@@ -346,11 +346,13 @@ dologin(v, c)
 #ifdef WINNT_NATIVE
     USE(v);
 #else /* !WINNT_NATIVE */
+    char **p = short2blk(v);
     islogin();
     rechist(NULL, adrof(STRsavehist) != NULL);
     (void) signal(SIGTERM, parterm);
-    (void) execl(_PATH_BIN_LOGIN, "login", short2str(v[1]), NULL);
-    (void) execl(_PATH_USRBIN_LOGIN, "login", short2str(v[1]), NULL);
+    (void) execv(_PATH_BIN_LOGIN, p);
+    (void) execv(_PATH_USRBIN_LOGIN, p);
+    blkfree((Char **) p);
     untty();
     xexit(1);
 #endif /* !WINNT_NATIVE */
