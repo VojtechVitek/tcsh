@@ -1625,7 +1625,7 @@ mailchk()
 	new = stb.st_mtime > time0;
 #endif
 	if (stb.st_size == 0 || stb.st_atime > stb.st_mtime ||
-	    (stb.st_atime < chktim && stb.st_mtime < chktim) ||
+	    (stb.st_atime <= chktim && stb.st_mtime <= chktim) ||
 	    loginsh && !new)
 	    continue;
 	if (cnt == 1)
