@@ -60,6 +60,7 @@ Char STRminus1[]	= { '-', '1', '\0' };
 Char STRmaxint[]	= { '0', 'x', '7', 'f', 'f', 'f', 'f', 'f', 'f', 'f',
 			    '\0' };
 Char STRcolon[]		= { ':', '\0' };
+Char STR_[]		= { '_', '\0' };
 Char STRNULL[]		= { '\0' };
 Char STRtcsh[]		= { 't', 'c', 's', 'h', '\0' };
 Char STRhome[]		= { 'h', 'o', 'm', 'e', '\0' };
@@ -183,6 +184,7 @@ Char STRKCORRECT[]	= { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R',
 Char STRunalias[]	= { 'u', 'n', 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRalias[]		= { 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRprecmd[]	= { 'p', 'r', 'e', 'c', 'm', 'd', '\0' };
+Char STRpostcmd[]	= { 'p', 'o', 's', 't', 'c', 'm', 'd', '\0' };
 Char STRcwdcmd[]	= { 'c', 'w', 'd', 'c', 'm', 'd', '\0' };
 Char STRperiodic[]	= { 'p', 'e', 'r', 'i', 'o', 'd', 'i', 'c', '\0' };
 Char STRtperiod[]	= { 't', 'p', 'e', 'r', 'i', 'o', 'd', '\0' };

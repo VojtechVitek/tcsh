@@ -63,6 +63,7 @@ extern int do_logout;
 extern time_t t_period;
 extern int just_signaled;
 static bool precmd_active = 0;
+static bool postcmd_active = 0;
 static bool periodic_active = 0;
 static bool cwdcmd_active = 0;	/* PWP: for cwd_cmd */
 static bool beepcmd_active = 0;
@@ -900,6 +901,33 @@ leave:
 #endif /* BSDSIGS */
 }
 
+void
+postcmd()
+{
+#ifdef BSDSIGS
+    sigmask_t omask;
+
+    omask = sigblock(sigmask(SIGINT));
+#else /* !BSDSIGS */
+    (void) sighold(SIGINT);
+#endif /* BSDSIGS */
+    if (postcmd_active) {	/* an error must have been caught */
+	aliasrun(2, STRunalias, STRpostcmd);
+	xprintf(CGETS(22, 3, "Faulty alias 'postcmd' removed.\n"));
+	goto leave;
+    }
+    postcmd_active = 1;
+    if (!whyles && adrof1(STRpostcmd, &aliases))
+	aliasrun(1, STRpostcmd, NULL);
+leave:
+    postcmd_active = 0;
+#ifdef BSDSIGS
+    (void) sigsetmask(omask);
+#else /* !BSDSIGS */
+    (void) sigrelse(SIGINT);
+#endif /* BSDSIGS */
+}
+
 /*
  * Paul Placeway  11/24/87  Added cwd_cmd by hacking precmd() into
  * submission...  Run every time $cwd is set (after it is set).  Useful
@@ -1076,6 +1104,8 @@ aliasrun(cnt, s1, s2)
 	 */
 	if (precmd_active)
 	    precmd();
+	if (postcmd_active)
+	    postcmd();
 #ifdef notdef
 	/*
 	 * XXX: On the other hand, just interrupting them causes an error too.

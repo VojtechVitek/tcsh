@@ -2086,6 +2086,7 @@ process(catch)
 	if (seterr)
 	    stderror(ERR_OLD);
 
+	postcmd();
 	/*
 	 * Execute the parse tree From: Michael Schroeder
 	 * <mlschroe@immd4.informatik.uni-erlangen.de> was execute(t, tpgrp);
@@ -2101,6 +2102,7 @@ process(catch)
 	if (catch && intty && !whyles && !tellwhat)
 	    (void) window_change(0);	/* for window systems */
 #endif /* SIG_WINDOW */
+	set(STR_, Strsave(InputBuf), VAR_READWRITE | VAR_NOGLOB);
     }
     savet = t;
     resexit(osetexit);
