@@ -997,7 +997,7 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
 	case RECOGNIZE_SCROLL:
 
 	    if ((vp = adrof(STRcomplete)) != NULL && vp->vec != NULL) {
-		Char *cp;
+		Char **cp;
 		for (cp = vp->vec; *cp; cp++) {
 		    if (Strcmp(*cp, STRigncase) == 0)
 			igncase = 1;
