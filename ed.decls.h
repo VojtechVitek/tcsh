@@ -82,12 +82,12 @@ extern	void	tty_setdisc		__P((int, int));
  */
 extern	void	terminit		__P((void));
 extern	void	SetAttributes		__P((int));
-extern	void	so_write		__P((Char *, int));
+extern	void	so_write		__P((eChar *, int));
 extern	void	ClearScreen		__P((void));
 extern	void	MoveToLine		__P((int));
 extern	void	MoveToChar		__P((int));
 extern	void	ClearEOL		__P((int));
-extern	void	Insert_write		__P((Char *, int));
+extern	void	Insert_write		__P((eChar *, int));
 extern	void	DeleteChars		__P((int));
 extern	void	TellTC			__P((const char *));
 extern	void	SetTC			__P((char *, char *));

@@ -160,13 +160,16 @@ extern int didsetty;
 
 EXTERN Char *KeyMacro[MAXMACROLEVELS];
 
-EXTERN Char **Display;		/* display buffer seed vector */
+/* CHAR_ERR in Display and Vdisplay means the non-first column of a character
+   that is wider than one "regular" position. The cursor should never point
+   in the middle of a multiple-column character. */
+EXTERN eChar **Display;		/* display buffer seed vector */
 EXTERN int CursorV,		/* real cursor vertical (line) */
         CursorH,		/* real cursor horisontal (column) */
         TermV,			/* number of real screen lines
 				 * (sizeof(DisplayBuf) / width */
         TermH;			/* screen width */
-EXTERN Char **Vdisplay;		/* new buffer */
+EXTERN eChar **Vdisplay;	/* new buffer */
 
 /* Variables that describe terminal ability */
 EXTERN int T_Lines, T_Cols;	/* Rows and Cols of the terminal */

@@ -577,9 +577,9 @@ find_stop_ed()
     else 
 	vp = "vi";
 
-    for (vpl = 0; vp[vpl] && !isspace(vp[vpl]); vpl++)
+    for (vpl = 0; vp[vpl] && !isspace((unsigned char)vp[vpl]); vpl++)
 	continue;
-    for (epl = 0; ep[epl] && !isspace(ep[epl]); epl++)
+    for (epl = 0; ep[epl] && !isspace((unsigned char)ep[epl]); epl++)
 	continue;
 
     if (pcurrent == NULL)	/* see if we have any jobs */

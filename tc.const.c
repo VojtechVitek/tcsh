@@ -412,7 +412,6 @@ Char STRnohup[]		= { 'n', 'o', 'h', 'u', 'p', '\0' };
 Char STRhup[]		= { 'h', 'u', 'p', '\0' };
 Char STRnice[]		= { 'n', 'i', 'c', 'e', '\0' };
 Char STRthen[]		= { 't', 'h', 'e', 'n', '\0' };
-Char STReof[]		= { '^', 'D', '\b', '\b', '\0' };
 Char STRlistjobs[]	= { 'l', 'i', 's', 't', 'j', 'o', 'b', 's', '\0' };
 Char STRlistflags[]	= { 'l', 'i', 's', 't', 'f', 'l', 'a', 'g', 's', '\0' };
 Char STRlong[]		= { 'l', 'o', 'n', 'g', '\0' };
@@ -491,3 +490,6 @@ Char STRcolorcat[]	= { 'c', 'o', 'l', 'o', 'r', 'c', 'a', 't', '\0' };
 Char STRshwspace[]	= { ' ', '\t', '\0' };
 Char STRshwordsep[]	= { ' ', '\t', '&', '|', ';', '<', '>', '(', ')', '\0' };
 Char STRrepeat[]	= { 'r', 'e', 'p', 'e', 'a', 't', '\0' };
+
+eChar eSTRNULL[]	= { '\0' };
+eChar eSTReof[]		= { '^', 'D', '\b', '\b', '\0' };

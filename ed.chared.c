@@ -2677,7 +2677,7 @@ e_delnext_eof(c)
 	if (!VImode) {
 	    if (Cursor == InputBuf) {	
 		/* if I'm also at the beginning */
-		so_write(STReof, 4);/* then do a EOF */
+		so_write(eSTReof, 4);/* then do a EOF */
 		flush();
 		return(CC_EOF);
 	    }
@@ -2724,7 +2724,7 @@ e_delnext_list_eof(c)
     USE(c);
     if (Cursor == LastChar) {	/* if I'm at the end */
 	if (Cursor == InputBuf) {	/* if I'm also at the beginning */
-	    so_write(STReof, 4);/* then do a EOF */
+	    so_write(eSTReof, 4);/* then do a EOF */
 	    flush();
 	    return(CC_EOF);
 	}
@@ -2751,7 +2751,7 @@ e_list_eof(c)
 
     USE(c);
     if (Cursor == LastChar && Cursor == InputBuf) {
-	so_write(STReof, 4);	/* then do a EOF */
+	so_write(eSTReof, 4);	/* then do a EOF */
 	flush();
 	rv = CC_EOF;
     }

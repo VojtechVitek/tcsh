@@ -444,7 +444,8 @@ texec(sf, st)
 	    setmode(fd, O_TEXT);
 #endif
 	    if ((nread = read(fd, (char *) pref, 2)) == 2) {
-		if (!isprint(pref[0]) && (pref[0] != '\n' && pref[0] != '\t')) {
+		if (!isprint((unsigned char)pref[0]) &&
+		    (pref[0] != '\n' && pref[0] != '\t')) {
 		    (void) close(fd);
 		    /*
 		     * We *know* what ENOEXEC means.
