@@ -1178,10 +1178,10 @@ doaliases(v)
     getexit(oldexit);
     if (setexit() == 0) {
 	for (;;) {
+	    Char   *p = NULL;
+	    int     n = 0;
 	    lp = line;
 	    for (;;) {
-		Char   *p = NULL;
-		int     n = 0;
 		if (n <= 0) {
 		    int     i;
 
