@@ -1010,8 +1010,10 @@ period_cmd()
     periodic_active = 1;
     if (!whyles && adrof1(STRperiodic, &aliases)) {
 	vp = varval(STRtperiod);
-	if (vp == STRNULL)
-	    return;
+	if (vp == STRNULL) {
+	    aliasrun(1, STRperiodic, NULL);
+	    goto leave;
+	}
 	interval = getn(vp);
 	(void) time(&t);
 	if (t - t_period >= interval * 60) {
