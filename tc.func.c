@@ -1448,6 +1448,10 @@ gettilde(us)
     struct tildecache *bp1, *bp2, *bp;
     Char *hd;
 
+    /* Ignore NIS special names */
+    if (*us == '+' || *us == '-')
+	return NULL;
+
     if (tcache == NULL)
 	tcache = (struct tildecache *) xmalloc((size_t) (TILINCR *
 						  sizeof(struct tildecache)));
