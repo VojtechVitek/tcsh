@@ -1060,8 +1060,13 @@ xgetwd(pathname)
 	if (DEV_DEV_COMPARE(st_dotdot.st_dev, st_cur.st_dev)) {
 	    /* Parent has same device. No need to stat every member */
 	    for (d = readdir(dp); d != NULL; d = readdir(dp)) 
+#ifdef __clipper__
+		if (((unsigned long)d->d_fileno & 0xffff) == st_cur.st_ino)
+		    break;
+#else
 		if (d->d_fileno == st_cur.st_ino)
 		    break;
+#endif
 	}
 	else {
 	    /* 

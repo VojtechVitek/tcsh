@@ -61,9 +61,10 @@ Char STRversion[]       = { 'v', 'e', 'r', 's', 'i', 'o', 'n', '\0' };
 Char STRuid[]           = { 'u', 'i', 'd', '\0' };
 Char STRgid[]           = { 'g', 'i', 'd', '\0' };
 Char STRHOST[]          = { 'H', 'O', 'S', 'T', '\0' };
-#ifdef REMHOST
-Char STRREMHOST[]       = { 'R', 'E', 'M', 'H', 'O', 'S', 'T', '\0' };
-#endif /* REMHOST */
+#ifdef REMOTEHOST
+Char STRREMOTEHOST[]	= { 'R', 'E', 'M', 'O', 'T', 'E', 'H', 
+			    'O', 'S', 'T', '\0' };
+#endif /* REMOTEHOST */
 Char STRHOSTTYPE[]      = { 'H', 'O', 'S', 'T', 'T', 'Y', 'P', 'E', '\0' };
 Char STRedit[]          = { 'e', 'd', 'i', 't', '\0' };
 Char STRaddsuffix[]     = { 'a', 'd', 'd', 's', 'u', 'f', 'f', 'i', 'x', '\0' };

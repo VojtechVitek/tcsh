@@ -625,6 +625,10 @@ extern char *getwd();
 extern char *ttyname();   
 # endif /* SCO */
 
+# ifdef __clipper__
+extern char *ttyname();   
+# endif
+
 #endif /* !POSIX || SUNOS4 || UTekV || sysV88 */
 
 #if defined(SUNOS4) && __GNUC__ == 2

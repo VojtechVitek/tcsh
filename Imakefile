@@ -176,7 +176,7 @@ LIBTERMCAP =
 #endif
 
 #if defined(SQNTArchitecture) || defined(SequentArchitecture)
-LIBSQNT=-lseq
+LIBSQNT=-lsocket -linet -lnsl -lseq
 #endif
 
 /* This may not be good enough - I don't have access to enough systems

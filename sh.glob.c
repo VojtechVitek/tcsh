@@ -403,9 +403,11 @@ globexpand(v)
 	    break;
 	case '=':
 	    if ((ns = globequal(gp, s)) == NULL) {
-		/* Error */
-		blkfree(nv);
-		stderror(ERR_DEEP);
+		if (!adrof(STRnonomatch)) {
+		    /* Error */
+		    blkfree(nv);
+		    stderror(ERR_DEEP);
+		}
 	    }
 	    if (ns != s) {
 		/* Expansion succeeded */

@@ -2329,6 +2329,7 @@ e_charswitch(cc)
 	return(CC_REFRESH);
     }
     else {
+	Cursor--;		/* Restore cursor position */
 	return(CC_ERROR);
     }
 }

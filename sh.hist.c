@@ -241,7 +241,7 @@ dohist(vp, c)
 	return;
     }
     else if (hflg & HIST_SAVE) {
-	rechist(*vp);
+	rechist(*vp, 1);
 	return;
     }
     if (*vp)
@@ -336,8 +336,9 @@ fmthist(fmt, ptr, buf)
 }
 
 void
-rechist(fname)
+rechist(fname, ref)
     Char *fname;
+    int ref;
 {
     Char    buf[BUFSIZE], hbuf[BUFSIZE];
     int     fp, ftmp, oldidfds;
@@ -348,23 +349,21 @@ rechist(fname)
      * If $savehist is just set, we use the value of $history
      * else we use the value in $savehist
      */
-    if ((shist = adrof(STRsavehist)) != NULL) {
-	if (shist->vec[0][0] != '\0')
-	    (void) Strcpy(hbuf, shist->vec[0]);
-	else if ((shist = adrof(STRhistory)) != 0 && 
-		 shist->vec[0][0] != '\0')
-	    (void) Strcpy(hbuf, shist->vec[0]);
-	else
-	    return;
-    }
+    if ((shist = adrof(STRsavehist)) != NULL && shist->vec[0][0] != '\0')
+	(void) Strcpy(hbuf, shist->vec[0]);
+    else if ((shist = adrof(STRhistory)) != 0 && shist->vec[0][0] != '\0')
+	(void) Strcpy(hbuf, shist->vec[0]);
     else
 	return;
 
-    if (fname == NULL) 
+    if (fname == NULL && ref) {
 	if ((fname = value(STRhistfile)) == STRNULL) {
 	    fname = Strcpy(buf, value(STRhome));
 	    (void) Strcat(buf, &STRtildothist[1]);
 	}
+    }
+    else
+	return;
 
     /*
      * The 'savehist merge' feature is intended for an environment

@@ -546,7 +546,7 @@ execash(t, kp)
      * Hmm, we don't really want to do that now because we might
      * fail, but what is the choice
      */
-    rechist(NULL);
+    rechist(NULL, 1);
 
 
     osigint  = signal(SIGINT, parintr);

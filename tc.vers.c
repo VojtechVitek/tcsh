@@ -575,6 +575,13 @@ gethosttype()
 # endif
 
 # ifndef _havehosttype_
+#  if defined(__clipper__)
+#   define _havehosttype_
+     hosttype = "clipper";	/* Clipper Chipset (Intergraph) */
+#  endif 
+# endif
+
+# ifndef _havehosttype_
 #  define _havehosttype_
     /* Default to something reasonable */
     hosttype = "unknown";
@@ -654,7 +661,7 @@ fix_version()
 #else
 # define NGSTR	""
 #endif
-#ifdef REMHOST
+#ifdef REMOTEHOST
 # define RHSTR	",rh"
 #else
 # define RHSTR	""
