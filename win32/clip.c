@@ -480,9 +480,9 @@ e_dosify_next(c)
 	len = 0;
 
 	while(  cp < LastChar) {
-		if ( (*cp & CHAR == ' ') && (cp[-1] & CHAR != '\\') )
+		if ( ((*cp & CHAR) == ' ') && ((cp[-1] & CHAR) != '\\') )
 			break;
-		if ( ( *cp & CHAR ) == '/')  {
+		if ( (*cp & CHAR) == '/')  {
 			*bp++ = '\\'  | (*cp & ~(*cp & CHAR) );
 			*bp++ = '\\'  | (*cp & ~(*cp & CHAR) );
 
