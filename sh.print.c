@@ -136,17 +136,17 @@ xputchar(c)
 	    if (c != '\t' && c != '\n' && (xlate_cr || c != '\r')) {
 #endif
 		xputchar('^' | atr);
-#ifndef _OSD_POSIX
+#ifdef IS_ASCII
 		if (c == ASCII)
 		    c = '?';
 		else
 		    c |= 0100;
-#else /*_OSD_POSIX*/
+#else
 		if (c == CTL_ESC('\177'))
 		    c = '?';
 		else
 		    c =_toebcdic[_toascii[c]|0100];
-#endif /*_OSD_POSIX*/
+#endif
 
 	    }
 	}

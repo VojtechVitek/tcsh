@@ -456,14 +456,14 @@ static void
 beep()
 {
     if (adrof(STRnobeep) == 0)
-#ifndef _OSD_POSIX
+#ifdef IS_ASCII
 	(void) write(SHOUT, "\007", 1);
-#else /*_OSD_POSIX*/
+#else
     {
 	unsigned char beep_ch = CTL_ESC('\007');
 	(void) write(SHOUT, &beep_ch, 1);
     }
-#endif /*_OSD_POSIX*/
+#endif
 }
 
 /*

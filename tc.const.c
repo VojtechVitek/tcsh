@@ -397,7 +397,7 @@ Char STRsys53[] 	= { 's', 'y', 's', '5', '.', '3', '\0' };
 Char STRver[]		= { 'v', 'e', 'r', '\0' };
 #endif /* apollo */
 
-#ifdef _OSD_POSIX
+#ifndef IS_ASCII
 Char STRwarnebcdic[]    = { 'w', 'a', 'r', 'n', 'e', 'b', 'c', 'd', 'i', 'c', '\0' };
 #endif
 

@@ -766,8 +766,10 @@ auto_lock(n)
 
 #define XCRYPT(a, b) crypt(a, b)
 
+#if !defined(__MVS__)
     if ((pw = getpwuid(euid)) != NULL)	/* effective user passwd  */
 	srpp = pw->pw_passwd;
+#endif /* !MVS */
 
 #endif /* !XCRYPT */
 

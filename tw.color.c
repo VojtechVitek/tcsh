@@ -76,11 +76,11 @@ static Variable variables[] = {
     VAR(NOS, "fi", "0"),	/* Regular file */
     VAR(NOS, "no", "0"),	/* Normal (non-filename) text */
     VAR(NOS, "mi", ""),		/* Missing file (defaults to fi) */
-#ifdef _OSD_POSIX
+#ifdef IS_ASCII
+    VAR(NOS, "lc", "\033["),	/* Left code (ASCII) */
+#else
     VAR(NOS, "lc", "\x27["),	/* Left code (EBCDIC)*/
-#else /* _OSD_POSIX */
-    VAR(NOS, "lc", "\033["),	/* Left code */
-#endif /* _OSD_POSIX */
+#endif
     VAR(NOS, "rc", "m"),	/* Right code */
     VAR(NOS, "ec", ""),		/* End code (replaces lc+no+rc) */
 };

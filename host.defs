@@ -1004,6 +1004,14 @@ ostype	: 						: "posix"
 machtype:						: "bs2000"
 enddef	:
 
+newdef	: defined(__MVS__)
+comment	: ibm uss s/390 (mainframe, EBCDIC)
+vendor	:						: "ibm"
+hosttype:					 	: "s390"
+ostype	: 						: "os390"
+machtype:						: "s390"
+enddef	:
+
 newdef	: defined(_SX)
 comment : NEC Corporation (SX-4)
 vendor	: 						: "nec"

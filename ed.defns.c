@@ -1837,7 +1837,7 @@ ed_InitMetaBindings()
     cstr.len = 2;
     for (i = 0200; i <= 0377; i++) {
 	if (map[i] != F_INSERT && map[i] != F_UNASSIGNED && map[i] != F_XKEY) {
-#ifndef _OSD_POSIX
+#ifdef IS_ASCII
 	    buf[1] = i & ASCII;
 #else
 	    buf[1] = _toebcdic[_toascii[i] & ASCII];
@@ -1913,7 +1913,7 @@ ed_InitMaps()
 {
     if (MapsAreInited)
 	return;
-#ifdef _OSD_POSIX
+#ifndef IS_ASCII
     /* This machine has an EBCDIC charset. The assumptions made for the
      * initialized keymaps therefore don't hold, since they are based on
      * ASCII (or ISO8859-1).
@@ -1937,7 +1937,7 @@ ed_InitMaps()
 	    }
 	}
     }
-#endif /* _OSD_POSIX */
+#endif /* !IS_ASCII */
 
 #ifdef VIDEFAULT
     ed_InitVIMaps();

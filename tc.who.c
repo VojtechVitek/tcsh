@@ -54,10 +54,19 @@ RCSID("$Id$")
  * Kimmo Suominen, Oct 14 1991
  */
 # ifndef _PATH_UTMP
-#  define _PATH_UTMP UTMPX_FILE
+#  if defined(__UTMPX_FILE) && !defined(UTMPX_FILE)
+#   define _PATH_UTMP __UTMPX_FILE
+#  else
+#   define _PATH_UTMP UTMPX_FILE
+#  endif /* __UTMPX_FILE && !UTMPX_FILE */
 # endif /* _PATH_UTMP */
 # define utmp utmpx
-# define ut_time ut_xtime
+# ifdef __MVS__
+#  define ut_time ut_tv.tv_sec
+#  define ut_name ut_user
+# else
+#  define ut_time ut_xtime
+# endif /* __MVS__ */
 #else /* !HAVEUTMPX */
 # ifndef WINNT
 #  include <utmp.h>

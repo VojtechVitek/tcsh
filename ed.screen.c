@@ -843,7 +843,7 @@ DefaultArrowKeys()
     static Char stOD[] = {033, 'O', 'D', '\0'};
 
     CStr cs;
-#ifdef _OSD_POSIX
+#ifndef IS_ASCII
     if (strA[0] == 033)
     {
 	strA[0] = CTL_ESC('\033');

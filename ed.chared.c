@@ -1258,12 +1258,12 @@ v_search(dir)
 	    break;
 
 	case 0033:	/* ESC */
-#ifndef _OSD_POSIX
+#ifdef IS_ASCII
 	case '\r':	/* Newline */
 	case '\n':
 #else
-	case '\012':    /* Newline */
-	case '\015':    /* Return */
+	case '\012':    /* ASCII Line feed */
+	case '\015':    /* ASCII (or EBCDIC) Return */
 #endif
 	    break;
 
