@@ -1047,7 +1047,7 @@ again:
 	    if (unlink(tmp) == -1) {
 		(void) gettimeofday(&tv, NULL);
 		shtemp = Strspl(STRtmpsh, putn((((int)tv.tv_sec) ^ 
-		    ((int)tv.tv_usec) ^ ((int)doldol)) & 0x00ffffff));
+		    ((int)tv.tv_usec) ^ ((int)getpid())) & 0x00ffffff));
 	    }
 	    goto again;
 	}
