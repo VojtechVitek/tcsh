@@ -831,6 +831,7 @@ backeval(cp, literal)
 	(void) dmove(pvec[1], 1);
 	(void) dmove(SHDIAG,  2);
 	initdesc();
+	closem();
 	/*
 	 * Bugfix for nested backquotes by Michael Greim <greim@sbsvax.UUCP>,
 	 * posted to comp.bugs.4bsd 12 Sep. 1989.
