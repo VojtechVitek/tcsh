@@ -699,6 +699,14 @@ main(argc, argv)
 	    else
 		f = -1;
 
+#ifdef NeXT
+	    /* NeXT 2.0 /usr/etc/rlogind, does not set our process group! */
+	    if (shpgrp == 0) {
+	        shpgrp = getpid();
+		(void) setpgid(0, shpgrp);
+	        (void) tcsetpgrp(f, shpgrp);
+	    }
+#endif /* NeXT */
     retry:
 #ifdef BSDJOBS			/* if we have tty job control */
 	    if ((tpgrp = tcgetpgrp(f)) != -1) {
