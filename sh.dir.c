@@ -208,9 +208,12 @@ dodirs(v, c)
 	dp->di_next = dp->di_prev = &dhead;
     }
     if ((dflag & DIR_LOAD) != 0) 
-	loaddirs(*v++);
+	loaddirs(*v);
     else if ((dflag & DIR_SAVE) != 0)
-	recdirs(*v++, 1);
+	recdirs(*v, 1);
+
+    if (*v && (dflag & (DIR_SAVE|DIR_LOAD)))
+	v++;
 
     if (*v != NULL || (dflag & DIR_OLD))
 	stderror(ERR_DIRUS, "dirs", flags, "");

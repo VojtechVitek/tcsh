@@ -1697,7 +1697,12 @@ collate(a, b)
 
     rv = strcoll(sa, sb);
 
-    if (errno != 0) {
+    /*
+     * We should be checking for errno != 0, but some systems
+     * forget to reset errno to 0. So we only check for the 
+     * only documented valid errno value for strcoll [EINVAL]
+     */
+    if (errno == EINVAL) {
 	xfree((ptr_t) sa);
 	xfree((ptr_t) sb);
 	stderror(ERR_SYSTEM, "strcoll", strerror(errno));
@@ -1779,7 +1784,6 @@ hashbang(fd, vp)
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#include <netdb.h>
 
 /*
  * From: <lesv@ppvku.ericsson.se> (Lennart Svensson)

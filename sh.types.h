@@ -256,6 +256,17 @@ typedef char * caddr_t;
 
 
 /***
+ *** Utah's HPBSD
+ *** some posix & 4.4 BSD changes (pid_t is a short)
+ ***/
+#ifdef HPBSD
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* HPBSD */
+
+
+/***
  *** Pyramid, BSD universe
  *** In addition to the size_t
  ***/

@@ -436,6 +436,10 @@ extern void		DebugFree	__P((ptr_t, char *, int));
 # define MAXNAMLEN _D_NAME_MAX
 #endif /* MAXNAMLEN */
 
+#ifdef REMOTEHOST
+# include <netdb.h>
+#endif /* REMOTEHOST */
+
 #ifndef MAXHOSTNAMELEN
 # define MAXHOSTNAMELEN	255
 #endif /* MAXHOSTNAMELEN */

@@ -1813,7 +1813,7 @@ filetype(dir, file)
 	    if (S_ISDIR(statb.st_mode))	/* normal Directory */
 		return ('/');
 #endif
-	    if (statb.st_mode & S_IXUSR|S_IXGRP|S_IXOTH)
+	    if (statb.st_mode & (S_IXUSR|S_IXGRP|S_IXOTH))
 		return ('*');
 	}
     }

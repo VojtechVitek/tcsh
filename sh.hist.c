@@ -110,6 +110,7 @@ struct wordent *a0, *b0;
     } 
 }
 
+
 struct Hist *
 enthist(event, lp, docopy, mflg)
     int     event;
@@ -118,9 +119,24 @@ enthist(event, lp, docopy, mflg)
     bool    mflg;
 {
     extern time_t Htime;
-    struct Hist *p, *pp = &Histlist;
+    struct Hist *p = NULL, *pp = &Histlist;
     int n, r;
-    register struct Hist *np = (struct Hist *) xmalloc((size_t) sizeof(*np));
+    register struct Hist *np;
+    struct varent* hist;
+    
+    if ((hist = adrof(STRhistory)) != NULL && hist->vec[1] != NULL) {
+	if (eq(hist->vec[1], STRall)) {
+	    for (p = pp; (p = p->Hnext) != NULL;)
+		if (heq(lp, &(p->Hlex)))
+		    break;
+	}
+	else if (eq(hist->vec[1], STRprev)) {
+	    if (pp->Hnext && heq(lp, &(pp->Hnext->Hlex)))
+		p = pp->Hnext;
+	}
+    }
+
+    np = p ? p : (struct Hist *) xmalloc((size_t) sizeof(*np));
 
     /* Pick up timestamp set by lex() in Htime if reading saved history */
     if (Htime != (time_t) 0) {
@@ -129,6 +145,9 @@ enthist(event, lp, docopy, mflg)
     }
     else
 	(void) time(&(np->Htime));
+
+    if (p == np)
+	return np;
 
     np->Hnum = np->Href = event;
     if (docopy) {

@@ -811,8 +811,10 @@ c_get_histline()
     if (LastChar > InputBuf) {
 	if (LastChar[-1] == '\n')
 	    LastChar--;
+#if 0
 	if (LastChar[-1] == ' ')
 	    LastChar--;
+#endif
 	if (LastChar < InputBuf)
 	    LastChar = InputBuf;
     }
