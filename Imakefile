@@ -31,7 +31,9 @@ ones.  Please send in your fixes and additions! */
 
 # ifdef AlphaArchitecture
 #  define ConfigH decosf1
-#  define MyCflags -std1 -Olimit 2000
+#  if !HasGCC
+#   define MyCflags -std1 -Olimit 2000
+#  endif
 # endif
 
 # if defined(VaxArchitecture) && !defined(UltrixArchitecture)

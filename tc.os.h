@@ -642,4 +642,13 @@ extern int wait3();
 # endif
 #endif /* SYSVREL == 4 */
 
+#if defined(__osf__) && defined(__alpha)
+extern int gethostname __P((char *, int));
+extern void *sbrk __P((ssize_t));
+extern int ioctl __P((int, unsigned long, char *));
+extern pid_t vfork __P((void));
+extern int killpg __P((pid_t, int));
+extern char *getwd __P((char *));
+#endif /* __osf__ && __alpha */
+
 #endif /* _h_tc_os */
