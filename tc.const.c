@@ -84,6 +84,8 @@ Char STROSTYPE[]	= { 'O', 'S', 'T', 'Y', 'P', 'E', '\0' };
 Char STRedit[]		= { 'e', 'd', 'i', 't', '\0' };
 Char STRaddsuffix[]	= { 'a', 'd', 'd', 's', 'u', 'f', 'f', 'i', 'x',
 			    '\0' };
+Char STRcsubstnonl[]	= { 'c', 's', 'u', 'b', 's', 't', 'n', 'o', 'n', 'l',
+			    '\0' };
 Char STRnostat[]	= { 'n', 'o', 's', 't', 'a', 't', '\0' };
 Char STRshell[]		= { 's', 'h', 'e', 'l', 'l', '\0' };
 Char STRtmpsh[]		= { '/', 't', 'm', 'p', '/', 's', 'h', '\0' };

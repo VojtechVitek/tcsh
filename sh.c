@@ -675,6 +675,11 @@ main(argc, argv)
     set(STRaddsuffix, Strsave(STRNULL), VAR_READWRITE);
 
     /*
+     * Compatibility with tcsh >= 6.12 by default
+     */
+    set(STRcsubstnonl, Strsave(STRNULL), VAR_READWRITE);
+    
+    /*
      * Random default kill ring size
      */
     set(STRkillring, SAVE("30"), VAR_READWRITE);
