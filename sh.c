@@ -298,7 +298,6 @@ main(argc, argv)
     gid = getgid();
     euid = geteuid();
     egid = getegid();
-#if defined(OREO) || defined(DT_SUPPORT)
     /*
      * We are a login shell if: 1. we were invoked as -<something> with
      * optional arguments 2. or we were invoked only with the -l flag
@@ -306,16 +305,6 @@ main(argc, argv)
     loginsh = (**tempv == '-') || (argc == 2 &&
 				   tempv[1][0] == '-' && tempv[1][1] == 'l' &&
 						tempv[1][2] == '\0');
-#else
-    /*
-     * We are a login shell if: 1. we were invoked as -<something> and we had
-     * no arguments 2. or we were invoked only with the -l flag
-     */
-    loginsh = (**tempv == '-' && argc == 1) || (argc == 2 &&
-				   tempv[1][0] == '-' && tempv[1][1] == 'l' &&
-						tempv[1][2] == '\0');
-#endif
-
 #ifdef _VMS_POSIX
     /* No better way to find if we are a login shell */
     if (!loginsh) {
