@@ -44,7 +44,7 @@ RCSID("$Id$")
 int
 spell_me(oldname, oldsize, looking)
     Char   *oldname;
-    int     oldsize, looking,
+    int     oldsize, looking;
     Char   *pat;
     int     suf;
 {
