@@ -578,7 +578,7 @@ tw_complete_start(dfd, pat)
     extern struct varent completions;
     SETDIR(dfd)
     tw_vptr_start(&completions);
-    tw_env = STR_environ;
+    tw_env = NULL;
 } /* end tw_complete_start */
 
 

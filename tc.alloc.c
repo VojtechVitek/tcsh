@@ -580,6 +580,6 @@ showall(v, c)
     memtop = (char *) sbrk(0);
     xprintf("Allocated memory from 0x%lx to 0x%lx (%ld).\n",
 	    (unsigned long) membot, (unsigned long) memtop, 
-	    (long) memtop - membot);
+	    (unsigned long) (memtop - membot));
 #endif				/* SYSMALLOC */
 }

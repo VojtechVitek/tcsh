@@ -74,7 +74,7 @@ dinit(hp)
     static char *emsg = "tcsh: Trying to start from \"%s\"\n";
 
     /* Don't believe the login shell home, because it may be a symlink */
-    tcp = (char *) getwd(path);		/* see ngetwd.c for System V version */
+    tcp = (char *) getwd(path);
     if (tcp == NULL || *tcp == '\0') {
 	xprintf("tcsh: %s\n", path);
 	if (hp && *hp) {

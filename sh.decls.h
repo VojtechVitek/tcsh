@@ -164,6 +164,7 @@ extern	void		  wfree		__P((void));
 /*
  * sh.glob.c
  */
+extern	Char	 	 *globequal	__P((Char *, Char *));
 extern	Char		**dobackp	__P((Char *, bool));
 extern	void		  Gcat		__P((Char *, Char *));
 extern	Char		 *globone	__P((Char *, int));
