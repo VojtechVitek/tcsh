@@ -118,7 +118,7 @@ execute(t, wanttty, pipein, pipeout)
 
 #ifdef WINNT
     {
-        if ((varval(STRNTslowexec) != STRNULL) &&
+        if ((varval(STRNTslowexec) == STRNULL) &&
             !t->t_dcdr && !t->t_dcar && !t->t_dflg && !didfds &&
             (intty || intact) && (t->t_dtyp == NODE_COMMAND) &&
 	    !isbfunc(t)) {

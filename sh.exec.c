@@ -452,7 +452,7 @@ texec(sf, st)
 	    else if (nread < 0 && errno != EINTR) {
 #ifdef convex
 		/* need to print error incase the file is migrated */
-		stderror(ERR_SYSTEM, CMDname, strerror(errno));
+		stderror(ERR_SYSTEM, f, strerror(errno));
 #endif
 	    }
 #ifdef _PATH_BSHELL

@@ -467,12 +467,12 @@ main(argc, argv)
 # ifdef convex
     if (uid == 0) {
 	/*  root always has a 15 minute autologout  */
-	set(STRautologout, Strsave(STRrootdefautologout));
+	set(STRautologout, Strsave(STRrootdefautologout), VAR_READWRITE);
     }
     else
 	if (loginsh)
 	    /*  users get autologout set to 0  */
-	    set(STRautologout, Strsave(STR0));
+	    set(STRautologout, Strsave(STR0), VAR_READWRITE);
 # else /* convex */
     if (loginsh || (uid == 0)) {
 	if (*cp) {

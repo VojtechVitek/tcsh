@@ -289,6 +289,11 @@ KEYCMD  CcAltMap[NT_NUM_KEYS];		/* the alternative key map */
 #define	F_NUM_FUNCNAMES	(F_NUM_FNS + 2)
 struct KeyFuncs FuncNames[F_NUM_FUNCNAMES];
 
+#ifdef WINNT
+extern KEYCMD CcEmacsMap[];
+extern KEYCMD CcViMap[];
+extern KEYCMD  CcViCmdMap[];
+#else /* !WINNT*/
 KEYCMD  CcEmacsMap[] = {
 /* keymap table, each index into above tbl; should be 256*sizeof(KEYCMD)
    bytes long */
@@ -548,45 +553,7 @@ KEYCMD  CcEmacsMap[] = {
     F_UNASSIGNED,		/* M-| */
     F_UNASSIGNED,		/* M-} */
     F_UNASSIGNED,		/* M-~ */
-#ifndef WINNT
     F_DELWORDPREV		/* M-^? */
-#else /* WINNT */
-    F_DELWORDPREV,		/* M-^? */
-    F_UNASSIGNED,		/* f-1 */
-    F_UNASSIGNED,		/* f-2 */
-    F_UNASSIGNED,		/* f-3 */
-    F_UNASSIGNED,		/* f-4 */
-    F_UNASSIGNED,		/* f-5 */
-    F_UNASSIGNED,		/* f-6 */
-    F_UNASSIGNED,		/* f-7 */
-    F_UNASSIGNED,		/* f-8 */
-    F_UNASSIGNED,		/* f-9 */
-    F_UNASSIGNED,		/* f-10 */
-    F_UNASSIGNED,		/* f-11 */
-    F_UNASSIGNED,		/* f-12 */
-    F_UNASSIGNED,		/* f-13 */
-    F_UNASSIGNED,		/* f-14 */
-    F_UNASSIGNED,		/* f-15 */
-    F_UNASSIGNED,		/* f-16 */
-    F_UNASSIGNED,		/* f-17 */
-    F_UNASSIGNED,		/* f-18 */
-    F_UNASSIGNED,		/* f-19 */
-    F_UNASSIGNED,		/* f-20 */
-    F_UNASSIGNED,		/* f-21 */
-    F_UNASSIGNED,		/* f-22 */
-    F_UNASSIGNED,		/* f-23 */
-    F_UNASSIGNED,		/* f-24 */
-    F_UNASSIGNED,		/* PgUp */
-    F_UNASSIGNED,		/* PgDn */
-    F_UNASSIGNED,		/* end */
-    F_UNASSIGNED,		/* home */
-    F_UNASSIGNED,		/* LEFT */
-    F_UNASSIGNED,		/* UP */
-    F_UNASSIGNED,		/* RIGHT */
-    F_UNASSIGNED,		/* DOWN */
-    F_UNASSIGNED,		/* INS */
-    F_UNASSIGNED		/* DEL */
-#endif /* WINNT */
 };
 
 /*
@@ -886,45 +853,7 @@ static KEYCMD  CcViMap[] = {
     F_UNASSIGNED,		/* M-| */
     F_UNASSIGNED,		/* M-} */
     F_UNASSIGNED,		/* M-~ */
-#ifndef WINNT
     F_UNASSIGNED		/* M-^? */
-#else /* WINNT */
-    F_UNASSIGNED,		/* M-^? */
-    F_UNASSIGNED,		/* f-1 */
-    F_UNASSIGNED,		/* f-2 */
-    F_UNASSIGNED,		/* f-3 */
-    F_UNASSIGNED,		/* f-4 */
-    F_UNASSIGNED,		/* f-5 */
-    F_UNASSIGNED,		/* f-6 */
-    F_UNASSIGNED,		/* f-7 */
-    F_UNASSIGNED,		/* f-8 */
-    F_UNASSIGNED,		/* f-9 */
-    F_UNASSIGNED,		/* f-10 */
-    F_UNASSIGNED,		/* f-11 */
-    F_UNASSIGNED,		/* f-12 */
-    F_UNASSIGNED,		/* f-13 */
-    F_UNASSIGNED,		/* f-14 */
-    F_UNASSIGNED,		/* f-15 */
-    F_UNASSIGNED,		/* f-16 */
-    F_UNASSIGNED,		/* f-17 */
-    F_UNASSIGNED,		/* f-18 */
-    F_UNASSIGNED,		/* f-19 */
-    F_UNASSIGNED,		/* f-20 */
-    F_UNASSIGNED,		/* f-21 */
-    F_UNASSIGNED,		/* f-22 */
-    F_UNASSIGNED,		/* f-23 */
-    F_UNASSIGNED,		/* f-24 */
-    F_UNASSIGNED,		/* PgUp */
-    F_UNASSIGNED,		/* PgDn */
-    F_UNASSIGNED,		/* end */
-    F_UNASSIGNED,		/* home */
-    F_UNASSIGNED,		/* LEFT */
-    F_UNASSIGNED,		/* UP */
-    F_UNASSIGNED,		/* RIGHT */
-    F_UNASSIGNED,		/* DOWN */
-    F_UNASSIGNED,		/* INS */
-    F_UNASSIGNED		/* DEL */
-#endif /* !WINNT */
 };
 
 KEYCMD  CcViCmdMap[] = {
@@ -1183,46 +1112,9 @@ KEYCMD  CcViCmdMap[] = {
     F_UNASSIGNED,		/* M-| */
     F_UNASSIGNED,		/* M-} */
     F_UNASSIGNED,		/* M-~ */
-#ifndef WINNT
     F_UNASSIGNED		/* M-^? */
-#else /* WINNT */
-    F_UNASSIGNED,		/* M-^? */
-    F_UNASSIGNED,		/* f-1 */
-    F_UNASSIGNED,		/* f-2 */
-    F_UNASSIGNED,		/* f-3 */
-    F_UNASSIGNED,		/* f-4 */
-    F_UNASSIGNED,		/* f-5 */
-    F_UNASSIGNED,		/* f-6 */
-    F_UNASSIGNED,		/* f-7 */
-    F_UNASSIGNED,		/* f-8 */
-    F_UNASSIGNED,		/* f-9 */
-    F_UNASSIGNED,		/* f-10 */
-    F_UNASSIGNED,		/* f-11 */
-    F_UNASSIGNED,		/* f-12 */
-    F_UNASSIGNED,		/* f-13 */
-    F_UNASSIGNED,		/* f-14 */
-    F_UNASSIGNED,		/* f-15 */
-    F_UNASSIGNED,		/* f-16 */
-    F_UNASSIGNED,		/* f-17 */
-    F_UNASSIGNED,		/* f-18 */
-    F_UNASSIGNED,		/* f-19 */
-    F_UNASSIGNED,		/* f-20 */
-    F_UNASSIGNED,		/* f-21 */
-    F_UNASSIGNED,		/* f-22 */
-    F_UNASSIGNED,		/* f-23 */
-    F_UNASSIGNED,		/* f-24 */
-    F_UNASSIGNED,		/* PgUp */
-    F_UNASSIGNED,		/* PgDn */
-    F_UNASSIGNED,		/* end */
-    F_UNASSIGNED,		/* home */
-    F_UNASSIGNED,		/* LEFT */
-    F_UNASSIGNED,		/* UP */
-    F_UNASSIGNED,		/* RIGHT */
-    F_UNASSIGNED,		/* DOWN */
-    F_UNASSIGNED,		/* INS */
-    F_UNASSIGNED		/* DEL */
-#endif /* !WINNT */
 };
+#endif /* WINNT */
 
 
 void

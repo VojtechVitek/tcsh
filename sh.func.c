@@ -1692,7 +1692,7 @@ doumask(v, c)
 #  if defined(BSD4_4) && !defined(__386BSD__)
     typedef quad_t RLIM_TYPE;
 #  else
-#   if defined(SOLARIS2)
+#   if defined(SOLARIS2) || defined(sgi)
      typedef rlim_t RLIM_TYPE;
 #   else
 #    if defined(_SX)
@@ -2017,9 +2017,7 @@ plim(lp, hard)
 	limit -= 0x20000000;
 #  endif /* aiws */
 # else /* BSDLIMIT */
-xprintf("Getting limit %s(%d)\n", lp->limname,lp->limconst);
     (void) getrlimit(lp->limconst, &rlim);
-xprintf("Hard: %lld, Soft: %lld\n", rlim.rlim_max, rlim.rlim_cur);
     limit = hard ? rlim.rlim_max : rlim.rlim_cur;
 # endif /* BSDLIMIT */
 
@@ -2044,12 +2042,7 @@ xprintf("Hard: %lld, Soft: %lld\n", rlim.rlim_max, rlim.rlim_cur);
 	psecs((long) limit);
     else
 # endif /* RLIMIT_CPU */
-# if defined(_SX)
-	xprintf("(%ld , %ld)", rlim.rlim_max, rlim.rlim_cur);
-	xprintf("%ld / %d %s", limit,  div, lp->limscale);
-#else	/* _SX */
 	xprintf("%ld %s", (long) (limit / div), lp->limscale);
-#endif	/* _SX */
     xputchar('\n');
 }
 

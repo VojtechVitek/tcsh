@@ -742,18 +742,30 @@ filetest(cp, vp, ignore)
 
 #ifdef S_IFLNK
 	    if (tolower(*ft) == 'l') {
-		if (!lst && TCSH_LSTAT(short2str(ep), lst = &lstb) == -1) {
-		    xfree((ptr_t) ep);
-		    return (Strsave(errval));
+		/* 
+		 * avoid convex compiler bug.
+		 */
+		if (!lst) {
+		    lst = &lstb;
+		    if (TCSH_LSTAT(short2str(ep), lst) == -1) {
+			xfree((ptr_t) ep);
+			return (Strsave(errval));
+		    }
 		}
 		if (*ft == 'L')
 		    st = lst;
 	    }
 	    else 
 #endif /* S_IFLNK */
-		if (!st && TCSH_STAT(short2str(ep), st = &stb) == -1) {
-		    xfree((ptr_t) ep);
-		    return (Strsave(errval));
+		/* 
+		 * avoid convex compiler bug.
+		 */
+		if (!st) {
+		    st = &stb;
+		    if (TCSH_STAT(short2str(ep), st) == -1) {
+			xfree((ptr_t) ep);
+			return (Strsave(errval));
+		    }
 		}
 
 	    switch (*ft) {

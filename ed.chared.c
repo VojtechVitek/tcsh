@@ -169,6 +169,8 @@ c_delafter(num)
 	    for (wkcp = Cursor ; wkcp < Cursor + num; wkcp++) {
 		if (extdel == 0)
 		    extdel = Ismbyte1(*wkcp); /* check to 1st. byte */
+		else
+		    extdel = 0;	/* if 2nd. byte, force set to 0 */
 	    }
 	}
 #endif
@@ -252,6 +254,8 @@ c_delbefore(num)		/* delete before dot, with bounds checking */
 	    for (wkcp = InputBuf; wkcp < nowcur; wkcp++) {
 		if(extdel == 0)
 		    extdel = Ismbyte1(*wkcp); /* check to 1st. byte */
+		else
+		    extdel = 0;	/* if 2nd. byte, force set to 0 */
 	    }
 	    if (extdel && Ismbyte2(delc)) {
 		if( VImode ) {

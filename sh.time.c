@@ -71,8 +71,8 @@ settimes()
 #ifdef BSDTIMES
     struct sysrusage ruch;
 #ifdef convex
-    memset(ru0, 0, sizeof(ru0));
-    memset(ruch, 0, sizeof(ruch));
+    memset(&ru0, 0, sizeof(ru0));
+    memset(&ruch, 0, sizeof(ruch));
 #endif /* convex */
 
     (void) gettimeofday(&time0,	NULL);
@@ -114,8 +114,8 @@ dotime(v, c)
     timeval_t timedol;
     struct sysrusage ru1, ruch;
 #ifdef convex
-    memset(ru1, 0, sizeof(ru1));
-    memset(ruch, 0, sizeof(ruch));
+    memset(&ru1, 0, sizeof(ru1));
+    memset(&ruch, 0, sizeof(ruch));
 #endif /* convex */
 
     (void) getrusage(RUSAGE_SELF, (struct rusage *) &ru1);
