@@ -457,7 +457,7 @@ prusage(bs, es,	e, b)
 		    sysinfo.cpu_count =	1;
 		    i =	(ms == 0) ? 0 :	(t * 1000.0 / (ms * sysinfo.cpu_count));
 #else /* convex	*/
-		i = (ms	== 0) ?	0 : (t * 1000.0 / ms);
+		i = (ms	== 0) ?	0 : (long)(t * 1000.0 / ms);
 #endif /* convex */
 		xprintf("%ld.%01ld%%", i / 10, i % 10);	/* nn.n% */
 		break;
