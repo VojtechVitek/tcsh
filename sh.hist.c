@@ -35,12 +35,10 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
+#include "tc.h"
 
 extern bool histvalid;
 extern Char histline[];
@@ -126,9 +124,11 @@ hfree(hp)
     xfree((ptr_t) hp);
 }
 
+/*ARGSUSED*/
 void
-dohist(vp)
+dohist(vp, c)
     Char  **vp;
+    struct command *c;
 {
     int     n, rflg = 0, hflg = 0, tflg = 0;
 

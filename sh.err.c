@@ -36,10 +36,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #define _h_tc_err		/* Don't redefine the errors	 */
 #include "sh.h"

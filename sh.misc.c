@@ -35,10 +35,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 
@@ -303,7 +300,7 @@ dmove(i, j)
 
     if (i == j || i < 0)
 	return (i);
-#ifdef DUP2
+#ifdef HAVEDUP2
     if (j >= 0) {
 	(void) dup2(i, j);
 	if (j != i)
@@ -324,7 +321,7 @@ dcopy(i, j)
 
     if (i == j || i < 0 || j < 0 && i > 2)
 	return (i);
-#ifdef DUP2
+#ifdef HAVEDUP2
     if (j >= 0) {
 	(void) dup2(i, j);
 	return (j);

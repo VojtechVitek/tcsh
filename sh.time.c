@@ -35,10 +35,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 #if defined(sun) && ! defined(MACH)
@@ -98,8 +95,11 @@ settimes()
  * dotime is only called if it is truly a builtin function and not a
  * prefix to another command
  */
+/*ARGSUSED*/
 void
-dotime()
+dotime(v, c)
+    Char **v;
+    struct command *c;
 {
 #ifdef BSDTIMES
     timeval_t timedol;
@@ -140,9 +140,11 @@ dotime()
 /*
  * donice is only called when it on the line by itself or with a +- value
  */
+/*ARGSUSED*/
 void
-donice(v)
+donice(v, c)
     register Char **v;
+    struct command *c;
 {
     register Char *cp;
     int     nval = 0;

@@ -43,10 +43,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 
 #include "sh.h"
@@ -189,7 +186,7 @@ malloc(nbytes)
 #ifndef DEBUG
 	stderror(ERR_NOMEM);
 #else
-	showall();
+	showall(NULL, NULL);
 	xprintf("nbytes=%d: Out of memory\n", nbytes);
 	abort();
 #endif
@@ -544,8 +541,11 @@ Free(p)
  * for each size category, the second showing the number of mallocs -
  * frees for each size category.
  */
+/*ARGSUSED*/
 void
-showall()
+showall(v, c)
+    Char **v;
+    struct command *c;
 {
 #ifndef SYSMALLOC
     register int i, j;

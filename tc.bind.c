@@ -35,10 +35,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 #include "ed.h"
@@ -340,9 +337,11 @@ parsekey(sp)
 }
 
 
+/*ARGSUSED*/
 void
-dobindkey(v)
+dobindkey(v, c)
     Char  **v;
+    struct command *c;
 {
     KEYCMD *map;
     int     string, no, remove;
@@ -738,9 +737,11 @@ list_functions()
     }
 }
 
+/*ARGSUSED*/
 void
-dobind(v)
+dobind(v, dummy)
     register Char **v;
+    struct command *dummy;
 {
     register int c;
     register struct KeyFuncs *fp;

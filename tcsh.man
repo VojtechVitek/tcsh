@@ -1705,6 +1705,7 @@ The current possible values are:
 \fIhp9000s800\fR	an HP 9000, series 800, running hpux
 \fIhp\fR			an HP, running hpux
 \fIi386-mach\fR		an Intel 386, running mach
+\fIiris3d\fR		a Silicon Graphics Iris 3000
 \fIiris4d\fR		a Silicon Graphics Iris 4D
 \fIm88k\fR			an mc88000 CPU machine
 \fImac2\fR			an Apple Computer Macintosh II, running AUX

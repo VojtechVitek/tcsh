@@ -193,8 +193,6 @@ extern char *sbrk();
  *** BSD systems, pre and post 4.3
  ***/
 #ifdef BSD
-extern uid_t getuid(), geteuid();
-extern gid_t getgid(), getegid();
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
@@ -291,6 +289,27 @@ extern gid_t getgid(), getegid();
 #  define _SIZE_T
 # endif /* _SIZE_T */
 #endif	/* masscomp */
+
+/***
+ *** Encore multimax running umax 4.2
+ ***/
+#ifdef	ns32000
+# ifdef __TYPES_DOT_H__
+#  ifndef _SIZE_T
+#   define _SIZE_T
+#  endif /* _SIZE_T */
+# endif /* __TYPES_DOT_H__ */
+#endif	/* ns32000 */
+
+/***
+ *** Silicon Graphics IRIS 3000
+ ***
+ ***/
+#ifdef IRIS3D
+# ifndef _SIZE_T
+#  define _SIZE_T
+# endif /* _SIZE_T */
+#endif /* IRIS3D */
 
 /***
  *** Catch all for non POSIX systems.

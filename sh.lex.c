@@ -35,10 +35,7 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 #include "ed.h"
@@ -628,7 +625,7 @@ static int quesarg;
 
 static void
 getexcl(sc)
-    Char    sc;
+    int    sc;
 {
     register struct wordent *hp, *ip;
     int     left, right, dol;
@@ -1260,7 +1257,7 @@ setexclp(cp)
 
 void
 unreadc(c)
-    Char    c;
+    int    c;
 {
     peekread = c;
 }

@@ -117,4 +117,19 @@
  */
 #undef SYSMALLOC
 
+
+/*
+ * RCSID	This defines if we want rcs strings in the binary or not
+ *
+ */
+#if !defined(lint) && !defined(SABER)
+# ifndef __GNUC__
+#  define RCSID(id) static char *rcsid = (id);
+# else
+#  define RCSID(id) static char *rcsid() { return (id); }
+# endif /* !__GNUC__ */
+#else
+# define RCSID(id)	/* Nothing */
+#endif /* !lint && !SABER */
+
 #endif /* _h_config_f */

@@ -37,13 +37,11 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 #include "ed.h"
+#include "tc.h"
 
 extern int just_signaled;
 
@@ -63,9 +61,11 @@ sched_next()
     return ((time_t) - 1);
 }
 
+/*ARGSUSED*/
 void
-dosched(v)
+dosched(v, c)
     register Char **v;
+    struct command *c;
 {
     register struct sched_event *tp, *tp1, *tp2;
     time_t  cur_time;

@@ -38,13 +38,11 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
 #include "tw.h"
+#include "tc.h"
 
 
 static int f = -1;
@@ -144,6 +142,9 @@ static  sigret_t
 cleanf(snum)
 int snum;
 {
+#if (SVID > 0) && (SVID < 3)
+    (void) sigset(SIGINT, cleanf);
+#endif /* SVID > 0 && SVID < 3 */
     if (f != -1)
 	(void) close(f);
     f = -1;

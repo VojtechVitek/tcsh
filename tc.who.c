@@ -35,12 +35,10 @@
  * SUCH DAMAGE.
  */
 #include "config.h"
-#ifndef lint
-static char *rcsid() 
-    { return "$Id$"; }
-#endif
+RCSID("$Id$")
 
 #include "sh.h"
+#include "tc.h"
 
 /*
  * kfk 26 Jan 1984 - for login watch functions.
@@ -560,8 +558,9 @@ print_who(wp)
 
 void
 /*ARGSUSED*/
-dolog(v)
+dolog(v, c)
 Char **v;
+struct command *c;
 {
     struct who *wp;
     struct varent *vp;

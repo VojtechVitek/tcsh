@@ -57,7 +57,7 @@ extern int errno;
 #define KEYCMD   unsigned char	/* size needed to index into CcFuncTbl */
  /* Must be unsigned 		       */
 
-typedef CCRETVAL(*PFCmd) ();	/* pointer to function returning CCRETVAL */
+typedef CCRETVAL(*PFCmd) __P((int));	/* pointer to function returning CCRETVAL */
 
 struct KeyFuncs {		/* for the "bind" shell command */
     char   *name;		/* function name for bind command */

@@ -76,6 +76,14 @@ struct ucred {
 # endif	/* POSIX */
 #endif /* hpux */
 
+/*
+ * ISC does not define CSUSP
+ */
+#ifdef ISC
+# ifndef CSUSP
+#  define CSUSP 032
+# endif	/* CSUSP */
+#endif /* ISC */
 #ifdef HYPERCUBE
 /*
  * for struct winsiz
@@ -263,9 +271,9 @@ struct ucred {
 #endif /* POSIX */
 
 
-#if SVID > 0 && !defined(OREO) && !defined(IRIS4D)
+#if SVID > 0 && !defined(OREO) && !defined(sgi)
 # define NEEDgetwd
-#endif /* SVID > 0 && !OREO && !IRIS4D */
+#endif /* SVID > 0 && !OREO && !sgi */
 
 #ifndef S_IFLNK
 # define lstat stat
@@ -325,6 +333,11 @@ extern int killpg();
 # ifndef lstat
 extern int lstat();
 # endif	/* lstat */
+
+#ifdef BSD
+extern uid_t getuid(), geteuid();
+extern gid_t getgid(), getegid();
+#endif /* BSD */
 
 # ifdef SYSMALLOC
 extern memalign_t malloc();
