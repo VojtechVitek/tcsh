@@ -252,7 +252,7 @@ main(argc, argv)
 		t = s;
 	}
 #endif /* WINNT */
-	t = t ? ++t : argv[0];
+	t = t ? t + 1 : argv[0];
 	if (*t == '-') t++;
 	progname = strsave((t && *t) ? t : tcshstr);    /* never want a null */
 	tcsh = strcmp(progname, tcshstr) == 0;
