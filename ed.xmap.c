@@ -824,7 +824,7 @@ unparsestring(str, buf, sep)
 	    *b++ = (unsigned char) p;
 	}
 	else if (p == ' ' || (Isprint(p) && !Isspace(p)))
-	    b += one_wctomb(b, p & CHAR);
+	    b += one_wctomb((char *)b, p & CHAR);
 	else {
 	    *b++ = '\\';
 	    *b++ = ((p >> 6) & 7) + '0';
