@@ -453,7 +453,7 @@ globexpand(v)
     if ( symlinks == SYM_EXPAND )
 	for (s = *vl; s; s = *++vl) {
 	    char *path = short2str(s);
-	    if (strstr(path,"..") != NULL && access(path, F_OK) == 0) {
+	    if (strstr(path, "..") != NULL && access(path, F_OK) == 0) {
 		*vl = dnormalize(s, 1);
 		xfree((ptr_t) s);
 	    }
