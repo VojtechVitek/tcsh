@@ -622,7 +622,7 @@ exp6(vp, ignore)
 #ifdef EDEBUG
     etracc("exp6 default", cp, vp);
 #endif /* EDEBUG */
-    return (ignore & NOGLOB ? Strsave(cp) : globone(cp, G_ERROR));
+    return (ignore & NOGLOB ? Strsave(cp) : globone(cp, G_APPEND));
 }
 
 
@@ -692,7 +692,7 @@ filetest(cp, vp, ignore)
     dp = *(*vp)++;
     if (ignore & IGNORE)
 	return (Strsave(STRNULL));
-    ep = globone(dp, G_ERROR);
+    ep = globone(dp, G_APPEND);
     ft = &cp[1];
     do 
 	switch (*ft) {
