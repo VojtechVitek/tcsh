@@ -180,4 +180,4 @@ extern int NLSClassify __P((NLSChar, int));
 #define NLSCLASS_ILLEGAL3	-6
 #define NLSCLASS_ILLEGAL4	-7
 
-#define NLSCLASS_ILLEGAL_SIZE(x) (-(x) - (- NLSCLASS_ILLEGAL - 1))
+#define NLSCLASS_ILLEGAL_SIZE(x) (-(x) - (-(NLSCLASS_ILLEGAL) - 1))
