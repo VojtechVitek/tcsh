@@ -81,7 +81,7 @@ dinit(hp)
 	    if (chdir(tcp) == -1)
 		cp = NULL;
 	    else
-		cp = hp;
+		cp = Strsave(hp);
 	}
 	else
 	    cp = NULL;
@@ -104,7 +104,7 @@ dinit(hp)
 	    stat(tcp, &swd) != -1 && stat(short2str(hp), &shp) != -1 &&
 	    DEV_DEV_COMPARE(swd.st_dev, shp.st_dev)  &&
 		swd.st_ino == shp.st_ino)
-	    cp = hp;
+	    cp = Strsave(hp);
 	else {
 	    char   *cwd;
 
@@ -125,7 +125,7 @@ dinit(hp)
     }
 
     dp = (struct directory *) xcalloc(sizeof(struct directory), 1);
-    dp->di_name = Strsave(cp);
+    dp->di_name = cp;
     dp->di_count = 0;
     dhead.di_next = dhead.di_prev = dp;
     dp->di_next = dp->di_prev = &dhead;

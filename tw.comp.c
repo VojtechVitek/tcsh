@@ -321,6 +321,9 @@ tw_result(act, pat)
     case 's':
 	looking = TW_SHELLVAR;
 	break;
+    case 't':
+	looking = TW_TEXT;
+	break;
     case 'v':
 	looking = TW_VARIABLE;
 	break;

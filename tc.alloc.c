@@ -49,6 +49,8 @@ RCSID("$Id$")
 static char   *memtop = NULL;		/* PWP: top of current memory */
 static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
 
+int dont_free = 0;
+
 #ifndef SYSMALLOC
 
 #undef RCHECK
@@ -60,7 +62,6 @@ static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
  * pointers most of the time, in cases where we know we are going to get
  * a bad pointer, we'd rather leak.
  */
-int dont_free = 0;
 
 #ifndef NULL
 #define	NULL 0
@@ -529,7 +530,7 @@ void
 sfree(p)
     ptr_t   p;
 {
-    if (p)
+    if (p && !dont_free)
 	free(p);
 }
 

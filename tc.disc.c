@@ -47,7 +47,7 @@ RCSID("$Id$")
 
 static bool add_discipline = 0;	/* Did we add a line discipline	 */
 
-#if defined(IRIS4D) || defined(OREO)
+#if defined(IRIS4D) || defined(OREO) || defined(sonyrisc)
 # define HAVE_DISC
 # ifndef POSIX
 static struct termio otermiob;
@@ -79,7 +79,7 @@ int     f;
 
     if (ioctl(f, TCGETA, (ioctl_t) & termiob) == 0) {
 	otermiob = termiob;
-#if SYSVREL < 4
+#if (SYSVREL < 4) || !defined(IRIS4D)
 	if (termiob.c_line != NTTYDISC || termiob.c_cc[VSWTCH] == 0) { /*}*/
 	    termiob.c_line = NTTYDISC;
 #else

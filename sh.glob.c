@@ -597,7 +597,7 @@ globall(v)
 
     if (!noglob && (gflg & G_GLOB)) {
 	vl = libglob(vo);
-	if ((gflg & G_CSH) && vl != vo)
+	if (vl != vo)
 	    blkfree(vo);
     }
     else

@@ -447,14 +447,18 @@ typedef char * caddr_t;
 #endif /* convex || __convex__ */
 
 /*
- * Alliant FX-2800
+ * Alliant FX-2800/FX-80
  */
-#if defined(i860) && defined(alliant)                 /* FX-2800 */
+#ifdef alliant
 # ifndef _PID_T
 #  define _PID_T
-   typedef short pid_t;
 # endif /* _PID_T */
-#endif       /* FX-2800 */
+# ifdef mc68000
+   typedef int   pid_t; /* FX-80 */
+# else
+   typedef short pid_t;	/* FX-2800 */
+# endif 
+#endif /* alliant */
 
 /*
  * DNIX

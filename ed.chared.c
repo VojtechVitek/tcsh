@@ -2787,17 +2787,18 @@ e_tty_int(c)
 /*ARGSUSED*/
 CCRETVAL
 e_stuff_char(c)
-     char c;
+     int c;
 {
 #ifdef TIOCSTI
      extern int Tty_raw_mode;
      int was_raw = Tty_raw_mode;
+     char ch = c;
 
      if (was_raw)
          Cookedmode();
 
      write(SHIN, "\n", 1);
-     (void) ioctl(SHIN, TIOCSTI, (ioctl_t) & c);
+     (void) ioctl(SHIN, TIOCSTI, (ioctl_t) &ch);
 
      if (was_raw)
          Rawmode();

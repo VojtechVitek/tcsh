@@ -187,8 +187,7 @@ if ($?complete) then
     complete chown	c/-/"(f R)"/ n/-*/u/           p/1/u/           n/*/f/
 
     complete cat	c/-/"(b e n s t u v)"/ n/*/f/
-    complete mv		c/-/"(f i)"/ n/-*/f/ N/-*/x:'<destination>'/ \
-			p/1/f/ p/2/x:'<destination>'/
+    complete mv		c/-/"(f i)"/ n/-*/f/ N/-*/d/ p/1/f/ p/2/d/ n/*/f/
     complete cp		c/-/"(i p r)"/ n/-*r*/d/ n/-*/f/ N/-*/d/ \
 			p/1/f/ p/2/d/ n/*/f/
 

@@ -173,11 +173,12 @@ main(argc, argv)
 #ifdef _PATH_BSHELL
     STR_BSHELL = SAVE(_PATH_BSHELL);
 #endif
-#ifdef _PATH_CSHELL
-    STR_SHELLPATH = SAVE(_PATH_CSHELL);
-#endif
 #ifdef _PATH_TCSHELL
     STR_SHELLPATH = SAVE(_PATH_TCSHELL);
+#else
+# ifdef _PATH_CSHELL
+    STR_SHELLPATH = SAVE(_PATH_CSHELL);
+# endif
 #endif
     STR_environ = blk2short(environ);
     environ = short2blk(STR_environ);	/* So that we can free it */

@@ -996,7 +996,7 @@ prepend(dirname, pathname)
 
 # else /* ! hp9000s500 */
 
-#if (SYSVREL != 0 && !defined(d_fileno)) !! defined(_VMS_POSIX)
+#if (SYSVREL != 0 && !defined(d_fileno)) || defined(_VMS_POSIX)
 # define d_fileno d_ino
 #endif
 

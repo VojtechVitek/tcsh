@@ -110,7 +110,11 @@
  *		This can be much slower and no memory statistics will be
  *		provided.
  */
-#undef SYSMALLOC
+#ifdef PURIFY
+# define SYSMALLOC
+#else
+# undef SYSMALLOC
+#endif
 
 /*
  * RCSID	This defines if we want rcs strings in the binary or not
