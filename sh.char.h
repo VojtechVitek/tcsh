@@ -38,7 +38,7 @@
 #else
 # include <ctype.h>
 # ifdef WIDE_STRINGS
-#  include <wctype.h>
+#  include <wchar.h>
 # endif
 #endif
 
