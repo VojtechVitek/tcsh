@@ -357,24 +357,25 @@ phist(hp, hflg)
 
 
 void
-fmthist(fmt, ptr, buf)
+fmthist(fmt, ptr, buf, bufsiz)
     int fmt;
     ptr_t ptr;
     char *buf;
+    size_t bufsiz;
 {
     struct Hist *hp = (struct Hist *) ptr;
     switch (fmt) {
     case 'h':
-	(void) xsprintf(buf, "%6d", hp->Hnum);
+	(void) xsnprintf(buf, bufsiz, "%6d", hp->Hnum);
 	break;
     case 'R':
 	if (HistLit && hp->histline)
-	    (void) xsprintf(buf, "%S", hp->histline);
+	    (void) xsnprintf(buf, bufsiz, "%S", hp->histline);
 	else {
 	    Char ibuf[INBUFSIZE], *ip;
 	    char *p;
 	    (void) sprlex(ibuf, sizeof(ibuf), &hp->Hlex);
-	    for (p = buf, ip = ibuf; (*p++ = *ip++) != '\0'; )
+	    for (p = buf, ip = ibuf; (*p++ = (CHAR & *ip++)) != '\0'; )
 		continue;
 	}
 	break;

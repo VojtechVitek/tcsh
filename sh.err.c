@@ -191,7 +191,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_INVALID	133
 #define NO_ERRORS	133
 
-static char *elst[NO_ERRORS];
+static char *elst[NO_ERRORS] IZERO_STRUCT;
 
 /*
  * Init the elst depending on the locale
@@ -389,7 +389,7 @@ seterror(va_alist)
 
 	if (id >= sizeof(elst) / sizeof(elst[0]))
 	    id = ERR_INVALID;
-	xvsprintf(berr, elst[id], va);
+	xvsnprintf(berr, sizeof(berr), elst[id], va);
 	va_end(va);
 
 	seterr = strsave(berr);

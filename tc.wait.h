@@ -68,7 +68,9 @@
 #  undef NEEDwait
 #  include "mi.wait.h"
 # else
-#  include <sys/wait.h>
+#  ifndef WINNT
+#   include <sys/wait.h>
+#  endif /* WINNT */
 # endif /* _MINIX */
 #endif /* SYSVREL == 0 || linux */
 

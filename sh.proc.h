@@ -119,16 +119,16 @@ struct process {
 #define	JOBDIR		0100	/* print job's dir if not the same */
 #define	AREASON		0200
 
-EXTERN struct process proclist;	/* list head of all processes */
-EXTERN bool    pnoprocesses;	/* pchild found nothing to wait for */
+EXTERN struct process proclist IZERO_STRUCT;/* list head of all processes */
+EXTERN bool    pnoprocesses IZERO;	/* pchild found nothing to wait for */
 
-EXTERN struct process *pholdjob;/* one level stack of current jobs */
+EXTERN struct process *pholdjob IZERO;	/* one level stack of current jobs */
 
-EXTERN struct process *pcurrjob;/* current job */
-EXTERN struct process *pcurrent;/* current job in table */
-EXTERN struct process *pprevious;/* previous job in table */
+EXTERN struct process *pcurrjob IZERO;	/* current job */
+EXTERN struct process *pcurrent IZERO;	/* current job in table */
+EXTERN struct process *pprevious IZERO;	/* previous job in table */
 
-EXTERN int   pmaxindex;		/* current maximum job index */
+EXTERN int   pmaxindex IZERO;		/* current maximum job index */
 
 #ifndef BSDTIMES
 EXTERN bool    timesdone;	/* shtimes buffer full ? */

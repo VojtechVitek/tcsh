@@ -1564,30 +1564,36 @@ reread:
 #endif /* BSDJOBS */
 	c = bgetc();
 	if (c < 0) {
-#ifndef POSIX
-# ifdef TERMIO
+#ifndef WINNT
+# ifndef POSIX
+#  ifdef TERMIO
 	    struct termio tty;
-# else /* SGTTYB */
+#  else /* SGTTYB */
 	    struct sgttyb tty;
-# endif /* TERMIO */
-#else /* POSIX */
+#  endif /* TERMIO */
+# else /* POSIX */
 	    struct termios tty;
-#endif /* POSIX */
+# endif /* POSIX */
+#endif /* !WINNT */
 	    if (wanteof)
 		return (-1);
 	    /* was isatty but raw with ignoreeof yields problems */
-#ifndef POSIX
-# ifdef TERMIO
+#ifndef WINNT
+# ifndef POSIX
+#  ifdef TERMIO
 	    if (ioctl(SHIN, TCGETA, (ioctl_t) & tty) == 0 &&
 		(tty.c_lflag & ICANON))
-# else /* GSTTYB */
+#  else /* GSTTYB */
 	    if (ioctl(SHIN, TIOCGETP, (ioctl_t) & tty) == 0 &&
 		(tty.sg_flags & RAW) == 0)
-# endif /* TERMIO */
-#else /* POSIX */
+#  endif /* TERMIO */
+# else /* POSIX */
 	    if (tcgetattr(SHIN, &tty) == 0 &&
 		(tty.c_lflag & ICANON))
-#endif /* POSIX */
+# endif /* POSIX */
+#else /* WINNT */
+	    if (isatty(SHIN))
+#endif /* !WINNT */
 	    {
 		/* was 'short' for FILEC */
 #ifdef BSDJOBS
@@ -1711,8 +1717,15 @@ bgetc()
 		fbuf[0][i] = (unsigned char) tbuf[i];
 	    feobp += c;
 	}
+#ifndef NEW_CRLF
 	c = fbuf[0][fseekp - fbobp];
 	fseekp++;
+#else
+	do {
+	    c = fbuf[0][fseekp - fbobp];
+	    fseekp++;
+	} while(c == '\r');
+#endif /* NEW_CRLF */
 	return (c);
     }
 
@@ -1750,8 +1763,15 @@ bgetc()
 	if (c == 0 || (c < 0 && fixio(SHIN, errno) == -1))
 	    return (-1);
     }
+#ifndef NEW_CRLF
     c = fbuf[(int) fseekp / BUFSIZE][(int) fseekp % BUFSIZE];
     fseekp++;
+#else
+    do {
+	c = fbuf[(int) fseekp / BUFSIZE][(int) fseekp % BUFSIZE];
+	fseekp++;
+    } while(c == '\r');
+#endif
     return (c);
 }
 

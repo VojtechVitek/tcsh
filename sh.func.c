@@ -332,6 +332,9 @@ dologin(v, c)
     struct command *c;
 {
     USE(c);
+#ifdef WINNT
+    USE(v);
+#else /* !WINNT */
     islogin();
     rechist(NULL, adrof(STRsavehist) != NULL);
     (void) signal(SIGTERM, parterm);
@@ -339,6 +342,7 @@ dologin(v, c)
     (void) execl(_PATH_USRBIN_LOGIN, "login", short2str(v[1]), NULL);
     untty();
     xexit(1);
+#endif /* !WINNT */
 }
 
 
@@ -1346,7 +1350,13 @@ dosetenv(v, c)
 	xfree((ptr_t) lp);
 	return;
     }
-
+#ifdef WINNT
+    if (eq(vp, STRtcshlang)) {
+	nlsinit();
+	xfree((ptr_t) lp);
+	return;
+    }
+#endif /* WINNT */
     if (eq(vp, STRKTERM)) {
 	char *t;
 	set(STRterm, quote(lp), VAR_READWRITE);	/* lp memory used here */
@@ -1503,6 +1513,12 @@ dounsetenv(v, c)
 			ed_InitNLSMaps();
 
 		}
+#ifdef WINNT
+		else if (eq(name,(STRtcshlang))) {
+		    nls_dll_unload();
+		    nlsinit();
+		}
+#endif /* WINNT */
 		/*
 		 * start again cause the environment changes
 		 */
@@ -1536,6 +1552,9 @@ tsetenv(name, val)
     Char   *blk[2];
     Char  **oep = ep;
 
+#ifdef WINNT
+	nt_set_env(name,val);
+#endif /* WINNT */
     for (; *ep; ep++) {
 	for (cp = name, dp = *ep; *cp && (*cp & TRIM) == *dp; cp++, dp++)
 	    continue;
@@ -2281,6 +2300,9 @@ nlsinit()
 #ifdef NLS_CATALOGS
     catd = catopen("tcsh", MCLoadBySet);
 #endif
+#ifdef WINNT
+    nls_dll_init();
+#endif /* WINNT */
     errinit();		/* init the errorlist in correct locale */
     mesginit();		/* init the messages for signals */
     dateinit();		/* init the messages for dates */

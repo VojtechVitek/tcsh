@@ -34,6 +34,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+#ifndef WINNT
 #include "sh.h"
 
 RCSID("$Id$")
@@ -1115,3 +1116,12 @@ tty_printchar(s)
     xputchar('\n');
 }
 #endif /* DEBUG_TTY */
+#else /* WINNT */
+int
+tty_cooked_mode(td)
+    void *td;
+{
+    extern int do_nt_check_cooked_mode(void);
+    return do_nt_check_cooked_mode()
+}
+#endif /* !WINNT */

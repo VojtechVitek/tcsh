@@ -51,6 +51,13 @@ static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
 
 int dont_free = 0;
 
+#ifdef WINNT
+# define malloc		fmalloc
+# define free		ffree
+# define calloc		fcalloc
+# define realloc	frealloc
+#endif /* WINNT */
+
 #ifndef SYSMALLOC
 
 #undef RCHECK

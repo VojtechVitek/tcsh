@@ -190,7 +190,7 @@ extern	void		  nlsinit	__P((void));
 extern	void	 	  dohist	__P((Char **, struct command *));
 extern  struct Hist 	 *enthist	__P((int, struct wordent *, bool, bool));
 extern	void	 	  savehist	__P((struct wordent *, bool));
-extern	void		  fmthist	__P((int, ptr_t, char *));
+extern	void		  fmthist	__P((int, ptr_t, char *, size_t));
 extern	void		  rechist	__P((Char *, int));
 extern	void		  loadhist	__P((Char *, bool));
 

@@ -141,13 +141,14 @@ fix_version()
 	ostype = STRunknown;
 
 
-    (void) xsprintf(version,
+    (void) xsnprintf(version, sizeof(version),
 "tcsh %d.%.2d.%.2d (%s) %s (%S-%S-%S) options %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
 	     REV, VERS, PATCHLEVEL, ORIGIN, DATE, machtype, vendor, ostype,
 	     SSSTR, NLSSTR, LFSTR, DLSTR, VISTR, DTRSTR, BYESTR,
 	     ALSTR, KANSTR, SMSTR, HBSTR, NGSTR, RHSTR, AFSSTR, NDSTR,
 	     LOCALSTR);
     set(STRversion, SAVE(version), VAR_READWRITE);
-    (void) xsprintf(version, "%d.%.2d.%.2d", REV, VERS, PATCHLEVEL);
+    (void) xsnprintf(version, sizeof(version), "%d.%.2d.%.2d",
+		     REV, VERS, PATCHLEVEL);
     set(STRtcsh, SAVE(version), VAR_READWRITE);
 }
