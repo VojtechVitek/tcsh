@@ -41,6 +41,8 @@
 #include "tc.sig.h"
 #include "tc.decls.h"
 
+extern int tlength;
+
 #define FMT_PROMPT	0
 #define FMT_WHO		1
 #define FMT_HISTORY	2

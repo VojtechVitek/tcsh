@@ -61,10 +61,10 @@ sched_next()
 /*ARGSUSED*/
 void
 dosched(v, c)
-    register Char **v;
+    Char **v;
     struct command *c;
 {
-    register struct sched_event *tp, *tp1, *tp2;
+    struct sched_event *tp, *tp1, *tp2;
     time_t  cur_time;
     int     count, hours, minutes, dif_hour, dif_min;
     Char   *cp;
@@ -93,7 +93,7 @@ dosched(v, c)
 	    tprintf(FMT_SCHED, sbuf, fmt, sizeof(sbuf), 
 		    short2str(buf), tp->t_when, (ptr_t) &count);
 	    for (cp = sbuf; *cp;)
-		xputchar(*cp++);
+		xputwchar(*cp++);
 	}
 	return;
     }
@@ -200,11 +200,10 @@ sched_run(n)
     int n;
 {
     time_t   cur_time;
-    register struct sched_event *tp, *tp1;
+    struct sched_event *tp, *tp1;
     struct wordent cmd, *nextword, *lastword;
     struct command *t;
     Char  **v, *cp;
-    extern Char GettingInput;
 #ifdef BSDSIGS
     sigmask_t omask;
 

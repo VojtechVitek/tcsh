@@ -1819,7 +1819,7 @@ bool    NoNLSRebind;
 void
 ed_InitNLSMaps()
 {
-    register int i;
+    int i;
 
     if (AsciiOnly)
 	return;
@@ -1876,7 +1876,7 @@ ed_InitMetaBindings()
 void
 ed_InitVIMaps()
 {
-    register int i;
+    int i;
 
     VImode = 1;
     ResetXmap();
@@ -1948,7 +1948,7 @@ ed_InitMaps()
     {
 	KEYCMD temp[NT_NUM_KEYS];
 	static KEYCMD *const list[3] = { CcEmacsMap, CcViMap, CcViCmdMap };
-	register int i, table;
+	int i, table;
 
 	for (table=0; table<3; ++table)
 	{

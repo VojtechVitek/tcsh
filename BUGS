@@ -316,7 +316,7 @@ Subject: EXEC doesn't close the file descriptors
      */
     main()
     {
-    register int i;
+    int i;
 
     for( i=0; i < 20; i++ ){
         printf("%d = %d\n", i, isatty(i) );

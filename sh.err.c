@@ -427,7 +427,7 @@ stderror(va_alist)
 #endif
 {
     va_list va;
-    register Char **v;
+    Char **v;
     int flags;
     int vareturn;
 

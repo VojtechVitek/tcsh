@@ -271,7 +271,7 @@ char	*cm;
 int	destcol;
 int	destline;
 {
-	register char	*rp;
+	char	*rp;
 	static char	ret[24];
 	int		incr = 0;
 	int 		argno = 0, numval;
@@ -323,7 +323,7 @@ int	destline;
  */
 int
 tputs(cp, affcnt, outc)
-register char	*cp;
+char	*cp;
 int		affcnt;
 int		(*outc)();
 {

@@ -277,7 +277,7 @@ sigsetmask(mask)
 {
     sigset_t set, oset;
     int     m;
-    register int i;
+    int i;
 
     (void) sigemptyset(&set);
     (void) sigemptyset(&oset);
@@ -313,7 +313,7 @@ sigblock(mask)
 {
     sigset_t set, oset;
     int     m;
-    register int i;
+    int i;
 
     (void) sigemptyset(&set);
     (void) sigemptyset(&oset);
@@ -352,7 +352,7 @@ bsd_sigpause(mask)
     sigmask_t     mask;
 {
     sigset_t set;
-    register int i;
+    int i;
 
     (void) sigemptyset(&set);
 

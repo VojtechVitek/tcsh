@@ -101,6 +101,12 @@ extern int non_unique_match;
 
 extern int match_unique_match;
 
+extern int InsideCompletion;
+
+extern struct varent completions;
+
+extern bool color_context_ls;
+
 #include "tw.decls.h"
 
 #endif /* _h_tw */

@@ -117,7 +117,7 @@ extern	 int		  tw_complete		__P((Char *, Char **,
  * tw.color.c
  */
 extern	 void		  set_color_context	__P((void));
-extern	 void		  print_with_color	__P((Char *, size_t, int));
+extern	 void		  print_with_color	__P((Char *, size_t, Char));
 extern	 void		  parseLS_COLORS	__P((Char *));
 #endif /* COLOR_LS_F */
 

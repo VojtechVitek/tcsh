@@ -85,7 +85,7 @@ ttyperm_t ttylist = {
 };
 
 static struct tcshmodes {
-    char *m_name;
+    const char *m_name;
 #ifdef SOLARIS2
     unsigned long m_value;
 #else /* !SOLARIS2 */

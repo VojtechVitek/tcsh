@@ -461,6 +461,7 @@ Char STRver[]		= { 'v', 'e', 'r', '\0' };
 Char STRwarnebcdic[]    = { 'w', 'a', 'r', 'n', 'e', 'b', 'c', 'd', 'i', 'c', '\0' };
 #endif
 
+Char STRmCF[]		= { '-', 'C', 'F', '\0', '\0' };
 #ifdef COLOR_LS_F
 Char STRlsmF[]		= { 'l', 's', '-', 'F', '\0' };
 Char STRcolor[]		= { 'c', 'o', 'l', 'o', 'r', '\0' };

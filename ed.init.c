@@ -55,7 +55,6 @@ extern bool GotTermCaps;
 static ttydata_t extty, edtty, tstty;
 #define qutty tstty
 
-extern int insource;
 #define SHTTY (insource ? OLDSTD : SHIN)
 
 #define uc unsigned char
@@ -513,7 +512,6 @@ Rawmode()
 # endif /* TERMIO || POSIX */
 
 	{
-	    extern int didsetty;
 	    int i;
 
 	    tty_getchar(&tstty, ttychars[TS_IO]);

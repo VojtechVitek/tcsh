@@ -592,7 +592,7 @@ printOne(key, val, ntype)
 {
     struct KeyFuncs *fp;
     unsigned char unparsbuf[200];
-    static char *fmt = "%s\n";
+    static const char *fmt = "%s\n";
 
     xprintf("%-15S-> ", key->buf);
     if (val != NULL)
@@ -675,7 +675,7 @@ unparsech(cnt, ch)
     return cnt;
 }
 
-int
+eChar
 parseescape(ptr)
     const Char  **ptr;
 {
@@ -686,7 +686,7 @@ parseescape(ptr)
 
     if ((p[1] & CHAR) == 0) {
 	xprintf(CGETS(9, 8, "Something must follow: %c\n"), *p);
-	return -1;
+	return CHAR_ERR;
     }
     if ((*p & CHAR) == '\\') {
 	p++;
@@ -727,7 +727,8 @@ parseescape(ptr)
 	case '6':
 	case '7':
 	    {
-		register int cnt, val, ch;
+		int cnt, val;
+		Char ch;
 
 		for (cnt = 0, val = 0; cnt < 3; cnt++) {
 		    ch = *p++ & CHAR;
@@ -823,7 +824,11 @@ unparsestring(str, buf, sep)
 	    *b++ = (unsigned char) p;
 	}
 	else if (p == ' ' || (Isprint(p) && !Isspace(p))) {
+#ifdef WIDE_STRINGS
+	    b += one_wctomb(b, p & CHAR);
+#else
 	    *b++ = (unsigned char) p;
+#endif
 	}
 	else {
 	    *b++ = '\\';

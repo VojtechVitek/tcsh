@@ -46,7 +46,7 @@ static	sigret_t	 cleanf		__P((int));
 static	Char    	*skipslist	__P((Char *));
 static	void		 nextslist 	__P((Char *, Char *));
 
-static char *h_ext[] = {
+static const char *h_ext[] = {
     ".help", ".1", ".8", ".6", "", NULL
 };
 
@@ -56,11 +56,11 @@ do_help(command)
 {
     Char    name[FILSIZ + 1];
     Char   *cmd_p, *ep;
-    char  **sp;
+    const char  **sp;
 
     signalfun_t orig_intr;
     Char    curdir[MAXPATHLEN];	/* Current directory being looked at */
-    register Char *hpath;	/* The environment parameter */
+    Char *hpath;	/* The environment parameter */
     Char    full[MAXPATHLEN];
     char    buf[512];		/* full path name and buffer for read */
     int     len;		/* length of read buffer */
@@ -173,8 +173,8 @@ int snum;
 
 static void
 nextslist(sl, np)
-    register Char *sl;
-    register Char *np;
+    Char *sl;
+    Char *np;
 {
     if (!*sl)
 	*np = '\000';
@@ -195,7 +195,7 @@ nextslist(sl, np)
 
 static Char *
 skipslist(sl)
-    register Char *sl;
+    Char *sl;
 {
     while (*sl && *sl++ != ':')
 	continue;

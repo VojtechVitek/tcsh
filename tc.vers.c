@@ -45,7 +45,9 @@ RCSID("$Id$")
 void
 fix_version()
 {
-#ifdef SHORT_STRINGS
+#ifdef WIDE_STRINGS
+# define SSSTR "wide"
+#elif defined (SHORT_STRINGS)
 # define SSSTR "8b"
 #else
 # define SSSTR "7b"

@@ -46,8 +46,8 @@ spell_me(oldname, oldsize, looking, pat, suf)
 {
     /* The +1 is to fool hp's optimizer */
     Char    guess[FILSIZ + 1], newname[FILSIZ + 1];
-    register Char *new = newname, *old = oldname;
-    register Char *p, *cp, *ws;
+    Char *new = newname, *old = oldname;
+    Char *p, *cp, *ws;
     bool    foundslash = 0;
     int     retval;
 
@@ -111,7 +111,7 @@ spell_me(oldname, oldsize, looking, pat, suf)
 
 int
 spdist(s, t)
-    register Char *s, *t;
+    Char *s, *t;
 {
     for (; (*s & TRIM) == (*t & TRIM); t++, s++)
 	if (*t == '\0')
