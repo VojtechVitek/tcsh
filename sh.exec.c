@@ -827,7 +827,7 @@ static int
 hashname(cp)
     register Char *cp;
 {
-    register long h;
+    register unsigned long h;
 
     for (h = 0; *cp; cp++)
 	h = hash(h, *cp);

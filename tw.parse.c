@@ -529,6 +529,9 @@ insert_meta(cp, cpend, word, closequotes)
     int qu = 0;
     int ndel = (int) (cp ? cpend - cp : 0);
     Char w, wq;
+#ifdef DSPMBYTE
+    int mbytepos = 1;
+#endif /* DSPMBYTE */
 
     for (bptr = buffer, wptr = word;;) {
 	if (bptr > buffer + 2 * FILSIZ - 5)
@@ -536,6 +539,9 @@ insert_meta(cp, cpend, word, closequotes)
 	  
 	if (cp >= cpend)
 	    in_sync = 0;
+#ifdef DSPMBYTE
+	if (mbytepos == 1)
+#endif /* DSPMBYTE */
 	if (in_sync && !cmap(qu, _ESC) && cmap(*cp, _QF|_ESC))
 	    if (qu == 0 || qu == *cp) {
 		qu ^= *cp;
@@ -549,6 +555,10 @@ insert_meta(cp, cpend, word, closequotes)
 	wq = w & QUOTE;
 	w &= ~QUOTE;
 
+#ifdef DSPMBYTE
+	if (mbytepos == 2)
+	  goto mbyteskip;
+#endif /* DSPMBYTE */
 	if (cmap(w, _ESC | _QF))
 	    wq = QUOTE;		/* quotes are always quoted */
 
@@ -590,9 +600,18 @@ insert_meta(cp, cpend, word, closequotes)
 	    *bptr++ = '\\';
 	    *bptr++ = w;
 	} else {
+#ifdef DSPMBYTE
+	  mbyteskip:
+#endif /* DSPMBYTE */
 	    if (in_sync && *cp++ != w)
 		in_sync = 0;
 	    *bptr++ = w;
+#ifdef DSPMBYTE
+	    if (mbytepos == 1 && Ismbyte1(w))
+	      mbytepos = 2;
+	    else
+	      mbytepos = 1;
+#endif /* DSPMBYTE */
 	}
 	wptr++;
 	if (cmap(qu, _ESC))

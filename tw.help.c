@@ -152,6 +152,7 @@ static  sigret_t
 cleanf(snum)
 int snum;
 {
+    USE(snum);
 #ifdef UNRELSIGS
     if (snum)
 	(void) sigset(SIGINT, cleanf);

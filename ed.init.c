@@ -139,6 +139,7 @@ sigret_t
 window_change(snum)
 int snum;
 {
+    USE(snum);
 #ifdef UNRELSIGS 
     /* If we were called as a signal handler, restore it. */
     if (snum > 0)

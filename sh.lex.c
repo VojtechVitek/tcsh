@@ -295,6 +295,9 @@ word()
     int	    h;
     bool dolflg;
     int i;
+#if defined(DSPMBYTE)
+    int mbytepos = 1;
+#endif /* DSPMBYTE */
 
     wp = wbuf;
     i = BUFSIZE - 4;
@@ -355,6 +358,13 @@ loop:
     c1 = 0;
     dolflg = DOALL;
     for (;;) {
+#if defined(DSPMBYTE)
+        if (mbytepos == 2)
+	    mbytepos = 1;
+	else if (mbytepos == 1 && Ismbyte1(c) && 2 <= i)
+	    mbytepos = 2;
+	else
+#endif /* DSPMBYTE */
 	if (c1) {
 	    if (c == c1) {
 		c1 = 0;

@@ -1688,7 +1688,7 @@ doumask(v, c)
 
     USE(c);
     if (cp == 0) {
-	i = umask(0);
+	i = (int)umask(0);
 	(void) umask(i);
 	xprintf("%o\n", i);
 	return;

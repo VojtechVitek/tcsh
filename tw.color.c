@@ -181,6 +181,7 @@ parseLS_COLORS(value)
     const Char   *v;		/* pointer in value */
     char   *c;			/* pointer in colors */
     Extension *e;		/* pointer in extensions */
+    jmp_buf_t osetexit;
 
     /* init */
     if (extensions)
@@ -209,6 +210,12 @@ parseLS_COLORS(value)
     c = colors;
     e = &extensions[0];
 
+    /* Prevent from crashing if unknown parameters are given. */
+
+    getexit(osetexit);
+
+    if (setexit() == 0) {
+	    
     /* parse */
     while (*v) {
 	switch (*v & CHAR) {
@@ -246,6 +253,9 @@ parseLS_COLORS(value)
 	while (*v && (*v & CHAR) != ':')
 	    v++;
     }
+    }
+
+    resexit(osetexit);
 
     nextensions = (int) (e - extensions);
 }

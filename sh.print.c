@@ -259,6 +259,12 @@ flush()
 #ifdef EBADF
 	case EBADF:
 #endif
+#ifdef ESTALE
+	/*
+	 * Lost our file descriptor, exit (IRIS4D)
+	 */
+	case ESTALE:
+#endif
 	/*
 	 * Over our quota, writing the history file
 	 */

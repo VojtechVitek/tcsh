@@ -2188,7 +2188,7 @@ mailchk()
 #if defined(BSDTIMES) || defined(_SEQUENT_)
 	new = stb.st_mtime > time0.tv_sec;
 #else
-	new = stb.st_mtime > time0;
+	new = stb.st_mtime > seconds0;
 #endif
 	if (S_ISDIR(stb.st_mode)) {
 	    DIR *mailbox;
@@ -2207,7 +2207,7 @@ mailchk()
 #if defined(BSDTIMES) || defined(_SEQUENT_)
 		new = stb.st_mtime > time0.tv_sec;
 #else
-		new = stb.st_mtime > time0;
+		new = stb.st_mtime > seconds0;
 #endif
 		mboxdir = tempfilename;
 	    }

@@ -312,6 +312,10 @@ typedef char * caddr_t;
 # ifndef _PID_T
 #  define _PID_T
 # endif /* _PID_T */
+# ifndef _PTR_T
+#  define _PTR_T
+    typedef void * ptr_t;
+# endif /* _PTR_T */
 #endif /* ultrix || __ultrix */
 
 

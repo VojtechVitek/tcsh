@@ -205,6 +205,14 @@ tprintf(what, buf, fmt, siz, str, tim, info)
     for (; *cp; cp++) {
 	if (p >= ep)
 	    break;
+#ifdef DSPMBYTE
+	if (Ismbyte1(*cp) && ! (cp[1] == '\0'))
+	{
+	    *p++ = attributes | *cp++;	/* normal character */
+	    *p++ = attributes | *cp;	/* normal character */
+	}
+	else
+#endif /* DSPMBYTE */
 	if ((*cp == '%') && ! (cp[1] == '\0')) {
 	    cp++;
 	    switch (*cp) {
