@@ -55,10 +55,15 @@ gethosttype()
     hosttype = "amiga";
 # endif /* AMIX */
 
-# if defined(vax) || defined(__vax)
+# ifdef _VMS_POSIX
+#  define _havehosttype_
+   hosttype = "VMS-POSIX";
+# endif /* _VMS_POSIX */
+
+# if (defined(vax) || defined(__vax)) && !defined(_havehosttype_)
 #  define _havehosttype_
     hosttype = "vax";
-# endif /* vax || __vax */
+# endif /* vax || __vax && !_havehosttype_ */
 
 # ifdef hp9000 /* hp9000 running MORE/bsd */
 #  ifdef hp300
@@ -204,6 +209,11 @@ gethosttype()
 # define _havehosttype_
     hosttype = "i386-linux";
 #endif
+
+#if defined(i386) && defined(__EMX__)
+# define _havehosttype_
+    hosttype = "i386-emx";
+#endif /* i386 && __EMX__ */
 
 # ifdef __386BSD__
 # define _havehosttype_
@@ -396,7 +406,17 @@ gethosttype()
 #  define _havehosttype_
     hosttype = "amdahl";
 # endif /* uts */
-  
+
+# ifdef UTek
+#  define _havehosttype_
+    hosttype = "tek4300";
+# endif /* UTek */
+
+# ifdef UTekV
+#  define _havehosttype_
+    hosttype = "tekXD88";
+# endif /* UTekV */
+
 # ifdef OPUS
 #  define _havehosttype_
     hosttype = "opus";
@@ -423,6 +443,11 @@ gethosttype()
 #  define _havehosttype_
     hosttype = "sysV68";
 # endif /* sysV68 */
+
+# if defined(sysV88)
+#  define _havehosttype_
+    hosttype = "sysV88";
+# endif /* sysV88 */
 
 # if defined(i860) && !defined(_havehosttype_)
 #  define _havehosttype_

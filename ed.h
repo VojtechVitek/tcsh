@@ -91,6 +91,8 @@ extern KEYCMD NumFuns;		/* number of KEYCMDs in above table */
 #define CC_REFRESH		14
 #define CC_EXPAND_VARS		15
 #define CC_NORMALIZE_PATH	16
+#define CC_LIST_ALL		17
+#define CC_COMPLETE_ALL		18
 
 typedef union Xmapval {		/* value passed to the Xkey routines */
     KEYCMD cmd;

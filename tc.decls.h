@@ -47,10 +47,10 @@ extern	memalign_t	  realloc	__P((ptr_t, size_t));
 extern	memalign_t	  calloc	__P((size_t, size_t));
 
 #else /* SYSMALLOC */
-extern	void		  Free		__P((ptr_t));
-extern	memalign_t	  Malloc	__P((size_t));
-extern	memalign_t	  Realloc	__P((ptr_t, size_t));
-extern	memalign_t	  Calloc	__P((size_t, size_t));
+extern	void		  sfree		__P((ptr_t));
+extern	memalign_t	  smalloc	__P((size_t));
+extern	memalign_t	  srealloc	__P((ptr_t, size_t));
+extern	memalign_t	  scalloc	__P((size_t, size_t));
 #endif /* SYSMALLOC */
 extern	void		  showall	__P((Char **, struct command *));
 

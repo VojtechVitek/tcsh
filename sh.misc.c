@@ -254,7 +254,7 @@ closem()
 	    (void) close(f);
 }
 
-#ifndef FIOCLEX
+#ifndef CLOSE_ON_EXEC
 /*
  * Close files before executing a file.
  * We could be MUCH more intelligent, since (on a version 7 system)
@@ -279,7 +279,7 @@ closech()
 	(void) close(f);
 }
 
-#endif
+#endif /* CLOSE_ON_EXEC */
 
 void
 donefds()
@@ -409,7 +409,7 @@ strend(cp)
     return (cp);
 }
 
-#endif				/* SHORT_STRINGS */
+#endif /* SHORT_STRINGS */
 
 Char   *
 strip(cp)

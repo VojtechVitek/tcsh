@@ -87,6 +87,17 @@
 #  define IEXTEN 0
 # endif /* IEXTEN */
 
+/*
+ * emx garbage
+ */
+# ifndef IDEFAULT
+#  define IDEFAULT 0
+# endif /* IDEFAULT */
+
+# ifndef IDELETE
+#  define IDELETE 0
+# endif /* IDELETE */
+
 # ifndef ECHOCTL
 #  define ECHOCTL 0
 # endif /* ECHOCTL */

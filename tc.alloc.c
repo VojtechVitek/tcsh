@@ -217,7 +217,7 @@ malloc(nbytes)
 	return ((memalign_t) 0);
     else
 	return ((memalign_t) 0);
-#endif				/* !lint */
+#endif /* !lint */
 }
 
 #ifndef lint
@@ -353,8 +353,7 @@ calloc(i, j)
  */
 #ifndef lint
 int     realloc_srchlen = 4;	/* 4 should be plenty, -1 =>'s whole list */
-
-#endif				/* lint */
+#endif /* lint */
 
 memalign_t
 realloc(cp, nbytes)
@@ -414,7 +413,7 @@ realloc(cp, nbytes)
 	return ((memalign_t) 0);
     else
 	return ((memalign_t) 0);
-#endif				/* !lint */
+#endif /* !lint */
 }
 
 
@@ -462,7 +461,7 @@ findbucket(freep, srchlen)
  ** Also we call our error routine if we run out of memory.
  **/
 memalign_t
-Malloc(n)
+smalloc(n)
     size_t  n;
 {
     ptr_t   ptr;
@@ -473,11 +472,15 @@ Malloc(n)
 	child++;
 	stderror(ERR_NOMEM);
     }
+#ifdef _VMS_POSIX
+    if (memtop < ((char *) ptr) + n)
+	memtop = ((char *) ptr) + n;
+#endif /* _VMS_POSIX */
     return ((memalign_t) ptr);
 }
 
 memalign_t
-Realloc(p, n)
+srealloc(p, n)
     ptr_t   p;
     size_t  n;
 {
@@ -488,11 +491,15 @@ Realloc(p, n)
 	child++;
 	stderror(ERR_NOMEM);
     }
+#ifdef _VMS_POSIX
+    if (memtop < ((char *) ptr) + n)
+	memtop = ((char *) ptr) + n;
+#endif /* _VMS_POSIX */
     return ((memalign_t) ptr);
 }
 
 memalign_t
-Calloc(s, n)
+scalloc(s, n)
     size_t  s, n;
 {
     char   *sptr;
@@ -512,17 +519,21 @@ Calloc(s, n)
 	while (--n);
 
     return ((memalign_t) ptr);
+#ifdef _VMS_POSIX
+    if (memtop < ((char *) ptr) + n)
+	memtop = ((char *) ptr) + n;
+#endif /* _VMS_POSIX */
 }
 
 void
-Free(p)
+sfree(p)
     ptr_t   p;
 {
     if (p)
 	free(p);
 }
 
-#endif				/* SYSMALLOC */
+#endif /* SYSMALLOC */
 
 /*
  * mstats - print out statistics about malloc
@@ -560,9 +571,11 @@ showall(v, c)
 	    (unsigned long) membot, (unsigned long) memtop,
 	    (unsigned long) sbrk(0));
 #else
+#ifndef _VMS_POSIX
     memtop = (char *) sbrk(0);
+#endif /* !_VMS_POSIX */
     xprintf("Allocated memory from 0x%lx to 0x%lx (%ld).\n",
 	    (unsigned long) membot, (unsigned long) memtop, 
 	    (unsigned long) (memtop - membot));
-#endif				/* SYSMALLOC */
+#endif /* SYSMALLOC */
 }

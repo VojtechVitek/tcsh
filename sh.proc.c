@@ -1622,7 +1622,21 @@ pstart(pp, foregnd)
 	(void) tcsetpgrp(FSHTTY, pp->p_jobid);
 	forepid = pp->p_jobid;
     }
-    if (jobflags & PSTOPPED)
+    /*
+     * 1. child process of csh (shell script) receives SIGTTIN/SIGTTOU
+     * 2. parent process (csh) receives SIGCHLD
+     * 3. The "csh" signal handling function pchild() is invoked
+     *    with a SIGCHLD signal.
+     * 4. pchild() calls wait3(WNOHANG) which returns 0.
+     *    The child process is NOT ready to be waited for at this time.
+     *    pchild() returns without picking-up the correct status
+     *    for the child process which generated the SIGCHILD.
+     * 5. CONSEQUENCE : csh is UNaware that the process is stopped
+     * 6. THIS LINE HAS BEEN COMMENTED OUT : if (jobflags&PSTOPPED)
+     * 	  (beto@aixwiz.austin.ibm.com - aug/03/91)
+     */
+
+    /* if (jobflags & PSTOPPED) */
 	(void) killpg(pp->p_jobid, SIGCONT);
 #endif /* BSDJOBS */
 #ifdef BSDSIGS
@@ -1854,7 +1868,7 @@ pfork(t, wanttty)
 #endif /* !BSDNICE */
 #ifdef F_VER
         if (t->t_dflg & F_VER) {
-	    Setenv(STRSYSTYPE, t->t_systype ? STRbsd43 : STRsys53);
+	    tsetenv(STRSYSTYPE, t->t_systype ? STRbsd43 : STRsys53);
 	    dohash(NULL, NULL);
 	}
 #endif /* F_VER */

@@ -255,8 +255,12 @@ PFCmd   CcFuncTbl[] = {		/* table of available commands */
 #define		F_DELNEXT_EOF	104
     e_stuff_char,		
 #define		F_STUFF_CHAR	105
+    e_complete_all,
+#define		F_COMPLETE_ALL	106
+    e_list_all,
+#define		F_LIST_ALL	107
     0				/* DUMMY VALUE */
-#define		F_NUM_FNS	106	
+#define		F_NUM_FNS	108
 };
 
 KEYCMD  NumFuns = F_NUM_FNS;
@@ -1109,6 +1113,8 @@ struct KeyFuncs FuncNames[] = {
     "Clear screen leaving current line on top",
     "complete-word", F_COMPLETE,
     "Complete current word",
+    "complete-word-raw", F_COMPLETE_ALL,
+    "Complete current word ignoring programmable completions",
     "copy-prev-word", F_COPYPREV,
     "Copy current word to cursor",
     "copy-region-as-kill", F_COPYREGION,
@@ -1169,6 +1175,8 @@ struct KeyFuncs FuncNames[] = {
     "Cut the entire line and save in cut buffer",
     "list-choices", F_LIST_CHOICES,
     "List choices for completion",
+    "list-choices-raw", F_LIST_ALL,
+    "List choices for completion overriding programmable completion",
     "list-glob", F_LIST_GLOB,
     "List file name wildcard matches",
     "list-or-eof", F_LIST_EOF,
@@ -1435,6 +1443,10 @@ ed_InitEmacsMaps()
     AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
     buf[1] = 'N';
     AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
+    buf[1] = '\t';
+    AddXkey(buf, XmapCmd(F_COMPLETE_ALL),  XK_CMD);
+    buf[1] = 004;	/* ^D */
+    AddXkey(buf, XmapCmd(F_LIST_ALL),  	   XK_CMD);
     ResetArrowKeys();
     BindArrowKeys();
 }

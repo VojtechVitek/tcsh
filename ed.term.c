@@ -48,7 +48,7 @@ ttyperm_t ttylist = {
 	{ "iflag:", ICRNL, (INLCR|IGNCR) },
 	{ "oflag:", (OPOST|ONLCR), ONLRET },
 	{ "cflag:", 0, 0 },
-	{ "lflag:", (ISIG|ICANON|ECHO|ECHOE|ECHOCTL|IEXTEN),
+	{ "lflag:", (ISIG|ICANON|ECHO|ECHOE|ECHOCTL|IEXTEN|IDEFAULT),
 		    (NOFLSH|ECHONL|EXTPROC|FLUSHO) },
 #else /* GSTTY */
 	{ "nrmal:", (ECHO|CRMOD|ANYP), (CBREAK|RAW|LCASE|VTDELAY|ALLDELAY) },
@@ -62,7 +62,8 @@ ttyperm_t ttylist = {
 	{ "oflag:", (OPOST|ONLCR), ONLRET },
 	{ "cflag:", 0, 0 },
 	{ "lflag:", ISIG,
-		    (NOFLSH|ICANON|ECHO|ECHOK|ECHONL|EXTPROC|IEXTEN|FLUSHO) },
+		    (NOFLSH|ICANON|ECHO|ECHOK|ECHONL|EXTPROC|IEXTEN|FLUSHO|
+		     IDEFAULT) },
 #else /* GSTTY */
 	{ "nrmal:", (CBREAK|CRMOD|ANYP), (RAW|ECHO|LCASE|VTDELAY|ALLDELAY) },
 	{ "local:", (LCRTBS|LCRTERA|LCRTKIL), (LPRTERA|LFLUSHO) },
@@ -136,6 +137,9 @@ static struct tcshmodes {
 # ifdef  IMAXBEL
     { "imaxbel",IMAXBEL,M_INPUT },
 # endif /* IMAXBEL */
+# ifdef  IDELETE
+    { "idelete",IDELETE,M_INPUT },
+# endif /* IDELETE */
 
 # ifdef	OPOST
     { "opost",	OPOST,	M_OUTPUT },
@@ -299,6 +303,9 @@ static struct tcshmodes {
 # ifdef	EXTPROC
     { "extproc",EXTPROC,M_LINED },
 # endif /* EXTPROC */
+# ifdef IDEFAULT
+    { "idefault",IDEFAULT,M_LINED },
+# endif /* IDEFAULT */
 
 #else /* GSTTY */
 

@@ -1286,6 +1286,15 @@ e_complete(c)
 
 /*ARGSUSED*/
 CCRETVAL
+e_complete_all(c)
+    int c;
+{
+    *LastChar = '\0';		/* just in case */
+    return(CC_COMPLETE_ALL);
+}
+
+/*ARGSUSED*/
+CCRETVAL
 v_cm_complete(c)
     int c;
 {
@@ -1620,6 +1629,16 @@ e_list_choices(c)
     PastBottom();
     *LastChar = '\0';		/* just in case */
     return(CC_LIST_CHOICES);
+}
+
+/*ARGSUSED*/
+CCRETVAL
+e_list_all(c)
+    int c;
+{
+    PastBottom();
+    *LastChar = '\0';		/* just in case */
+    return(CC_LIST_ALL);
 }
 
 /*ARGSUSED*/

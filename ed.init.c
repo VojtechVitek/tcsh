@@ -232,9 +232,9 @@ ed_Setup(rst)
     extty.d_t.c_lflag &= ~ttylist[EX_IO][M_LINED].t_clrmask;
     extty.d_t.c_lflag |=  ttylist[EX_IO][M_LINED].t_setmask;
 
-# ifdef IRIX3_3
+# if defined(IRIX3_3) && SYSVREL < 4
     extty.d_t.c_line = NTTYDISC;
-# endif /* IRIX3_3 */
+# endif /* IRIX3_3 && SYSVREL < 4 */
 
 #else	/* GSTTY */		/* V7, Berkeley style tty */
 
@@ -325,9 +325,9 @@ ed_Init()
     edtty.d_t.c_lflag |=  ttylist[ED_IO][M_LINED].t_setmask;
 
 
-# ifdef IRIX3_3
+# if defined(IRIX3_3) && SYSVREL < 4
     edtty.d_t.c_line = NTTYDISC;
-# endif /* IRIX3_3 */
+# endif /* IRIX3_3 && SYSVREL < 4 */
 
 #else /* GSTTY */
 

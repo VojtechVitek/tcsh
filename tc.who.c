@@ -463,9 +463,11 @@ who_info(ptr, c, wbuf)
     char *wbuf;
 {
     struct who *wp = (struct who *) ptr;
+#ifdef UTHOST
     char *wb = wbuf;
     int flg;
     char *pb;
+#endif /* UTHOST */
 
     switch (c) {
     case 'n':		/* user name */

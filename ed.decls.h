@@ -222,6 +222,8 @@ extern  CCRETVAL        v_charto_fwd		__P((int));
 extern  CCRETVAL        v_charto_back		__P((int));
 extern  CCRETVAL        e_normalize_path	__P((int));
 extern  CCRETVAL        e_stuff_char		__P((int));
+extern  CCRETVAL        e_list_all		__P((int));
+extern  CCRETVAL        e_complete_all		__P((int));
 
 /*
  * ed.inputl.c

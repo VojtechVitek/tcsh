@@ -983,7 +983,7 @@ pmatch(string, pattern, estr)
 	    oestr = *estr;
 	    pestr = NULL;
 
-	    while (*string) {
+	    do {
 		switch(pmatch(string, pattern, estr)) {
 		case 0:
 		    break;
@@ -995,9 +995,9 @@ pmatch(string, pattern, estr)
 		default:
 		    abort();	/* Cannot happen */
 		}
-		string++;
 		*estr = string;
 	    }
+	    while (*string++);
 
 	    if (pestr) {
 		*estr = pestr;

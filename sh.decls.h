@@ -119,7 +119,7 @@ extern	int		  tenex		__P((Char *, int));
 /*
  * sh.func.c
  */
-extern	void		  Setenv	__P((Char *, Char *));
+extern	void		  tsetenv	__P((Char *, Char *));
 extern	void		  Unsetenv	__P((Char *));
 extern	void		  doalias	__P((Char **, struct command *));
 extern	void		  dobreak	__P((Char **, struct command *));
@@ -221,9 +221,9 @@ extern	Char		**blkspl	__P((Char **, Char **));
 extern  void		  copy		__P((char *, char *, int));
 #endif
 extern	void		  closem	__P((void));
-#ifndef FIOCLEX
+#ifndef CLOSE_ON_EXEC
 extern  void 		  closech	__P((void));
-#endif
+#endif /* !CLOSE_ON_EXEC */
 extern	Char		**copyblk	__P((Char **));
 extern	int		  dcopy		__P((int, int));
 extern	int		  dmove		__P((int, int));

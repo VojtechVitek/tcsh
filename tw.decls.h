@@ -56,7 +56,7 @@ extern	 int		  fcompare		__P((Char **, Char **));
 extern	 void		  print_by_column	__P((Char *, Char *[], int, 
 						     int));
 extern	 int		  StrQcmp		__P((Char *, Char *));
-extern	 Char		 *Getenv		__P((Char *));
+extern	 Char		 *tgetenv		__P((Char *));
 
 /*
  * tw.init.c

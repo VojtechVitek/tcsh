@@ -147,7 +147,7 @@ Char *dp;
     vec[1] = 0;
     (void) Strcpy(olddir, value(STRcwd));
     setq(STRcwd, vec, &shvhed);
-    Setenv(STRPWD, dp);
+    tsetenv(STRPWD, dp);
 }
 
 #define DIR_LONG  	0x01
@@ -1247,16 +1247,16 @@ void
 loaddirs(fname)
     Char *fname;
 {
-    static Char *loaddirs[] = { STRsource, NULL, NULL };
+    static Char *loaddirs_cmd[] = { STRsource, NULL, NULL };
 
     bequiet = 1;
     if (fname) 
-	loaddirs[1] = fname;
+	loaddirs_cmd[1] = fname;
     else if ((fname = value(STRdirsfile)) != STRNULL)
-	loaddirs[1] = fname;
+	loaddirs_cmd[1] = fname;
     else
-	loaddirs[1] = STRtildotdirs;
-    dosource(loaddirs, (struct command *)0);
+	loaddirs_cmd[1] = STRtildotdirs;
+    dosource(loaddirs_cmd, (struct command *)0);
     bequiet = 0;
 }
 

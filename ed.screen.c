@@ -1444,12 +1444,12 @@ ChangeSize(lins, cols)
 
 	if (getenv("COLUMNS")) {
 	    Itoa(Val(T_co), buf);
-	    Setenv(STRCOLUMNS, buf);
+	    tsetenv(STRCOLUMNS, buf);
 	}
 
 	if (getenv("LINES")) {
 	    Itoa(Val(T_li), buf);
-	    Setenv(STRLINES, buf);
+	    tsetenv(STRLINES, buf);
 	}
 
 	if ((tptr = getenv("TERMCAP")) != NULL) {
@@ -1495,7 +1495,7 @@ ChangeSize(lins, cols)
 		ptr = Strchr(ptr, ':');
 		(void) Strcat(termcap, ptr);
 	    }
-	    Setenv(STRTERMCAP, termcap);
+	    tsetenv(STRTERMCAP, termcap);
 	}
     }
 #endif /* KNOWsize */

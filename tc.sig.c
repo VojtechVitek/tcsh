@@ -1,6 +1,6 @@
 /* $Header$ */
 /*
- * sh.sig.c: Signal routine emulations
+ * tc.sig.c: Signal routine emulations
  */
 /*-
  * Copyright (c) 1980, 1991 The Regents of the University of California.
@@ -318,8 +318,8 @@ sigblock(mask)
     int     m;
     register int i;
 
-    set = 0;
-    oset = 0;
+    sigemptyset(&set);
+    sigemptyset(&oset);
 
     /* Get present set of signals. */
     if (sigprocmask(SIG_SETMASK, NULL, &set))
