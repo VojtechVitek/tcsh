@@ -34,11 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
 
 RCSID("$Id$")
 
-#include "sh.h"
 #include "ed.h"
 #include "tw.h"
 #include "tc.h"
@@ -1022,7 +1021,6 @@ xecho(sep, v)
 		    break;
 		case '\\':
 		    c = '\\';
-		    --cp;
 		    break;
 		case '0':
 		    c = 0;
@@ -1034,8 +1032,7 @@ xecho(sep, v)
 			c = c * 8 + *cp++ - '0';
 		    break;
 		case '\0':
-		    c = '\\';
-		    --cp;
+		    c = *--cp;
 		    break;
 		default:
 		    xputchar('\\' | QUOTE);

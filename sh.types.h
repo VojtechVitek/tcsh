@@ -260,7 +260,7 @@ extern char *sbrk();
 /***
  *** Ultrix...
  ***/
-#ifdef ultrix
+#if defined(ultrix) || defined(__ultrix)
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
@@ -373,16 +373,31 @@ extern char *sbrk();
 # endif /* _SIZE_T */
 #endif /* OPUS */
 
+/*
+ * Convex
+ */
+#if defined(convex) || defined(__convex__)
+# if defined(__SIZE_T) && !defined(_SIZE_T)
+#  define _SIZE_T
+# endif /* __SIZE_T && !_SIZE_T */
+#endif /* convex || __convex__ */
+
 /***
- *** Catch all for non POSIX systems.
- *** Posix things *should* define these automatically
+ *** Catch all for non POSIX and/or non ANSI systems.
+ *** Systems up to spec *should* define these automatically
  *** I am open to suggestions on how to do this correctly!
  ***/
-#ifndef POSIX
+
+#ifndef __STDC__
+
 # ifndef _SIZE_T
 #  define _SIZE_T
    typedef int size_t;		/* As sun comments ??? : meaning I take it */
-# endif /* _SIZE_T */		/* Until we make the world POSIX... */
+# endif /* _SIZE_T */		/* Until we make the world ANSI... */
+
+#endif  /* ! __STDC__ */
+
+#ifndef POSIX
 
 # ifndef _PID_T
 #  define _PID_T

@@ -58,6 +58,12 @@
 # define _PATH_DOTLOGIN		"/etc/cshrc"
 #endif /* sgi || OREO */
 
+#if defined(NeXT)
+# define _PATH_DOTLOGIN		"/etc/login.std"
+# define _PATH_DOTLOGOUT	"/etc/logout.std"
+# define _PATH_DOTCSHRC		"/etc/cshrc.std"
+#endif /* NeXT */
+
 #ifndef _PATH_DOTLOGIN
 # define _PATH_DOTCSHRC		"/etc/csh.cshrc"
 # define _PATH_DOTLOGIN		"/etc/csh.login"
@@ -70,7 +76,9 @@
 #ifdef notdef
 # define _PATH_CSHELL 		"/bin/csh"
 #endif
+#ifndef _PATH_TCSHELL
 #define _PATH_TCSHELL		"/usr/local/bin/tcsh"
+#endif
 
 #define _PATH_LOGIN		"/bin/login"
 #ifdef NEWGRP

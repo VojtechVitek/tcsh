@@ -1,7 +1,6 @@
 /* $Header$ */
 /*
- * sh.err.c: Error printing routines. There are lots of them
- *	     and none does the right thing!
+ * sh.err.c: Error printing routines. 
  */
 /*-
  * Copyright (c) 1980, 1991 The Regents of the University of California.
@@ -35,11 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
-RCSID("$Id$")
-
 #define _h_tc_err		/* Don't redefine the errors	 */
 #include "sh.h"
+
+RCSID("$Id$")
 
 /*
  * C Shell
@@ -340,7 +338,7 @@ seterror(va_alist)
 	id = va_arg(va, unsigned int);
 #endif
 
-	if (id < 0 || id > sizeof(errorlist) / sizeof(errorlist[0]))
+	if (id >= sizeof(errorlist) / sizeof(errorlist[0]))
 	    id = ERR_INVALID;
 	xvsprintf(berr, errorlist[id], va);
 	va_end(va);
@@ -397,7 +395,7 @@ stderror(va_alist)
 	return;
     }
 
-    if (id < 0 || id > sizeof(errorlist) / sizeof(errorlist[0]))
+    if (id >= sizeof(errorlist) / sizeof(errorlist[0]))
 	id = ERR_INVALID;
 
     /*

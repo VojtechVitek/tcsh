@@ -34,13 +34,13 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "tc.h"
 
-#include <glob.h>
+#include "glob.h"
 
 static int noglob;
 static int pargsiz, gargsiz;
@@ -95,7 +95,8 @@ globtilde(nv, s)
     gstart = gbuf;
     *gstart++ = *s++;
     u = s;
-    for (b = gstart, e = &gbuf[MAXPATHLEN - 1]; *s && *s != '/' && b < e;
+    for (b = gstart, e = &gbuf[MAXPATHLEN - 1]; 
+	 *s && *s != '/' && *s != ':' && b < e;
 	 *b++ = *s++);
     *b = EOS;
     if (gethdir(gstart)) {

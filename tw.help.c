@@ -37,10 +37,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "tw.h"
 #include "tc.h"
 

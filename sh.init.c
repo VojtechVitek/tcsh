@@ -34,10 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "ed.h"
 
 /*
@@ -120,7 +120,7 @@ struct	biltins bfunc[] = {
 #ifdef IIASA
     { "rd",	dopopd,		0,	INF, },
 #endif
-    { "rehash",	dohash,		0,	0, },
+    { "rehash",	dohash,		0,	3, },
     { "repeat",	dorepeat,	2,	INF, },
 #ifdef apollo
     { "rootnode", dorootnode,	1,	1, },
@@ -167,6 +167,7 @@ struct	biltins bfunc[] = {
 #ifdef KAI
     { "watchlog",	dolog,		0,	0, },
 #endif
+    { "where",	dowhere,	1,	INF, },
     { "which",	dowhich,	1,	INF, },
     { "while",	dowhile,	1,	INF, },
 };
@@ -206,7 +207,11 @@ struct	mesg mesg[] = {
 /*  3 */	"QUIT",		"Quit",
 /*  4 */	"ILL",		"Illegal instruction",
 /*  5 */	"TRAP",		"Trace/BPT trap",
+#if SVID > 3
+/*  6 */	"ABRT",		"Abort",
+#else /* SVID > 3 */
 /*  6 */	"IOT",		"IOT trap",
+#endif /* SVID > 3 */
 #ifdef aiws
 /*  7 */	"DANGER", 	"System Crash Imminent",
 #else /* aiws */
@@ -362,6 +367,30 @@ struct	mesg mesg[] = {
 /* 32 */	"DIL",		"DIL signal",
 # endif /* hpux */
 
+# if SVID > 3
+#  define _sigextra_
+/* 20 */	"WINCH", 	"Window change",
+/* 21 */	"URG", 		"Urgent socket condition",
+/* 22 */	"IO", 		"Socket I/O possible",
+#  ifdef SUSPENDED
+/* 23 */	"STOP",		"Suspended (signal)",
+/* 24 */	"TSTP",		"Suspended",
+/* 25 */	"CONT",		"Continued",
+/* 26 */	"TTIN", 	"Suspended (tty input)",
+/* 27 */	"TTOU", 	"Suspended (tty output)",
+#  else /* SUSPENDED */
+/* 23 */	"STOP",		"Stopped (signal)",
+/* 24 */	"TSTP",		"Stopped",
+/* 25 */	"CONT",		"Continued",
+/* 26 */	"TTIN", 	"Stopped (tty input)",
+/* 27 */	"TTOU", 	"Stopped (tty output)",
+#  endif /* SUSPENDED */
+/* 28 */	"VTALRM",	"Virtual timer expired",
+/* 29 */	"PROF",		"Profiling timer expired",
+/* 30 */	"XCPU",		"CPU time limit exceeded",
+/* 31 */	"XFSZ", 	"File size limit exceeded",
+/* 32 */	0,		"Maximum number of signals",
+# endif /* SVID > 3 */
 # if defined(ISC) && defined(POSIX) 
 #  define _sigextra_
 /* 20 */	"WINCH", 	"Window change",

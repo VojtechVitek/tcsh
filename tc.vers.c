@@ -34,10 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "patchlevel.h"
 
 
@@ -111,6 +111,11 @@ gethosttype()
 #  define _havehosttype_
     hosttype = str2short("aix370");
 # endif /* _AIX370 */
+
+# ifdef _IBMESA
+#  define _havehosttype_
+    hosttype = str2short("aixESA");
+# endif /* _IBMESA */
 
 # ifdef _IBMR2
 #  define _havehosttype_

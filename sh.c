@@ -34,7 +34,8 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 #ifndef lint
 char    copyright[] =
 "@(#) Copyright (c) 1991 The Regents of the University of California.\n\
@@ -43,7 +44,6 @@ char    copyright[] =
 
 RCSID("$Id$")
 
-#include "sh.h"
 #include "tc.h"
 #include "ed.h"
 
@@ -823,7 +823,31 @@ main(argc, argv)
     }
     if ((setintr == 0) && (parintr == SIG_DFL))
 	setintr = 1;
+
+/*
+ * SVR4 doesn't send a SIGCHLD when a child is stopped or continued if the
+ * handler is installed with signal(2) or sigset(2).  sigaction(2) must
+ * be used instead.
+ *
+ * David Dawes (dawes@physics.su.oz.au) Sept 1991
+ */
+
+#if SVID > 3
+    {
+	struct sigaction act;
+        act.sa_handler=pchild;
+	sigemptyset(&(act.sa_mask)); /* Don't block any extra sigs when the
+				      * handler is called
+				      */
+        act.sa_flags=0;	           /* want behaviour of sigset() without
+                                    * SA_NOCLDSTOP
+				    */
+        sigaction(SIGCHLD,&act,(struct sigaction *)NULL);
+    }
+#else /* SVID <= 3 */
     (void) sigset(SIGCHLD, pchild);	/* while signals not ready */
+#endif /* SVID <= 3 */
+
 
     /*
      * Set an exit here in case of an interrupt or error reading the shell

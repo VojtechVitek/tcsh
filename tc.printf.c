@@ -36,10 +36,9 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
-RCSID("$Id$")
-
 #include "sh.h"
+
+RCSID("$Id$")
 
 #ifdef lint
 #undef va_arg

@@ -34,9 +34,9 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
-RCSID("$Id$")
 #include "sh.h"
+
+RCSID("$Id$")
 
 Char STRlogout[]        = { 'l', 'o', 'g', 'o', 'u', 't', '\0' };
 Char STRautologout[]    = { 'a', 'u', 't', 'o', 'l', 'o', 'g', 'o', 'u', 't', 
@@ -96,8 +96,8 @@ Char STRsymhash[]       = { '#', ' ', '\0' };
 Char STRsymarrow[]      = { '>', ' ', '\0' };
 Char STRmquestion[]     = { '%', 'R', '?' | QUOTE, ' ', '\0' };
 Char STRCORRECT[]       = { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R', 
-			    ' ', '(', 'y', '|', 'n', ')', '?' | QUOTE, ' ', 
-			    '\0' };
+			    ' ', '(', 'y', '|', 'n', '|', 'e', ')', 
+			    '?' | QUOTE, ' ', '\0' };
 Char STRunalias[]       = { 'u', 'n', 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRalias[]         = { 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRprecmd[]        = { 'p', 'r', 'e', 'c', 'm', 'd', '\0' };

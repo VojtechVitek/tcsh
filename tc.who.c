@@ -34,10 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "tc.h"
 
 /*
@@ -393,7 +393,7 @@ watch_login()
 }
 
 #ifdef WHODEBUG
-static  oid
+static void
 debugwholist(new, wp)
     register struct who *new, *wp;
 {

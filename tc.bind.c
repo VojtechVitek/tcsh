@@ -34,10 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "ed.h"
 #include "ed.defns.h"
 
@@ -716,7 +716,7 @@ bindkey_usage()
     xprintf(
 	"Usage: bindkey [options] [--] [in-string [out-string | command]]\n");
     xprintf("    -a   bind key in alternative key binding\n");
-    xprintf("    -s   bind an out-string instad of a command\n");
+    xprintf("    -s   bind an out-string instead of a command\n");
     xprintf("    -v   initialized maps to default vi bindings\n");
     xprintf("    -e   initialized maps to default emacs bindings\n");
     xprintf("    -d   initialized maps to default bindings\n");

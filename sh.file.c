@@ -35,10 +35,9 @@
  * SUCH DAMAGE.
  */
 #ifdef FILEC
-#include "config.h"
-RCSID("$Id$")
-
 #include "sh.h"
+
+RCSID("$Id$")
 
 /*
  * Tenex style file name recognition, .. and more.

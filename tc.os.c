@@ -34,10 +34,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "tw.h"
 #include "ed.h"
 #include "ed.defns.h"		/* for the function names */
@@ -889,7 +889,7 @@ xgetwd(pathname)
 
 	/* look if we found root yet */
 	if (st_cur.st_ino == st_root.st_ino &&
-	    st_cur.st_dev == st_root.st_dev) {
+	    DEV_DEV_COMPARE(st_cur.st_dev, st_root.st_dev)) {
 	    (void) strcpy(pathname, *pathptr != '/' ? "/" : pathptr);
 	    return (pathname);
 	}
@@ -915,7 +915,7 @@ xgetwd(pathname)
 
 	    /* check if we found it yet */
 	    if (st_next.st_ino == st_cur.st_ino &&
-		st_next.st_dev == st_cur.st_dev) {
+	    DEV_DEV_COMPARE(st_next.st_dev, st_cur.st_dev)) {
 		st_cur = st_dot;
 		pathptr = strrcpy(pathptr, d->d_name);
 		pathptr = strrcpy(pathptr, "/");

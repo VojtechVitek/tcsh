@@ -36,10 +36,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
 #include "ed.h"
 #include "tc.h"
 
@@ -223,7 +223,7 @@ sched_run()
 
     while (tp && tp->t_when < cur_time) {
 	if (seterr) {
-	    xfree((char *) seterr);
+	    xfree((ptr_t) seterr);
 	    seterr = NULL;
 	}
 	cmd.word = STRNULL;

@@ -34,36 +34,11 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include "config.h"
+#include "sh.h"
+
 RCSID("$Id$")
 
-#include "sh.h"
-/*
- * a little complicated #include <sys/wait.h>! :-(
- */
-#if SVID > 0
-# ifdef hpux
-#  ifndef __hpux
-#   include "tc.wait.h"	/* 6.5 broke <sys/wait.h> */
-#  else
-#   ifndef POSIX
-#    define _BSD
-#   endif
-#   ifndef _CLASSIC_POSIX_TYPES
-#    define _CLASSIC_POSIX_TYPES
-#   endif
-#   include <sys/wait.h> /* 7.0 fixed it again */
-#  endif /* __hpux */
-# else /* hpux */
-#  if defined(OREO) || defined(IRIS4D) || defined(POSIX)
-#   include <sys/wait.h>
-#  else	/* OREO || IRIS4D || POSIX */
-#   include "tc.wait.h"
-#  endif /* OREO || IRIS4D || POSIX */
-# endif	/* hpux */
-#else /* SVID == 0 */
-# include <sys/wait.h>
-#endif /* SVID == 0 */
+#include "tc.wait.h"
 
 #ifndef BSDSIGS
 
