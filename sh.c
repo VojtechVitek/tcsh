@@ -2293,6 +2293,12 @@ gethdir(home)
 void
 initdesc()
 {
+#ifdef NLS_BUGS
+#ifdef NLS_CATALOGS
+    (void)catclose(catd);
+#endif /* NLS_CATALOGS */
+#endif /* NLS_BUGS */
+
 
     didfds = 0;			/* 0, 1, 2 aren't set up */
     (void) close_on_exec(SHIN = dcopy(0, FSHIN), 1);
@@ -2305,6 +2311,11 @@ initdesc()
     isdiagatty = isatty(SHDIAG);
     isoutatty = isatty(SHOUT);
     closem();
+#ifdef NLS_BUGS
+#ifdef NLS_CATALOGS
+    nlsinit();
+#endif /* NLS_CATALOGS */
+#endif /* NLS_BUGS */
 }
 
 
