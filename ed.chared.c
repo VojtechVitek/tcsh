@@ -174,6 +174,8 @@ c_insert(num)
     if (Cursor < LastChar) {	/* if I must move chars */
 	for (cp = LastChar; cp >= Cursor; cp--)
 	    cp[num] = *cp;
+	if (Mark && Mark > Cursor)
+		Mark += num;
     }
     LastChar += num;
 }
@@ -203,6 +205,8 @@ c_delafter(num)
 	    for (cp = Cursor; cp + num <= LastChar; cp++)
 		*cp = cp[num];
 	LastChar -= num;
+	if (Mark && Mark > Cursor)
+		Mark -= num;
     }
 #ifdef notdef
     else {
@@ -241,6 +245,8 @@ c_delbefore(num)		/* delete before dot, with bounds checking */
 		*cp = cp[num];
 	LastChar -= num;
 	Cursor -= num;
+	if (Mark && Mark > Cursor)
+		Mark -= num;
     }
 }
 
@@ -2570,7 +2576,7 @@ e_killend(c)
 {
     USE(c);
     c_push_kill(Cursor, LastChar); /* copy it */
-    LastChar = Cursor;		/* zap! -- delete to end */
+    Mark = LastChar = Cursor;		/* zap! -- delete to end */
     return(CC_REFRESH);
 }
 
@@ -2583,6 +2589,8 @@ e_killbeg(c)
     USE(c);
     c_push_kill(InputBuf, Cursor); /* copy it */
     c_delbefore((int)(Cursor - InputBuf));
+    if (Mark && Mark > Cursor)
+        Mark -= Cursor-InputBuf;
     return(CC_REFRESH);
 }
 
@@ -2593,8 +2601,7 @@ e_killall(c)
 {
     USE(c);
     c_push_kill(InputBuf, LastChar); /* copy it */
-    LastChar = InputBuf;	/* zap! -- delete all of it */
-    Cursor = InputBuf;
+    Cursor = Mark = LastChar = InputBuf;	/* zap! -- delete all of it */
     return(CC_REFRESH);
 }
 
