@@ -49,7 +49,6 @@
 #define IS_ROOT 0x01
 #define IS_NET  0x02
 
-#define d_fileno d_ino
 struct dirent {
 	long            d_ino;
 	int             d_off;

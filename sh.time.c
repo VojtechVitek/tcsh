@@ -172,12 +172,12 @@ donice(v, c)
 	nval = 4;
     else if (*v	== 0 &&	any("+-", cp[0]))
 	nval = getn(cp);
-#ifdef BSDNICE
+#ifdef HAVE_SETPRIORITY
     if (setpriority(PRIO_PROCESS, 0, nval) == -1 && errno)
 	stderror(ERR_SYSTEM, "setpriority", strerror(errno));
-#else /* BSDNICE */
+#else /* !HAVE_SETPRIORITY */
     (void) nice(nval);
-#endif /* BSDNICE */
+#endif /* HAVE_SETPRIORITY */
 }
 
 #ifdef BSDTIMES

@@ -254,7 +254,7 @@ extern	void	ClearLines		__P((void));
 extern	void	ClearDisp		__P((void));
 extern	void	Refresh			__P((void));
 extern	void	RefCursor		__P((void));
-extern	void	RefPlusOne		__P((void));
+extern	void	RefPlusOne		__P((int));
 extern	void	PastBottom		__P((void));
 
 /*

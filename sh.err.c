@@ -371,7 +371,7 @@ errinit()
  */
 void
 /*VARARGS1*/
-#ifdef FUNCPROTO
+#ifdef PROTOTYPES
 seterror(unsigned int id, ...)
 #else
 seterror(va_alist)
@@ -382,7 +382,7 @@ seterror(va_alist)
     if (seterr == 0) {
 	va_list va;
 	char    berr[BUFSIZE];
-#ifdef FUNCPROTO
+#ifdef PROTOTYPES
 	va_start(va, id);
 #else
 	unsigned int id;
@@ -419,7 +419,7 @@ seterror(va_alist)
  */
 void
 /*VARARGS*/
-#ifdef FUNCPROTO
+#ifdef PROTOTYPES
 stderror(unsigned int id, ...)
 #else
 stderror(va_alist)
@@ -431,7 +431,7 @@ stderror(va_alist)
     int flags;
     int vareturn;
 
-#ifdef FUNCPROTO
+#ifdef PROTOTYPES
     va_start(va, id);
 #else
     unsigned int id;

@@ -177,7 +177,7 @@ saveblk(v)
     return (onewv);
 }
 
-#if !defined(SHORT_STRINGS) && !defined(POSIX)
+#ifndef HAVE_STRSTR
 char   *
 strstr(s, t)
     const char *s, *t;
@@ -193,8 +193,7 @@ strstr(s, t)
     } while (*s++ != '\0');
     return (NULL);
 }
-
-#endif /* !SHORT_STRINGS && !POSIX */
+#endif /* !HAVE_STRSTR */
 
 #ifndef SHORT_STRINGS
 char   *

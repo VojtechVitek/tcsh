@@ -1223,14 +1223,10 @@ so_write(cp, n)
 	if (*cp != CHAR_DBWIDTH) {
 	    if (*cp & LITERAL) {
 		Char   *d;
-		int    i;
-		
 #ifdef DEBUG_LITERAL
-		xprintf("so: litnum %d, litptr %x\r\n",
-			(int)(*cp & CHAR), litptr[*cp & CHAR]);
+		xprintf("so: litnum %d\r\n", (int)(*cp & ~LITERAL));
 #endif /* DEBUG_LITERAL */
-		d = litptr[*cp & CHAR];
-		for (i = litlen[*cp & CHAR]; i > 0; i--, d++)
+		for (d = litptr + ((*cp & ~LITERAL) << 2); *d; d++)
 		    (void) putwraw(*d);
 	    }
 	    else

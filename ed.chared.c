@@ -1466,7 +1466,7 @@ e_insert(c)
         c_insert(1);
 	*Cursor++ = (Char) c;
 	DoingArg = 0;		/* just in case */
-	RefPlusOne();		/* fast refresh for one char. */
+	RefPlusOne(1);		/* fast refresh for one char. */
     }
     else {
 	if (inputmode != MODE_INSERT) {
@@ -1548,7 +1548,7 @@ e_digit(c)			/* gray magic here */
 	c_insert(1);
 	*Cursor++ = (Char) c;
 	DoingArg = 0;		/* just in case */
-	RefPlusOne();		/* fast refresh for one char. */
+	RefPlusOne(1);		/* fast refresh for one char. */
     }
     return(CC_NORM);
 }
@@ -3302,7 +3302,7 @@ v_change_case(cc)
 	    *Cursor++ = Toupper(c);
 	else
 	    Cursor++;
-	RefPlusOne();		/* fast refresh for one char */
+	RefPlusOne(1);		/* fast refresh for one char */
 	return(CC_NORM);
     }
     return(CC_ERROR);

@@ -155,8 +155,7 @@ EXTERN int Tty_raw_mode;
  * These are truly extern
  */
 extern int MacroLvl;
-extern Char *litptr[];
-extern int litlen[];
+extern Char *litptr;
 extern int didsetty;
 
 EXTERN Char *KeyMacro[MAXMACROLEVELS];

@@ -39,7 +39,7 @@
 #ifdef WIDE_STRINGS
 
 # define NLSSize(s, l) 1
-# define NLSFrom(s, l, cp) (USE (l), (*cp = *s), 1)
+# define NLSFrom(s, l, cp) (USE (l), (*(cp) = *(s) & CHAR), 1)
 # define NLSFinished(s, l, c) (l != 0 && c != CHAR_ERR ? 2 : 1)
 # define NLSChars(s) Strlen(s)
 # define NLSQuote(s)
@@ -68,7 +68,7 @@ extern void NLSQuote __P((Char *));
 
 # else
 #  define NLSSize(s, l) 1
-#  define NLSFrom(s, l, cp) (USE (l), (*cp = *s), 1)
+#  define NLSFrom(s, l, cp) (USE (l), (*(cp) = *(s) & CHAR), 1)
 #  define NLSFinished(s, l, c) (l != 0 && c != CHAR_ERR ? 2 : 1)
 #  define NLSChars(s) Strlen(s)
 #  define NLSStringWidth(s) Strlen(s)
@@ -170,3 +170,14 @@ extern void NLSQuote __P((Char *));
 
 extern int NLSExtend __P((Char *, int, int));
 extern Char *NLSChangeCase __P((Char *, int));
+extern int NLSClassify __P((NLSChar, int));
+
+#define NLSCLASS_CTRL		-1
+#define NLSCLASS_TAB		-2
+#define NLSCLASS_NL		-3
+#define NLSCLASS_ILLEGAL	-4
+#define NLSCLASS_ILLEGAL2	-5
+#define NLSCLASS_ILLEGAL3	-6
+#define NLSCLASS_ILLEGAL4	-7
+
+#define NLSCLASS_ILLEGAL_SIZE(x) (-(x) - (-NLSCLASS_ILLEGAL - 1))

@@ -1938,9 +1938,9 @@ pintr1(wantnl)
     (void) sigrelse(SIGCHLD);
 #endif
     drainoline();
-#if !defined(_VMS_POSIX) && !defined(WINNT_NATIVE)
+#ifdef HAVE_GETPWENT
     (void) endpwent();
-#endif /* !_VMS_POSIX && !WINNT_NATIVE */
+#endif
 
     /*
      * If we have an active "onintr" then we search for the label. Note that if

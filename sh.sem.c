@@ -575,13 +575,13 @@ execute(t, wanttty, pipein, pipeout, do_glob)
 			(void) signal(SIGHUP, SIG_DFL);
 		    if (t->t_dflg & F_NICE) {
 			int nval = SIGN_EXTEND_CHAR(t->t_nice);
-# ifdef BSDNICE
+# ifdef HAVE_SETPRIORITY
 			if (setpriority(PRIO_PROCESS, 0, nval) == -1 && errno)
 				stderror(ERR_SYSTEM, "setpriority",
 				    strerror(errno));
-# else /* !BSDNICE */
+# else /* !HAVE_SETPRIORITY */
 			(void) nice(nval);
-# endif /* BSDNICE */
+# endif /* HAVE_SETPRIORITY */
 		    }
 # ifdef F_VER
 		    if (t->t_dflg & F_VER) {

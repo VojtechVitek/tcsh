@@ -519,14 +519,25 @@ ChangeSize(lins, cols)
 	ClearDisp();
 }
 	void
-PutPlusOne(c)
+PutPlusOne(c, width)
 	Char  c;
+	int   width;
 {
 	extern int OldvcV;
 
-	(void) putwraw(c);
+	while (width > 1 && CursorH + width > DisplayWindowHSize)
+		PutPlusOne(' ', 1);
+	if ((c & LITERAL) != 0) { 
+		Char *d;
+		for (d = litptr + ((c & ~LITERAL) << 2); *d; d++)
+			(void) putwraw(*d);
+	} else {
+		(void) putwraw(c);
+	}
 
 	Display[CursorV][CursorH++] = (Char) c;
+	while (--width > 0)
+		Display[CursorV][CursorH++] = CHAR_DBWIDTH;
 
 	if (CursorH >= TermH) {	/* if we must overflow */
 		CursorH = 0;
