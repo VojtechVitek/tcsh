@@ -89,7 +89,7 @@ extern	void		  cwd_cmd	__P((void));
 extern	void		  beep_cmd	__P((void));
 extern	void		  period_cmd	__P((void));
 extern	void		  aliasrun	__P((int, Char *, Char *));
-extern	void		  setalarm	__P((void));
+extern	void		  setalarm	__P((int));
 extern	void		  rmstar	__P((struct wordent *));
 extern	void		  continue_jobs	__P((struct wordent *));
 extern	Char		 *gettilde	__P((Char *));

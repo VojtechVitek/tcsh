@@ -103,6 +103,9 @@ typedef int sigret_t;
 #define FORKSLEEP	10	/* delay loop on non-interactive fork failure */
 #define	MAILINTVL	600	/* 10 minutes */
 
+#ifndef INBUFSIZ
+# define INBUFSIZ	1024	/* Num input characters on the command line */
+#endif /* INBUFSIZ */
 /*
  * The shell moves std in/out/diag and the old std input away from units
  * 0, 1, and 2 so that it is easy to set up these standards for invoked
@@ -442,8 +445,11 @@ EXTERN int     opgrp,		/* Initial pgrp and tty pgrp */
                tpgrp;		/* Terminal process group */
 				/* If tpgrp is -1, leave tty alone! */
 
-EXTERN Char    PromptBuf[256];	/* buffer for the actual printed prompt. this
-				 * is used in tenex.c and sh.c for pegets.c */
+EXTERN Char    PromptBuf[INBUFSIZ*2]; /* buffer for the actual printed prompt.
+				       * this must be large enough to contain
+				       * the input line and the prompt, in
+				       * case a correction occured...
+				       */
 
 /*
  * To be able to redirect i/o for builtins easily, the shell moves the i/o

@@ -190,7 +190,7 @@ ed_Setup(rst)
     vdisable = _POSIX_VDISABLE;
 #endif /* _PC_VDISABLE */
 	
-    replacemode = 0;	/* start out in insert mode */
+    inputmode = MODE_INSERT;	/* start out in insert mode */
     ed_InitMaps();
     Hist_num = 0;
     Expand = 0;

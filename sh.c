@@ -1535,7 +1535,7 @@ process(catch)
 	    if (fseekp == feobp && aret == F_SEEK)
 		printprompt(0, NULL);
 	    flush();
-	    setalarm();
+	    setalarm(1);
 	}
 	if (seterr) {
 	    xfree((ptr_t) seterr);

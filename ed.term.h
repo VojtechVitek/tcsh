@@ -185,10 +185,10 @@
 # define CERASE2	_POSIX_VDISABLE
 #endif /* CERASE2 */
 #ifndef CSTART
-# define CSTART		CONTROL('s')
+# define CSTART		CONTROL('q')
 #endif /* CSTART */
 #ifndef CSTOP
-# define CSTOP		CONTROL('q')
+# define CSTOP		CONTROL('s')
 #endif /* CSTOP */
 #ifndef CSUSP
 # define CSUSP		CONTROL('z')
