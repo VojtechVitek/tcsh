@@ -222,6 +222,7 @@ Char STRKCORRECT[]	= { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R',
 Char STRunalias[]	= { 'u', 'n', 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRalias[]		= { 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRprecmd[]	= { 'p', 'r', 'e', 'c', 'm', 'd', '\0' };
+Char STRjobcmd[]	= { 'j', 'o', 'b', 'c', 'm', 'd', '\0' }; /*GrP*/
 Char STRpostcmd[]	= { 'p', 'o', 's', 't', 'c', 'm', 'd', '\0' };
 Char STRcwdcmd[]	= { 'c', 'w', 'd', 'c', 'm', 'd', '\0' };
 Char STRperiodic[]	= { 'p', 'e', 'r', 'i', 'o', 'd', 'i', 'c', '\0' };

@@ -319,6 +319,18 @@ execute(t, wanttty, pipein, pipeout)
 		break;
 	}
 
+	/* 
+	 * GrP Executing a command - run jobcmd hook
+	 * Don't run for builtins
+	 * Don't run if we're not in a tty
+	 * Don't run if we're not really executing 
+	 */
+	if (t->t_dtyp == NODE_COMMAND && !bifunc && !noexec && intty) {
+	    Char *cmd = unparse(t);
+	    job_cmd(cmd);
+	    xfree(cmd);
+	}
+	   
 	/*
 	 * We fork only if we are timed, or are not the end of a parenthesized
 	 * list and not a simple builtin function. Simple meaning one that is

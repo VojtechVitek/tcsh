@@ -337,6 +337,7 @@ extern	void		  unsetv	__P((Char *));
 extern	void		  setNS		__P((Char *));
 extern	void		  shift		__P((Char **, struct command *));
 extern	void		  plist		__P((struct varent *, int));
+extern	Char		 *unparse	__P((struct command *));
 #if defined(DSPMBYTE)
 extern	void 		  update_dspmbyte_vars	__P((void));
 extern	void		  autoset_dspmbyte	__P((Char *));
