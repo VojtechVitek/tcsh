@@ -149,10 +149,11 @@ xputchar(c)
     if (!output_raw && (c & QUOTE) == 0) {
 	if (iscntrl(c) && (c < 0x80 || MB_CUR_MAX == 1)) {
 #ifdef COLORCAT
-	    if (c != '\t' && c != '\n' && !(adrof(STRcolorcat) && c=='\033') && (xlate_cr || c != '\r')) {
+	    if (c != '\t' && c != '\n' && !(adrof(STRcolorcat) && c=='\033') && (xlate_cr || c != '\r'))
 #else
-	    if (c != '\t' && c != '\n' && (xlate_cr || c != '\r')) {
+	    if (c != '\t' && c != '\n' && (xlate_cr || c != '\r'))
 #endif
+	    {
 		xputchar('^' | atr);
 #ifdef IS_ASCII
 		if (c == 0177)
