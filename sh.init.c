@@ -118,7 +118,7 @@ struct	biltins bfunc[] = {
     { "migrate",	domigrate,	1,	INF	},
 #endif /* TCF */
 #ifdef NEWGRP
-    { "newgrp",		donewgrp,	1,	2	},
+    { "newgrp",		donewgrp,	0,	2	},
 #endif /* NEWGRP */
     { "nice",		donice,		0,	INF	},
     { "nohup",		donohup,	0,	INF	},

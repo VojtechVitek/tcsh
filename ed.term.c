@@ -553,7 +553,7 @@ static struct tcshmodes {
 
 #if defined(EAGAIN) && defined(EWOULDBLOCK) && (EWOULDBLOCK != EAGAIN)
 # define OKERROR(e) (((e) == EAGAIN) || ((e) == EWOULDBLOCK) || ((e) == EINTR))
-#elif defined(EGAIN)
+#elif defined(EAGAIN)
 # define OKERROR(e) (((e) == EAGAIN) || ((e) == EINTR))
 #elif defined(EWOULDBLOCK)
 # define OKERROR(e) (((e) == EWOULDBLOCK) || ((e) == EINTR))

@@ -1599,7 +1599,6 @@ pkill(v, signum)
     sigmask_t omask;
 #endif /* BSDSIGS */
     Char   *cp, **vp;
-    char   *ep;
 
 #ifdef BSDSIGS
     omask = sigmask(SIGCHLD);

@@ -442,8 +442,8 @@ char *inpath, *path;
 	if (n >= 0)
 	    insert(pe, n, path);
 	else
-	    xprintf(CGETS(10, 4, "setpath: %s not found in %s\n",
-		    inpath, pe->pname));
+	    xprintf(CGETS(10, 4, "setpath: %s not found in %s\n"),
+		    inpath, pe->pname);
     }
 }
 
