@@ -2216,7 +2216,13 @@ xexit(i)
     }
     untty();
 #ifdef NLS_CATALOGS
-    (void) catclose(catd);
+    /*
+     * We need to call catclose, because SVR4 leaves symlinks behind otherwise
+     * in the catalog directories. We cannot close on a vforked() child,
+     * because messages will stop working on the parent too.
+     */
+    if (child == 0)
+	(void) catclose(catd);
 #endif /* NLS_CATALOGS */
     _exit(i);
 }

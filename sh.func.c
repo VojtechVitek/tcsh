@@ -1406,6 +1406,7 @@ dosetenv(v, c)
 	return;
     }
 #endif /* SIG_WINDOW */
+    xfree((ptr_t) lp);
 }
 
 /*ARGSUSED*/

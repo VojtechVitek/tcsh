@@ -1719,6 +1719,9 @@ editinit()
     f->name = NULL;
     f->func = 0;
     f->desc = NULL;
+
+    if (f - FuncNames != F_NUM_FNS + 1)
+	abort();
 }
 
 #ifdef DEBUG_EDIT
