@@ -165,7 +165,7 @@ static struct {
 #define T_str   38
 static struct termcapstr {
     const char   *name;
-    char   *long_name;
+    const char   *long_name;
     char   *str;
 } tstr[T_str + 1];
 
@@ -179,7 +179,7 @@ static struct termcapstr {
 #define T_val	6
 static struct termcapval {
     const char   *name;
-    char   *long_name;
+    const char   *long_name;
     int     val;
 } tval[T_val + 1];
 
@@ -1636,7 +1636,6 @@ ChangeSize(lins, cols)
 	if ((tptr = getenv("TERMCAP")) != NULL) {
 	    /* Leave 64 characters slop in case we enlarge the termcap string */
 	    Char    termcap[1024+64], backup[1024+64], *ptr;
-	    size_t len;
 
 	    ptr = str2short(tptr);
 	    (void) Strncpy(termcap, ptr, 1024);
@@ -1669,7 +1668,7 @@ ChangeSize(lins, cols)
 		(void) Strcpy(termcap, backup);
 	    }
 	    else {
-		len = (ptr - backup) + Strlen(buf);
+		size_t len = (ptr - backup) + Strlen(buf);
 		(void) Strncpy(termcap, backup, len);
 		termcap[len] = '\0';
 		(void) Itoa(Val(T_li), buf, 0, 0);

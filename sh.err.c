@@ -188,7 +188,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_BADCOLORVAR	134
 #define NO_ERRORS	135
 
-static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
+static const char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
 /*
  * Init the elst depending on the locale

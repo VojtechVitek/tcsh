@@ -123,11 +123,6 @@ dprintf(va_list)
 
 static int litlen = 0, litalloc = 0;
 
-static void ResetLiterals()
-{
-    litlen = 0;
-}
-
 static int MakeLiteral(str, len, addlit)
     Char *str;
     int len;
@@ -1345,7 +1340,7 @@ ClearDisp()
     for (i = 0; i < TermV; i++)
 	(void) memset(Display[i], 0, TermH * sizeof(Display[0][0]));
     OldvcV = 0;
-    ResetLiterals();
+    litlen = 0;
 }
 
 void

@@ -1167,12 +1167,14 @@ pprint(pp, flag)
 			    && reason != SIGINT
 			    && (reason != SIGPIPE
 				|| (pp->p_flags & PPOU) == 0))) {
-			char *ptr;
+			const char *ptr;
 			char buf[1024];
 
-			if ((ptr = mesg[pp->p_reason & ASCII].pname) == NULL)
-			    xsnprintf(ptr = buf, sizeof(buf), "%s %d",
+			if ((ptr = mesg[pp->p_reason & ASCII].pname) == NULL) {
+			    xsnprintf(buf, sizeof(buf), "%s %d",
 				CGETS(17, 5, "Signal"), pp->p_reason & ASCII);
+			    ptr = buf;
+			}
 			xprintf(format, ptr);
 		    }
 		    else

@@ -228,7 +228,7 @@ int nsrchn = sizeof srchn / sizeof *srchn;
 
 int	nsig = NUMSIG - 1;	/* This should be the number of real signals */
 				/* not counting signal 0 */
-struct	mesg mesg[NUMSIG];	/* Arrays start at [0] so we initialize from */
+struct mesg mesg[NUMSIG];	/* Arrays start at [0] so we initialize from */
 				/* 0 to 32 or 64, the max real signal number */
 
 void

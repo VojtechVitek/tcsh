@@ -1358,8 +1358,8 @@ tw_list_items(looking, numitems, list_max)
 
 
     if (max_items || max_rows) {
-	char    	 tc;
-	char		*name;
+	char    	 tc, *sname;
+	const char	*name;
 	int maxs;
 
 	if (max_items) {
@@ -1371,10 +1371,10 @@ tw_list_items(looking, numitems, list_max)
 	    maxs = max_rows;
 	}
 
-	name = strsave(name);
+	sname = strsave(name);
 	xprintf(CGETS(30, 7, "There are %d %s, list them anyway? [n/y] "),
-		maxs, name);
-	xfree(name);
+		maxs, sname);
+	xfree(sname);
 	flush();
 	/* We should be in Rawmode here, so no \n to catch */
 	(void) read(SHIN, &tc, 1);
