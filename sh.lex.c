@@ -456,6 +456,9 @@ getC1(flag)
 	    }
 	    exclp = 0;
 	    exclnxt = 0;
+	    /* this will throw away the dummy history entries */
+	    savehist(NULL, 0);
+
 	}
 	if (exclnxt) {
 	    exclnxt = exclnxt->next;
@@ -1683,7 +1686,7 @@ again:
 			xprintf("Dumping core...");
 			flush();
 			if (fork() == 0)
-			    (void) kill(0, SIGQUIT);
+			    (void) kill(0, 6);
 			xprintf("ok.\n");
 			flush();
 #endif

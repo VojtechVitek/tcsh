@@ -69,7 +69,7 @@ savehist(sp, mflg)
     Char   *cp;
 
     /* throw away null lines */
-    if (sp->next->word[0] == '\n')
+    if (sp && sp->next->word[0] == '\n')
 	return;
     cp = value(STRhistory);
     if (*cp) {
@@ -88,7 +88,8 @@ savehist(sp, mflg)
 	    hp->Hnext = np->Hnext, hfree(np);
 	else
 	    hp = np;
-    (void) enthist(++eventno, sp, 1, mflg);
+    if (sp)
+	(void) enthist(++eventno, sp, 1, mflg);
 }
 
 static bool

@@ -329,7 +329,11 @@ static char *errorlist[] =
     "\nIncomplete %s: \"%s\"",
 #define ERR_MFLAG	129
     "No operand for -m flag",
-#define ERR_INVALID	130
+#define ERR_ULIMUS	130
+    "Usage: unlimit [-fh] [limits]",
+#define ERR_READONLY	131
+    "$%S is read-only",
+#define ERR_INVALID	132
     "Invalid Error"
 };
 
@@ -471,7 +475,7 @@ stderror(va_alist)
      */
     btoeof();
 
-    set(STRstatus, Strsave(STR1));
+    set(STRstatus, Strsave(STR1), VAR_READWRITE);
 #ifdef BSDJOBS
     if (tpgrp > 0)
 	(void) tcsetpgrp(FSHTTY, tpgrp);

@@ -78,8 +78,15 @@ typedef struct sigvec sigvec_t;
 # endif /* hpux */
 
 # ifndef HAVE_SIGVEC
+#  ifdef POSIXSIGS
+#  define mysigvec(a, b, c)	sigaction(a, b, c)
+typedef struct sigaction sigvec_t;
+#   define sv_handler sa_handler
+#   define sv_flags sa_flags
+#  else /* BSDSIGS */
 #  define mysigvec(a, b, c)	sigvec(a, b, c)
 typedef struct sigvec sigvec_t;
+#  endif /* POSIXSIGS */
 # endif /* HAVE_SIGVEC */
 
 # undef HAVE_SIGVEC

@@ -781,7 +781,7 @@ evalav(v)
     struct command *t;
     register struct wordent *wdp = hp;
 
-    set(STRstatus, Strsave(STR0));
+    set(STRstatus, Strsave(STR0), VAR_READWRITE);
     hp->prev = hp->next = hp;
     hp->word = STRNULL;
     while (*v) {

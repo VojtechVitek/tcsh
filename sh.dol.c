@@ -403,7 +403,8 @@ quotspec:
 }
 
 static Char *nulvec[] = { NULL };
-static struct varent nulargv = {nulvec, STRargv, { NULL, NULL, NULL }, 0 };
+static struct varent nulargv = {nulvec, STRargv, VAR_READWRITE, 
+				{ NULL, NULL, NULL }, 0 };
 
 static void
 dolerror(s)

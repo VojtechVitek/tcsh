@@ -77,7 +77,7 @@ docomplete(v, t)
 	    tw_pr(vp->vec), xputchar('\n');
     }
     else
-	set1(strip(p), saveblk(v), &completions);
+	set1(strip(p), saveblk(v), &completions, VAR_READWRITE);
 } /* end docomplete */
 
 

@@ -78,6 +78,7 @@ Char STRhistfile[]      = { 'h', 'i', 's', 't', 'f', 'i', 'l', 'e', '\0' };
 Char STRsource[]        = { 's', 'o', 'u', 'r', 'c', 'e', '\0' };
 Char STRmh[]            = { '-', 'h', '\0' };
 Char STRmm[]            = { '-', 'm', '\0' };
+Char STRmr[]            = { '-', 'r', '\0' };
 Char STRmerge[]         = { 'm', 'e', 'r', 'g', 'e', '\0' };
 Char STRtildothist[]    = { '~', '/', '.', 'h', 'i', 's', 't', 'o', 'r', 
 		            'y', '\0' };

@@ -146,7 +146,7 @@ Char *dp;
     vec[0] = Strsave(dp);
     vec[1] = 0;
     (void) Strcpy(olddir, value(STRcwd));
-    setq(STRcwd, vec, &shvhed);
+    setq(STRcwd, vec, &shvhed, VAR_READWRITE);
     tsetenv(STRPWD, dp);
 }
 
@@ -1191,7 +1191,7 @@ dgetstack()
 	for (dn = dhead.di_prev; dn != &dhead; dn = dn->di_prev, dbp++) 
 	     *dbp = Strsave(dn->di_name);
 	*dbp = NULL;
-	setq(STRdirstack, dblk, &shvhed);
+	setq(STRdirstack, dblk, &shvhed, VAR_READWRITE);
     }
 }
 

@@ -530,15 +530,14 @@ static struct tcshmodes {
 
 /* Retry a system call */
 #define RETRY(x) \
-   do \
+   for (;;) \
 	if ((x) == -1) \
 	   if (errno != EINTR) \
 	       return -1; \
 	   else \
 	       continue; \
 	else \
-	   break; \
-   while (1)
+	   break \
 
 /*ARGSUSED*/
 void

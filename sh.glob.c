@@ -104,6 +104,8 @@ globtilde(nv, s)
 	continue;
     *b = EOS;
     if (gethdir(gstart)) {
+	if (adrof(STRnonomatch))
+	    return (--u);
 	blkfree(nv);
 	if (*gstart)
 	    stderror(ERR_UNKUSER, short2str(gstart));
