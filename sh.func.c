@@ -1825,9 +1825,9 @@ struct limits limits[] =
     { RLIMIT_NPROC,	"maxproc",	1,	""		},
 # endif /* RLIMIT_NPROC */
 
-# ifdef RLIMIT_OFILE
+# if defined(RLIMIT_OFILE) && !defined(RLIMIT_NOFILE)
     { RLIMIT_OFILE,	"openfiles",	1,	""		},
-# endif /* RLIMIT_OFILE */
+# endif /* RLIMIT_OFILE && !defined(RLIMIT_NOFILE) */
 
     { -1, 		NULL, 		0, 	NULL		}
 };
