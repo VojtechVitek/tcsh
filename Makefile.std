@@ -61,7 +61,7 @@ CFLAGS=-O2 $(INCLUDES) -g
 #CFLAGS= $(INCLUDES) -O -Olimit 2000
 
 # Intel Paragon OSF/1 with PGI compilers
-CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
+#CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
 
 # for silicon graphics (and other mips compilers) -- use the
 # global optimizer! (-O3).
@@ -242,7 +242,7 @@ PVSRCS= Makefile.std Makefile.vms
 AVSRCS= Fixes MAKEDIFFS MAKESHAR NewThings README FAQ \
 	WishList config_f.h eight-bit.me glob.3 patchlevel.h \
 	pathnames.h tcsh.man Ported src.desc Imakefile imake.config \
-	README.imake complete.tcsh vmsreadme.txt termcap.vms
+	README.imake complete.tcsh vmsreadme.txt termcap.vms snames.h
 VHSRCS=${PVSRCS} ${AVSRCS}
 
 CONFSRCS=config/config.* 

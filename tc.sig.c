@@ -271,6 +271,7 @@ char   *show_sig_mask();
 
 int     debug_signals = 0;
 
+#ifndef __PARAGON__
 /*
  * sigsetmask(mask)
  *
@@ -302,6 +303,7 @@ sigsetmask(mask)
 
     return (m);
 }
+#endif /* __PARAGON__ */
 
 /*
  * sigblock(mask)

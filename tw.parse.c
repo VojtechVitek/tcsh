@@ -1075,7 +1075,17 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 	    resexit(osetexit);
 	    InsideCompletion = 0;
 	    haderr = 0;
+
+#if defined(SOLARIS2) && defined(i386)
+	    /* Compiler bug? (from PWP) */
+	    if ((looking == 3) || (looking == 7))
+		tw_logname_end();
+	    else
+		tw_dir_end();
+#else /* !(SOLARIS2 && i386) */
 	    (*tw_end_entry[looking])();
+#endif /* !(SOLARIS2 && i386) */
+
 	    /* flag error */
 	    return(-1);
 	}
@@ -1085,7 +1095,17 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 					flags & ~TW_IGN_OK)) >= 0) {
 	    resexit(osetexit);
 	    InsideCompletion = 0;
+
+#if defined(SOLARIS2) && defined(i386)
+	    /* Compiler bug? (from PWP) */
+	    if ((looking == 3) || (looking == 7))
+		tw_logname_end();
+	    else
+		    tw_dir_end();
+    #else /* !(SOLARIS2 && i386) */
 	    (*tw_end_entry[looking])();
+#endif /* !(SOLARIS2 && i386) */
+
 	    return(ni);
 	}
     }
