@@ -2595,7 +2595,7 @@ v_substline(c)
 {				/* vi mode replace whole line */
     (void) e_killall(0);
     c_alternativ_key_map(0);
-    return(CC_NORM);
+    return(CC_REFRESH);
 }
 
 /*ARGSUSED*/

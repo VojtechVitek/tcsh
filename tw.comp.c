@@ -142,6 +142,9 @@ tw_result(act, pat)
 	case 'c':
 	    looking = TW_COMMAND;
 	    break;
+	case 'b':
+	    looking = TW_BINDING;
+	    break;
 	case '$':
 	    copyn(pat, &act[2], MAXPATHLEN);
 	    (void) strip(pat);

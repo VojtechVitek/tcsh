@@ -537,7 +537,7 @@ xgetpass(prm)
 static void
 auto_lock()
 {
-#ifdef NO_CRYPT
+#ifndef NO_CRYPT
 
     int i;
     struct passwd *pw;

@@ -49,6 +49,7 @@
 #define TW_ALIAS	8
 #define TW_SHELLVAR	9
 #define TW_ENVVAR	10
+#define TW_BINDING	11
 
 #define TW_EXEC_OK	1
 #define TW_DIR_OK	2

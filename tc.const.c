@@ -123,6 +123,8 @@ Char STRignore_symlinks[] = { 'i', 'g', 'n', 'o', 'r', 'e', '_', 's', 'y', 'm',
 			    'l', 'i', 'n', 'k', 's', '\0' };
 Char STRchase_symlinks[] = { 'c', 'h', 'a', 's', 'e', '_', 's', 'y', 'm', 'l', 
 			    'i', 'n', 'k', 's', '\0' };
+Char STRsysv_echo[]	= { 's', 'y', 's', 'v', '_', 'e', 'c', 'h', 'o', '\0' };
+
 Char STRPWD[]		= { 'P', 'W', 'D', '\0' };
 Char STRor2[]		= { '|', '|', '\0' };
 Char STRand2[]		= { '&', '&', '\0' };

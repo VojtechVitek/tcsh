@@ -426,7 +426,14 @@ found:
 		    if (GettingInput) {
 			errno = 0;
 			(void) Rawmode();
+#ifdef notdef
+			/*
+			 * don't really want to do that, because it
+			 * will erase our message in case of multi-line
+			 * input
+			 */
 			ClearLines();
+#endif
 			ClearDisp();
 			Refresh();
 		    }

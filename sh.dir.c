@@ -225,9 +225,11 @@ printdirs()
 	    xprintf("%d\t", idx++);
 	    cur = 0;
 	}
+	len = Strlen(hp);
 	if (!(dirflag & DIR_LONG) && hp != NULL && !eq(hp, STRslash) &&
-	    prefix(hp, dp->di_name))
-	    len = Strlen(s = (dp->di_name + Strlen(hp))) + 2;
+	    Strncmp(hp, dp->di_name, len) == 0 &&
+	    (dp->di_name[len] == '\0' || dp->di_name[len] == '/')) 
+	    len = Strlen(s = (dp->di_name + len)) + 2;
 	else
 	    len = Strlen(s = dp->di_name) + 1;
 
@@ -1030,6 +1032,7 @@ dnewcwd(dp)
 		dn->di_next->di_prev = dn->di_prev;
 		dn->di_prev->di_next = dn->di_next;
 		dfree(dn);
+		break;
 	    }
     }
     dcwd = dp;
