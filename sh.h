@@ -244,7 +244,7 @@ typedef int NLSChar;
 #endif /* !_MINIX && !_VMS_POSIX && !WINNT_NATIVE && !__MVS__ */
 #include <sys/stat.h>
 
-#if defined(BSDTIMES) || defined(BSDLIMIT) || defined(__CYGWIN__)
+#if defined(BSDTIMES) || defined(BSDLIMIT)
 # include <sys/time.h>
 # if SYSVREL>3 && !defined(SCO) && !defined(sgi) && !defined(SNI) && !defined(sun) && !(defined(__alpha) && defined(__osf__)) && !defined(_SX) && !defined(__MVS__)
 #  include "/usr/ucbinclude/sys/resource.h"
