@@ -1101,8 +1101,8 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 	    if ((looking == 3) || (looking == 7))
 		tw_logname_end();
 	    else
-		    tw_dir_end();
-    #else /* !(SOLARIS2 && i386) */
+		tw_dir_end();
+#else /* !(SOLARIS2 && i386) */
 	    (*tw_end_entry[looking])();
 #endif /* !(SOLARIS2 && i386) */
 
