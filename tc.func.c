@@ -849,11 +849,11 @@ setalarm(lck)
 
     if (vp = adrof(STRautologout)) {
 	if (cp = vp->vec[0]) {
-	    alrm_time = (atoi(short2str(cp)) * 60);
+	    alrm_time = atoi(short2str(cp)) * 60;
 	    alm_fun = auto_logout;
 	}
 	if ((cp = vp->vec[1])) {
-	    lock_time = atoi(short2str(cp) * 60);
+	    lock_time = atoi(short2str(cp)) * 60;
 	    if (lck) {
 		if (lock_time < alrm_time) {
 		    alrm_time = lock_time;
