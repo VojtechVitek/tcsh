@@ -701,23 +701,23 @@ parseescape(ptr)
 	case 'b':
 	    c = CTL_ESC('\010');         /* Backspace */
 	    break;
-	case 't':
-	    c = CTL_ESC('\011');         /* Horizontal Tab */
-	    break;
-	case 'n':
-	    c = CTL_ESC('\012');         /* New Line */
-	    break;
-	case 'v':
-	    c = CTL_ESC('\013');         /* Vertical Tab */
+	case 'e':
+	    c = CTL_ESC('\033');         /* Escape */
 	    break;
 	case 'f':
 	    c = CTL_ESC('\014');         /* Form Feed */
 	    break;
+	case 'n':
+	    c = CTL_ESC('\012');         /* New Line */
+	    break;
 	case 'r':
 	    c = CTL_ESC('\015');         /* Carriage Return */
 	    break;
-	case 'e':
-	    c = CTL_ESC('\033');         /* Escape */
+	case 't':
+	    c = CTL_ESC('\011');         /* Horizontal Tab */
+	    break;
+	case 'v':
+	    c = CTL_ESC('\013');         /* Vertical Tab */
 	    break;
 	case '0':
 	case '1':

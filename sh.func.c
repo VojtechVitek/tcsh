@@ -1160,12 +1160,18 @@ xecho(sep, v)
 	while ((c = *cp++) != 0) {
 	    if ((echo_style & SYSV_ECHO) != 0 && c == '\\') {
 		switch (c = *cp++) {
+		case 'a':
+		    c = '\a';
+		    break;
 		case 'b':
 		    c = '\b';
 		    break;
 		case 'c':
 		    nonl = 1;
 		    goto done;
+		case 'e':
+		    c = '\e';
+		    break;
 		case 'f':
 		    c = '\f';
 		    break;
