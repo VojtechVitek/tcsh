@@ -41,9 +41,11 @@ RCSID("$Id$")
 #include "nt.const.h"
 #endif /* WINNT_NATIVE */
 
+#ifdef NLS_CATALOGS
 #ifdef HAVE_ICONV
 #include <langinfo.h>
 static iconv_t catgets_iconv; /* Or (iconv_t)-1 */
+#endif
 #endif
 
 /*
@@ -2432,6 +2434,7 @@ struct command *c;
     flush();
 }
 
+#ifdef NLS_CATALOGS
 #ifdef HAVE_ICONV
 char *
 iconv_catgets(ctd, set_id, msg_id, s)
@@ -2478,6 +2481,7 @@ const char *s;
     }
     return buf;
 }
+#endif
 #endif
 
 void
