@@ -1520,12 +1520,21 @@ st_save(st, unit, hflg, al, av)
     st->OLDSTD = st->SHOUT = st->SHDIAG = -1;/* test later to restore these */
     if (didfds) {
 	    struct stat s1, s2;
-	    if (NEED_SAVE_FD(0,OLDSTD))
-		    st->OLDSTD = OLDSTD, OLDSTD = dmove(0, -1);
-	    if (NEED_SAVE_FD(1,SHOUT))
-		    st->SHOUT = SHOUT, SHOUT = dmove(1, -1);
-	    if (NEED_SAVE_FD(2,SHDIAG))
-		    st->SHDIAG = SHDIAG, SHDIAG = dmove(2, -1);
+	    if (NEED_SAVE_FD(0,OLDSTD)) {
+		    st->OLDSTD = OLDSTD;
+		    OLDSTD = dmove(0, -1);
+		    (void)close_on_exec(OLDSTD, 1);
+	    }
+	    if (NEED_SAVE_FD(1,SHOUT)) {
+		    st->SHOUT = SHOUT;
+		    SHOUT = dmove(1, -1);
+		    (void)close_on_exec(SHOUT, 1);
+	    }
+	    if (NEED_SAVE_FD(2,SHDIAG)) {
+		    st->SHDIAG = SHDIAG;
+		    SHDIAG = dmove(2, -1);
+		    (void)close_on_exec(SHDIAG, 1);
+	    }
 	    donefds();
     }
 
