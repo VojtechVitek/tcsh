@@ -1549,11 +1549,14 @@ nostat(dir)
     register Char **cp;
 
     if ((vp = adrof(STRnostat)) == NULL || (cp = vp->vec) == NULL)
-	return (FALSE);
-    for (; *cp != NULL; cp++)
+	return FALSE;
+    for (; *cp != NULL; cp++) {
+	if (Strcmp(*cp, STRstar) == 0)
+	    return TRUE;
 	if (Gmatch(dir, *cp))
-	    return (TRUE);
-    return (FALSE);
+	    return TRUE;
+    }
+    return FALSE;
 } /* end nostat */
 
 

@@ -469,6 +469,9 @@ smalloc(n)
 
     n = n ? n : 1;
 
+    if (membot == NULL)
+	membot == (char*) sbrk(0);
+
     if ((ptr = malloc(n)) == (ptr_t) 0) {
 	child++;
 	stderror(ERR_NOMEM);
@@ -476,6 +479,8 @@ smalloc(n)
 #ifdef _VMS_POSIX
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
+    if (membot == NULL)
+	membot = (char*) ptr;
 #endif /* _VMS_POSIX */
     return ((memalign_t) ptr);
 }
@@ -488,6 +493,10 @@ srealloc(p, n)
     ptr_t   ptr;
 
     n = n ? n : 1;
+
+    if (membot == NULL)
+	membot == (char*) sbrk(0);
+
     if ((ptr = (p ? realloc(p, n) : malloc(n))) == (ptr_t) 0) {
 	child++;
 	stderror(ERR_NOMEM);
@@ -495,6 +504,8 @@ srealloc(p, n)
 #ifdef _VMS_POSIX
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
+    if (membot == NULL)
+	membot = (char*) ptr;
 #endif /* _VMS_POSIX */
     return ((memalign_t) ptr);
 }
@@ -508,6 +519,10 @@ scalloc(s, n)
 
     n *= s;
     n = n ? n : 1;
+
+    if (membot == NULL)
+	membot == (char*) sbrk(0);
+
     if ((ptr = malloc(n)) == (ptr_t) 0) {
 	child++;
 	stderror(ERR_NOMEM);
@@ -519,11 +534,14 @@ scalloc(s, n)
 	    *sptr++ = 0;
 	while (--n);
 
-    return ((memalign_t) ptr);
 #ifdef _VMS_POSIX
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
+    if (membot == NULL)
+	membot = (char*) ptr;
 #endif /* _VMS_POSIX */
+
+    return ((memalign_t) ptr);
 }
 
 void
