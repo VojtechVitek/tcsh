@@ -1743,6 +1743,9 @@ doumask(v, c)
 #ifndef HAVENOLIMIT
 # ifndef BSDLIMIT
    typedef long RLIM_TYPE;
+#  ifdef _OSD_POSIX /* BS2000 */
+#   include <ulimit.h>
+#  endif
 #  ifndef RLIM_INFINITY
 #   if !defined(_MINIX) && !defined(__clipper__) && !defined(_CRAY)
     extern RLIM_TYPE ulimit();
@@ -2116,6 +2119,12 @@ plim(lp, hard)
     if (limit == RLIM_INFINITY)
 	xprintf("unlimited");
     else
+# if defined(RLIMIT_CPU) && defined(_OSD_POSIX)
+    if (lp->limconst == RLIMIT_CPU &&
+        (unsigned long)limit >= 0x7ffffffdUL)
+	xprintf("unlimited");
+    else
+# endif
 # ifdef RLIMIT_CPU
     if (lp->limconst == RLIMIT_CPU)
 	psecs((long) limit);

@@ -104,8 +104,12 @@ static struct rusage zru = {{0L, 0L}, {0L, 0L}, 0L, 0L, 0L, 0L,
  */
 static struct rusage zru;
 #   else	/* masscomp */
-static struct rusage zru = {{0L, 0L}, {0L, 0L}, 0, 0, 0, 0, 0, 0, 0, 
-			    0, 0, 0, 0, 0, 0};
+static struct rusage zru = {{0L, 0L}, {0L, 0L}
+#ifndef _OSD_POSIX /* BS2000 has fewer resource fields */
+			   ,0, 0, 0, 0, 0, 0, 0, 
+			    0, 0, 0, 0, 0, 0
+#endif
+};
 #   endif /* masscomp */
 #  endif	/* SUNOS4 || hp9000 || (__alpha && __osf__) */
 # endif /* convex */

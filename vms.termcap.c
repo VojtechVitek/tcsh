@@ -34,7 +34,9 @@ RCSID("$Id$")
 char		*capab;		/* the capability itself */
 
 extern char	*getenv();	/* new, improved getenv */
+#ifndef fopen
 extern FILE	*fopen();	/* old fopen */
+#endif
 
 /*
  *	tgetent - get the termcap entry for terminal name, and put it
@@ -327,11 +329,18 @@ char	*cp;
 int		affcnt;
 int		(*outc)();
 {
+	unsigned long delay = 0;
+
 	if (cp == NULL)
 		return(1);
 	/* do any padding interpretation - left null for MINIX just now */
+	for (delay = 0; *cp && ISDIGIT(*cp) ; cp++)
+		delay = delay * 10 + *cp - '0';
 	while (*cp)
 		(*outc)(*cp++);
+#ifdef _OSD_POSIX
+	usleep(delay*100); /* strictly spoken, it should be *1000 */
+#endif
 	return(1);
 }
 #endif /* _VMS_POSIX || _OSD_POSIX */
