@@ -1998,7 +1998,7 @@ process(catch)
 	     * read fresh stuff. Otherwise, we are rereading input and don't
 	     * need or want to prompt.
 	     */
-	    if (fseekp == feobp && aret == F_SEEK)
+	    if (fseekp == feobp && aret == TCSH_F_SEEK)
 		printprompt(0, NULL);
 	    flush();
 	    setalarm(1);
