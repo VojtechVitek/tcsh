@@ -1413,9 +1413,8 @@ tsetenv(name, val)
     Char   *blk[2];
     Char  **oep = ep;
 
-
     for (; *ep; ep++) {
-	for (cp = name, dp = *ep; *cp && *cp == *dp; cp++, dp++)
+	for (cp = name, dp = *ep; *cp && (*cp & TRIM) == *dp; cp++, dp++)
 	    continue;
 	if (*cp != 0 || *dp != '=')
 	    continue;
@@ -1503,11 +1502,11 @@ doumask(v, c)
 #   define toset(a) ((a) + 1)
 #  endif /* aiws */
 # else /* BSDLIMIT */
-#  if defined(BSD4_4) && !defined(__386BSD__)
+#  if defined(BSD4_4) && !defined(__386BSD__) && !defined(bsdi)
     typedef quad_t RLIM_TYPE;
 #  else
     typedef int RLIM_TYPE;
-#  endif /* BSD4_4 && !__386BSD__ */
+#  endif /* BSD4_4 && !__386BSD__ && !defined(bsdi) */
 # endif /* BSDLIMIT */
 
 # if defined(hpux) && defined(BSDLIMIT)

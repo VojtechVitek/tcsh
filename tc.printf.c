@@ -278,10 +278,10 @@ xaddchar(c)
 }
 
 
-void
+pret_t
 /*VARARGS*/
 #if __STDC__
-xsprintf(char *str, char *fmt, ...)
+xsprintf(char *str, const char *fmt, ...)
 #else
 xsprintf(va_alist)
     va_dcl
@@ -302,13 +302,16 @@ xsprintf(va_alist)
     doprnt(xaddchar, fmt, va);
     va_end(va);
     *xstring++ = '\0';
+#ifdef PURIFY
+    return 1;
+#endif
 }
 
 
-void
+pret_t
 /*VARARGS*/
 #if __STDC__
-xprintf(char *fmt, ...)
+xprintf(const char *fmt, ...)
 #else
 xprintf(va_alist)
     va_dcl
@@ -325,26 +328,35 @@ xprintf(va_alist)
 #endif
     doprnt(xputchar, fmt, va);
     va_end(va);
+#ifdef PURIFY
+    return 1;
+#endif
 }
 
 
-void
+pret_t
 xvprintf(fmt, va)
-    char   *fmt;
+    const char   *fmt;
     va_list va;
 {
     doprnt(xputchar, fmt, va);
+#ifdef PURIFY
+    return 1;
+#endif
 }
 
-void
+pret_t
 xvsprintf(str, fmt, va)
     char   *str;
-    char   *fmt;
+    const char   *fmt;
     va_list va;
 {
     xstring = (char *) str;
     doprnt(xaddchar, fmt, va);
     *xstring++ = '\0';
+#ifdef PURIFY
+    return 1;
+#endif
 }
 
 
@@ -357,7 +369,9 @@ xvsprintf(str, fmt, va)
  * ones that do tcsh output directly - see dumb hook in doreaddirs()
  * (sh.dir.c) -sg
  */
+#ifndef FILE
 #define FILE int
+#endif
 int 
 #if __STDC__
 fprintf(FILE *fp, const char* fmt, ...)

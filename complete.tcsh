@@ -151,8 +151,9 @@ if ($?complete) then
 
     # this one is simple...
     #complete rcp c/*:/f/ C@[./]*@f@ n/*/\$hosts/:
-    # From harald: This one will rsh to the file to fetch the list of files!
-    complete rcp 'c%*:%`set q=$:-1;set q="$q:s/:/ /";set q=($q " ");rsh $q[1] ls -dp $q[2]\*`%%' 'C@[./]*@f@' 'n/*/$hosts/:'
+    # From Michael Schroeder: 
+    # This one will rsh to the file to fetch the list of files!
+    complete rcp 'c%*:%`set q=$:-0;set q="$q:s/:/ /";set q=($q " ");rsh $q[1] ls -dp $q[2]\*`%%' 'C@[./]*@f@' 'n/*/$hosts/:'
 
 
     complete dd c/if=/f/ c/of=/f/ \

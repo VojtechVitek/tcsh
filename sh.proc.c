@@ -1912,14 +1912,12 @@ pfork(t, wanttty)
 	     */
 	    pgrp = pcurrjob ? pcurrjob->p_jobid : pid;
 	    if (setpgid(pid, pgrp) == -1 && errno == EPERM) {
-		if (pcurrjob) {
-		    pflush(pcurrjob);
-		    pcurrjob = NULL;
-		}
-		if (mygetpgrp() != pid && setpgid(pid, pgrp = pid) == -1) {
-		    stderror(ERR_SYSTEM, "setpgid parent:", strerror(errno));
-		    xexit(0);
-		}
+		pcurrjob = NULL;
+		/* 
+		 * We don't care if this causes an error here;
+		 * then we are already in the right process group
+		 */
+		(void) setpgid(pid, pgrp = pid);
 	    }
 	}
 #endif /* POSIXJOBS */

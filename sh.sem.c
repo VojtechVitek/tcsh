@@ -229,7 +229,7 @@ execute(t, wanttty, pipein, pipeout)
 	     * Check if we have a builtin function and remember which one.
 	     */
 	    _gv.bifunc = isbfunc(t);
- 	    if (noexec) {
+ 	    if (noexec && _gv.bifunc) {
 		/*
 		 * Continue for builtins that are part of the scripting language
 		 */

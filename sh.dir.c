@@ -868,7 +868,7 @@ dcanon(cp, p)
 	     */
 	    *--sp = 0;		/* form the pathname for readlink */
 #ifdef S_IFLNK			/* if we have symlinks */
-	    if (sp != cp && symlinks != SYM_IGNORE &&
+	    if (sp != cp && /* symlinks != SYM_IGNORE && */
 		(cc = readlink(short2str(cp), tlink,
 			       sizeof tlink)) >= 0) {
 		(void) Strcpy(link, str2short(tlink));

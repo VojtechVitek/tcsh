@@ -1083,7 +1083,7 @@ sortscmp(a, b)
     if (!*b)
 	return (-1);
 
-    return (int) collate(a, b);
+    return (int) collate(*a, *b);
 }
 
 #endif

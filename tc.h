@@ -37,7 +37,10 @@
 #ifndef _h_tc
 #define _h_tc
 
-#include "tc.const.h"
+#ifndef _h_tc_const
+/* Don't include it while we are making it. */
+# include "tc.const.h"
+#endif /* _h_tc_const */
 #include "tc.os.h"
 #include "tc.sig.h"
 #include "tc.decls.h"

@@ -1280,7 +1280,7 @@ GetTermCaps()
 	ptr = "dumb";
 #endif /* apollo */
 
-    if (!ptr || !ptr[0])
+    if (!ptr || !ptr[0] || !strcmp(ptr, "wm"))
 	ptr = "dumb";
 
     setzero(bp, TC_BUFSIZE);

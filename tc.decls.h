@@ -192,10 +192,10 @@ extern	int		  getv		__P((Char *));
 /*
  * tc.printf.h
  */
-extern	void		  xprintf	__P((char *, ...));
-extern	void		  xsprintf	__P((char *, char *, ...));
-extern	void		  xvprintf	__P((char *, va_list));
-extern	void		  xvsprintf	__P((char *, char *, va_list));
+extern	pret_t		  xprintf	__P((const char *, ...));
+extern	pret_t		  xsprintf	__P((char *, const char *, ...));
+extern	pret_t		  xvprintf	__P((const char *, va_list));
+extern	pret_t		  xvsprintf	__P((char *, const char *, va_list));
 
 /*
  * tc.prompt.c

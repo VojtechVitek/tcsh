@@ -315,7 +315,7 @@ parsekey(sp)
 	    else if (!strcmp(ts, "delete"))
 		c = '\177';
 	    else {
-		xprintf("bad key specification -- unknown name \"%s\"\n", s);
+		xprintf("bad key specification -- unknown name \"%S\"\n", s);
 		return -1;	/* error */
 	    }
 	}

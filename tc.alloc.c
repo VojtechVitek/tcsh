@@ -471,7 +471,7 @@ smalloc(n)
 
 #ifndef _VMS_POSIX
     if (membot == NULL)
-	membot == (char*) sbrk(0);
+	membot = (char*) sbrk(0);
 #endif /* !_VMS_POSIX */
 
     if ((ptr = malloc(n)) == (ptr_t) 0) {
@@ -498,7 +498,7 @@ srealloc(p, n)
 
 #ifndef _VMS_POSIX
     if (membot == NULL)
-	membot == (char*) sbrk(0);
+	membot = (char*) sbrk(0);
 #endif /* _VMS_POSIX */
 
     if ((ptr = (p ? realloc(p, n) : malloc(n))) == (ptr_t) 0) {
@@ -526,7 +526,7 @@ scalloc(s, n)
 
 #ifndef _VMS_POSIX
     if (membot == NULL)
-	membot == (char*) sbrk(0);
+	membot = (char*) sbrk(0);
 #endif /* _VMS_POSIX */
 
     if ((ptr = malloc(n)) == (ptr_t) 0) {
