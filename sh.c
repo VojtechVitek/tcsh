@@ -499,18 +499,20 @@ main(argc, argv)
     /*
      * Publish the selected echo style
      */
-#if ECHO_STYLE == NONE_ECHO
-    set(STRecho_style, Strsave(STRnone), VAR_READWRITE);
-#endif /* ECHO_STYLE == NONE_ECHO */
-#if ECHO_STYLE == BSD_ECHO
-    set(STRecho_style, Strsave(STRbsd), VAR_READWRITE);
-#endif /* ECHO_STYLE == BSD_ECHO */
-#if ECHO_STYLE == SYSV_ECHO
-    set(STRecho_style, Strsave(STRsysv), VAR_READWRITE);
-#endif /* ECHO_STYLE == SYSV_ECHO */
-#if ECHO_STYLE == BOTH_ECHO
-    set(STRecho_style, Strsave(STRboth), VAR_READWRITE);
-#endif /* ECHO_STYLE == BOTH_ECHO */
+#if ECHO_STYLE != BSD_ECHO
+    if (tcsh) {
+# if ECHO_STYLE == NONE_ECHO
+	set(STRecho_style, Strsave(STRnone), VAR_READWRITE);
+# endif /* ECHO_STYLE == NONE_ECHO */
+# if ECHO_STYLE == SYSV_ECHO
+	set(STRecho_style, Strsave(STRsysv), VAR_READWRITE);
+# endif /* ECHO_STYLE == SYSV_ECHO */
+# if ECHO_STYLE == BOTH_ECHO
+	set(STRecho_style, Strsave(STRboth), VAR_READWRITE);
+# endif /* ECHO_STYLE == BOTH_ECHO */
+    } else
+#endif /* ECHO_STYLE != BSD_ECHO */
+	set(STRecho_style, Strsave(STRbsd), VAR_READWRITE);
 
     /*
      * increment the shell level.
