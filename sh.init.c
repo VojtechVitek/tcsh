@@ -734,6 +734,15 @@ mesginit()
     }
 #endif /* SIGTHAW */
 
+#ifdef SIGCANCEL
+    /* solaris */
+    if (mesg[SIGCANCEL].pname == NULL) {
+	mesg[SIGCANCEL].iname = "CANCEL";
+	mesg[SIGCANCEL].pname = CSAVS(2, 109, 
+	    "Thread cancellation signal used by libthread");
+    }
+#endif /* SIGCANCEL */
+
 /*
  * Careful, some OS's (HP/UX 10.0) define these as -1
  */
