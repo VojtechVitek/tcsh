@@ -159,7 +159,7 @@ main(argc, argv)
 {
     char line[INBUFSIZE];
     char *pname;
-    char *fname = "stdin";
+    const char *fname = "stdin";
     char *ptr, *tok;
     char defs[INBUFSIZE];
     char stmt[INBUFSIZE];
