@@ -158,7 +158,7 @@ static struct tcshtty {
     { "cflag:", 0, 0 },
 # define M_LINED	3
     { "lflag:", (ISIG|ICANON|ECHO|ECHOE|ECHOCTL|IEXTEN),
-	       (NOFLSH|ECHOK|ECHONL|EXTPROC|FLUSHO) },
+	        (NOFLSH|ECHONL|EXTPROC|FLUSHO) },
 
 #else /* GSTTY */
 
