@@ -838,8 +838,8 @@ unsigned short _mbmap_big5[256] = {
     _MB2,	_MB2,		_MB2,		_MB2,
 						/* 0x7f = 0 */
     _MB2,	_MB2,		_MB2,		0,
-/* 0x80 - 0xfe = 3 */
-    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+/* 0x80 = 2, 0x81 - 0xfe = 3 */
+    _MB2,      _MB1|_MB2,      _MB1|_MB2,      _MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
