@@ -422,7 +422,7 @@ stderror(va_alist)
     id &= ~ERR_FLAGS;
 
     /* Pyramid's OS/x has a subtle bug in <varargs.h> which prevents calling
-     * va_end more than once in the same function. -- sterling@oldcolo.com
+     * va_end more than once in the same function. -- sterling@netcom.com
      */
     if (!((flags & ERR_OLD) && seterr == NULL)) {
 	vareturn = 0;	/* Don't return immediately after va_end */

@@ -1601,15 +1601,34 @@ reread:
 		    goto reread;
 		}
 #endif /* BSDJOBS */
+		/* What follows is complicated EOF handling -- sterling@netcom.com */
+		/* First, we check to see if we have ignoreeof set */
 		if (adrof(STRignoreeof)) {
-		    if (loginsh)
-			xprintf("\nUse \"logout\" to logout.\n");
-		    else
-			xprintf("\nUse \"exit\" to leave tcsh.\n");
-		    reset();
+			/* If so, we check for any stopped jobs only on the first EOF */
+			if ((sincereal == 1) && (chkstop == 0)) {
+				panystop(1);
+			}
+		} else {
+			/* If we don't have ignoreeof set, always check for stopped jobs */
+			if (chkstop == 0) {
+				panystop(1);
+			}
 		}
-		if (chkstop == 0)
-		    panystop(1);
+		/* At this point, if there were stopped jobs, we would have already
+		 * called reset().  If we got this far, assume we can print an
+		 * exit/logout message if we ignoreeof, or just exit.
+		 */
+		if (adrof(STRignoreeof)) {
+			/* If so, tell the user to use exit or logout */
+		    if (loginsh) {
+				xprintf("\nUse \"logout\" to logout.\n");
+		   	} else {
+				xprintf("\nUse \"exit\" to leave tcsh.\n");
+			}
+			reset();
+		} else {
+			/* If we don't have ignoreeof set, just fall through */
+		}
 	    }
     oops:
 	    doneinp = 1;

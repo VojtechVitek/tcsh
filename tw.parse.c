@@ -253,6 +253,7 @@ tenematch(inputline, num_read, command)
 	xprintf("complete %d ", looking);
 #endif
 	looking = tw_complete(cmd_start, &wordp, &pat, looking, &suf);
+	word_start += wordp - word;
 #ifdef TDEBUG
 	xprintf("complete %d %S\n", looking, pat);
 #endif
@@ -916,8 +917,9 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
 	    if (text_check && isadirectory(exp_dir, item))
 		break;
 
-	    if (gpat && !Gmatch(item, pat) && !isadirectory(exp_dir, item))
-		break;
+	    if (gpat && !Gmatch(item, pat))
+		if (!text_check && !dir_check && !isadirectory(exp_dir, item))
+		    break;
 
 	    /*
 	     * Remove duplicates in command listing and completion

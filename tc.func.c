@@ -1644,7 +1644,7 @@ fixio(fd, e)
  * I hope that will cover everything.
  * I added some more defines... many systems have different defines.
  * Rather than dealing with getting the right includes, we'll just
- * cover all the known possibilities here.  -- sterling@oldcolo.com
+ * cover all the known possibilities here.  -- sterling@netcom.com
  */
 #  ifndef O_NONBLOCK
 #   define O_NONBLOCK 0
