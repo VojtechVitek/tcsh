@@ -498,7 +498,7 @@ extern void perror();
 # ifdef BSDSIGS
 #  if !defined(_AIX370) && !defined(MACH) && !defined(NeXT) && !defined(_AIXPS2) && !defined(ardent) && !defined(SUNOS4) && !defined(HPBSD) && !defined(__MACHTEN__)
 #   if (!defined(apollo) || !defined(__STDC__)) && !defined(__DGUX__) && !defined(fps500)
-extern sigret_t sigvec();
+extern RETSIGTYPE sigvec();
 #ifndef _CX_UX
 extern void sigpause();
 #endif /* _CX_UX */
@@ -535,12 +535,12 @@ extern void endpwent();
 
 # ifndef __STDC__
 extern struct passwd *getpwuid(), *getpwnam(), *getpwent();
-#  ifdef PW_SHADOW
+#  ifdef HAVE_SHADOW_H
 extern struct spwd *getspnam(), *getspent();
-#  endif /* PW_SHADOW */
-#  ifdef PW_AUTH
+#  endif /* HAVE_SHADOW_H */
+#  ifdef HAVE_AUTH_H
 extern struct authorization *getauthuid();
-#  endif /* PW_AUTH */
+#  endif /* HAVE_AUTH_H */
 # endif /* __STDC__ */
 
 # ifndef getcwd

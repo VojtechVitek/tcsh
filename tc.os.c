@@ -583,7 +583,7 @@ dodmmode(v, c)
 
 static jmp_buf sigsys_buf;
 
-static  sigret_t
+static RETSIGTYPE
 catch_sigsys()
 {
     longjmp(sigsys_buf, 1);

@@ -147,13 +147,6 @@ sh_access(fname, mode)
 
 # ifdef NGROUPS_MAX
     else {
-#  if defined(__386BSD__) || defined(BSD4_4)
-    /*
-     * These two decided that setgroup() should take an array of int's
-     * and they define _SC_NGROUPS_MAX without having sysconf
-     */
-#   undef _SC_NGROUPS_MAX	
-#  endif /* __386BSD__ || BSD4_4 */
 	/* you can be in several groups */
 	long	n;
 	GETGROUPS_T *groups;
@@ -165,7 +158,7 @@ sh_access(fname, mode)
 	 *   3) getgroups(0, unused)
 	 * Then allocate and scan the groups array if one of these worked.
 	 */
-#  ifdef _SC_NGROUPS_MAX
+#  if defined (HAVE_SYSCONF) && defined (_SC_NGROUPS_MAX)
 	if ((n = sysconf(_SC_NGROUPS_MAX)) == -1)
 #  endif /* _SC_NGROUPS_MAX */
 	    n = NGROUPS_MAX;

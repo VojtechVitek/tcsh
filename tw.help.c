@@ -42,7 +42,7 @@ RCSID("$Id$")
 
 
 static int f = -1;
-static	sigret_t	 cleanf		__P((int));
+static	RETSIGTYPE	 cleanf		__P((int));
 static	Char    	*skipslist	__P((Char *));
 static	void		 nextslist 	__P((Char *, Char *));
 
@@ -143,7 +143,7 @@ do_help(command)
     }
 }
 
-static  sigret_t
+static RETSIGTYPE
 /*ARGSUSED*/
 cleanf(snum)
 int snum;
@@ -156,9 +156,6 @@ int snum;
     if (f != -1)
 	(void) close(f);
     f = -1;
-#ifndef SIGVOID
-    return (snum);
-#endif
 }
 
 /* these next two are stolen from CMU's man(1) command for looking down

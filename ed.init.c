@@ -129,7 +129,7 @@ check_window_size(force)
     windowchg = 0;
 }
 
-sigret_t
+RETSIGTYPE
 /*ARGSUSED*/
 window_change(snum)
 int snum;
@@ -141,9 +141,6 @@ int snum;
       sigset(snum, window_change);
 #endif /* UNRELSIGS */
     windowchg = 1;
-#ifndef SIGVOID
-    return (snum);
-#endif 
 }
 
 #endif /* SIG_WINDOW */

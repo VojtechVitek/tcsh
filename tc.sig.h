@@ -190,7 +190,7 @@ typedef struct sigvec sigvec_t;
 # else
 #  define SYNCHMASK 	(sigmask(SIGCHLD))
 # endif
-extern sigret_t synch_handler();
+extern RETSIGTYPE synch_handler();
 #endif /* convex */
 
 #ifdef SAVESIGVEC

@@ -339,7 +339,7 @@ dmove(i, j)
 
     if (i == j || i < 0)
 	return (i);
-#ifdef HAVEDUP2
+#ifdef HAVE_DUP2
     if (j >= 0) {
 	(void) dup2(i, j);
 	if (j != i)
@@ -361,7 +361,7 @@ dcopy(i, j)
     if (i == j || i < 0 || (j < 0 && i > FSAFE))
 	return (i);
     if (j >= 0) {
-#ifdef HAVEDUP2
+#ifdef HAVE_DUP2
 	(void) dup2(i, j);
 	return (j);
 #else

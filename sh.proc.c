@@ -146,7 +146,7 @@ static	void		 setttypgrp	__P((int));
  *	childs status.  Top level routines (like pwait) must be sure
  *	to mask interrupts when playing with the proclist data structures!
  */
-sigret_t
+RETSIGTYPE
 /*ARGSUSED*/
 pchild(snum)
 int snum;
@@ -304,11 +304,7 @@ loop:
 	    goto loop;
 	}
 	pnoprocesses = pid == -1;
-#ifndef SIGVOID
-	return (0);
-#else /* !SIGVOID */
-	return;
-#endif /* !SIGVOID */
+	goto end;
     }
     for (pp = proclist.p_next; pp != NULL; pp = pp->p_next)
 	if (pid == pp->p_procid)
@@ -467,6 +463,8 @@ found:
 #if defined(BSDJOBS) || defined(HAVEwait3)
     goto loop;
 #endif /* BSDJOBS || HAVEwait3 */
+ end:
+    ;
 }
 
 void

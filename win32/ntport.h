@@ -64,8 +64,6 @@
 
 #pragma warning(disable:4018)  //signed-unsigned mismatch
 #define HAVENOLIMIT
-#define FUNCPROTO
-#define _SIZE_T
 
 /* os-dependent stuff. belongs in tc.os.h, but I never said this would be
 pretty */
@@ -212,11 +210,7 @@ mode Value	Checks File For
 #define ALT_KEY_OFFSET             (34*2)
 #define SHIFT_KEY_OFFSET           (34*3)
 
-typedef int uid_t;
-typedef int gid_t;
 typedef int pid_t;
-typedef int mode_t;
-typedef void sigret_t;
 typedef int speed_t;
 typedef unsigned char u_char;
 typedef size_t caddr_t;

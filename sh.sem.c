@@ -56,7 +56,7 @@ RCSID("$Id$")
 #endif /* __sparc__ || sparc */
 
 #ifdef VFORK
-static	sigret_t	vffree	__P((int));
+static	RETSIGTYPE	vffree	__P((int));
 #endif 
 static	Char		*splicepipe	__P((struct command *, Char *));
 static	void		 doio		__P((struct command *, int *, int *));
@@ -754,7 +754,7 @@ execute(t, wanttty, pipein, pipeout, do_glob)
 }
 
 #ifdef VFORK
-static sigret_t
+static RETSIGTYPE
 /*ARGSUSED*/
 vffree(snum)
 int snum;
@@ -773,10 +773,6 @@ int snum;
     }
 
     _exit(1);
-#ifndef SIGVOID
-    /*NOTREACHED*/
-    return(0);
-#endif /* SIGVOID */
 }
 #endif /* VFORK */
 

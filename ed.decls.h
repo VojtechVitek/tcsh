@@ -45,7 +45,7 @@ extern	void	SetKillRing		__P((int));
  */
 #ifdef SIG_WINDOW
 extern	void	check_window_size	__P((int));
-extern	sigret_t window_change		__P((int));
+extern	RETSIGTYPE window_change	__P((int));
 #endif /* SIG_WINDOW */
 extern	int	ed_Setup		__P((int));
 extern	void	ed_Init			__P((void));
