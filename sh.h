@@ -426,6 +426,7 @@ struct tms shtimes;		/* shell and child times for process timing */
  * Miscellany
  */
 Char   *doldol;			/* Character pid for $$ */
+int	backpid;		/* pid of the last background job */
 time_t  chktim;			/* Time mail last checked */
 
 /*

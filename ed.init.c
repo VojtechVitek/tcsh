@@ -287,14 +287,6 @@ ed_Init()
 #endif /* POSIX || TERMIO */
 
     tty_setchar(&edtty, ttychars[EDIO]);
-
-
-    /* Make sure the tty has a well-defined initial state */
-    /* But don't bother to alter the settings if we are not editing */
-    if (editing) {
-	Tty_raw_mode = 0;
-	(void) Rawmode();
-    }
 }
 
 /* 

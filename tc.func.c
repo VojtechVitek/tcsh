@@ -438,6 +438,8 @@ find_stop_ed()
 	    p = short2str(pp->p_command);
 	    if ((cp = strrchr(p, '/')) != NULL)	/* and it has a path */
 		cp = cp + 1;		/* then we want only the last part */
+	    else
+		cp = p;			/* else we get all of it */
 	    /* if we find either in the current name, fg it */
 	    if (strncmp(ep, cp, (size_t) epl) == 0 ||
 		strncmp(vp, cp, (size_t) vpl) == 0)

@@ -37,6 +37,14 @@
 #ifndef _h_tc_os
 #define _h_tc_os
 
+#if SVID > 3
+/*
+ * for SVR4 we fork pipelines backwards. 
+ * more info in sh.sem.c
+ */
+# define BACKPIPE
+#endif /* SVID > 3 */
+
 #ifdef OREO
 # include <sys/time.h>
 # include <sys/resource.h>
@@ -427,7 +435,10 @@ extern int nice();
 extern void setpwent();
 extern void endpwent();
 # endif /* fps500 */
+
+#ifndef __STDC__
 extern struct passwd *getpwuid(), *getpwnam(), *getpwent();
+#endif /* __STDC__ */
 
 # ifndef getwd
 extern char *getwd();

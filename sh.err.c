@@ -215,7 +215,7 @@ static char *errorlist[] =
 #define ERR_HISTUS	78
     "Usage: history [-rht] [# number of events]",
 #define ERR_SPDOLLT	79
-    "$ or < not allowed with $# or $?",
+    "$, ! or < not allowed with $# or $?",
 #define ERR_NEWLINE	80
     "Newline in variable name",
 #define ERR_SPSTAR	81

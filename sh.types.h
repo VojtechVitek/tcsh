@@ -240,15 +240,17 @@ extern char *sbrk();
 
 
 /***
- *** rs6000, ibm370, ps2: running flavors of aix.
+ *** rs6000, ibm370, ps2, rt: running flavors of aix.
  ***/
 #ifdef IBMAIX
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
-# ifndef _PID_T
-#  define _PID_T
-# endif /* _PID_T */
+# ifndef aiws
+#  ifndef _PID_T
+#   define _PID_T
+#  endif /* _PID_T */
+# endif /* !aiws */
 # ifdef _IBMR2
 #  ifndef _SPEED_T 
 #   define _SPEED_T

@@ -515,7 +515,7 @@ struct	mesg mesg[] = {
 #  define _sigextra_
 /* 20 */	0,		"Signal 20",
 /* 21 */	0,		"Signal 21",
-/* 22 */	0,		"Signal 22"
+/* 22 */	0,		"Signal 22",
 /* 23 */	"AIO", 		"LAN Asyncronous I/O",
 /* 24 */	"PTY", 		"PTY read/write availability",
 /* 25 */	"IOINT", 	"I/O intervention required",

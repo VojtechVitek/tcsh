@@ -889,7 +889,7 @@ e_inc_search(dir)
 		}
 		patbuf[patlen++] = '*';
 		patbuf[patlen] = '\0';
-		if (Cursor < InputBuf || Cursor >= LastChar ||
+		if (Cursor < InputBuf || Cursor > LastChar ||
 		    (ret = c_search_line(&patbuf[1], newdir)) == CC_ERROR) {
 		    LastCmd = newdir; /* avoid c_hsetpat */
 		    ret = newdir == F_UP_SEARCH_HIST ?
@@ -1480,7 +1480,7 @@ e_up_search_hist(c)
 #ifdef SDEBUG
 	xprintf("Comparing with \"%s\"\n", short2str(hp->histline));
 #endif
-	if (c_hmatch(hp->histline)) {
+	if ((Strncmp(hp->histline, InputBuf, LastChar-InputBuf) || hp->histline[LastChar-InputBuf]) && c_hmatch(hp->histline)) {
 	    found++;
 	    break;
 	}
@@ -1530,7 +1530,7 @@ e_down_search_hist(c)
 #ifdef SDEBUG
 	xprintf("Comparing with \"%s\"\n", short2str(hp->histline));
 #endif
-	if (c_hmatch(hp->histline))
+	if ((Strncmp(hp->histline, InputBuf, LastChar-InputBuf) || hp->histline[LastChar-InputBuf]) && c_hmatch(hp->histline))
 	    found = h;
 	hp = hp->Hnext;
     }

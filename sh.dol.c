@@ -397,6 +397,7 @@ Dgetdol()
     bool    dimen = 0, bitset = 0;
     char    tnp;
     Char    wbuf[BUFSIZ];
+    static Char *dolbang = NULL;
 
 #ifdef COMPAT
     dolmod = dolmcnt = 0;
@@ -411,6 +412,16 @@ Dgetdol()
     else if (c == '?')
 	bitset++, c = DgetC(0);	/* $? tests existence */
     switch (c) {
+
+    case '!':
+	if (dimen || bitset)
+	    stderror(ERR_SYNTAX);
+	if (backpid != 0) {
+	    if (dolbang) 
+		xfree((pid_t) dolbang);
+	    setDolp(dolbang = putn(backpid));
+	}
+	goto eatbrac;
 
     case '$':
 	if (dimen || bitset)

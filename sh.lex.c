@@ -457,6 +457,7 @@ getdol()
 
     case '<':
     case '$':
+    case '!':
 	if (special)
 	    seterror(ERR_SPDOLLT);
 	*np = 0;
