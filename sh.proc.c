@@ -90,6 +90,9 @@ static char *rcsid()
 #ifndef WEXITSTATUS
 # define WEXITSTATUS(w)	(((union wait *) &(w))->w_retcode)
 #endif /* !WEXITSTATUS */
+#ifndef WSTOPSIG
+# define WSTOPSIG(w)	(((union wait *) &(w))->w_stopsig)
+#endif /* WSTOPSIG */
 
 #ifndef WCOREDUMP
 # ifdef BSDWAIT
