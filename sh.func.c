@@ -1859,6 +1859,10 @@ struct limits limits[] =
     { RLIMIT_VMEM, 	"vmemoryuse",	1024,	"kbytes"	},
 # endif /* RLIMIT_VMEM */
 
+# if defined(RLIMIT_HEAP) /* found on BS2000/OSD systems */
+    { RLIMIT_HEAP,	"heapsize",	1024,	"kbytes"	},
+# endif /* RLIMIT_HEAP */
+
 # ifdef RLIMIT_NOFILE
     { RLIMIT_NOFILE, 	"descriptors", 1,	""		},
 # endif /* RLIMIT_NOFILE */
