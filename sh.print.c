@@ -238,6 +238,15 @@ flush()
 	 */
 	case ENXIO:
 #endif
+	/*
+	 * IRIX 6.4 bogocity?
+	 */
+#ifdef ENOTTY
+	case ENOTTY:
+#endif
+#ifdef EBADF:
+	case EBADF::
+#endif
 	/* Nothing to do, but die */
 	    xexit(1);
 	    break;

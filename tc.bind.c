@@ -79,7 +79,7 @@ dobindkey(v, c)
     CStr    out;
     Char    inbuf[200];
     Char    outbuf[200];
-    unsigned short ch;
+    uChar   ch;
     in.buf = inbuf;
     out.buf = outbuf;
     in.len = 0;
@@ -162,12 +162,7 @@ dobindkey(v, c)
 	}
     }
 
-#ifndef WINNT
-    /* XXX: Fixme to work with more than 1 byte chars */
-    ch = (unsigned char) in.buf[0];
-#else /* WINNT */
-    ch = in.buf[0];
-#endif /* !WINNT */
+    ch = (uChar) in.buf[0];
 
     if (remove) {
 	if (key) {
@@ -245,7 +240,7 @@ printkey(map, in)
     if (in->len < 2) {
 	(void) unparsestring(in, outbuf, STRQQ);
 	for (fp = FuncNames; fp->name; fp++) {
-	    if (fp->func == map[(unsigned char) *(in->buf)]) {
+	    if (fp->func == map[(uChar) *(in->buf)]) {
 		xprintf("%s\t->\t%s\n", outbuf, fp->name);
 	    }
 	}

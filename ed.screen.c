@@ -1225,7 +1225,7 @@ so_write(cp, n)
 	    xprintf("so: litnum %d, litptr %x\r\n",
 		    *cp & CHAR, litptr[*cp & CHAR]);
 #endif /* DEBUG_LITERAL */
-#ifdef WINNT
+#if defined(WINNT) && !defined(COLOR_LS_F)
 	    {
 		char buf[256], *ptr = &buf[0];
 		for (d = litptr[*cp++ & CHAR]; *d & LITERAL; d++)
@@ -1233,10 +1233,10 @@ so_write(cp, n)
 		flush();
 		set_cons_attr(buf);
 	    }
-#else /* !WINNT */
+#else /* !WINNT || COLOR_LS_F */
 	    for (d = litptr[*cp++ & CHAR]; *d & LITERAL; d++)
 		(void) putraw(*d & CHAR);
-#endif /* WINNT */
+#endif /* WINNT && !COLOR_LS_F */
 	    (void) putraw(*d);
 
 	}

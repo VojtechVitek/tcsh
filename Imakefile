@@ -126,7 +126,9 @@ DEPENDFLAGS = -o.o
 #  endif
 #  if !HasGCC
 #   define MyStdc -D__STDC__
+#   if SGICompilerMajorVersion < 4
 CCOPTIONS=-float	# We don't want -cckr and -prototypes
+#   endif
 #  endif
 # endif
 

@@ -76,9 +76,11 @@
 
 #ifdef SHORT_STRINGS
 typedef short Char;
+typedef unsigned short uChar;
 # define SAVE(a) (Strsave(str2short(a)))
 #else
 typedef char Char;
+typedef unsigned char uChar;
 # define SAVE(a) (strsave(a))
 #endif 
 
@@ -265,7 +267,7 @@ typedef int sigret_t;
  * redefines malloc(), so we define the following
  * to avoid it.
  */
-# ifdef linux
+# if defined(linux) || defined(sgi)
 #  define NO_FIX_MALLOC
 #  include <stdlib.h>
 # else /* linux */
@@ -279,7 +281,7 @@ typedef int sigret_t;
 #  undef free
 #  undef calloc
 #  undef realloc
-# endif /* linux */
+# endif /* linux || sgi */
 # include <limits.h>
 #endif /* POSIX && !WINNT */
 

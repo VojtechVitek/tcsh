@@ -874,7 +874,14 @@ update_line(old, new, cur_line)
 #ifdef DEBUG_REFRESH
 	    dprintf("cleareol %d\n", (oe - old) - (ne - new));
 #endif  /* DEBUG_UPDATE */
+#ifndef WINNT
 	    ClearEOL((oe - old) - (ne - new));
+#else
+	    /*
+	     * The calculation above does not work too well on NT
+	     */
+	    ClearEOL(TermH - CursorH);
+#endif /*WINNT*/
 	    /*
 	     * Done
 	     */
@@ -930,7 +937,14 @@ update_line(old, new, cur_line)
 #ifdef DEBUG_REFRESH
 	    dprintf("cleareol %d\n", olen - (ne - new));
 #endif /* DEBUG_UPDATE */
+#ifndef WINNT
 	    ClearEOL(olen - (ne - new));
+#else
+	    /*
+	     * The calculation above does not work too well on NT
+	     */
+	    ClearEOL(TermH - CursorH);
+#endif /*WINNT*/
 	}
     }
 

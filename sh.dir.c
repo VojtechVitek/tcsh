@@ -829,7 +829,7 @@ dcanon(cp, p)
 	Char    tmpdir[MAXPATHLEN];
 
 	p1 = varval(STRcwd);
-	if (p1 == STRNULL || *p1 != '/')
+	if (p1 == STRNULL || ABSOLUTEP(p1))
 	    abort();
 	if (Strlen(p1) + Strlen(cp) + 1 >= MAXPATHLEN)
 	    abort();

@@ -45,6 +45,9 @@ RCSID("$Id$")
 #include "ed.h"
 #include "tc.h"
 
+#ifdef WINNT
+#include "nt.const.h"
+#endif /* WINNT */
 #define EVEN(x) (((x) & 1) != 1)
 
 #define DOT_NONE	0	/* Don't display dot files		*/

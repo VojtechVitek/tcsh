@@ -190,7 +190,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_BADJOB	132
 #define ERR_INVALID	133
 #define ERR_BADCOLORVAR	134
-#define NO_ERRORS	134
+#define NO_ERRORS	135
 
 static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
