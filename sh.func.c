@@ -1372,6 +1372,9 @@ dosetenv(v, c)
 
     if (eq(vp, STRNOREBIND)) {
 	NoNLSRebind = 1;
+	MapsAreInited = 0;
+	NLSMapsAreInited = 0;
+	ed_InitMaps();
 	xfree((ptr_t) lp);
 	return;
     }
@@ -1505,8 +1508,12 @@ dounsetenv(v, c)
 		 */
 		Unsetenv(name);
 
-		if (eq(name, STRNOREBIND))
+		if (eq(name, STRNOREBIND)) {
 		    NoNLSRebind = 0;
+		    MapsAreInited = 0;
+		    NLSMapsAreInited = 0;
+		    ed_InitMaps();
+		}
 #ifdef apollo
 		else if (eq(name, STRSYSTYPE))
 		    dohash(NULL, NULL);
