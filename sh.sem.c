@@ -752,7 +752,7 @@ chkclob(cp)
 
     if (stat(cp, &stb) < 0)
 	return;
-    if ((stb.st_mode & S_IFMT) == S_IFCHR)
+    if (S_ISCHR(stb.st_mode))
 	return;
     stderror(ERR_EXISTS, cp);
 }
