@@ -804,6 +804,11 @@ main(argc, argv)
 	xprintf("%S\n", varval(STRversion));
 	xexit(0);
     }
+    if (argc > 1 && strcmp(argv[1], "--help") == 0) {
+	xprintf("%S\n\n", varval(STRversion));
+	xprintf(CGETS(11, 8, HELP_STRING));
+	xexit(0);
+    }
     /*
      * Process the arguments.
      * 
@@ -2336,7 +2341,7 @@ mailchk()
 	    if (cnt == 1)
 		xprintf(CGETS(11, 5, "You have %smail.\n"), type);
 	    else
-	        xprintf(CGETS(11, 7, "You have %smail in %s.\n"), type);
+	        xprintf(CGETS(11, 7, "You have %smail in %s.\n"), type, filename);
 	    xfree(type);
 	}
     }
