@@ -814,8 +814,9 @@ unsigned short _mbmap_sjis[256] = {
 };
 
 unsigned short _mbmap_big5[256] = {
-/* first byte   0xa1 - 0xfe */
-/* second byte  0x40 - 0x7e, 0xa1 - 0xfe */
+/* This is latest big5 charmap, so called "Big5+" */
+/* first byte   0x81 - 0xfe */
+/* second byte  0x40 - 0x7e, 0x80 - 0xfe */
 /* 0x00 - 0x3f = 0 */
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -835,11 +836,18 @@ unsigned short _mbmap_big5[256] = {
     _MB2,	_MB2,		_MB2,		_MB2,
     _MB2,	_MB2,		_MB2,		_MB2,
     _MB2,	_MB2,		_MB2,		_MB2,
-						/* 0x7f - 0xa0 = 0 */
+						/* 0x7f = 0 */
     _MB2,	_MB2,		_MB2,		0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		/* a1 - fe = 3 */
-    0,		_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+/* 0x80 - 0xfe = 3 */
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,    
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
@@ -865,6 +873,7 @@ unsigned short _mbmap_big5[256] = {
 						/* 0xff = 0 */
     _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	0,
 };
+
 
 #else /* !(defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)) */
 unsigned short _cmap[256] = {
