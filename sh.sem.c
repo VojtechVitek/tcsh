@@ -826,7 +826,7 @@ doio(t, pipein, pipeout)
 	}
 	else
 	    fd = 0;
-	if ((flags && F_APPEND) == 0 || fd == -1) {
+	if ((flags & F_APPEND) == 0 || fd == -1) {
 	    if (!(flags & F_OVERWRITE) && adrof(STRnoclobber)) {
 		if (flags & F_APPEND)
 		    stderror(ERR_SYSTEM, tmp, strerror(errno));
