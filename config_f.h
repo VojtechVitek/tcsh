@@ -123,14 +123,14 @@
  * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
  *		only output, when "dspmbyte" is set.
  */
-#define DSPMBYTE
+#undef DSPMBYTE
 
 /*
  * MBYTEDEBUG	when "dspmbyte" is changed, set multi-byte checktable to
  *		variable "mbytemap".
  *		(use for multi-byte table check)
  */
-#define MBYTEDEBUG
+#undef MBYTEDEBUG
 
 /*
  * NEWGRP	Provide a newgrp builtin.
