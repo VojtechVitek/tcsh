@@ -242,7 +242,10 @@ struct ucred {
  */
 #ifndef WINNT_NATIVE
 # ifdef F_SETFD
-#  define close_on_exec(fd, v) fcntl((fd), F_SETFD, v)
+#  ifndef FD_CLOEXEC
+#   define FD_CLOEXEC 1
+#  endif
+#  define close_on_exec(fd, v) fcntl((fd), F_SETFD, ((v) ? FD_CLOEXEC : 0))
 # else /* !F_SETFD */
 #  ifdef FIOCLEX
 #   define close_on_exec(fd, v) ioctl((fd), ((v) ? FIOCLEX : FIONCLEX), NULL)
