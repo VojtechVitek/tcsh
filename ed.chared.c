@@ -2737,6 +2737,7 @@ e_killregion(c)
     if (Mark > Cursor) {
 	c_push_kill(Cursor, Mark); /* copy it */
 	c_delafter((int)(cp - Cursor));	/* delete it - UNUSED BY VI mode */
+	Mark = Cursor;
     }
     else {			/* mark is before cursor */
 	c_push_kill(Mark, Cursor); /* copy it */
