@@ -50,9 +50,9 @@ RCSID("$Id$")
 #endif /* CLOSE_ON_EXEC */
 
 #if defined(__sparc__) || defined(sparc)
-# if !defined(MACH) && SYSVREL == 0 && !defined(Lynx)
+# if !defined(MACH) && SYSVREL == 0 && !defined(Lynx) && !defined(__NetBSD__)
 #  include <vfork.h>
-# endif /* !MACH && SYSVREL == 0 */
+# endif /* !MACH && SYSVREL == 0 && !Lynx && !__NetBSD__ */
 #endif /* __sparc__ || sparc */
 
 #ifdef VFORK

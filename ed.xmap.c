@@ -301,8 +301,8 @@ TryNode(ptr, str, val, ntype)
 	case XK_STR:
 	case XK_EXE:
 	    ptr->val.str.len = (val->str.len + 1) * sizeof(Char);
-	    ptr->val.str.buf = xmalloc(ptr->val.str.len);
-	    memcpy(ptr->val.str.buf, val->str.buf, ptr->val.str.len);
+	    ptr->val.str.buf = (Char *) xmalloc(ptr->val.str.len);
+	    memmove(ptr->val.str.buf, val->str.buf, ptr->val.str.len);
 	    ptr->val.str.len = val->str.len;
 	    break;
 	default:

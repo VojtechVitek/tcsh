@@ -44,7 +44,9 @@ RCSID("$Id$")
 int
 spell_me(oldname, oldsize, looking)
     Char   *oldname;
-    int     oldsize, looking;
+    int     oldsize, looking,
+    Char   *pat;
+    int     suf;
 {
     /* The +1 is to fool hp's optimizer */
     Char    guess[FILSIZ + 1], newname[FILSIZ + 1];
@@ -85,7 +87,7 @@ spell_me(oldname, oldsize, looking)
 	/* (*should* say "looking for directory" whenever '/' is next...) */
 	retval = t_search(guess, p, SPELL, FILSIZ,
 			  looking == TW_COMMAND && (foundslash || *old != '/') ?
-			  TW_COMMAND : looking, 1, STRNULL, 0);
+			  TW_COMMAND : looking, 1, pat, suf);
 	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
 	for (p = ws; (*new = *p++) != '\0'; new++)

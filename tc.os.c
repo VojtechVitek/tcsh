@@ -572,7 +572,7 @@ dowarp(v, c)
     if (*v == 0) {		/* display warp value */
 	if (warp < 0)
 	    stderror(ERR_NAME | ERR_STRING, "Getwarp failed");
-	we = getwarpbyvarval(warp);
+	we = getwarpbyvalue(warp);
 	if (we)
 	    printf("%s\n", we->w_name);
 	else

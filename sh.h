@@ -274,9 +274,9 @@ extern int setpgrp();
 # include <sys/filio.h>
 #endif /* (!FIOCLEX && SUNOS4) || (SYSVREL == 4 && !_SEQUENT_) */
 
-#if !defined(_MINIX) && !defined(COHERENT)
+#if !defined(_MINIX) && !defined(COHERENT) && !defined(supermax)
 # include <sys/file.h>
-#endif	/* !_MINIX && !COHERENT */
+#endif	/* !_MINIX && !COHERENT && !supermax */
 
 #if !defined(O_RDONLY) || !defined(O_NDELAY)
 # include <fcntl.h>

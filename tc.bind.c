@@ -166,7 +166,7 @@ dobindkey(v, c)
 	    (void) ClearArrowKeys(&in);
 	    return;
 	}
-	if (in.len >= 1) {
+	if (in.len > 1) {
 	    (void) DeleteXkey(&in);
 	}
 	else if (map[ch] == F_XKEY) {
@@ -208,7 +208,7 @@ dobindkey(v, c)
 	if (key)
 	    (void) SetArrowKeys(&in, XmapCmd((int) cmd), ntype);
 	else {
-	    if (in.len >= 1) {
+	    if (in.len > 1) {
 		AddXkey(&in, XmapCmd((int) cmd), ntype);
 		map[ch] = F_XKEY;
 	    }

@@ -1868,7 +1868,8 @@ remotehost()
     (void) alarm(2);
 
     if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1) {
-	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, len, AF_INET)) != NULL)
+	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, sizeof(struct in_addr),
+				AF_INET)) != NULL)
 	    host = hp->h_name;
 	else
 	    host = inet_ntoa(saddr.sin_addr);
@@ -1877,7 +1878,7 @@ remotehost()
     else {
 	char *ptr, *sptr;
 	char *name = utmphost();
-	if (name != NULL) {
+	if (name != NULL && *name != '\0') {
 	    /* Look for host:display.screen */
 	    if ((sptr = strchr(name, ':')) != NULL)
 		*sptr = '\0';

@@ -108,7 +108,7 @@
 /*
  * NEWGRP	Provide a newgrp builtin.
  */
-#undef NEWGRP
+#define NEWGRP
 
 /*
  * SYSMALLOC	Use the system provided version of malloc and friends.

@@ -98,7 +98,8 @@ extern	 Char		 *tw_item_find		__P((Char *));
 /*
  * tw.spell.c
  */
-extern	 int		  spell_me		__P((Char *, int, int));
+extern	 int		  spell_me		__P((Char *, int, int,
+						     Char *, int));
 extern	 int		  spdir			__P((Char *, Char *, Char *, 
 						     Char *));
 extern	 int		  spdist		__P((Char *, Char *));
