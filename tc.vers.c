@@ -208,6 +208,7 @@ gethosttype()
 #  endif 
 # else /* !sequent */
 #  ifdef ns32000
+#   define _havehosttype_
 #   ifdef CMUCS			/* hack for Mach (in the true spirit of CMU) */
     hosttype = str2short("multimax");
 #   else /* CMUCS */
