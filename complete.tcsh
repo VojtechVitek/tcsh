@@ -21,14 +21,18 @@ endif
 
 if ($?_complete) then
     set noglob
-    set hosts
+    if ( ! $?hosts ) set hosts
     foreach f ($HOME/.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
         if ( -r $f ) then
-	    set hosts = ($hosts `grep -v "+" $f | tr -s " " "	" | cut -f 1`)
+	    set hosts = ($hosts `grep -v "+" $f | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
 	endif
     end
     if ( -r $HOME/.netrc ) then
 	set f=`awk '/machine/ { print $2 }' < $HOME/.netrc` >& /dev/null
+	set hosts=($hosts $f)
+    endif
+    if ( -r $HOME/.ssh/known_hosts ) then
+	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
 	set hosts=($hosts $f)
     endif
     unset f
