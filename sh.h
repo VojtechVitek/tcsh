@@ -798,7 +798,9 @@ Char  **STR_environ;
 # else
 #  define __P(a) ()
 #  define const
-#  define volatile
+#  ifndef apollo
+#   define volatile
+#  endif
 # endif
 #endif
 
