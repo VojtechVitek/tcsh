@@ -427,7 +427,7 @@ typedef int sigret_t;
 #  define __P(a) a
 # else
 #  define __P(a) ()
-#  if !__STDC__
+#  if !defined(__STDC__)
 #   define const
 #   ifndef apollo
 #    define volatile	/* Apollo 'c' extensions need this */
