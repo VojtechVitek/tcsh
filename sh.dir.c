@@ -933,7 +933,7 @@ dcanon(cp, p)
 #ifdef S_IFLNK			/* if we have symlinks */
 	    if (sp != cp && /* symlinks != SYM_IGNORE && */
 		(cc = readlink(short2str(cp), tlink,
-			       sizeof tlink)) >= 0) {
+			       sizeof(tlink) - 1)) >= 0) {
 		tlink[cc] = '\0';
 		(void) Strncpy(link, str2short(tlink),
 		    sizeof(link) / sizeof(Char));
@@ -1024,7 +1024,7 @@ dcanon(cp, p)
 #ifdef S_IFLNK			/* if we have symlinks */
 	    if (sp != cp && symlinks == SYM_CHASE &&
 		(cc = readlink(short2str(cp), tlink,
-			       sizeof tlink)) >= 0) {
+			       sizeof(tlink) - 1)) >= 0) {
 		tlink[cc] = '\0';
 		(void) Strncpy(link, str2short(tlink),
 		    sizeof(link) / sizeof(Char));
