@@ -915,13 +915,11 @@ tw_suffix(looking, exp_dir, exp_name, target, name)
 	 * Don't consider array variables or empty variables
 	 */
 	if ((vp = adrof(exp_name)) != NULL) {
-	    if ((ptr = vp->vec[0]) != NULL || vp->vec[0][0] == '\0' ||
-		vp->vec[1]) 
+	    if ((ptr = vp->vec[0]) == NULL || *ptr == '\0' ||
+		vp->vec[1] != NULL) 
 		return ' ';
-	    else
-		ptr = vp->vec[0];
 	}
-	else if ((ptr = Getenv(exp_name)) == NULL)
+	else if ((ptr = Getenv(exp_name)) == NULL || *ptr == '\0')
 	    return ' ';
 	*--target = '\0';
 	(void) Strcat(exp_dir, name);

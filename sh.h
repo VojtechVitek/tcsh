@@ -248,13 +248,13 @@ extern int setpgrp();
 # endif /* !pyr && !stellar */
 #endif /* SYSVREL > 0 ||  _IBMR2 */
 
-#if !((defined(sun) || defined(__sun__) || defined(_MINIX)) && defined(TERMIO))
+#if !((defined(SUNOS4) || defined(_MINIX)) && defined(TERMIO))
 # include <sys/ioctl.h>
 #endif 
 
-#if !defined(FIOCLEX) && (defined(sun) || defined(__sun__))
+#if !defined(FIOCLEX) && defined(SUNOS4)
 # include <sys/filio.h>
-#endif /* !FIOCLEX && sun */
+#endif /* !FIOCLEX && SUNOS4 */
 
 #ifndef	_MINIX
 #include <sys/file.h>
@@ -473,6 +473,7 @@ EXTERN struct tms shtimes;	/* shell and child times for process timing */
  */
 EXTERN Char   *doldol;		/* Character pid for $$ */
 EXTERN int     backpid;		/* pid of the last background job */
+EXTERN int     forepid;		/* pid of the last foreground job */
 
 /*
  * Ideally these should be uid_t, gid_t, pid_t. I cannot do that right now

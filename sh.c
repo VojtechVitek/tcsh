@@ -553,15 +553,13 @@ main(argc, argv)
      * But there might be races when lots of shells exit together...
      * [this is also incompatible].
      */
-    if (loginsh) {
-	(void) signal(SIGHUP, phup);	/* exit processing on HUP */
+    (void) signal(SIGHUP, phup);	/* exit processing on HUP */
 #ifdef SIGXCPU
-	(void) signal(SIGXCPU, phup);	/* ...and on XCPU */
+    (void) signal(SIGXCPU, phup);	/* ...and on XCPU */
 #endif
 #ifdef SIGXFSZ
-	(void) signal(SIGXFSZ, phup);	/* ...and on XFSZ */
+    (void) signal(SIGXFSZ, phup);	/* ...and on XFSZ */
 #endif
-    }
 
 #ifdef TCF
     /* Enable process migration on ourselves and our progeny */
@@ -736,7 +734,6 @@ main(argc, argv)
 	    /* ... doesn't return */
 	    stderror(ERR_SYSTEM, tempv[0], strerror(errno));
 	}
-	ffile = SAVE(tempv[0]);
 	/* 
 	 * Replace FSHIN. Handle /dev/std{in,out,err} specially
 	 * since once they are closed we cannot open them again.
@@ -763,6 +760,12 @@ main(argc, argv)
 	prompt = 0;
 	 /* argc not used any more */ tempv++;
     }
+
+    /*
+     * Allways set ffile, why not?
+     */
+    ffile = SAVE(tempv[0]);
+
     /*
      * Consider input a tty if it really is or we are interactive. but not for
      * editing (christos)
@@ -1422,6 +1425,15 @@ int snum;
 #endif /* UNRELSIGS */
     rechist(NULL);
     recdirs(NULL);
+#ifdef POSIXJOBS
+    /*
+     * We kill the last foreground process, since under the
+     * new POSIX job control rules SIGHUP is only sent to 
+     * the session leader and the tty driver is not doing it for us
+     */
+    if (forepid != 0)
+	(void) kill(forepid, SIGHUP);
+#endif
     xexit(snum);
 #ifndef SIGVOID
     return (snum);

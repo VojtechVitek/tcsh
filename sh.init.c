@@ -724,14 +724,14 @@ struct	mesg mesg[] = {
 /* 32 */	0,		"Signal 32",
 # endif /* RENO || BSD4_4 */
 
-# if (defined(sun) || defined(__sun__) || defined(ultrix) || defined(hp9000) || defined(convex) || defined(__convex__)) && !defined(_sigextra_)
+# if (defined(SUNOS4) || defined(ultrix) || defined(hp9000) || defined(convex) || defined(__convex__)) && !defined(_sigextra_)
 #  define _sigextra_
 /* 28 */	"WINCH", 	"Window changed",
 /* 29 */	"LOST",		"Resource lost",
 /* 30 */	"USR1",		"User signal 1",
 /* 31 */	"USR2",		"User signal 2",
 /* 32 */	0,		"Signal 32",
-# endif /* sun */
+# endif /* various */
 
 # ifdef pyr
 #  define _sigextra_

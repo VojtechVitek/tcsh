@@ -58,7 +58,7 @@ extern	void	ed_set_tty_eight_bit	__P((void));
 
 extern	void	QuoteModeOn		__P((void));
 extern	void	QuoteModeOff		__P((void));
-extern	void	ResetInLine		__P((void));
+extern	void	ResetInLine		__P((int));
 extern	int	Load_input_line		__P((void));
 
 /*

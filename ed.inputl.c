@@ -83,7 +83,7 @@ Inputl()
 	ed_InitMaps();
 
     ClearDisp();		/* reset the display stuff */
-    ResetInLine();		/* reset the input pointers */
+    ResetInLine(0);		/* reset the input pointers */
     if (GettingInput)
 	MacroLvl = -1;		/* editor was interrupted during input */
 
@@ -166,9 +166,6 @@ Inputl()
 	    break;		/* keep going... */
 
 	case CC_EOF:		/* end of file typed */
-#ifdef notdef
-	    PromptBuf[0] = '\0';
-#endif
 	    num = 0;
 	    break;
 
@@ -181,9 +178,6 @@ Inputl()
 	    HistWhich = Hist_num;
 	    Hist_num = 0;	/* for the history commands */
 	    num = LastChar - InputBuf;	/* number characters read */
-#ifdef notdef
-	    ResetInLine();	/* reset the input pointers */
-#endif
 	    break;
 
 	case CC_NEWLINE:	/* normal end of line */
@@ -234,10 +228,6 @@ Inputl()
 		    inputmode = MODE_REPLACE;
 	    }
 	    printprompt(1, NULL);
-#ifdef notdef
-	    ResetInLine();	/* reset the input pointers */
-	    PromptBuf[0] = '\0';
-#endif
 	    break;
 
 	case CC_CORRECT:
@@ -399,7 +389,7 @@ Inputl()
 #endif				/* DEBUG_EDIT */
 	    /* put (real) cursor in a known place */
 	    ClearDisp();	/* reset the display stuff */
-	    ResetInLine();	/* reset the input pointers */
+	    ResetInLine(1);	/* reset the input pointers */
 	    Refresh();		/* print the prompt again */
 	    Argument = 1;
 	    DoingArg = 0;

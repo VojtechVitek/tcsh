@@ -47,9 +47,9 @@
 # include <sys/signal.h>
 #endif				/* SYSVREL > 0 */
 
-#if defined(sun) || defined(DGUX)
+#if defined(SUNOS4) || defined(DGUX)
 # define SAVESIGVEC
-#endif /* sun || DGUX */
+#endif /* SUNOS4 || DGUX */
 
 #if (SYSVREL > 0 && SYSVREL < 3 && !defined(BSDSIGS)) || defined(_MINIX)
 /*

@@ -47,7 +47,7 @@
 
 
 /***
- *** Suns running sunos4.1
+ *** Suns running sunos3.x - sunos4.1.x
  ***/
 #if (defined(sun) || defined(__sun__)) && SYSVREL == 0
 /* This used to be long, but lint dissagrees... */

@@ -567,8 +567,10 @@ execute(t, wanttty, pipein, pipeout)
 #endif /* BSDSIGS */
 		nosigchld = 0;
 	    }
-	    if ((t->t_dflg & F_AMPERSAND) == 0)
+	    if ((t->t_dflg & F_AMPERSAND) == 0) {
+		forepid = pid;
 		pwait();
+	    }
 	    break;
 	}
 

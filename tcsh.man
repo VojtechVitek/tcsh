@@ -3230,7 +3230,7 @@ If it is just set, the number of items is taken from $history.
 .TP 10
 .B shlvl
 Integer value indicating the number
-of nested shells. 
+of nested shells. On login shells the level is reset to 1.
 .TP 10
 .B showdots 
 show hidden files in list and complete operations. If it is set to -A,

@@ -1262,7 +1262,7 @@ e_newline(c)
     *LastChar = '\0';		/* just in case */
     if (VImode)
 	InsertPos = InputBuf;	/* Reset editing position */
-    return(CC_NEWLINE);	/* we must do a ResetInLine later */
+    return(CC_NEWLINE);
 }
 
 /*ARGSUSED*/
@@ -1272,9 +1272,6 @@ e_send_eof(c)
 {				/* for when ^D is ONLY send-eof */
     PastBottom();
     *LastChar = '\0';		/* just in case */
-#ifdef notdef
-    ResetInLine();		/* reset the input pointers */
-#endif
     return(CC_EOF);
 }
 
@@ -2693,7 +2690,7 @@ CCRETVAL
 e_startover(c)
     int c;
 {				/* erase all of current line, start again */
-    ResetInLine();		/* reset the input pointers */
+    ResetInLine(0);		/* reset the input pointers */
     return(CC_REFRESH);
 }
 
@@ -2724,7 +2721,7 @@ e_tty_int(c)
 {			
 #ifdef _MINIX
     /* SAK PATCH: erase all of current line, start again */
-    ResetInLine();		/* reset the input pointers */
+    ResetInLine(0);		/* reset the input pointers */
     xputchar('\n');
     ClearDisp();
     return (CC_REFRESH);

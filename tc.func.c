@@ -274,8 +274,7 @@ dolist(v, c)
 	Char   *dp, *tmp, buf[MAXPATHLEN];
 
 	for (k = 0, i = 0; v[k] != NULL; k++) {
-	    tmp = dnormalize(v[k], symlinks == SYM_IGNORE || 
-				   symlinks == SYM_EXPAND);
+	    tmp = dnormalize(v[k], symlinks == SYM_IGNORE);
 	    dp = &tmp[Strlen(tmp) - 1];
 	    if (*dp == '/' && dp != tmp)
 #ifdef apollo
@@ -1505,7 +1504,10 @@ shlvl(val)
 
     if ((cp = getenv("SHLVL")) != NULL) {
 
-	val += atoi(cp);
+	if (loginsh)
+	    val = 1;
+	else
+	    val += atoi(cp);
 
 	if (val <= 0) {
 	    unsetv(STRshlvl);

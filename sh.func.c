@@ -1581,7 +1581,6 @@ getval(lp, v)
 #ifndef atof	/* This can be a macro on linux */
     extern double  atof __P((const char *));
 #endif /* atof */
-    static int lmin = 0x80000000, lmax = 0x7fffffff;
     Char   *cp = *v++;
 
     f = atof(short2str(cp));
@@ -1678,10 +1677,8 @@ badscal:
     return ((RLIM_TYPE) restrict_limit((f + 0.5)));
 # else
     f += 0.5;
-    if (f > (float) lmax)
-	return lmax;
-    else if (f < (float) lmin)
-	return lmin;
+    if (f > (float) RLIM_INFINITY)
+	return RLIM_INFINITY;
     else
 	return ((RLIM_TYPE) f);
 # endif /* convex */
