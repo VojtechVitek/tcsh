@@ -1081,7 +1081,7 @@ dosetenv(v, c)
     }
     if ((lp = *v++) == 0)
 	lp = STRNULL;
-    Setenv(vp, lp = globone(lp, G_ERROR));
+    Setenv(vp, lp = globone(lp, G_APPEND));
     if (eq(vp, STRPATH)) {
 	importpath(lp);
 	dohash(NULL, NULL);
