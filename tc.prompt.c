@@ -145,10 +145,17 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		break;
 	    case '!':
 	    case 'h':
-		if (what == FMT_HISTORY)  
+		switch (what) {
+		case FMT_HISTORY:
 		    fmthist('h', info, cbuff);
-		else 
+		    break;
+		case FMT_SCHED:
+		    (void) xsprintf(cbuff, "%d", *(int *)info);
+		    break;
+		default:
 		    (void) xsprintf(cbuff, "%d", eventno + 1);
+		    break;
+		}
 		for (cz = cbuff; *cz; *p++ = attributes | *cz++)
 		    if (p >= ep) break;
 		break;

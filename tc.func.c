@@ -697,7 +697,7 @@ auto_lock()
 	    == 0)
 #endif /* AFS */
 	    ) {
-	    memset(pp, 0, PASSMAX);
+	    (void) memset(pp, 0, PASSMAX);
 	    if (GettingInput && !just_signaled) {
 		(void) Rawmode();
 		ClearLines();	
@@ -1590,7 +1590,7 @@ eof:
 	blkfree(gargv), gargv = 0;
     resexit(oldexit);
 }
-#endif
+#endif /* OBSOLETE */
 
 
 /*
@@ -1845,7 +1845,7 @@ palarm(snum)
     if (snum)
 	(void) sigset(snum, SIG_IGN);
 #endif /* UNRELSIGS */
-    alarm(0);
+    (void) alarm(0);
 
 #ifndef SIGVOID
     return (snum);
@@ -1865,7 +1865,7 @@ remotehost()
 
     /* Don't get stuck if the resolver does not work! */
     sigret_t (*osig)() = signal(SIGALRM, palarm);
-    alarm(2);
+    (void) alarm(2);
 
     if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1) {
 	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, len, AF_INET)) != NULL)
@@ -1897,7 +1897,7 @@ remotehost()
 	}
     }
 #endif
-    alarm(0);
+    (void) alarm(0);
     (void) signal(SIGALRM, osig);
 
     if (host)

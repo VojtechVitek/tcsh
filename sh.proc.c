@@ -1465,7 +1465,7 @@ dokill(v, c)
     v++;
     if (v[0] && v[0][0] == '-') {
 	if (v[0][1] == 'l') {
-	    for (signum = 1; signum <= nsig; signum++) {
+	    for (signum = 0; signum <= nsig; signum++) {
 		if ((name = mesg[signum].iname) != NULL) {
 		    len += strlen(name) + 1;
 		    if (len >= T_Cols - 1) {
@@ -1484,7 +1484,7 @@ dokill(v, c)
 		stderror(ERR_NAME | ERR_BADSIG);
 	}
 	else {
-	    for (signum = 1; signum <= nsig; signum++)
+	    for (signum = 0; signum <= nsig; signum++)
 		if (mesg[signum].iname &&
 		    eq(&v[0][1], str2short(mesg[signum].iname)))
 		    goto gotsig;

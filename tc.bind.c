@@ -47,7 +47,7 @@ static	char  *unparsekey	__P((int));
 static	KEYCMD getkeycmd	__P((Char **));
 static	int    parsekey		__P((Char **));
 static	void   pkeys		__P((int, int));
-#endif
+#endif /* OBSOLETE */
 
 static	void   printkey		__P((KEYCMD *, Char *));
 static	KEYCMD parsecmd		__P((Char *));

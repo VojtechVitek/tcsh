@@ -62,7 +62,7 @@ extern	int		  parseescape	__P((Char **));
 extern	unsigned char    *unparsestring	__P((Char *, unsigned char *, Char *));
 #ifdef OBSOLETE
 extern	void		  dobind	__P((Char **, struct command *));
-#endif
+#endif /* OBSOLETE */
 
 /*
  * tc.defs.c:
@@ -102,7 +102,9 @@ extern	void		  rmstar	__P((struct wordent *));
 extern	void		  continue_jobs	__P((struct wordent *));
 extern	Char		 *gettilde	__P((Char *));
 extern	Char		 *getusername	__P((Char **));
+#ifdef OBSOLETE
 extern	void		  doaliases	__P((Char **, struct command *));
+#endif /* OBSOLETE */
 extern	void		  shlvl		__P((int));
 extern	int		  fixio		__P((int, int));
 extern	int		  collate	__P((const Char *, const Char *));

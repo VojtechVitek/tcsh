@@ -147,7 +147,6 @@ EXTERN Char CurrentHistLit;	/* Literal status of current show history line */
 /*
  * These are truly extern
  */
-extern Char PromptBuf[];
 extern int MacroLvl;
 
 EXTERN Char *KeyMacro[MAXMACROLEVELS];

@@ -311,12 +311,12 @@ static char *errorlist[] =
     "Selector overflow",
 #define ERR_TCSHUSAGE   124
 #ifdef apollo
-    "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]",
+    "Unknown option: `-%s'\nUsage: tcsh [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]",
 #else /* !apollo */
 # ifdef convex
-    "Unknown option: -%s\nUsage: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]",
+    "Unknown option: `-%s'\nUsage: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]",
 # else /* rest */
-    "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]",
+    "Unknown option: `-%s'\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]",
 # endif /* convex */
 #endif /* apollo */
 #define ERR_COMPCOM	125

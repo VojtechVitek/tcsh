@@ -73,7 +73,6 @@ dosched(v, c)
     Char   *cp;
     bool    relative;		/* time specified as +hh:mm */
     struct tm *ltp;
-    char   *timeline;
 
     USE(c);
 /* This is a major kludge because of a gcc linker  */
@@ -87,13 +86,17 @@ dosched(v, c)
     v++;
     cp = *v++;
     if (cp == NULL) {
+	Char   *fmt;
+	if ((fmt = varval(STRsched)) == STRNULL)
+	    fmt = str2short("%h\t%T\t%R\n");
 	/* print list of scheduled events */
 	for (count = 1, tp = sched_ptr; tp; count++, tp = tp->t_next) {
-	    timeline = (char *) ctime(&tp->t_when);
-	    timeline[16] = '\0';
-	    xprintf("%6d\t%s\t", count, timeline);
-	    blkpr(tp->t_lex);
-	    xputchar('\n');
+	    Char buf[BUFSIZE], sbuf[BUFSIZE], *cp;
+	    blkexpand(tp->t_lex, buf);
+	    tprintf(FMT_SCHED, sbuf, fmt, sizeof(sbuf), 
+		    short2str(buf), tp->t_when, (ptr_t) &count);
+	    for (cp = sbuf; *cp;)
+		xputchar(*cp++);
 	}
 	return;
     }

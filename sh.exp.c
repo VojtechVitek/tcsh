@@ -495,6 +495,13 @@ exp5(vp, ignore)
 #ifdef EDEBUG
     etracc("exp5 p1", p1, vp);
 #endif /* EDEBUG */
+    if ((ignore & NOGLOB) != 0) 
+	/* 
+	 * We are just trying to get the right side of
+	 * a =~ or !~ operator 
+	 */
+	return Strsave(*(*vp)++);
+
     if (isa(**vp, MULOP)) {
 	register Char *op = *(*vp)++;
 
@@ -631,13 +638,14 @@ filetest(cp, vp, ignore)
     struct stat stb, *st = NULL;
 #ifdef S_IFLNK
     struct stat lstb, *lst = NULL;
+    char *filnam;
 #endif /* S_IFLNK */
     int i = 0;
     unsigned pmask = 0xffff;
     bool altout = 0;
     Char *ft = cp, *dp, *ep, *strdev, *strino, *strF, *str, valtest = '\0',
     *errval = STR0;
-    char *string, string0[8], *filnam;
+    char *string, string0[8];
     time_t footime;
     struct passwd *pw;
     struct group *gr;

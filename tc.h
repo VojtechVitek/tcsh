@@ -48,5 +48,6 @@
 #define FMT_PROMPT	0
 #define FMT_WHO		1
 #define FMT_HISTORY	2
+#define FMT_SCHED	3
 
 #endif /* _h_tc */

@@ -799,6 +799,14 @@ main(argc, argv)
 		use_fork = 1;
 		break;
 
+	    case ' ':
+	    case '\t':
+		/* 
+		 * for O/S's that don't do the argument parsing right in 
+		 * "#!/foo -f " scripts
+		 */
+		break;
+
 	    default:		/* Unknown command option */
 		exiterr = 1;
 		stderror(ERR_TCSHUSAGE, tcp-1);
@@ -1307,7 +1315,7 @@ st_save(st, unit, hflg, al, av)
      * For compatibility we do that only if arguments were really
      * passed, otherwise we keep the old, global $argv like before.
      */
-    if (av != NULL) {
+    if (av != NULL && *av != NULL) {
 	struct varent *vp;
 	if ((vp = adrof(STRargv)) != NULL)
 	    st->argv = saveblk(vp->vec);
@@ -1386,7 +1394,7 @@ st_restore(st, av)
 
     if (st->argv != NULL)
 	setq(STRargv, st->argv, &shvhed, VAR_READWRITE);
-    else if (av != NULL && adrof(STRargv) != NULL)
+    else if (av != NULL  && *av != NULL && adrof(STRargv) != NULL)
 	unsetv(STRargv);
 }
 

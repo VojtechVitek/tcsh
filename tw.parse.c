@@ -1160,15 +1160,18 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 	    InsideCompletion = 0;
 	    haderr = 0;
 
-#if defined(SOLARIS2) && defined(i386)
+#if defined(SOLARIS2) && defined(i386) && !defined(__GNUC__)
 	    /* Compiler bug? (from PWP) */
-	    if ((looking == 3) || (looking == 7))
+	    if ((looking == TW_LOGNAME) || (looking == TW_USER))
 		tw_logname_end();
 	    else
-		tw_dir_end();
-#else /* !(SOLARIS2 && i386) */
+		if (looking == TW_GRPNAME)
+		   tw_grpname_end();
+		else
+		    tw_dir_end();
+#else /* !(SOLARIS2 && i386 && !__GNUC__) */
 	    (*tw_end_entry[looking])();
-#endif /* !(SOLARIS2 && i386) */
+#endif /* !(SOLARIS2 && i386 && !__GNUC__) */
 
 	    /* flag error */
 	    return(-1);
@@ -1180,15 +1183,18 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 	    resexit(osetexit);
 	    InsideCompletion = 0;
 
-#if defined(SOLARIS2) && defined(i386)
+#if defined(SOLARIS2) && defined(i386) && !defined(__GNUC__)
 	    /* Compiler bug? (from PWP) */
-	    if ((looking == 3) || (looking == 7))
+	    if ((looking == TW_LOGNAME) || (looking == TW_USER))
 		tw_logname_end();
 	    else
-		tw_dir_end();
-#else /* !(SOLARIS2 && i386) */
+		if (looking == TW_GRPNAME)
+		   tw_grpname_end();
+		else
+		    tw_dir_end();
+#else /* !(SOLARIS2 && i386 && !__GNUC__) */
 	    (*tw_end_entry[looking])();
-#endif /* !(SOLARIS2 && i386) */
+#endif /* !(SOLARIS2 && i386 && !__GNUC__) */
 
 	    return(ni);
 	}

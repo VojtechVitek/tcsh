@@ -59,7 +59,9 @@ Char STRNULL[]          = { '\0' };
 Char STRtcsh[]          = { 't', 'c', 's', 'h', '\0' };
 Char STRhome[]          = { 'h', 'o', 'm', 'e', '\0' };
 Char STRuser[]          = { 'u', 's', 'e', 'r', '\0' };
+#ifdef AFS
 Char STRafsuser[]          = { 'a', 'f', 's', 'u', 's', 'e', 'r', '\0' };
+#endif /* AFS */
 Char STRterm[]          = { 't', 'e', 'r', 'm', '\0' };
 Char STRversion[]       = { 'v', 'e', 'r', 's', 'i', 'o', 'n', '\0' };
 Char STRuid[]           = { 'u', 'i', 'd', '\0' };
@@ -268,6 +270,7 @@ Char STReof[]		= { '^', 'D', '\b', '\b', '\0' };
 Char STRlistjobs[]	= { 'l', 'i', 's', 't', 'j', 'o', 'b', 's', '\0' };
 Char STRlong[]		= { 'l', 'o', 'n', 'g', '\0' };
 Char STRwho[]		= { 'w', 'h', 'o', '\0' };
+Char STRsched[]		= { 's', 'c', 'h', 'e', 'd', '\0' };
 Char STRrmstar[]        = { 'r', 'm', 's', 't', 'a', 'r', '\0' };
 Char STRrm[]            = { 'r', 'm', '\0' };
 Char STRshlvl[]		= { 's', 'h', 'l', 'v', 'l', '\0' };
