@@ -1108,7 +1108,7 @@ dcanon(cp, p)
 	/*
 	 * Start comparing dev & ino backwards
 	 */
-	(void) Strncpy(link, cp, sizeof(link) / sizeof(Char));
+	p2 = Strncpy(link, cp, sizeof(link) / sizeof(Char));
 	link[sizeof(link) / sizeof(Char) - 1] = '\0';
 	found = 0;
 	while (*p2 && stat(short2str(p2), &statbuf) != -1) {

@@ -502,12 +502,11 @@ struct ucred {
 #endif /* POSIX */
 
 
-#if !defined(SOLARIS2) && !defined(sinix) && !defined(BSD4_4)
-# if SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux) && !defined(sinix)
+#if !defined(SOLARIS2) && !defined(sinix) && !defined(BSD4_4) && !defined(WIN32)
+# if (SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux) && !defined(sinix) && !defined(_AIX)) || defined(NeXT)
 #  define NEEDgetcwd
-# endif /* SYSVREL > 0 && !OREO && !sgi && !linux && !sinix */
+# endif /* (SYSVREL > 0 && !OREO && !sgi && !linux && !sinix && !IBMAIX) || NeXT */
 #endif
-#define NEEDgetcwd
 
 #ifndef S_IFLNK
 # define lstat stat

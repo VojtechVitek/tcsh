@@ -1289,6 +1289,10 @@ main(argc, argv)
     if ((tcp = getenv("LANG")) != NULL && !adrof(CHECK_MBYTEVAR)) {
 	autoset_dspmbyte(str2short(tcp));
     }
+#if defined(WINNT)
+    else if (!adrof(CHECK_MBYTEVAR))
+      nt_autoset_dspmbyte();
+#endif /* WINNT */
 #endif
 
     /*
