@@ -112,7 +112,7 @@ DFLAGS=
 
 
 ################################################################
-## LDLAGS.  Define something here if you need to
+## LDFLAGS.  Define something here if you need to
 ################################################################
 LDFLAGS= 			## The simplest, suitable for all.
 #LDFLAGS= -s			## Stripped. Takes less space on disk.
