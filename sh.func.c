@@ -335,7 +335,7 @@ dologin(v, c)
 {
     USE(c);
     islogin();
-    rechist(NULL, 1);
+    rechist(NULL, adrof(STRsavehist) != NULL);
     (void) signal(SIGTERM, parterm);
     (void) execl(_PATH_LOGIN, "login", short2str(v[1]), NULL);
     untty();
