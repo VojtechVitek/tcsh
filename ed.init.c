@@ -120,11 +120,14 @@ RCSID("$Id$")
  * XCASE!
  */
 # ifdef ISC
-#  ifdef IEXTEN
-#   undef IEXTEN
-#  endif /* IEXTEN */
-#  define IEXTEN 0
+#  if defined(IEXTEN) && defined(XCASE)
+#   if IEXTEN == XCASE
+#    undef IEXTEN
+#    define IEXTEN 0
+#   endif /* IEXTEN == XCASE */
+#  endif /* IEXTEN && XCASE */
 # endif /* ISC */
+
 #endif /* TERMIO || POSIX */
 
 
