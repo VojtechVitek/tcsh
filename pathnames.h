@@ -37,6 +37,10 @@
 #ifndef _h_pathnames
 #define _h_pathnames
 
+#ifdef BSD4_4
+# include <paths.h>
+#endif
+
 #if defined(CMUCS) && !defined(_PATH_LOCAL)
 # define _PATH_LOCAL		"/usr/cs/bin"
 #endif /* CMUCS && !_PATH_LOCAL */

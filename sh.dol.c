@@ -489,11 +489,7 @@ Dgetdol()
 #else /* !BSDSIGS */
 	    (void) sigrelse(SIGINT);
 #endif /* BSDSIGS */
-#ifdef WINNT
-# undef read
-# define read force_read
-#endif /* WINNT */
-	    for (np = wbuf; read(OLDSTD, &tnp, 1) == 1; np++) {
+	    for (np = wbuf; force_read(OLDSTD, &tnp, 1) == 1; np++) {
 		*np = (unsigned char) tnp;
 		if (np >= &wbuf[BUFSIZE - 1])
 		    stderror(ERR_LTOOLONG);

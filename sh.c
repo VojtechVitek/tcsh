@@ -664,7 +664,11 @@ main(argc, argv)
      * Re-initialize path if set in environment
      */
     if ((tcp = getenv("PATH")) == NULL)
+#ifdef _PATH_DEFPATH
+	importpath(str2short(_PATH_DEFPATH));
+#else /* !_PATH_DEFPATH */
 	setq(STRpath, defaultpath(), &shvhed, VAR_READWRITE);
+#endif /* _PATH_DEFPATH */
     else
 	/* Importpath() allocates memory for the path, and the
 	 * returned pointer from SAVE() was discarded, so

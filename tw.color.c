@@ -52,7 +52,8 @@ typedef struct {
 
 #define VAR(suffix,variable,defaultcolor) \
 { \
-    suffix, variable, { NULL, 0 }, { defaultcolor, sizeof(defaultcolor) - 1 } \
+    suffix, variable, { defaultcolor, sizeof(defaultcolor) - 1 }, \
+      { defaultcolor, sizeof(defaultcolor) - 1 } \
 }
 #define NOS '\0' /* no suffix */
 

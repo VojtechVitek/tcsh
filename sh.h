@@ -58,6 +58,7 @@
 #ifndef WINNT
 # define INIT_ZERO
 # define INIT_ZERO_STRUCT
+# define force_read read
 #endif /*!WINNT */
 /*
  * Sanity
