@@ -130,7 +130,11 @@ xputchar(c)
     c &= CHAR | QUOTE;
     if (!output_raw && (c & QUOTE) == 0) {
 	if (Iscntrl(c)) {
+#ifdef COLORCAT
+	    if (c != '\t' && c != '\n' && !(adrof(STRcolorcat) && c=='\033') && (xlate_cr || c != '\r')) {
+#else
 	    if (c != '\t' && c != '\n' && (xlate_cr || c != '\r')) {
+#endif
 		xputchar('^' | atr);
 #ifndef _OSD_POSIX
 		if (c == ASCII)
@@ -254,6 +258,12 @@ flush()
 #endif
 #ifdef EBADF
 	case EBADF:
+#endif
+	/*
+	 * Over our quota, writing the history file
+	 */
+#ifdef EDQUOT
+	case EDQUOT:
 #endif
 	/* Nothing to do, but die */
 	    xexit(1);

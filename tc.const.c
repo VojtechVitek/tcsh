@@ -154,6 +154,11 @@ Char STRLANGEUC[]	= { 'j', 'a', '\0' };
 Char STRLANGEUCB[]	= { 'j', 'a', 'p', 'a', 'n', 'e', 's', 'e', '\0' };
 Char STRLANGSJIS[]	= { '\0' };
 Char STRLANGSJISB[]	= { '\0' };
+#  elif defined(hpux)
+Char STRLANGEUC[]	= { 'j', 'a', '_', 'J', 'P', '.', 'e', 'u', 'c', 'J', 'P' };
+Char STRLANGEUCB[]	= { '\0' };
+Char STRLANGSJIS[]	= { '\0' };
+Char STRLANGSJISB[]	= { '\0' };
 #  else
 Char STRLANGEUC[]	= { '\0' };
 Char STRLANGEUCB[]	= { '\0' };
@@ -395,3 +400,7 @@ Char STRup[]		= { 'u', 'p', '\0' };
 Char STRdown[]		= { 'd', 'o', 'w', 'n', '\0' };
 Char STRleft[]		= { 'l', 'e', 'f', 't', '\0' };
 Char STRright[]		= { 'r', 'i', 'g', 'h', 't', '\0' };
+
+#ifdef COLORCAT
+Char STRcolorcat[]	= { 'c', 'o', 'l', 'o', 'r', 'c', 'a', 't', '\0' };
+#endif

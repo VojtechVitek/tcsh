@@ -1601,7 +1601,7 @@ tsetenv(name, val)
 				cp++, dp++)
 #else
 	for (cp = name, dp = *ep; *cp && (*cp & TRIM) == *dp; cp++, dp++)
-#endif WINNT
+#endif /* WINNT */
 	    continue;
 	if (*cp != 0 || *dp != '=')
 	    continue;
@@ -1697,7 +1697,7 @@ doumask(v, c)
 #  if defined(BSD4_4) && !defined(__386BSD__)
     typedef quad_t RLIM_TYPE;
 #  else
-#   if defined(SOLARIS2) || defined(sgi)
+#   if defined(SOLARIS2) || (defined(sgi) && SYSVREL > 3)
      typedef rlim_t RLIM_TYPE;
 #   else
 #    if defined(_SX)
@@ -1705,7 +1705,7 @@ doumask(v, c)
 #    else /* _SX */
       typedef unsigned long RLIM_TYPE;
 #    endif /* _SX */
-#   endif /* SOLARIS2 */
+#   endif /* SOLARIS2 || (sgi && SYSVREL > 3) */
 #  endif /* BSD4_4 && !__386BSD__  */
 # endif /* BSDLIMIT */
 

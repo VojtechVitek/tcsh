@@ -205,6 +205,11 @@ errinit()
 
     for (i = 0; i < NO_ERRORS; i++)
 	xfree((ptr_t) elst[i]);
+#  if defined(__FreeBSD__) || defined(hpux)
+#  define NLS_MAXSET 30
+    for (i = 1; i <= NLS_MAXSET; i++)
+	CGETS(i, 1, "" );
+#  endif
 #endif
 
     elst[ERR_SYNTAX] = CSAVS(1, 1, "Syntax Error");

@@ -171,6 +171,12 @@
 #define COLOR_LS_F
 
 /*
+ * COLORCAT Do you want to colorful message ?
+ *
+ */
+#undef COLORCAT
+
+/*
  * RCSID	This defines if we want rcs strings in the binary or not
  *
  */
