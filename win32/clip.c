@@ -508,7 +508,7 @@ e_dosify_next(c)
 
 	heap_free(buf);
 
-	Cursor = LastChar = cp;
+	Cursor =  cp;
 
 	return (CC_REFRESH);
 }
@@ -534,7 +534,11 @@ e_dosify_prev(c)
 			break;
 		cp--;
 	}
-	Cursor = cp;
+	if(cp != InputBuf)
+	  Cursor = cp + 1;
+	else
+	  Cursor = cp;
+	
 	return e_dosify_next(0);
 }
 extern BOOL ConsolePageUpOrDown(BOOL);
