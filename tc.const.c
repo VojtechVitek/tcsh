@@ -133,7 +133,7 @@ Char STRmbytemap[]	= { 'm', 'b', 'y', 't', 'e', 'm', 'a', 'p', '\0' };
 /* STRLANGEUCJP,STRLANGEUCJPB = EUCJP Trap */
 /* STRLANGEUCKR,STRLANGEUCKRB = EUCKR Trap */
 /* STRLANGSJIS,STRLANGSJISB = SJIS Trap */
-#  if defined(__FreeBSD__) || defined(__uxps__) || defined(sgi)  || defined(aix) || defined(__CYGWIN__)
+#  if defined(__FreeBSD__) || defined(__uxps__) || defined(sgi)  || defined(aix) || defined(__CYGWIN__) || defined(linux)
 Char STRLANGEUCJP[]	= { 'j', 'a', '_', 'J', 'P', '.', 'E', 'U', 'C', '\0' };
 Char STRLANGEUCKR[]	= { 'k', 'o', '_', 'K', 'R', '.', 'E', 'U', 'C', '\0' };
 #   if defined(__uxps__)

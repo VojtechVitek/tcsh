@@ -1025,9 +1025,11 @@ heredoc(term)
     Char  **vp;
     bool    quoted;
     char   *tmp;
+#ifndef WINNT_NATIVE
     struct timeval tv;
 
 again:
+#endif /* WINNT_NATIVE */
     tmp = short2str(shtemp);
 #ifndef O_CREAT
 # define O_CREAT 0
@@ -1043,6 +1045,7 @@ again:
 #endif
     if (open(tmp, O_RDWR|O_CREAT|O_EXCL|O_TEMPORARY) == -1) {
 	int oerrno = errno;
+#ifndef WINNT_NATIVE
 	if (errno == EEXIST) {
 	    if (unlink(tmp) == -1) {
 		(void) gettimeofday(&tv, NULL);
@@ -1051,6 +1054,7 @@ again:
 	    }
 	    goto again;
 	}
+#endif /* WINNT_NATIVE */
 	(void) unlink(tmp);
 	errno = oerrno;
  	stderror(ERR_SYSTEM, tmp, strerror(errno));

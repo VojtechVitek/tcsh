@@ -207,7 +207,7 @@ typedef int sigret_t;
 #ifdef _SEQUENT_
 # include <sys/procstats.h>
 #endif /* _SEQUENT_ */
-#if (defined(POSIX) || SYSVREL > 0) && !WINNT_NATIVE
+#if (defined(POSIX) || SYSVREL > 0) && !defined(WINNT_NATIVE)
 # include <sys/times.h>
 #endif /* (POSIX || SYSVREL > 0) && !WINNT_NATIVE */
 
