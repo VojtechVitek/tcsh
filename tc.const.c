@@ -129,6 +129,7 @@ Char STRsjis[]		= { 's', 'j', 'i', 's', '\0' };
 Char STRbig5[]		= { 'b', 'i', 'g', '5', '\0' };
 Char STRutf8[]		= { 'u', 't', 'f', '8', '\0' };
 Char STRstarutfstar8[]	= { '*', 'u', 't', 'f', '*', '8', '\0' };
+Char STRGB2312[]	= { 'g', 'b', '2', '3', '1', '2', '\0' };
 #  ifdef MBYTEDEBUG	/* Sorry, use for beta testing */
 Char STRmbytemap[]	= { 'm', 'b', 'y', 't', 'e', 'm', 'a', 'p', '\0' };
 #  endif /* MBYTEMAP */
