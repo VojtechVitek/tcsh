@@ -1840,6 +1840,10 @@ struct limits limits[] =
     { RLIMIT_OFILE,	"openfiles",	1,	""		},
 # endif /* RLIMIT_OFILE && !defined(RLIMIT_NOFILE) */
 
+# ifdef RLIMIT_SBSIZE
+    { RLIMIT_SBSIZE,	"sbsize",	1,	""		},
+# endif /* RLIMIT_SBSIZE */
+
     { -1, 		NULL, 		0, 	NULL		}
 };
 
