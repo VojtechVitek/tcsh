@@ -333,7 +333,9 @@ static char *errorlist[] =
     "Usage: unlimit [-fh] [limits]",
 #define ERR_READONLY	131
     "$%S is read-only",
-#define ERR_INVALID	132
+#define ERR_BADJOB	132
+    "Cannot restart %S (%s)",
+#define ERR_INVALID	133
     "Invalid Error"
 };
 

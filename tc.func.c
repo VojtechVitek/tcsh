@@ -554,8 +554,11 @@ fg_proc_entry(pp)
 				 * process getting stopped by a signal */
     if (setexit() == 0) {	/* come back here after pjwait */
 	pendjob();
-	pstart(pp, 1);		/* found it. */
 	(void) alarm(0);	/* No autologout */
+	if (!pstart(pp, 1)) {
+	    pp->p_procid = 0;
+	    stderr(ERR_BADJOB, pp->p_command, strerror(errno));
+	}
 	pjwait(pp);
     }
     setalarm(1);		/* Autologout back on */
@@ -1858,7 +1861,7 @@ palarm(snum)
 void 
 remotehost()
 {
-    char *host = NULL;
+    const char *host = NULL;
     struct hostent* hp;
     struct sockaddr_in saddr;
     int len = sizeof(struct sockaddr_in);

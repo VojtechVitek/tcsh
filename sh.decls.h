@@ -298,7 +298,7 @@ extern	void		  pjwait	__P((struct process *));
 extern	void		  pnote		__P((void));
 extern	void		  prestjob	__P((void));
 extern	void		  psavejob	__P((void));
-extern	void		  pstart	__P((struct process *, int));
+extern	int		  pstart	__P((struct process *, int));
 extern	void		  pwait		__P((void));
 extern  struct process   *pfind		__P((Char *));
 
