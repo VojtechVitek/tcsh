@@ -49,7 +49,7 @@ static	void	p2dig	__P((int));
 #if defined(BSDLIMIT) || defined(RLIMIT_CPU)
 void
 psecs(l)
-    long    l;
+    unsigned long    l;
 {
     int i;
 
@@ -73,7 +73,7 @@ minsec:
 void
 pcsecs(l)			/* PWP: print mm:ss.dd, l is in sec*100 */
 #ifdef BSDTIMES
-    long    l;
+    unsigned long    l;
 #else /* BSDTIMES */
 # ifndef POSIX
     time_t  l;
@@ -103,7 +103,7 @@ minsec:
 
 static void 
 p2dig(i)
-    int i;
+    unsigned int i;
 {
 
     xprintf("%d%d", i / 10, i % 10);
