@@ -903,18 +903,23 @@ executable(dir, name, dir_ok)
 #ifdef WINNT
 	{
 	    char *ptr = short2str(path);
-	    char *p2;
+	    char *p2 = ptr;
 	    int has_ext = 0;
-	    p2 = ptr;
-	    while (*ptr) { 
+
+	    while (*ptr++)
+	    	continue;
+
+	    while(ptr > p2) { 
+		if (*ptr == '/')
+		    break;
 		if (*ptr == '.') {
 		    has_ext = 1;
 		    break;
 		}
-		ptr++;
+		ptr--;
 	    }
 	    if (!has_ext && (stat(p2, &stbuf) == -1))
-		catn(path, str2short(".EXE"), MAXPATHLEN);
+		catn(path, ".EXE", MAXPATHLEN);
 	}
 #endif /* WINNT */
 	strname = short2str(path);
