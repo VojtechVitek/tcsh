@@ -158,7 +158,7 @@ extern char *sbrk();
 #ifdef hp9000s500
 # ifndef _PTR_T
 #  define _PTR_T
-#  typedef char * ptr_t;
+   typedef char * ptr_t;
 # endif /* _PTR_T */
 #endif /* hp9000s500 */
 
