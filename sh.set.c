@@ -1117,6 +1117,8 @@ update_dspmbyte_vars()
 	    iskcode = 2;
 	else if (eq(dstr1, STRKBIG5))
 	    iskcode = 3;
+	else if (eq(dstr1, STRKUTF8))
+	    iskcode = 4;
 	else if ((dstr1[0] - '0') >= 0 && (dstr1[0] - '0') <= 3) {
 	    iskcode = 0;
 	}
@@ -1145,6 +1147,11 @@ update_dspmbyte_vars()
 		/* 3 ... big5 */
 		_cmap[lp] = _cmap_mbyte[lp];
 		_mbmap[lp] = _mbmap_big5[lp];
+		break;
+	    case 4:
+		/* 4 ... utf8 */
+		_cmap[lp] = _cmap_mbyte[lp];
+		_mbmap[lp] = _mbmap_utf8[lp];
 		break;
 	    default:
 		xprintf(CGETS(18, 3,
