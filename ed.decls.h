@@ -185,7 +185,8 @@ extern  CCRETVAL        v_eword			__P((int));
 extern  CCRETVAL        v_undo			__P((int));
 extern  CCRETVAL        v_ush_meta		__P((int));
 extern  CCRETVAL        v_dsh_meta		__P((int));
-extern  CCRETVAL        v_repeat_srch		__P((int));
+extern  CCRETVAL        v_rsrch_fwd		__P((int));
+extern  CCRETVAL        v_rsrch_rev		__P((int));
 
 /*
  * ed.inputl.c

@@ -428,6 +428,7 @@ VI Command Mode functions
 "I"	->  vi-insert-at-bol
 "J"	->  history-search-forward
 "K"	->  history-search-backward
+"N"	->  vi-search-rev
 "O"	->  sequence-lead-in
 "R"	->  vi-replace-mode
 "S"	->  vi-substitute-line
@@ -449,7 +450,7 @@ VI Command Mode functions
 "k"	->  up-history
 "l"	->  forward-char
 "m"	->  is undefined
-"n"	->  vi-repeat
+"n"	->  vi-search-fwd
 "r"	->  vi-replace-char
 "s"	->  vi-substitute-char
 "t"	->  toggle-literal-history
