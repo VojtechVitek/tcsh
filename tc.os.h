@@ -388,8 +388,12 @@ extern int atoi();
 extern char *ttyname();
 
 #if defined(SUNOS4)
+# ifndef toupper
 extern int toupper __P((int));
+# endif
+# ifndef tolower
 extern int tolower __P((int));
+# endif
 extern caddr_t sbrk __P((int));
 # if SYSVREL == 0
 extern int qsort();

@@ -1883,7 +1883,7 @@ pfork(t, wanttty)
 		pflush(pcurrjob);
 		pcurrjob = NULL;
 		if (setpgid(pid, pgrp = pid) == -1) {
-		    stderror(ERR_SYSTEM, "setpgid: %s\n", strerror(errno));
+		    stderror(ERR_SYSTEM, "setpgid parent:", strerror(errno));
 		    xexit(0);
 		}
 	    }
@@ -1951,12 +1951,11 @@ pgetty(wanttty, pgrp)
      */
     if (wanttty > 0)
 #  ifdef BSDSIGS
-	omask = sigblock(sigmask(SIGTSTP)|sigmask(SIGTTIN)|sigmask(SIGTTOU));
+	omask = sigblock(sigmask(SIGTSTP)|sigmask(SIGTTIN));
 #  else /* !BSDSIGS */
     {
 	(void) sighold(SIGTSTP);
 	(void) sighold(SIGTTIN);
-	(void) sighold(SIGTTOU);
     }
 #  endif /* !BSDSIGS */
 # endif /* POSIXJOBS */
@@ -1976,23 +1975,32 @@ pgetty(wanttty, pgrp)
 	if (setpgid(0, pgrp) == -1) {
 	    /* Walking process group fix; see above */
 	    if (setpgid(0, pgrp = getpid()) == -1) {
-		stderror(ERR_SYSTEM, "setpgid: %s\n", strerror(errno));
+		stderror(ERR_SYSTEM, "setpgid child:\n", strerror(errno));
 		xexit(0);
 	    }
+	    wanttty = 1;  /* Now we really want the tty, since we became the
+			   * the process group leader
+			   */
 	}
 
-# ifdef POSIXJOBS
     if (wanttty > 0) {
+# ifdef POSIXJOBS
+        /*
+	 * tcsetpgrp will set SIGTTOU to all the the processes in 
+	 * the background according to POSIX... We ignore this here.
+	 */
+	sigret_t (*old)() = sigset(SIGTTOU, SIG_IGN);
 	(void) tcsetpgrp(FSHTTY, pgrp);
+	(void) sigset(SIGTTOU, old);
+# endif /* POSIXJOBS */
+
 #  ifdef BSDSIGS
 	(void) sigsetmask(omask);
 #  else /* BSDSIGS */
 	(void) sigrelse(SIGTSTP);
 	(void) sigrelse(SIGTTIN);
-	(void) sigrelse(SIGTTOU);
 #  endif /* !BSDSIGS */
     }
-# endif /* POSIXJOBS */
 
     if (tpgrp > 0)
 	tpgrp = 0;		/* gave tty away */

@@ -283,7 +283,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		    else {
 			j = 1;
 		    }
-		    if ((z = value(STRcwd)) != STRNULL)
+		    if ((z = value(STRcwd)) == STRNULL)
 			break;
 		    (void) Strcpy(buff, z);
 		    if (!buff[1]) /* if CWD == / */

@@ -129,7 +129,7 @@ globequal(new, old)
     Char *new, *old;
 {
     int     dig;
-    Char    *b = NULL, *d;
+    Char    *b, *d;
 
     /*
      * kfk - 17 Jan 1984 - stack hack allows user to get at arbitrary dir names

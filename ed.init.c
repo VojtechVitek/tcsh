@@ -364,7 +364,7 @@ Rawmode()
 #ifdef DEBUG_TTY
 	xprintf("Rawmode: tty_getty: %s\n", strerror(errno));
 #endif /* DEBUG_TTY */
-	return(-1);
+	return(errno == EINTR ? 0 : -1);
     }
 
     /*
@@ -545,7 +545,7 @@ Rawmode()
 #ifdef DEBUG_TTY
 	xprintf("Rawmode: tty_setty: %s\n", strerror(errno));
 #endif /* DEBUG_TTY */
-	return -1;
+	return errno == EINTR ? 0 : -1;
     }
     Tty_raw_mode = 1;
     flush();			/* flush any buffered output */

@@ -440,7 +440,7 @@ EXTERN bool    is2atty;		/* is file descriptor 2 a tty (didfds mode) */
  */
 EXTERN Char   *arginp;		/* Argument input for sh -c and internal `xx` */
 EXTERN int     onelflg;		/* 2 -> need line for -t, 1 -> exit on read */
-EXTERN Char   *ffile;		/* Name of shell file for $0 */
+extern Char   *ffile;		/* Name of shell file for $0 */
 
 extern char *seterr;		/* Error message from scanner/parser */
 extern int errno;		/* Error from C library routines */
