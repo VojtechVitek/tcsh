@@ -140,7 +140,7 @@
  *		only output, when "dspmbyte" is set. Should be used with
  *		KANJI
  */
-#undef DSPMBYTE
+#define DSPMBYTE
 
 #if defined (WIDE_STRINGS) && defined (DSPMBYTE)
 # error "DSPMBYTE must not be defined if WIDE_STRINGS is defined"
