@@ -453,7 +453,7 @@ typedef struct timeval timeval_t;
 # define free tcsh_free
 #endif /* NeXT */
 
-#if defined(HAVE_GETHOSTNAME) && !defined(HAVE_DECL_GETHOSTNAME)
+#if defined(HAVE_GETHOSTNAME) && !HAVE_DECL_GETHOSTNAME
 extern int gethostname __P((char *, int));
 #endif
 
