@@ -487,7 +487,7 @@ Dgetdol()
 #ifdef BSDSIGS
 	    sigmask_t omask = sigsetmask(sigblock(0) & ~sigmask(SIGINT));
 #else /* !BSDSIGS */
-	    sigrelse(SIGINT);
+	    (void) sigrelse(SIGINT);
 #endif /* BSDSIGS */
 	    for (np = wbuf; read(OLDSTD, &tnp, 1) == 1; np++) {
 		*np = (unsigned char) tnp;

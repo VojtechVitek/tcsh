@@ -1216,7 +1216,7 @@ dgetstack()
 
     for (dn = dhead.di_prev; dn != &dhead; dn = dn->di_prev, i++) 
 	continue;
-    dbp = dblk = (Char**) xmalloc((i + 1) * sizeof(Char *));
+    dbp = dblk = (Char**) xmalloc((size_t) (i + 1) * sizeof(Char *));
     for (dn = dhead.di_prev; dn != &dhead; dn = dn->di_prev, dbp++) 
 	 *dbp = Strsave(dn->di_name);
     *dbp = NULL;
@@ -1329,7 +1329,7 @@ recdirs(fname, def)
     }
 
     if ((snum = varval(STRsavedirs)) == STRNULL) 
-	num = ~0;
+	num = (unsigned int) ~0;
     else
 	num = (unsigned int) atoi(short2str(snum));
 

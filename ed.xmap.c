@@ -301,8 +301,8 @@ TryNode(ptr, str, val, ntype)
 	case XK_STR:
 	case XK_EXE:
 	    ptr->val.str.len = (val->str.len + 1) * sizeof(Char);
-	    ptr->val.str.buf = (Char *) xmalloc(ptr->val.str.len);
-	    memmove(ptr->val.str.buf, val->str.buf, ptr->val.str.len);
+	    ptr->val.str.buf = (Char *) xmalloc((size_t) ptr->val.str.len);
+	    (void) memmove((ptr_t) ptr->val.str.buf, (ptr_t) val->str.buf, (size_t) ptr->val.str.len);
 	    ptr->val.str.len = val->str.len;
 	    break;
 	default:
@@ -762,14 +762,14 @@ unparsestring(str, buf, sep)
 	    if (p == '\177')
 		*b++ = '?';
 	    else
-		*b++ = p | 0100;
+		*b++ = (unsigned char) (p | 0100);
 	}
 	else if (p == '^' || p == '\\') {
 	    *b++ = '\\';
-	    *b++ = p;
+	    *b++ = (unsigned char) p;
 	}
 	else if (p == ' ' || (Isprint(p) && !Isspace(p))) {
-	    *b++ = p;
+	    *b++ = (unsigned char) p;
 	}
 	else {
 	    *b++ = '\\';

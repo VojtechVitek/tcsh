@@ -1939,7 +1939,7 @@ e_dabbrev_expand(c)
 	oldevent = eventno;
 	start = cp;
 	patlen = Cursor - cp;
-	Strncpy(patbuf, cp, patlen);
+	(void) Strncpy(patbuf, cp, patlen);
 	hist = 0;
 	word = 0;
     }

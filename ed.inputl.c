@@ -189,6 +189,9 @@ Inputl()
 	/* save the last command here */
 	LastCmd = cmdnum;
 
+	/* make sure fn is initialized */
+	fn = (retval == CC_COMPLETE_ALL) ? LIST_ALL : LIST;
+
 	/* use any return value */
 	switch (retval) {
 

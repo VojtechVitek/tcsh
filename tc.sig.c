@@ -209,7 +209,7 @@ void
 sigpause(what)
 {
     if (what == SIGCHLD) {
-	bsd_sigpause(bsd_sigblock((sigmask_t) 0) & ~sigmask(SIGBSDCHLD));
+	(void) bsd_sigpause(bsd_sigblock((sigmask_t) 0) & ~sigmask(SIGBSDCHLD));
     }
     else if (what == 0) {
 	pause();
@@ -288,7 +288,7 @@ sigsetmask(mask)
 
     for (i = 1; i <= MAXSIG; i++)
 	if (ISSET(mask, i))
-	    sigaddset(&set, i);
+	    (void) sigaddset(&set, i);
 
     if ((sigprocmask(SIG_SETMASK, &set, &oset)) == -1) {
 	xprintf("sigsetmask(0x%x) - sigprocmask failed, errno %d",
@@ -328,7 +328,7 @@ sigblock(mask)
     /* Add in signals from mask. */
     for (i = 1; i <= MAXSIG; i++)
 	if (ISSET(mask, i))
-	    sigaddset(&set, i);
+	    (void) sigaddset(&set, i);
 
     if ((sigprocmask(SIG_SETMASK, &set, &oset)) == -1)
 	stderror(ERR_SYSTEM, "sigprocmask", strerror(errno));
@@ -360,8 +360,8 @@ bsd_sigpause(mask)
 
     for (i = 1; i <= MAXSIG; i++)
 	if (ISSET(mask, i))
-	    sigaddset(&set, i);
-    sigsuspend(&set);
+	    (void) sigaddset(&set, i);
+    (void) sigsuspend(&set);
 }
 
 /*

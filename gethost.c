@@ -41,6 +41,12 @@ RCSID("$Id$")
 #include <stdio.h>
 #include <ctype.h>
 
+/* Some people don't bother to declare these */
+#if defined(SUNOS4) || defined(ibm032)
+extern int fprintf();
+extern int fclose();
+#endif /* SUNOS4 || ibm032 */
+
 #define ISSPACE(p)	(isspace((unsigned char) (p)) && (p) != '\n')
 
 /* 

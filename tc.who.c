@@ -563,7 +563,8 @@ struct command *c;
 
     USE(v);
     USE(c);
-    if ((vp = adrof(STRwatch)) == NULL)
+    vp = adrof(STRwatch);	/* lint insists vp isn't used unless we */
+    if (vp == NULL)		/* unless we assign it outside the if */
 	stderror(ERR_NOWATCH);
     resetwatch();
     wp = whohead.who_next;

@@ -415,7 +415,7 @@ TCalloc(t, cap)
 		continue;
 	    termbuf[tlen++] = '\0';
 	}
-    (void) memmove((ptr_t) termcap_alloc, (ptr_t) termbuf, TC_BUFSIZE);
+    (void) memmove((ptr_t) termcap_alloc, (ptr_t) termbuf, (size_t) TC_BUFSIZE);
     tloc = tlen;
     if (tloc + 3 >= TC_BUFSIZE) {
 	stderror(ERR_NAME | ERR_TCNOSTR);

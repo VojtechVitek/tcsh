@@ -769,7 +769,7 @@ doio(t, pipein, pipeout)
 {
     register int fd;
     register Char *cp;
-    register int flags = t->t_dflg;
+    register unsigned long flags = t->t_dflg;
 
     if (didfds || (flags & F_REPEAT))
 	return;

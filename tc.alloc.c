@@ -373,7 +373,7 @@ realloc(cp, nbytes)
 #ifndef lint
     register U_int onb;
     union overhead *op;
-    char   *res;
+    ptr_t res;
     register int i;
     int     was_alloced = 0;
 

@@ -979,7 +979,7 @@ tellmewhat(lexp, str)
 	if (str == NULL)
 	    prlex(lexp);
 	else
-	    Strcpy(str, sp->word);
+	    (void) Strcpy(str, sp->word);
 	xfree((ptr_t) sp->word);
     }
     else {
@@ -990,7 +990,7 @@ tellmewhat(lexp, str)
 	    flush();
 	}
 	else {
-	    Strcpy(str, sp->word);
+	    (void) Strcpy(str, sp->word);
 	    return FALSE;
 	}
     }

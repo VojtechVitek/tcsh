@@ -79,7 +79,9 @@ static	void	 insert_we	__P((struct wordent *, struct wordent *));
 static	int	 inlist		__P((Char *, Char *));
 #endif /* BSDJOBS */
 static  Char    *gethomedir	__P((Char *));
+#ifdef REMOTEHOST
 static	void	 getremotehost	__P((void));
+#endif /* REMOTEHOST */
 
 /*
  * Tops-C shell
@@ -1862,6 +1864,7 @@ hashbang(fd, vp)
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <sys/uio.h>	/* For struct iovec */
 
 static sigret_t
 palarm(snum)

@@ -90,7 +90,11 @@ ttyperm_t ttylist = {
 
 static struct tcshmodes {
     char *m_name;
+#ifdef SOLARIS2
+    unsigned long m_value;
+#else /* !SOLARIS2 */
     int   m_value;
+#endif /* SOLARIS2 */
     int   m_type;
 } modelist[] = {
 #if defined(POSIX) || defined(TERMIO)

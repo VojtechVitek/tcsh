@@ -91,7 +91,7 @@ dosched(v, c)
 	    fmt = str2short("%h\t%T\t%R\n");
 	/* print list of scheduled events */
 	for (count = 1, tp = sched_ptr; tp; count++, tp = tp->t_next) {
-	    Char buf[BUFSIZE], sbuf[BUFSIZE], *cp;
+	    Char buf[BUFSIZE], sbuf[BUFSIZE];
 	    blkexpand(tp->t_lex, buf);
 	    tprintf(FMT_SCHED, sbuf, fmt, sizeof(sbuf), 
 		    short2str(buf), tp->t_when, (ptr_t) &count);

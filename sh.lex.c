@@ -1632,6 +1632,7 @@ reread:
 			reset();
 		} else {
 			/* If we don't have ignoreeof set, just fall through */
+			;	/* EMPTY */
 		}
 	    }
     oops:
