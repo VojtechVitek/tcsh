@@ -91,9 +91,7 @@ struct	biltins bfunc[] = {
 #endif /* TCF */
     { "glob",		doglob,		0,	INF	},
     { "goto",		dogoto,		1,	1	},
-#ifdef VFORK
     { "hashstat",	hashstat,	0,	0	},
-#endif
     { "history",	dohist,		0,	2	},
     { "hup",		dohup,		0,	INF	},
     { "if",		doif,		1,	INF	},
