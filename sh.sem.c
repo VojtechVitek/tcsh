@@ -349,7 +349,7 @@ execute(t, wanttty, pipein, pipeout)
 	 * We have to fork for eval too.
 	 */
 	    (bifunc && (t->t_dflg & F_PIPEIN) != 0 &&
-	     bifunc->bfunct == (bfunc_t)doeval))
+	     bifunc->bfunct == (bfunc_t)doeval)) {
 #ifdef VFORK
 	    if (t->t_dtyp == NODE_PAREN ||
 		t->t_dflg & (F_REPEAT | F_AMPERSAND) || bifunc)
@@ -585,6 +585,7 @@ execute(t, wanttty, pipein, pipeout)
 		}
 
 	    }
+	}
 #endif /* VFORK */
 	if (pid != 0) {
 	    /*
