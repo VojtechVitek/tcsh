@@ -875,7 +875,7 @@ int nt_texec(char *prog, char**args ) {
 	DWORD dwCreationflags;
 	unsigned int priority;
 	char *argv0, *savepath;
-	char *cmdstr,*cmdend ,*cmdstr_save;
+	char *cmdstr,*cmdend ;
 	unsigned int cmdsize,cmdlen;
     char *p2;
 	char **savedargs;
@@ -889,7 +889,6 @@ int nt_texec(char *prog, char**args ) {
 
 	/* MUST FREE !! */
 	cmdstr= heap_alloc(MAX_PATH<<2);
-	cmdstr_save = cmdstr;
 	cmdsize = MAX_PATH<<2;
 
 	is_winnt = (gdwPlatform != VER_PLATFORM_WIN32_WINDOWS);
@@ -1043,7 +1042,7 @@ free_mem:
 
 	restore_path(savepath);
 
-	heap_free(cmdstr_save);
+	heap_free(cmdstr -1);
 	if (argv0)
 		heap_free(argv0);
 	return retval;
