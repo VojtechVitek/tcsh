@@ -27,7 +27,7 @@ LFLAGS=$(INCLUDES)
 #LFLAGS=$(INCLUDES) -Zn10000		# hpux lint
 
 
-CFLAGS= $(INCLUDES) -g			# debug
+#CFLAGS= $(INCLUDES) -g			# debug
 #CFLAGS= $(INCLUDES) -O			# production
 #CFLAGS= $(INCLUDES) 			# Broken optimizers....
 

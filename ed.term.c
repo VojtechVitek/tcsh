@@ -289,6 +289,9 @@ static struct tcshmodes {
 # ifdef	ALTWERASE
     { "altwerase",ALTWERASE,M_LINED },
 # endif /* ALTWERASE */
+# ifdef	EXTPROC
+    { "extproc",EXTPROC,M_LINED },
+# endif /* EXTPROC */
 
 #else /* GSTTY */
 

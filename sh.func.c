@@ -1588,9 +1588,13 @@ badscal:
 # if defined(convex) || defined(__convex__)
     return ((RLIM_TYPE) restrict_limit((f + 0.5)));
 # else
-    if ((f + 0.5) >= (float) lmax || (f + 0.5) < (float) lmin)
-	stderror(ERR_NAME | ERR_SCALEF);
-    return ((RLIM_TYPE) (f + 0.5));
+    f += 0.5;
+    if (f > (float) lmax)
+	return lmax;
+    else if (f < (float) lmin)
+	return lmin;
+    else
+	return ((RLIM_TYPE) f);
 # endif /* convex */
 }
 

@@ -77,22 +77,17 @@
 # ifndef _SPEED_T
 #  define _SPEED_T
 # endif /* _SPEED_T */
-# ifdef notdef
-/*
- * This is what sun's lint wants, but the .h file disagree
- */
-extern char *getwd();
-extern time_t time();
-extern int getuid(), geteuid();
-extern int getgid(), getguid();
-extern int _exit();
-extern int abort();
-extern int alarm();
-extern void endpwent();
-extern char *sbrk();
-extern int sleep();
-# endif /* notdef */
-#endif /*sun */
+# ifndef SUNOS4
+#  ifndef _UID_T
+#   define _UID_T
+     typedef int uid_t;
+#  endif /* _UID_T */
+#  ifndef _GID_T
+#   define _GID_T
+     typedef int gid_t;
+#  endif /* _GID_T */
+# endif /* !SUNOS4 */
+#endif /* sun */
 
 
 /***
@@ -105,7 +100,7 @@ extern int sleep();
 # endif /* _SIZE_T */
 
 # ifndef _PTR_T
-# define _PTR_T 
+#  define _PTR_T 
     typedef void * ptr_t;
 # endif /* _PTR_T */
 
@@ -162,7 +157,7 @@ typedef char * caddr_t;
 #ifdef hp9000s500
 # ifndef _PTR_T
 #  define _PTR_T
-   typedef char * ptr_t;
+    typedef char * ptr_t;
 # endif /* _PTR_T */
 #endif /* hp9000s500 */
 
@@ -407,23 +402,23 @@ typedef char * caddr_t;
 
 # ifndef _PID_T
 #  define _PID_T
-   typedef int pid_t;
+    typedef int pid_t;
 # endif /* _PID_T */
 
 # ifndef _SPEED_T
 #  define _SPEED_T
-   typedef unsigned int speed_t;
+    typedef unsigned int speed_t;
 # endif /* _SPEED_T */
 
-#ifndef _PTR_T
-# define _PTR_T 
+# ifndef _PTR_T
+#  define _PTR_T 
     typedef char * ptr_t;
 #endif /* _PTR_T */
 
-#ifndef _IOCTL_T
-# define _IOCTL_T
+# ifndef _IOCTL_T
+#  define _IOCTL_T
     typedef char * ioctl_t;	/* Third arg of ioctl */
-#endif /* _IOCTL_T */
+# endif /* _IOCTL_T */
 
 #endif /* ! POSIX */
 

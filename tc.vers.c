@@ -49,10 +49,10 @@ gethosttype()
 #ifdef HOSTTYPE	/* Override any system determined hosttypes */
     hosttype = str2short(HOSTTYPE);
 #else
-# ifdef vax
+# if defined(vax) || defined(__vax)
 #  define _havehosttype_
     hosttype = str2short("vax");
-# endif /* vax */
+# endif /* vax || __vax */
 
 # ifdef hp9000 /* hp9000 running MORE/bsd */
 #  ifdef hp300
@@ -287,17 +287,17 @@ gethosttype()
 #  endif 
 # endif /* sony_news */
 
-# ifdef mips
+# if defined(mips) || defined(__mips)
 #  define _havehosttype_
-#  ifdef MIPSEL
-#   ifdef ultrix
+#  if defined(MIPSEL) || defined(__MIPSEL)
+#   if defined(ultrix) || defined(__ultrix)
     hosttype = str2short("decstation");
 #   else
     hosttype = str2short("mips");
-#   endif /* ultrix */
-#  endif /* MIPSEL */
-#  ifdef MIPSEB
-#   ifdef ultrix
+#   endif /* ultrix || __ultrix */
+#  endif /* MIPSEL || __MIPSEL */
+#  if defined(MIPSEB) || defined(__MIPSEB)
+#   if defined(ultrix) || defined(__ultrix)
     hosttype = str2short("decmips");
 #   else
 #    ifdef sgi /* sgi iris 4d */
@@ -309,9 +309,9 @@ gethosttype()
     hosttype = str2short("mips");
 #     endif /* sony_news */
 #    endif /* sgi */
-#   endif /* ultrix */
-#  endif /* MIPSEB */
-# endif /* mips */
+#   endif /* ultrix || __ultrix */
+#  endif /* MIPSEB || __MIPSEB */
+# endif /* mips || __mips */
 
 # ifdef m88k
 #  define _havehosttype_

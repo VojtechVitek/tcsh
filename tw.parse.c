@@ -1253,24 +1253,26 @@ tilde(new, old)
 {
     register Char *o, *p;
 
-    if ((old[0] != '~') && (old[0] != '=')) {
+    if ((old[0] != '~') &&
+	(old[0] != '=' || (!Isdigit(old[1]) && old[1] != '-'))) {
 	(void) Strcpy(new, old);
 	return (new);
     }
 
-    new[0] = '\0';
     for (p = new, o = &old[1]; *o && *o != '/'; *p++ = *o++);
     *p = '\0';
 
     if (old[0] == '~') {
-	if (gethdir(new))
+	if (gethdir(new)) {
+	    new[0] = '\0';
 	    return (NULL);
+	}
     }
     else {			/* '=' stack expansion */
-	if (!Isdigit(old[1]) && old[1] != '-')
+	if (!getstakd(new, (old[1] == '-') ? -1 : old[1] - '0')) {
+	    new[0] = '\0';
 	    return (NULL);
-	if (!getstakd(new, (old[1] == '-') ? -1 : old[1] - '0'))
-	    return (NULL);
+	}
     }
     (void) Strcat(new, o);
     return (new);

@@ -42,11 +42,11 @@ RCSID("$Id$")
 #include "tc.h"
 
 #ifdef FIOCLEX
-# ifndef sun
+# ifndef SUNOS4
 #  ifndef CLEX_DUPS
 #   define CLEX_DUPS
 #  endif /* CLEX_DUPS */
-# endif /* sun */
+# endif /* !SUNOS4 */
 #endif /* FIOCLEX */
 
 #ifdef sparc
