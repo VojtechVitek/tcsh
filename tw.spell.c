@@ -42,7 +42,7 @@ RCSID("$Id$")
 
 /* spell_me : return corrrectly spelled filename.  From K&P spname */
 int
-spell_me(oldname, oldsize, looking)
+spell_me(oldname, oldsize, looking, pat, suf)
     Char   *oldname;
     int     oldsize, looking;
     Char   *pat;
