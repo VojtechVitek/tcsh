@@ -41,10 +41,6 @@
 # define _PATH_LOCAL		"/usr/cs/bin"
 #endif /* CMUCS && !_PATH_LOCAL */
 
-#if defined(_CRAYCOM) && !defined(_PATH_LOCAL)
-# define _PATH_LOCAL		"/usr/lbin"
-#endif /* _CRAYCOM && !_PATH_LOCAL */
-
 #if defined(convex) || defined(stellar) || defined(INTEL)
 # ifndef _PATH_DOTLOGIN
 #  define _PATH_DOTLOGIN	"/etc/login"
