@@ -96,7 +96,7 @@ static struct wordent *exclnxt = NULL;
 static int exclc = 0;
 
 /* "Globp" for alias resubstitution */
-static Char *alvecp = NULL;
+Char *alvecp = NULL;
 int aret = F_SEEK;
 
 /*
@@ -183,6 +183,7 @@ lex(hp)
     else {
 	histline[BUFSIZ - 1] = '\0';
     }
+
     return (hadhist);
 }
 

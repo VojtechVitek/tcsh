@@ -155,8 +155,15 @@ c_delafter(num)
 		*cp = cp[num];
 	LastChar -= num;
     }
-    else
+#ifdef notdef
+    else {
+	/* 
+	 * XXX: We don't want to do that. In emacs mode overwrite should be
+	 * sticky. I am not sure how that affects vi mode 
+	 */
 	replacemode = 0;
+    }
+#endif /* notdef */
 }
 
 static void
@@ -791,6 +798,7 @@ e_inc_search(dir)
 	switch (CurrentKeyMap[(unsigned char) ch]) {
 	case F_INSERT:
 	case F_DIGIT:
+	case F_MAGIC_SPACE:
 	    if (patlen > INBUFSIZ - 3)
 		Beep();
 	    else {

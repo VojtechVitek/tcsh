@@ -68,7 +68,9 @@ Inputl()
     unsigned char tch;		/* the place where read() goes */
     Char    ch;
     int     num;		/* how many chars we have read at NL */
+    int	    expnum;
     struct varent *crct = adrof(STRcorrect);
+    struct varent *autol = adrof(STRautolist);
     struct varent *matchbeep = adrof(STRmatchbeep);
     Char   *SaveChar, *CorrChar;
     Char    Origin[INBUFSIZ], Change[INBUFSIZ];
@@ -183,7 +185,8 @@ Inputl()
 
 	case CC_NEWLINE:	/* normal end of line */
 	    if (crct && (!Strcmp(*(crct->vec), STRcmd) ||
-			 !Strcmp(*(crct->vec), STRall))) {
+			 !Strcmp(*(crct->vec), STRall)) &&
+		!Strchr(InputBuf, '\n')) {
 		(void) Strcpy(Origin, InputBuf);
 		SaveChar = LastChar;
 		if (SpellLine(!Strcmp(*(crct->vec), STRcmd)) == 1) {
@@ -265,6 +268,7 @@ Inputl()
 	     * A separate variable now controls beeping after
 	     * completion, independently of autolisting.
 	     */
+	    expnum = Cursor - InputBuf;
 	    switch (matchval = 
 		    tenematch(InputBuf, INBUFSIZ, Cursor-InputBuf, RECOGNIZE)) {
 	    case 1:
@@ -300,7 +304,8 @@ Inputl()
 		 * (PWP: this is the best feature addition to tcsh I have 
 		 * seen in many months.)
 		 */
-		if (adrof(STRautolist)) {
+		if (autol && (Strcmp(*(autol->vec), STRambiguous) != 0 || 
+				     expnum == Cursor - InputBuf)) {
 		    PastBottom();
 		    (void) tenematch(InputBuf, INBUFSIZ, Cursor-InputBuf, LIST);
 		}

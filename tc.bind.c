@@ -492,7 +492,7 @@ parseescape(ptr)
     p = *ptr;
 
     if ((p[1] & CHAR) == 0) {
-	xprintf("Something must follow: %c\\n", *p);
+	xprintf("Something must follow: %c\n", *p);
 	return 0;
     }
     if ((*p & CHAR) == '\\') {

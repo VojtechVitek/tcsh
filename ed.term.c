@@ -77,7 +77,7 @@ ttyperm_t ttylist = {
 	{ "iflag:", 0, IXON | IXOFF },
 	{ "oflag:", 0, 0 },
 	{ "cflag:", 0, 0 },
-	{ "lflag:", 0, ISIG | IEXTEN | PARENB },
+	{ "lflag:", 0, ISIG | IEXTEN },
 #else /* GSTTY */
 	{ "nrmal:", RAW, CBREAK },
 	{ "local:", 0, 0 },

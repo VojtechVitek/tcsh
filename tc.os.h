@@ -298,12 +298,12 @@ struct ucred {
 # define NEEDtcgetpgrp
 #endif /* BSDJOBS && !(POSIX && POSIXJOBS) */
 
-#ifdef notdef /* RENO */
+#ifdef RENO 
 /*
- * Older versions of RENO had this broken. It is fixed now. 
+ * RENO has this broken. It is fixed on 4.4BSD
  */
 # define NEEDtcgetpgrp
-#endif /* notdef */ /* RENO */
+#endif /* RENO */
 
 #ifdef DGUX
 # define setpgrp(a, b) setpgrp2(a, b)

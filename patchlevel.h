@@ -9,7 +9,7 @@
 #define REV 6
 #define VERS 00
 #define PATCHLEVEL 04
-#define DATE "10/28/91"
-#define LOCALSTR " (beta 1)"
+#define DATE "11/03/91"
+#define LOCALSTR " (beta 2)"
 
 #endif /* _h_patchlevel */

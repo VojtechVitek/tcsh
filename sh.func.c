@@ -45,7 +45,6 @@ RCSID("$Id$")
 /*
  * C shell
  */
-
 extern int just_signaled;
 extern char **environ;
 
@@ -935,22 +934,47 @@ wfree()
 {
     struct Ain    o;
     struct whyle *nwp;
+
+#ifdef FDEBUG
+    static char foo[] = "IAFE";
+#endif /* FDEBUG */
+
     btell(&o);
-    if (o.type != F_SEEK)
-	return;
+
+#ifdef FDEBUG
+    xprintf("o->type %c o->a_seek %d o->f_seek %d\n", 
+	    foo[o.type + 1], o.a_seek, o.f_seek);
+#endif /* FDEBUG */
 
     for (; whyles; whyles = nwp) {
 	register struct whyle *wp = whyles;
 	nwp = wp->w_next;
-	if (wp->w_start.type != F_SEEK)
-	    break;
-	if (wp->w_end.type != I_SEEK) {
-	    if (wp->w_end.type != F_SEEK)
-		break;
-	    if (o.f_seek >= wp->w_start.f_seek && 
-		(wp->w_end.f_seek == 0 || o.f_seek < wp->w_end.f_seek))
-		break;
+
+#ifdef FDEBUG
+	xprintf("start->type %c start->a_seek %d start->f_seek %d\n", 
+		foo[wp->w_start.type+1], 
+		wp->w_start.a_seek, wp->w_start.f_seek);
+	xprintf("end->type %c end->a_seek %d end->f_seek %d\n", 
+		foo[wp->w_end.type + 1], wp->w_end.a_seek, wp->w_end.f_seek);
+#endif /* FDEBUG */
+
+	/*
+	 * XXX: We free loops that have different seek types.
+	 */
+	if (wp->w_end.type != I_SEEK && wp->w_start.type == wp->w_end.type &&
+	    wp->w_start.type == o.type) {
+	    if (wp->w_end.type == F_SEEK) {
+		if (o.f_seek >= wp->w_start.f_seek && 
+		    (wp->w_end.f_seek == 0 || o.f_seek < wp->w_end.f_seek))
+		    break;
+	    }
+	    else {
+		if (o.a_seek >= wp->w_start.a_seek && 
+		    (wp->w_end.a_seek == 0 || o.a_seek < wp->w_end.a_seek))
+		    break;
+	    }
 	}
+
 	if (wp->w_fe0)
 	    blkfree(wp->w_fe0);
 	if (wp->w_fename)

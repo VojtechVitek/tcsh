@@ -218,12 +218,12 @@ extern char *sbrk();
 #endif /* BSD */
 /***
  *** BSD RENO advertises itself as POSIX, but
- *** it is missing speed_t (newer versions of RENO have it)
+ *** it is missing speed_t 
  ***/
 #ifdef RENO
 # ifndef _SPEED_T
 #  define _SPEED_T
-/*   typedef unsigned int speed_t; */
+   typedef unsigned int speed_t; 
 # endif /* _SPEED_T */
 #endif /* RENO */
 

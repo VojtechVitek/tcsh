@@ -38,7 +38,7 @@
 #ifndef _h_tc_sig
 #define _h_tc_sig
 
-#if SVID > 0
+#if (SVID > 0) || defined(BSD4_4)
 # include <signal.h>
 # ifndef SIGCHLD
 #  define SIGCHLD SIGCLD

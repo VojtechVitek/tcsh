@@ -434,7 +434,7 @@ find_stop_ed()
 	return PNULL;		/* nope */
 
     for (pp = proclist.p_next; pp; pp = pp->p_next)
-	if (pp->p_pid == pp->p_jobid) {
+	if (pp->p_procid == pp->p_jobid) {
 	    p = short2str(pp->p_command);
 	    if ((cp = strrchr(p, '/')) != NULL)	/* and it has a path */
 		cp = cp + 1;		/* then we want only the last part */
