@@ -672,7 +672,7 @@ pr_stat_sub(p2, p1, pr)
 #ifdef NEEDmemset
 /* This is a replacement for a missing memset function */
 ptr_t xmemset(loc, value, len)
-    ptr_t *loc;
+    ptr_t loc;
     int len;
     size_t value;
 {
