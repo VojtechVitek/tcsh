@@ -653,12 +653,21 @@ tglob(t)
 	else if (*p == '{' &&
 		 (p[1] == '\0' || (p[1] == '}' && p[2] == '\0')))
 	    continue;
-	while ( *(c = p++) ) {
-	    /*
-	     * eat everything inside the matching backquotes
-	     */
+	/*
+	 * The following line used to be *(c = p++), but hp broke their
+	 * optimizer in 9.01, so we break the assignment into two pieces
+	 * The careful reader here will note that *most* compiler workarounds
+	 * in tcsh are either for apollo/DomainOS or hpux. Is it a coincidence?
+	 */
+	while ( *(c = p) != '\0') {
+	    p++;
 	    if (*c == '`') {
 		gflag |= G_CSH;
+#ifdef notdef
+		/*
+		 * We do want to expand echo `echo '*'`, so we don't\
+		 * use this piece of code anymore.
+		 */
 		while (*p && *p != '`') 
 		    if (*p++ == '\\') {
 			if (*p)		/* Quoted chars */
@@ -670,6 +679,7 @@ tglob(t)
 		    p++;
 		else
 		    break;
+#endif
 	    }
 	    else if (*c == '{')
 		gflag |= G_CSH;

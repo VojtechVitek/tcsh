@@ -1286,6 +1286,24 @@ e_complete(c)
 
 /*ARGSUSED*/
 CCRETVAL
+e_complete_back(c)
+    int c;
+{
+    *LastChar = '\0';		/* just in case */
+    return(CC_COMPLETE_BACK);
+}
+
+/*ARGSUSED*/
+CCRETVAL
+e_complete_fwd(c)
+    int c;
+{
+    *LastChar = '\0';		/* just in case */
+    return(CC_COMPLETE_FWD);
+}
+
+/*ARGSUSED*/
+CCRETVAL
 e_complete_all(c)
     int c;
 {

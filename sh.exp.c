@@ -603,7 +603,7 @@ exp6(vp, ignore)
     if (isa(**vp, ANYOP))
 	return (Strsave(STRNULL));
     cp = *(*vp)++;
-#define FILETESTS "erwxfdzoplstX"
+#define FILETESTS "erwxfdzoplstSX"
     if (*cp == '-' && any(FILETESTS, cp[1])) {
 	struct stat stb;
 	Char *ft;

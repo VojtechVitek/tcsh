@@ -333,8 +333,9 @@ extern int setpgrp();
  * ANSIisms... These must be *after* the system include and 
  * *before* our includes, so that BSDreno has time to define __P
  */
+#undef __P
 #ifndef __P
-# if __STDC__
+# if __STDC__ || defined(FUNCPROTO)
 #  define __P(a) a
 # else
 #  define __P(a) ()

@@ -423,13 +423,22 @@ config.h:
 
 $(OBJS): sh.err.h tc.const.h ed.defns.h
 
-tar:
+tar.Z:
 	rm -f tcsh-${VERSION}.tar.Z
 	rm -rf tcsh-${VERSION} 
 	mkdir tcsh-${VERSION} tcsh-${VERSION}/config
 	cp ${ALLSRCS} tcsh-${VERSION}
 	cp ${CONFSRCS} tcsh-${VERSION}/config
 	tar cvf - tcsh-${VERSION} | compress > tcsh-${VERSION}.tar.Z
+	rm -rf tcsh-${VERSION}
+
+tar.z:
+	rm -f tcsh-${VERSION}.tar.z
+	rm -rf tcsh-${VERSION} 
+	mkdir tcsh-${VERSION} tcsh-${VERSION}/config
+	cp ${ALLSRCS} tcsh-${VERSION}
+	cp ${CONFSRCS} tcsh-${VERSION}/config
+	tar cvf - tcsh-${VERSION} | gzip > tcsh-${VERSION}.tar.z
 	rm -rf tcsh-${VERSION}
 
 shar:

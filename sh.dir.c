@@ -858,6 +858,8 @@ dcanon(cp, p)
 	    }
 	    else if (--sp != cp)
 		*sp = '\0';
+	    else
+		sp[1] = '\0';
 	}
 	else if (sp[0] == '.' && sp[1] == '.' && sp[2] == 0) {
 	    /*
