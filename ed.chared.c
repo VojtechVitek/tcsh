@@ -2728,20 +2728,18 @@ CCRETVAL
 e_killregion(c)
     int c;
 {
-    register Char *cp;
-
     USE(c);
     if (!Mark)
 	return(CC_ERROR);
 
     if (Mark > Cursor) {
 	c_push_kill(Cursor, Mark); /* copy it */
-	c_delafter((int)(cp - Cursor));	/* delete it - UNUSED BY VI mode */
+	c_delafter((int)(Mark - Cursor)); /* delete it - UNUSED BY VI mode */
 	Mark = Cursor;
     }
     else {			/* mark is before cursor */
 	c_push_kill(Mark, Cursor); /* copy it */
-	c_delbefore((int)(cp - Mark));
+	c_delbefore((int)(Cursor - Mark));
 	Cursor = Mark;
     }
     return(CC_REFRESH);
