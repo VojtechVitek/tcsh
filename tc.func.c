@@ -117,6 +117,14 @@ expand_lex(buf, bufsiz, sp0, from, to)
     register Char prev_c;
     register int i;
 
+    /*
+     * Make sure we have enough space to expand into.  E.g. we may have
+     * "a|b" turn to "a | b" (from 3 to 5 characters) which is the worst
+     * case scenario (even "a>&! b" turns into "a > & ! b", i.e. 6 to 9
+     * characters -- am I missing any other cases?).
+     */
+    bufsiz = bufsiz / 2;
+
     buf[0] = '\0';
     prev_c = '\0';
     d = buf;
