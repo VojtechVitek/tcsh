@@ -136,7 +136,7 @@ typedef struct sigvec sigvec_t;
 #if defined(convex) || defined(__convex__)
 # define SIGSYNCH       0
 # ifdef SIGSYNCH
-#  define SYNCHMASK 	(sigmask(SIGCHLD)|sigmask(SYNCH_SIG))
+#  define SYNCHMASK 	(sigmask(SIGCHLD)|sigmask(SIGSYNCH))
 # else
 #  define SYNCHMASK 	(sigmask(SIGCHLD))
 # endif
