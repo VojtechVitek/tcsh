@@ -147,7 +147,7 @@ xputchar(c)
     atr |= c & ATTRIBUTES & TRIM;
     c &= CHAR | QUOTE;
     if (!output_raw && (c & QUOTE) == 0) {
-	if (iscntrl(c)) {
+	if (iscntrl(c) && (c < 0x80 || MB_CUR_MAX == 1)) {
 #ifdef COLORCAT
 	    if (c != '\t' && c != '\n' && !(adrof(STRcolorcat) && c=='\033') && (xlate_cr || c != '\r')) {
 #else
