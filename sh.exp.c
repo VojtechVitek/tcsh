@@ -495,15 +495,15 @@ exp5(vp, ignore)
 #ifdef EDEBUG
     etracc("exp5 p1", p1, vp);
 #endif /* EDEBUG */
-    if ((ignore & NOGLOB) != 0) 
-	/* 
-	 * We are just trying to get the right side of
-	 * a =~ or !~ operator 
-	 */
-	return Strsave(*(*vp)++);
 
     if (isa(**vp, MULOP)) {
 	register Char *op = *(*vp)++;
+	if ((ignore & NOGLOB) != 0) 
+	    /* 
+	     * We are just trying to get the right side of
+	     * a =~ or !~ operator 
+	     */
+	    return Strsave(op);
 
 	p2 = exp5(vp, ignore);
 #ifdef EDEBUG
