@@ -418,6 +418,7 @@ PutFreeNode(ptr)
 
     switch (ptr->type) {
     case XK_CMD:
+    case XK_NOD:
 	break;
     case XK_EXE:
     case XK_STR:

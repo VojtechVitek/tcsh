@@ -255,6 +255,9 @@ extern int setpgrp();
 # include <stdio.h>	/* So the fgetpwent() prototypes work */
 #endif 
 #include <pwd.h>
+#ifdef PW_SHADOW
+# include <shadow.h>
+#endif /* PW_SHADOW */
 #ifdef BSD
 # include <strings.h>
 # define strchr(a, b) index(a, b)

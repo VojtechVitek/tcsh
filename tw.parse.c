@@ -356,6 +356,18 @@ tenematch(inputline, inputline_size, num_read, command)
 	}
 	return (0);
 
+    case PATH_NORMALIZE:
+	if ((bptr = dnormalize(word)) != NULL) {
+	    (void) Strcpy(buffer, bptr);
+	    xfree((ptr_t) bptr);
+	    DeleteBack(str_end - word_start);
+	    if (InsertStr((in_single || in_double) ?
+			  buffer : quote_meta(buffer, 0)) < 0)
+		return (-1);
+	    return (1);
+	}
+	return (0);
+
     case LIST:
 	search_ret = t_search(word, wp, command, space_left, is_a_cmd, 1);
 	return search_ret;

@@ -99,7 +99,7 @@ extern Char PromptBuf[];
 
 typedef enum {
     LIST, RECOGNIZE, PRINT_HELP, SPELL, GLOB, GLOB_EXPAND,
-    VARS_EXPAND
+    VARS_EXPAND, PATH_NORMALIZE
 }       COMMAND;
 
 

@@ -69,7 +69,7 @@
 
 #ifdef _MINIX
 # undef NEEDwait
-# include <minix-wait.h>
+# include "mi.wait.h"
 #endif /* _MINIX */
 
 #ifdef NEEDwait

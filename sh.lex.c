@@ -96,7 +96,6 @@ static struct wordent *exclnxt = NULL;
 static int exclc = 0;
 
 /* "Globp" for alias resubstitution */
-Char *alvecp = NULL;
 int aret = F_SEEK;
 
 /*

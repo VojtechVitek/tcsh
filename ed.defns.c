@@ -249,8 +249,10 @@ PFCmd   CcFuncTbl[] = {		/* table of available commands */
 #define		V_CHARTO_FWD	101
     v_charto_back,
 #define		V_CHARTO_BACK	102
+    e_normalize_path,
+#define		F_PATH_NORM	103
     0				/* DUMMY VALUE */
-#define		F_NUM_FNS	103
+#define		F_NUM_FNS	104
 };
 
 KEYCMD  NumFuns = F_NUM_FNS;
@@ -1171,6 +1173,8 @@ struct KeyFuncs FuncNames[] = {
     "Expand history escapes and insert a space",
     "newline", F_NEWLINE,
     "Execute command",
+    "normalize-path", F_PATH_NORM,
+    "Expand pathnames, eliminating leading .'s and ..'s",
     "overwrite-mode", F_INSOVR,
     "Switch from insert to overwrite mode or vice versa",
     "prefix-meta", F_METANEXT,
@@ -1416,6 +1420,10 @@ ed_InitEmacsMaps()
     AddXkey(buf, XmapCmd(F_LIST_GLOB),     XK_CMD);
     buf[1] = 'g';
     AddXkey(buf, XmapCmd(F_LIST_GLOB),     XK_CMD);
+    buf[1] = 'n';
+    AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
+    buf[1] = 'N';
+    AddXkey(buf, XmapCmd(F_PATH_NORM),     XK_CMD);
     BindArrowKeys();
 }
 

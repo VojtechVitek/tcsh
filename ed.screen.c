@@ -623,7 +623,7 @@ void
 BindArrowKeys()
 {
     KEYCMD *map, *dmap;
-    int     i;
+    int     i, j;
     char   *p;
     static struct {
 	int     key, fun;
@@ -643,6 +643,7 @@ BindArrowKeys()
     for (i = 0; i < 4; i++) {
 	p = tstr[ar[i].key].str;
 	if (p && *p) {
+	    j = (unsigned char) *p;
 	    /*
 	     * Assign the arrow keys only if:
 	     *
@@ -651,14 +652,13 @@ BindArrowKeys()
 	     *    has re-assigned the leading character to be F_XKEY
 	     * 2. They are single arrow keys pointing to an unassigned key.
 	     */
-	    if (p[1] && (dmap[(unsigned char) *p] == map[(unsigned char) *p] ||
-			 map[(unsigned char) *p] == F_XKEY)) {
+	    if (p[1] && (dmap[j] == map[j] || map[j] == F_XKEY)) {
 		AddXkey(str2short(p), XmapCmd(ar[i].fun), XK_CMD);
-		map[(unsigned char) *p] = F_XKEY;
+		map[j] = F_XKEY;
 	    }
-	    else if (map[(unsigned char) *p] == F_UNASSIGNED) {
+	    else if (map[j] == F_UNASSIGNED) {
 		ClearXkey(map, str2short(p));
-		map[(unsigned char) *p] = ar[i].fun;
+		map[j] = ar[i].fun;
 	    }
 	}
     }
