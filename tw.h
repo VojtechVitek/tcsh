@@ -55,6 +55,7 @@
 #define TW_LIMIT	14
 #define TW_SIGNAL	15
 #define TW_JOB		16
+#define TW_EXPLAIN	17
 
 #define TW_EXEC_CHK	0x01
 #define TW_DIR_CHK	0x02

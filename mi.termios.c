@@ -4,9 +4,10 @@
  *
  */
 #include "sh.h"
+RCSID("$Id$")
+
 #ifdef _MINIX
 
-RCSID($Id$)
 
 /* Undefine everything that clashes with sgtty.h. */
 #undef B0

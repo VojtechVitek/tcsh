@@ -122,7 +122,7 @@ Dfix(t)
 	    break;
     }
 
-    if (adrof(STRexpand_symlinks))
+    if (symlinks == SYM_EXPAND)
 	for (pp = t->t_dcom; (p = *pp) != NULL; pp++) {
 	    *pp = dnormalize(p, 1);
 	    xfree((ptr_t) p);

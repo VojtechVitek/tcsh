@@ -158,7 +158,7 @@ doprnt(addchar, sfmt, ap)
 		if (do_long)
 		    u = va_arg(ap, unsigned long);
 		else
-		    u = (unsigned long) (va_arg(ap, unsigned));
+		    u = (unsigned long) (va_arg(ap, unsigned int));
 		if (fmt == 'u') {	/* unsigned decimal */
 		    do {
 			*bp++ = u % 10 + '0';

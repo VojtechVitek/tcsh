@@ -474,6 +474,9 @@ extern struct passwd *getpwuid(), *getpwnam(), *getpwent();
 #ifdef PW_SHADOW
 extern struct spwd *getspnam(), *getspent();
 #endif /* PW_SHADOW */
+#ifdef PW_AUTH
+extern struct authorization *getauthuid();
+#endif /* PW_AUTH */
 #endif /* __STDC__ */
 
 # ifndef getwd

@@ -109,7 +109,7 @@ union overhead {
  * smallest allocatable block is 8 bytes.  The overhead information
  * precedes the data area returned to the user.
  */
-#define	NBUCKETS 30
+#define	NBUCKETS ((sizeof(long) << 3) - 3)
 static union overhead *nextf[NBUCKETS];
 
 #ifdef sun
@@ -568,16 +568,18 @@ showall(v, c)
     }
     xprintf("\nused:\t");
     for (i = 0; i < NBUCKETS; i++) {
-	xprintf(" %4d", nmalloc[i]);
+	xprintf(" %4u", nmalloc[i]);
 	totused += nmalloc[i] * (1 << (i + 3));
     }
     xprintf("\n\tTotal in use: %d, total free: %d\n",
 	    totused, totfree);
     xprintf("\tAllocated memory from 0x%lx to 0x%lx.  Real top at 0x%lx\n",
-	    membot, memtop, (char *) sbrk(0));
+	    (unsigned long) membot, (unsigned long) memtop,
+	    (unsigned long) sbrk(0));
 #else
     memtop = (char *) sbrk(0);
     xprintf("Allocated memory from 0x%lx to 0x%lx (%ld).\n",
-	    membot, memtop, memtop - membot);
+	    (unsigned long) membot, (unsigned long) memtop, 
+	    (long) memtop - membot);
 #endif				/* SYSMALLOC */
 }

@@ -90,6 +90,7 @@ extern	 void		  tw_logname_end	__P((void));
 extern	 Char		 *tw_item_add		__P((int));
 extern	 Char	        **tw_item_get		__P((void));
 extern	 void		  tw_item_free		__P((void));
+extern	 Char		 *tw_item_find		__P((Char *));
 
 /*
  * tw.spell.c

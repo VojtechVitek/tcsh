@@ -745,6 +745,26 @@ tw_item_add(len)
 } /* tw_item_add */
 
 
+/* tw_item_find():
+ *      Find the string if it exists in the item list 
+ *	end return it.
+ */
+Char *
+tw_item_find(str)
+    Char    *str;
+{
+    int i;
+
+    if (tw_item.list == NULL || str == NULL)
+	return NULL;
+
+    for (i = 0; i < tw_item.nlist; i++)
+	if (tw_item.list[i] != NULL && Strcmp(tw_item.list[i], str) == 0)
+	    return tw_item.list[i];
+    return NULL;
+} /* end tw_item_find */
+
+
 /* tw_vl_start():
  *	Initialize a variable list
  */

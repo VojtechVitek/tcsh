@@ -322,13 +322,22 @@ typedef char * caddr_t;
 #endif /* INTEL */
 
 /***
- *** Concurrent (Masscomp) running RTU 4.1A & RTU 5.0.
+ *** Concurrent (Masscomp) running RTU 4.1A & RTU 5.0. 
+ **** [RTU 6.0 from mike connor]
  *** Added, DAS DEC-90.
  ***/
 #ifdef	masscomp
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
+# ifdef RTU6
+#  ifndef _PID_T
+#   define _PID_T
+#  endif /* _PID_T */
+#  ifndef _SPEED_T
+#   define _SPEED_T
+#  endif /* _SPEED_T */
+#endif /* RTU6 */
 #endif	/* masscomp */
 
 /***

@@ -141,6 +141,18 @@ main(argc, argv)
     sigvec_t osv;
 #endif /* BSDSIGS */
 
+#if !defined(BSDTIMES) && defined(POSIX)
+# ifdef CLK_TCK
+    clk_tck = CLK_TCK
+# else /* !CLK_TCK */
+#  ifdef _SC_CLK_TCK
+    clk_tck = (clock_t) sysconf(_SC_CLK_TCK);
+#  else /* ! _SC_CLK_TCK */
+    clk_tck = HZ;
+#  endif /* _SC_CLK_TCK */
+# endif /* CLK_TCK */
+#endif /* !BSDTIMES && POSIX */
+
     settimes();			/* Immed. estab. timing base */
 #ifdef TESLA
     do_logout = 0;
@@ -478,11 +490,6 @@ main(argc, argv)
      * suffix of file names...
      */
     set(STRaddsuffix, Strsave(STRNULL));
-
-    /*
-     * don't stat in /afs.  It's too damn slow.
-     */
-    set(STRnostat, Strsave(STRslashafs));
 
     /*
      * Re-initialize path if set in environment
