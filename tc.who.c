@@ -65,6 +65,12 @@ RCSID("$Id$")
 # else
 #  define ut_time ut_xtime
 # endif /* __MVS__ */
+# ifdef HAVE_UTMPNAME
+#  define getutent getutxent
+#  define setutent setutxent
+#  define endutent endutxent
+#  define utmpname utmpxname
+# endif /* HAVE_UTMPNAME */
 #else /* !HAVEUTMPX */
 # ifndef WINNT_NATIVE
 #  include <utmp.h>
