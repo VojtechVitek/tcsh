@@ -551,14 +551,14 @@ main(argc, argv)
 #ifdef apollo
 	int     oid = getoid();
 
-	Itoa(oid, buff);
+	(void) Itoa(oid, buff, 0, 0);
 	set(STRoid, Strsave(buff), VAR_READWRITE);
 #endif /* apollo */
 
-	Itoa(uid, buff);
+	(void) Itoa(uid, buff, 0, 0);
 	set(STRuid, Strsave(buff), VAR_READWRITE);
 
-	Itoa(gid, buff);
+	(void) Itoa(gid, buff, 0, 0);
 	set(STRgid, Strsave(buff), VAR_READWRITE);
 
 	cln = getenv("LOGNAME");

@@ -81,7 +81,7 @@ extern	int		  resetdisc	__P((int));
 extern	Char		 *expand_lex	__P((Char *, size_t, struct wordent *, 
 					     int, int));
 extern	Char		 *sprlex	__P((Char *, size_t, struct wordent *));
-extern	void		  Itoa		__P((int, Char *));
+extern	Char		 *Itoa		__P((int, Char *, int, int));
 extern	void		  dolist	__P((Char **, struct command *));
 extern	void		  dotelltc	__P((Char **, struct command *));
 extern	void		  doechotc	__P((Char **, struct command *));
