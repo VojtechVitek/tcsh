@@ -215,8 +215,8 @@ EXTERN Char T_HasMeta;		/* true if we have a meta key */
 #endif /* TERMIO */
 typedef struct { 
     const char *t_name;
-    int  t_setmask;
-    int  t_clrmask;
+    unsigned int  t_setmask;
+    unsigned int  t_clrmask;
 } ttyperm_t[NN_IO][M_NN];
 
 extern ttyperm_t ttylist;
