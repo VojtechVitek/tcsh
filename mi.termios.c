@@ -6,7 +6,7 @@
 #include "sh.h"
 RCSID("$Id$")
 
-#ifdef _MINIX
+#if defined(_MINIX) && !defined(_MINIX_VMD)
 
 
 /* Undefine everything that clashes with sgtty.h. */
@@ -390,4 +390,4 @@ struct termios *termios_p;
 	   ioctl(filedes, TIOCSETC, (struct sgttyb *) &tcbuf) < 0 ?
 		-1 : 0;
 }
-#endif /* _MINIX */
+#endif /* _MINIX && !_MINIX_VMD */
