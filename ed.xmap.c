@@ -719,6 +719,9 @@ parseescape(ptr)
 	case 'v':
 	    c = CTL_ESC('\013');         /* Vertical Tab */
 	    break;
+	case '\\':
+	    c = '\\';
+	    break;
 	case '0':
 	case '1':
 	case '2':
