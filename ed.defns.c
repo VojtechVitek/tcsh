@@ -858,7 +858,7 @@ KEYCMD  CcViCmdMap[] = {
     F_UNASSIGNED,		/* , */	 /* KSH Command exists */
     F_UP_HIST,			/* - */	
     F_UNASSIGNED,		/* . */
-    V_USH_META,			/* / */
+    V_DSH_META,			/* / */
     V_ZERO,			/* 0 */
     F_ARGDIGIT,			/* 1 */
     F_ARGDIGIT,			/* 2 */
@@ -874,7 +874,7 @@ KEYCMD  CcViCmdMap[] = {
     F_UNASSIGNED,		/* < */
     F_UNASSIGNED,		/* = */
     F_UNASSIGNED,		/* > */
-    V_DSH_META,			/* ? */
+    V_USH_META,			/* ? */
     F_UNASSIGNED,		/* @ */
     V_ADDEND,			/* A */
     F_WORDBACK,			/* B */
