@@ -533,6 +533,15 @@ typedef char * caddr_t;
 #endif /* _VMS_POSIX */
 
 /***
+ *** a pdp/11, running 2BSD
+ ***/
+#ifdef pdp11
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* pdp11 */
+
+/***
  *** Catch all for non POSIX and/or non ANSI systems.
  *** Systems up to spec *should* define these automatically
  *** I am open to suggestions on how to do this correctly!

@@ -492,6 +492,19 @@ machtype: defined(i860)					: "i860"
 enddef	:
 
 
+newdef	: defined(_FTX)
+comment	: Stratus Computer, Inc FTX2 (i860 based)
+comment	: Stratus Computer, Inc FTX3 (HPPA based)
+vendor	:						: "stratus"
+hosttype: defined(i860) && defined(_FTX)		: "atlantic"
+hosttype: defined(__hppa) && defined(_FTX)		: "continuum"
+ostype	: defined(i860) && defined(_FTX)		: "ftx2"
+ostype	: defined(__hppa) && defined(_FTX)		: "ftx3"
+machtype: defined(i860)					: "i860"
+machtype: defined(__hppa)				: "hppa"
+enddef	:
+
+
 newdef	: defined(sequent) || defined(_SEQUENT_)
 comment	: Sequent Balance (32000 based)
 comment	: Sequent Symmetry running DYNIX/ptx (386/486 based)
@@ -570,6 +583,7 @@ vendor	:						: "next"
 hosttype:						: "next"
 ostype	:						: "mach"
 machtype: defined(mc68020) || defined(__mc68020__)	: "m68k"
+machtype: defined(i386) || defined(__i386__)		: "i386"
 enddef	:
 
 newdef	: defined(sony_news)

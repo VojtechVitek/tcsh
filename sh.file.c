@@ -96,9 +96,9 @@ setup_tty(on)
 {
 #ifdef TERMIO
 # ifdef POSIX
-    static struct termios tchars;
+    struct termios tchars;
 # else
-    static struct termio tchars;
+    struct termio tchars;
 # endif /* POSIX */
 
 # ifdef POSIX
@@ -110,9 +110,9 @@ setup_tty(on)
 	tchars.c_cc[VEOL] = ESC;
 	if (tchars.c_lflag & ICANON)
 # ifdef POSIX
-	    on = TCSANOW;
+	    on = TCSADRAIN;
 # else
-	    on = TCSETAW;
+	    on = TCSETA;
 # endif /* POSIX */
 	else {
 # ifdef POSIX
@@ -127,9 +127,9 @@ setup_tty(on)
     else {
 	tchars.c_cc[VEOL] = _POSIX_VDISABLE;
 # ifdef POSIX
-	on = TCSANOW;
+	on = TCSADRAIN;
 # else
-        on = TCSETAW;
+        on = TCSETA;
 # endif /* POSIX */
     }
 # ifdef POSIX
