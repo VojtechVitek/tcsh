@@ -1265,7 +1265,7 @@ autoset_dspmbyte(pcp)
 
     for (i = 0; dspmt[i].n; i++) {
 	Char *estr;
-	if (dspmt[i].n[0] && t_pmatch(pcp, dspmt[i].n, &estr, 1) > 0) {
+	if (dspmt[i].n[0] && t_pmatch(pcp, dspmt[i].n, &estr, 0) > 0) {
 	    set(CHECK_MBYTEVAR, Strsave(dspmt[i].v), VAR_READWRITE);
 	    update_dspmbyte_vars();
 	    break;

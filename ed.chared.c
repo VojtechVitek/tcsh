@@ -1127,8 +1127,10 @@ c_get_histline()
 	    LastChar = InputBuf;
     }
   
+#ifdef DSPMBYTE
     if (dspmbyte_utf8)
 	setutf8lit();
+#endif /* DSPMBYTE */
 
 #ifdef KSHVI
     if (VImode)
@@ -1918,8 +1920,10 @@ e_toggle_hist(c)
 	    LastChar = InputBuf;
     }
 
+#ifdef DSPMBYTE
     if (dspmbyte_utf8)
 	setutf8lit();
+#endif /* DSPMBYTE */
 
 #ifdef KSHVI
     if (VImode)
