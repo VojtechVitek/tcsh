@@ -161,7 +161,7 @@ ourwait(w)
     pid_t pid;
 
 #  ifdef JOBDEBUG
-    xprintf(CGETS(25, 1, "our wait %d\n", stk_ptr));
+    xprintf(CGETS(25, 1, "our wait %d\n"), stk_ptr);
     flush();
 #  endif /* JOBDEBUG */
 

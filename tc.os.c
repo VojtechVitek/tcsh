@@ -1164,7 +1164,7 @@ fail:
 
 # else /* ! hp9000s500 */
 
-#  if (SYSVREL != 0 && !defined(d_fileno)) || defined(_VMS_POSIX) || defined(WINNT)
+#  if (SYSVREL != 0 && !defined(d_fileno)) || defined(_VMS_POSIX) || defined(WINNT) || defined(_MINIX_VMD)
 #   define d_fileno d_ino
 #  endif
 

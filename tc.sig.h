@@ -89,7 +89,7 @@ typedef struct sigaction sigvec_t;
 #   define sv_handler sa_handler
 #   define sv_flags sa_flags
 #  else /* BSDSIGS */
-#  define mysigvec(a, b, c)	sigvec(a, b, c)
+#   define mysigvec(a, b, c)	sigvec(a, b, c)
 typedef struct sigvec sigvec_t;
 #  endif /* POSIXSIGS */
 # endif /* HAVE_SIGVEC */
@@ -118,7 +118,10 @@ typedef struct sigvec sigvec_t;
 
 #ifdef _MINIX
 # include <signal.h>
-#  define killpg(a, b) kill((a), (b))
+# define killpg(a, b) kill((a), (b))
+# ifdef _MINIX_VMD
+#  define signal(a, b) signal((a), (a) == SIGCHLD ? SIG_IGN : (b))
+# endif /* _MINIX_VMD */
 #endif /* _MINIX */
 
 #ifdef _VMS_POSIX

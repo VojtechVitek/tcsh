@@ -172,9 +172,9 @@ extern char *sbrk();
 # endif /* HPUXVERSION < 800 */
 #endif /* __hpux */
 
-#if defined(_MINIX) || defined(__EMX__) || defined(COHERENT)
+#if (defined(_MINIX) && !defined(_MINIX_VMD)) || defined(__EMX__) || defined(COHERENT)
 typedef char * caddr_t;
-#endif /* _MINIX || __EMX__ || COHERENT */
+#endif /* (_MINIX && !_MINIX_VMD) || __EMX__ || COHERENT */
 
 /***
  *** hp9000s500 running hpux-5.2
