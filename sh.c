@@ -490,11 +490,10 @@ main(argc, argv)
     set(STRstatus, Strsave(STR0), VAR_READWRITE);
 
     /*
-     * get and set machine specific envirnment variables
+     * get and set machine specific environment variables
      */
     getmachine();
 
-    fix_version();		/* publish the shell version */
 
     /*
      * Publish the selected echo style
@@ -786,6 +785,12 @@ main(argc, argv)
 #endif /* WINNT_NATIVE */
 #endif
 
+    fix_version();		/* publish the shell version */
+
+    if (argc > 1 && strcmp(argv[1], "--version") == 0) {
+	xprintf("%S\n", varval(STRversion));
+	xexit(0);
+    }
     /*
      * Process the arguments.
      * 
