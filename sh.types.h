@@ -341,6 +341,18 @@ extern char *sbrk();
 # endif /* _SIZE_T */
 #endif /* IRIS3D */
 
+/* 
+ * Amdahl running UTS (Sys V3)
+ */
+#ifdef uts
+# ifndef _SIZE_T
+#  define _SIZE_T
+# endif /* _SIZE_T */
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* uts */
+
 /***
  *** Catch all for non POSIX systems.
  *** Posix things *should* define these automatically

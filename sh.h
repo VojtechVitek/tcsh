@@ -64,7 +64,7 @@ typedef char Char;
  * [The 4.2/3BSD vax compiler does not like that]
  */
 #ifdef SIGVOID
-# if defined(vax) && !defined(__GNUC__)
+# if (defined(vax) || defined(uts)) && !defined(__GNUC__)
 #  define sigret_t void
 # else
 typedef void sigret_t;

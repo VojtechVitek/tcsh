@@ -319,6 +319,11 @@ gethosttype()
 #  endif
 # endif /* sgi */
 
+#ifdef uts
+# define _havehosttype_
+    hosttype = str2short("amdahl");
+#endif /* uts */
+
 
 # ifndef _havehosttype_
 #  define _havehosttype_
