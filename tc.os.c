@@ -41,6 +41,7 @@ static char *rcsid()
 #endif
 
 #include "sh.h"
+#include "tw.h"
 #include "ed.h"
 #include "ed.defns.h"		/* for the function names */
 
