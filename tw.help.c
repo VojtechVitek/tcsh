@@ -142,9 +142,10 @@ static  sigret_t
 cleanf(snum)
 int snum;
 {
-#if (SVID > 0) && (SVID < 3)
-    (void) sigset(SIGINT, cleanf);
-#endif /* SVID > 0 && SVID < 3 */
+#ifdef UNRELSIGS
+    if (snum)
+	(void) sigset(SIGINT, cleanf);
+#endif /* UNRELSIGS */
     if (f != -1)
 	(void) close(f);
     f = -1;

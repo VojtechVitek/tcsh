@@ -34,6 +34,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+#define EXTERN	/* Intern */
 #include "sh.h"
 
 #ifndef lint
@@ -849,6 +850,9 @@ main(argc, argv)
 #endif /* SVID <= 3 */
 
 
+    if (intty && !arginp) 	
+	(void) ed_Setup(1);	/* Get the tty state, and set defaults */
+    
     /*
      * Set an exit here in case of an interrupt or error reading the shell
      * start-up scripts.
@@ -1312,12 +1316,13 @@ exitstat()
  * in the event of a HUP we want to save the history
  */
 static  sigret_t
-phup(i)
-int i;
+phup(snum)
+int snum;
 {
-#if (SVID > 0) && (SVID < 3)
-    (void) sigset(i, SIG_IGN);
-#endif /* SVID > 0 && SVID < 3 */
+#ifdef UNRELSIGS
+    if (snum)
+	(void) sigset(snum, SIG_IGN);
+#endif /* UNRELSIGS */
     rechist();
 #ifdef CSHDIRS
     /*
@@ -1325,9 +1330,9 @@ int i;
      */
     recdirs();
 #endif
-    xexit(i);
+    xexit(snum);
 #ifndef SIGVOID
-    return (i);
+    return (snum);
 #endif
 }
 
@@ -1346,16 +1351,17 @@ int     just_signaled;		/* bugfix by Michael Bloom (mg@ttidca.TTI.COM) */
 /*ARGSUSED*/
 #endif
 sigret_t
-pintr(i)
-int i;
+pintr(snum)
+int snum;
 {
-#if (SVID > 0) && (SVID < 3)
-    (void) sigset(i, pintr);
-#endif /* SVID > 0 && SVID < 3 */
+#ifdef UNRELSIGS
+    if (snum)
+	(void) sigset(snum, pintr);
+#endif /* UNRELSIGS */
     just_signaled = 1;
     pintr1(1);
 #ifndef SIGVOID
-    return (i);
+    return (snum);
 #endif
 }
 

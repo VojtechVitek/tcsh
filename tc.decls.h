@@ -124,7 +124,9 @@ extern	void	 	  pr_stat_sub	__P((struct process_stats *,
 #endif
 #ifdef NEEDtcgetpgrp
 extern	int	 	  xtcgetpgrp	__P((int));
-#define tcgetpgrp(a) xtcgetpgrp(a)
+extern	int		  xtcsetpgrp	__P((int, int));
+# define tcgetpgrp(a) 	  xtcgetpgrp(a)
+# define tcsetpgrp(a, b)  xtcsetpgrp(a, b)
 #endif
 #ifdef YPBUGS
 extern	void	 	  fix_yp_bugs	__P((void));

@@ -118,19 +118,19 @@ struct process {
 #define	JOBDIR		0100	/* print job's dir if not the same */
 #define	AREASON		0200
 
-struct process proclist;	/* list head of all processes */
-bool    pnoprocesses;		/* pchild found nothing to wait for */
+EXTERN struct process proclist;	/* list head of all processes */
+EXTERN bool    pnoprocesses;	/* pchild found nothing to wait for */
 
-struct process *pholdjob;	/* one level stack of current jobs */
+EXTERN struct process *pholdjob;/* one level stack of current jobs */
 
-struct process *pcurrjob;	/* current job */
-struct process *pcurrent;	/* current job in table */
-struct process *pprevious;	/* previous job in table */
+EXTERN struct process *pcurrjob;/* current job */
+EXTERN struct process *pcurrent;/* current job in table */
+EXTERN struct process *pprevious;/* previous job in table */
 
-int   pmaxindex;		/* current maximum job index */
+EXTERN int   pmaxindex;		/* current maximum job index */
 
 #ifndef BSDTIMES
-bool    timesdone;		/* shtimes buffer full ? */
+EXTERN bool    timesdone;	/* shtimes buffer full ? */
 #endif /* BSDTIMES */
 
 #endif /* _h_sh_proc */

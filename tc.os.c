@@ -658,6 +658,19 @@ xtcgetpgrp(fd)
     return (pgrp);
 }
 
+/*
+ * XXX: tcsetpgrp is not a macro any more cause on some systems,
+ * pid_t is a short, but the ioctl() takes a pointer to int (pyr)
+ * Thanks to Simon Day (simon@pharaoh.cyborg.bt.co.uk) for pointing
+ * this out.
+ */
+int
+xtcsetpgrp(fd, pgrp)
+    int fd, pgrp;
+{
+    return ioctl(fd, TIOCSPGRP, (ioctl_t) &pgrp);
+}
+
 #endif	/* tcgetpgrp */
 
 

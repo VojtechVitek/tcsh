@@ -382,7 +382,7 @@ dogoto(v, c)
      */
     zlast = T_GOTO;
     for (wp = whyles; wp; wp = wp->w_next)
-	if (wp->w_end.type == I_SEEK) {
+	if (wp->w_end.type == F_SEEK && wp->w_end.f_seek == 0) {
 	    search(T_BREAK, 0, NOSTR);
 	    btell(&wp->w_end);
 	}
@@ -484,6 +484,7 @@ doforeach(v, c)
     btell(&nwp->w_start);
     nwp->w_fename = Strsave(cp);
     nwp->w_next = whyles;
+    nwp->w_end.type = F_SEEK;
     whyles = nwp;
     /*
      * Pre-read the loop so as to be more comprehensible to a terminal user.
@@ -520,7 +521,8 @@ dowhile(v, c)
 	(struct whyle *) xcalloc(1, sizeof(*nwp));
 
 	nwp->w_start = lineloc;
-	nwp->w_end.type = I_SEEK;
+	nwp->w_end.type = F_SEEK;
+	nwp->w_end.f_seek = 0;
 	nwp->w_next = whyles;
 	whyles = nwp;
 	zlast = T_WHILE;
@@ -905,7 +907,7 @@ keyword(wp)
 static void
 toend()
 {
-    if (whyles->w_end.type == I_SEEK) {
+    if (whyles->w_end.type == F_SEEK && whyles->w_end.f_seek == 0) {
 	search(T_BREAK, 0, NOSTR);
 	btell(&whyles->w_end);
 	whyles->w_end.f_seek--;
@@ -928,9 +930,8 @@ wfree()
     for (; whyles; whyles = nwp) {
 	register struct whyle *wp = whyles;
 	nwp = wp->w_next;
-	if (wp->w_start.type != F_SEEK || wp->w_end.type != F_SEEK)
-	    continue;
-
+	if (wp->w_start.type != F_SEEK || wp->w_end.type != F_SEEK) 
+	    break;
 	if (o.f_seek >= wp->w_start.f_seek && 
 	    (wp->w_end.f_seek == 0 || o.f_seek < wp->w_end.f_seek))
 	    break;

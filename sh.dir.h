@@ -45,6 +45,6 @@ struct directory {
     unsigned short *di_count;	/* refcount of processes */
     Char   *di_name;		/* actual name */
 };
-struct directory *dcwd;		/* the one we are in now */
+EXTERN struct directory *dcwd;	/* the one we are in now */
 
 #endif				/* _h_sh_dir */

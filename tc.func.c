@@ -508,9 +508,10 @@ alrmcatch(snum)
 int snum;
 {
     time_t  cl, nl;
-#if (SVID > 0) && (SVID < 3)
-    (void) sigset(SIGALRM, alrmcatch);
-#endif /* SVID > 0 && SVID < 3 */
+#ifdef UNRELSIGS
+    if (snum)
+	(void) sigset(SIGALRM, alrmcatch);
+#endif /* UNRELSIGS */
 
     if ((nl = sched_next()) == -1)
 	auto_logout();		/* no other possibility - logout */

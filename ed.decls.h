@@ -50,6 +50,7 @@ extern	void	check_window_size	__P((int));
 #ifdef SIG_WINDOW
 extern	sigret_t window_change		__P((int));
 #endif
+extern	int	ed_Setup		__P((int));
 extern	void	ed_Init			__P((void));
 extern	int	Cookedmode		__P((void));
 extern	int	Rawmode			__P((void));
@@ -71,6 +72,7 @@ extern	void	tty_setchar 		__P((ttydata_t *, unsigned char *));
 extern	speed_t	tty_getspeed 		__P((ttydata_t *));
 extern	int	tty_gettabs 		__P((ttydata_t *));
 extern	int	tty_geteightbit		__P((ttydata_t *));
+extern	int	tty_cooked_mode		__P((ttydata_t *));
 #ifdef _IBMR2
 extern	void	tty_setdisc		__P((int, int));
 #endif /* _IBMR2 */

@@ -418,7 +418,7 @@ Dgetdol()
 	    stderror(ERR_SYNTAX);
 	if (backpid != 0) {
 	    if (dolbang) 
-		xfree((pid_t) dolbang);
+		xfree((ptr_t) dolbang);
 	    setDolp(dolbang = putn(backpid));
 	}
 	goto eatbrac;

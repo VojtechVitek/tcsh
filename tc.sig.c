@@ -54,7 +54,7 @@ static struct mysigstack {
 static int stk_ptr = -1;
 
 
-#if SVID < 3 || defined(UNIXPC)
+#ifdef UNRELSIGS
 /* queue child signals
  */
 static sigret_t
@@ -166,7 +166,7 @@ sigpause(what)
 
 }
 
-#endif /* SVID < 3 || (UNIXPC) */
+#endif /* UNRELSIGS */
 
 #ifdef SXA
 /*

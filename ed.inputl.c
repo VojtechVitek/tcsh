@@ -519,7 +519,9 @@ GetNextChar(cp)
 	case EINTR:
 	    break;
 	default:
+#ifdef DEBUG_EDIT
 	    xprintf("GetNextChar(): errno == %d\n", errno);
+#endif /* DEBUG_EDIT */
 	    *cp = tcp;
 	    return num_read;
 	}
