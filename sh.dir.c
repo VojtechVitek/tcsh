@@ -1268,7 +1268,8 @@ getstakd(s, cnt)
 		return (0);
 	}
     }
-    (void) Strcpy(s, dp->di_name);
+    (void) Strncpy(s, dp->di_name, BUFSIZE);
+    s[BUFSIZE - 1] = '\0';
     return (1);
 }
 
