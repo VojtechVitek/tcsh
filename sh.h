@@ -1031,7 +1031,7 @@ EXTERN Char  **alvec IZERO_STRUCT,
  */
 EXTERN int   gflag;		/* After tglob -> is globbing needed? */
 
-#define MAXVARLEN 30		/* Maximum number of char in a variable name */
+#define MAXVARLEN 256		/* Maximum number of char in a variable name */
 
 #ifdef __CYGWIN__
 # undef MAXPATHLEN
