@@ -270,7 +270,7 @@ errinit()
     elst[ERR_JOBPAT] = CSAVS(1, 61, "No job matches pattern");
     elst[ERR_NESTING] = CSAVS(1, 62, "Fork nesting > %d; maybe `...` loop");
     elst[ERR_JOBCTRLSUB] = CSAVS(1, 63, "No job control in subshells");
-    elst[ERR_SYNC] = CSAVS(1, 64, "Sunc fault: Process %d not found");
+    elst[ERR_SYNC] = CSAVS(1, 64, "Sync fault: Process %d not found");
     elst[ERR_STOPPED] =
 #ifdef SUSPENDED
 	CSAVS(1, 65, "%sThere are suspended jobs");
