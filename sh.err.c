@@ -34,7 +34,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#define _h_tc_err		/* Don't redefine the errors	 */
+#define _h_sh_err		/* Don't redefine the errors	 */
 #include "sh.h"
 
 RCSID("$Id$")

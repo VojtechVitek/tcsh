@@ -245,15 +245,13 @@ static struct termcapval {
 
 /*
  * A very useful table from justin@crim.ca (Justin Bur) :-)
- *
- * XXX: we might want to fix tcsh to use the rightmost column in
- *	the automargins case; this would involve to move the cursor
- *	manually at the end of updates that cross the line.
+ * (Modified by per@erix.ericsson.se (Per Hedeland)
+ *  - first (and second:-) case fixed)
  *
  * Description     Termcap variables       tcsh behavior
  * 		   am      xn              UseRightmost    SendCRLF
  * --------------  ------- -------         ------------    ------------
- * Automargins     yes     no              no              yes
+ * Automargins     yes     no              yes             no
  * Magic Margins   yes     yes             yes             no
  * No Wrap         no      --              yes             yes
  */

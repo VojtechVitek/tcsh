@@ -135,8 +135,6 @@ EXTERN Char WhichBuf[INBUFSIZE];	/* buffer for which command */
 EXTERN Char *LastWhich;		/* points to end of which buffer */
 EXTERN Char *CursWhich;		/* points to the cursor point in which buf */
 EXTERN int HistWhich;		/* Hist_num is saved in this */
-EXTERN Char *SearchPrompt;	/* points to string that holds search prompt */
-EXTERN Char DoingSearch;	/* true if we are doing a history search */
 EXTERN char Expand;		/* true if we are expanding a line */
 EXTERN Char HistLit;		/* true if history lines are shown literal */
 EXTERN Char CurrentHistLit;	/* Literal status of current show history line */

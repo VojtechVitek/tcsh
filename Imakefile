@@ -417,7 +417,7 @@ shar:
 	cp ${ALLSRCS} tcsh-${VERSION}
 	cp ${CONFSRCS} tcsh-${VERSION}/config
 	MAKESHAR -v -n tcsh-${VERSION} tcsh-${VERSION} \
-		 tcsh-${VERSION}/* tcsh-${VERSION}/config/*
+		 tcsh-${VERSION}/?* tcsh-${VERSION}/config/?*
 	rm -rf tcsh-${VERSION}
 
 world:
