@@ -465,12 +465,13 @@ execute(t, wanttty, pipein, pipeout)
 			    (void) signal(SIGINT,  vffree);
 			    (void) signal(SIGQUIT, SIG_DFL);
 			}
-
+# ifdef BSDJOBS
 			if (wanttty >= 0) {
 			    (void) signal(SIGTSTP, SIG_DFL);
 			    (void) signal(SIGTTIN, SIG_DFL);
 			    (void) signal(SIGTTOU, SIG_DFL);
 			}
+# endif /* BSDJOBS */
 
 			(void) signal(SIGTERM, parterm);
 		    }
