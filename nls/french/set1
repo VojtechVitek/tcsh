@@ -126,9 +126,9 @@ $set 1
 123 !# Boucle dans l'historique
 124 Mauvaise recherche de fichier
 125 Dépassement de capacité de sélecteur
-126 Option inconnue: `-%s'\nSyntaxe: tcsh [ -bcdefilmnqstvVxX -Dnom[=valeur] ] [ argument ... ]
-127 Option inconnue: `-%s'\nSyntaxe: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]
-128 Option inconnue: `-%s'\nSyntaxe: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]
+126 Option inconnue: `-%s'\nSyntaxe: %s [ -bcdefilmnqstvVxX -Dnom[=valeur] ] [ argument ... ]
+127 Option inconnue: `-%s'\nSyntaxe: %s [ -bcdefFilmnqstvVxX ] [ argument ... ]
+128 Option inconnue: `-%s'\nSyntaxe: %s [ -bcdefilmnqstvVxX ] [ argument ... ]
 129 \nComplément incorrect: "%s"
 130 \n%s incorrect: '%c'
 131 \nIl manque le séparateur '%c' après %s "%s"

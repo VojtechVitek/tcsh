@@ -8,7 +8,7 @@ $set 19
 5 free(%lx) mauvais bloc.
 6 free(%lx) limites incorrectes.
 7 free(%lx) index de bloc incorrect.
-8 tcsh allocation mémoire actuelle:\nfree:\t
+8 %s allocation mémoire actuelle:\nfree:\t
 9 \nutilisé:\t
 10 \n\tTotal utilisé: %d, total libre: %d\n
 11 \tMémoire allouée de 0x%lx à 0x%lx.  Limite réelle supérieure à 0x%lx\n

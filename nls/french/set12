@@ -1,4 +1,4 @@
 $ $Id$
 $ sh.dir.c
 $set 12 
-1 tcsh: Essaie de démarrer à partir de "%s"\n
+1 %s: Essaie de démarrer à partir de "%s"\n

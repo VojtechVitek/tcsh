@@ -24,8 +24,11 @@ $set 23
 21 getwd: Erreur en lecture dans ".." (%s)
 22 getwd: Ne peut revenir à "." (%s)
 23 getwd: Ne peut effectuer stat "/" (%s)
-24 getwd: Ne peut effectuer stat sur répertoire "%s" (%s)
-25 getwd: Ne peut ouvrir le répertoire "%s" (%s)
-26 getwd: Ne peut trouver "." dans ".." (%s)
-27 Type de système incorrect
-28 Le type de système n'est pas défini
+24 getwd: Ne peut effectuer stat "." (%s)
+25 getwd: Ne peut effectuer stat sur répertoire "%s" (%s)
+26 getwd: Ne peut ouvrir le répertoire "%s" (%s)
+27 getwd: Ne peut trouver "." dans ".." (%s)
+28 Type de système incorrect
+29 Le type de système n'est pas défini
+30 XXX: Too many arguments 
+31 XXX: Invalid argument
