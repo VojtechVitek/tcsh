@@ -688,7 +688,7 @@ struct Hist {
     struct wordent Hlex;
     int     Hnum;
     int     Href;
-    long    Htime;
+    time_t  Htime;
     Char   *histline;
     struct Hist *Hnext;
 }       Histlist;

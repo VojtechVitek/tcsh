@@ -62,7 +62,7 @@ printprompt(promptno, str)
     static int print_prompt_did_ding = 0;
     register char *cz;
     struct tm *t;
-    long    lclock;
+    time_t  lclock;
     Char    buff[BUFSIZ];
     Char   *cp;
 

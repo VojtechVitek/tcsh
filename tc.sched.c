@@ -68,7 +68,7 @@ dosched(v)
     register Char **v;
 {
     register struct sched_event *tp, *tp1, *tp2;
-    long    cur_time;
+    time_t  cur_time;
     int     count, hours, minutes, dif_hour, dif_min;
     Char   *cp;
     bool    relative;		/* time specified as +hh:mm */
@@ -185,7 +185,7 @@ dosched(v)
 void
 sched_run()
 {
-    long    cur_time;
+    time_t   cur_time;
     register struct sched_event *tp, *tp1;
     struct wordent cmd, *nextword, *lastword;
     struct command *t;
