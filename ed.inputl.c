@@ -661,7 +661,11 @@ GetNextCommand(cmdnum, ch)
 	    return num;
 	}
 #ifdef	KANJI
-	if (!adrof(STRnokanji) && (*ch & META)) {
+	if (
+#ifdef DSPMBYTE
+	     _enable_mbdisp &&
+#endif
+	     !adrof(STRnokanji) && (*ch & META)) {
 	    MetaNext = 0;
 	    cmd = F_INSERT;
 	    break;

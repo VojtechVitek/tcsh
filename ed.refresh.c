@@ -182,7 +182,11 @@ Draw(c)				/* draw c, expand tabs, ctl chars */
 	}
     }
 #ifdef KANJI
-    else if (!adrof(STRnokanji)) {
+    else if (
+#ifdef DSPMBYTE
+	     _enable_mbdisp &&
+#endif
+	     !adrof(STRnokanji)) {
 	Vdraw(c);
 	return;
     }
@@ -1264,7 +1268,11 @@ RefPlusOne()
 	PutPlusOne(c);
     }
 #ifdef KANJI
-    else if (!adrof(STRnokanji)) {
+    else if (
+#ifdef DSPMBYTE
+	     _enable_mbdisp &&
+#endif
+	     !adrof(STRnokanji)) {
 	PutPlusOne(c);
     }
 #endif
