@@ -1311,6 +1311,16 @@ dosetenv(v, c)
 
     vp = *v++;
 
+    lp = vp;
+    if (!letter(*lp))
+        stderror(ERR_NAME | ERR_VARBEGIN);
+
+    for (; alnum(*lp); lp++)
+        continue;
+
+    if (*lp != '\0')
+	stderror(ERR_NAME | ERR_SYNTAX);
+ 
     if ((lp = *v++) == 0)
 	lp = STRNULL;
 
