@@ -549,7 +549,8 @@ dfollow(cp)
     }
 #endif /* apollo */
 	    
-    (void) strcpy(ebuf, short2str(cp));
+    (void) strncpy(ebuf, short2str(cp), MAXPATHLEN);
+    ebuf[MAXPATHLEN-1] = '\0';
     /*
      * if we are ignoring symlinks, try to fix relatives now.
      * if we are expading symlinks, it should be done by now.
@@ -820,6 +821,12 @@ dcanon(cp, p)
     int     cc;
     Char   *newcp;
 #endif /* S_IFLNK */
+
+    /*
+     * kim: if the path given is too long abort().
+     */
+    if (Strlen(cp) >= MAXPATHLEN)
+	abort();
 
     /*
      * christos: if the path given does not start with a slash prepend cwd. If
