@@ -264,7 +264,7 @@ printdirs(dflag)
 	}
 	if (user) 
 	    xprintf("~%S", user);
-	xprintf("%S%c", s, (dflag & DIR_VERT) ? '\n' : ' ');
+	xprintf("\045S%c", s, (dflag & DIR_VERT) ? '\n' : ' ');
     } while ((dp = dp->di_prev) != dcwd);
     if (!(dflag & DIR_VERT))
 	xputchar('\n');
@@ -276,7 +276,7 @@ dtildepr(dir)
 {
     Char* user;
     if ((user = getusername(&dir)) != NULL)
-	xprintf("~%S%S", user, dir);
+	xprintf("~\045S%S", user, dir);
     else
 	xprintf("%S", dir);
 }
