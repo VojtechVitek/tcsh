@@ -530,9 +530,11 @@ typedef struct timeval timeval_t;
 # define free tcsh_free
 #endif /* NeXT */
 
+#ifndef BSD4_4
 #ifndef NEEDgethostname
 extern int gethostname __P((char *, int));
 #endif /* NEEDgethostname */
+#endif /* BDS4_4 */
 
 #if !defined(POSIX) || defined(SUNOS4) || defined(UTekV) || defined(sysV88)
 extern time_t time();

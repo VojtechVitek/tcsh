@@ -703,11 +703,12 @@ Dgetdol()
 	    stderror(ERR_SYNTAX);
     }
     else {
-	if (subscr > 0)
+	if (subscr > 0) {
 	    if (subscr > upb)
 		lwb = 1, upb = 0;
 	    else
 		lwb = upb = subscr;
+	}
 	unDredc(c);
     }
     if (dimen) {

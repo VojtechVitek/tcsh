@@ -430,7 +430,7 @@ texec(sf, st)
     case ENOEXEC:
 #ifdef WINNT
 	{
-		extern int nt_feed_to_cmd(char *,char**);
+		extern int nt_feed_to_cmd __P((char *, char **));
 		int rc;
 		rc = nt_feed_to_cmd(f,t);
 	}

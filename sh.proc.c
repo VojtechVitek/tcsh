@@ -777,7 +777,7 @@ static void
 pclrcurr(pp)
     register struct process *pp;
 {
-    if (pp == pcurrent)
+    if (pp == pcurrent) {
 	if (pprevious != NULL) {
 	    pcurrent = pprevious;
 	    pprevious = pgetcurr(pp);
@@ -786,6 +786,7 @@ pclrcurr(pp)
 	    pcurrent = pgetcurr(pp);
 	    pprevious = pgetcurr(pp);
 	}
+    }
     else if (pp == pprevious)
 	pprevious = pgetcurr(pp);
 }
@@ -1125,13 +1126,14 @@ pprint(pp, flag)
 		    format = "%-30s";
 		else
 		    format = "%s";
-		if (pstatus == status)
+		if (pstatus == status) {
 		    if (pp->p_reason == reason) {
 			xprintf(format, "");
 			goto prcomd;
 		    }
 		    else
 			reason = (int) pp->p_reason;
+		}
 		else {
 		    status = pstatus;
 		    reason = (int) pp->p_reason;
@@ -1169,11 +1171,12 @@ pprint(pp, flag)
 
 		case PNEXITED:
 		case PAEXITED:
-		    if (flag & REASON)
+		    if (flag & REASON) {
 			if (pp->p_reason)
 			    xprintf(CGETS(17, 6, "Exit %-25d"), pp->p_reason);
 			else
 			    xprintf(format, CGETS(17, 7, "Done"));
+		    }
 		    break;
 
 		default:

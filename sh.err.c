@@ -189,7 +189,8 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_READONLY	131
 #define ERR_BADJOB	132
 #define ERR_INVALID	133
-#define NO_ERRORS	133
+#define ERR_BADCOLORVAR	134
+#define NO_ERRORS	134
 
 static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
@@ -360,6 +361,7 @@ errinit()
     elst[ERR_ULIMUS] = CSAVS(1, 134, "Usage: unlimit [-fh] [limits]");
     elst[ERR_READONLY] = CSAVS(1, 135, "$%S is read-only");
     elst[ERR_BADJOB] = CSAVS(1, 136, "No such job");
+    elst[ERR_BADCOLORVAR] = CSAVS(1, 137, "Unknown colorls variable `%c%c'");
 }
 /*
  * The parser and scanner set up errors for later by calling seterr,

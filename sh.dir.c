@@ -870,11 +870,12 @@ dcanon(cp, p)
 	if (&cp[1] == sp && sp[0] == '.' && sp[1] == '.' && sp[2] == '\0')
 	    slashslash = 1;
 #endif /* apollo */
-	if (*sp == '\0')	/* if component is null */
+	if (*sp == '\0') {	/* if component is null */
 	    if (--sp == cp)	/* if path is one char (i.e. /) */ 
 		break;
 	    else
 		*sp = '\0';
+	}
 	else if (sp[0] == '.' && sp[1] == 0) {
 	    if (slash) {
 		for (p1 = sp, p2 = p + 1; (*p1++ = *p2++) != '\0';)

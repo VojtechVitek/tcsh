@@ -365,12 +365,13 @@ prusage(bs, es,	e, b)
     cp = "%Uu %Ss %E %P	%I+%Oio	%Fpf+%Ww";
 # else /* !_SEQUENT_ */
 #  ifndef POSIX
-    time_t  ms = (e - b) * 100 / HZ;
-
+    time_t ms = ((time_t)((e - b) / HZ) * 100) +
+		 (time_t)(((e - b) % HZ) * 100) / HZ;
 #  else	/* POSIX */
-    clock_t ms = (e - b) * 100 / clk_tck;
-
+    clock_t ms = ((clock_t)((e - b) / clk_tck) * 100) +
+		  (clock_t)(((e - b) % clk_tck) * 100) / clk_tck;
 #  endif /* POSIX */
+
     cp = "%Uu %Ss %E %P";
 
     /*

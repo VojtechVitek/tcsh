@@ -210,6 +210,9 @@ dolist(v, c)
 {
     int     i, k;
     struct stat st;
+#ifdef COLOR_LS_F
+    extern bool color_context_ls;
+#endif /* COLOR_LS_F */
 
     USE(c);
     if (*++v == NULL) {
@@ -288,6 +291,15 @@ dolist(v, c)
 	nextword->word = Strsave(STRmCF);
 	lastword->next = nextword;
 	nextword->prev = lastword;
+#ifdef COLOR_LS_F
+	if (color_context_ls) {
+	    lastword = nextword;
+	    nextword = (struct wordent *) xcalloc(1, sizeof cmd);
+	    nextword->word = Strsave(STRmmcolormauto);
+	    lastword->next = nextword;
+	    nextword->prev = lastword;
+	}
+#endif /* COLOR_LS_F */
 	lastword = nextword;
 	for (cp = *v; cp; cp = *++v) {
 	    nextword = (struct wordent *) xcalloc(1, sizeof cmd);
@@ -337,7 +349,7 @@ dolist(v, c)
 #endif /* WINNT */
 	    if (
 #ifdef WINNT
-		((char)tmp[1] != ':') &&
+		((char)tmp[1] == ':') &&
 		(!is_unc) &&
 #endif /* WINNT */
 		stat(short2str(tmp), &st) == -1) {
@@ -577,7 +589,7 @@ find_stop_ed()
 
 	    p = short2str(pp->p_command);
 	    /* get the first word */
-	    for (cp = p; *cp && !isspace(*cp); cp++)
+	    for (cp = p; *cp && !isspace((unsigned char) *cp); cp++)
 		continue;
 	    *cp = '\0';
 		

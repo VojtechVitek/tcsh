@@ -229,8 +229,9 @@ extern	pret_t		  xvsnprintf	__P((char *, size_t, const char *,
  */
 extern	void		  dateinit	__P((void));
 extern	void		  printprompt	__P((int, char *));
-extern  Char 		 *expdollar	__P((Char **, Char **, size_t *, int));
-extern	void		  tprintf	__P((int, Char *, Char *, size_t, 
+extern  Char 		 *expdollar	__P((Char **, const Char **, size_t *,
+					     int));
+extern	void		  tprintf	__P((int, Char *, const Char *, size_t, 
 					     char *, time_t, ptr_t));
 
 /*

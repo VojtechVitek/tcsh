@@ -267,7 +267,7 @@ extern	void	 ResetXmap		__P((void));
 extern	int	 DeleteXkey		__P((CStr *));
 extern	void	 PrintXkey		__P((CStr *));
 extern	int	 printOne		__P((CStr *, XmapVal *, int));
-extern	int		  parseescape	__P((Char **));
+extern	int		  parseescape	__P((const Char **));
 extern	unsigned char    *unparsestring	__P((CStr *, unsigned char *, Char *));
 
 #endif /* _h_ed_decls */

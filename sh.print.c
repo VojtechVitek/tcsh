@@ -194,7 +194,7 @@ draino()
 void
 flush()
 {
-    int unit, nw;
+    int unit;
     static int interrupted = 0;
     size_t sz;
 

@@ -151,6 +151,12 @@
 #define REMOTEHOST
 
 /*
+ * COLOR_LS_F Do you want to use builtin color ls-F ?
+ *
+ */
+#define COLOR_LS_F
+
+/*
  * RCSID	This defines if we want rcs strings in the binary or not
  *
  */

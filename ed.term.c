@@ -536,11 +536,12 @@ static struct tcshmodes {
 /* Retry a system call */
 #define RETRY(x) \
    for (;;) \
-	if ((x) == -1) \
+	if ((x) == -1) { \
 	   if (errno != EINTR) \
 	       return -1; \
 	   else \
 	       continue; \
+	} \
 	else \
 	   break \
 

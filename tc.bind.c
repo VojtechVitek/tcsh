@@ -421,7 +421,7 @@ parsestring(str, buf)
     CStr   *buf;
 {
     Char   *b;
-    Char   *p;
+    const Char   *p;
     int    es;
 
     b = buf->buf;

@@ -47,6 +47,7 @@ RCSID("$Id$")
 
 #include "tc.h"
 #include "ed.h"
+#include "tw.h"
 
 extern bool MapsAreInited;
 extern bool NLSMapsAreInited;
@@ -694,6 +695,11 @@ main(argc, argv)
 	if (sh_len == 0)
 	    set(STRshell, Strsave(STR_SHELLPATH), VAR_READWRITE);
     }
+
+#ifdef COLOR_LS_F
+    if ((tcp = getenv("LS_COLORS")) != NULL)
+	parseLS_COLORS(str2short(tcp));
+#endif /* COLOR_LS_F */
 
     doldol = putn((int) getpid());	/* For $$ */
 #ifdef WINNT

@@ -302,7 +302,8 @@ TryNode(ptr, str, val, ntype)
 	case XK_EXE:
 	    ptr->val.str.len = (val->str.len + 1) * sizeof(Char);
 	    ptr->val.str.buf = (Char *) xmalloc((size_t) ptr->val.str.len);
-	    (void) memmove((ptr_t) ptr->val.str.buf, (ptr_t) val->str.buf, (size_t) ptr->val.str.len);
+	    (void) memmove((ptr_t) ptr->val.str.buf, (ptr_t) val->str.buf,
+			   (size_t) ptr->val.str.len);
 	    ptr->val.str.len = val->str.len;
 	    break;
 	default:
@@ -680,9 +681,10 @@ unparsech(cnt, ch)
 
 int
 parseescape(ptr)
-    Char  **ptr;
+    const Char  **ptr;
 {
-    Char   *p, c;
+    const Char *p;
+    Char c;
 
     p = *ptr;
 
