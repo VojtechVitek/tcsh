@@ -151,14 +151,14 @@ int	hashname	__P((Char *));
 static	int 	iscommand	__P((Char *));
 
 void
-doexec(t, doglob)
+doexec(t, do_glob)
     register struct command *t;
-    bool doglob;
+    bool do_glob;
 {
-    register Char *dp, **pv, **av, *sav;
-    register struct varent *v;
-    register bool slash;
-    register int hashval, i;
+    Char *dp, **pv, **av, *sav;
+    struct varent *v;
+    bool slash;
+    int hashval, i;
     Char   *blk[2];
 
     /*
@@ -169,7 +169,7 @@ doexec(t, doglob)
     blk[0] = t->t_dcom[0];
     blk[1] = 0;
     gflag = 0;
-    if (doglob)
+    if (do_glob)
 	tglob(blk);
     if (gflag) {
 	pv = globall(blk);
@@ -202,8 +202,8 @@ doexec(t, doglob)
      */
     gflag = 0;
     av = &t->t_dcom[1];
-    if (doglob)
-	tglob(blk);
+    if (do_glob)
+	tglob(av);
     if (gflag) {
 	av = globall(av);
 	if (av == 0) {
