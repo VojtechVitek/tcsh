@@ -290,6 +290,11 @@ tw_cmd_builtin()
     for (bptr = bfunc; bptr < &bfunc[nbfunc]; bptr++)
 	if (bptr->bname)
 	    tw_cmd_add(str2short(bptr->bname));
+#ifdef WINNT
+    for (bptr = nt_bfunc; bptr < &nt_bfunc[nt_nbfunc]; bptr++)
+	if (bptr->bname)
+	    tw_cmd_add(str2short(bptr->bname));
+#endif /* WINNT*/
 } /* end tw_cmd_builtin */
 
 

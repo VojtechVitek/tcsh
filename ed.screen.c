@@ -1619,6 +1619,9 @@ ChangeSize(lins, cols)
     Val(T_co) = (cols < 2) ? 80 : cols;
     Val(T_li) = (lins < 1) ? 24 : lins;
 
+#ifdef WINNT
+      nt_set_size(lins,cols);
+#endif /* WINNT */
 #ifdef KNOWsize
     /*
      * We want to affect the environment only when we have a valid

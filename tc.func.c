@@ -44,7 +44,7 @@ RCSID("$Id$")
 #include "tc.h"
 #ifdef WINNT
 #include "nt.const.h"
-#endif WINNT
+#endif /* WINNT */
 
 #ifdef AFS
 #define PASSMAX 16

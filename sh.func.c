@@ -43,7 +43,7 @@ RCSID("$Id$")
 #include "tc.h"
 #ifdef WINNT
 #include "nt.const.h"
-#endif WINNT
+#endif /* WINNT */
 
 /*
  * C shell
@@ -118,6 +118,9 @@ isbfunc(t)
 	else
 	    bp1 = bp + 1;
     }
+#ifdef WINNT
+    return nt_check_additional_builtins(cp);
+#endif /*WINNT*/
     return (0);
 }
 
@@ -2317,10 +2320,19 @@ struct command *c;
 		++b;
 	    }
 	}
-	if (Tty_raw_mode)
-	    xputchar('\r');
-	xputchar('\n');
+	if (row < (rows - 1)) {
+	    if (Tty_raw_mode)
+		xputchar('\r');
+	    xputchar('\n');
+	}
     }
+#ifdef WINNT
+    nt_print_builtins(maxwidth);
+#else
+    if (Tty_raw_mode)
+	xputchar('\r');
+    xputchar('\n');
+#endif /* WINNT */
 
     lbuffed = 1;		/* turn back on line buffering */
     flush();

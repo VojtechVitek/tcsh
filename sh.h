@@ -921,6 +921,10 @@ extern struct biltins {
     int     minargs, maxargs;
 } bfunc[];
 extern int nbfunc;
+#ifdef WINNT
+extern struct biltins  nt_bfunc[];
+extern int nt_nbfunc;
+#endif /* WINNT*/
 
 extern struct srch {
     char   *s_name;
