@@ -1473,14 +1473,16 @@ e_up_search_hist(c)
 	hp = hp->Hnext;
 
     while (hp != NULL) {
+	Char sbuf[BUFSIZE], *hl;
 	if (hp->histline == NULL) {
-	    Char sbuf[BUFSIZE];
 	    hp->histline = Strsave(sprlex(sbuf, &hp->Hlex));
 	}
+	hl = HistLit ? hp->histline : sprlex(sbuf, &hp->Hlex);
 #ifdef SDEBUG
-	xprintf("Comparing with \"%S\"\n", hp->histline);
+	xprintf("Comparing with \"%S\"\n", hl);
 #endif
-	if ((Strncmp(hp->histline, InputBuf, LastChar-InputBuf) || hp->histline[LastChar-InputBuf]) && c_hmatch(hp->histline)) {
+	if ((Strncmp(hl, InputBuf, LastChar-InputBuf) || 
+	     hl[LastChar-InputBuf]) && c_hmatch(hl)) {
 	    found++;
 	    break;
 	}
@@ -1523,14 +1525,16 @@ e_down_search_hist(c)
     c_hsetpat();		/* Set search pattern !! */
 
     for (h = 1; h < Hist_num && hp; h++) {
+	Char sbuf[BUFSIZE], *hl;
 	if (hp->histline == NULL) {
-	    Char sbuf[BUFSIZE];
 	    hp->histline = Strsave(sprlex(sbuf, &hp->Hlex));
 	}
+	hl = HistLit ? hp->histline : sprlex(sbuf, &hp->Hlex);
 #ifdef SDEBUG
-	xprintf("Comparing with \"%S\"\n", hp->histline);
+	xprintf("Comparing with \"%S\"\n", hl);
 #endif
-	if ((Strncmp(hp->histline, InputBuf, LastChar-InputBuf) || hp->histline[LastChar-InputBuf]) && c_hmatch(hp->histline))
+	if ((Strncmp(hl, InputBuf, LastChar-InputBuf) || 
+	     hl[LastChar-InputBuf]) && c_hmatch(hl))
 	    found = h;
 	hp = hp->Hnext;
     }

@@ -80,16 +80,13 @@ void
 pcsecs(l)			/* PWP: print mm:ss.dd, l is in sec*100 */
 #ifdef BSDTIMES
     long    l;
-
-#else				/* BSDTIMES */
-#ifndef POSIX
+#else /* BSDTIMES */
+# ifndef POSIX
     time_t  l;
-
-#else				/* POSIX */
+# else /* POSIX */
     clock_t l;
-
-#endif				/* POSIX */
-#endif				/* BSDTIMES */
+# endif /* POSIX */
+#endif /* BSDTIMES */
 {
     register int i;
 
