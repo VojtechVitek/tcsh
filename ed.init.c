@@ -35,7 +35,6 @@
 RCSID("$Id$")
 
 #include "ed.h"
-#include "ed.term.h"
 #include "tc.h"
 #include "ed.defns.h"
 

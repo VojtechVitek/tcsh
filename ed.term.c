@@ -36,7 +36,6 @@
 RCSID("$Id$")
 
 #include "ed.h"
-#include "ed.term.h"
 
 int didsetty = 0;
 ttyperm_t ttylist = {   

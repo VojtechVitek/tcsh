@@ -39,7 +39,7 @@ RCSID("$Id$")
 #include <compat.h>
 #endif	/* OREO */
 
-#include "ed.term.h"
+#include "ed.h"
 
 static bool add_discipline = 0;	/* Did we add a line discipline	 */
 
