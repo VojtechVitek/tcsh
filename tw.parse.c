@@ -695,8 +695,18 @@ t_search(word, wp, command, max_word_length, looking_for_command, list_max)
 	}
     }
     else if (looking_for_lognames) {	/* Looking for login names? */
-	(void) setpwent();	/* Open passwd file */
+	/*
+	 * Check if the spelling was already correct
+	 * From: Rob McMahon <cudcv@cu.warwick.ac.uk>
+	 */
+	if (command == SPELL && getpwnam(short2str(&word[1])) != NULL) {
+#ifdef YPBUGS
+	    fix_ypbugs();
+#endif /* YPBUGS */
+	    return (0);
+	}
 	copyn(name, &word[1], MAXNAMLEN);	/* name sans ~ */
+	(void) setpwent();	/* Open passwd file */
     }
     else if (looking_for_command) {
 	if (!numcommands)	/* if we have no list of commands */
