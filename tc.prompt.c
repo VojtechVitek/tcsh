@@ -554,7 +554,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	    default:
 #ifndef HAVENOUTMP
 		if (*cp == 'a' && what == FMT_WHO) {
-		    cz = who_info(info, 'a', (char *) cbuff, sizeof(cbuff));
+		    cz = (unsigned char *) who_info(info, 'a', (char *) cbuff,
+			sizeof(cbuff));
 		    for (; cz && *cz; *p++ = attributes | *cz++)
 			if (p >= ep) break;
 		}
