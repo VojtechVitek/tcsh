@@ -351,7 +351,7 @@ dolist(v, c)
 	    }
 	    else if (
 #ifdef WINNT
-		((char)tmp[1] != ':') ||
+		((char)tmp[1] == ':') ||
 		(is_unc) ||
 #endif /* WINNT */
 		S_ISDIR(st.st_mode)) {

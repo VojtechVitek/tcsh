@@ -107,7 +107,8 @@ typedef int sigret_t;
 #ifndef WINNT
 # define ABSOLUTEP(p)	(*(p) == '/')
 #else /* WINNT */
-# define ABSOLUTEP(p)	((p)[0] == '/' || ((p)[1] == ':' && (p)[2] == '/'))
+# define ABSOLUTEP(p)	((p)[0] == '/' || \
+			 (Isalpha((p)[0]) && (p)[1] == ':' && (p)[2] == '/'))
 #endif /* WINNT */
 
 /*
