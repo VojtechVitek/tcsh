@@ -859,7 +859,7 @@ doio(t, pipein, pipeout)
 	    (void) strncpy(tmp, short2str(cp), MAXPATHLEN);
 	    tmp[MAXPATHLEN] = '\0';
 	    xfree((ptr_t) cp);
-	    if ((fd = open(tmp, O_RDONLY)) < 0)
+	    if ((fd = open(tmp, O_RDONLY|O_LARGEFILE)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
 #ifdef O_LARGEFILE
 	    /* allow input files larger than 2Gb  */
@@ -875,7 +875,7 @@ doio(t, pipein, pipeout)
 	}
 	else if ((flags & F_NOINTERRUPT) && tpgrp == -1) {
 	    (void) close(0);
-	    (void) open(_PATH_DEVNULL, O_RDONLY);
+	    (void) open(_PATH_DEVNULL, O_RDONLY|O_LARGEFILE);
 	}
 	else {
 	    (void) close(0);
@@ -905,9 +905,9 @@ doio(t, pipein, pipeout)
 	(void) dcopy(SHDIAG, 2);
 	if ((flags & F_APPEND) != 0) {
 #ifdef O_APPEND
-	    fd = open(tmp, O_WRONLY | O_APPEND);
+	    fd = open(tmp, O_WRONLY|O_APPEND|O_LARGEFILE);
 #else /* !O_APPEND */
-	    fd = open(tmp, O_WRONLY);
+	    fd = open(tmp, O_WRONLY|O_LARGEFILE);
 	    (void) lseek(fd, (off_t) 0, L_XTND);
 #endif /* O_APPEND */
 	}

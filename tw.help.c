@@ -120,7 +120,7 @@ do_help(command)
 	    for (sp = h_ext; *sp; sp++) {
 		*ep = '\0';
 		catn(full, str2short(*sp), (int) (sizeof(full) / sizeof(Char)));
-		if ((f = open(short2str(full), O_RDONLY)) != -1)
+		if ((f = open(short2str(full), O_RDONLY|O_LARGEFILE)) != -1)
 		    break;
 	    }
 	    if (f != -1) {

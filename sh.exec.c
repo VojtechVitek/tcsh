@@ -438,7 +438,7 @@ texec(sf, st)
 	 * From: casper@fwi.uva.nl (Casper H.S. Dik) If we could not execute
 	 * it, don't feed it to the shell if it looks like a binary!
 	 */
-	if ((fd = open(f, O_RDONLY)) != -1) {
+	if ((fd = open(f, O_RDONLY|O_LARGEFILE)) != -1) {
 	    int nread;
 	    if ((nread = read(fd, (char *) pref, 2)) == 2) {
 		if (!Isprint(pref[0]) && (pref[0] != '\n' && pref[0] != '\t')) {

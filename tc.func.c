@@ -689,7 +689,7 @@ xgetpass(prm)
 
     sigint = (signalfun_t) sigset(SIGINT, SIG_IGN);
     (void) Rawmode();	/* Make sure, cause we want echo off */
-    if ((fd = open("/dev/tty", O_RDWR)) == -1)
+    if ((fd = open("/dev/tty", O_RDWR|O_LARGEFILE)) == -1)
 	fd = SHIN;
 
     xprintf("%s", prm); flush();
@@ -1759,7 +1759,7 @@ doaliases(v, c)
 	trim(v);
     }
 
-    if ((fd = open(tmp = short2str(*v), O_RDONLY)) < 0)
+    if ((fd = open(tmp = short2str(*v), O_RDONLY|O_LARGEFILE)) < 0)
 	stderror(ERR_NAME | ERR_SYSTEM, tmp, strerror(errno));
 
     getexit(oldexit);

@@ -935,7 +935,7 @@ fix_strcoll_bug()
     static char *root = "/";
 
     if (!didfds)
-	fd = open(root, O_RDONLY);
+	fd = open(root, O_RDONLY|O_LARGEFILE);
 
     (void) strcoll(root, root);
 
