@@ -1667,6 +1667,16 @@ again:
 		     * I have not been able to pin it down!
 		     */
 		    if (buf >= fblocks || off > BUFSIZE) {
+#ifdef I_DEBUG
+			xprintf("buf %lx, fblocks %lx, off %lx, BUFSIZE %lx\n",
+				buf, fblocks, off, BUFSIZE);
+			xprintf("Dumping core...");
+			flush();
+			if (fork() == 0)
+			    (void) kill(0, SIGQUIT);
+			xprintf("ok.\n");
+			flush();
+#endif
 			/* start with fresh buffer */
 			feobp = fseekp = fblocks * BUFSIZE;
 			numleft = c;
