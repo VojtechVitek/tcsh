@@ -61,6 +61,10 @@ static bool rotate = 0;
 static int
 Repair()
 {
+#ifdef DSPMBYTE
+    if (dspmbyte_utf8)
+	Setutf8lit(InputBuf, LastChar);
+#endif
     if (NeedsRedraw) {
 	ClearLines();
 	ClearDisp();
@@ -433,6 +437,10 @@ Inputl()
 		}
 		break;
 	    }
+#ifdef DSPMBYTE
+	    if (dspmbyte_utf8)
+		setutf8lit(InputBuf, LastChar);
+#endif
 	    if (NeedsRedraw) {
 		PastBottom();
 		ClearLines();

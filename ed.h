@@ -241,4 +241,8 @@ extern void  tputs	__P((const char *, int, void (*)(int)));
 # define PUTRAW ((void (*)__P((int))) putraw)
 #endif
 
+#ifdef DSPMBYTE
+extern bool dspmbyte_utf8;
+#endif
+
 #endif /* _h_ed */

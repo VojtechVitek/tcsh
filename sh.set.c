@@ -1121,6 +1121,7 @@ bool dspmbyte_utf8;
 
 #if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
 bool dspmbyte_ls;
+bool dspmbyte_utf8;
 
 void
 update_dspmbyte_vars()

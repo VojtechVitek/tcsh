@@ -37,6 +37,11 @@ RCSID("$Id$")
 #include "ed.h"
 #include "tw.h"
 
+#ifdef DSPMBYTE
+extern bool dspmbyte_utf8;
+extern void setutf8lit __P((Char *, Char *));
+#endif
+
 /*
  * kfk 21oct1983 -- add @ (time) and / ($cwd) in prompt.
  * PWP 4/27/87 -- rearange for tcsh.
@@ -145,6 +150,10 @@ printprompt(promptno, str)
 
     PromptBuf[0] = '\0';
     tprintf(FMT_PROMPT, PromptBuf, cp, 2 * INBUFSIZE - 2, str, lclock, NULL);
+#ifdef DSPMBYTE
+    if (dspmbyte_utf8)
+	setutf8lit(PromptBuf, (Char *)0);
+#endif
 
     if (!editing) {
 	for (cp = PromptBuf; *cp ; )
@@ -157,6 +166,10 @@ printprompt(promptno, str)
     if (promptno == 0) {	/* determine rprompt if using main prompt */
 	cp = varval(STRrprompt);
 	tprintf(FMT_PROMPT, RPromptBuf, cp, INBUFSIZE - 2, NULL, lclock, NULL);
+#ifdef DSPMBYTE
+	if (dspmbyte_utf8)
+	    setutf8lit(RPromptBuf, (Char *)0);
+#endif
 
 				/* if not editing, put rprompt after prompt */
 	if (!editing && RPromptBuf[0] != '\0') {
@@ -395,6 +408,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		    while (*z)				/* calc # of /'s */
 			if (*z++ == '/')
 			    updirs++;
+
+#ifdef WINNT_NATIVE
 		    /*
 		     * for format type c, prompt will be following...
 		     * c:/path                => c:/path
@@ -404,6 +419,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		     */
 		    if (oldz[0] == '/' && oldz[1] == '/' && updirs > 1)
 			*p++ = attributes | ':';
+#endif /* WINNT_NATIVE */
 		    if ((Scp == 'C' && *q != '/'))
 			updirs++;
 

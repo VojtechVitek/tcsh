@@ -787,7 +787,7 @@ extern signalfun_t parterm;	/* Parents terminate catch */
 # define	CHAR		0x001FFFFF /* Mask to mask out the character */
 #elif defined (SHORT_STRINGS)
 # define	QUOTE 	((Char)	0100000)/* 16nth char bit used for 'ing */
-# define	TRIM		0077777	/* Mask to strip quote bit */
+# define	TRIM		0073777	/* Mask to strip quote/lit bit */
 # define	UNDER		0040000	/* Underline flag */
 # define	BOLD		0020000	/* Bold flag */
 # define	STANDOUT	0010000	/* Standout flag */

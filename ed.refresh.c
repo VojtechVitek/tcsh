@@ -317,7 +317,6 @@ Refresh()
     for (cp = InputBuf; (cp < LastChar); cp++) {
 #if defined(DSPMBYTE)
 	if (vcursor_h + 1 >= TermH && Ismbyte1(*cp)) {
-	    extern bool dspmbyte_utf8;
 	    if (dspmbyte_utf8) {
 		int i;
 		for (i = 1 ; cp + i < LastChar; i++)
@@ -1230,7 +1229,6 @@ RefCursor()
 
 #if defined(DSPMBYTE)
         if (h + 1 >= th && cp + 1 < LastChar && Ismbyte1(cp[1])) {
-            extern bool dspmbyte_utf8;
             if (dspmbyte_utf8) {
                 int i;
                 for (i = 2 ; cp + i < LastChar; i++)

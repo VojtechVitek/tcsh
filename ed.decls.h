@@ -39,6 +39,9 @@
 extern	int	InsertStr		__P((Char *));
 extern	void	DeleteBack		__P((int));
 extern	void	SetKillRing		__P((int));
+#ifdef DSPMBYTE
+extern	void	Setutf8lit		__P((Char *, Char *)); 
+#endif
 
 /*
  * ed.init.c
