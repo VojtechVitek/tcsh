@@ -676,6 +676,7 @@ dohash(vv, c)
     int hashval;
 #ifdef WINNT
     int is_windir; /* check if it is the windows directory */
+    USE(hashval);
 #endif /* WINNT */
 
     USE(c);

@@ -129,13 +129,13 @@ union overhead {
  * precedes the data area returned to the user.
  */
 #define	NBUCKETS ((sizeof(long) << 3) - 3)
-static union overhead *nextf[NBUCKETS];
+static union overhead *nextf[NBUCKETS] IZERO_STRUCT;
 
 /*
  * nmalloc[i] is the difference between the number of mallocs and frees
  * for a given block size.
  */
-static U_int nmalloc[NBUCKETS];
+static U_int nmalloc[NBUCKETS] IZERO_STRUCT;
 
 #ifndef lint
 static	int	findbucket	__P((union overhead *, int));

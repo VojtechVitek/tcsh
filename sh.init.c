@@ -166,6 +166,9 @@ struct	biltins bfunc[] = {
     { "switch",		doswitch,	1,	INF	},
     { "telltc",		dotelltc,	0,	INF	},
     { "time",		dotime,		0,	INF	},
+#ifdef WINNT
+    { "title",		dotitle,	1,	INF	},
+#endif /* WINNT */
 #if defined(_CX_UX)
     { "ucb",		doucb,		0,	INF	},
 #endif /* _CX_UX */

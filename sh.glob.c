@@ -867,10 +867,10 @@ backeval(cp, literal)
 	    c = (*ip++ & TRIM);
 	    if (c == 0)
 		break;
-#ifdef NEW_CRLF
+#ifdef WINNT
 	    if (c == '\r')
 	    	c = ' ';
-#endif /* NEW_CRLF */
+#endif /* WINNT */
 	    if (c == '\n') {
 		/*
 		 * Continue around the loop one more time, so that we can eat

@@ -191,7 +191,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_INVALID	133
 #define NO_ERRORS	133
 
-static char *elst[NO_ERRORS] IZERO_STRUCT;
+static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
 /*
  * Init the elst depending on the locale

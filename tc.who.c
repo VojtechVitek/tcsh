@@ -169,12 +169,16 @@ watch_login(force)
     Char  **vp = NULL;
     time_t  t, interval = MAILINTVL;
     struct stat sta;
-#ifdef WINNT
-    static int ncbs_posted = 0;
-#endif /* WINNT */
 #if defined(UTHOST) && defined(_SEQUENT_)
     char   *host, *ut_find_host();
 #endif
+#ifdef WINNT
+    static int ncbs_posted = 0;
+    USE(utmp);
+    USE(utmpfd);
+    USE(sta);
+    USE(wpnew);
+#endif /* WINNT */
 
     /* stop SIGINT, lest our login list get trashed. */
 #ifdef BSDSIGS

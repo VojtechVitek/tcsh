@@ -197,7 +197,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			/* prompt stuff */
     static Char *olddir = NULL, *olduser = NULL;
     extern int tlength;	/* cache cleared */
-    size_t updirs, pdirs, sz;
+    size_t sz, pdirs;
+    int updirs;
 
     for (; *cp; cp++) {
 	if (p >= ep)
@@ -418,7 +419,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			    *p++ = attributes | '+';
 			} else
 			    *p++ = attributes | ('0' + updirs);
-			*p++ = attributes | tcsh ? '>' : '%';
+			*p++ = attributes | '>';
 		    }
 		}
 		

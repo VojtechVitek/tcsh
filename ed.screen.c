@@ -1227,13 +1227,10 @@ so_write(cp, n)
 #endif /* DEBUG_LITERAL */
 #ifdef WINNT
 	    {
-		extern void ParseAnsi __P((char *));
-		extern void set_cons_attr __P((char *));
 		char buf[256], *ptr = &buf[0];
 		for (d = litptr[*cp++ & CHAR]; *d & LITERAL; d++)
 		    *ptr++ = (*d & CHAR);
 		flush();
-		ParseAnsi(buf);
 		set_cons_attr(buf);
 	    }
 #else /* !WINNT */

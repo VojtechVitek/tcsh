@@ -490,6 +490,7 @@ Dgetdol()
 	    (void) sigrelse(SIGINT);
 #endif /* BSDSIGS */
 #ifdef WINNT
+# undef read
 # define read force_read
 #endif /* WINNT */
 	    for (np = wbuf; read(OLDSTD, &tnp, 1) == 1; np++) {
@@ -884,7 +885,6 @@ setDolp(cp)
 		    dp = cp = np;
 		    didmod = 1;
 		} else {
-		    xprintf("No match on %Q\n", cp);
 		    /* should this do a seterror? */
 		    break;
 		}

@@ -226,7 +226,12 @@ flush()
 #endif
     sz = (size_t) (linp - linbuf);
     if (write(unit, linbuf, sz) != sz && !haderr)
+#ifdef notyet
+	/* XXX: This ends up to cause an infinite loop if we lose our tty */
 	stderror(ERR_SYSTEM, progname, strerror(errno));
+#else
+	;
+#endif
 
     linp = linbuf;
     interrupted = 0;

@@ -1734,8 +1734,8 @@ extract_dir_and_name(path, dir, name)
 
     p = Strrchr(path, '/');
 #ifdef WINNT
-    if (p == NULL) {
-	    p = Strrchr(path, ':');
+    if (p == NULL)
+	p = Strrchr(path, ':');
 #endif /* WINNT */
     if (p == NULL) {
 	copyn(name, path, MAXNAMLEN);

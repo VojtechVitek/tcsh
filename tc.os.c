@@ -977,12 +977,12 @@ char *
 xstrerror(i)
     int i;
 {
-    static char errbuf[40]; /* 64 bit num */
+    static char errbuf[128];
 
     if (i >= 0 && i < sys_nerr) {
 	return sys_errlist[i];
     } else {
-	(void) xsnprintf(errbuf, sizeof(buf),
+	(void) xsnprintf(errbuf, sizeof(errbuf),
 	    CGETS(23, 13, "Unknown Error: %d"), i);
 	return errbuf;
     }

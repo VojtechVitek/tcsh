@@ -37,7 +37,9 @@
 #ifndef _h_tc_os
 #define _h_tc_os
 
+#ifndef WINNT
 #define NEEDstrerror		/* Too hard to find which systems have it */
+#endif /* WINNT */
 
 
 #ifdef notdef 
@@ -492,11 +494,11 @@ struct ucred {
 #ifndef POSIX
 # define mygetpgrp()    getpgrp(0)
 #else /* POSIX */
-# if defined(BSD) || defined(SUNOS4) || defined(IRIS4D) || defined(DGUX)
+# if defined(BSD) || defined(SUNOS4) || defined(IRIS4D) || defined(DGUX) || defined(HPRT)
 #  define mygetpgrp()    getpgrp(0)
-# else /* !(BSD || SUNOS4 || IRIS4D || DGUX) */
+# else /* !(BSD || SUNOS4 || IRIS4D || DGUX || HPRT) */
 #  define mygetpgrp()    getpgrp()
-# endif	/* BSD || SUNOS4 || IRISD || DGUX */
+# endif	/* BSD || SUNOS4 || IRISD || DGUX  || HPRT */
 #endif /* POSIX */
 
 
@@ -713,8 +715,12 @@ extern void bcopy	__P((const void *, void *, size_t));
 
 #if SYSVREL == 4
 # ifdef REMOTEHOST
+/* Irix6 defines getpeername(int, void *, int *) which conflicts with
+   the definition below. */
+#  if !defined(__sgi)
 struct sockaddr;
 extern int getpeername __P((int, struct sockaddr *, int *));
+#  endif /* __sgi */
 # endif /* REMOTEHOST */
 # ifndef BSDTIMES
 extern int getrlimit __P((int, struct rlimit *));

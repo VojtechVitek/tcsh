@@ -308,7 +308,7 @@ parsebind(s, str)
     case 'C':
 #ifdef WINNT
     case 'N':
-#endif WINNT
+#endif /* WINNT */
 	if (s[1] != '-' || s[2] == '\0') {
 	    bad_spec(s);
 	    return NULL;

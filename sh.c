@@ -82,7 +82,7 @@ extern bool NoNLSRebind;
  * ported to Apple Unix (TM) (OREO)  26 -- 29 Jun 1987
  */
 
-jmp_buf_t reslab IZERO_STRUCT;
+jmp_buf_t reslab INIT_ZERO_STRUCT;
 
 static const char tcshstr[] = "tcsh";
 #ifdef WINNT
@@ -906,7 +906,7 @@ main(argc, argv)
 
 	    default:		/* Unknown command option */
 		exiterr = 1;
-		stderror(ERR_TCSHUSAGE, progname, tcp-1);
+		stderror(ERR_TCSHUSAGE, tcp-1, progname);
 		break;
 
 	} while (*tcp);
