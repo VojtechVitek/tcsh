@@ -304,7 +304,7 @@ extern int quoteProtect(char *, char *,unsigned long) ;
 extern char* fix_path_for_child(void) ;
 extern void restore_path(char *) ;
 extern int copy_quote_and_fix_slashes(char *,char *, int * );
-extern void concat_args_and_quote(char **,char **,unsigned int *, char **, 
+extern char* concat_args_and_quote(char **,char**,char **,unsigned int *, char **, 
 	unsigned int *) ;
 
 
