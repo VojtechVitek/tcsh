@@ -906,8 +906,10 @@ dcanon(cp, p)
 	    if (sp != cp && /* symlinks != SYM_IGNORE && */
 		(cc = readlink(short2str(cp), tlink,
 			       sizeof tlink)) >= 0) {
-		(void) Strcpy(link, str2short(tlink));
-		link[cc] = '\0';
+		tlink[cc] = '\0';
+		(void) Strncpy(link, str2short(tlink),
+		    sizeof(link) / sizeof(Char));
+		link[sizeof(link) / sizeof(Char) - 1] = '\0';
 
 		if (slash)
 		    *p = '/';
@@ -995,8 +997,10 @@ dcanon(cp, p)
 	    if (sp != cp && symlinks == SYM_CHASE &&
 		(cc = readlink(short2str(cp), tlink,
 			       sizeof tlink)) >= 0) {
-		(void) Strcpy(link, str2short(tlink));
-		link[cc] = '\0';
+		tlink[cc] = '\0';
+		(void) Strncpy(link, str2short(tlink),
+		    sizeof(link) / sizeof(Char));
+		link[sizeof(link) / sizeof(Char) - 1] = '\0';
 
 		/*
 		 * restore the '/'.
@@ -1104,7 +1108,8 @@ dcanon(cp, p)
 	/*
 	 * Start comparing dev & ino backwards
 	 */
-	p2 = Strcpy(link, cp);
+	(void) Strncpy(link, cp, sizeof(link) / sizeof(Char));
+	link[sizeof(link) / sizeof(Char) - 1] = '\0';
 	found = 0;
 	while (*p2 && stat(short2str(p2), &statbuf) != -1) {
 	    if (DEV_DEV_COMPARE(statbuf.st_dev, home_dev) &&
