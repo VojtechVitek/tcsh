@@ -234,7 +234,7 @@ dozip(v, c)
 
 /*ARGSUSED*/
 void
-dostat(v, c)
+dofiletest(v, c)
     Char **v;
     struct command *c;
 {

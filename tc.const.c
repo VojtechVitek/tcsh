@@ -58,6 +58,7 @@ Char STRNULL[]          = { '\0' };
 Char STRtcsh[]          = { 't', 'c', 's', 'h', '\0' };
 Char STRhome[]          = { 'h', 'o', 'm', 'e', '\0' };
 Char STRuser[]          = { 'u', 's', 'e', 'r', '\0' };
+Char STRafsuser[]          = { 'a', 'f', 's', 'u', 's', 'e', 'r', '\0' };
 Char STRterm[]          = { 't', 'e', 'r', 'm', '\0' };
 Char STRversion[]       = { 'v', 'e', 'r', 's', 'i', 'o', 'n', '\0' };
 Char STRuid[]           = { 'u', 'i', 'd', '\0' };

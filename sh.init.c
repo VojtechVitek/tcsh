@@ -83,6 +83,7 @@ struct	biltins bfunc[] = {
     { "exec",		execash,	1,	INF	},
     { "exit",		doexit,		0,	INF	},
     { "fg",		dofg,		0,	INF	},
+    { "filetest",	dofiletest,	2,	INF	},
     { "foreach",	doforeach,	3,	INF	},
 #ifdef TCF
     { "getspath",	dogetspath,	0,	0	},
@@ -147,7 +148,6 @@ struct	biltins bfunc[] = {
 #endif /* TCF */
     { "shift",		shift,		0,	1	},
     { "source",		dosource,	1,	INF	},
-    { "stat",		dostat,		2,	INF	},
     { "stop",		dostop,		1,	INF	},
     { "suspend",	dosuspend,	0,	0	},
     { "switch",		doswitch,	1,	INF	},
