@@ -257,11 +257,12 @@
  * ttychars > NCC are defined. So we undefine them.
  */
 #if defined(TERMIO) || defined(POSIX)
-# if defined(TERMIO) && defined(NCC)
-#  define NUMCC	NCC
-# endif /* TERMIO && NCC */
 # if defined(POSIX) && defined(NCCS)
-#  define NUMCC	NCCS
+#  define NUMCC		NCCS
+# else
+#  ifdef NCC
+#   define NUMCC	NCC
+#  endif /* NCC */
 # endif /* POSIX && NCCS */
 # ifdef NUMCC
 #  ifdef VINTR
