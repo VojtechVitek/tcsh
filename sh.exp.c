@@ -148,9 +148,19 @@ sh_access(fname, mode)
 
 # ifdef NGROUPS_MAX
     else {
+#  if defined(__386BSD__) || defined(BSD4_4)
+    /*
+     * These two decided that setgroup() should take an array of int's
+     * and they define _SC_NGROUPS_MAX without having sysconf
+     */
+#   undef _SC_NGROUPS_MAX	
+#   define GID_T int
+#  else
+#   define GID_T gid_t
+#  endif /* __386BSD__ || BSD4_4 */
 	/* you can be in several groups */
 	int	n;
-	gid_t	*groups;
+	GID_T	*groups;
 
 	/*
 	 * Try these things to find a positive maximum groups value:
@@ -159,18 +169,15 @@ sh_access(fname, mode)
 	 *   3) getgroups(0, unused)
 	 * Then allocate and scan the groups array if one of these worked.
 	 */
-#  ifdef __386BSD__
-#   undef _SC_NGROUPS_MAX	/* 386/BSD does not have sysconf! */
-#  endif /* __386BSD__ */
 #  ifdef _SC_NGROUPS_MAX
 	if ((n = sysconf(_SC_NGROUPS_MAX)) == -1)
 #  endif /* _SC_NGROUPS_MAX */
 	    n = NGROUPS_MAX;
 	if (n <= 0)
-	    n = getgroups(0, (gid_t *) NULL);
+	    n = getgroups(0, (GID_T *) NULL);
 
 	if (n > 0) {
-	    groups = (gid_t *) xmalloc((size_t) (n * sizeof(gid_t)));
+	    groups = (GID_T *) xmalloc((size_t) (n * sizeof(GID_T)));
 	    n = getgroups(n, groups);
 	    while (--n >= 0)
 		if (groups[n] == statb.st_gid) {

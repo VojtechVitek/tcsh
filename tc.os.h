@@ -607,7 +607,7 @@ extern int readlink __P((const char *, char *, size_t));
 # endif /* SUNOS4 && __GNUC__ == 2 */
 
 #if (defined(BSD) && !defined(__386BSD__))  || defined(SUNOS4) 
-extern void bcopy	__P((char *, char *, int));
+extern void bcopy	__P((const void *, void *, size_t));
 # define memmove(a, b, c) (bcopy((char *) (b), (char *) (a), (int) (c)), a)
 #endif
 
