@@ -160,12 +160,22 @@ extern char *sbrk();
 /*
  * DGUX types
  */
-# ifndef _SIZE_T
-#  define _SIZE_T
-# endif /* _SIZE_T */
-# ifndef _PID_T
-#  define _PID_T
-# endif /* _PID_T */
+# ifdef ___int_size_t_h
+#  ifdef _TARGETTING_M88KBCS_OR_DGUX
+#   ifdef _USING_ANSI_C_OR_POSIX_OR_SYSV3_OR_BSD_OR_DGUX
+#    ifndef _SIZE_T
+#     define _SIZE_T
+#    endif /* _SIZE_T */
+#   endif  /* #ifdef _USING_ANSI_C_OR_POSIX_OR_SYSV3_OR_BSD_OR_DGUX */
+#  endif  /* #ifdef _TARGETTING_M88KBCS_OR_DGUX */
+# endif  /* #ifndef ___int_size_t_h */
+
+# ifdef _USING_POSIX_OR_SYSV3_OR_BSD_OR_DGUX
+#  ifndef _PID_T
+#   define _PID_T
+#  endif /* _PID_T */
+# endif  /* #ifdef _USING_POSIX_OR_SYSV3_OR_BSD_OR_DGUX */
+
 #endif
 
 
