@@ -74,14 +74,14 @@ setzero(cp, i)
 
 char   *
 strsave(s)
-    register char *s;
+    register const char *s;
 {
     char   *n;
     register char *p;
 
-    if (s == 0)
-	s = "";
-    for (p = s; *p++;);
+    if (s == NULL)
+	s = (const char *) "";
+    for (p = (char *) s; *p++;);
     n = p = (char *) xmalloc((size_t) ((p - s) * sizeof(char)));
     while (*p++ = *s++);
     return (n);
