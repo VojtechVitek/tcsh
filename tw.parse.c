@@ -1004,9 +1004,15 @@ again:
 		ptr = tw_item_add(len + 3);
 
 		copyn(ptr, entry, MAXNAMLEN - 2);
-		if (looking == TW_FILE || looking == TW_DIRECTORY) {
+		switch (looking) {
+		case TW_FILE:
+		case TW_DIRECTORY:
+		case TW_COMMAND:
 		    ptr[len++] = filetype(exp_dir, entry);
 		    ptr[len] = '\0';
+		    break;
+		default:
+		    break;
 		}
 		numitems++;
 	    }

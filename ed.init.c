@@ -169,6 +169,7 @@ ed_Setup(rst)
     int rst;
 {
     static int havesetup = 0;
+    struct varent *imode;
 
     if (havesetup) 	/* if we have never been called */
 	return(0);
@@ -193,7 +194,14 @@ ed_Setup(rst)
     vdisable = _POSIX_VDISABLE;
 #endif /* POSIX && _PC_VDISABLE */
 	
-    inputmode = MODE_INSERT;	/* start out in insert mode */
+    if ((imode = adrof(STRinputmode)) != NULL) {
+	if (!Strcmp(*(imode->vec), STRinsert))
+	    inputmode = MODE_INSERT;
+	else if (!Strcmp(*(imode->vec), STRoverwrite))
+	    inputmode = MODE_REPLACE;
+    }
+    else
+	inputmode = MODE_INSERT;
     ed_InitMaps();
     Hist_num = 0;
     Expand = 0;

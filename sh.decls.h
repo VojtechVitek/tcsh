@@ -102,6 +102,7 @@ extern	void		  xechoit	__P((Char **));
 extern	int		  executable	__P((Char *, Char *, bool));
 extern	void		  tellmewhat	__P((struct wordent *));
 extern	void		  dowhere	__P((Char **, struct command *));
+extern	int		  find_cmd	__P((Char *, int));
 
 /*
  * sh.exp.c

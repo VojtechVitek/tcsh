@@ -965,8 +965,13 @@ v_search(dir)
 {
     Char ch;
     Char tmpbuf[INBUFSIZE];
+    Char oldbuf[INBUFSIZE];
+    Char *oldlc, *oldc;
     int tmplen;
 
+    copyn(oldbuf, InputBuf, INBUFSIZE);
+    oldlc = LastChar;
+    oldc = Cursor;
     tmplen = 0;
     tmpbuf[tmplen++] = '*';
 
@@ -991,9 +996,9 @@ v_search(dir)
 		tmpbuf[tmplen--] = '\0';
 	    }
 	    else {
-		InputBuf[0] = '\0';
-		LastChar = InputBuf;
-		Cursor = InputBuf;
+		copyn(InputBuf, oldbuf, INBUFSIZE);
+		LastChar = oldlc;
+		Cursor = oldc;
 		return(CC_REFRESH);
 	    }
 	    Refresh();

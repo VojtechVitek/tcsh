@@ -306,7 +306,7 @@ vgrind:
 install: tcsh 
 	-mv -f ${DESTBIN}/tcsh  ${DESTBIN}/tcsh.old
 	cp tcsh ${DESTBIN}/tcsh
-	strip ${DESTBIN}/tcsh
+	-strip ${DESTBIN}/tcsh
 	chmod 555 ${DESTBIN}/tcsh
 
 manpage: tcsh.man
