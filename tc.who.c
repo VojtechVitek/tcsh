@@ -89,7 +89,7 @@ struct who {
 #ifdef UTHOST
     char    w_host[UTHOSTLEN + 1];
 #endif /* UTHOST */
-    long    w_time;
+    time_t  w_time;
     int     w_status;
 };
 
