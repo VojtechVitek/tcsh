@@ -378,6 +378,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		if (Scp == '.' || Scp == 'C') {
 		    int skip;
 #ifdef WINNT_NATIVE
+		    Char *oldz = z;
 		    if (z[1] == ':') {
 		    	*p++ = attributes | *z++;
 		    	*p++ = attributes | *z++;
@@ -394,6 +395,15 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 		    while (*z)				/* calc # of /'s */
 			if (*z++ == '/')
 			    updirs++;
+		    /*
+		     * for format type c, prompt will be following...
+		     * c:/path                => c:/path
+		     * c:/path/to             => c:to
+		     * //machine/share        => //machine/share
+		     * //machine/share/folder => //machine:folder
+		     */
+		    if (oldz[0] == '/' && oldz[1] == '/' && updirs > 1)
+			*p++ = attributes | ':';
 		    if ((Scp == 'C' && *q != '/'))
 			updirs++;
 
