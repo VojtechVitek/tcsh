@@ -1785,6 +1785,21 @@ hashbang(fd, vp)
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
+static sigret_t
+palarm(snum)
+    int snum;
+{
+#ifdef UNRELSIGS
+    if (snum)
+	(void) sigset(snum, SIG_IGN);
+#endif /* UNRELSIGS */
+    alarm(0);
+
+#ifndef SIGVOID
+    return (snum);
+#endif
+}
+
 /*
  * From: <lesv@ppvku.ericsson.se> (Lennart Svensson)
  */
@@ -1797,10 +1812,14 @@ remotehost()
     int len = sizeof(struct sockaddr_in);
 
     if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1) {
+	/* Don't get stuck if the resolver does not work! */
+	sigret_t (*osig)() = signal(SIGALRM, palarm);
+	alarm(2);
 	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, len, AF_INET)) != NULL)
 	    host = hp->h_name;
 	else
 	    host = inet_ntoa(saddr.sin_addr);
+	(void) signal(SIGALRM, osig);
     }
 #ifdef UTHOST
     else {
