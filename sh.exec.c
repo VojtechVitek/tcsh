@@ -655,9 +655,13 @@ xechoit(t)
     Char  **t;
 {
     if (adrof(STRecho)) {
+	int odidfds = didfds;
 	flush();
 	haderr = 1;
+	didfds = 0;
 	blkpr(t), xputchar('\n');
+	flush();
+	didfds = odidfds;
 	haderr = 0;
     }
 }

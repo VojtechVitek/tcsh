@@ -2045,9 +2045,13 @@ process(catch)
 	 */
 	if ((lex(&paraml) && !seterr && intty && !tellwhat && !Expand && 
 	     !whyles) || adrof(STRverbose)) {
+	    int odidfds = didfds;
 	    haderr = 1;
+	    didfds = 0;
 	    prlex(&paraml);
+	    flush();
 	    haderr = 0;
+	    didfds = odidfds;
 	}
 	(void) alarm(0);	/* Autologout OFF */
 
