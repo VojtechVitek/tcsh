@@ -216,9 +216,9 @@ execute(t, wanttty, pipein, pipeout)
 		       bifunc->bfunct == dopushd ||
 		       bifunc->bfunct == dopopd))
 	    t->t_dflg &= ~(F_NICE);
-	if (((t->t_dflg & F_TIME) || (t->t_dflg & F_NOFORK) == 0 &&
+	if (((t->t_dflg & F_TIME) || ((t->t_dflg & F_NOFORK) == 0 &&
 	     (!bifunc || t->t_dflg &
-	      (F_PIPEOUT | F_AMPERSAND | F_NICE | F_NOHUP))) ||
+	      (F_PIPEOUT | F_AMPERSAND | F_NICE | F_NOHUP)))) ||
 	/*
 	 * We have to fork for eval too.
 	 */
@@ -400,10 +400,8 @@ execute(t, wanttty, pipein, pipeout)
 		    }
 
 		    if (setintr)
-			ignint =
-			    (tpgrp == -1 &&
-			     (t->t_dflg & F_NOINTERRUPT))
-			    || gointr && eq(gointr, STRminus);
+			ignint = (tpgrp == -1 && (t->t_dflg & F_NOINTERRUPT))
+				|| (gointr && eq(gointr, STRminus));
 		    pgrp = pcurrjob ? pcurrjob->p_jobid : getpid();
 		    child++;
 		    if (setintr) {

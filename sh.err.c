@@ -322,7 +322,7 @@ static char *errorlist[] =
 void
 /*VARARGS1*/
 #if __STDC__
-seterror(int id, ...)
+seterror(unsigned int id, ...)
 #else
 seterror(va_alist)
     va_dcl
@@ -335,9 +335,9 @@ seterror(va_alist)
 #if __STDC__
 	va_start(va, id);
 #else
-	int id;
+	unsigned int id;
 	va_start(va);
-	id = va_arg(va, int);
+	id = va_arg(va, unsigned int);
 #endif
 
 	if (id < 0 || id > sizeof(errorlist) / sizeof(errorlist[0]))
@@ -370,7 +370,7 @@ seterror(va_alist)
 void
 /*VARARGS*/
 #if __STDC__
-stderror(int id, ...)
+stderror(unsigned int id, ...)
 #else
 stderror(va_alist)
     va_dcl
@@ -383,10 +383,10 @@ stderror(va_alist)
 #if __STDC__
     va_start(va, id);
 #else
-    int	    id;
+    unsigned int id;
 
     va_start(va);
-    id = va_arg(va, int);
+    id = va_arg(va, unsigned int);
 #endif
 
     flags = id & ERR_FLAGS;

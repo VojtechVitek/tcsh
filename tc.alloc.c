@@ -130,21 +130,19 @@ static	void	morecore	__P((int));
 
 
 #ifdef DEBUG
-#define CHECK(a, str, p) \
+# define CHECK(a, str, p) \
     if (a) { \
 	xprintf(str, p);	\
 	xprintf("memtop = %lx membot = %lx.\n", memtop, membot);	\
 	abort(); \
-    }	\
-    else
+    }
 #else
-#define CHECK(a, str, p) \
+# define CHECK(a, str, p) \
     if (a) { \
 	xprintf(str, p);	\
 	xprintf("memtop = %lx membot = %lx.\n", memtop, membot);	\
 	return; \
-    }	\
-    else
+    }
 #endif
 
 memalign_t
@@ -410,7 +408,8 @@ realloc(cp, nbytes)
     onb = MEMALIGN(nbytes + MEMALIGN(sizeof(union overhead)) + RSLOP);
 
     /* avoid the copy if same size block */
-    if (was_alloced && (onb < (1 << (i + 3))) && (onb >= (1 << (i + 2))))
+    if (was_alloced && (onb < (U_int) (1 << (i + 3))) && 
+	(onb >= (U_int) (1 << (i + 2))))
 	return ((memalign_t) cp);
     if ((res = malloc(nbytes)) == NULL)
 	return ((memalign_t) NULL);

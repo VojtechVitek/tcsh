@@ -207,7 +207,8 @@ TraverseMap(ptr, ch, code)
 		return (TraverseMap(ptr->next, ch, code));
 	    }
 	    else {
-		CurCmd.code[0] = (Char) ptr->code;
+		int tmpc = (int) ptr->code;
+		CurCmd.code[0] = (Char) tmpc;
 		*code = CurCmd.code;
 		return 1;
 	    }

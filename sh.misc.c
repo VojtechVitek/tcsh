@@ -319,7 +319,7 @@ dcopy(i, j)
     register int i, j;
 {
 
-    if (i == j || i < 0 || j < 0 && i > 2)
+    if (i == j || i < 0 || (j < 0 && i > 2))
 	return (i);
 #ifdef HAVEDUP2
     if (j >= 0) {

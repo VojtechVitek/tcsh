@@ -86,8 +86,8 @@ extern	void		  heredoc	__P((Char *));
 /*
  * sh.err.c
  */
-extern	void		  seterror	__P((int, ...));
-extern	void		  stderror	__P((int, ...));
+extern	void		  seterror	__P((unsigned int, ...));
+extern	void		  stderror	__P((unsigned int, ...));
 
 /*
  * sh.exec.c

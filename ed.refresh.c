@@ -205,7 +205,7 @@ Refresh()
     register Char *cp;
     int     cur_h, cur_v = 0, new_vcv;
     Char    oldgetting;
-    int     litnum = 0;
+    unsigned int litnum = 0;
 
 #ifdef DEBUG_REFRESH
     dprintf("PromptBuf = :%s:\r\n", short2str(PromptBuf));

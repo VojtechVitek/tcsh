@@ -99,7 +99,7 @@ unparsekey(c)			/* 'c' -> "c", '^C' -> "^" + "C" */
 	*cp++ = '-';
 	c &= 0377;
     }
-    if ((c & META) && !(Isprint(c) || Iscntrl(c) && Isprint(c | 0100))) {
+    if ((c & META) && !(Isprint(c) || (Iscntrl(c) && Isprint(c | 0100)))) {
 	*cp++ = 'M';
 	*cp++ = '-';
 	c &= ASCII;

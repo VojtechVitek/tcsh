@@ -663,9 +663,9 @@ SetAttributes(atr)
     atr &= ATTRIBUTES;
     if (atr != cur_atr) {
 	if (me_all && GoodStr(T_me)) {
-	    if ((cur_atr & BOLD) && !(atr & BOLD) ||
-		(cur_atr & UNDER) && !(atr & UNDER) ||
-		(cur_atr & STANDOUT) && !(atr & STANDOUT)) {
+	    if (((cur_atr & BOLD) && !(atr & BOLD)) ||
+		((cur_atr & UNDER) && !(atr & UNDER)) ||
+		((cur_atr & STANDOUT) && !(atr & STANDOUT))) {
 		(void) tputs(Str(T_me), 1, putpure);
 		cur_atr = 0;
 	    }

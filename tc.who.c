@@ -118,7 +118,7 @@ static	void	print_who	__P((struct who *));
 void
 initwatch()
 {
-    register int i;
+    register unsigned i;
 
     wholist = (struct who *) xcalloc(1, sizeof *wholist);
     wholist->w_next = (struct who *) xcalloc(1, sizeof *wholist);

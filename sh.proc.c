@@ -1001,7 +1001,7 @@ pprint(pp, flag)
 	jobflags |= pp->p_flags;
 	pstatus = pp->p_flags & PALLSTATES;
 	if (tp != pp && linp != linbuf && !(flag & FANCY) &&
-	    (pstatus == status && pp->p_reason == reason ||
+	    ((pstatus == status && pp->p_reason == reason) ||
 	     !(flag & REASON)))
 	    xprintf(" ");
 	else {

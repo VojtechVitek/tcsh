@@ -569,7 +569,7 @@ tglob(t)
 	if (*p == '~' || *p == '=')
 	    gflag |= G_CSH;
 	else if (*p == '{' &&
-		 (p[1] == '\0' || p[1] == '}' && p[2] == '\0'))
+		 (p[1] == '\0' || (p[1] == '}' && p[2] == '\0')))
 	    continue;
 	while (c = *p++)
 	    if (isglob(c))

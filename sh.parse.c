@@ -598,7 +598,7 @@ again:
 		seterror(ERR_MISRED);
 		continue;
 	    }
-	    if ((flags & P_OUT) && (flags & P_DIAG) == 0 || t->t_drit)
+	    if (((flags & P_OUT) && (flags & P_DIAG) == 0) || t->t_drit)
 		seterror(ERR_OUTRED);
 	    else
 		t->t_drit = Strsave(p->word);

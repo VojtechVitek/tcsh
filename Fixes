@@ -1,4 +1,6 @@
 V6.00.03, ....
+10. Emacs i-search. [currently not bound]
+9.  Vi additions ([dc]-{w,$,f<c>},Undo)
 8.  tcsh -n parses now builtin structures.
 7.  seek to the end on errors in loops.
 6.  echotc -s was broken
@@ -206,9 +208,12 @@ V5.20.02, 12/15/90.
     so that they work from insert mode.
 15. %~ was not working correctly for /home/news and /home/newsbin...
 14. Removed $Log$
-14. Removed Revision 1.1  1991/09/08 00:45:32  christos
-14. Removed Initial revision
-14. Removed from sources; it was getting too large...
+14. Removed Revision 1.2  1991/09/10 04:51:46  christos
+14. Removed GCC-1.91 fixes and more vi and emacs
+14. Removed
+# Revision 1.1  1991/09/08  00:45:32  christos
+# Initial revision
+# from sources; it was getting too large...
 13. ISC unix fixes.
 12. sunos3.x wants <sys/dir.h> not <dirent.h>
 11. Remove precmd's, cwdcmd's and periodic cmds that had errors.

@@ -768,8 +768,8 @@ search(type, level, goal)
 	    if (lastchr(aword) != ':')
 		break;
 	    aword[Strlen(aword) - 1] = 0;
-	    if (type == T_GOTO && eq(aword, goal) ||
-		type == T_SWITCH && eq(aword, STRdefault))
+	    if ((type == T_GOTO && eq(aword, goal)) ||
+		(type == T_SWITCH && eq(aword, STRdefault)))
 		level = -1;
 	    break;
 
@@ -836,8 +836,8 @@ getword(wp)
 		*wp++ = c;
 		*wp = 0;	/* end the string b4 test */
 	    }
-	} while ((d || !(kwd = keyword(owp)) && c != ' '
-		  && c != '\t') && c != '\n');
+	} while ((d || (!(kwd = keyword(owp)) && c != ' '
+		  && c != '\t')) && c != '\n');
     } while (wp == 0);
 
     /*

@@ -118,7 +118,11 @@ tenematch(inputline, inputline_size, num_read, command)
     int     space_left;
     int     is_a_cmd;		/* UNIX command rather than filename */
     int     search_ret;		/* what search returned for debugging */
-    int     in_single, in_double;	/* In single or in_double quotes */
+    /* 
+     * XXX: Avoid gcc bug. If in_single and in_double are ints 
+     * then they always stay 0.
+     */
+    Char    in_single, in_double;	/* In single or in_double quotes */
     int     backq, skp;
 
     str_end = &inputline[num_read];
@@ -133,7 +137,7 @@ tenematch(inputline, inputline_size, num_read, command)
      * space backward looking for the beginning of this command
      */
     for (cmd_st = str_end; cmd_st > inputline; --cmd_st)
-	if ((iscmdmeta(cmd_st[-1]) || cmd_st[-1] == '`' && backq)
+	if ((iscmdmeta(cmd_st[-1]) || (cmd_st[-1] == '`' && backq))
 	    && ((cmd_st - 1 == inputline) || (cmd_st[-2] != '\\')))
 	    break;
     /* step forward over leading spaces */
@@ -182,7 +186,8 @@ tenematch(inputline, inputline_size, num_read, command)
      */
     in_double = 0;
     in_single = 0;
-    for (cmd_start = word_start, wp = word; cmd_start < str_end && wp <= word + FILSIZ; cmd_start++)
+    for (cmd_start = word_start, wp = word; 
+	 cmd_start < str_end && wp <= word + FILSIZ; cmd_start++) 
 	switch (*cmd_start) {
 	case '\'':
 	    if (!in_double) {
@@ -1359,7 +1364,8 @@ print_by_column(dir, items, count, no_file_suffix)
     register Char *dir, *items[];
     int     count, no_file_suffix;
 {
-    register int i, r, c, w, maxwidth = 0, columns, rows;
+    register int i, r, c, columns, rows;
+    unsigned int w, maxwidth = 0;
     extern int Tty_raw_mode;
 
     lbuffed = 0;		/* turn off line buffering */
