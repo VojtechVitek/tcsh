@@ -53,7 +53,7 @@ static void	  	  tw_pr		__P((Char **));
 static int	  	  tw_match	__P((Char *, Char *));
 static void	 	  tw_prlist	__P((struct varent *));
 static Char  		 *tw_dollar	__P((Char *,Char **, int, Char *, 
-					     int, char *));
+					     int, const char *));
 
 /* docomplete():
  *	Add or list completions in the completion list
@@ -416,7 +416,7 @@ tw_dollar(str, wl, nwl, buffer, sep, msg)
     int nwl;
     Char *buffer;
     int sep;
-    char *msg;
+    const char *msg;
 {
     Char *sp, *bp = buffer, *ebp = &buffer[MAXPATHLEN];
 
@@ -546,28 +546,26 @@ tw_complete(line, word, pat, looking, suf)
 	case 'p':
 	    break;
 	default:
-	    stderror(ERR_COMPINV, catgets(catd, 1, 1196, "command"), cmd);
+	    stderror(ERR_COMPINV, CGETS(27, 1, "command"), cmd);
 	    return TW_ZERO;
 	}
 
 	sep = ptr[1];
 	if (!Ispunct(sep)) {
-	    stderror(ERR_COMPINV, catgets(catd, 1, 1197, "separator"), sep);
+	    stderror(ERR_COMPINV, CGETS(27, 2, "separator"), sep);
 	    return TW_ZERO;
 	}
 
 	ptr = tw_dollar(&ptr[2], wl, wordno, ran, sep,
-			catgets(catd, 1, 1198, "pattern"));
+			CGETS(27, 3, "pattern"));
 	if (ran[0] == '\0')	/* check for empty pattern (disallowed) */
 	{
-	    stderror(ERR_COMPINC, cmd == 'p' ?
-		     catgets(catd, 1, 1234, "range") :
-		     catgets(catd, 1, 1198, "pattern"), "");
+	    stderror(ERR_COMPINC, cmd == 'p' ?  CGETS(27, 4, "range") :
+		     CGETS(27, 3, "pattern"), "");
 	    return TW_ZERO;
 	}
 
-	ptr = tw_dollar(ptr, wl, wordno, com, sep,
-			catgets(catd, 1, 1199, "completion")); 
+	ptr = tw_dollar(ptr, wl, wordno, com, sep, CGETS(27, 5, "completion")); 
 
 	if (*ptr != '\0') {
 	    if (*ptr == sep)

@@ -55,7 +55,7 @@ static char   *day_list[7];
 void
 dateinit()
 {
-#ifdef NLS_CATALOGS
+#ifdef notyet
   int i;
 
   setlocale(LC_TIME, "");
@@ -167,13 +167,13 @@ tprintf(what, buf, fmt, siz, str, tim, info)
     Char   *z, *q;
     Char    attributes = 0;
     static int print_prompt_did_ding = 0;
-    char   *cz;
+    const char   *cz;
     Char    buff[BUFSIZE];
     char    cbuff[BUFSIZE];
 
     Char *p  = buf;
     Char *ep = &p[siz];
-    Char *cp = fmt;
+    Char *cp = fmt, Scp;
     struct tm *t = localtime(&tim);
 
 			/* prompt stuff */
@@ -181,7 +181,6 @@ tprintf(what, buf, fmt, siz, str, tim, info)
     extern int tlength;	/* cache cleared */
     register int updirs;
     int pdirs;
-    Char    Scp;
 
     for (; *cp; cp++) {
 	if (p >= ep)
@@ -197,7 +196,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			if (p >= ep) break;
 		break;
 	    case '#':
-		*p++ = attributes | ((uid == 0) ? '#' : '>');
+		*p++ = attributes | ((uid == 0) ? PRCHROOT : PRCH);
 		break;
 	    case '!':
 	    case 'h':

@@ -80,6 +80,7 @@ extern	void	tty_setdisc		__P((int, int));
 /*
  * ed.screen.c
  */
+extern	void	terminit		__P((void));
 extern	void	SetAttributes		__P((int));
 extern	void	so_write		__P((Char *, int));
 extern	void	ClearScreen		__P((void));
@@ -110,6 +111,7 @@ extern	void	GetTermCaps		__P((void));
 /*
  * ed.defns.c
  */
+extern	void	editinit		__P((void));
 extern	void	ed_InitNLSMaps		__P((void));
 #ifdef DEBUG_EDIT
 extern	void	CheckMaps		__P((void));

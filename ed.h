@@ -61,7 +61,7 @@ typedef CCRETVAL(*PFCmd) __P((int));	/* pointer to function returning CCRETVAL *
 struct KeyFuncs {		/* for the "bind" shell command */
     char   *name;		/* function name for bind command */
     int     func;		/* function numeric value */
-    char   *description;	/* description of function */
+    char   *desc;		/* description of function */
 };
 
 extern PFCmd CcFuncTbl[];	/* table of available commands */

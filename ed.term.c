@@ -575,7 +575,7 @@ dosetty(v, t)
 	    break;
 	default:
 	    stderror(ERR_NAME | ERR_SYSTEM, short2str(v[0]), 
-		     catgets(catd, 1, 221, "Unknown switch"));
+		     CGETS(8, 1, "Unknown switch"));
 	    break;
 	}
 
@@ -626,8 +626,7 @@ dosetty(v, t)
 	    if (strcmp(m->m_name, d) == 0)
 		break;
 	if (!m->m_name) 
-	    stderror(ERR_NAME | ERR_SYSTEM, d,
-		     catgets(catd, 1, 222, "Invalid argument"));
+	    stderror(ERR_NAME | ERR_SYSTEM, d, CGETS(8, 2, "Invalid argument"));
 
 	switch (x) {
 	case '+':

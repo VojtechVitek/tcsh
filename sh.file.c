@@ -618,10 +618,10 @@ again:				/* search for matches */
 	    continue;
 	if (command == LIST) {
 	    if (numitems >= MAXITEMS) {
-		xprintf(catgets(catd, 1, 413, "\nYikes!! Too many %s!!\n"),
+		xprintf(CGETS(14, 1, "\nYikes!! Too many %s!!\n"),
 			looking_for_lognames ?
-			catgets(catd, 1, 414, "names in password file") :
-			catgets(catd, 1, 363, "files");
+			CGETS(14, 2, "names in password file") :
+			CGETS(14, 3, "files");
 		break;
 	    }
 	    /*

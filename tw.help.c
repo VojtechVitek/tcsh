@@ -106,7 +106,7 @@ do_help(command)
 
 	for (;;) {
 	    if (!*hpath) {
-		xprintf(catgets(catd, 1, 1206, "No help file for %S\n"), name);
+		xprintf(CGETS(28, 1, "No help file for %S\n"), name);
 		break;
 	    }
 	    nextslist(hpath, curdir);

@@ -313,7 +313,7 @@ extern	void		  fix_version	__P((void));
 extern	void		  initwatch	__P((void));
 extern	void		  resetwatch	__P((void));
 extern	void		  watch_login	__P((int));
-extern	char 		 *who_info	__P((ptr_t, int, char *));
+extern	const char 	 *who_info	__P((ptr_t, int, char *));
 extern	void		  dolog		__P((Char **, struct command *));
 # ifdef UTHOST
 extern	char		 *utmphost	__P((void));

@@ -80,7 +80,7 @@ dosched(v, c)
 #ifdef _MINIX
     char kludge[10];
     extern char *sprintf();
-    sprintf(kludge,catgets(catd, 1, 1175, "kludge"));
+    sprintf(kludge, CGETS(24, 1, "kludge"));
 #endif /* _MINIX */
 
     v++;

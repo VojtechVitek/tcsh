@@ -161,7 +161,7 @@ ourwait(w)
     pid_t pid;
 
 #  ifdef JOBDEBUG
-    xprintf(catgets(catd, 1, 1176, "our wait %d\n", stk_ptr));
+    xprintf(CGETS(25, 1, "our wait %d\n", stk_ptr));
     flush();
 #  endif /* JOBDEBUG */
 
@@ -378,7 +378,8 @@ sigret_t (*bsd_signal(sig, func))()
         sigret_t (*r_func)();
 
         if (sig < 0 || sig > MAXSIG) {
-                xprintf(catgets(catd, 1, 1177, "error: bsd_signal(%d) signal out of range\n"), sig);
+                xprintf(CGETS(25, 2,
+			"error: bsd_signal(%d) signal out of range\n"), sig);
                 return((sigret_t(*)()) SIG_IGN);
         }
 
@@ -389,8 +390,9 @@ sigret_t (*bsd_signal(sig, func))()
         act.sa_flags = 0;                       /* no special actions */
 
         if (sigaction(sig, &act, &oact)) {
-                xprintf(catgets(catd, 1, 1178, "error: bsd_signal(%d) - sigaction failed, errno %d\n"),
-                    sig, errno);
+                xprintf(CGETS(25, 3,
+			"error: bsd_signal(%d) - sigaction failed, errno %d\n"),
+			sig, errno);
                 return((sigret_t(*)()) SIG_IGN);
         }
 

@@ -42,6 +42,7 @@ RCSID("$Id$")
  * C Shell - directory management
  */
 
+static	void			 dstart		__P((const char *));
 static	struct directory	*dfind		__P((Char *));
 static	Char 			*dfollow	__P((Char *));
 static	void 	 	 	 printdirs	__P((int));
@@ -57,6 +58,13 @@ static int    printd;			/* force name to be printed */
 
 int     bequiet = 0;		/* do not print dir stack -strike */
 
+static void
+dstart(from)
+    const char *from;
+{
+    xprintf(CGETS(12, 1, "tcsh: Trying to start from \"%s\"\n"), from);
+}
+
 /*
  * dinit - initialize current working directory
  */
@@ -68,11 +76,6 @@ dinit(hp)
     register Char *cp;
     register struct directory *dp;
     char    path[MAXPATHLEN];
-    static char *emsg, *temp;
-
-    temp = catgets(catd, 1, 257, "tcsh: Trying to start from \"%s\"\n");
-    emsg = xmalloc(strlen(temp)+1);
-    strcpy(emsg, temp);
 
     /* Don't believe the login shell home, because it may be a symlink */
     tcp = (char *) getwd(path);
@@ -80,7 +83,7 @@ dinit(hp)
 	xprintf("tcsh: %s\n", path);
 	if (hp && *hp) {
 	    tcp = short2str(hp);
-	    xprintf(emsg, tcp);
+	    dstart(tcp);
 	    if (chdir(tcp) == -1)
 		cp = NULL;
 	    else
@@ -89,7 +92,7 @@ dinit(hp)
 	else
 	    cp = NULL;
 	if (cp == NULL) {
-	    xprintf(emsg, "/");
+	    dstart("/");
 	    if (chdir("/") == -1)
 		/* I am not even try to print an error message! */
 		xexit(1);

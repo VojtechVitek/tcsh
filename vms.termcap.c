@@ -62,10 +62,9 @@ char	*name;
 	if (termfile == NULL ) termfile = "/etc/termcap";
 
 	if ((fp = fopen(termfile, "r")) == (FILE *) NULL) {
-		fprintf(stderr,catgets(catd, 1, 1220,
-				       "Can't open TERMCAP: [%s]\n"), termfile);
-		fprintf(stderr,catgets(catd, 1, 1221,
-				       "Can't open %s.\n"),termfile);
+		fprintf(stderr, CGETS(31, 1,
+		        "Can't open TERMCAP: [%s]\n"), termfile);
+		fprintf(stderr, CGETS(31, 2, "Can't open %s.\n"), termfile);
 		sleep(1);
 		return(-1);
 	}
@@ -91,8 +90,7 @@ sscanf to look at aliases.  These are delimited by '|'. */
 		if (strncmp(name, tmp, len) == 0) {
 			fclose(fp);
 #ifdef DEBUG
-	fprintf(stderr,catgets(catd, 1, 1222, "Found %s in %s.\n"),
-		name, termfile);
+	fprintf(stderr, CGETS(31, 3, "Found %s in %s.\n"), name, termfile);
 	sleep(1);
 #endif /* DEBUG */
 			return(1);
@@ -105,8 +103,7 @@ sscanf to look at aliases.  These are delimited by '|'. */
 			if (strncmp(name, tmp, len) == 0) {
 				fclose(fp);
 #ifdef DEBUG
-	fprintf(stderr,catgets(catd, 1, 1222,
-			       "Found %s in %s.\n"), name, termfile);
+	fprintf(stderr,CGETS(31, 3, "Found %s in %s.\n"), name, termfile);
 	sleep(1);
 #endif /* DEBUG */
 				return(1);
@@ -116,8 +113,7 @@ sscanf to look at aliases.  These are delimited by '|'. */
 	/* If we get here, then we haven't found a match. */
 	fclose(fp);
 #ifdef DEBUG
-	fprintf(stderr,catgets(catd, 1, 1223,
-			       "No match found for %s in file %s\n"),
+	fprintf(stderr,CGETS(31, 4, "No match found for %s in file %s\n"),
 		name, termfile);
 	sleep(1);
 #endif /* DEBUG */

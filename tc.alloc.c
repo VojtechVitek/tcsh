@@ -196,7 +196,7 @@ malloc(nbytes)
 	stderror(ERR_NOMEM);
 #else
 	showall(NULL, NULL);
-	xprintf("nbytes=%d: Out of memory\n", nbytes);
+	xprintf(CGETS(19, 1, "nbytes=%d: Out of memory\n"), nbytes);
 	abort();
 #endif
 	/* fool lint */
@@ -298,25 +298,22 @@ free(cp)
     if (cp == NULL || dont_free)
 	return;
     CHECK(!memtop || !membot,
-	  catgets(catd, 1, 1078,
-		  "free(%lx) called before any allocations."), cp);
+	  CGETS(19, 2, "free(%lx) called before any allocations."), cp);
     CHECK(cp > (ptr_t) memtop,
-	  catgets(catd, 1, 1079,
-		  "free(%lx) above top of memory."), cp);
+	  CGETS(19, 3, "free(%lx) above top of memory."), cp);
     CHECK(cp < (ptr_t) membot,
-	  catgets(catd, 1, 1080,
-		  "free(%lx) below bottom of memory."), cp);
+	  CGETS(19, 4, "free(%lx) below bottom of memory."), cp);
     op = (union overhead *) (((caddr_t) cp) - MEMALIGN(sizeof(union overhead)));
     CHECK(op->ov_magic != MAGIC,
-	  catgets(catd, 1, 1081, "free(%lx) bad block."), cp);
+	  CGETS(19, 5, "free(%lx) bad block."), cp);
 
 #ifdef RCHECK
     if (op->ov_index <= 13)
 	CHECK(*(U_int *) ((caddr_t) op + op->ov_size + 1 - RSLOP) != RMAGIC,
-	      catgets(catd, 1, 1082, "free(%lx) bad range check."), cp);
+	      CGETS(19, 6, "free(%lx) bad range check."), cp);
 #endif
     CHECK(op->ov_index >= NBUCKETS,
-	  catgets(catd, 1, 1083, "free(%lx) bad block index."), cp);
+	  CGETS(19, 7, "free(%lx) bad block index."), cp);
     size = op->ov_index;
     op->ov_next = nextf[size];
     nextf[size] = op;
@@ -598,22 +595,21 @@ showall(v, c)
     register union overhead *p;
     int     totfree = 0, totused = 0;
 
-    xprintf(catgets(catd, 1, 1086,
-		    "tcsh current memory allocation:\nfree:\t"));
+    xprintf(CGETS(19, 8, "tcsh current memory allocation:\nfree:\t"));
     for (i = 0; i < NBUCKETS; i++) {
 	for (j = 0, p = nextf[i]; p; p = p->ov_next, j++)
 	    continue;
 	xprintf(" %4d", j);
 	totfree += j * (1 << (i + 3));
     }
-    xprintf(catgets(catd, 1, 1087, "\nused:\t"));
+    xprintf(CGETS(19, 9, "\nused:\t"));
     for (i = 0; i < NBUCKETS; i++) {
 	xprintf(" %4u", nmalloc[i]);
 	totused += nmalloc[i] * (1 << (i + 3));
     }
-    xprintf(catgets(catd, 1, 1088, "\n\tTotal in use: %d, total free: %d\n"),
+    xprintf(CGETS(19, 10, "\n\tTotal in use: %d, total free: %d\n"),
 	    totused, totfree);
-    xprintf(catgets(catd, 1, 1089,
+    xprintf(CGETS(19, 11,
 	    "\tAllocated memory from 0x%lx to 0x%lx.  Real top at 0x%lx\n"),
 	    (unsigned long) membot, (unsigned long) memtop,
 	    (unsigned long) sbrk(0));
@@ -621,8 +617,7 @@ showall(v, c)
 #ifndef _VMS_POSIX
     memtop = (char *) sbrk(0);
 #endif /* !_VMS_POSIX */
-    xprintf(catgets(catd, 1, 1090,
-		    "Allocated memory from 0x%lx to 0x%lx (%ld).\n"),
+    xprintf(CGETS(19, 12, "Allocated memory from 0x%lx to 0x%lx (%ld).\n"),
 	    (unsigned long) membot, (unsigned long) memtop, 
 	    (unsigned long) (memtop - membot));
 #endif /* SYSMALLOC */

@@ -74,6 +74,12 @@ update_vars(vp)
 	HIST = *pn++;
 	HISTSUB = *pn;
     }
+    else if (eq(vp, STRpromptchars)) {
+	register Char *pn = varval(vp);
+
+	PRCH = *pn++;
+	PRCHROOT = *pn;
+    }
     else if (eq(vp, STRhistlit)) {
 	HistLit = 1;
     }
@@ -617,6 +623,10 @@ unset(v, c)
 	HIST = '!';
 	HISTSUB = '^';
     }
+    if (adrof(STRpromptchars) == 0) {
+	PRCH = '>';
+	PRCHROOT = '#';
+    }
     if (adrof(STRhistlit) == 0)
 	HistLit = 0;
     if (adrof(STRloginsh) == 0)
@@ -753,8 +763,8 @@ exportpath(val)
     if (val)
 	while (*val) {
 	    if (Strlen(*val) + Strlen(exppath) + 2 > BUFSIZE) {
-		xprintf(catgets(catd, 1, 1076,
-				"Warning: ridiculously long PATH truncated\n"));
+		xprintf(CGETS(18, 1,
+			      "Warning: ridiculously long PATH truncated\n"));
 		break;
 	    }
 	    (void) Strcat(exppath, *val++);

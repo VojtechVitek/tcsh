@@ -181,6 +181,7 @@ extern	void		  trim		__P((Char **));
 #ifdef FILEC
 extern	int		  sortscmp	__P((Char **, Char **));
 #endif
+extern	void		  nlsinit	__P((void));
 
 /*
  * sh.hist.c
