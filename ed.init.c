@@ -55,6 +55,10 @@ RCSID("$Id$")
 #  define VDISCARD VDISCRD
 # endif /* VDISCRD && !VDISCARD */
 
+# if defined(VFLUSHO) && !defined(VDISCARD)
+#  define VDISCARD VFLUSHO
+# endif  /* VFLUSHO && VDISCARD */
+
 # if defined(VSTRT) && !defined(VSTART)
 #  define VSTART VSTRT
 # endif /* VSTRT && ! VSTART */
@@ -796,6 +800,9 @@ ed_Init()
 # ifdef VSWTCH
 	nio.c_cc[VSWTCH] = _POSIX_VDISABLE;
 # endif /* VSWTCH */
+# ifdef VERASE2
+	nio.c_cc[VERASE2] = _POSIX_VDISABLE;
+# endif /* VERASE2 */
 # ifdef VSTART
 	nio.c_cc[VSTART] = '\021';	/* ^Q */
 # endif /* VSTART */
