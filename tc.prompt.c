@@ -420,7 +420,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			    *p++ = attributes | '+';
 			} else
 			    *p++ = attributes | ('0' + updirs);
-			*p++ = attributes | tcsh ? '>' : '%';
+			*p++ = attributes | '>';
 		    }
 		}
 		
@@ -531,6 +531,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	    case '$':
 		sz = (int) (ep - p);
 		(void) expdollar(&p, &cp, &sz, attributes);
+		/* cp should point the last char of currnet % sequence */
+		cp--;
 		break;
 	    case '%':
 		*p++ = attributes | '%';
