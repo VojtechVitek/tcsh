@@ -137,4 +137,4 @@ $set 1
 134 Käyttö: unlimit [-fh] [rajoitteet (limits)]
 135 Muuttujalle $%S ei voida asettaa arvoa
 136 Viitattua työtä ei ole
-137 Tuntematon colorls -muuttuja `%c%c'
+137 Tuntematon colorls-muuttuja `%c%c'
