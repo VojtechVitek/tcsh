@@ -1772,7 +1772,7 @@ pfork(t, wanttty)
 #ifdef F_VER
         if (t->t_dflg & F_VER) {
 	    Setenv(STRSYSTYPE, t->t_systype ? STRbsd43 : STRsys53);
-	    dohash();
+	    dohash(NULL, NULL);
 	}
 #endif /* F_VER */
 #ifdef SIGSYNCH

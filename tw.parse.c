@@ -754,7 +754,7 @@ again:
 	else if (looking_for_command) {
 #ifdef  NOTDEF			/* Not possible */
 	    if (numcommands == 0) {
-		dohash();
+		dohash(NULL, NULL);
 	    }
 #endif
 	    /* searching . added by Andreas Luik <luik@isaak.isa.de> */

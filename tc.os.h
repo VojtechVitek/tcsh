@@ -336,8 +336,10 @@ extern int gethostname();
 extern int sigvec();
 extern int sigpause();
 #  else	/* _AIX370 || MACH || NeXT || _AIXPS2 */
+#   if !defined(apollo) && !defined(__STDC__)
 extern sigret_t sigvec();
 extern void sigpause();
+#   endif /* !apollo && !__STDC__ */
 #  endif /* _AIX370 || MACH || NeXT || _AIXPS2 */
 extern sigmask_t sigblock();
 extern sigmask_t sigsetmask();

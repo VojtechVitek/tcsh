@@ -807,7 +807,7 @@ main(argc, argv)
 #ifdef _PATH_DOTCSHRC
 	    (void) srcfile(_PATH_DOTCSHRC, 0, 0);
 #endif
-	    if (!fast && !arginp && !onelflg)
+	    if (!arginp && !onelflg && !havhash)
 		dohash(NULL,NULL);
 #ifdef _PATH_DOTLOGIN
 	    if (loginsh)
