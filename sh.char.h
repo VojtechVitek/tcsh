@@ -56,8 +56,10 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 #define isspc(c)	cmap(c, _SP)
 #define ismeta(c)	cmap(c, _META)
 #define iscmdmeta(c)	cmap(c, _CMD)
-#define letter(c)	(isalpha(c) || c == '_')
-#define alnum(c)	(isalnum(c) || c == '_')
+#define letter(c)	(((c) & QUOTE) ? 0 : \
+			 (isalpha((unsigned char) (c)) || (c) == '_'))
+#define alnum(c)	(((c) & QUOTE) ? 0 : \
+		         (isalnum((unsigned char) (c)) || (c) == '_'))
 #ifdef NLS
 #    include <ctype.h>
 #else
