@@ -1603,9 +1603,6 @@ again:
 # endif	/* (F_SETFL && O_NDELAY) || FIONBIO */
 		break;
 #endif /* TRY_AGAIN */
-#ifdef _SEQUENT_
-	    case EBADF:
-#endif	/* _SEQUENT_ */
 	    case EINTR:
 		c = 0;
 		break;

@@ -482,6 +482,13 @@ execute(t, wanttty, pipein, pipeout)
 		    }
 
 # ifdef _SEQUENT_
+		    /*
+		     * On some machines (POSIX) the process group leader
+		     * cannot be a zombie. On those machines, the following
+		     * might help. Note that BACKPIPE will break if the
+		     * last process exits too soon.
+		     * (From Jaap)
+		     */
 		    pgetty(wanttty ? wanttty : 1, pgrp);
 # else /* _SEQUENT_ */
 		    pgetty(wanttty, pgrp);

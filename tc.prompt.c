@@ -63,6 +63,7 @@ printprompt(promptno, str)
     struct tm *t;
     time_t  lclock;
     Char    buff[BUFSIZ];
+    static  Char *ocp = NULL, *ostr = NULL;
 
     (void) time(&lclock);
     t = localtime(&lclock);
@@ -81,6 +82,18 @@ printprompt(promptno, str)
     case 2:
 	cp = value(STRprompt3);
 	break;
+    case 3:
+	if (ocp != NULL) {
+	    cp = ocp;
+	    str = ostr;
+	}
+	else 
+	    cp = value(STRprompt);
+	break;
+    }
+    if (promptno < 2) {
+	ocp = cp;
+	ostr = str;
     }
 
     for (; *cp; cp++) {

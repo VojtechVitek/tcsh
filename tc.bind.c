@@ -908,12 +908,8 @@ pkeys(first, last)
     }
     if (map[first] == F_UNASSIGNED) {
 	if (first == last)
-#ifdef _SEQUENT_
 	    xprintf(" %s\t\tis undefined\n",
 		    unparsekey(map == CcAltMap ? first | 0400 : first));
-#else				/* _SEQUENT_ */
-	    xprintf(" %s\t\tis undefined\n", unparsekey(first));
-#endif				/* _SEQUENT_ */
 	return;
     }
 

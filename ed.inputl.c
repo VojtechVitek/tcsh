@@ -212,7 +212,7 @@ Inputl()
 			    xprintf("edit\n");
 			    *LastChar-- = '\0';
 			    Cursor = LastChar;
-			    printprompt(0, NULL);
+			    printprompt(3, NULL);
 			    Refresh();
 			    break;
 			}
@@ -631,9 +631,6 @@ GetNextChar(cp)
 	    *cp = tcp;
 	    return (num_read);
 #endif /* TRY_AGAIN */
-#ifdef _SEQUENT_
-	case EBADF:
-#endif /* _SEQUENT_ */
 	case EINTR:
 	    break;
 	default:

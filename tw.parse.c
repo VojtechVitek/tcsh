@@ -689,9 +689,15 @@ t_search(word, wp, command, max_word_length, looking_for_command, list_max)
 	    xfree((ptr_t) nd);
 	    if (command == SPELL || SearchNoDirErr)
 		return (-2);
-	    xprintf("\n%s unreadable\n",
+	    /*
+	     * From: Amos Shapira <amoss@cs.huji.ac.il>
+	     * Print a better message when completion fails
+	     */
+	    xprintf("\n%s %s\n",
 		    *tilded_dir ? short2str(tilded_dir) :
-		    (*dollar_dir ? short2str(dollar_dir) : short2str(dir)));
+		    (*dollar_dir ? short2str(dollar_dir) : short2str(dir)),
+		    (errno == ENOTDIR ? "not a directory" :
+		    (errno == ENOENT ? "not found" : "unreadable")));
 	    NeedsRedraw = 1;
 	    return (-1);
 	}
