@@ -603,10 +603,10 @@ dowarp(v, c)
 #endif /* WARP */
 
 /***
- *** Masscomp
+ *** Masscomp or HCX
  ***/
 /* Added, DAS DEC-90. */
-#ifdef masscomp
+#if defined(masscomp) || defined(hcx)
 /*ARGSUSED*/
 void
 douniverse(v, c)
@@ -623,7 +623,7 @@ douniverse(v, c)
     else if (*cp == '\0' || setuniverse(short2str(cp)) != 0)
 	stderror(ERR_NAME | ERR_STRING, "Illegal universe");
 }
-#endif /* masscomp */
+#endif /* masscomp || hcx */
 
 
 #ifdef _SEQUENT_

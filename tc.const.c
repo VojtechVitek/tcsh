@@ -51,6 +51,8 @@ Char STR0[]             = { '0', '\0' };
 Char STR1[]             = { '1', '\0' };
 /* STRm1 would look too much like STRml IMHO */
 Char STRminus1[]	= { '-', '1', '\0' };
+Char STRmaxint[]	= { '0', 'x', '7', 'f', 'f', 'f', 'f', 'f', 'f', 'f',
+			    '\0' };
 Char STRcolon[]		= { ':', '\0' };
 Char STRNULL[]          = { '\0' };
 Char STRtcsh[]          = { 't', 'c', 's', 'h', '\0' };

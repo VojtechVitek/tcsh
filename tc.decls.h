@@ -103,9 +103,9 @@ extern	int		  collate	__P((const Char *, const Char *));
 #ifdef HASHBANG
 extern	int		  hashbang	__P((int, Char ***));
 #endif /* HASHBANG */
-#ifdef REMHOST
-extern	void		  remhost	__P((void));
-#endif /* REMHOST */
+#ifdef REMOTEHOST
+extern	void		  remotehost	__P((void));
+#endif /* REMOTEHOST */
 
 
 /*
@@ -128,7 +128,7 @@ extern	void		  domigrate	__P((Char **, struct command *));
 extern	void 		  dowarp	__P((Char **, struct command *));
 #endif /* WARP */
 
-#ifdef masscomp
+#if defined(masscomp) || defined(hcx)
 extern	void		  douniverse	__P((Char **, struct command *));
 #endif /* masscomp */
 

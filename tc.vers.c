@@ -581,6 +581,11 @@ gethosttype()
 #  endif 
 # endif
 
+# ifdef hcx
+#  define _havehosttype_
+    hosttype = "hcx";	/* Harris Tahoe running CX/UX */
+# endif
+
 # ifndef _havehosttype_
 #  define _havehosttype_
     /* Default to something reasonable */

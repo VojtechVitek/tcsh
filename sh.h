@@ -270,9 +270,9 @@ extern int setpgrp();
 #define CSWTCH _POSIX_VDISABLE
 #endif
 
-#if (!defined(FIOCLEX) && defined(SUNOS4)) || SYSVREL == 4
+#if (!defined(FIOCLEX) && defined(SUNOS4)) || ((SYSVREL == 4) && !defined(_SEQUENT_))
 # include <sys/filio.h>
-#endif /* (!FIOCLEX && SUNOS4) || SYSVREL == 4 */
+#endif /* (!FIOCLEX && SUNOS4) || (SYSVREL == 4 && !_SEQUENT_) */
 
 #if !defined(_MINIX) && !defined(COHERENT)
 # include <sys/file.h>
@@ -585,8 +585,10 @@ EXTERN int   OLDSTD;		/* Old standard input (def for cmds) */
 #  define setexit()  setjmp(reslab)
 #  define reset()    longjmp(reslab, 1)
 # endif
-# define getexit(a) (void) memmove((ptr_t)(a), (ptr_t)reslab, sizeof(reslab))
-# define resexit(a) (void) memmove((ptr_t)reslab, ((ptr_t)(a)), sizeof(reslab))
+# define getexit(a) (void) memmove((ptr_t)&(a), (ptr_t)&reslab, sizeof(reslab))
+# define resexit(a) (void) memmove((ptr_t)&reslab, (ptr_t)&(a), sizeof(reslab))
+
+# define cpybin(a, b) (void) memmove((ptr_t)&(a), (ptr_t)&(b), sizeof(Bin))
 
 #else
 
@@ -600,8 +602,10 @@ EXTERN int   OLDSTD;		/* Old standard input (def for cmds) */
 #  define reset()    longjmp(reslab.j, 1)
 # endif
 
-# define getexit(a) ((a) = reslab)
-# define resexit(a) (reslab = (a))
+# define getexit(a) (void) ((a) = reslab)
+# define resexit(a) (void) (reslab = (a))
+
+# define cpybin(a, b) (void) ((a) = (b))
 
 #endif	/* NO_STRUCT_ASSIGNMENT */
 

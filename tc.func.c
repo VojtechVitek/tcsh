@@ -1785,20 +1785,30 @@ hashbang(fd, vp)
  * From: <lesv@ppvku.ericsson.se> (Lennart Svensson)
  */
 void 
-remhost()
+remotehost()
 {
-    struct sockaddr_in saddr;
-    struct hostent* hp;
     char *host = NULL;
+    struct hostent* hp;
+    struct sockaddr_in saddr;
     int len = sizeof(struct sockaddr_in);
 
-    if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) == -1) {
+    if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1) {
+	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, len, AF_INET)) != NULL)
+	    host = hp->h_name;
+	else
+	    host = inet_ntoa(saddr.sin_addr);
+    }
 #ifdef UTHOST
+    else {
+	char *ptr, *sptr;
 	char *name = utmphost();
 	if (name != NULL) {
+	    /* Look for host:display.screen */
+	    if ((sptr = strchr(name, ':')) != NULL)
+		*sptr = '\0';
 	    if ((hp = gethostbyname(name)) == NULL) {
-		char *ptr = strchr(name, '.');
-		if (ptr) {
+		/* Try again elinating the trailing domain */
+		if ((ptr = strchr(name, '.')) != NULL) {
 		    *ptr = '\0';
 		    if ((hp = gethostbyname(name)) != NULL)
 			host = hp->h_name;
@@ -1807,15 +1817,11 @@ remhost()
 	    }
 	    else
 		host = hp->h_name;
+	    if (sptr)
+		*sptr = ':';
 	}
+    }
 #endif
-    }
-    else {
-	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, len, AF_INET)) != NULL)
-	    host = hp->h_name;
-	else
-	    host = inet_ntoa(saddr.sin_addr);
-    }
 
     if (host)
 	tsetenv(STRREMOTEHOST, str2short(host));

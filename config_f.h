@@ -122,12 +122,12 @@
 #endif
 
 /*
- * REMHOST	Try to determine the remote host that we logged in from
+ * REMOTEHOST	Try to determine the remote host that we logged in from
  *		using first getpeername, and then the utmp file. If
- *		successful, set $REMHOST to the name or address of the
+ *		successful, set $REMOTEHOST to the name or address of the
  *		host
  */
-#define REMHOST
+#define REMOTEHOST
 
 /*
  * RCSID	This defines if we want rcs strings in the binary or not

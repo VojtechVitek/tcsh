@@ -1292,8 +1292,13 @@ recdirs(fname, def)
     int     cdflag = 0;
     extern struct directory *dcwd;
     struct directory *dp;
+    unsigned int    num;
+    Char   *snum;
 
-    if (fname == NULL && def) {
+    if (fname == NULL && !def) 
+	return;
+
+    if (fname == NULL) {
 	if ((fname = value(STRdirsfile)) == STRNULL)
 	    fname = Strspl(value(STRhome), &STRtildotdirs[1]);
 	else
@@ -1307,6 +1312,11 @@ recdirs(fname, def)
 	return;
     }
 
+    if ((snum = value(STRsavedirs)) == STRNULL) 
+	num = ~0;
+    else
+	num = (unsigned int) atoi(short2str(snum));
+
     oldidfds = didfds;
     didfds = 0;
     ftmp = SHOUT;
@@ -1316,12 +1326,17 @@ recdirs(fname, def)
     do {
 	if (dp == &dhead)
 	    continue;
+
 	if (cdflag == 0) {
 	    cdflag = 1;
 	    xprintf("cd %S\n", dp->di_name);
 	}
 	else
 	    xprintf("pushd %S\n", dp->di_name);
+
+	if (num-- == 0)
+	    break;
+
     } while ((dp = dp->di_next) != dcwd->di_next);
 
     (void) close(fp);

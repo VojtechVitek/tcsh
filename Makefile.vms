@@ -135,6 +135,7 @@ LDFLAGS= 			## The simplest, suitable for all.
 #LIBES= -ltermcap -lcs			 ## Mach
 #LIBES= -ltermcap -lsec			 ## Tek XD88/10 (UTekV) with PW_SHADOW
 #LIBES= -ltermcap -lsec			 ## Motorola MPC (sysV88) with PW_SHADOW
+#LIBES= -ltermcap -lshadow		 ## Linux
 #LIBES= -ltermcap -lbsd			 ## DEC osf1 on the alpha
 #LIBES= -ltermcap -lbsd			 ## Intel paragon
 #LIBES= -ltermcap -lseq			 ## Sequent's Dynix
