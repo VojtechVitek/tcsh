@@ -174,8 +174,8 @@ strstr(s, t)
     register const char *s, *t;
 {
     do {
-	register char *ss = s;
-	register char *tt = t;
+	register const char *ss = s;
+	register const char *tt = t;
 
 	do
 	    if (*tt == '\0')
@@ -185,7 +185,7 @@ strstr(s, t)
     return (NULL);
 }
 
-#endif				/* POSIX */
+#endif /* POSIX */
 
 #ifndef SHORT_STRINGS
 char   *
