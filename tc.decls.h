@@ -58,8 +58,6 @@ extern	void		  showall	__P((Char **, struct command *));
  * tc.bind.c
  */
 extern	void		  dobindkey	__P((Char **, struct command *));
-extern	int		  parseescape	__P((Char **));
-extern	unsigned char    *unparsestring	__P((Char *, unsigned char *, Char *));
 #ifdef OBSOLETE
 extern	void		  dobind	__P((Char **, struct command *));
 #endif /* OBSOLETE */

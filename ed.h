@@ -97,9 +97,14 @@ extern KEYCMD NumFuns;		/* number of KEYCMDs in above table */
 #define CC_COMPLETE_BACK	20
 #define CC_NORMALIZE_COMMAND	21
 
+typedef struct {
+    Char *buf;
+    int   len;
+} CStr;
+
 typedef union Xmapval {		/* value passed to the Xkey routines */
     KEYCMD cmd;
-    Char *str;
+    CStr str;
 } XmapVal;
 
 #define XK_NOD	-1		/* Internal tree node */

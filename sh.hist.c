@@ -125,7 +125,18 @@ enthist(event, lp, docopy, mflg)
     Char *dp;
     
     if ((dp = varval(STRhistdup)) != STRNULL) {
-	if (eq(dp, STRall)) {
+	if (eq(dp, STRerase)) {
+	    /* masaoki@akebono.tky.hp.com (Kobayashi Masaoki) */
+	    struct Hist *px;
+	    for (p = pp; (px = p, p = p->Hnext) != NULL;)
+		if (heq(lp, &(p->Hlex))){
+		    px->Hnext = p->Hnext;
+		    hfree(p);
+		    p = NULL;
+		    break;
+		}
+	}
+	else if (eq(dp, STRall)) {
 	    for (p = pp; (p = p->Hnext) != NULL;)
 		if (heq(lp, &(p->Hlex)))
 		    break;

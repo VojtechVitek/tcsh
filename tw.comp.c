@@ -613,5 +613,6 @@ tw_complete(line, word, pat, looking, suf)
 	    return TW_ZERO;	/* Cannot happen */
 	}
     }
+    *suf = '\0';
     return TW_ZERO;
 } /* end tw_complete */

@@ -662,15 +662,18 @@ GetNextCommand(cmdnum, ch)
 	cmd = CurrentKeyMap[(unsigned char) *ch];
 	if (cmd == F_XKEY) {
 	    XmapVal val;
-	    switch (GetXkey(ch, &val)) {
+	    CStr cstr;
+	    cstr.buf = ch;
+	    cstr.len = Strlen(ch);
+	    switch (GetXkey(&cstr, &val)) {
 	    case XK_CMD:
 		cmd = val.cmd;
 		break;
 	    case XK_STR:
-		PushMacro(val.str);
+		PushMacro(val.str.buf);
 		break;
 	    case XK_EXE:
-		RunCommand(val.str);
+		RunCommand(val.str.buf);
 		break;
 	    default:
 		abort();

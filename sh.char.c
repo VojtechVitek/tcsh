@@ -166,7 +166,7 @@ unsigned short _cmap[256] = {
 	_CTR,		_CTR,		_CTR,		_CTR,
 
 /*	160 nobreakspace 161 exclamdown	162 cent	163 sterling	*/
-	_SP,		_PUN,		_PUN,		_PUN,
+	_PUN, /* XXX */	_PUN,		_PUN,		_PUN,
 
 /*	164 currency	165 yen		166 brokenbar	167 section	*/
 	_PUN,		_PUN,		_PUN,		_PUN,

@@ -686,6 +686,7 @@ unsetv1(p)
 	for (c = p->v_left; c->v_right; c = c->v_right)
 	    continue;
 	p->v_name = c->v_name;
+	p->v_flags = c->v_flags;
 	p->vec = c->vec;
 	p = c;
 	c = p->v_left;
