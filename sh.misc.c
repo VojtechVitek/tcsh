@@ -179,7 +179,7 @@ strstr(s, t)
 
 	do
 	    if (*tt == '\0')
-		return (s);
+		return ((char *) s);
 	while (*ss++ == *tt++);
     } while (*s++ != '\0');
     return (NULL);
