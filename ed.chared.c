@@ -522,6 +522,7 @@ excl_sw:
     LastChar += (bend - buf) - (q - op);
     Cursor += (bend - buf) - (q - op);
     c_copy(buf, op, (bend - buf));
+    *LastChar = '\0';
     return(op + (bend - buf));
 excl_err:
     Beep();

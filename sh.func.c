@@ -937,7 +937,7 @@ void
 wfree()
 {
     struct Ain    o;
-    struct whyle *nwp = NULL;
+    struct whyle *nwp;
 
 #ifdef FDEBUG
     static char foo[] = "IAFE";
@@ -1173,6 +1173,9 @@ dosetenv(v, c)
 	int     k;
 
 	(void) setlocale(LC_ALL, "");
+# ifdef LC_COLLATE
+	(void) setlocale(LC_COLLATE, "");
+# endif
 	for (k = 0200; k <= 0377 && !Isprint(k); k++)
 	    continue;
 	AsciiOnly = k > 0377;
@@ -1264,6 +1267,9 @@ dounsetenv(v, c)
 		    int     k;
 
 		    (void) setlocale(LC_ALL, "");
+# ifdef LC_COLLATE
+		    (void) setlocale(LC_COLLATE, "");
+# endif
 		    for (k = 0200; k <= 0377 && !Isprint(k); k++)
 			continue;
 		    AsciiOnly = k > 0377;

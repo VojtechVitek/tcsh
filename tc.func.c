@@ -60,9 +60,11 @@ static	void	 Reverse	__P((Char *));
 static	void	 auto_logout	__P((void));
 static	char	*xgetpass	__P((char *));
 static	void	 auto_lock	__P((void));
+#ifdef BSDJOBS
 static	void	 insert		__P((struct wordent *, bool));
 static	void	 insert_we	__P((struct wordent *, struct wordent *));
 static	int	 inlist		__P((Char *, Char *));
+#endif /* BSDJOBS */
 static  Char    *gethomedir	__P((Char *));
 
 /*

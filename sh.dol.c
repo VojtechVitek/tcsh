@@ -115,18 +115,10 @@ Dfix(t)
 		blkfree(t->t_dcom);
 		t->t_dcom = gargv;
 		gargv = 0;
-		break;
+		return;
 	    }
 	}
-	if (*p)
-	    break;
     }
-
-    if (symlinks == SYM_EXPAND)
-	for (pp = t->t_dcom; (p = *pp) != NULL; pp++) {
-	    *pp = dnormalize(p, 1);
-	    xfree((ptr_t) p);
-	}
 }
 
 /*

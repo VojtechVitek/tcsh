@@ -45,8 +45,7 @@ extern	void		  do_help		__P((Char *));
 /*
  * tw.parse.c
  */
-extern	 int		  tenematch		__P((Char *, int, int, 
-						     COMMAND));
+extern	 int		  tenematch		__P((Char *, int, COMMAND));
 extern	 int		  t_search		__P((Char *, Char *, COMMAND, 
 						     int, int, int, Char *, 
 						     int));
@@ -57,6 +56,7 @@ extern	 int		  fcompare		__P((Char **, Char **));
 extern	 void		  print_by_column	__P((Char *, Char *[], int, 
 						     int));
 extern	 int		  StrQcmp		__P((Char *, Char *));
+extern	 Char		 *Getenv		__P((Char *));
 
 /*
  * tw.init.c

@@ -125,8 +125,7 @@ struct ucred {
  * #if (SYSVREL > 0) && defined(TIOCGWINSZ)
  * If that breaks on your machine, let me know.
  */
-#if defined(INTEL) || defined(u3b2) || defined (u3b5) || \
-    defined(ub15) || defined(u3b20d) || defined(ISC) || defined(SCO) 
+#if defined(INTEL) || defined(u3b2) || defined (u3b5) || defined(ub15) || defined(u3b20d) || defined(ISC) || defined(SCO) 
 #ifdef TIOCGWINSZ
 /*
  * for struct winsiz

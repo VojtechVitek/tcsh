@@ -768,7 +768,7 @@ balance(p, f, d)
 #ifndef lint
     register struct varent *t;	/* used by the rotate macros */
 #endif /* !lint */
-    register int ff = 0;
+    register int ff;
 
     /*
      * Ok, from here on, p is the node we're operating on; pp is it's parent; f

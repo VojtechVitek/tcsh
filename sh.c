@@ -142,15 +142,15 @@ main(argc, argv)
 #endif /* BSDSIGS */
 
 #if !defined(BSDTIMES) && defined(POSIX)
-# ifdef CLK_TCK
-    clk_tck = CLK_TCK
-# else /* !CLK_TCK */
-#  ifdef _SC_CLK_TCK
+# ifdef _SC_CLK_TCK
     clk_tck = (clock_t) sysconf(_SC_CLK_TCK);
-#  else /* ! _SC_CLK_TCK */
+# else /* ! _SC_CLK_TCK */
+#  ifdef CLK_TCK
+    clk_tck = CLK_TCK;
+#  else /* !CLK_TCK */
     clk_tck = HZ;
-#  endif /* _SC_CLK_TCK */
-# endif /* CLK_TCK */
+#  endif /* CLK_TCK */
+# endif /* _SC_CLK_TCK */
 #endif /* !BSDTIMES && POSIX */
 
     settimes();			/* Immed. estab. timing base */
@@ -237,6 +237,9 @@ main(argc, argv)
     NoNLSRebind = getenv("NOREBIND") != NULL;
 #ifdef NLS
     (void) setlocale(LC_ALL, "");
+# ifdef LC_COLLATE
+    (void) setlocale(LC_COLLATE, "");
+# endif
     {
 	int     k;
 
