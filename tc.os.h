@@ -162,7 +162,7 @@ struct ucred {
  * defined in <termios.h>. Wrapper added.
  */
 #if !defined(linux) && !defined(_VMS_POSIX)
-# if defined(INTEL) || defined(u3b2) || defined (u3b5) || defined(ub15) || defined(u3b20d) || defined(ISC) || defined(SCO) 
+# if defined(INTEL) || defined(u3b2) || defined (u3b5) || defined(ub15) || defined(u3b20d) || defined(ISC) || defined(SCO) || defined(tower32)
 #  ifdef TIOCGWINSZ
 /*
  * for struct winsiz
@@ -279,6 +279,11 @@ struct ucred {
 # endif	/* ! S_ISSOCK && S_IFSOCK */
 #endif /* S_IFMT */
 
+#ifdef tower32
+/* The header files lie; we really don't have symlinks */
+# undef S_ISLNK
+# undef S_IFLNK
+#endif /* tower32 */
 
 #ifndef S_IREAD
 # define S_IREAD 0000400

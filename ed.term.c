@@ -48,8 +48,8 @@ ttyperm_t ttylist = {
 	{ "iflag:", ICRNL, (INLCR|IGNCR) },
 	{ "oflag:", (OPOST|ONLCR), ONLRET },
 	{ "cflag:", 0, 0 },
-	{ "lflag:", (ISIG|ICANON|ECHO|ECHOE|ECHOCTL|IEXTEN|IDEFAULT),
-		    (NOFLSH|ECHONL|EXTPROC|FLUSHO) },
+	{ "lflag:", (ISIG|ICANON|ECHO|ECHOE|ECHOCTL|IEXTEN),
+		    (NOFLSH|ECHONL|EXTPROC|FLUSHO|IDEFAULT) },
 #else /* GSTTY */
 	{ "nrmal:", (ECHO|CRMOD|ANYP), (CBREAK|RAW|LCASE|VTDELAY|ALLDELAY) },
 	{ "local:", (LCRTBS|LCRTERA|LCRTKIL), (LPRTERA|LFLUSHO) },

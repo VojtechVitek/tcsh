@@ -1730,7 +1730,8 @@ int
 StrQcmp(str1, str2)
     register Char *str1, *str2;
 {
-    for (; *str1 && (*str1 & TRIM) == (*str2 & TRIM); str1++, str2++)
+    for (; *str1 && samecase(*str1 & TRIM) == samecase(*str2 & TRIM); 
+	 str1++, str2++)
 	continue;
     /*
      * The following case analysis is necessary so that characters which look
