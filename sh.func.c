@@ -1930,7 +1930,7 @@ getval(lp, v)
 	cp++;
     if (*cp == 0) {
 	if (*v == 0)
-	    return f == 0.0 ? (RLIM_TYPE) 0 : restrict_limit((f + 0.5) * lp->limdiv);
+	    return restrict_limit((f * lp->limdiv) + 0.5);
 	cp = *v;
     }
     switch (*cp) {
