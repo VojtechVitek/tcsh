@@ -189,12 +189,12 @@ typedef int sigret_t;
 # endif /* __EMX__ || WINNT_NATIVE */
 #endif /* !PATHSEP */
 
-#ifdef __HP_CXD_SPP
+#if defined(__HP_CXD_SPP) && !defined(__hpux)
 # include <sys/cnx_stat.h>
 # define stat stat64
 # define fstat fstat64
 # define lstat lstat64
-#endif /* __HP_CXD_SPP */
+#endif /* __HP_CXD_SPP && !__hpux */
 
 /*
  * This macro compares the st_dev field of struct stat. On aix on ibmESA
