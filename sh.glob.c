@@ -291,7 +291,7 @@ globexpand(v)
 	Char   *b;
 	Char  **vp, **bp;
 
-	if ((b = Strchr(s, LBRC)) && b[1] != '\0') {
+	if ((b = Strchr(s, LBRC)) && b[1] != '\0' && b[1] != '}') {
 	    Char  **bl;
 	    int     len;
 
