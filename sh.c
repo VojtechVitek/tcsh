@@ -2386,7 +2386,7 @@ initdesc()
 {
 #ifdef NLS_BUGS
 #ifdef NLS_CATALOGS
-    nlsclose(catd);
+    nlsclose();
 #endif /* NLS_CATALOGS */
 #endif /* NLS_BUGS */
 

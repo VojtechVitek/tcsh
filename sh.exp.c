@@ -59,7 +59,7 @@ RCSID("$Id$")
 
 static	int	 sh_access	__P((Char *, int));
 static	int	 exp1		__P((Char ***, bool));
-static	int	 exp2		__P((Char ***, bool));
+static	int	 exp2x		__P((Char ***, bool));
 static	int	 exp2a		__P((Char ***, bool));
 static	int	 exp2b		__P((Char ***, bool));
 static	int	 exp2c		__P((Char ***, bool));
@@ -233,7 +233,7 @@ exp1(vp, ignore)
     register Char ***vp;
     bool    ignore;
 {
-    register int p1 = exp2(vp, ignore);
+    register int p1 = exp2x(vp, ignore);
 
 #ifdef EDEBUG
     etraci("exp1 p1", p1, vp);
@@ -252,7 +252,7 @@ exp1(vp, ignore)
 }
 
 static int
-exp2(vp, ignore)
+exp2x(vp, ignore)
     register Char ***vp;
     bool    ignore;
 {
@@ -265,7 +265,7 @@ exp2(vp, ignore)
 	register int p2;
 
 	(*vp)++;
-	p2 = exp2(vp, ignore);
+	p2 = exp2x(vp, ignore);
 #ifdef EDEBUG
 	etraci("exp3 p2", p2, vp);
 #endif /* EDEBUG */
