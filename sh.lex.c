@@ -1644,7 +1644,8 @@ again:
 	    }
 	    if (c >= 0)
 		break;
-	    c = fixio(SHIN, errno);
+	    if ((c = fixio(SHIN, errno)) == -1)
+		break;
 	}
 	if (c <= 0)
 	    return (-1);

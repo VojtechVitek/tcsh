@@ -593,7 +593,7 @@ GetNextChar(cp)
 	return 0;		/* oops: SHIN was closed */
 
     while ((num_read = read(SHIN, (char *) &tcp, 1)) == -1) 
-	if (!tried && fixio(SHIN, errno) == 0)
+	if (!tried && fixio(SHIN, errno) != -1)
 	    tried = 1;
 	else {
 	    *cp = '\0';
