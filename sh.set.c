@@ -373,16 +373,15 @@ operate(op, vp, p)
     return (putn(i));
 }
 
-static Char *putp;
+static Char *putp, nbuf[50];
 
 Char   *
 putn(n)
     register int n;
 {
     int     num;
-    static Char number[15];
 
-    putp = number;
+    putp = nbuf;
     if (n < 0) {
 	n = -n;
 	*putp++ = '-';
@@ -405,7 +404,7 @@ putn(n)
 #endif
     putn1(n);
     *putp = 0;
-    return (Strsave(number));
+    return (Strsave(nbuf));
 }
 
 static void
@@ -790,7 +789,11 @@ balance(p, f, d)
 			p->v_bal > -1 ? 0 : 1;
 		    p->v_bal = 0;
 		    break;
+		default:
+		    break;
 		}
+		break;
+	    default:
 		break;
 	    }
 	}
@@ -823,7 +826,11 @@ balance(p, f, d)
 			p->v_bal > -1 ? 0 : 1;
 		    p->v_bal = 0;
 		    break;
+		default:
+		    break;
 		}
+		break;
+	    default:
 		break;
 	    }
 	}

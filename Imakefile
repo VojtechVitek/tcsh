@@ -255,7 +255,7 @@ PARALLEL=12				# Make the multi-max run fast.
 #endif
 
 DESTDIR = DestDir
-MANSECT = 1
+MANSUFFIX = 1
 #ifdef DestBin
 BINDIR = DestBin
 #else
@@ -264,7 +264,7 @@ BINDIR = $(DESTDIR)/bin
 #ifdef DestMan
 MANDIR = DestMan
 #else
-MANDIR = $(DESTDIR)/man/man$(MANSECT)
+MANDIR = $(DESTDIR)/man/man$(MANSUFFIX)
 #endif
 
 #ifndef MyCflags

@@ -45,6 +45,9 @@ RCSID("$Id$")
 #if !defined(NSIG) && defined(SIGMAX)
 # define NSIG (SIGMAX+1)
 #endif /* !NSIG && SIGMAX */
+#if !defined(NSIG) && defined(_NSIG)
+# define NSIG _NSIG
+#endif /* !NSIG && _NSIG */
 
 #ifdef aiws
 # undef HZ

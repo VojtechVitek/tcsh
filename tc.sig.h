@@ -51,23 +51,30 @@
 # define SAVESIGVEC
 #endif
 
+#if SVID > 0 && SVID < 3 && !defined(BSDSIGS)
+/*
+ * If we have unreliable signals...
+ */
+# define UNRELSIG
+#endif /* SVID > 0 && SVID < 3 && !BSDSIGS */
+
 #ifdef BSDSIGS
 /*
  * sigvec is not the same everywhere
  */
-# if defined(_SEQUENT_) || defined(_POSIX_SOURCE)
+# if defined(_SEQUENT_) || (defined(_POSIX_SOURCE) && !defined(hpux))
 #  define HAVE_SIGVEC
 #  define mysigvec(a, b, c)	sigaction(a, b, c)
 typedef struct sigaction sigvec_t;
 #  define sv_handler sa_handler
 #  define sv_flags sa_flags
-# endif	/* _SEQUENT || _POSIX_SOURCE */
+# endif	/* _SEQUENT || (_POSIX_SOURCE && !hpux) */
 
 # ifdef hpux
 #  define HAVE_SIGVEC
 #  define mysigvec(a, b, c)	sigvector(a, b, c)
-#  define NEEDsignal
 typedef struct sigvec sigvec_t;
+#  define NEEDsignal
 # endif	/* hpux */
 
 # ifndef HAVE_SIGVEC

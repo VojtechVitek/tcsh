@@ -459,7 +459,7 @@ exp6(vp, ignore)
 	faket.t_dcar = faket.t_dcdr = faket.t_dspr = NULL;
 	faket.t_dcom = fakecom;
 	fakecom[0] = STRfakecom;
-	fakecom[1] = NOSTR;
+	fakecom[1] = NULL;
 	(*vp)++;
 	v = *vp;
 	for (;;) {
@@ -486,7 +486,7 @@ exp6(vp, ignore)
     if (isa(**vp, ANYOP))
 	return (Strsave(STRNULL));
     cp = *(*vp)++;
-    if (*cp == '-' && any("erwxfdzopls", cp[1])) {
+    if (*cp == '-' && any("erwxfdzoplst", cp[1])) {
 	struct stat stb;
 
 	if (cp[2] != '\0')

@@ -603,7 +603,7 @@ dobackp(cp, literal)
     }
     pargsiz = GLOBSPACE;
     pargv = (Char **) xmalloc((size_t) sizeof(Char *) * pargsiz);
-    pargv[0] = NOSTR;
+    pargv[0] = NULL;
     pargcp = pargs = word;
     pargc = 0;
     pnleft = MAXPATHLEN - 4;
@@ -795,7 +795,7 @@ pword()
 				   (size_t) pargsiz * sizeof(Char *));
     }
     pargv[pargc++] = Strsave(pargs);
-    pargv[pargc] = NOSTR;
+    pargv[pargc] = NULL;
     pargcp = pargs;
     pnleft = MAXPATHLEN - 4;
 }

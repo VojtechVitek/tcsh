@@ -212,6 +212,8 @@ Char STRambiguous[]	= { 'a', 'm', 'b', 'i', 'g', 'u', 'o', 'u', 's', '\0' };
 Char STRnotunique[]	= { 'n', 'o', 't', 'u', 'n', 'i', 'q', 'u', 'e', '\0' };
 Char STRret[]		= { '\n', '\0' };
 Char STRnobeep[]	= { 'n', 'o', 'b', 'e', 'e', 'p', '\0' };
+Char STRnoambiguous[]	= { 'n', 'o', 'a', 'm', 'b', 'i', 'g', 'u', 'o', 'u', 
+			    's', '\0' };
 Char STRvisiblebell[]	= { 'v', 'i', 's', 'i', 'b', 'l', 'e', 'b', 'e', 'l', 
 			    'l', '\0' };
 Char STRrecognize_only_executables[] = { 'r', 'e', 'c', 'o', 'g', 'n', 'i', 'z',

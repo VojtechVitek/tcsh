@@ -681,7 +681,12 @@ struct command {
 
 extern struct biltins {
     char   *bname;
+#if defined(hpux) && defined(__STDC__) && !defined(__GNUC__)
+    /* Avoid hpux ansi mode spurious warnings */
+    void    (*bfunct) ();
+#else
     void    (*bfunct) __P((Char **, struct command *));
+#endif /* hpux && __STDC__ && !__GNUC__ */
     int     minargs, maxargs;
 }       bfunc[];
 extern int nbfunc;
@@ -837,7 +842,6 @@ extern int errno, sys_nerr;
 #define Strstr(a, b)		s_strstr(a, b)
 #endif 
 
-#define	NOSTR	((Char *) 0)
 /*
  * setname is a macro to save space (see sh.err.c)
  */

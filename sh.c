@@ -313,8 +313,8 @@ main(argc, argv)
     if ((tcp = getenv("HOME")) != NULL)
 	cp = SAVE(tcp);
     else
-	cp = NOSTR;
-    if (cp == NOSTR)
+	cp = NULL;
+    if (cp == NULL)
 	fast = 1;		/* No home -> can't read scripts */
     else
 	set(STRhome, cp);
@@ -868,6 +868,7 @@ main(argc, argv)
 	/* Will have value(STRhome) here because set fast if don't */
 	{
 	    int     osetintr = setintr;
+	    sigret_t (*oparintr)() = parintr;
 
 #ifdef BSDSIGS
 	    sigmask_t omask = sigblock(sigmask(SIGINT));
@@ -875,6 +876,7 @@ main(argc, argv)
 	    sighold(SIGINT);
 #endif
 	    setintr = 0;
+	    parintr = SIG_IGN;	/* onintr in /etc/ files has no effect */
 #ifdef _PATH_DOTCSHRC
 	    (void) srcfile(_PATH_DOTCSHRC, 0, 0);
 #endif
@@ -890,6 +892,7 @@ main(argc, argv)
 	    (void) sigrelse(SIGINT);
 #endif
 	    setintr = osetintr;
+	    parintr = oparintr;
 	}
 #ifdef LOGINFIRST
 	if (loginsh)
@@ -1649,7 +1652,7 @@ dosource(t, c)
 
     t++;
     if (*t && eq(*t, STRmh)) {
-	if (*++t == NOSTR)
+	if (*++t == NULL)
 	    stderror(ERR_NAME | ERR_HFLAG);
 	hflg++;
     }

@@ -131,7 +131,7 @@ dosetpath(arglist, c)
     for (i = 0; i < ncmds; i++) {
 	Char   *val = globone(cmdargs[i], G_ERROR);
 
-	if (val == NOSTR)
+	if (val == NULL)
 	    goto abortpath;
 	cmds[i] = xmalloc(Strlen(val) + 1);
 	(void) strcpy(cmds[i], short2str(val));
@@ -716,9 +716,6 @@ osinit()
     }
 #endif /* aiws */
 
-#ifdef hpux
-    (void) sigspace(4192);
-#endif	/* hpux */
 #ifdef titan
     end = sbrk(0);
 #endif	/* titan */

@@ -54,9 +54,9 @@
 # define _PATH_DOTCSHRC		"/etc/cshrc"
 #endif /* convex || __convex__ */
 
-#if defined(sgi) || defined(OREO)
+#if defined(sgi) || defined(OREO) || defined(cray)
 # define _PATH_DOTLOGIN		"/etc/cshrc"
-#endif /* sgi || OREO */
+#endif /* sgi || OREO || cray */
 
 #if defined(NeXT)
 # define _PATH_DOTLOGIN		"/etc/login.std"

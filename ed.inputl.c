@@ -185,8 +185,7 @@ Inputl()
 
 	case CC_NEWLINE:	/* normal end of line */
 	    if (crct && (!Strcmp(*(crct->vec), STRcmd) ||
-			 !Strcmp(*(crct->vec), STRall)) &&
-		!Strchr(InputBuf, '\n')) {
+			 !Strcmp(*(crct->vec), STRall))) {
 		(void) Strcpy(Origin, InputBuf);
 		SaveChar = LastChar;
 		if (SpellLine(!Strcmp(*(crct->vec), STRcmd)) == 1) {

@@ -78,7 +78,7 @@ dosched(v, c)
 
     v++;
     cp = *v++;
-    if (cp == NOSTR) {
+    if (cp == NULL) {
 	/* print list of scheduled events */
 	for (count = 1, tp = sched_ptr; tp; count++, tp = tp->t_next) {
 	    timeline = ctime(&tp->t_when);

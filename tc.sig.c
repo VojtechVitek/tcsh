@@ -239,8 +239,8 @@ sigret_t(*
 #ifdef SIG_STK
     sv.sv_onstack = SIG_STK;
 #endif
-#if defined(SV_BSDSIG) && defined(SV_ONSTACK)
-    sv.sv_flags = SV_BSDSIG | SV_ONSTACK;
+#ifdef SV_BSDSIG
+    sv.sv_flags = SV_BSDSIG;
 #endif
 
     if (mysigvec(s, &sv, NULL) < 0)

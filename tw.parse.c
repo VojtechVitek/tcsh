@@ -156,7 +156,7 @@ tenematch(inputline, inputline_size, num_read, command)
 	if (skp)
 	    continue;
 	if ((ismeta(word_start[-1]) || isaset(cmd_st, word_start)) &&
-	    (word_start[-1] != '#') && (word_start[-1] != '$') &&
+	    /* (word_start[-1] != '#') && */ (word_start[-1] != '$') &&
 	    ((word_start - 1 == inputline) || (word_start[-2] != '\\')))
 	    break;
     }
@@ -415,7 +415,8 @@ quote_meta(word, trail_space)
     for (bptr = buffer, wptr = word; *wptr != '\0';) {
 	if ((cmap(*wptr, _META | _DOL | _Q | _ESC | _GLOB) || *wptr == HIST ||
 	     *wptr == HISTSUB) &&
-	    (*wptr != ' ' || !trail_space || *(wptr + 1) != '\0'))
+	    (*wptr != ' ' || !trail_space || 
+	     *(wptr + 1) != '\0') && *wptr != '#')
 	    *bptr++ = '\\';
 	*bptr++ = *wptr++;
     }

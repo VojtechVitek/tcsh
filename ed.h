@@ -42,7 +42,11 @@
 #endif
 
 #define TABSIZE		8	/* usually 8 spaces/tab */
-#define	INBUFSIZ	BUFSIZ	/* size of input buffer */
+#define	INBUFSIZ	1024	/* size of input buffer */
+				/* Used to be BUFSIZ, but that is could
+				 * be too small or too large for some
+				 * systems
+				 */
 #define MAXMACROLEVELS	10	/* max number of nested kbd macros */
 
 extern int errno;

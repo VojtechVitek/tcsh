@@ -47,14 +47,6 @@
 # define BACKPIPE
 #endif /* SVID > 3 */
 
-
-#if SVID > 0 && SVID < 3 && !defined(BSDSIGS)
-/*
- * If we have unreliable signals...
- */
-# define UNRELSIG
-#endif /* SVID > 0 && SVID < 3 && !BSDSIGS */
-
 #ifdef OREO
 # include <sys/time.h>
 # include <sys/resource.h>

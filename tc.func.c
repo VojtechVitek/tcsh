@@ -660,7 +660,7 @@ period_cmd()
     periodic_active = 1;
     if (!whyles && adrof1(STRperiodic, &aliases)) {
 	vp = value(STRtperiod);
-	if (vp == NOSTR)
+	if (vp == NULL)
 	    return;
 	interval = getn(vp);
 	(void) time(&t);

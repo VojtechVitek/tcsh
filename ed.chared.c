@@ -492,7 +492,7 @@ excl_sw:
     if (q[1] == ':') {
 	*bend = '\0';
 	omodbuf = buf;
-	while (q[1] == ':' && (modbuf = domod(omodbuf, (int) q[2])) != NOSTR) {
+	while (q[1] == ':' && (modbuf = domod(omodbuf, (int) q[2])) != NULL) {
 	    if (omodbuf != buf)
 		xfree((ptr_t) omodbuf);
 	    omodbuf = modbuf;
