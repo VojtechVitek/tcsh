@@ -84,7 +84,7 @@ extern bool NoNLSRebind;
 jmp_buf reslab;
 
 #ifdef TESLA
-static int do_logout;
+int do_logout;
 #endif				/* TESLA */
 
 Char   *dumphist[] = {STRhistory, STRmh, 0, 0};
