@@ -319,6 +319,7 @@ dnormalize(cp, exp)
     if (exp) {
  	int     dotdot = 0;
 	Char   *dp, *cwd, *start = cp, buf[MAXPATHLEN];
+	struct stat sb;
 # ifdef apollo
 	bool slashslash;
 # endif /* apollo */
@@ -334,6 +335,13 @@ dnormalize(cp, exp)
 	 */
         if (dotdot == 0)
 	    return (Strsave(cp));
+
+	/*
+	 * If the path doesn't exist, we are done too.
+	 */
+	if (lstat(short2str(cp), &sb) != 0 && errno == ENOENT)
+	    return (Strsave(cp));
+	
 
 	cwd = (Char *) xmalloc((size_t) (((int) Strlen(dcwd->di_name) + 3) *
 					   sizeof(Char)));
