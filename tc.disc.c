@@ -103,9 +103,10 @@ int     f;
     struct ltchars ltcbuf;
 
     if (ioctl(f, TCGETA, (ioctl_t) & termiob) == 0) {
+	int comp = getcompat(COMPAT_BSDTTY);
 	otermiob = termiob;
-	if ((getcompat(COMPAT_BSDTTY) & COMPAT_BSDTTY) != COMPAT_BSDTTY) {
-	    setcompat(COMPAT_BSDTTY);
+	if ((comp & COMPAT_BSDTTY) != COMPAT_BSDTTY) {
+	    (void) setcompat(comp | COMPAT_BSDTTY);
 	    if (ioctl(f, TIOCGLTC, (ioctl_t) & ltcbuf) != 0)
 		xprintf("Couldn't get local chars.\n");
 	    else {

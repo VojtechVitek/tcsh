@@ -546,11 +546,19 @@ exp6(vp, ignore)
 		switch (*ft) {
 
 		case 'f':
+#ifdef S_ISREG
 		    i = S_ISREG(stb.st_mode);
+#else
+		    i = 0;
+#endif
 		    break;
 
 		case 'd':
+#ifdef S_ISDIR
 		    i = S_ISDIR(stb.st_mode);
+#else
+		    i = 0;
+#endif
 		    break;
 
 		case 'p':

@@ -324,13 +324,14 @@ dcopy(i, j)
 
     if (i == j || i < 0 || (j < 0 && i > 2))
 	return (i);
-#ifdef HAVEDUP2
     if (j >= 0) {
+#ifdef HAVEDUP2
 	(void) dup2(i, j);
 	return (j);
-    }
+#else
+	(void) close(j);
 #endif
-    (void) close(j);
+    }
     return (renum(i, j));
 }
 
@@ -420,6 +421,19 @@ strip(cp)
 	return (cp);
     while (*dp++ &= TRIM)
 	continue;
+    return (cp);
+}
+
+Char   *
+quote(cp)
+    Char   *cp;
+{
+    register Char *dp = cp;
+
+    if (!cp)
+	return (cp);
+    while (*dp != '\0')
+	*dp++ |= QUOTE;
     return (cp);
 }
 

@@ -578,7 +578,8 @@ parseescape(ptr)
 	    break;
 	}
     }
-    else if ((*p & CHAR) == '^' && Isalpha(p[1] & CHAR)) {
+    else if ((*p & CHAR) == '^' && (Isalpha(p[1] & CHAR) || 
+				    strchr("@^_?\\|[{]}", p[1] & CHAR))) {
 	p++;
 	c = (*p == '?') ? '\177' : ((*p & CHAR) & 0237);
     }

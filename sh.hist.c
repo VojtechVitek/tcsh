@@ -230,7 +230,7 @@ phist(hp, hflg)
 {
 
     if (hflg != HIST_ONLY) {
-	Char   *cp = str2short("%h\t%@\t%R\n");
+	Char   *cp = str2short("%h\t%T\t%R\n");
 	Char buf[BUFSIZE];
 	struct varent *vp = adrof(STRhistory);
 

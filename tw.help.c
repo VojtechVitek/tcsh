@@ -71,13 +71,18 @@ do_help(command)
     Char   *thpath;
 
 
+    /* trim off the whitespace at the beginning */
+    for (cmd_p = command; *cmd_p == ' ' || *cmd_p == '\t'; cmd_p++)
+	continue;
+		
     /* copy the string to a safe place */
-    copyn(name, command, FILSIZ + 1);
+    copyn(name, cmd_p, FILSIZ + 1);
 
-    /* trim off the garbage that may be at the end */
-    for (cmd_p = name; *cmd_p != '\0'; cmd_p++)
-	if (*cmd_p == ' ' || *cmd_p == '\t')
-	    *cmd_p = '\0';
+    /* trim off the whitespace that may be at the end */
+    for (cmd_p = name; 
+	 *cmd_p != ' ' && *cmd_p != '\t' && *cmd_p != '\0'; cmd_p++)
+	continue;
+    *cmd_p = '\0';
 
     /* if nothing left, return */
     if (*name == '\0')

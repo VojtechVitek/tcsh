@@ -43,7 +43,7 @@
  * We try to use the system's wait.h when we can...
  */
 
-#if SYSVREL > 0
+#if SYSVREL > 0 && !defined(linux)
 # ifdef hpux
 #  ifndef __hpux
 #   define NEEDwait
@@ -63,14 +63,14 @@
 #   define NEEDwait
 #  endif /* OREO || IRIS4D || POSIX */
 # endif	/* hpux */
-#else /* SYSVREL == 0 */
+#else /* SYSVREL == 0 || linux */
 # ifdef _MINIX
 #  undef NEEDwait
 #  include "mi.wait.h"
 # else
 #  include <sys/wait.h>
 # endif /* _MINIX */
-#endif /* SYSVREL == 0 */
+#endif /* SYSVREL == 0 || linux */
 
 #ifdef NEEDwait
 /*

@@ -434,7 +434,7 @@ prusage(bs, es, e, b)
 		xprintf("%ld", pagetok(r1->ru_maxrss));
 #else
 		xprintf("%ld", r1->ru_maxrss / 2L);
-#endif				/* sun */
+#endif /* SUNOS4 */
 		break;
 
 	    case 'F':		/* page faults */

@@ -231,12 +231,12 @@ extern	pid_t 		  ourwait	__P((int *));
 extern	sigret_t	(*xsignal	__P((int, sigret_t (*)(int)))) ();
 #define signal(a, b)	  xsignal(a, b)
 #endif
-#if defined(_SEQUENT_) || defined(linux)
+#ifdef _SEQUENT_
 extern	sigmask_t	  sigsetmask	__P((sigmask_t));
 extern	sigmask_t	  sigblock	__P((sigmask_t));
 extern	void		  bsd_sigpause	__P((sigmask_t));
 extern  sigret_t        (*bsd_signal    __P((int, sigret_t (*)(int)))) ();
-#endif /* _SEQUENT_ || linux */
+#endif /* _SEQUENT_ */
 #ifdef SIGSYNCH
 extern	sigret_t	  synch_handler	__P((int));
 #endif
@@ -279,10 +279,12 @@ extern	char		 *gethosttype	__P((void));
 /*
  * tc.who.c
  */
+#ifndef HAVENOUTMP
 extern	void		  initwatch	__P((void));
 extern	void		  resetwatch	__P((void));
 extern	void		  watch_login	__P((void));
 extern	char 		 *who_info	__P((ptr_t, int, char *));
 extern	void		  dolog		__P((Char **, struct command *));
+#endif /* HAVENOUTMP */
 
 #endif				/* _h_tc_decls */

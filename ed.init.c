@@ -620,7 +620,7 @@ Load_input_line()
     if (Tty_raw_mode)
 	return 0;
 
-#if defined(FIONREAD) && !defined(linux) && !defined(OREO)
+#if defined(FIONREAD) && !defined(OREO)
     (void) ioctl(SHIN, FIONREAD, &chrs);
     if (chrs > 0) {
 	char    buf[BUFSIZE];
@@ -632,7 +632,7 @@ Load_input_line()
 	    PushMacro(Input_Line);
 	}
     }
-#endif  /* FIONREAD */
+#endif  /* FIONREAD && !OREO */
     return chrs > 0;
 }
 

@@ -65,6 +65,10 @@ easily confused. */
 # define BSDJOBS
 #endif 
 
+#if defined(POSIXSIGS) && !defined(BSDSIGS)
+# define BSDSIGS
+#endif
+
 #ifdef SHORT_STRINGS
 typedef short Char;
 # define SAVE(a) (Strsave(str2short(a)))
@@ -788,8 +792,6 @@ EXTERN struct varent {
 #define v_left		v_link[0]
 #define v_right		v_link[1]
 #define v_parent	v_link[2]
-
-extern struct varent *adrof1();
 
 #define adrof(v)	adrof1(v, &shvhed)
 #define value(v)	value1(v, &shvhed)

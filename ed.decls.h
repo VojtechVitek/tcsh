@@ -120,6 +120,8 @@ extern	CCRETVAL	e_insert		__P((int));
 extern	CCRETVAL	e_newline		__P((int));
 extern	CCRETVAL	e_delprev		__P((int));
 extern	CCRETVAL	e_delnext		__P((int));
+/* added by mtk@ari.ncl.omron.co.jp (920818) */
+extern	CCRETVAL	e_delnext_eof		__P((int));	
 extern	CCRETVAL	e_list_delnext		__P((int));	/* for ^D */
 extern	CCRETVAL	e_toend			__P((int));
 extern	CCRETVAL	e_tobeg			__P((int));
@@ -219,6 +221,7 @@ extern	CCRETVAL	v_rchar_back		__P((int));
 extern  CCRETVAL        v_charto_fwd		__P((int));
 extern  CCRETVAL        v_charto_back		__P((int));
 extern  CCRETVAL        e_normalize_path	__P((int));
+extern  CCRETVAL        e_stuff_char		__P((int));
 
 /*
  * ed.inputl.c

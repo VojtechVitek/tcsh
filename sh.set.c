@@ -137,12 +137,17 @@ update_vars(vp)
     else if (eq(vp, STRbackslash_quote)) {
 	bslash_quote = 1;
     }
+    else if (eq(vp, STRdirstack)) {
+	dsetstack();
+    }
     else if (eq(vp, STRrecognize_only_executables)) {
 	tw_cmd_free();
     }
+#ifndef HAVENOUTMP
     else if (eq(vp, STRwatch)) {
 	resetwatch();
     }
+#endif /* HAVENOUTMP */
 }
 
 

@@ -511,7 +511,8 @@ getdol()
     case '\n':
 	ungetD(c);
 	np--;
-	seterror(ERR_NEWLINE);
+	if (!special)
+	    seterror(ERR_NEWLINE);
 	*np = 0;
 	addla(name);
 	return;
@@ -561,10 +562,8 @@ getdol()
 	    }
 	}
 	else {
-	    *np = 0;
-	    seterror(ERR_VARILL);
-	    addla(name);
-	    return;
+	    if (!special)
+		seterror(ERR_VARILL);
 	}
 	if (toolong) {
 	    seterror(ERR_VARTOOLONG);
@@ -660,7 +659,7 @@ getdol()
 	    if (!any("htrqxesul", c)) {
 		if ((amodflag || gmodflag) && c == '\n')
 		    stderror(ERR_VARSYN);	/* strike */
-		seterror(ERR_VARMOD, c);
+		seterror(ERR_BADMOD, c);
 		*np = 0;
 		addla(name);
 		return;

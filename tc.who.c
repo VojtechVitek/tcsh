@@ -40,6 +40,7 @@ RCSID("$Id$")
 
 #include "tc.h"
 
+#ifndef HAVENOUTMP
 /*
  * kfk 26 Jan 1984 - for login watch functions.
  */
@@ -554,3 +555,4 @@ struct command *c;
 	wp = wp->who_next;
     }
 }
+#endif /* HAVENOUTMP */

@@ -87,7 +87,7 @@ Inputl()
     if (GettingInput)
 	MacroLvl = -1;		/* editor was interrupted during input */
 
-#if defined(FIONREAD) && !defined(linux) && !defined(OREO)
+#if defined(FIONREAD) && !defined(OREO)
     if (!Tty_raw_mode && MacroLvl < 0) {
 	long    chrs = 0;
 
@@ -97,7 +97,7 @@ Inputl()
 		return 0;
 	}
     }
-#endif
+#endif /* FIONREAD && !OREO */
 
     GettingInput = 1;
     NeedsRedraw = 0;

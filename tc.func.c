@@ -1544,10 +1544,10 @@ fixio(fd, e)
 #endif /* EWOULDBLOCK */
 
 #if defined(POSIX) && defined(EAGAIN)
-# if defined(EWOULDBLOCK) && EWOULDBLOCK != EAGAIN
+# if !defined(EWOULDBLOCK) || EWOULDBLOCK != EAGAIN
     case EAGAIN:
 #  define TRY_AGAIN
-# endif /* EWOULDBLOCK && EWOULDBLOCK != EAGAIN */
+# endif /* !EWOULDBLOCK || EWOULDBLOCK != EAGAIN */
 #endif /* POSIX && EAGAIN */
 
 	e = 0;
@@ -1643,7 +1643,8 @@ hashbang(fd, vp)
 	case '\t':
 	    if (ws) {	/* a blank after a word.. save it */
 		*p = '\0';
-		sargv[sargc++] = ws;
+		if (sargc < HACKVECSZ - 1)
+		    sargv[sargc++] = ws;
 		ws = NULL;
 	    }
 	    p++;
@@ -1655,7 +1656,8 @@ hashbang(fd, vp)
 	case '\n':	/* The end of the line. */
 	    if (ws) {	/* terminate the last word */
 		*p = '\0';
-		sargv[sargc++] = ws;
+		if (sargc < HACKVECSZ - 1)
+		    sargv[sargc++] = ws;
 		sargv[sargc] = NULL;
 		ws = NULL;
 		*vp = blk2short(sargv);

@@ -94,7 +94,7 @@ static struct rusage zru;
 static struct rusage zru = {{0L, 0L}, {0L, 0L}, 0, 0, 0, 0, 0, 0, 0, 
 			    0, 0, 0, 0, 0, 0};
 #  endif /* masscomp */
-# endif	/* !sun && !hp9000 */
+# endif	/* !SUNOS4 && !hp9000 */
 #else /* ! BSDTIMES */
 # ifdef _SEQUENT_
 static struct process_stats zru = {{0L, 0L}, {0L, 0L}, 0, 0, 0, 0, 0, 0, 0,
@@ -1241,7 +1241,7 @@ ptprint(tp)
 # ifdef _SEQUENT_
 #  define timercmp(tvp, uvp, cmp) \
       ((tvp)->tv_sec cmp (uvp)->tv_sec || \
-       (tvp)->tv_sec == (uvp)->tv_sec && (tvp)->tv_usec cmp (uvp)->tv_usec)
+       ((tvp)->tv_sec == (uvp)->tv_sec && (tvp)->tv_usec cmp (uvp)->tv_usec))
     timeval_t tetime, diff;
     static timeval_t ztime;
     struct process_stats ru;

@@ -782,11 +782,16 @@ fix_strcoll_bug()
 #endif /* STRCOLLBUG */
 
 
+#ifdef OREO
+#include <compat.h>
+#endif /* OREO */
+
 void
 osinit()
 {
 #ifdef OREO
     set42sig();
+    setcompat(getcompat() & ~COMPAT_EXEC);
     sigignore(SIGIO);		/* ignore SIGIO */
 #endif /* OREO */
 

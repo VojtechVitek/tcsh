@@ -1802,6 +1802,31 @@ e_delwordprev(c)
     return(CC_REFRESH);
 }
 
+/* added by mtk@ari.ncl.omron.co.jp (920818) */
+/* rename e_delnext() -> e_delnext_eof() */
+/*ARGSUSED*/
+CCRETVAL
+e_delnext_eof(c)
+    int c;
+{
+    if (Cursor == LastChar) {/* if I'm at the end */
+	if (!VImode) {
+		return(CC_ERROR);
+	}
+	else {
+	    if (Cursor != InputBuf)
+		Cursor--;
+	    else
+		return(CC_ERROR);
+	}
+    }
+    c_delafter(Argument);	/* delete after dot */
+    if (Cursor > LastChar)
+	Cursor = LastChar;	/* bounds check */
+    return(CC_REFRESH);
+}
+
+
 /*ARGSUSED*/
 CCRETVAL
 e_delnext(c)
@@ -2734,7 +2759,35 @@ e_tty_int(c)
     return (CC_NORM);
 #endif /* _MINIX */
 }
-  
+
+/*
+ * From: ghazi@cesl.rutgers.edu (Kaveh R. Ghazi)
+ * Function to send a character back to the input stream in cooked
+ * mode. Only works if we have TIOCSTI
+ */
+/*ARGSUSED*/
+CCRETVAL
+e_stuff_char(c)
+     char c;
+{
+#ifdef TIOCSTI
+     extern int Tty_raw_mode;
+     int was_raw = Tty_raw_mode;
+
+     if (was_raw)
+         Cookedmode();
+
+     write(SHIN, "\n", 1);
+     (void) ioctl(SHIN, TIOCSTI, (ioctl_t) & c);
+
+     if (was_raw)
+         Rawmode();
+     return(e_redisp(c));
+#else /* !TIOCSTI */  
+     return(CC_ERROR);
+#endif /* !TIOCSTI */  
+}
+
 /*ARGSUSED*/
 CCRETVAL
 e_insovr(c)
