@@ -2419,6 +2419,12 @@ list possibilities on an ambiguous completion.
 .B autologout 
 number of minutes of inactivity before automatic logout.
 .TP 10
+.B backslash_quote
+makes the backslash quote \\, \', and ". This option changes the
+parsing mechanism for tcsh, and it can cause syntax errors in 
+.I csh
+scripts.
+.TP 10
 .B chase_symlinks 
 always resolve symbolic links to real names on cd, etc.
 .TP 10
