@@ -225,7 +225,9 @@ Dpack(wbuf, wp)
 	    Gcat(STRNULL, wbuf);
 	    return (NULL);
 	}
+#if defined(DSPMBYTE)
 mbyteskip:
+#endif /* DSPMBYTE */
 	if (--i <= 0)
 	    stderror(ERR_WTOOLONG);
 	*wp++ = (Char) c;
