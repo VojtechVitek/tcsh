@@ -54,7 +54,7 @@ CFLAGS=-O2 $(INCLUDES)
 # gcc 2.1 on linux
 #CFLAGS=-O6 -fomit-frame-pointer $(INCLUDES)
 
-#hpux 8.0, careful about the +O3... breaks globbing in some versions
+# HP/UX 8.0, 9.0
 #CFLAGS= $(INCLUDES) +O3 -Aa
 
 # Ultrix 4.2a
