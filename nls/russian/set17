@@ -14,3 +14,4 @@ $set 17
 11 wd now: 
 12 %S: Уже отложено\n
 13 %S: Уже остановлено\n
+14 %S: Badly formed number\n

@@ -14,3 +14,4 @@ $set 17
 11 directory di lavoro corrente: 
 12 %S: già sospeso\n
 13 %S: già fermato\n
+14 %S: Badly formed number\n

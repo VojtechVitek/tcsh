@@ -52,7 +52,12 @@ static	void	update_line 		__P((Char *, Char *, int));
 static	void	str_insert		__P((Char *, int, int, Char *, int));
 static	void	str_delete		__P((Char *, int, int, int));
 static	void	str_cp			__P((Char *, Char *, int));
-static	void	PutPlusOne		__P((int));
+#ifndef WINNT_NATIVE
+static
+#else
+extern
+#endif
+	void    PutPlusOne      __P((int));
 static	void	cpy_pad_spaces		__P((Char *, Char *, int));
 #if defined(DSPMBYTE)
 static	Char 	*update_line_fix_mbyte_point __P((Char *, Char *, int));
@@ -272,7 +277,11 @@ RefreshPromptpart(buf)
  *	virtual image. The routine to re-draw a line can be replaced
  *	easily in hopes of a smarter one being placed there.
  */
-static int OldvcV = 0;
+#ifndef WINNT_NATIVE
+static
+#endif
+int OldvcV = 0;
+
 void
 Refresh()
 {
@@ -1197,6 +1206,7 @@ RefCursor()
     flush();
 }
 
+#ifndef WINTT_NATIVE
 static void
 PutPlusOne(c)
     int    c;
@@ -1219,6 +1229,7 @@ PutPlusOne(c)
 	}
     }
 }
+#endif
 
 void
 RefPlusOne()

@@ -13,3 +13,4 @@ $set 17
 10 \040(wd: 
 12 %S: すでに中断しています\n
 13 %S: すでに停止しています\n
+14 %S: Badly formed number\n

@@ -14,3 +14,4 @@ $set 17
 11 dt actual: 
 12 %S: Ya ha sido suspendido\n
 13 %S: Ya ha sido parado\n
+14 %S: Badly formed number\n
