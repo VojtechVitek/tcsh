@@ -1348,7 +1348,7 @@ recdirs(fname, def)
 	return;
     }
 
-    if ((snum = varval(STRsavedirs)) == STRNULL) 
+    if ((snum = varval(STRsavedirs)) == STRNULL || snum[0] == '\0') 
 	num = (unsigned int) ~0;
     else
 	num = (unsigned int) atoi(short2str(snum));
