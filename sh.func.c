@@ -1378,10 +1378,12 @@ dosetenv(v, c)
 	return;
     }
 
+#ifdef NLS_CATALOGS
     if (eq(vp, STRNLSPATH)) {
 	(void) catclose(catd);
 	nlsinit();
     }
+#endif
 
     if (eq(vp, STRNOREBIND)) {
 	NoNLSRebind = 1;
@@ -1577,10 +1579,12 @@ dounsetenv(v, c)
 		else if (eq(name, STRLS_COLORS))
 		    parseLS_COLORS(n);
 #endif /* COLOR_LS_F */
+#ifdef NLS_CATALOGS
 		else if (eq(name, STRNLSPATH)) {
 		    (void) catclose(catd);
 		    nlsinit();
 		}
+#endif
 		/*
 		 * start again cause the environment changes
 		 */
