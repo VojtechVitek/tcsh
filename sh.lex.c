@@ -570,14 +570,26 @@ getdol()
 	 * -strike
 	 */
 
-	int     gmodflag = 0;
+	int     gmodflag = 0, amodflag = 0;
 
 #ifndef COMPAT
 	do {
 #endif /* COMPAT */
 	    *np++ = c, c = getC(DOEXCL);
-	    if (c == 'g')
-		gmodflag++, *np++ = c, c = getC(DOEXCL);
+	    if (c == 'g' || c == 'a') {
+		if (c == 'g')
+		    gmodflag++;
+		else
+		    amodflag++;
+		*np++ = c; c = getC(DOEXCL);
+	    }
+	    if ((c == 'g' && !gmodflag) || (c == 'a' && !amodflag)) {
+		if (c == 'g')
+		    gmodflag++;
+		else
+		    amodflag++;
+		*np++ = c; c = getC(DOEXCL);
+	    }
 	    *np++ = c;
 	    /* scan s// [eichin:19910926.0512EST] */
 	    if (c == 's') {
@@ -602,7 +614,7 @@ getdol()
 		c = 's';
 	    }
 	    if (!any("htrqxes", c)) {
-		if (gmodflag && c == '\n')
+		if ((amodflag || gmodflag) && c == '\n')
 		    stderror(ERR_VARSYN);	/* strike */
 		seterror(ERR_VARMOD, c);
 		*np = 0;
@@ -751,8 +763,14 @@ getsub(en)
 	exclnxt = 0;
 	global = 0;
 	sc = c = getC(0);
-	if (c == 'g')
-	    global++, sc = c = getC(0);
+	if (c == 'g' || c == 'a') {
+	    global |= (c == 'g') ? 1 : 2;
+	    sc = c = getC(0);
+	}
+	if (((c =='g') && !(global & 1)) || ((c == 'a') && !(global & 2))) {
+	    global |= (c == 'g') ? 1 : 2;
+	    sc = c = getC(0);
+	}
 
 	switch (c) {
 	case 'p':
@@ -761,7 +779,7 @@ getsub(en)
 
 	case 'x':
 	case 'q':
-	    global++;
+	    global |= 1;
 
 	    /* fall into ... */
 
@@ -886,8 +904,8 @@ dosub(sc, en, global)
 
     wdp = hp;
     while (--i >= 0) {
-	register struct wordent *new = (struct wordent *)
-	xcalloc(1, sizeof *wdp);
+	register struct wordent *new = 
+		(struct wordent *) xcalloc(1, sizeof *wdp);
 
 	new->word = 0;
 	new->prev = wdp;
@@ -895,8 +913,24 @@ dosub(sc, en, global)
 	wdp->next = new;
 	wdp = new;
 	en = en->next;
-	wdp->word = (en->word && (global ||didsub == 0)) ?
-	    subword(en->word, sc, &didsub) : Strsave(en->word);
+	if (en->word) {
+	    Char *tword, *otword;
+
+	    if ((global & 1) || didsub == 0) {
+		tword = subword(en->word, sc, &didsub);
+		if (global & 2) {
+		    while (didsub) {
+			otword = tword;
+			tword = subword(otword, sc, &didsub);
+			xfree((ptr_t) otword);
+		    }
+		    didsub = 1;
+		}
+	    }
+	    else
+		tword = Strsave(en->word);
+	    wdp->word = tword;
+	}
     }
     if (didsub == 0)
 	seterror(ERR_MODFAIL);

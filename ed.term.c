@@ -505,6 +505,7 @@ static struct tcshmodes {
     { NULL, 0, -1 },
 };
 
+/*ARGSUSED*/
 void
 dosetty(v, t)
     Char **v;

@@ -43,6 +43,11 @@ RCSID("$Id$")
  * C Shell
  */
 
+#ifdef lint
+#undef va_arg
+#define va_arg(a, b) (a ? (b) 0 : (b) 0)
+#endif
+
 char   *seterr = NULL;	/* Holds last error if there was one */
 
 #define ERR_FLAGS	0xf0000000

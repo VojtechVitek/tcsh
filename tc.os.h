@@ -37,6 +37,8 @@
 #ifndef _h_tc_os
 #define _h_tc_os
 
+#define NEEDstrerror		/* Too hard to find which systems have it */
+
 #if SVID > 3
 /*
  * for SVR4 we fork pipelines backwards. 

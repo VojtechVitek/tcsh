@@ -728,6 +728,22 @@ osinit()
 #endif
 }
 
+#ifdef strerror
+char *
+xstrerror(i)
+    int i;
+{
+    static char errbuf[40]; /* 64 bit num */
+
+    if (i >= 0 && i < sys_nerr) 
+	return sys_errlist[i];
+    else {
+	xsprintf(errbuf, "Unknown Error: %d", i);
+	return errbuf;
+    }
+}
+#endif /* strerror */
+    
 #ifdef gethostname
 #include <sys/utsname.h>
 

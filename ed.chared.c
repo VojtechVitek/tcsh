@@ -1844,6 +1844,7 @@ e_list_delnext(c)
     }
 }
 
+/*ARGSUSED*/
 CCRETVAL
 e_list_eof(c)
     int c;

@@ -786,12 +786,6 @@ EXTERN Char    HISTSUB;		/* auto-substitute character */
 extern char *sys_errlist[];
 extern int errno, sys_nerr;
 
-#ifdef strerror
-# undef strerror
-#endif 
-#define strerror(e) ((e) < sys_nerr && (e) >= 0 ? sys_errlist[(e)] :\
-		"Unknown Error")
-
 /*
  * strings.h:
  */
