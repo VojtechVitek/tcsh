@@ -127,6 +127,7 @@ check_window_size(force)
 #else				/* BSDSIGS */
     (void) sigrelse(SIG_WINDOW);
 #endif /* BSDSIGS */
+    windowchg = 0;
 }
 
 sigret_t
