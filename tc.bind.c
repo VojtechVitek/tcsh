@@ -199,7 +199,7 @@ dobindkey(v, c)
 	    return;
 	if (key) {
 	    if (SetArrowKeys(&in, XmapStr(&out), ntype) == -1)
-		xprintf(CGETS(20, 2, "Bad key name: %S\n"), in);
+		xprintf(CGETS(20, 2, "Bad key name: %S\n"), in.buf);
 	}
 	else
 	    AddXkey(&in, XmapStr(&out), ntype);
