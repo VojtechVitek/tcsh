@@ -383,9 +383,9 @@ found:
 	    pclrcurr(fp);
 	if (jobflags & PFOREGND) {
 	    if (!(jobflags & (PSIGNALED | PSTOPPED | PPTIME) ||
-#ifdef IIASA
+#ifdef notdef
 		jobflags & PAEXITED ||
-#endif /* IIASA */
+#endif /* notdef */
 		!eq(dcwd->di_name, fp->p_cwd->di_name))) {
 	    /* PWP: print a newline after ^C */
 		if (jobflags & PINTERRUPTED) {

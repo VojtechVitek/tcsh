@@ -1280,14 +1280,10 @@ recdirs(fname)
 {
     int     fp, ftmp, oldidfds;
     int     cdflag = 0;
-    extern int fast;
     extern struct directory *dcwd;
     struct directory *dp;
 
     if (fname == NULL) {
-	if (fast || !adrof(STRsavedirs))
-	    return;
-
 	if ((fname = value(STRdirsfile)) == STRNULL)
 	    fname = Strspl(value(STRhome), &STRtildotdirs[1]);
 	else

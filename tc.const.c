@@ -101,8 +101,7 @@ Char STRsavehist[]      = { 's', 'a', 'v', 'e', 'h', 'i', 's', 't', '\0' };
 Char STRnormal[]        = { 'n', 'o', 'r', 'm', 'a', 'l', '\0' };
 Char STRsldtlogout[]    = { '/', '.', 'l', 'o', 'g', 'o', 'u', 't', '\0' };
 Char STRjobs[]          = { 'j', 'o', 'b', 's', '\0' };
-Char STRsymhash[]       = { '#', ' ', '\0' };
-Char STRsymarrow[]      = { '>', ' ', '\0' };
+Char STRdefprompt[]     = { '%', '#', ' ', '\0' };
 Char STRmquestion[]     = { '%', 'R', '?' | QUOTE, ' ', '\0' };
 Char STRKCORRECT[]      = { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R', 
 			    ' ', '(', 'y', '|', 'n', '|', 'e', '|', 'a', ')', 

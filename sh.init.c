@@ -59,7 +59,7 @@ struct	biltins bfunc[] = {
     { "break",		dobreak,	0,	0	},
     { "breaksw",	doswbrk,	0,	0	},
     { "builtins",	dobuiltins,	0,	0	},
-#if defined(IIASA) || defined(KAI)
+#if defined(KAI)
     { "bye",		goodbye,	0,	0	},
 #endif
     { "case",		dozip,		0,	1	},
@@ -84,9 +84,6 @@ struct	biltins bfunc[] = {
     { "getspath",	dogetspath,	0,	0	},
     { "getxvers",	dogetxvers,	0,	0	},
 #endif /* TCF */
-#ifdef IIASA
-    { "gd",		dopushd,	0,	INF	},
-#endif
     { "glob",		doglob,		0,	INF	},
     { "goto",		dogoto,		1,	1	},
 #ifdef VFORK
@@ -122,9 +119,6 @@ struct	biltins bfunc[] = {
     { "popd",		dopopd,		0,	INF	},
     { "printenv",	doprintenv,	0,	1	},
     { "pushd",		dopushd,	0,	INF	},
-#ifdef IIASA
-    { "rd",		dopopd,		0,	INF	},
-#endif
     { "rehash",		dohash,		0,	3	},
     { "repeat",		dorepeat,	2,	INF	},
 #ifdef apollo

@@ -58,6 +58,7 @@
 #define TW_EXPLAIN	17
 #define TW_PATHNAME	18
 #define TW_TEXT		19
+#define TW_GRPNAME	20
 
 #define TW_EXEC_CHK	0x01
 #define TW_DIR_CHK	0x02

@@ -555,11 +555,38 @@ excl_sw:
      */
     if (q[1] == ':') {
 	*bend = '\0';
-	omodbuf = buf;
-	while (q[1] == ':' && (modbuf = domod(omodbuf, (int) q[2])) != NULL) {
-	    if (omodbuf != buf)
-		xfree((ptr_t) omodbuf);
-	    omodbuf = modbuf;
+	modbuf = omodbuf = buf;
+	while (q[1] == ':' && modbuf != NULL) {
+	    switch (q[2]) {
+	    case 'r':
+	    case 'e':
+	    case 'h':
+	    case 't':
+	    case 'q':
+	    case 'x':
+	    case 'u':
+	    case 'l':
+		if ((modbuf = domod(omodbuf, (int) q[2])) != NULL) {
+		    if (omodbuf != buf)
+			xfree((ptr_t) omodbuf);
+		    omodbuf = modbuf;
+		}
+		break;
+
+	    case 'a':
+	    case 'g':
+		/* Not implemented; this needs to be done before expanding
+		 * lex. We don't have the words available to us anymore.
+		 */
+		break;
+
+	    case 'p':
+		/* Ok */
+		break;
+
+	    default:
+		break;
+	    }
 	    q += 2;
 	}
 	if (omodbuf != buf) {

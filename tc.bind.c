@@ -443,8 +443,10 @@ dobindkey(v, c)
     case XK_EXE:
 	if ((out = parsestring(v[no], outbuf)) == NULL)
 	    return;
-	if (key)
-	    (void) SetArrowKeys(in, XmapStr(out), ntype);
+	if (key) {
+	    if (SetArrowKeys(in, XmapStr(out), ntype) == -1)
+		xprintf("Bad key name: %S\n", in);
+	}
 	else
 	    AddXkey(in, XmapStr(out), ntype);
 	map[(unsigned char) *in] = F_XKEY;

@@ -308,6 +308,9 @@ tw_result(act, pat)
     case 'f':
 	looking = TW_FILE;
 	break;
+    case 'g':
+	looking = TW_GRPNAME;
+	break;
     case 'j':
 	looking = TW_JOB;
 	break;

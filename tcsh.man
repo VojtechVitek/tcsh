@@ -2895,6 +2895,7 @@ c	Complete command
 d	Complete directory
 e	Complete environment variable
 f	Complete file or path component
+g	Complete groups
 j	Complete jobs
 l	Complete limits
 n	Complete nothing

@@ -841,6 +841,8 @@ getsub(en)
 	case 'r':
 	case 't':
 	case 'e':
+	case 'u':
+	case 'l':
 	    break;
 
 	case '&':

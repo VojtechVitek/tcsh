@@ -56,12 +56,14 @@ RCSID("$Id$")
 /*  TW_COMPLETION,     TW_ALIAS,       TW_SHELLVAR,    TW_ENVVAR,	*/
 /*  TW_BINDING,        TW_WORDLIST,    TW_LIMIT,       TW_SIGNAL	*/
 /*  TW_JOB,	       TW_EXPLAIN,     TW_PATHNAME,    TW_TEXT		*/
+/*  TW_GRPNAME								*/
 static void (*tw_start_entry[]) __P((DIR *, Char *)) = {
     tw_file_start,     tw_cmd_start,   tw_var_start,   tw_logname_start, 
     tw_file_start,     tw_file_start,  tw_vl_start,    tw_logname_start, 
     tw_complete_start, tw_alias_start, tw_var_start,   tw_var_start,     
     tw_bind_start,     tw_wl_start,    tw_limit_start, tw_sig_start,
-    tw_job_start,      tw_file_start,  tw_file_start,  tw_file_start
+    tw_job_start,      tw_file_start,  tw_file_start,  tw_file_start,
+    tw_grpname_start
 };
 
 static Char * (*tw_next_entry[]) __P((Char *, int *)) = {
@@ -69,7 +71,8 @@ static Char * (*tw_next_entry[]) __P((Char *, int *)) = {
     tw_file_next,      tw_file_next,   tw_var_next,    tw_logname_next,  
     tw_var_next,       tw_var_next,    tw_shvar_next,  tw_envvar_next,   
     tw_bind_next,      tw_wl_next,     tw_limit_next,  tw_sig_next,
-    tw_job_next,       tw_file_next,   tw_file_next,   tw_file_next
+    tw_job_next,       tw_file_next,   tw_file_next,   tw_file_next,
+    tw_grpname_next
 };
 
 static void (*tw_end_entry[]) __P((void)) = {
@@ -77,7 +80,8 @@ static void (*tw_end_entry[]) __P((void)) = {
     tw_dir_end,        tw_dir_end,     tw_dir_end,    tw_logname_end, 
     tw_dir_end,        tw_dir_end,     tw_dir_end,    tw_dir_end,
     tw_dir_end,        tw_dir_end,     tw_dir_end,    tw_dir_end,
-    tw_dir_end,	       tw_dir_end,     tw_dir_end,    tw_dir_end
+    tw_dir_end,	       tw_dir_end,     tw_dir_end,    tw_dir_end,
+    tw_grpname_next
 };
 
 /* #define TDEBUG */
@@ -1051,6 +1055,7 @@ tw_suffix(looking, exp_dir, exp_name, target, name)
     case TW_JOB:
     case TW_COMPLETION:
     case TW_TEXT:
+    case TW_GRPNAME:
 	return ' ';
 
     default:
@@ -1385,6 +1390,7 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
     case TW_SIGNAL:
     case TW_JOB:
     case TW_COMPLETION:
+    case TW_GRPNAME:
 	break;
 
 

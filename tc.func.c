@@ -1629,7 +1629,7 @@ fixio(fd, e)
 
 	e &= ~(O_NDELAY|O_NONBLOCK|FNBIO|FNONBIO|FNDELAY);
 
-	if (fcntl(fd, F_SETFL, e &) == -1)
+	if (fcntl(fd, F_SETFL, e) == -1)
 	    return -1;
 	else 
 	    e = 1;
