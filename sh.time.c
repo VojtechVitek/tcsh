@@ -581,7 +581,7 @@ tvadd(tsum, t0)
 
     tsum->tv_sec += t0->tv_sec;
     tsum->tv_usec += t0->tv_usec;
-    if (tsum->tv_usec > 1000000)
+    if (tsum->tv_usec >= 1000000)
 	tsum->tv_sec++, tsum->tv_usec -= 1000000;
 }
 

@@ -177,6 +177,17 @@ typedef int sigret_t;
 
 #ifdef NLS
 # include <locale.h>
+#endif /* NLS */
+
+#ifdef NLS_CATALOGS
+# ifdef linux
+#  include <localeinfo.h>
+#  include <features.h>
+# endif
+# include <nl_types.h>
+EXTERN nl_catd catd;
+#else
+# define catgets(a,b,c,d) d
 #endif 
 
 #if !defined(_MINIX) && !defined(_VMS_POSIX)
@@ -491,6 +502,7 @@ EXTERN bool    isdiagatty;	/* is SHDIAG a tty */
 EXTERN bool    is1atty;		/* is file descriptor 1 a tty (didfds mode) */
 EXTERN bool    is2atty;		/* is file descriptor 2 a tty (didfds mode) */
 EXTERN bool    arun;		/* Currently running multi-line-aliases */
+EXTERN bool    inheredoc;	/* Currently parsing a heredoc */
 
 /*
  * Global i/o info

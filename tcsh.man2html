@@ -534,6 +534,7 @@ sub printsectionbody {
 		    
 		    s/\\(e|\\)/\\/g;			# \e, \\
 		    s/\\-/-/g;				# \-
+		    s/^\\'/'/;				# leading \'
 		    s/^\\(\s)/$1/;			# leading space escape
 		    s/^\\&amp\;//;			# leading dot escape
 

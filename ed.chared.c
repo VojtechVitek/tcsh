@@ -3230,7 +3230,7 @@ e_load_average(c)
 #ifdef TIOCSTAT
     if (ioctl(SHIN, TIOCSTAT, 0) < 0) 
 #endif
-	xprintf("Load average unavailable\n");
+	xprintf(catgets(catd, 1, 5, "Load average unavailable\n"));
     return(CC_REFRESH);
 }
 

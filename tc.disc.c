@@ -112,7 +112,7 @@ int     f;
 	if ((comp & COMPAT_BSDTTY) != COMPAT_BSDTTY) {
 	    (void) setcompat(comp | COMPAT_BSDTTY);
 	    if (ioctl(f, TIOCGLTC, (ioctl_t) & ltcbuf) != 0)
-		xprintf("Couldn't get local chars.\n");
+		xprintf(catgets(catd, 1, 1129, "Couldn't get local chars.\n"));
 	    else {
 		ltcbuf.t_suspc = '\032';	/* ^Z */
 		ltcbuf.t_dsuspc = '\031';	/* ^Y */
@@ -121,7 +121,8 @@ int     f;
 		ltcbuf.t_werasc = '\027';	/* ^W */
 		ltcbuf.t_lnextc = '\026';	/* ^V */
 		if (ioctl(f, TIOCSLTC, (ioctl_t) & ltcbuf) != 0)
-		    xprintf("Couldn't set local chars.\n");
+		    xprintf(catgets(catd, 1, 1130,
+				    "Couldn't set local chars.\n"));
 	    }
 	    termiob.c_cc[VSWTCH] = '\0';
 	    if (ioctl(f, TCSETAF, (ioctl_t) & termiob) != 0)

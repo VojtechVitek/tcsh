@@ -81,6 +81,9 @@ update_vars(vp)
 	tsetenv(STRKUSER, varval(vp));
 	tsetenv(STRLOGNAME, varval(vp));
     }
+    else if (eq(vp, STRgroup)) {
+	tsetenv(STRKGROUP, varval(vp));
+    }
     else if (eq(vp, STRwordchars)) {
 	word_chars = varval(vp);
     }
@@ -750,7 +753,8 @@ exportpath(val)
     if (val)
 	while (*val) {
 	    if (Strlen(*val) + Strlen(exppath) + 2 > BUFSIZE) {
-		xprintf("Warning: ridiculously long PATH truncated\n");
+		xprintf(catgets(catd, 1, 1076,
+				"Warning: ridiculously long PATH truncated\n"));
 		break;
 	    }
 	    (void) Strcat(exppath, *val++);

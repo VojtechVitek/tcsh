@@ -1003,6 +1003,7 @@ heredoc(term)
     quoted = gflag;
     ocnt = BUFSIZE;
     obp = obuf;
+    inheredoc = 1;
     for (;;) {
 	/*
 	 * Read up a line
@@ -1029,6 +1030,7 @@ heredoc(term)
 	if (c < 0 || eq(lbuf, term)) {
 	    (void) write(0, short2str(obuf), (size_t) (BUFSIZE - ocnt));
 	    (void) lseek(0, 0l, L_SET);
+	    inheredoc = 0;
 	    return;
 	}
 
