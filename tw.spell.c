@@ -89,8 +89,9 @@ spell_me(oldname, oldsize, looking_for_cmd)
 	 * far but there are later - or it will look for *all* commands
 	 */
 	/* (*should* say "looking for directory" whenever '/' is next...) */
-	if (t_search(guess, p, SPELL, FILSIZ,
-		     looking_for_cmd && (foundslash || *old != '/'), 1) >= 4)
+	retval = t_search(guess, p, SPELL, FILSIZ,
+			  looking_for_cmd && (foundslash || *old != '/'), 1);
+	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
 	for (p = ws; *new = *p++;)
 	    new++;
