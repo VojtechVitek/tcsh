@@ -38,8 +38,15 @@
 #define _h_tc_os
 
 #ifdef OREO
-#include <sys/time.h>
-#include <sys/resource.h>
+# include <sys/time.h>
+# include <sys/resource.h>
+# ifdef POSIX
+#  ifdef T_BREAK
+#   undef T_BREAK
+#  endif /* T_BREAK */
+#  include <sys/tty.h>
+#  include <termios.h>
+# endif /* POSIX */
 #endif /* OREO */
 
 #ifdef titan
