@@ -455,7 +455,7 @@ exp6(vp, ignore)
 	Char   *fakecom[2];
 
 	faket.t_dtyp = NODE_COMMAND;
-	faket.t_dflg = 0;
+	faket.t_dflg = F_BACKQ;
 	faket.t_dcar = faket.t_dcdr = faket.t_dspr = NULL;
 	faket.t_dcom = fakecom;
 	fakecom[0] = STRfakecom;

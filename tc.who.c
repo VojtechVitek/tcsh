@@ -497,7 +497,7 @@ who_info(ptr, c, wbuf)
     case 'm':
 	if (wp->who_host[0] == '\0')
 	    return "local";
-	else
+	else {
 	    /* the ':' stuff is for <host>:<display>.<screen> */
 	    for (pb = wp->who_host, flg = Isdigit(*pb) ? '\0' : '.';
 		 *pb != '\0' &&
@@ -509,7 +509,7 @@ who_info(ptr, c, wbuf)
 	    }
 	    *wb = '\0';
 	    return wbuf;
-	break;
+	}
 
     case 'M':
 	if (wp->who_host[0] == '\0')
@@ -520,7 +520,6 @@ who_info(ptr, c, wbuf)
 	    *wb = '\0';
 	    return wbuf;
 	}
-	break;
 #endif /* UTHOST */
 
     case 'l':

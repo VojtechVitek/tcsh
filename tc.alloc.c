@@ -329,31 +329,6 @@ calloc(i, j)
 #endif
 }
 
-#ifndef lint
-/* PWP: a bcopy that does overlapping extents correctly */
-static void
-mybcopy(from, to, len)
-    char   *from, *to;
-    size_t len;
-{
-    register char *sp, *dp;
-
-    if (from == to)
-	return;
-    if (from < to) {
-	/* len is unsigned, len > 0 is equivalent to len != 0 */
-	for (sp = &from[len - 1], dp = &to[len - 1]; len != 0; len--, sp--, dp--)
-	    *dp = *sp;
-    }
-    else {
-	/* len is unsigned, len > 0 is equivalent to len != 0 */
-	for (sp = from, dp = to; len != 0; len--, sp++, dp++)
-	    *dp = *sp;
-    }
-}
-
-#endif
-
 /*
  * When a program attempts "storage compaction" as mentioned in the
  * old malloc man page, it realloc's an already freed block.  Usually
@@ -417,7 +392,8 @@ realloc(cp, nbytes)
 	 * smaller of the old and new size
 	 */
 	onb = (1 << (i + 3)) - MEMALIGN(sizeof(union overhead)) - RSLOP;
-	mybcopy(cp, res, onb < nbytes ? onb : nbytes);
+	(void) memmove((ptr_t) res, (ptr_t) cp, 
+		       (size_t) (onb < nbytes ? onb : nbytes));
     }
     if (was_alloced)
 	free(cp);

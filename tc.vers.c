@@ -323,7 +323,7 @@ gethosttype()
 #  endif /* MIPSEB || __MIPSEB */
 # endif /* mips || __mips */
 
-#if defined(__alpha__)
+#if defined(__alpha)
 #  define _havehosttype_
     hosttype = "alpha";
 #endif

@@ -50,9 +50,9 @@ RCSID("$Id$")
 #endif /* FIOCLEX */
 
 #if defined(__sparc__) || defined(sparc)
-# ifndef MACH
+# if !defined(MACH) && SYSVREL == 0
 #  include <vfork.h>
-# endif /* !MACH */
+# endif /* !MACH && SYSVREL == 0 */
 #endif /* __sparc__ || sparc */
 
 #ifdef VFORK

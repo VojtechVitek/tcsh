@@ -48,7 +48,7 @@ LFLAGS=$(INCLUDES)
 #CFLAGS=-O $(INCLUDES)
 
 # gcc-2.1
-CFLAGS=-O2 $(INCLUDES)
+CFLAGS=-O2 $(INCLUDES) -B/bin/
 
 # gcc 2.1 on linux
 #CFLAGS=-O6 $(INCLUDES)
@@ -151,7 +151,7 @@ LIBES= -ltermcap		## BSD style things, hpux
 # If you want to take out -traditional, make sure that your sys/ioctl.h
 # is fixed correctly, otherwise you'll be stopped for tty input, or you
 # will lose the editor and job control.
-CC=	gcc -Wall -ansi -pedantic 
+CC=	gcc -Wall
 #CC=	cc
 #CC=	occ
 #CC=	acc

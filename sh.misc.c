@@ -352,18 +352,6 @@ renum(i, j)
     return (k);
 }
 
-void
-copy(to, from, size)
-    register char *to, *from;
-    register int size;
-{
-    if (size && from && to)
-	do
-	    /*SUPPRESS 112*/
-	    *to++ = *from++;
-	while (--size != 0);
-}
-
 /*
  * Left shift a command argument list, discarding
  * the first c arguments.  Used in "shift" commands

@@ -279,3 +279,8 @@ Char STRbsd43[] = { 'b', 's', 'd', '4', '.', '3', '\0' };
 Char STRsys53[] = { 's', 'y', 's', '5', '.', '3', '\0' };
 Char STRver[] = { 'v', 'e', 'r', '\0' };
 #endif /* apollo */
+
+Char STRup[] = { 'u', 'p', '\0' };
+Char STRdown[] = { 'd', 'o', 'w', 'n', '\0' };
+Char STRleft[] = { 'l', 'e', 'f', 't', '\0' };
+Char STRright[] = { 'r', 'i', 'g', 'h', 't', '\0' };

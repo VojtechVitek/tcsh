@@ -38,7 +38,7 @@
 
 RCSID("$Id$")
 
-#if (defined(sun) || defined(__sun__)) && ! defined(MACH)
+#if (defined(sun) || defined(__sun__)) && ! defined(MACH) && SYSVREL == 0
 # include <machine/param.h>
 #endif /* sun */
 
@@ -233,7 +233,7 @@ ruadd(ru, ru2)
 #ifndef PGSHIFT
 # define pagetok(size)   ((size) << 1)
 #else
-#ifdef __alpha__	/* PGSHIFT is a variable, so can't ifdef on it */
+#ifdef __alpha	/* PGSHIFT is a variable, so can't ifdef on it */
 #define pagetok(size)   ((size) << (PGSHIFT - LOG1024))
 #else
 #if PGSHIFT>10

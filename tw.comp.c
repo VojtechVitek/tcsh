@@ -315,6 +315,9 @@ tw_result(act, pat)
     case 'n':
 	looking = TW_NONE;
 	break;
+    case 'p':
+	looking = TW_PATHNAME;
+	break;
     case 's':
 	looking = TW_SHELLVAR;
 	break;

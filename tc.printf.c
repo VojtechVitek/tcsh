@@ -202,8 +202,8 @@ doprnt(addchar, sfmt, ap)
 		(*addchar) ((int) (i | attributes));
 		break;
 
-#ifdef SHORT_STRINGS
 	    case 'S':
+#ifdef SHORT_STRINGS
 		Bp = va_arg(ap, Char *);
 		if (!Bp) {
 		    bp = NULL;

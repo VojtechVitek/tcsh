@@ -97,6 +97,11 @@ typedef union Xmapval {		/* value passed to the Xkey routines */
     Char *str;
 } XmapVal;
 
+#define A_K_DN	0
+#define A_K_UP	1
+#define A_K_LT	2
+#define A_K_RT	3
+
 #define XK_NOD	-1		/* Internal tree node */
 #define XK_CMD	 0		/* X-key was an editor command */
 #define XK_STR	 1		/* X-key was a string macro */
