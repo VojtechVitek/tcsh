@@ -245,7 +245,7 @@ tw_tok(str)
 	continue;
 
     for (str = bf; *bf && !Isspace(*bf); bf++) {
-	if (ismeta(*bf))
+	if (ismetahash(*bf))
 	    return INVPTR;
 	*bf = *bf & ~QUOTE;
     }
