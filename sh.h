@@ -608,6 +608,10 @@ EXTERN int     onelflg IZERO;	/* 2 -> need line for -t, 1 -> exit on read */
 extern Char   *ffile;		/* Name of shell file for $0 */
 extern bool    dolzero;		/* if $?0 should return true... */
 
+#ifdef FILEC
+extern bool    filec;
+#endif /* FILEC */
+
 extern char *seterr;		/* Error message from scanner/parser */
 #ifndef BSD4_4
 extern int errno;		/* Error from C library routines */

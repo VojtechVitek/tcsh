@@ -177,6 +177,11 @@
 #undef COLORCAT
 
 /*
+ * FILEC    support for old style file completion
+ */
+#define FILEC
+
+/*
  * RCSID	This defines if we want rcs strings in the binary or not
  *
  */

@@ -186,6 +186,10 @@ update_vars(vp)
 	(void) catclose(catd);
 	nlsinit();
     }
+#ifdef FILEC
+    else if (eq(vp, STRfilec))
+	filec = 1;
+#endif
 #endif /* NLS_CATALOGS */
 }
 
@@ -721,6 +725,12 @@ unset(v, c)
     did_roe = adrof(STRrecognize_only_executables) != NULL;
     did_edit = adrof(STRedit) != NULL;
     unset1(v, &shvhed);
+
+#ifdef FILEC
+    if (adrof(STRfilec) == 0)
+	filec = 0;
+#endif /* FILEC */
+
     if (adrof(STRhistchars) == 0) {
 	HIST = '!';
 	HISTSUB = '^';
