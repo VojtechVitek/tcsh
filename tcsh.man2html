@@ -368,7 +368,7 @@ print <<EOP;
 Here are the <A HREF="$outfile">nroff manpage</A> (175K)
 from which this HTML version was generated,
 the <A HREF="$script">Perl script</A> which did the conversion
-and the <A HREF="file://ftp.deshaw.com/pub/tcsh/">
+and the <A HREF="file://ftp.astron.com/pub/tcsh/">
 complete source code</A> for <I>tcsh</I>.
 <HR>
 <I>tcsh</I> is maintained by
