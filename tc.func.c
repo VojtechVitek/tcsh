@@ -1900,6 +1900,11 @@ remotehost()
     (void) alarm(0);
     (void) signal(SIGALRM, osig);
 
+#ifdef YPBUGS
+    /* From: casper@fwi.uva.nl (Casper H.S. Dik), for Solaris 2.3 */
+    fix_yp_bugs();
+#endif /* YPBUGS */
+
     if (host)
 	tsetenv(STRREMOTEHOST, str2short(host));
 }
