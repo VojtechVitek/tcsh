@@ -2019,10 +2019,13 @@ limtail(cp, str)
     Char   *cp;
     char   *str;
 {
+    char *sp;
+
+    sp = str;
     while (*cp && *cp == *str)
 	cp++, str++;
     if (*cp)
-	stderror(ERR_BADSCALE, str);
+	stderror(ERR_BADSCALE, sp);
 }
 
 
