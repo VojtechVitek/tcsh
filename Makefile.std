@@ -61,7 +61,7 @@ CFLAGS=-O2 $(INCLUDES) -g
 #CFLAGS= $(INCLUDES) -O -Olimit 2000
 
 # Intel Paragon OSF/1 with PGI compilers
-#CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
+CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
 
 # for silicon graphics (and other mips compilers) -- use the
 # global optimizer! (-O3).
