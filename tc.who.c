@@ -52,6 +52,8 @@ RCSID("$Id$")
 # ifndef _PATH_UTMP
 #  if defined(__UTMPX_FILE) && !defined(UTMPX_FILE)
 #   define _PATH_UTMP __UTMPX_FILE
+#  elif defined(_PATH_UTMPX)
+#   define _PATH_UTMP _PATH_UTMPX
 #  else
 #   define _PATH_UTMP UTMPX_FILE
 #  endif /* __UTMPX_FILE && !UTMPX_FILE */
