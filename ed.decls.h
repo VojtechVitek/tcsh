@@ -42,6 +42,7 @@
  */
 extern	int	InsertStr		__P((Char *));
 extern	void	DeleteBack		__P((int));
+extern	void	SetKillRing		__P((int));
 
 /*
  * ed.init.c
@@ -240,6 +241,7 @@ extern  CCRETVAL	e_dosify_next		__P((int));
 extern  CCRETVAL	e_dosify_prev		__P((int));
 extern  CCRETVAL	e_page_up			__P((int));
 extern  CCRETVAL	e_page_down			__P((int));
+extern  CCRETVAL	e_yank_pop		__P((int));
 
 /*
  * ed.inputl.c

@@ -132,8 +132,11 @@ EXTERN Char *Mark;		/* the emacs "mark" (dot is Cursor) */
 EXTERN Char DoingArg;		/* true if we have an argument */
 EXTERN int Argument;		/* "universal" argument value */
 EXTERN KEYCMD LastCmd;		/* previous command executed */
-EXTERN Char KillBuf[INBUFSIZE];	/* kill buffer */
-EXTERN Char *LastKill;		/* points to end of kill buffer */
+EXTERN CStr *KillRing;		/* kill ring */
+EXTERN int KillRingMax;		/* max length of kill ring */
+EXTERN int KillRingLen;		/* current length of kill ring */
+EXTERN int KillPos;		/* points to next kill */
+EXTERN int YankPos;		/* points to next yank */
 
 EXTERN Char UndoBuf[INBUFSIZE];
 EXTERN Char *UndoPtr;

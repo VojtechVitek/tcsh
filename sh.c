@@ -676,6 +676,11 @@ main(argc, argv)
     set(STRaddsuffix, Strsave(STRNULL), VAR_READWRITE);
 
     /*
+     * Random default kill ring size
+     */
+    set(STRkillring, SAVE("30"), VAR_READWRITE);
+
+    /*
      * Re-initialize path if set in environment
      */
     if ((tcp = getenv("PATH")) == NULL)

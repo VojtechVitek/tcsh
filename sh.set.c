@@ -160,6 +160,9 @@ update_vars(vp)
     else if (eq(vp, STRrecognize_only_executables)) {
 	tw_cmd_free();
     }
+    else if (eq(vp, STRkillring)) {
+	SetKillRing(getn(varval(vp)));
+    }
 #ifndef HAVENOUTMP
     else if (eq(vp, STRwatch)) {
 	resetwatch();
@@ -740,6 +743,8 @@ unset(v, c)
 	symlinks = 0;
     if (adrof(STRimplicitcd) == 0)
 	implicit_cd = 0;
+    if (adrof(STRkillring) == 0)
+	SetKillRing(0);
     if (did_edit && noediting && adrof(STRedit) == 0)
 	noediting = 0;
     if (did_roe && adrof(STRrecognize_only_executables) == 0)
