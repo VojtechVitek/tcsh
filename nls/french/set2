@@ -90,3 +90,5 @@ $set 2
 87 Priorité modifiée
 88 detecté
 89 Nouveau caractère d'entrée
+90 Stack limit exceeded
+91 Unused signal
