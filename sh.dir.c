@@ -1277,7 +1277,6 @@ recdirs(fname)
     int     fp, ftmp, oldidfds;
     int     cdflag = 0;
     extern int fast;
-    Char    buf[BUFSIZE];
     extern struct directory *dcwd;
     struct directory *dp;
 
