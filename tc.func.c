@@ -1561,6 +1561,7 @@ fixio(fd, e)
 # endif /* F_SETFL && O_NDELAY */
 
 # ifdef FIONBIO
+	e = 0;
 	if (ioctl(fd, FIONBIO, (ioctl_t) &e) == -1)
 	    return -1;
 	else
