@@ -1815,7 +1815,7 @@ getval(lp, v)
 	cp++;
     if (*cp == 0) {
 	if (*v == 0)
-	    return restrict_limit((f + 0.5) * lp->limdiv);
+	    return f == 0.0 ? 0 : restrict_limit((f + 0.5) * lp->limdiv);
 	cp = *v;
     }
     switch (*cp) {
@@ -1823,7 +1823,7 @@ getval(lp, v)
     case ':':
 	if (lp->limconst != RLIMIT_CPU)
 	    goto badscal;
-	return restrict_limit((f * 60.0 + atof(short2str(cp + 1))));
+	return f == 0.0 ? 0 : restrict_limit((f * 60.0 + atof(short2str(cp + 1))));
     case 'h':
 	if (lp->limconst != RLIMIT_CPU)
 	    goto badscal;
@@ -1881,7 +1881,7 @@ badscal:
 	stderror(ERR_NAME | ERR_SCALEF);
     }
 # ifdef convex
-    return restrict_limit((f + 0.5));
+    return f == 0.0 ? 0 : restrict_limit((f + 0.5));
 # else
     f += 0.5;
     if (f > (float) RLIM_INFINITY)

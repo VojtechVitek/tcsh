@@ -256,6 +256,16 @@ typedef char * caddr_t;
 
 
 /***
+ *** NeXT OS 3.x
+ ***/ 
+#ifdef NeXT
+# ifndef _SPEED_T
+#  define _SPEED_T
+   typedef unsigned int speed_t; 
+# endif /* _SPEED_T */
+#endif /* NeXT */
+
+/***
  *** Utah's HPBSD
  *** some posix & 4.4 BSD changes (pid_t is a short)
  ***/

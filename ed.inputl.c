@@ -52,7 +52,7 @@ extern bool Tty_raw_mode;
 
 /* mismatched first character */
 static Char mismatch[] = 
-    {'!', '\\', '^', '-', '%', '\0', '"', '\'', '`', '\0' };
+    {'!', '^' , '\\', '-', '%', '\0', '"', '\'', '`', '\0' };
 
 static	int	GetNextCommand	__P((KEYCMD *, Char *));
 static	int	SpellLine	__P((int));
@@ -786,6 +786,9 @@ SpellLine(cmdonly)
 		Cursor--;
 	    endflag = 0;
 	}
+	/* Obey current history character settings */
+	mismatch[0] = HIST;
+	mismatch[1] = HISTSUB;
 	if (!Strchr(mismatch, *argptr) &&
 	    (!cmdonly || starting_a_command(argptr, InputBuf))) {
 	    switch (tenematch(InputBuf, Cursor - InputBuf, SPELL)) {
