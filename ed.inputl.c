@@ -738,6 +738,10 @@ GetNextChar(cp)
 #ifdef WINNT_NATIVE
     __nt_want_vcode = 1;
 #endif /* WINNT_NATIVE */
+#ifdef SIG_WINDOW
+    if (windowchg)
+	(void) check_window_size(0);	/* for window systems */
+#endif /* SIG_WINDOW */
     while ((num_read = read(SHIN, (char *) &tcp, 1)) == -1) {
 	if (errno == EINTR)
 	    continue;

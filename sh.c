@@ -2181,7 +2181,6 @@ process(catch)
 	freesyn(savet), savet = NULL;
 #ifdef SIG_WINDOW
 	if (windowchg || (catch && intty && !whyles && !tellwhat)) {
-	    windowchg = 0;
 	    (void) check_window_size(0);	/* for window systems */
 	}
 #endif /* SIG_WINDOW */
