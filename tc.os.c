@@ -779,7 +779,10 @@ xgethostname(name, namlen)
 #endif /* gethostname */
 
 #ifdef nice
-# ifdef _MINIX
+# if defined(_MINIX) && defined(NICE)
+#  undef _POSIX_SOURCE	/* redefined in <lib.h> */
+#  undef _MINIX		/* redefined in <lib.h> */
+#  undef HZ		/* redefined in <minix/const.h> */
 #  include <lib.h>
 # endif /* _MINIX */
 int 
@@ -789,7 +792,7 @@ xnice(incr)
 #if defined(_MINIX) && defined(NICE)
     return callm1(MM, NICE, incr, 0, 0, NIL_PTR, NIL_PTR, NIL_PTR);
 #else
-    return incr ? 0 : 0;
+    return /* incr ? 0 : */ 0;
 #endif /* _MINIX && NICE */
 } /* end xnice */
 #endif /* nice */

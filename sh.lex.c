@@ -1455,7 +1455,9 @@ top:
 	    }
 	    return (c);
 	}
+#ifdef BSDJOBS
 reread:
+#endif /* BSDJOBS */
 	c = bgetc();
 	if (c < 0) {
 #ifndef POSIX
@@ -1484,7 +1486,9 @@ reread:
 #endif /* POSIX */
 	    {
 		/* was 'short' for FILEC */
+#ifdef BSDJOBS
 		int     ctpgrp;
+#endif /* BSDJOBS */
 
 		if (++sincereal > 25)
 		    goto oops;

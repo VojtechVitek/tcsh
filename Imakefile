@@ -91,7 +91,7 @@ ones.  Please send in your fixes and additions! */
 
 #ifdef MinixArchitecture
 /* Maybe conditional on MACH? */
-SYSSRCS=mi.termios.c mi.wait.h 
+SYSSRCS=mi.termios.c mi.wait.h mi.varargs.h
 SYSOBJS=mi.termios.${SUF}
 EXTF=ma.setp.c
 #else

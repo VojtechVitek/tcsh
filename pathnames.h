@@ -77,7 +77,11 @@
 # define _PATH_CSHELL 		"/bin/csh"
 #endif
 #ifndef _PATH_TCSHELL
+#ifdef	_MINIX
+#define _PATH_TCSHELL		"/local/bin/tcsh"	/* use ram disk */
+#else
 #define _PATH_TCSHELL		"/usr/local/bin/tcsh"
+#endif	/* _MINIX */
 #endif
 
 #define _PATH_LOGIN		"/bin/login"

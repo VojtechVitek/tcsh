@@ -42,13 +42,6 @@ RCSID("$Id$")
 #include "tc.h"
 #include "tc.wait.h"
 
-#if !defined(NSIG) && defined(SIGMAX)
-# define NSIG (SIGMAX+1)
-#endif /* !NSIG && SIGMAX */
-#if !defined(NSIG) && defined(_NSIG)
-# define NSIG _NSIG
-#endif /* !NSIG && _NSIG */
-
 #ifdef aiws
 # undef HZ
 # define HZ 16
@@ -142,7 +135,9 @@ int snum;
     register struct process *pp;
     register struct process *fp;
     register int pid;
+#if defined(BSDJOBS) || (!defined(BSDTIMES) && (defined(ODT) || defined(aiws) || defined(uts)))
     extern int insource;
+#endif /* BSDJOBS */
 #ifdef BSDWAIT
     union wait w;
 #else /* !BSDWAIT */

@@ -43,6 +43,13 @@ RCSID("$Id$")
 #include "tc.h"
 #include "sh.proc.h"
 
+#if !defined(NSIG) && defined(SIGMAX)
+# define NSIG (SIGMAX+1)
+#endif /* !NSIG && SIGMAX */
+#if !defined(NSIG) && defined(_NSIG)
+# define NSIG _NSIG
+#endif /* !NSIG && _NSIG */
+
 #define TW_INCR	128
 
 typedef struct {
@@ -877,8 +884,8 @@ tw_limit_next(dir, flags)
     Char *dir;
     int *flags;
 {
-    char *ptr;
 #ifndef HAVENOLIMIT
+    char *ptr;
     if (tw_limit && tw_limit->limname) {
 	for (ptr = tw_limit->limname, dir = tw_retname; 
 	     (*dir++ = *ptr++) != '\0';)

@@ -64,13 +64,13 @@
 #  endif /* OREO || IRIS4D || POSIX */
 # endif	/* hpux */
 #else /* SYSVREL == 0 */
-# include <sys/wait.h>
+# ifdef _MINIX
+#  undef NEEDwait
+#  include "mi.wait.h"
+# else
+#  include <sys/wait.h>
+# endif /* _MINIX */
 #endif /* SYSVREL == 0 */
-
-#ifdef _MINIX
-# undef NEEDwait
-# include "mi.wait.h"
-#endif /* _MINIX */
 
 #ifdef NEEDwait
 /*

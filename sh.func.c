@@ -1790,9 +1790,11 @@ dosuspend(v, c)
     Char **v;
     struct command *c;
 {
+#ifdef BSDJOBS
     int     ctpgrp;
 
     sigret_t(*old) ();
+#endif /* BSDJOBS */
 
     if (loginsh)
 	stderror(ERR_SUSPLOG);
