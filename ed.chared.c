@@ -1630,7 +1630,7 @@ e_up_search_hist(c)
 	hp = hp->Hnext;
 
     while (hp != NULL) {
-	Char sbuf[BUFSIZE], *hl;
+	Char sbuf[INBUFSIZE], *hl;
 	if (hp->histline == NULL) {
 	    hp->histline = Strsave(sprlex(sbuf, &hp->Hlex));
 	}
@@ -1683,7 +1683,7 @@ e_down_search_hist(c)
     c_hsetpat();		/* Set search pattern !! */
 
     for (h = 1; h < Hist_num && hp; h++) {
-	Char sbuf[BUFSIZE], *hl;
+	Char sbuf[INBUFSIZE], *hl;
 	if (hp->histline == NULL) {
 	    hp->histline = Strsave(sprlex(sbuf, &hp->Hlex));
 	}

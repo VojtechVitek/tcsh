@@ -115,7 +115,7 @@ gethosttype()
 #   define _havehosttype_
     hosttype = "sun2";
 #  endif /* mc68010 */
-#  if defined(mc68020) || defined(__mc68010__)
+#  if defined(mc68020) || defined(__mc68020__)
 #   define _havehosttype_
     hosttype = "sun3";
 #  endif /* mc68020 */

@@ -602,6 +602,8 @@ extern int nice();
 # endif	/* BSDNICE */
 
 # if (!defined(fps500) && !defined(apollo) && !defined(__lucid) && !defined(HPBSD) && !defined(DECOSF1))
+extern void setpwent();
+extern void endpwent();
 # endif /* !fps500 && !apollo && !__lucid && !HPBSD && !DECOSF1 */
 
 # ifndef __STDC__

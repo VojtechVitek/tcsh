@@ -1278,6 +1278,8 @@ doprintenv(v, c)
 	xprintf("%S\n", e);
 	output_raw = 0;
     }
+    else
+	set(STRstatus, Strsave(STR1), VAR_READWRITE);
 }
 
 /* from "Karl Berry." <karl%mote.umb.edu@relay.cs.net> -- for NeXT things

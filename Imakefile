@@ -144,6 +144,10 @@ EXTF=mi.termios.c mi.wait.h mi.varargs.h vms.termcap.c
 #  define ConfigH bsd4.4
 # endif /* i386BsdArchitecture */
 
+# ifdef i386SVR4Architecture
+#  define ConfigH sysv4
+# endif
+
 #endif /* !ConfigH */
 
 /* generic os's */
