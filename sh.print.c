@@ -106,7 +106,7 @@ p2dig(i)
     unsigned int i;
 {
 
-    xprintf("%d%d", i / 10, i % 10);
+    xprintf("%u%u", i / 10, i % 10);
 }
 
 char    linbuf[2048];		/* was 128 */
