@@ -395,7 +395,7 @@ typedef int sigret_t;
 # include <netinet/in.h>
 # include <arpa/inet.h>
 # include <sys/socket.h>
-# if defined(_SS_SIZE) || defined(_SS_MAXSIZE)
+# if (defined(_SS_SIZE) || defined(_SS_MAXSIZE)) && !defined(NO_SS_FAMILY)
 #  if !defined(__APPLE__) /* Damnit, where is getnameinfo() folks? */
 #   define INET6
 #  endif /* __APPLE__ */
