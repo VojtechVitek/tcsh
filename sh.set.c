@@ -178,6 +178,12 @@ update_vars(vp)
 	update_dspmbyte_vars();
     }
 #endif
+#ifdef NLS_CATALOGS
+    else if (eq(vp, STRcatalog)) {
+	(void) catclose(catd);
+	nlsinit();
+    }
+#endif /* NLS_CATALOGS */
 }
 
 
@@ -745,6 +751,10 @@ unset(v, c)
 #if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
     update_dspmbyte_vars();
 #endif
+#ifdef NLS_CATALOGS
+    (void) catclose(catd);
+    nlsinit();
+#endif /* NLS_CATALOGS */
 }
 
 void

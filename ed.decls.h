@@ -238,6 +238,8 @@ extern  CCRETVAL	e_copy_to_clipboard	__P((int));
 extern  CCRETVAL	e_paste_from_clipboard	__P((int));
 extern  CCRETVAL	e_dosify_next		__P((int));
 extern  CCRETVAL	e_dosify_prev		__P((int));
+extern  CCRETVAL	e_page_up			__P((int));
+extern  CCRETVAL	e_page_down			__P((int));
 
 /*
  * ed.inputl.c

@@ -277,8 +277,12 @@ PFCmd   CcFuncTbl[] = {		/* table of available commands */
 #define		F_DOSIFY_NEXT	115
 	e_dosify_prev,
 #define		F_DOSIFY_PREV	116
+	e_page_up,
+#define		F_PAGE_UP		117
+	e_page_down,
+#define		F_PAGE_DOWN		118
     0				/* DUMMY VALUE */
-#define		F_NUM_FNS	117
+#define		F_NUM_FNS	119
 
 };
 
@@ -1747,6 +1751,15 @@ editinit()
     f->name = "e_dosify_prev";
     f->func = F_DOSIFY_PREV;
     f->desc = CSAVS(3, 118, "(win32 only)Convert each '/' in previous word to '\\\\'");
+    f++;
+    f->name = "e_page_up";
+    f->func = F_PAGE_UP;
+    f->desc = CSAVS(3, 118, "(win32 only)Page visible console window up");
+    f++;
+    f->name = "e_page_down";
+    f->func = F_PAGE_DOWN;
+    f->desc = CSAVS(3, 118, "(win32 only)Page visible console window down");
+
 
     f++;
     f->name = NULL;
