@@ -1147,7 +1147,7 @@ xecho(sep, v)
 #endif /* BSDSIGS */
     v++;
     if (*v == 0)
-	return;
+	goto done;
     gflag = 0, tglob(v);
     if (gflag) {
 	v = globall(v);
