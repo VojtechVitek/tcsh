@@ -46,6 +46,8 @@ RCSID("$Id$")
  * we can handle up to MAX_CHLD outstanding children now;
  */
 #define MAX_CHLD 50
+
+# ifdef UNRELSIGS
 static struct mysigstack {
     int     s_w;		/* wait report			 */
     int     s_errno;		/* errno returned;		 */
@@ -54,7 +56,6 @@ static struct mysigstack {
 static int stk_ptr = -1;
 
 
-# ifdef UNRELSIGS
 /* queue child signals
  */
 static sigret_t

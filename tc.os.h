@@ -630,4 +630,15 @@ extern void bcopy	__P((const void *, void *, size_t));
 # define NEEDmemmove
 #endif
 
+#if SYSVREL == 4
+# ifndef BSDTIMES
+extern int gethostname();
+extern int getrlimit();
+extern int setrlimit();
+extern int getrusage();
+extern int gettimeofday();
+extern int wait3();
+# endif
+#endif
+
 #endif /* _h_tc_os */

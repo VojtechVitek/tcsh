@@ -103,7 +103,9 @@ execute(t, wanttty, pipein, pipeout)
     int     wanttty;
     int *pipein, *pipeout;
 {
+#ifdef VFORK
     extern bool use_fork;	/* use fork() instead of vfork()? */
+#endif
 
     bool    forked;
     struct biltins *bifunc;
