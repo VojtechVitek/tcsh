@@ -50,7 +50,7 @@ any(s, c)
     if (!s)
 	return (0);		/* Check for nil pointer */
     while (*s)
-	if (*s++ == c)
+	if ((Char)*s++ == c)
 	    return (1);
     return (0);
 }

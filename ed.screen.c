@@ -998,7 +998,7 @@ static Char cur_atr = 0;	/* current attributes */
 
 void
 SetAttributes(atr)
-    int     atr;
+    Char     atr;
 {
     atr &= ATTRIBUTES;
     if (atr != cur_atr) {

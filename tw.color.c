@@ -145,7 +145,7 @@ getstring(dp, sp, pd, f)
     char *d = *dp;
     eChar sc;
 
-    while (*s && (*s & CHAR) != f && (*s & CHAR) != ':') {
+    while (*s && (*s & CHAR) != (Char)f && (*s & CHAR) != ':') {
 	if ((*s & CHAR) == '\\' || (*s & CHAR) == '^') {
 	    if ((sc = parseescape(&s)) == CHAR_ERR)
 		return 0;
@@ -163,7 +163,7 @@ getstring(dp, sp, pd, f)
     pd->len = (int) (d - *dp);
     *sp = s;
     *dp = d;
-    return *s == f;
+    return *s == (Char)f;
 }
 
 
@@ -236,8 +236,8 @@ parseLS_COLORS(value)
 	default:		/* :vl=color: */
 	    if (v[0] && v[1] && (v[2] & CHAR) == '=') {
 		for (i = 0; i < nvariables; i++)
-		    if (variables[i].variable[0] == (v[0] & CHAR) &&
-			variables[i].variable[1] == (v[1] & CHAR))
+		    if ((Char)variables[i].variable[0] == (v[0] & CHAR) &&
+			(Char)variables[i].variable[1] == (v[1] & CHAR))
 			break;
 		if (i < nvariables) {
 		    v += 3;
@@ -302,7 +302,7 @@ print_color(fname, len, suffix)
     default:
 	for (i = 0; i < nvariables; i++)
 	    if (variables[i].suffix != NOS &&
-		variables[i].suffix == suffix) {
+		(Char)variables[i].suffix == suffix) {
 		color = &variables[i].color;
 		break;
 	    }

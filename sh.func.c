@@ -2066,7 +2066,7 @@ limtail(cp, str)
     const char *sp;
 
     sp = str;
-    while (*cp && *cp == *str)
+    while (*cp && *cp == (Char)*str)
 	cp++, str++;
     if (*cp)
 	stderror(ERR_BADSCALE, sp);
