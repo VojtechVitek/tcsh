@@ -2101,7 +2101,7 @@ print_by_column(dir, items, count, no_file_suffix)
 		}
 		else {
 		    /* Print filename followed by '/' or '*' or ' ' */
-		    xprintf("\045S%c", items[i],
+		    xprintf("%-S%c", items[i],
 			    filetype(dir, items[i]));
 		    wx++;
 		}

@@ -342,7 +342,7 @@ print_with_color(filename, len, suffix)
 	}
     }
     else
-	xprintf("\045S", filename);
+	xprintf("%S", filename);
     xputwchar(suffix);
 }
 
