@@ -1402,7 +1402,8 @@ reread:
 static int
 bgetc()
 {
-    register int buf, off, c;
+    register int buf, off;
+    int c;
     register int numleft = 0, roomleft;
     extern Char InputBuf[];
     char    tbuf[BUFSIZ + 1];
@@ -1478,32 +1479,32 @@ again:
 	    if (c >= 0)
 		break;
 	    switch (errno) {
-#ifdef FIONBIO
-		static int zero = 0;
-
-#endif				/* FIONBIO */
 #ifdef EWOULDBLOCK
 	    case EWOULDBLOCK:
-#endif				/* EWOULDBLOCK */
+# define TRY_AGAIN
+#endif /* EWOULDBLOCK */
 #if defined(POSIX) && defined(EAGAIN)
-#if defined(EWOULDBLOCK) && EWOULDBLOCK != EAGAIN
+# if defined(EWOULDBLOCK) && EWOULDBLOCK != EAGAIN
 	    case EAGAIN:
-#endif				/* EWOULDBLOCK && EWOULDBLOCK != EAGAIN */
-#endif				/* POSIX && EAGAIN */
-#if defined(F_SETFL) && defined(O_NDELAY)
-		(void) fcntl(SHIN, F_SETFL,
-			     fcntl(SHIN, F_GETFL, 0) & ~O_NDELAY);
-#endif				/* F_SETFL && O_NDELAY */
-#ifdef FIONBIO
-		(void) ioctl(SHIN, FIONBIO, (ioctl_t) & zero);
-#endif				/* FIONBIO */
-#if (defined(F_SETFL) && defined(O_NDELAY)) || defined(FIONBIO)
+#  define TRY_AGAIN
+# endif /* EWOULDBLOCK && EWOULDBLOCK != EAGAIN */
+#endif /* POSIX && EAGAIN */
+#ifdef TRY_AGAIN
+# if defined(F_SETFL) && defined(O_NDELAY)
+		(void) fcntl(SHIN, F_SETFL, fcntl(SHIN,F_GETFL,0) & ~O_NDELAY);
+# endif /* F_SETFL && O_NDELAY */
+# ifdef FIONBIO
 		c = 0;
-#endif				/* (F_SETFL && O_NDELAY) || FIONBIO */
+		(void) ioctl(SHIN, FIONBIO, (ioctl_t) &c);
+# endif	/* FIONBIO */
+# if (defined(F_SETFL) && defined(O_NDELAY)) || defined(FIONBIO)
+		c = 0;
+# endif	/* (F_SETFL && O_NDELAY) || FIONBIO */
 		break;
+#endif /* TRY_AGAIN */
 #ifdef _SEQUENT_
 	    case EBADF:
-#endif				/* _SEQUENT_ */
+#endif	/* _SEQUENT_ */
 	    case EINTR:
 		c = 0;
 		break;
