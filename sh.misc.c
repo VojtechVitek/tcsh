@@ -79,9 +79,11 @@ strsave(s)
 
     if (s == NULL)
 	s = (const char *) "";
-    for (p = (char *) s; *p++;);
+    for (p = (char *) s; *p++;)
+	continue;
     n = p = (char *) xmalloc((size_t) ((p - s) * sizeof(char)));
-    while (*p++ = *s++);
+    while ((*p++ = *s++) != NULL)
+	continue;
     return (n);
 }
 
@@ -126,7 +128,7 @@ blkcpy(oav, bv)
 {
     register Char **av = oav;
 
-    while (*av++ = *bv++)
+    while ((*av++ = *bv++) != NULL)
 	continue;
     return (oav);
 }
@@ -355,9 +357,9 @@ copy(to, from, size)
     register char *to, *from;
     register int size;
 {
-
     if (size && from && to)
 	do
+	    /*SUPPRESS 112*/
 	    *to++ = *from++;
 	while (--size != 0);
 }

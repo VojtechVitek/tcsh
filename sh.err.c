@@ -323,7 +323,13 @@ static char *errorlist[] =
     "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]",
 # endif /* __convex__ || convex */
 #endif /* apollo */
-#define ERR_INVALID	127
+#define ERR_COMPCOM	127
+    "Illegal completion: \"%s\"",
+#define ERR_COMPILL	128
+    "Illegal %s: '%c'",
+#define ERR_COMPINC	129
+    "Incomplete %s: \"%s\"",
+#define ERR_INVALID	130
     "Invalid Error"
 };
 

@@ -225,7 +225,7 @@ printprompt(promptno, str)
 		}
 		/*FALLTHROUGH*/
 	    case '/':
-		if (z = value(STRcwd)) {
+		if ((z = value(STRcwd)) != NULL) {
 		    while (*z) {
 			*p++ = attributes | *z++;
 			if (p >= ep) break;
@@ -263,7 +263,8 @@ printprompt(promptno, str)
 			}
 			else
 			    q = buff;
-			for (z = q; *z; z++);	/* find the end */
+			for (z = q; *z; z++)
+			    continue;	/* find the end */
 			while (j-- > 0) {
 			    while ((z > q) && (*z != '/'))
 				z--;	/* back up */
@@ -280,14 +281,14 @@ printprompt(promptno, str)
 		}
 		break;
 	    case 'n':
-		if (z = value(STRuser))
+		if ((z = value(STRuser)) != NULL)
 		    while (*z) {
 			*p++ = attributes | *z++;
 			if (p >= ep) break;
 		    }
 		break;
 	    case 'l':
-		if (z = value(STRtty))
+		if ((z = value(STRtty)) != NULL)
 		    while (*z) {
 			*p++ = attributes | *z++;
 			if (p >= ep) break;
@@ -370,7 +371,7 @@ printprompt(promptno, str)
 		ClearToBottom();
 		break;
 	    case '?':
-		if (z = value(STRstatus))
+		if ((z = value(STRstatus)) != NULL)
 		    while (*z) {
 			*p++ = attributes | *z++;
 			if (p >= ep) break;

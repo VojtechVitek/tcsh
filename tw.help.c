@@ -190,6 +190,7 @@ static Char *
 skipslist(sl)
     register Char *sl;
 {
-    while (*sl && *sl++ != ':');
+    while (*sl && *sl++ != ':')
+	continue;
     return (sl);
 }

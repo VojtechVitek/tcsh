@@ -200,7 +200,7 @@ doset(v, c)
 	else if (eq(vp, STRwatch)) {
 	    resetwatch();
 	}
-    } while (p = *v++);
+    } while ((p = *v++) != NULL);
 }
 
 static Char *
@@ -331,7 +331,7 @@ dolet(v, dummy)
 	xfree((ptr_t) vp);
 	if (c != '=')
 	    xfree((ptr_t) p);
-    } while (p = *v++);
+    } while ((p = *v++) != NULL);
 }
 
 static Char *
@@ -468,8 +468,8 @@ madrof(pat, vp)
 {
     register struct varent *vp1;
 
-    for (; vp; vp = vp->v_right) {
-	if (vp->v_left && (vp1 = madrof(pat, vp->v_left)))
+    for (vp = vp->v_left; vp; vp = vp->v_right) {
+	if (vp->v_left && (vp1 = madrof(pat, vp)) != NULL)
 	    return vp1;
 	if (Gmatch(vp->v_name, pat))
 	    return vp;
@@ -600,7 +600,7 @@ unset1(v, head)
 
     while (*++v) {
 	cnt = 0;
-	while (vp = madrof(*v, head->v_left))
+	while ((vp = madrof(*v, head)) != NULL)
 	    unsetv1(vp), cnt++;
 	if (cnt == 0)
 	    setname(short2str(*v));
@@ -640,12 +640,14 @@ unsetv1(p)
     else if (p->v_left == 0)
 	c = p->v_right;
     else {
-	for (c = p->v_left; c->v_right; c = c->v_right);
+	for (c = p->v_left; c->v_right; c = c->v_right)
+	    continue;
 	p->v_name = c->v_name;
 	p->vec = c->vec;
 	p = c;
 	c = p->v_left;
     }
+
     /*
      * Move c into where p is.
      */
@@ -719,13 +721,13 @@ exportpath(val)
 #define rright(p) (\
 	t = (p)->v_left,\
 	(t)->v_parent = (p)->v_parent,\
-	((p)->v_left = t->v_right) ? (t->v_right->v_parent = (p)) : 0,\
+	(((p)->v_left = t->v_right) != NULL) ? (t->v_right->v_parent = (p)) : 0,\
 	(t->v_right = (p))->v_parent = t,\
 	(p) = t)
 #define rleft(p) (\
 	t = (p)->v_right,\
-	(t)->v_parent = (p)->v_parent,\
-	((p)->v_right = t->v_left) ? (t->v_left->v_parent = (p)) : 0,\
+	((t)->v_parent = (p)->v_parent,\
+	((p)->v_right = t->v_left) != NULL) ? (t->v_left->v_parent = (p)) : 0,\
 	(t->v_left = (p))->v_parent = t,\
 	(p) = t)
 #else

@@ -1355,9 +1355,11 @@ ed_InitMetaBindings()
     KEYCMD *map;
 
     map = CcKeyMap;
-    for (i = 0; i <= 0377 && CcKeyMap[i] != F_METANEXT; i++);
+    for (i = 0; i <= 0377 && CcKeyMap[i] != F_METANEXT; i++)
+	continue;
     if (i > 0377) {
-	for (i = 0; i <= 0377 && CcAltMap[i] != F_METANEXT; i++);
+	for (i = 0; i <= 0377 && CcAltMap[i] != F_METANEXT; i++)
+	    continue;
 	if (i > 0377) {
 	    i = 033;
 	    if (VImode)

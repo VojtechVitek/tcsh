@@ -88,8 +88,8 @@ spell_me(oldname, oldsize, looking_for_cmd)
 			  TW_COMMAND : TW_ZERO, 1, STRNULL);
 	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
-	for (p = ws; *new = *p++;)
-	    new++;
+	for (p = ws; (*new = *p++) != NULL; new++)
+	    continue;
     }
 /*NOTREACHED*/
 #ifdef notdef
@@ -148,7 +148,8 @@ spdir(extended_name, tilded_dir, entry, name)
     if (ISDOT(entry) || ISDOTDOT(entry))
 	return 0;
 
-    for (s = name; *s != 0 && (*s & TRIM) == (*entry & TRIM); s++, entry++);
+    for (s = name; *s != 0 && (*s & TRIM) == (*entry & TRIM); s++, entry++)
+	continue;
     if (*s == 0 || s[1] == 0 || *entry != 0)
 	return 0;
 

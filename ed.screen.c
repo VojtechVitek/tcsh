@@ -295,7 +295,8 @@ TCalloc(t, cap)
 	if (t != ts && ts->str != NULL && ts->str[0] != '\0') {
 	    char   *ptr;
 
-	    for (ptr = ts->str; *ptr != '\0'; termbuf[tlen++] = *ptr++);
+	    for (ptr = ts->str; *ptr != '\0'; termbuf[tlen++] = *ptr++)
+		continue;
 	    termbuf[tlen++] = '\0';
 	}
     copy(termcap_alloc, termbuf, TC_BUFSIZE);
@@ -1150,7 +1151,7 @@ GetTermCaps()
     if (T_Tabs)
 	T_Tabs = Val(T_pt);
     T_HasMeta = Val(T_km);
-    T_Margin = !Val(T_am);
+    T_Margin = !Val(T_am) && (adrof(STRmargin_bug) == NULL);
     T_CanCEOL = GoodStr(T_ce);
     T_CanDel = GoodStr(T_dc) || GoodStr(T_DC);
     T_CanIns = GoodStr(T_im) || GoodStr(T_ic) || GoodStr(T_IC);
@@ -1277,7 +1278,7 @@ ChangeSize(lins, cols)
 	    Setenv(STRLINES, buf);
 	}
 
-	if (tptr = getenv("TERMCAP")) {
+	if ((tptr = getenv("TERMCAP")) != NULL) {
 	    Char    termcap[1024], backup[1024], *ptr;
 	    int     i;
 

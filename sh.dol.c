@@ -108,7 +108,7 @@ Dfix(t)
     if (noexec)
 	return;
     /* Note that t_dcom isn't trimmed thus !...:q's aren't lost */
-    for (pp = t->t_dcom; p = *pp++;)
+    for (pp = t->t_dcom; (p = *pp++) != NULL;)
 	for (; *p; p++) {
 	    if (cmap(*p, _DOL | QUOTES)) {	/* $, \, ', ", ` */
 		Dfix2(t->t_dcom);	/* found one */
@@ -778,7 +778,7 @@ setDolp(cp)
 	    int didmod = 0;
 
 	    do {
-		if ((dp = domod(cp, dolmod[i]))) {
+		if ((dp = domod(cp, dolmod[i])) != NULL) {
 		    didmod = 1;
 		    if (Strcmp(cp, dp) == 0) {
 			xfree((ptr_t) cp);
