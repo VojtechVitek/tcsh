@@ -40,7 +40,7 @@ RCSID("$Id$")
 
 #include "sh.h"
 
-#define MALLOC_INCR	1024
+#define MALLOC_INCR	128
 
 #ifdef SHORT_STRINGS
 Char  **
