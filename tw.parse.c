@@ -81,7 +81,7 @@ static void (*tw_end_entry[]) __P((void)) = {
     tw_dir_end,        tw_dir_end,     tw_dir_end,    tw_dir_end,
     tw_dir_end,        tw_dir_end,     tw_dir_end,    tw_dir_end,
     tw_dir_end,	       tw_dir_end,     tw_dir_end,    tw_dir_end,
-    tw_grpname_next
+    tw_grpname_end
 };
 
 /* #define TDEBUG */

@@ -89,6 +89,7 @@ extern	 Char		 *tw_grpname_next	__P((Char *, int *));
 extern	 void		  tw_dir_end		__P((void));
 extern	 void		  tw_cmd_free		__P((void));
 extern	 void		  tw_logname_end	__P((void));
+extern	 void		  tw_grpname_end	__P((void));
 extern	 Char		 *tw_item_add		__P((int));
 extern	 Char	        **tw_item_get		__P((void));
 extern	 void		  tw_item_free		__P((void));
