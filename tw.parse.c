@@ -873,8 +873,7 @@ again:
 	    /*
 	     * Don't match . files on null prefix match
 	     */
-	    if (name_length == 0 && entry[0] == '.' && 
-		command != SPELL && !is_set(STRshowdots))
+	    if (name_length == 0 && entry[0] == '.' && !is_set(STRshowdots))
 		done = TRUE;
 	    break;
 

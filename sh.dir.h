@@ -47,4 +47,9 @@ struct directory {
 };
 EXTERN struct directory *dcwd;	/* the one we are in now */
 
+#define TRM(a) ((a) & TRIM)
+#define ISDOT(c) (TRM((c)[0]) == '.' && ((TRM((c)[1]) == '\0') || \
+		  (TRM((c)[1]) == '/')))
+#define ISDOTDOT(c) (TRM((c)[0]) == '.' && ISDOT(&((c)[1])))
+
 #endif				/* _h_sh_dir */

@@ -537,6 +537,8 @@ xgetpass(prm)
 static void
 auto_lock()
 {
+#ifdef NO_CRYPT
+
     int i;
     struct passwd *pw;
 #ifdef PW_SHADOW
@@ -589,6 +591,7 @@ auto_lock()
 	}
 	xprintf("\nIncorrect passwd for %s\n", pw->pw_name);
     }
+#endif /* NO_CRYPT */
     auto_logout();
 }
 

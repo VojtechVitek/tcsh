@@ -97,6 +97,11 @@ gethosttype()
     hosttype = str2short("pyramid");
 # endif /* pyr */
 
+# ifdef tahoe /* tahoe */
+#  define _havehosttype_
+    hosttype = str2short("tahoe");
+# endif /* tahoe */
+
 # ifdef ibm032 /* from Jak Kirman */
 #  define _havehosttype_
     hosttype = str2short("rt");

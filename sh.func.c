@@ -1012,6 +1012,7 @@ xecho(sep, v)
 {
     register Char *cp;
     int     nonl = 0;
+    static int     sysv_echo;
 
     if (setintr)
 #ifdef BSDSIGS
@@ -1032,15 +1033,25 @@ xecho(sep, v)
 	v = gargv = saveblk(v);
 	trim(v);
     }
-    if (sep == ' ' && *v && eq(*v, STRmn))
+#if !defined(OREO) && SYSVREL > 0
+    if (adrof(STRbsd_echo))
+	sysv_echo = 0;
+    else
+	sysv_echo = 1;
+#else
+    if (adrof(STRsysv_echo))
+	sysv_echo = 1;
+    else
+	sysv_echo = 0;
+#endif /* !defined(OREO) && SYSVREL > 0 */
+
+    if (!sysv_echo && sep == ' ' && *v && eq(*v, STRmn))
 	nonl++, v++;
     while ((cp = *v++) != 0) {
 	register int c;
 
 	while ((c = *cp++) != 0) {
-#if SYSVREL > 0
-#ifndef OREO
-	    if (c == '\\') {
+	    if (sysv_echo && c == '\\') {
 		switch (c = *cp++) {
 		case 'b':
 		    c = '\b';
@@ -1083,19 +1094,13 @@ xecho(sep, v)
 		    break;
 		}
 	    }
-#endif /* OREO */
-#endif /* SYSVREL > 0 */
 	    xputchar(c | QUOTE);
 
 	}
 	if (*v)
 	    xputchar(sep | QUOTE);
     }
-#if SYSVREL > 0
-#ifndef OREO
 done:
-#endif /* OREO */
-#endif /* SYSVREL > 0 */
     if (sep && nonl == 0)
 	xputchar('\n');
     else

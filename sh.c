@@ -139,12 +139,25 @@ main(argc, argv)
 
 #ifdef BSDSIGS
     sigvec_t osv;
-#endif				/* BSDSIGS */
+#endif /* BSDSIGS */
 
     settimes();			/* Immed. estab. timing base */
 #ifdef TESLA
     do_logout = 0;
-#endif				/* TESLA */
+#endif /* TESLA */
+
+    /*
+     * Make sure we have 0, 1, 2 open
+     * Otherwise `` jobs will not work... (From knaff@poly.polytechnique.fr)
+     */
+    {
+	do 
+	    if ((f = open(_PATH_DEVNULL, O_RDONLY)) == -1 &&
+		(f = open("/", O_RDONLY)) == -1) 
+		exit(1);
+	while (f < 3);
+	(void) close(f);
+    }
 
     osinit();			/* Os dependent initialization */
 

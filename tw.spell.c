@@ -141,9 +141,12 @@ spdir(extended_name, tilded_dir, entry, name)
     Char   *entry;
     Char   *name;
 {
-    Char    path[1024];
+    Char    path[MAXPATHLEN + 1];
     Char   *s;
     Char    oldch;
+
+    if (ISDOT(entry) || ISDOTDOT(entry))
+	return 0;
 
     for (s = name; *s != 0 && (*s & TRIM) == (*entry & TRIM); s++, entry++);
     if (*s == 0 || s[1] == 0 || *entry != 0)

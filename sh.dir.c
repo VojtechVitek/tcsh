@@ -277,12 +277,6 @@ Char   *
 dnormalize(cp)
     Char   *cp;
 {
-
-#define TRM(a) ((a) & TRIM)
-#define ISDOT(c) (TRM((c)[0]) == '.' && ((TRM((c)[1]) == '\0') || \
-		  (TRM((c)[1]) == '/')))
-#define ISDOTDOT(c) (TRM((c)[0]) == '.' && ISDOT(&((c)[1])))
-
     if (TRM(cp[0]) == '/')
 	return (Strsave(cp));
 

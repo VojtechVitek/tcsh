@@ -669,7 +669,8 @@ SpellLine(cmdonly)
 	while (ismetahash(*argptr) || iscmdmeta(*argptr))
 	    argptr++;
 	for (Cursor = argptr;
-	     *Cursor != '\0' && !ismetahash(*Cursor) && !iscmdmeta(*Cursor);
+	     *Cursor != '\0' && ((Cursor != argptr && Cursor[-1] == '\\') ||
+				 (!ismetahash(*Cursor) && !iscmdmeta(*Cursor)));
 	     Cursor++);
 	if (*Cursor == '\0') {
 	    Cursor = LastChar;

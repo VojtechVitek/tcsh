@@ -615,7 +615,7 @@ getdol()
 		}
 		c = 's';
 	    }
-	    if (!any("htrqxes", c)) {
+	    if (!any("htrqxesul", c)) {
 		if ((amodflag || gmodflag) && c == '\n')
 		    stderror(ERR_VARSYN);	/* strike */
 		seterror(ERR_VARMOD, c);
@@ -1041,14 +1041,21 @@ domod(cp, type)
 
     case 'l':
 	wp = Strsave(cp);
-	*wp =  Isupper(*wp) ? Tolower(*wp) : *wp;
-	return (wp);
+	for (cp = wp; *cp; cp++) 
+	    if (Isupper(*cp)) {
+		*cp = Tolower(*cp);
+		return wp;
+	    }
+	return wp;
 
     case 'u':
 	wp = Strsave(cp);
-	*wp =  Islower(*wp) ? Toupper(*wp) : *wp;
-	return (wp);
-
+	for (cp = wp; *cp; cp++) 
+	    if (Islower(*cp)) {
+		*cp = Toupper(*cp);
+		return wp;
+	    }
+	return wp;
 
     case 'h':
     case 't':

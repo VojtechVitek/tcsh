@@ -88,6 +88,7 @@ LDFLAGS= 			## The simplest, suitable for all.
 # 				## the network for machines with local
 #				## swap but external /usr/local/bin .
 #LDFLAGS= -s -n -Bstatic	## Without dynamic links. (SunOS)
+#LDFLAGS= -Wl,-s,-n		## Stripped, shared text (Unicos)
 
 ################################################################
 ## LIBES.  Pick one, or roll your own.
