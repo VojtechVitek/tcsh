@@ -93,14 +93,17 @@ struct ucred {
 #  define CSUSP 032
 # endif	/* CSUSP */
 #endif /* ISC */
-#ifdef HYPERCUBE
+#if defined(HYPERCUBE) || defined(u3b2) || defined (u3b5) || \
+    defined(ub15) || defined(u3b20d)
+#ifdef TIOCGWINSZ
 /*
  * for struct winsiz
  */
 # include <sys/stream.h>
 # include <sys/ptem.h>
+#endif /* TIOCGWINSZ */
 # define NEEDgethostname
-#endif /* HYPERCUBE */
+#endif /* HYPERCUBE || att */
 
 #ifdef IRIS4D
 # include <sys/time.h>
