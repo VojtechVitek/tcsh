@@ -96,6 +96,7 @@ extern	void		  postcmd	__P((void));
 extern	void		  cwd_cmd	__P((void));
 extern	void		  beep_cmd	__P((void));
 extern	void		  period_cmd	__P((void));
+extern	void		  job_cmd	__P((void));
 extern	void		  aliasrun	__P((int, Char *, Char *));
 extern	void		  setalarm	__P((int));
 extern	void		  rmstar	__P((struct wordent *));
