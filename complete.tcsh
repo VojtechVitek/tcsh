@@ -162,9 +162,12 @@ if ($?complete) then
 			n/-d/x:'<display>'/ n/-f/x:'<lisp_function>'/ n/-i/f/ \
 			n/-l/f:*.{el,elc}/ n/-t/x:'<terminal>'/ n/-u/u/ \
 			n/*/f:^*[\#~]/
-    complete mail	c/-/"(e i f n s u v)"/ c/*@/\$hosts/ \
+    complete mail       c/-/"(e i f n s u v)"/ c/*@/\$hosts/ \
 			n/-s/x:'<subject>'/ n/-u/u/ \
-			c@+@\`/bin/ls\ -1\ ~/Mail\`@ n/-f/f/ n/*/u/
+			c@+@p:$HOME/Mail@ n/-f/f/ n/*/u/
+
+    complete nslookup   p/1/x:'<host>'/ p/2/\$hosts/
+
     complete ar c/[dmpqrtx]/"(c l o u v a b i)"/ p/1/"(d m p q r t x)"// \
 		p/2/f:*.a/ p/*/f:*.o/
 
