@@ -396,7 +396,9 @@ typedef int sigret_t;
 # include <arpa/inet.h>
 # include <sys/socket.h>
 # if defined(_SS_SIZE) || defined(_SS_MAXSIZE)
-#  define INET6
+#  if !defined(__APPLE__) /* Damnit, where is getnameinfo() folks? */
+#   define INET6
+#  endif /* __APPLE__ */
 # endif
 # include <sys/uio.h>	/* For struct iovec */
 #endif /* REMOTEHOST */
