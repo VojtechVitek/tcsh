@@ -56,6 +56,7 @@ typedef struct {
 
 static struct varent *tw_vptr = NULL;	/* Current shell variable 	*/
 static Char **tw_env = NULL;		/* Current environment variable */
+static Char  *tw_word = NULL;		/* Current word pointer		*/
 static struct KeyFuncs *tw_bind = NULL;	/* List of the bindings		*/
 static DIR   *tw_dir_fd = NULL;		/* Current directory descriptor	*/
 static Char   tw_retname[MAXPATHLEN+1];	/* Return buffer		*/
@@ -740,6 +741,40 @@ tw_vl_start(dfd, pat)
 } /* end tw_vl_start */
 
 
+/*
+ * Initialize a word list
+ */
+void
+tw_wl_start(dfd, pat)
+    DIR *dfd;
+    Char *pat;
+{
+    SETDIR(dfd);
+    tw_word = pat;
+} /* end tw_wl_start */
+
+
+/*
+ * Return the next word from the word list
+ */
+Char *
+tw_wl_next(dir, flags)
+    Char *dir;
+    int *flags;
+{
+    if (tw_word == NULL || tw_word[0] == '\0')
+	return NULL;
+    
+    while (*tw_word && Isspace(*tw_word)) tw_word++;
+
+    for (dir = tw_word; *tw_word && !Isspace(*tw_word); tw_word++)
+	continue;
+    if (*tw_word)
+	*tw_word++ = '\0';
+    return *dir ? dir : NULL;
+} /* end tw_wl_next */
+
+
 /* tw_bind_start():
  *	Begin the list of the shell bindings
  */
@@ -752,6 +787,7 @@ tw_bind_start(dfd, pat)
     SETDIR(dfd)
     tw_bind = FuncNames;
 } /* end tw_bind_start */
+
 
 /* tw_bind_next():
  *	Begin the list of the shell bindings

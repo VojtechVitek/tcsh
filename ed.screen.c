@@ -227,7 +227,7 @@ static struct termcapval {
     int     val;
 }       tval[] = {
 #define T_am	0
-    {	"am",	"Can use automatic margins",	0 },
+    {	"am",	"Has automatic margins",	0 },
 #define T_pt	1
     {	"pt",	"Can use physical tabs", 	0 },
 #define T_li	2

@@ -99,7 +99,7 @@ LDFLAGS= 			## The simplest, suitable for all.
 ################################################################
 ## LIBES.  Pick one, or roll your own.
 ################################################################
-LIBES= -ltermcap		## BSD style things, hpux, amiga unix
+LIBES= -ltermcap		## BSD style things, hpux
 #LIBES= -ltermcap -lcs		## Mach
 #LIBES= -lcurses		## Sys V3 w/o networking (and Sys V4)
 #LIBES= -lcurses -lc /usr/ucblib/libucb.a ## Sys V4 with BSDTIMES
