@@ -566,14 +566,21 @@ static struct tcshmodes {
 # define OKERROR(e) ((e) == EINTR)
 #endif
 
+#ifdef __NetBSD__
+#define KLUDGE (errno == ENOTTY && count < 10)
+#else
+#define KLUDGE 0
+#endif
+
 /* Retry a system call */
+static int count;
 #define RETRY(x) \
-   for (;;) \
+   for (count = 0;; count++) \
 	if ((x) == -1) { \
-	   if (OKERROR(errno)) \
-	       continue; \
-	   else \
-	       return -1; \
+	    if (OKERROR(errno) || KLUDGE) \
+		continue; \
+	    else \
+		return -1; \
 	} \
 	else \
 	   break \
