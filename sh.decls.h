@@ -1,6 +1,6 @@
 /* $Header$ */
 /*
- * sh.decls.h: Function 
+ * sh.decls.h: External declarations from sh*.c
  */
 #ifndef _h_sh_decls
 #define _h_sh_decls
@@ -148,6 +148,9 @@ extern void rscan();
 extern void tglob();
 extern Char *globone();
 extern Char **dobackp();
+#ifdef FILEC
+extern int sortcmp();
+#endif
 
 
 /*

@@ -234,6 +234,9 @@ extern char *getwd();
 # if defined(sun) && !defined(__GNUC__)
 extern char *getwd();
 # endif
+# if defined(RENO)
+extern void perror();	/* Reno declares that in stdio.h :-( */
+# endif /* RENO */
 #endif
 
 

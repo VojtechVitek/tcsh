@@ -181,10 +181,6 @@ Char STRrecognize_only_executables[] = { 'r', 'e', 'c', 'o', 'g', 'n', 'i', 'z',
 					 'e', 's', '\0' };
 Char STRnohup[]		= { 'n', 'o', 'h', 'u', 'p', '\0' };
 Char STRnice[]		= { 'n', 'i', 'c', 'e', '\0' };
-Char STRdothelp[]	= { '.', 'h', 'e', 'l', 'p', '\0' };
-Char STRdot1[]		= { '.', '1', '\0' };
-Char STRdot6[]		= { '.', '6', '\0' };
-Char STRdot8[]		= { '.', '8', '\0' };
 Char STRlistpathnum[]	= { 'l', 'i', 's', 't', 'p', 'a', 't', 'h', 'n', 'u', 
 			    'm', '\0' };
 Char STRshowdots[]	= { 's', 'h', 'o', 'w', 'd', 'o', 't', 's', '\0' };
