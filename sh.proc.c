@@ -255,7 +255,7 @@ loop:
     pid = wait3(&w.w_status, WNOHANG, &ru);
 #  endif /* !hpux */
 # else /* !BSDTIMES */
-#  if (SVID > 0) && (SVID < 3)
+#  if SVID < 3
     /* no wait3, therefore no rusage */
     /* on Sys V, this may hang.  I hope it's not going to be a problem */
     pid = ourwait(&w.w_status);
