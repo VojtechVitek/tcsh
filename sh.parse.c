@@ -56,13 +56,13 @@ static	struct command	*syn1b	 __P((struct wordent *, struct wordent *, int));
 static	struct command	*syn2	 __P((struct wordent *, struct wordent *, int));
 static	struct command	*syn3	 __P((struct wordent *, struct wordent *, int));
 
-#define ALEFT	21		/* max of 20 alias expansions	 */
-#define HLEFT	11		/* max of 10 history expansions	 */
+#define ALEFT	51		/* max of 50 alias expansions	 */
+#define HLEFT	11		/* max of 10 history expansions */
 /*
  * Perform aliasing on the word list lex
  * Do a (very rudimentary) parse to separate into commands.
  * If word 0 of a command has an alias, do it.
- * Repeat a maximum of 20 times.
+ * Repeat a maximum of 50 times.
  */
 static int aleft;
 extern int hleft;
