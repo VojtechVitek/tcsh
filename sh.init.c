@@ -218,7 +218,7 @@ int nsrchn = sizeof srchn / sizeof *srchn;
  */
 
 /* We define NUMSIG to avoid changing NSIG or MAXSIG */
-#ifdef POSIX
+#if defined(POSIX) && !defined(__CYGWIN__)
 # define NUMSIG 65
 #else /* !POSIX */
 # define NUMSIG 33
