@@ -453,7 +453,7 @@ texec(sf, st)
 	    v = adrof1(STRshell, &aliases);
 	    if (v == 0) {
 		vp = lastsh;
-		vp[0] = adrof(STRshell) ? value(STRshell) : STR_SHELLPATH;
+		vp[0] = adrof(STRshell) ? varval(STRshell) : STR_SHELLPATH;
 		vp[1] = NULL;
 #ifdef _PATH_BSHELL
 		if (fd != -1 

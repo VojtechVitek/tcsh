@@ -85,6 +85,7 @@ Char STRpath[]          = { 'p', 'a', 't', 'h', '\0' };
 Char STRprompt[]        = { 'p', 'r', 'o', 'm', 'p', 't', '\0' };
 Char STRprompt2[]       = { 'p', 'r', 'o', 'm', 'p', 't', '2', '\0' };
 Char STRprompt3[]       = { 'p', 'r', 'o', 'm', 'p', 't', '3', '\0' };
+Char STRellipsis[]      = { 'e', 'l', 'l', 'i', 'p', 's', 'i', 's', '\0' };
 Char STRcwd[]           = { 'c', 'w', 'd', '\0' };
 Char STRowd[]           = { 'o', 'w', 'd', '\0' };
 Char STRstar[]          = { '*', '\0' };

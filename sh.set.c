@@ -69,7 +69,7 @@ update_vars(vp)
 	dohash(NULL, NULL);
     }
     else if (eq(vp, STRhistchars)) {
-	register Char *pn = value(vp);
+	register Char *pn = varval(vp);
 
 	HIST = *pn++;
 	HISTSUB = *pn;
@@ -78,14 +78,14 @@ update_vars(vp)
 	HistLit = 1;
     }
     else if (eq(vp, STRuser)) {
-	tsetenv(STRKUSER, value(vp));
-	tsetenv(STRLOGNAME, value(vp));
+	tsetenv(STRKUSER, varval(vp));
+	tsetenv(STRLOGNAME, varval(vp));
     }
     else if (eq(vp, STRwordchars)) {
-	word_chars = value(vp);
+	word_chars = varval(vp);
     }
     else if (eq(vp, STRsymlinks)) {
-	register Char *pn = value(vp);
+	register Char *pn = varval(vp);
 
 	if (eq(pn, STRignore))
 	    symlinks = SYM_IGNORE;
@@ -100,7 +100,7 @@ update_vars(vp)
 #ifdef DOESNT_WORK_RIGHT
 	register Char *cp;
 #endif /* DOESNT_WORK_RIGHT */
-	tsetenv(STRKTERM, value(vp));
+	tsetenv(STRKTERM, varval(vp));
 #ifdef DOESNT_WORK_RIGHT
 	cp = getenv("TERMCAP");
 	if (cp && (*cp != '/'))	/* if TERMCAP and not a path */
@@ -112,7 +112,7 @@ update_vars(vp)
     else if (eq(vp, STRhome)) {
 	register Char *cp;
 
-	cp = Strsave(value(vp));	/* get the old value back */
+	cp = Strsave(varval(vp));	/* get the old value back */
 
 	/*
 	 * convert to cononical pathname (possibly resolving symlinks)
@@ -132,7 +132,7 @@ update_vars(vp)
 	/* PWP: add more stuff in here later */
     }
     else if (eq(vp, STRshlvl)) {
-	tsetenv(STRKSHLVL, value(vp));
+	tsetenv(STRKSHLVL, varval(vp));
     }
     else if (eq(vp, STRbackslash_quote)) {
 	bslash_quote = 1;
@@ -356,7 +356,7 @@ dolet(v, dummy)
 	    asx(vp, subscr, operate(op, gv->vec[subscr - 1], p));
 	}
 	else
-	    set(vp, operate(op, value(vp), p), VAR_READWRITE);
+	    set(vp, operate(op, varval(vp), p), VAR_READWRITE);
 	update_vars(vp);
 	xfree((ptr_t) vp);
 	if (c != '=')

@@ -597,9 +597,9 @@ exp6(vp, ignore)
 	pwait();
 	prestjob();
 #ifdef EDEBUG
-	etraci("exp6 {} status", egetn(value(STRstatus)), vp);
+	etraci("exp6 {} status", egetn(varval(STRstatus)), vp);
 #endif /* EDEBUG */
-	return (putn(egetn(value(STRstatus)) == 0));
+	return (putn(egetn(varval(STRstatus)) == 0));
     }
     if (isa(**vp, ANYOP))
 	return (Strsave(STRNULL));
@@ -833,7 +833,6 @@ filetest(cp, vp, ignore)
 		xfree((ptr_t) strino);
 		xfree((ptr_t) ep);
 		return(strF);
-		break;
 		
 	    case 'L':
 		if ( *(ft + 1) ) {
@@ -859,11 +858,10 @@ filetest(cp, vp, ignore)
 		xfree((ptr_t) string);
 		xfree((ptr_t) ep);
 		return(Strsave(strF));
-		break;
 
 #else /* !S_ISLNK */
 		i = 0;
-		break
+		break;
 #endif /* S_ISLNK */
 		
 
@@ -879,7 +877,6 @@ filetest(cp, vp, ignore)
 		    *--string = '0';
 		xfree((ptr_t) ep);
 		return(Strsave(str2short(string)));
-		break;
 
 	    case 'U':
 		if (altout && (pw = getpwuid(st->st_uid))) {

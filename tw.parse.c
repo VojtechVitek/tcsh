@@ -1202,7 +1202,7 @@ tw_list_items(looking, numitems, list_max)
     int max_items = 0;
     int max_rows = 0;
 
-    if ((ptr = value(STRlistmax)) != STRNULL) {
+    if ((ptr = varval(STRlistmax)) != STRNULL) {
 	while (*ptr) {
 	    if (!Isdigit(*ptr)) {
 		max_items = 0;
@@ -1216,7 +1216,7 @@ tw_list_items(looking, numitems, list_max)
 	    max_items = 0;
     }
 
-    if (max_items == 0 && (ptr = value(STRlistmaxrows)) != STRNULL) {
+    if (max_items == 0 && (ptr = varval(STRlistmaxrows)) != STRNULL) {
 	int rows;
 
 	while (*ptr) {

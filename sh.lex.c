@@ -1467,7 +1467,7 @@ readc(wanteof)
     }
 
     /* Compute the value of EOFs */
-    if ((ptr = value(STRignoreeof)) != STRNULL) {
+    if ((ptr = varval(STRignoreeof)) != STRNULL) {
 	while (*ptr) {
 	    if (!Isdigit(*ptr)) {
 		numeof = 0;

@@ -646,7 +646,7 @@ execute(t, wanttty, pipein, pipeout)
 	if (t->t_dcar) {
 	    t->t_dcar->t_dflg |= t->t_dflg & F_NOINTERRUPT;
 	    execute(t->t_dcar, _gv.wanttty, NULL, NULL);
-	    if ((getn(value(STRstatus)) == 0) !=
+	    if ((getn(varval(STRstatus)) == 0) !=
 		(t->t_dtyp == NODE_AND)) {
 		VOL_RESTORE();
 		return;

@@ -571,7 +571,7 @@ struct command *c;
 char *
 utmphost()
 {
-    char *tty = short2str(value(STRtty));
+    char *tty = short2str(varval(STRtty));
     struct who *wp;
     char *host = NULL;
 

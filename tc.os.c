@@ -572,7 +572,7 @@ dowarp(v, c)
     if (*v == 0) {		/* display warp value */
 	if (warp < 0)
 	    stderror(ERR_NAME | ERR_STRING, "Getwarp failed");
-	we = getwarpbyvalue(warp);
+	we = getwarpbyvarval(warp);
 	if (we)
 	    printf("%s\n", we->w_name);
 	else
@@ -1132,7 +1132,6 @@ strrcpy(ptr, str)
 /***
  *** Domain/OS
  ***/
-#undef value			/* XXX: Careful here */
 #include <apollo/base.h>
 #include <apollo/loader.h>
 #include <apollo/error.h>

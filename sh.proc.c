@@ -357,7 +357,7 @@ found:
 #  endif /* POSIX */
 # endif /* !_SEQUENT_ */
 #endif /* !BSDTIMES */
-	    >= atoi(short2str(value(STRtime))))
+	    >= atoi(short2str(varval(STRtime))))
 	    fp->p_flags |= PTIME;
 	jobflags |= fp->p_flags;
     } while ((fp = fp->p_friends) != pp);
@@ -592,7 +592,7 @@ pjwait(pp)
 		Char   *jobcommand[3];
 
 		jobcommand[0] = STRjobs;
-		if (eq(value(STRlistjobs), STRlong))
+		if (eq(varval(STRlistjobs), STRlong))
 		    jobcommand[1] = STRml;
 		else
 		    jobcommand[1] = NULL;
