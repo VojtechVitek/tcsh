@@ -571,6 +571,7 @@ excl_sw:
 			xfree((ptr_t) omodbuf);
 		    omodbuf = modbuf;
 		}
+		++q;
 		break;
 
 	    case 'a':
@@ -578,16 +579,21 @@ excl_sw:
 		/* Not implemented; this needs to be done before expanding
 		 * lex. We don't have the words available to us anymore.
 		 */
+		++q;
 		break;
 
 	    case 'p':
 		/* Ok */
+		++q;
+		break;
+
+	    case '\0':
 		break;
 
 	    default:
+		++q;
 		break;
 	    }
-	    ++q;
 	    if (q[1])
 		++q;
 	}
