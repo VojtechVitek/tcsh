@@ -119,7 +119,7 @@ typedef struct sigvec sigvec_t;
 # define	sigmask(s)	(1 << ((s)-1))
 # ifdef _SEQUENT_
 #  define 	sigpause(a)	bsd_sigpause(a)
-#  define 	signal(a, b)	sigset(a, b)
+#  define 	signal(a, b)	bsd_signal(a, b)
 # else /* _SEQUENT_ */
 #  define	sighold(s)	sigblock(sigmask(s))
 #  define	sigignore(s)	signal(s, SIG_IGN)

@@ -108,7 +108,7 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 # define Isalnum(c)	(cmap(c, _DIG|_LET) && !(((c) & META) && AsciiOnly))
 # define Iscntrl(c)	(cmap(c,_CTR) && !(((c) & META) && AsciiOnly))
 # define Isprint(c)	(!cmap(c,_CTR) && !(((c) & META) && AsciiOnly))
-# define Ispunct(c)	(!cmap(c,_PUN) && !(((c) & META) && AsciiOnly))
+# define Ispunct(c)	(cmap(c,_PUN) && !(((c) & META) && AsciiOnly))
 #endif
 
 #endif /* _h_sh_char */

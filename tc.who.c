@@ -590,7 +590,7 @@ struct command *c;
     if ((vp = adrof(STRwatch)) == NULL)
 	stderror(ERR_NOWATCH);
     blkpr(vp->vec);
-    xprintf("\n");
+    xputchar('\n');
     resetwatch();
     wp = whohead.who_next;
     while (wp->who_next != NULL) {

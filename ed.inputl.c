@@ -509,7 +509,7 @@ RunCommand(str)
 {
     Char *cmd[2];
 
-    xprintf("\n");	/* Start on a clean line */
+    xputchar('\n');	/* Start on a clean line */
 
     cmd[0] = str;
     cmd[1] = NULL;

@@ -92,7 +92,7 @@ dosched(v, c)
 	    timeline[16] = '\0';
 	    xprintf("%6d\t%s\t", count, timeline);
 	    blkpr(tp->t_lex);
-	    xprintf("\n");
+	    xputchar('\n');
 	}
 	return;
     }

@@ -334,7 +334,7 @@ dogetspath(v, c)
 		xprintf("*site %d* ", (int) (p[i] & SPATH_MASK));
 	}
     }
-    xprintf("\n");
+    xputchar('\n');
     flush();
 }
 

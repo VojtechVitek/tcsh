@@ -712,7 +712,7 @@ etraci(str, i, vp)
 {
     xprintf("%s=%d\t", str, i);
     blkpr(*vp);
-    xprintf("\n");
+    xputchar('\n');
 }
 static void
 etracc(str, cp, vp)
@@ -722,6 +722,6 @@ etracc(str, cp, vp)
 {
     xprintf("%s=%s\t", str, cp);
     blkpr(*vp);
-    xprintf("\n");
+    xputchar('\n');
 }
 #endif

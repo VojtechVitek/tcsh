@@ -108,15 +108,24 @@ Dfix(t)
     if (noexec)
 	return;
     /* Note that t_dcom isn't trimmed thus !...:q's aren't lost */
-    for (pp = t->t_dcom; (p = *pp++) != NULL;)
+    for (pp = t->t_dcom; (p = *pp++) != NULL;) {
 	for (; *p; p++) {
 	    if (cmap(*p, _DOL | QUOTES)) {	/* $, \, ', ", ` */
 		Dfix2(t->t_dcom);	/* found one */
 		blkfree(t->t_dcom);
 		t->t_dcom = gargv;
 		gargv = 0;
-		return;
+		break;
 	    }
+	}
+	if (*p)
+	    break;
+    }
+
+    if (adrof(STRexpand_symlinks))
+	for (pp = t->t_dcom; (p = *pp) != NULL; pp++) {
+	    *pp = dnormalize(p, 1);
+	    xfree((ptr_t) p);
 	}
 }
 

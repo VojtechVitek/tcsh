@@ -82,7 +82,7 @@ strsave(s)
     for (p = (char *) s; *p++;)
 	continue;
     n = p = (char *) xmalloc((size_t) ((p - s) * sizeof(char)));
-    while ((*p++ = *s++) != NULL)
+    while ((*p++ = *s++) != '\0')
 	continue;
     return (n);
 }

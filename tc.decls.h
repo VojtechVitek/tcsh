@@ -219,6 +219,7 @@ extern	sigret_t	(*xsignal	__P((int, sigret_t (*)(int)))) ();
 extern	sigmask_t	  sigsetmask	__P((sigmask_t));
 extern	sigmask_t	  sigblock	__P((sigmask_t));
 extern	void		  bsd_sigpause	__P((sigmask_t));
+extern  sigret_t        (*bsd_signal    __P((int, sigret_t (*)(int)))) ();
 #endif
 #ifdef SIGSYNCH
 extern	sigret_t	  synch_handler	__P((int));

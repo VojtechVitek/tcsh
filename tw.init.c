@@ -424,13 +424,13 @@ tw_cmd_next(dir, flags)
 	    if (ptr[0] == '\0' || (ptr[0] == '.' && ptr[1] == '\0')) {
 		*dir = '\0';
 		tw_cmd_state.dfd = opendir(".");
-		*flags = TW_DIR_OK | TW_EXEC_OK;	
+		*flags = TW_DIR_OK | TW_EXEC_CHK;	
 	    }
 	    else {
 		copyn(dir, *tw_cmd_state.pathv, FILSIZ);
 		catn(dir, STRslash, FILSIZ);
 		tw_cmd_state.dfd = opendir(short2str(*tw_cmd_state.pathv));
-		*flags = TW_EXEC_OK;
+		*flags = TW_EXEC_CHK;
 	    }
 	    tw_cmd_state.pathv++;
 	}
@@ -823,7 +823,7 @@ tw_bind_next(dir, flags)
 {
     char *ptr;
     if (tw_bind && tw_bind->name) {
-	for (ptr = tw_bind->name, dir = tw_retname; (*dir++ = *ptr++) != NULL;)
+	for (ptr = tw_bind->name, dir = tw_retname; (*dir++ = *ptr++) != '\0';)
 	    continue;
 	tw_bind++;
 	return(tw_retname);
@@ -861,7 +861,7 @@ tw_limit_next(dir, flags)
 #ifndef HAVENOLIMIT
     if (tw_limit && tw_limit->limname) {
 	for (ptr = tw_limit->limname, dir = tw_retname; 
-	     (*dir++ = *ptr++) != NULL;)
+	     (*dir++ = *ptr++) != '\0';)
 	    continue;
 	tw_limit++;
 	return(tw_retname);
@@ -901,7 +901,7 @@ tw_sig_next(dir, flags)
 	    continue;
 
 	for (ptr = mesg[tw_index].iname, dir = tw_retname; 
-	     (*dir++ = *ptr++) != NULL;)
+	     (*dir++ = *ptr++) != '\0';)
 	    continue;
 	tw_index++;
 	return(tw_retname);
@@ -941,7 +941,7 @@ tw_job_next(dir, flags)
 		break;
 	if (j == NULL) 
 	    continue;
-	for (ptr = j->p_command, dir = tw_retname; (*dir++ = *ptr++) != NULL;)
+	for (ptr = j->p_command, dir = tw_retname; (*dir++ = *ptr++) != '\0';)
 	    continue;
 	*dir = '\0';
 	tw_index++;

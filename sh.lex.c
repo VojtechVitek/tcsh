@@ -129,7 +129,7 @@ static Char *histlinep = NULL;	/* current pointer into histline */
 
 static Char getCtmp;
 
-#define getC(f)		(((getCtmp = peekc) != NULL) ? (peekc = 0, getCtmp) : getC1(f))
+#define getC(f)		(((getCtmp = peekc) != '\0') ? (peekc = 0, getCtmp) : getC1(f))
 #define	ungetC(c)	peekc = (Char) c
 #define	ungetD(c)	peekd = (Char) c
 

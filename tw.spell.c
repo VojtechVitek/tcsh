@@ -85,10 +85,10 @@ spell_me(oldname, oldsize, looking_for_cmd)
 	/* (*should* say "looking for directory" whenever '/' is next...) */
 	retval = t_search(guess, p, SPELL, FILSIZ,
 			  looking_for_cmd && (foundslash || *old != '/') ?
-			  TW_COMMAND : TW_ZERO, 1, STRNULL);
+			  TW_COMMAND : TW_ZERO, 1, STRNULL, 0);
 	if (retval >= 4 || retval < 0)
 	    return -1;		/* hopeless */
-	for (p = ws; (*new = *p++) != NULL; new++)
+	for (p = ws; (*new = *p++) != '\0'; new++)
 	    continue;
     }
 /*NOTREACHED*/

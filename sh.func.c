@@ -231,7 +231,7 @@ doalias(v, c)
     else if (*v == 0) {
 	vp = adrof1(strip(p), &aliases);
 	if (vp)
-	    blkpr(vp->vec), xprintf("\n");
+	    blkpr(vp->vec), xputchar('\n');
     }
     else {
 	if (eq(p, STRalias) || eq(p, STRunalias)) {
@@ -1707,7 +1707,7 @@ plim(lp, hard)
     else
 # endif /* BSDTIMES */
 	xprintf("%ld %s", (long) (limit / lp->limdiv), lp->limscale);
-    xprintf("\n");
+    xputchar('\n');
 }
 
 /*ARGSUSED*/

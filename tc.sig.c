@@ -363,6 +363,40 @@ bsd_sigpause(mask)
 	    sigaddset(&set, i);
     sigsuspend(&set);
 }
+
+/*
+ * bsd_signal(sig, func)
+ *
+ * Emulate bsd style signal()
+ */
+void (*bsd_signal(sig, func))()
+        int sig;
+        sigret_t (*func)();
+{
+        struct sigaction act, oact;
+        sigset_t set;
+        sigret_t (*r_func)();
+
+        if (sig < 0 || sig > MAXSIG) {
+                printf("error: bsd_signal(%d) signal out of range\n", sig);
+                return;
+        }
+
+        sigemptyset(&set);
+
+        act.sa_handler = (sigret_t(*)()) func;      /* user function */
+        act.sa_mask = set;                      /* signal mask */
+        act.sa_flags = 0;                       /* no special actions */
+
+        if (sigaction(sig, &act, &oact)) {
+                printf("error: bsd_signal(%d) - sigaction failed, errno %d\n",
+                    sig, errno);
+                return((sigret_t(*)()) SIG_IGN);
+        }
+
+        r_func = (sigret_t(*)()) oact.sa_handler;
+        return(r_func);
+}
 #endif /* _SEQUENT_ */
 
 

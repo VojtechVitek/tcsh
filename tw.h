@@ -56,8 +56,11 @@
 #define TW_SIGNAL	15
 #define TW_JOB		16
 
-#define TW_EXEC_OK	1
-#define TW_DIR_OK	2
+#define TW_EXEC_CHK	0x01
+#define TW_DIR_CHK	0x02
+#define TW_DIR_OK	0x04
+#define TW_PAT_OK	0x08
+#define TW_IGN_OK	0x10
 
 #ifndef TRUE
 # define TRUE		1

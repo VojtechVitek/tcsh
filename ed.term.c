@@ -589,7 +589,7 @@ dosetty(v, t)
 		    xprintf("%s ", m->m_name);
 	    }
 	}
-	xprintf("\n");
+	xputchar('\n');
 	return;
     }
     while (v && (s = *v++)) {
@@ -1092,8 +1092,8 @@ tty_printchar(s)
 	if (m->m_name)
 	    xprintf("%s ^%c ", m->m_name, s[i] + 'A' - 1);
 	if (i % 5 == 0)
-	    xprintf("\n");
+	    xputchar('\n');
     }
-    xprintf("\n"); 
+    xputchar('\n');
 }
 #endif /* DEBUG_TTY */

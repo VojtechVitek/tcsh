@@ -61,6 +61,8 @@ Char STRHOST[]          = { 'H', 'O', 'S', 'T', '\0' };
 Char STRHOSTTYPE[]      = { 'H', 'O', 'S', 'T', 'T', 'Y', 'P', 'E', '\0' };
 Char STRedit[]          = { 'e', 'd', 'i', 't', '\0' };
 Char STRaddsuffix[]     = { 'a', 'd', 'd', 's', 'u', 'f', 'f', 'i', 'x', '\0' };
+Char STRnostat[]        = { 'n', 'o', 's', 't', 'a', 't', '\0' };
+Char STRslashafs[]      = { '/', 'a', 'f', 's', '/', '\0' };
 Char STRshell[]         = { 's', 'h', 'e', 'l', 'l', '\0' };
 Char STRtmpsh[]         = { '/', 't', 'm', 'p', '/', 's', 'h', '\0' };
 Char STRverbose[]       = { 'v', 'e', 'r', 'b', 'o', 's', 'e', '\0' };
@@ -123,8 +125,8 @@ Char STRignore_symlinks[] = { 'i', 'g', 'n', 'o', 'r', 'e', '_', 's', 'y', 'm',
 			    'l', 'i', 'n', 'k', 's', '\0' };
 Char STRchase_symlinks[] = { 'c', 'h', 'a', 's', 'e', '_', 's', 'y', 'm', 'l', 
 			    'i', 'n', 'k', 's', '\0' };
-Char STRmargin_bug[] 	= { 'm', 'a', 'r', 'g', 'i', 'n', '_', 'b', 'u', 'g', 
-			    '\0' };
+Char STRexpand_symlinks[] = { 'e', 'x', 'p', 'a', 'n', 'd', '_', 's', 'y', 
+			    'm', 'l', 'i', 'n', 'k', 's', '\0' };
 Char STRecho_style[]	= { 'e', 'c', 'h', 'o', '_', 's', 't', 'y', 'l', 'e', 
 			    '\0' };
 Char STRbsd[]		= { 'b', 's', 'd', '\0' };

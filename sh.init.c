@@ -142,7 +142,7 @@ struct	biltins bfunc[] = {
     { "setxvers",	dosetxvers,	0,	1, },
 #endif /* TCF */
     { "shift",		shift,		0,	1, },
-    { "source",		dosource,	1,	2, },
+    { "source",		dosource,	1,	INF, },
     { "stop",		dostop,		1,	INF, },
     { "suspend",	dosuspend,	0,	0, },
     { "switch",		doswitch,	1,	INF, },
@@ -522,14 +522,10 @@ struct	mesg mesg[] = {
 /* 32 */	0,		"Signal 32",
 # endif /* aiws */
 
-# ifdef m88k			/* Motorola 88100: POSIX/BCS signals */
+# if defined(m88k) || defined(__m88k__)	/* Motorola 88100: POSIX/BCS signals */
 #  define _sigextra_
 /* 20 */	"WINCH", 	"Window changed",
-# ifdef DGUX
 /* 21 */	0,		"Signal 21",
-# else
-/* 21 */	"TTIN", 	MSG_TTIN,	/* XXX: What? */
-# endif /* DGUX */
 /* 22 */	"POLL", 	"Stream I/O pending",
 /* 23 */	"STOP",		MSG_STOP,
 /* 24 */	"TSTP",		MSG_TSTP,
@@ -573,7 +569,7 @@ struct	mesg mesg[] = {
 /* 62 */	0,		"Signal 62",
 /* 63 */	0,		"Signal 63",
 /* 64 */	0,		"Signal 64",
-# endif /* m88k */
+# endif /* m88k || __m88k__ */
 
 #ifdef IBMAIX
 # define _sigextra_

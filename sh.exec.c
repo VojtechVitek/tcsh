@@ -929,7 +929,7 @@ find_cmd(cmd, prt)
 	if ((var = adrof1(cmd, &aliases)) != NULL) {
 	    xprintf("%s is aliased to ", short2str(cmd));
 	    blkpr(var->vec);
-	    xprintf("\n");
+	    xputchar('\n');
 	    rval = 1;
 	}
     }
