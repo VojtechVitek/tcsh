@@ -453,10 +453,12 @@ libglob(vl)
 	ptr = short2qstr(*vl);
 	switch (glob(ptr, gflgs, 0, &globv)) {
 	case GLOB_ABEND:
+	    globfree(&globv);
 	    setname(ptr);
 	    stderror(ERR_NAME | ERR_GLOB);
 	    /* NOTREACHED */
 	case GLOB_NOSPACE:
+	    globfree(&globv);
 	    stderror(ERR_NOMEM);
 	    /* NOTREACHED */
 	default:

@@ -436,6 +436,7 @@ EXTERN struct timeval time0;	/* Time at which the shell started */
 EXTERN struct rusage ru0;
 #else
 # ifdef _SEQUENT_
+EXTERN clock_t time0;		/* time at which shell started */
 EXTERN timeval_t time0;		/* Time at which the shell started */
 EXTERN struct process_stats ru0;
 # else /* _SEQUENT_ */

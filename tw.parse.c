@@ -150,7 +150,7 @@ tenematch(inputline, num_read, command)
 
 {
     Char    qline[QLINESIZE];
-    Char    qu = 0, pat[MAXPATHLEN + 1];
+    Char    qu = 0, *pat = STRNULL;
     Char   *str_end, *cp, *wp, *wordp;
     Char   *cmd_start, *word_start, *word;
     Char   *ocmd_start = NULL, *oword_start = NULL, *oword = NULL;
@@ -160,7 +160,6 @@ tenematch(inputline, num_read, command)
     int     search_ret;		/* what search returned for debugging 	*/
     int     backq = 0;
 
-    pat[0] = '\0';
     if (num_read > QLINESIZE - 1)
 	return -1;
     str_end = &inputline[num_read];
@@ -246,7 +245,7 @@ tenematch(inputline, num_read, command)
 #ifdef TDEBUG
     xprintf("complete %d ", looking);
 #endif
-    looking = tw_complete(cmd_start, &wordp, pat, looking, &suf);
+    looking = tw_complete(cmd_start, &wordp, &pat, looking, &suf);
 #ifdef TDEBUG
     xprintf("complete %d %s\n", looking, short2str(pat));
 #endif

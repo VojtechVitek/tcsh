@@ -108,5 +108,5 @@ extern	 void		  docomplete		__P((Char **,
 extern	 void		  douncomplete		__P((Char **, 
 						     struct command *));
 extern	 int		  tw_complete		__P((Char *, Char **, 
-						     Char *, int, int *));
+						     Char **, int, int *));
 #endif /* _h_tw_decls */
