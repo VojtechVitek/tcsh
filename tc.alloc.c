@@ -54,7 +54,7 @@ char   *membot = NULL;		/* PWP: bottom of allocatable memory */
 #ifndef SYSMALLOC
 
 #undef RCHECK
-#define DEBUG
+#undef DEBUG
 
 
 #ifndef NULL
