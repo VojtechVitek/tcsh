@@ -11,6 +11,6 @@ $set 17
 8 BUG: status=%-9o
 9 \040(core dumped)
 10 \040(wd:
-11 wd now: 
+11 (wd now: 
 12 %S: Already suspended\n
 13 %S: Already stopped\n
