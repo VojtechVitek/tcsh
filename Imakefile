@@ -66,6 +66,7 @@ ones.  Please send in your fixes and additions! */
 #      define ConfigH sunos41
 #     endif
 #    endif
+#    define NoCombineRegs
 #   else /* OSMajorVersion == 5 */
 #    if (OSMinorVersion < 3)
 #     if (OSMinorVersion < 2)
@@ -79,8 +80,8 @@ ones.  Please send in your fixes and additions! */
 #     else
 #      define ConfigH sol24
 #     endif
-#     define NoCombineRegs
 #    endif
+#    define NoCombineRegs
 #   endif
 #  endif
 # endif
