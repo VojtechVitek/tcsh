@@ -787,9 +787,7 @@ xgetwd(pathname)
 	/* look if we found root yet */
 	if (st_cur.st_ino == st_root.st_ino &&
 	    st_cur.st_dev == st_root.st_dev) {
-	    if (*pathptr != '/')
-		return ("/");
-	    (void) strcpy(pathname, pathptr);
+	    (void) strcpy(pathname, *pathptr != '/' ? "/" : pathptr);
 	    return (pathname);
 	}
 
