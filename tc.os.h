@@ -413,6 +413,10 @@ extern char *getwd();
 extern char *getwd();
 # endif	/* sun && ! __GNUC__ */
 
+# ifdef SCO
+extern char *ttyname();   
+# endif /* SCO */
+
 # ifdef RENO
 extern void perror();		/* Reno declares that in stdio.h :-( */
 # endif	/* RENO */
