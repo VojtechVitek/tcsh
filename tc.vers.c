@@ -404,12 +404,14 @@ gethosttype()
 #  define _havehosttype_
    /* Tasos Kotsikonas <tasos@avs.com> */
    hosttype = str2short("vistra800"); /* Stardent Vistra */
-#endif /* i860  && !_havehosttype_ */
+# endif /* i860  && !_havehosttype_ */
 
-# if (defined(mc68000) || defined(__mc68000__)) && !defined(_havehosttype_)
-#  define _havehosttype_
-    hosttype = str2short("m68k");	/* Motorola 68000 system */
-# endif 
+# ifndef _havehosttype_
+#  if defined(mc68000) || defined(__mc68000__) || defined(mc68k32)
+#   define _havehosttype_
+     hosttype = str2short("m68k");	/* Motorola 68000 system */
+#  endif 
+# endif
 
 # ifndef _havehosttype_
 #  define _havehosttype_

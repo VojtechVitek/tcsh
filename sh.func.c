@@ -1009,11 +1009,6 @@ doglob(v, c)
     flush();
 }
 
-#define NONE_ECHO	0
-#define BSD_ECHO	1
-#define SYSV_ECHO	2
-#define BOTH_ECHO	(BSD_ECHO|SYSV_ECHO)
-
 static void
 xecho(sep, v)
     int    sep;

@@ -444,10 +444,10 @@ Dgetdol()
 	if (dimen)
 	    stderror(ERR_NOTALLOWED, "$?#");
 	for (np = wbuf; read(OLDSTD, &tnp, 1) == 1; np++) {
-	    *np = tnp;
+	    *np = (unsigned char) tnp;
 	    if (np >= &wbuf[BUFSIZE - 1])
 		stderror(ERR_LTOOLONG);
-	    if (SIGN_EXTEND_CHAR(tnp) <= 0 || tnp == '\n')
+	    if (tnp == '\n')
 		break;
 	}
 	*np = 0;

@@ -52,7 +52,10 @@ CFLAGS=-O2 $(INCLUDES)
 #CFLAGS=-O6 $(INCLUDES) -finline-functions -fstrength-reduce
 
 #hpux 8.0
-#CFLAGS=  $(INCLUDES) +O3 -Aa
+#CFLAGS= $(INCLUDES) +O3 -Aa
+
+# Ultrix 4.2a
+#CFLAGS= $(INCLUDES) -O -Olimit 2000
 
 # for silicon graphics (and other mips compilers) -- use the
 # global optimizer! (-O3).
