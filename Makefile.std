@@ -110,6 +110,9 @@ CFLAGS=-O2 $(INCLUDES)
 # SINIX RMx00
 #CFLAGS= -O # -D_POSIX_SOURCE # -kansi
 
+# Minix-VMD
+# CFLAGS= -O -D_ANSI_H -I /usr/include/bsdcompat $(INCLUDES)
+
 # Apollo's with cc [apollo builtins don't work with gcc]
 # and apollo should not define __STDC__ if it does not have
 # the standard header files. RT's (aos4.3) need that too;
