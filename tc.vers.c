@@ -369,6 +369,12 @@ gethosttype()
    hosttype = str2short("cray");
 # endif /* cray */
 
+# ifdef NDIX
+#  define _havehosttype_
+   /* B|rje Josefsson <bj@dc.luth.se> */
+   hosttype = str2short("nd500");
+# endif /* NDIX */
+
 # ifndef _havehosttype_
 #  define _havehosttype_
     /* Default to something reasonable */

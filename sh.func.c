@@ -1764,7 +1764,13 @@ doeval(v, c)
     getexit(osetexit);
 
     /* PWP: setjmp/longjmp bugfix for optimizing compilers */
+#ifdef cray
+    my_reenter = 1;             /* assume non-zero return val */
+    if (setexit() == 0) {
+        my_reenter = 0;         /* Oh well, we were wrong */
+#else /* !cray */
     if ((my_reenter = setexit()) == 0) {
+#endif /* cray */
 	evalvec = v;
 	evalp = 0;
 	SHIN = dcopy(0, -1);

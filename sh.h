@@ -112,7 +112,15 @@ typedef int sigret_t;
 #define	xexit(n)	done(n)
 #endif 
 
+#ifdef cray
+# define word word_t           /* sys/types.h defines word.. bad move! */
+#endif
+
 #include <sys/types.h>
+
+#ifdef cray
+# undef word
+#endif 
 
 /*
  * This macro compares the st_dev field of struct stat. On aix on ibmESA

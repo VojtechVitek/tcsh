@@ -443,20 +443,43 @@ Rawmode()
     }
 # endif /* TERMIO || POSIX */
     {
+	extern int didsetty;
 	int i;
 
 	tty_getchar(&tstty, ttychars[TSIO]);
-
+	/*
+	 * Check if the user made any changes.
+	 * If he did, then propagate the changes to the
+	 * edit and execute data structures.
+	 */
 	for (i = 0; i < C_NCC; i++)
-	    if (((ttylist[EDIO][M_CHAR].t_setmask & C_SH(i))))
-		ttychars[TSIO][i] = ttychars[EDIO][i];
-	tty_setchar(&edtty, ttychars[TSIO]);
+	    if (ttychars[TSIO][i] != ttychars[EXIO][i])
+		break;
+	    
+	if (i != C_NCC || didsetty) {
+	    didsetty = 0;
+	    /*
+	     * Propagate changes only to the unprotected chars
+	     * that have been modified just now.
+	     */
+	    for (i = 0; i < C_NCC; i++) {
+		if (!((ttylist[EDIO][M_CHAR].t_setmask & C_SH(i))) &&
+		    (ttychars[TSIO][i] != ttychars[EXIO][i]))
+		    ttychars[EDIO][i] = ttychars[TSIO][i];
+		if (ttylist[EDIO][M_CHAR].t_clrmask & C_SH(i))
+		    ttychars[EDIO][i] = _POSIX_VDISABLE;
+	    }
+	    tty_setchar(&edtty, ttychars[EDIO]);
 
-	tty_getchar(&tstty, ttychars[TSIO]);
-	for (i = 0; i < C_NCC; i++)
-	    if (((ttylist[EXIO][M_CHAR].t_setmask & C_SH(i))))
-		ttychars[TSIO][i] = ttychars[EXIO][i];
-	tty_setchar(&extty, ttychars[TSIO]);
+	    for (i = 0; i < C_NCC; i++) {
+		if (!((ttylist[EXIO][M_CHAR].t_setmask & C_SH(i))) &&
+		    (ttychars[TSIO][i] != ttychars[EXIO][i]))
+		    ttychars[EXIO][i] = ttychars[TSIO][i];
+		if (ttylist[EXIO][M_CHAR].t_clrmask & C_SH(i))
+		    ttychars[EXIO][i] = _POSIX_VDISABLE;
+	    }
+	    tty_setchar(&extty, ttychars[EXIO]);
+	}
 
     }
     if (tty_setty(SHTTY, &edtty) == -1) {
