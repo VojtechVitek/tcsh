@@ -118,7 +118,11 @@ static struct rusage zru = {{0L, 0L}, {0L, 0L}, 0, 0, 0, 0, 0, 0, 0,
 static struct process_stats zru = {{0L, 0L}, {0L, 0L}, 0, 0, 0, 0, 0, 0, 0,
 				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 # else /* !_SEQUENT_ */
+#  ifdef _SX
+static struct tms zru = {0, 0, 0, 0}, lru = {0, 0, 0, 0};
+#  else	/* !_SX */
 static struct tms zru = {0L, 0L, 0L, 0L}, lru = {0L, 0L, 0L, 0L};
+#  endif	/* !_SX */
 # endif	/* !_SEQUENT_ */
 #endif /* !BSDTIMES */
 
@@ -613,6 +617,9 @@ pjwait(pp)
 	(void) sigpause(SIGCHLD);
 #endif /* !BSDSIGS */
     }
+#ifdef JOBDEBUG
+	xprintf("%d returned from sigpause loop\n", getpid());
+#endif /* JOBDEBUG */
 #ifdef BSDSIGS
     (void) sigsetmask(omask);
 #else /* !BSDSIGS */
@@ -1082,13 +1089,13 @@ pprint(pp, flag)
 	 * we can search for the next one downstream later.
 	 */
 	}
-	pcond = (tp != pp || (inpipe && tp == pp));
+	pcond = (int) (tp != pp || (inpipe && tp == pp));
 #else /* !BACKPIPE */
-	pcond = (tp != pp);
+	pcond = (int) (tp != pp);
 #endif /* BACKPIPE */	    
 
 	jobflags |= pp->p_flags;
-	pstatus = pp->p_flags & PALLSTATES;
+	pstatus = (int) (pp->p_flags & PALLSTATES);
 	if (pcond && linp != linbuf && !(flag & FANCY) &&
 	    ((pstatus == status && pp->p_reason == reason) ||
 	     !(flag & REASON)))
@@ -1736,6 +1743,9 @@ pstart(pp, foregnd)
      * 7. I removed the line completely and added extra checks for
      *    pstart, so that if a job gets attached to and dies inside
      *    a debugger it does not confuse the shell. [christos]
+     * 8. on the nec sx-4 there seems to be a problem, which requires
+     *    a syscall(151, getpid(), getpid()) in osinit. Don't ask me
+     *    what this is doing. [schott@rzg.mpg.de]
      */
 
     if (rv != -1)

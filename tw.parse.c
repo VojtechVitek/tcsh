@@ -237,7 +237,7 @@ tenematch(inputline, num_read, command)
     space_left = QLINESIZE - 1;
     space_left -= word - qline;
 #else
-    space_left = QLINESIZE - 1 - (word - qline);
+    space_left = QLINESIZE - 1 - (int) (word - qline);
 #endif
 
     /*
@@ -527,7 +527,7 @@ insert_meta(cp, cpend, word, closequotes)
     Char buffer[2 * FILSIZ + 1], *bptr, *wptr;
     int in_sync = (cp != NULL);
     int qu = 0;
-    int ndel = cp ? cpend - cp : 0;
+    int ndel = (int) (cp ? cpend - cp : 0);
     Char w, wq;
 
     for (bptr = buffer, wptr = word;;) {

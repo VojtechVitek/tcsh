@@ -285,7 +285,7 @@ parsebind(s, str)
     if (Iscntrl(*s)) {
 	*b++ = *s;
 	*b = '\0';
-	str->len = b - str->buf;
+	str->len = (int) (b - str->buf);
 	return str;
     }
 
@@ -417,7 +417,7 @@ parsebind(s, str)
 	return NULL;
     }
 
-    str->len = b - str->buf;
+    str->len = (int) (b - str->buf);
     return str;
 }
 
@@ -448,7 +448,7 @@ parsestring(str, buf)
 	    *b++ = *p & CHAR;
     }
     *b = 0;
-    buf->len = b - buf->buf;
+    buf->len = (int) (b - buf->buf);
     return buf;
 }
 

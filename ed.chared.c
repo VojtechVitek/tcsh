@@ -160,7 +160,7 @@ c_delafter(num)
 #endif
 
     if (num > LastChar - Cursor)
-	num = LastChar - Cursor;	/* bounds check */
+	num = (int) (LastChar - Cursor);	/* bounds check */
 
     if (num > 0) {			/* if I can delete anything */
 #if defined(DSPMBYTE)
@@ -226,7 +226,7 @@ c_delbefore(num)		/* delete before dot, with bounds checking */
 #endif
 
     if (num > Cursor - InputBuf)
-	num = Cursor - InputBuf;	/* bounds check */
+	num = (int) (Cursor - InputBuf);	/* bounds check */
 
     if (num > 0) {			/* if I can delete anything */
 #if defined(DSPMBYTE)
@@ -557,7 +557,7 @@ excl_sw:
 		}
 	    }
 	    else {
-		for (i = q - p; h; h = h->Hnext) {
+		for (i = (int) (q - p); h; h = h->Hnext) {
 		    if ((l = &h->Hlex) != 0) {
 			if (!Strncmp(p + 1, l->next->word, (size_t) i))
 			    break;
@@ -1726,7 +1726,7 @@ static void
 c_hsetpat()
 {
     if (LastCmd != F_UP_SEARCH_HIST && LastCmd != F_DOWN_SEARCH_HIST) {
-	patlen = Cursor - InputBuf;
+	patlen = (int) (Cursor - InputBuf);
 	if (patlen >= INBUFSIZE) patlen = INBUFSIZE -1;
 	if (patlen >= 0)  {
 	    (void) Strncpy(patbuf, InputBuf, (size_t) patlen);
@@ -2089,7 +2089,7 @@ e_dabbrev_expand(c)
     } else {			/* starting new search */
 	oldevent = eventno;
 	start = cp;
-	patlen = Cursor - cp;
+	patlen = (int) (Cursor - cp);
 	(void) Strncpy(patbuf, cp, patlen);
 	hist = 0;
 	word = 0;
@@ -2109,7 +2109,7 @@ e_dabbrev_expand(c)
 	    continue;
 	} else {
 	    word++;
-	    len = c_endword(ncp, cp, 1) - ncp + 1;
+	    len = (int) (c_endword(ncp, cp, 1) - ncp + 1);
 	    cp = ncp;
 	}
 	if (len > patlen && Strncmp(cp, patbuf, patlen) == 0) {

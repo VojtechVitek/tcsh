@@ -171,7 +171,11 @@ dosched(v, c)
 	}
     }
     tp = (struct sched_event *) xcalloc(1, sizeof *tp);
+#ifdef _SX
+    tp->t_when = cur_time - ltp->tm_sec + dif_hour * 3600 + dif_min * 60;
+#else	/* _SX */	
     tp->t_when = cur_time - ltp->tm_sec + dif_hour * 3600L + dif_min * 60L;
+#endif /* _SX */
     /* use of tm_sec: get to beginning of minute. */
     if (!sched_ptr || tp->t_when < sched_ptr->t_when) {
 	tp->t_next = sched_ptr;

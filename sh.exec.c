@@ -40,6 +40,9 @@ RCSID("$Id$")
 
 #include "tc.h"
 #include "tw.h"
+#ifdef WINNT
+#include <nt.const.h>
+#endif /*WINNT*/
 
 /*
  * C shell
@@ -748,6 +751,18 @@ dohash(vv, c)
 #ifdef WINNT
 	    nt_check_name_and_hash(is_windir, dp->d_name, i);
 #else /* !WINNT */
+#if defined(_UWIN) /* XXX: Add cygwin too */
+	    /* Turn foo.{exe,com,bat} into foo since UWIN's readdir returns
+	     * the file with the .exe, .com, .bat extension
+	     */
+	    {
+		size_t	ext = strlen(dp->d_name) - 4;
+		if ((ext > 0) && (strcmp(&dp->d_name[ext], ".exe") == 0 ||
+				  strcmp(&dp->d_name[ext], ".bat") == 0 ||
+				  strcmp(&dp->d_name[ext], ".com") == 0))
+		    dp->d_name[ext] = '\0';
+	    }
+#endif /* _UWIN */
 # ifdef FASTHASH
 	    hashval = hashname(str2short(dp->d_name));
 	    bis(hashval, i);
@@ -919,7 +934,7 @@ executable(dir, name, dir_ok)
 		ptr--;
 	    }
 	    if (!has_ext && (stat(p2, &stbuf) == -1))
-		catn(path, ".EXE", MAXPATHLEN);
+		catn(path, STRdotEXE, MAXPATHLEN);
 	}
 #endif /* WINNT */
 	strname = short2str(path);

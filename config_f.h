@@ -121,7 +121,8 @@
 
 /*
  * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
- *		only output, when "dspmbyte" is set.
+ *		only output, when "dspmbyte" is set. Should be used with
+ *		KANJI
  */
 #undef DSPMBYTE
 

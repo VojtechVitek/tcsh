@@ -360,7 +360,7 @@ errinit()
     elst[ERR_MFLAG] = CSAVS(1, 133, "No operand for -m flag");
     elst[ERR_ULIMUS] = CSAVS(1, 134, "Usage: unlimit [-fh] [limits]");
     elst[ERR_READONLY] = CSAVS(1, 135, "$%S is read-only");
-    elst[ERR_BADJOB] = CSAVS(1, 136, "No such job");
+    elst[ERR_BADJOB] = CSAVS(1, 136, "No such job (badjob)");
     elst[ERR_BADCOLORVAR] = CSAVS(1, 137, "Unknown colorls variable `%c%c'");
 }
 /*

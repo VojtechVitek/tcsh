@@ -255,7 +255,7 @@ morecore(bucket)
     if (membot == NULL)
 	membot = memtop;
     if ((long) op & 0x3ff) {
-	memtop = (char *) sbrk(1024 - ((long) op & 0x3ff));
+	memtop = (char *) sbrk((int) (1024 - ((long) op & 0x3ff)));
 	memtop += (long) (1024 - ((long) op & 0x3ff));
     }
 

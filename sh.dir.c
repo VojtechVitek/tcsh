@@ -493,7 +493,7 @@ dgoto(cp)
 
 	for (p = dcwd->di_name; *p++;)
 	    continue;
-	if ((cwdlen = p - dcwd->di_name - 1) == 1)	/* root */
+	if ((cwdlen = (int) (p - dcwd->di_name - 1)) == 1)	/* root */
 	    cwdlen = 0;
 	for (p = cp; *p++;)
 	    continue;
@@ -836,7 +836,7 @@ dcanon(cp, p)
 	Char    tmpdir[MAXPATHLEN];
 
 	p1 = varval(STRcwd);
-	if (p1 == STRNULL || ABSOLUTEP(p1))
+	if (p1 == STRNULL || !ABSOLUTEP(p1))
 	    abort();
 	if (Strlen(p1) + Strlen(cp) + 1 >= MAXPATHLEN)
 	    abort();

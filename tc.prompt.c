@@ -205,7 +205,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
     for (; *cp; cp++) {
 	if (p >= ep)
 	    break;
-	if (*cp == '%') {
+	if ((*cp == '%') && ! (cp[1] == '\0')) {
 	    cp++;
 	    switch (*cp) {
 	    case 'R':
@@ -547,7 +547,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			if (p >= ep) break;
 		break;
 	    case '$':
-		sz = ep - p;
+		sz = (int) (ep - p);
 		(void) expdollar(&p, &cp, &pdirs, attributes);
 		break;
 	    case '%':

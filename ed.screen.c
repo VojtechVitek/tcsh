@@ -1665,7 +1665,7 @@ ChangeSize(lins, cols)
 		(void) Strcpy(backup, termcap);
 	    }
 	    else {
-		i = ptr - termcap + Strlen(buf);
+		i = (int) (ptr - termcap + Strlen(buf));
 		(void) Strncpy(backup, termcap, (size_t) i);
 		backup[i] = '\0';
 		Itoa(Val(T_co), buf);
@@ -1683,7 +1683,7 @@ ChangeSize(lins, cols)
 		(void) Strcpy(termcap, backup);
 	    }
 	    else {
-		i = ptr - backup + Strlen(buf);
+		i = (int) (ptr - backup + Strlen(buf));
 		(void) Strncpy(termcap, backup, (size_t) i);
 		termcap[i] = '\0';
 		Itoa(Val(T_li), buf);

@@ -299,10 +299,10 @@ expbrace(nvp, elp, size)
 	    }
 	    if (&el[len] >= &nv[size]) {
 		int     l, e;
-		l = &el[len] - &nv[size];
+		l = (int) (&el[len] - &nv[size]);
 		size += GLOBSPACE > l ? GLOBSPACE : l;
-		l = vl - nv;
-		e = el - nv;
+		l = (int) (vl - nv);
+		e = (int) (el - nv);
 		nv = (Char **) xrealloc((ptr_t) nv, 
 					(size_t) (size * sizeof(Char *)));
 		vl = nv + l;
@@ -958,7 +958,7 @@ Gnmatch(string, pattern, endstr)
 	int minc = 0x7fffffff;
 	for (p = blk; *p; p++) 
 	    if (pmatch(string, *p, &tstring) != 0) {
-		int t = tstring - string;
+		int t = (int) (tstring - string);
 		gres |= 1;
 		if (minc == -1 || minc > t)
 		    minc = t;
@@ -1076,7 +1076,7 @@ Gcat(s1, s2)
 	continue;
     for (q = s2; *q++;)
 	continue;
-    n = (p - s1) + (q - s2) - 1;
+    n = (int) ((p - s1) + (q - s2) - 1);
     if (++gargc >= gargsiz) {
 	gargsiz += GLOBSPACE;
 	gargv = (Char **) xrealloc((ptr_t) gargv,

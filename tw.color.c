@@ -162,7 +162,7 @@ getstring(dp, sp, pd, f)
     }
 
     pd->s = *dp;
-    pd->len = d - *dp;
+    pd->len = (int) (d - *dp);
     *sp = s;
     *dp = d;
     return *s == f;
@@ -247,7 +247,7 @@ parseLS_COLORS(value)
 	    v++;
     }
 
-    nextensions = e - extensions;
+    nextensions = (int) (e - extensions);
 }
 
 

@@ -183,7 +183,7 @@ sh_access(fname, mode)
 
 	if (n > 0) {
 	    groups = (GID_T *) xmalloc((size_t) (n * sizeof(GID_T)));
-	    n = getgroups(n, groups);
+	    n = getgroups((int) n, groups);
 	    while (--n >= 0)
 		if (groups[n] == statb.st_gid) {
 		    mode <<= 3;

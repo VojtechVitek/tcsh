@@ -265,7 +265,7 @@ tw_match(str, pat)
     xprintf("%s, ", short2str(pat));
     xprintf("%s) = %d [%d]\n", short2str(estr), rv, estr - str);
 #endif /* TDEBUG */
-    return (rv ? estr - str : -1);
+    return (int) (rv ? estr - str : -1);
 }
 
 
