@@ -1795,7 +1795,6 @@ remhost()
     if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) == -1) {
 #ifdef UTHOST
 	char *name = utmphost();
-	xprintf("utmphost %s\n", name);
 	if (name != NULL) {
 	    if ((hp = gethostbyname(name)) == NULL) {
 		char *ptr = strchr(name, '.');

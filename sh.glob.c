@@ -409,7 +409,7 @@ globexpand(v)
 		    stderror(ERR_DEEP);
 		}
 	    }
-	    if (ns != s) {
+	    if (ns && ns != s) {
 		/* Expansion succeeded */
 		xfree((ptr_t) s);
 		*vl = Strsave(gp);
