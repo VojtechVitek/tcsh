@@ -283,9 +283,9 @@ NLSClassify(c, nocomb)
     if (c & NLS_ILLEGAL)
 	return NLSCLASS_ILLEGAL;
     w = NLSWidth(c);
-    if (w > 0 || (Isprint(c) && !nocomb))
+    if (w > 0 || (Iswprint(c) && !nocomb))
 	return w;
-    if (Iscntrl(c) && c < 0x100) {
+    if (Iswcntrl(c) && c < 0x100) {
 	if (c == '\n')
 	    return NLSCLASS_NL;
 	if (c == '\t')

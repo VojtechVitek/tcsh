@@ -338,13 +338,11 @@ so_write(cp, n)
 
 	do {
 		if (*cp & LITERAL) {
-			extern Char *litptr[];
 			Char   *d;
 
-			for (d = litptr[*cp++ & CHAR]; *d & LITERAL; d++)
-				(void) putraw(*d & CHAR);
-			(void) putraw(*d);
-
+			for (d = litptr + (*cp++ & ~LITERAL) * LIT_FACTOR; *d;
+			     d++)
+				(void) putraw(*d);
 		}
 		else
 			(void) putraw(*cp++);
@@ -529,7 +527,7 @@ PutPlusOne(c, width)
 		PutPlusOne(' ', 1);
 	if ((c & LITERAL) != 0) { 
 		Char *d;
-		for (d = litptr + ((c & ~LITERAL) << 2); *d; d++)
+		for (d = litptr + (c & ~LITERAL) * LIT_FACTOR; *d; d++)
 			(void) putwraw(*d);
 	} else {
 		(void) putwraw(c);

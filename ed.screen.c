@@ -1226,7 +1226,7 @@ so_write(cp, n)
 #ifdef DEBUG_LITERAL
 		xprintf("so: litnum %d\r\n", (int)(*cp & ~LITERAL));
 #endif /* DEBUG_LITERAL */
-		for (d = litptr + ((*cp & ~LITERAL) << 2); *d; d++)
+		for (d = litptr + (*cp & ~LITERAL) * LIT_FACTOR; *d; d++)
 		    (void) putwraw(*d);
 	    }
 	    else

@@ -155,7 +155,8 @@ EXTERN int Tty_raw_mode;
  * These are truly extern
  */
 extern int MacroLvl;
-extern Char *litptr;
+extern Char *litptr;	 /* Entries start at offsets divisible by LIT_FACTOR */
+#define LIT_FACTOR 4
 extern int didsetty;
 
 EXTERN Char *KeyMacro[MAXMACROLEVELS];
