@@ -91,7 +91,7 @@ extern	void		  stderror	__P((unsigned int, ...));
 /*
  * sh.exec.c
  */
-extern	void		  doexec	__P((struct command *));
+extern	void		  doexec	__P((struct command *, bool));
 extern	void		  dohash	__P((Char **, struct command *));
 extern	void		  dounhash	__P((Char **, struct command *));
 extern	void		  execash	__P((Char **, struct command *));
@@ -314,7 +314,7 @@ extern  struct process   *pfind		__P((Char *));
  * sh.sem.c
  */
 extern	void		  execute	__P((struct command *, int, int *, 
-					     int *));
+					     int *, bool));
 extern	void		  mypipe	__P((int *));
 
 /*

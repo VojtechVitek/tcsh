@@ -446,7 +446,7 @@ reexecute(kp)
      * pgrp's as the jobs would then have no way to get the tty (we can't give
      * it to them, and our parent wouldn't know their pgrp, etc.
      */
-    execute(kp, (tpgrp > 0 ? tpgrp : -1), NULL, NULL);
+    execute(kp, (tpgrp > 0 ? tpgrp : -1), NULL, NULL, TRUE);
 }
 
 /*ARGSUSED*/

@@ -2122,7 +2122,7 @@ process(catch)
 	 * Execute the parse tree From: Michael Schroeder
 	 * <mlschroe@immd4.informatik.uni-erlangen.de> was execute(t, tpgrp);
 	 */
-	execute(savet, (tpgrp > 0 ? tpgrp : -1), NULL, NULL);
+	execute(savet, (tpgrp > 0 ? tpgrp : -1), NULL, NULL, TRUE);
 
 	/*
 	 * Made it!

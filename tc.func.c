@@ -356,7 +356,7 @@ dolist(v, c)
 	/* expand aliases like process() does */
 	/* alias(&cmd); */
 	/* execute the parse tree. */
-	execute(t, tpgrp > 0 ? tpgrp : -1, NULL, NULL);
+	execute(t, tpgrp > 0 ? tpgrp : -1, NULL, NULL, FALSE);
 	/* done. free the lex list and parse tree. */
 	freelex(&cmd), freesyn(t);
 	if (setintr)
@@ -1139,7 +1139,7 @@ aliasrun(cnt, s1, s2)
 	 * From: Michael Schroeder <mlschroe@immd4.informatik.uni-erlangen.de>
 	 * was execute(t, tpgrp);
 	 */
-	execute(t, tpgrp > 0 ? tpgrp : -1, NULL, NULL);	
+	execute(t, tpgrp > 0 ? tpgrp : -1, NULL, NULL, TRUE);
     /* done. free the lex list and parse tree. */
     freelex(&w), freesyn(t);
     if (haderr) {

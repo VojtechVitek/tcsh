@@ -38,6 +38,8 @@
 
 RCSID("$Id$")
 
+#include "tw.h"
+
 /*
  * C shell
  */
@@ -1017,7 +1019,7 @@ evalav(v)
     t = syntax(paraml1.next, &paraml1, 0);
     if (seterr)
 	stderror(ERR_OLD);
-    execute(t, -1, NULL, NULL);
+    execute(t, -1, NULL, NULL, TRUE);
     freelex(&paraml1), freesyn(t);
 }
 

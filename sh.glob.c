@@ -39,6 +39,7 @@
 RCSID("$Id$")
 
 #include "tc.h"
+#include "tw.h"
 
 #include "glob.h"
 
@@ -871,7 +872,7 @@ backeval(cp, literal)
 #ifdef SIGTTOU
 	(void) sigignore(SIGTTOU);
 #endif
-	execute(t, -1, NULL, NULL);
+	execute(t, -1, NULL, NULL, TRUE);
 	exitstat();
     }
     xfree((ptr_t) cp);
