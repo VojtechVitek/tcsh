@@ -1017,7 +1017,7 @@ void
 heredoc(term)
     Char   *term;
 {
-    register int c;
+    int c = 0;
     Char   *Dv[2];
     Char    obuf[BUFSIZE], lbuf[BUFSIZE], mbuf[BUFSIZE];
     int     ocnt, lcnt, mcnt;
@@ -1036,10 +1036,16 @@ heredoc(term)
 #ifndef O_TEMPORARY
 # define O_TEMPORARY 0
 #endif
-    if (open(tmp, O_RDWR|O_CREAT|O_TEMPORARY) < 0) {
+#ifndef O_EXCL
+# define O_EXCL 0
+#endif
+again:
+    if (open(tmp, O_RDWR|O_CREAT|O_EXCL|O_TEMPORARY) == -1) {
 	int     oerrno = errno;
 
 	(void) unlink(tmp);
+	if (errno == EEXIST && c++ == 0)
+		goto again;
 	errno = oerrno;
 	stderror(ERR_SYSTEM, tmp, strerror(errno));
     }
