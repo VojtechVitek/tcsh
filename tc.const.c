@@ -141,6 +141,7 @@ Char STRslash[]		= { '/', '\0' };
 Char STRdotsl[]		= { '.', '/', '\0' };
 Char STRdotdotsl[]	= { '.', '.', '/', '\0' };
 Char STRcdpath[]	= { 'c', 'd', 'p', 'a', 't', 'h', '\0' };
+Char STRcd[]		= { 'c', 'd', '\0' };
 Char STRpushdtohome[]	= { 'p', 'u', 's', 'h', 'd', 't', 'o', 'h', 'o', 'm',
 			    'e', '\0' };
 Char STRpushdsilent[]	= { 'p', 'u', 's', 'h', 'd', 's', 'i', 'l', 'e', 'n',

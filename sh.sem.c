@@ -155,11 +155,10 @@ execute(t, wanttty, pipein, pipeout)
 	/* if this is a dir, tack a "cd" on as the first arg */
 	if (stat(short2str(sCName), &stbuf) != -1) {
 	    if (S_ISDIR(stbuf.st_mode)) {
-		Char sCCD[3] = { 'c', 'd', '\0' };
 		Char *vCD[2];
 		Char **ot_dcom = t->t_dcom;
 	    
-		vCD[0] = Strsave(sCCD);
+		vCD[0] = Strsave(STRcd);
 		vCD[1] = NULL;
 		t->t_dcom = blkspl(vCD, ot_dcom);
 		if (implicit_cd > 1) {

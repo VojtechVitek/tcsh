@@ -81,7 +81,7 @@
 # undef NEEDstrerror
 #endif /* linux || __NetBSD__ || __FreeBSD__ || SYSVREL >= 4 */
 
-#ifndef pyr
+#if !defined(pyr) && !defined(sinix)
 /* Pyramid's cpp complains about the next line */
 # if defined(BSD) && BSD >= 199306
 #  undef NEEDstrerror
@@ -492,9 +492,9 @@ struct ucred {
 #endif /* POSIX */
 
 
-#if SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux)
+#if SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux) && !defined(sinix)
 # define NEEDgetwd
-#endif /* SYSVREL > 0 && !OREO && !sgi && !linux */
+#endif /* SYSVREL > 0 && !OREO && !sgi && !linux && !sinix */
 
 #ifdef SOLARIS2
 # undef NEEDgetwd

@@ -267,7 +267,10 @@ extern pid_t setpgrp();
 # endif /* !pyr && !stellar */
 #endif /* SYSVREL > 0 ||  _IBMR2 */
 
-#if !((defined(SUNOS4) || defined(_MINIX) || defined(DECOSF1)) && defined(TERMIO))
+/* In the following ifdef the DECOSF1 has been commented so that later
+ * versions of DECOSF1 will get TIOCGWINSZ. This might break older versions...
+ */
+#if !((defined(SUNOS4) || defined(_MINIX) /* || defined(DECOSF1) */) && defined(TERMIO))
 # if !defined(COHERENT) && !defined(_VMS_POSIX)
 #  include <sys/ioctl.h>
 # endif

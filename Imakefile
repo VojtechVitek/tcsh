@@ -181,10 +181,6 @@ EXTF=mi.termios.c mi.wait.h mi.varargs.h vms.termcap.c
 #  endif
 # endif /* i386Isc */
 
-# ifdef LinuxArchitecture
-#   define ConfigH linux
-# endif
-
 # ifdef NetBSDArchitecture
 #  define ConfigH bsd4.4
 # endif /* NetBsdArchitecture */

@@ -386,7 +386,14 @@ dotelltc(v, c)
     if (!GotTermCaps)
 	GetTermCaps();
 
-    TellTC(v[1] ? short2str(v[1]) : defaulttell);
+    /*
+     * Avoid a compiler bug on hpux 9.05
+     * Writing the following as func(a ? b : c) breaks
+     */
+    if (v[1])
+	TellTC(short2str(v[1]));
+    else
+	TellTC(defaulttell);
 }
 
 /*ARGSUSED*/

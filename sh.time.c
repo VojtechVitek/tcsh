@@ -380,8 +380,10 @@ prusage(bs, es,	e, b)
      * maybe I should take it out and let people see more then 100% 
      * utilizations.
      */
+#  if 0
     if (ms < t && ms !=	0)
 	ms = t;
+#  endif
 # endif	/*! _SEQUENT_ */
 #endif /* !BSDTIMES */
 #ifdef TDEBUG

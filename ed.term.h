@@ -451,6 +451,16 @@
 # endif /* NUMCC */
 #endif /* !POSIX */
 
+/*
+ * fix for hpux10 inconsistency: it has VWERASE, but TIOCSLTC returns
+ * EINVAL if one tries to change it
+ */
+#if defined(hpux) && defined(VSUSP) && defined(VDSUSP) && defined(VWERASE) && d
+efined(VLNEXT)
+# undef TIOCGLTC       /* not really needed */
+# undef TIOCSLTC
+#endif
+
 #define C_INTR		 0
 #define C_QUIT		 1
 #define C_ERASE		 2
