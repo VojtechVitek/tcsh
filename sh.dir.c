@@ -529,8 +529,13 @@ dgoto(cp)
     else
 	dp = cp;
 
-#ifdef WINNT_NATIVE
+#if defined(WINNT_NATIVE)
     cp = SAVE(getcwd(NULL, 0));
+#elif defined(__CYGWIN__)
+    if (ABSOLUTEP(cp) && cp[1] == ':') /* Only DOS paths are treated that way */
+    	cp = SAVE(getcwd(NULL, 0));
+    else
+    	cp = dcanon(cp, dp);
 #else /* !WINNT_NATIVE */
     cp = dcanon(cp, dp);
 #endif /* WINNT_NATIVE */

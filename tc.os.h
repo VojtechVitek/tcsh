@@ -48,6 +48,8 @@
 #endif /* notdef */
 
 #ifdef __CYGWIN__
+#  undef NOFILE
+#  define NOFILE sysconf(_SC_OPEN_MAX)
 #  undef NEEDstrerror
 #endif
 

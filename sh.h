@@ -109,9 +109,13 @@ typedef int sigret_t;
 /*
  * Return true if the path is absolute
  */
-#if defined(WINNT_NATIVE) || defined(__CYGWIN__)
+#if defined(WINNT_NATIVE)
 # define ABSOLUTEP(p)	((p)[0] == '/' || \
     (Isalpha((p)[0]) && (p)[1] == ':'))
+#elif defined(__CYGWIN__)
+# define ABSOLUTEP(p)	((p)[0] == '/' || \
+    (Isalpha((p)[0]) && (p)[1] == ':' && \
+     ((p)[2] == '\0' || (p)[2] == '/')))
 #else /* !WINNT_NATIVE && !__CYGWIN__ */
 # define ABSOLUTEP(p)	(*(p) == '/')
 #endif /* WINNT_NATIVE || __CYGWIN__ */
@@ -1032,6 +1036,10 @@ EXTERN Char  **alvec IZERO_STRUCT,
 EXTERN int   gflag;		/* After tglob -> is globbing needed? */
 
 #define MAXVARLEN 30		/* Maximum number of char in a variable name */
+
+#ifdef __CYGWIN__
+# undef MAXPATHLEN
+#endif /* __CYGWIN__ */
 
 #ifndef MAXPATHLEN
 # define MAXPATHLEN 2048

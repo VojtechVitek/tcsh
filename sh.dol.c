@@ -1066,6 +1066,12 @@ again:
 #ifdef WINNT_NATIVE
     __dup_stdin = 1;
 #endif /* WINNT_NATIVE */
+#ifdef O_TEXT
+    setmode(1, O_TEXT);
+#endif
+#ifdef O_BINARY
+    setmode(0, O_BINARY);
+#endif
     for (;;) {
 	/*
 	 * Read up a line
