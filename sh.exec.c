@@ -900,7 +900,7 @@ tellmewhat(lexp, str)
     register int i;
     register struct biltins *bptr;
     register struct wordent *sp = lexp->next;
-    bool    aliased = 0;
+    bool    aliased = 0, found;
     Char   *s0, *s1, *s2, *cmd;
     Char    qc;
 
@@ -976,18 +976,18 @@ tellmewhat(lexp, str)
 	    }
 	    else
 		prlex(lexp);
-	    sp->word = s0;	/* we save and then restore this */
-	    xfree((ptr_t) cmd);
-	    return TRUE;
 	}
-	s1 = Strspl(*pv, STRslash);
-	sp->word = Strspl(s1, sp->word);
-	xfree((ptr_t) s1);
-	if (str == NULL)
-	    prlex(lexp);
-	else
-	    (void) Strcpy(str, sp->word);
-	xfree((ptr_t) sp->word);
+	else {
+	    s1 = Strspl(*pv, STRslash);
+	    sp->word = Strspl(s1, sp->word);
+	    xfree((ptr_t) s1);
+	    if (str == NULL)
+		prlex(lexp);
+	    else
+		(void) Strcpy(str, sp->word);
+	    xfree((ptr_t) sp->word);
+	}
+	found = 1;
     }
     else {
 	if (str == NULL) {
@@ -996,14 +996,13 @@ tellmewhat(lexp, str)
 	    xprintf(CGETS(13, 6, "%S: Command not found.\n"), sp->word);
 	    flush();
 	}
-	else {
+	else
 	    (void) Strcpy(str, sp->word);
-	    return FALSE;
-	}
+	found = 0;
     }
     sp->word = s0;		/* we save and then restore this */
     xfree((ptr_t) cmd);
-    return TRUE;
+    return found;
 }
 
 /*

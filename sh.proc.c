@@ -1030,7 +1030,7 @@ pprint(pp, flag)
     register struct process *pp;
     bool    flag;
 {
-    register status, reason;
+    int status, reason;
     struct process *tp;
     extern char *linp, linbuf[];
     int     jobflags, pstatus, pcond;

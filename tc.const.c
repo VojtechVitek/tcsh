@@ -70,6 +70,8 @@ Char STRversion[]	= { 'v', 'e', 'r', 's', 'i', 'o', 'n', '\0' };
 Char STRuid[]		= { 'u', 'i', 'd', '\0' };
 Char STRgid[]		= { 'g', 'i', 'd', '\0' };
 Char STRunknown[]	= { 'u', 'n', 'k', 'n', 'o', 'w', 'n', '\0' };
+Char STRnetwork[]	= { 'n', 'e', 't', 'w', 'o', 'r', 'k', '\0' };
+Char STRdumb[]		= { 'd', 'u', 'm', 'b', '\0' };
 Char STRHOST[]		= { 'H', 'O', 'S', 'T', '\0' };
 #ifdef REMOTEHOST
 Char STRREMOTEHOST[]	= { 'R', 'E', 'M', 'O', 'T', 'E', 'H', 

@@ -103,7 +103,7 @@ isbfunc(t)
      * one past the end.
      */
     for (bp1 = bfunc, bp2 = bfunc + nbfunc; bp1 < bp2;) {
-	register i;
+	int i;
 
 	bp = bp1 + ((bp2 - bp1) >> 1);
 	if ((i = *cp - *bp->bname) == 0 &&
@@ -759,10 +759,10 @@ doswbrk(v, c)
 
 int
 srchx(cp)
-    register Char *cp;
+    Char *cp;
 {
-    register struct srch *sp, *sp1, *sp2;
-    register i;
+    struct srch *sp, *sp1, *sp2;
+    int i;
 
     /*
      * Ignore keywords inside heredocs
@@ -1348,7 +1348,14 @@ dosetenv(v, c)
     }
 
     if (eq(vp, STRKTERM)) {
+	char *t;
 	set(STRterm, quote(lp), VAR_READWRITE);	/* lp memory used here */
+	t = short2str(lp);
+	if (noediting && strcmp(t, "unknown") != 0 && strcmp(t,"dumb") != 0) {
+	    editing = 1;
+	    noediting = 0;
+	    set(STRedit, Strsave(STRNULL), VAR_READWRITE);
+	}
 	GotTermCaps = 0;
 	ed_Init();
 	return;

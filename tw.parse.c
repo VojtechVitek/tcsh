@@ -2113,7 +2113,7 @@ fcompare(file1, file2)
 void
 catn(des, src, count)
     register Char *des, *src;
-    register count;
+    int count;
 {
     while (--count >= 0 && *des)
 	des++;
@@ -2131,7 +2131,7 @@ catn(des, src, count)
 void
 copyn(des, src, count)
     register Char *des, *src;
-    register count;
+    int count;
 {
     while (--count >= 0)
 	if ((*des++ = *src++) == 0)

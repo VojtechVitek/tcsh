@@ -1321,7 +1321,7 @@ gethent(sc)
 	    }
 	    np = lhsb;
 	    event = 0;
-	    while (!cmap(c, _ESC | _META | _QF | _QB) && !any("^*0-%${}:#", c)) {
+	    while (!cmap(c, _ESC | _META | _QF | _QB) && !any("^*-%${}:#", c)) {
 		if (event != -1 && Isdigit(c))
 		    event = event * 10 + c - '0';
 		else
@@ -1468,9 +1468,9 @@ readc(wanteof)
     bool    wanteof;
 {
     int c;
-    static  sincereal;	/* Number of real EOFs we've seen */
-    Char *ptr;		/* For STRignoreeof */
-    int numeof = 0;	/* Value of STRignoreeof */
+    static  int sincereal;	/* Number of real EOFs we've seen */
+    Char *ptr;			/* For STRignoreeof */
+    int numeof = 0;		/* Value of STRignoreeof */
 
 #ifdef DEBUG_INP
     xprintf("readc\n");

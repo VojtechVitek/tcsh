@@ -496,7 +496,7 @@ struct ucred {
 # define NEEDgetwd
 #endif /* SYSVREL > 0 && !OREO && !sgi && !linux && !sinix */
 
-#ifdef SOLARIS2
+#if defined(SOLARIS2) || defined(sinix)
 # undef NEEDgetwd
 # define getwd(a)	getcwd(a, MAXPATHLEN)
 #endif

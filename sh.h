@@ -502,6 +502,7 @@ EXTERN bool    setintr;		/* Set interrupts on/off -> Wait intr... */
 EXTERN bool    timflg;		/* Time the next waited for command */
 EXTERN bool    havhash;		/* path hashing is available */
 EXTERN bool    editing;		/* doing filename expansion and line editing */
+EXTERN bool    noediting;	/* initial $term defaulted to noedit */
 EXTERN bool    bslash_quote;	/* PWP: tcsh-style quoting?  (in sh.c) */
 EXTERN bool    isoutatty;	/* is SHOUT a tty */
 EXTERN bool    isdiagatty;	/* is SHDIAG a tty */

@@ -474,6 +474,7 @@ dowhich(v, c)
     register Char **v;
     struct command *c;
 {
+    int rv = TRUE;
     USE(c);
 
 #ifdef notdef
@@ -495,7 +496,10 @@ dowhich(v, c)
 #endif
 
     while (*++v) 
-	(void) cmd_expand(*v, NULL);
+	rv &= cmd_expand(*v, NULL);
+
+    if (!rv)
+	set(STRstatus, Strsave(STR1), VAR_READWRITE);
 
 #ifdef notdef
     /* Again look at the comment above; since we don't glob, we don't free */
