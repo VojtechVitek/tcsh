@@ -861,7 +861,7 @@ doio(t, pipein, pipeout)
 	    xfree((ptr_t) cp);
 	    if ((fd = open(tmp, O_RDONLY|O_LARGEFILE)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
-#ifdef O_LARGEFILE
+#if O_LARGEFILE
 	    /* allow input files larger than 2Gb  */
 	    (void) fcntl(fd, O_LARGEFILE, 0);
 #endif /* O_LARGEFILE */
@@ -921,7 +921,7 @@ doio(t, pipein, pipeout)
 	    }
 	    if ((fd = creat(tmp, 0666)) < 0)
 		stderror(ERR_SYSTEM, tmp, strerror(errno));
-#ifdef O_LARGEFILE
+#if O_LARGEFILE
 	    /* allow input files larger than 2Gb  */
 	    (void) fcntl(fd, O_LARGEFILE, 0);
 #endif /* O_LARGEFILE */

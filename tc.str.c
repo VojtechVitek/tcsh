@@ -315,7 +315,7 @@ s_strcasecmp(str1, str2)
 {
     unsigned char c1, c2, l1 = 0, l2 = 0;
     for (; *str1 && ((*str1 == *str2 && (l1 = l2 = 0) == 0) || 
-	((c1 = *str1) == *str1 && (c2 = *str2) == *str2 &&
+	((c1 = (char)*str1) == *str1 && (c2 = (char)*str2) == *str2 &&
 	(l1 = tolower(c1)) == (l2 = tolower(c2)))); str1++, str2++)
 	continue;
     /*
