@@ -46,7 +46,7 @@ RCSID("$Id$")
 static struct varent completions;
 
 static int 	tw_result	__P((Char *, Char *));
-static void	tw_tok		__P((Char **, Char *));
+static int	tw_tok		__P((Char **, Char *));
 
 /* docomplete():
  *	Add or list completions in the completion list
@@ -90,19 +90,23 @@ douncomplete(v, t)
 /* tw_tok():
  *	Return the next word from string, unquoteing it.
  */
-static void
+static int
 tw_tok(str, buf)
     Char **str;
     Char *buf;
 {
     Char *ptr = *str;
 
-    while (*ptr && !Isspace(*ptr))
+    while (*ptr && !Isspace(*ptr)) {
+	if (ismeta(*ptr))
+	    return(0);
 	*buf++ = *ptr++ & ~QUOTE;
+    }
     *buf = '\0';
     while (*ptr && Isspace(*ptr))
 	ptr++;
     *str = ptr;
+    return(1);
 } /* end tw_tok */
 
 
@@ -176,7 +180,7 @@ tw_complete(cmd, word, pat)
     Char buf[MAXPATHLEN + 1], **vec;
     struct varent *vp;
 
-    tw_tok(&cmd, buf); 
+    (void) tw_tok(&cmd, buf); 
 
 #ifdef TDEBUG
     xprintf(" cmd: %x %s\n", cmd, short2str(buf));
@@ -196,7 +200,8 @@ tw_complete(cmd, word, pat)
 	if (cmd >= word) 
 	    /* we are done */
 	    return tw_result(*vec, pat);
-	tw_tok(&cmd, buf);
+	if (tw_tok(&cmd, buf) == 0)
+	    return TW_ZERO;
 #ifdef TDEBUG
 	xprintf("cmd %x word %x token = %s\n", cmd, word, short2str(buf));
 	xprintf("Gmatch(%s, ", short2str(buf));

@@ -157,6 +157,38 @@
 # define CDISCARD CFLUSH
 #endif /* !CDISCARD && CFLUSH */
 
+/*
+ * IRIX4.0 control macro is broken!
+ * Ignore and undef all default tty chars defined.
+ */
+#if __STDC__ && defined(IRIS4D)
+# undef CINTR
+# undef CQUIT
+# undef CERASE
+# undef CKILL
+# undef CEOF
+# undef CEOL
+# undef CEOL2	
+# undef CSWTCH	
+# undef CDSWTCH 
+# undef CERASE2
+# undef CSTART
+# undef CSTOP
+# undef CWERASE
+# undef CSUSP
+# undef CDSUSP
+# undef CREPRINT
+# undef CDISCARD
+# undef CLNEXT
+# undef CSTATUS
+# undef CPAGE
+# undef CPGOFF
+# undef CKILL2
+# undef CBRK
+# undef CMIN
+# undef CTIME
+#endif /* __STDC__ && IRIS4D */
+
 #ifndef CINTR
 # define CINTR		CONTROL('c')
 #endif /* CINTR */

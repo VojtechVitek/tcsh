@@ -377,7 +377,9 @@ extern int atoi();
 extern char *ttyname();
 
 # ifndef hpux
+#  if __GNUC__ != 2
 extern int abort();
+#  endif /* __GNUC__ != 2 */
 # ifndef fps500
 extern int qsort();
 # endif /* fps500 */
@@ -487,6 +489,15 @@ extern char *getwd();
 extern char *ttyname();   
 # endif /* SCO */
 
+
 #endif /* POSIX */
+
+# if defined(sun) && __GNUC__ == 2
+/*
+ * Somehow these are missing
+ */
+extern int ioctl __P((int, int, ...));
+extern int readlink __P((const char *, char *, size_t));
+# endif /* sun && __GNUC__ == 2 */
 
 #endif /* _h_tc_os */

@@ -999,7 +999,7 @@ pprint(pp, flag)
     char   *format;
 
 #ifdef BACKPIPE
-    struct process *pipehead, *pipetail, *pmarker;
+    struct process *pipehead = NULL, *pipetail = NULL, *pmarker = NULL;
     int inpipe = 0;
 #endif /* BACKPIPE */
 

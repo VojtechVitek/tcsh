@@ -112,9 +112,8 @@ union overhead {
 #define	NBUCKETS 30
 static union overhead *nextf[NBUCKETS];
 
-#ifdef notdef
-extern char *sbrk();
-
+#ifdef sun
+extern ptr_t sbrk __P((int));
 #endif
 
 /*

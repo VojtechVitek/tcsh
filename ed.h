@@ -162,6 +162,7 @@ EXTERN int T_Lines, T_Cols;	/* Rows and Cols of the terminal */
 EXTERN Char T_CanIns;		/* true if I can insert characters */
 EXTERN Char T_CanDel;		/* dito for delete characters */
 EXTERN Char T_Tabs;		/* true if tty interface is passing tabs */
+EXTERN Char T_Margin;		/* true if terminal can use the rightmost col */
 EXTERN speed_t T_Speed;		/* Tty input Baud rate */
 EXTERN Char T_CanCEOL;		/* true if we can clear to end of line */
 EXTERN Char T_CanUP;		/* true if this term can do reverse linefeen */

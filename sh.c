@@ -348,6 +348,22 @@ main(argc, argv)
     fix_version();		/* publish the shell version */
 
     /*
+     * Publish the selected echo style
+     */
+#if ECHO_STYLE == NONE_ECHO
+    set(STRecho_style, Strsave(STRnone));
+#endif /* ECHO_STYLE == NONE_ECHO */
+#if ECHO_STYLE == BSD_ECHO
+    set(STRecho_style, Strsave(STRbsd));
+#endif /* ECHO_STYLE == BSD_ECHO */
+#if ECHO_STYLE == SYSV_ECHO
+    set(STRecho_style, Strsave(STRsysv));
+#endif /* ECHO_STYLE == SYSV_ECHO */
+#if ECHO_STYLE == BOTH_ECHO
+    set(STRecho_style, Strsave(STRboth));
+#endif /* ECHO_STYLE == BOTH_ECHO */
+
+    /*
      * increment the shell level.
      */
     shlvl(1);
@@ -1005,6 +1021,7 @@ main(argc, argv)
 	setNS(STRverbose);
     if (nexececho)
 	setNS(STRecho);
+    
     /*
      * All the rest of the world is inside this call. The argument to process
      * indicates whether it should catch "error unwinds".  Thus if we are a

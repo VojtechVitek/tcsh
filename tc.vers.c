@@ -49,6 +49,12 @@ gethosttype()
 #ifdef HOSTTYPE	/* Override any system determined hosttypes */
     hosttype = str2short(HOSTTYPE);
 #else
+
+# ifdef AMIX /* Amiga UNIX */
+#  define _havehosttype_
+    hosttype = str2short("amiga");
+# endif /* AMIX */
+
 # if defined(vax) || defined(__vax)
 #  define _havehosttype_
     hosttype = str2short("vax");

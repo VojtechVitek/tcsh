@@ -106,6 +106,19 @@ typedef int sigret_t;
 #ifndef INBUFSIZE
 # define INBUFSIZE	1024	/* Num input characters on the command line */
 #endif /* INBUFSIZE */
+
+
+/*
+ * What our builtin echo looks like
+ */
+#ifndef ECHO_STYLE
+# if SYSVREL > 0
+#  define ECHO_STYLE SYSV_ECHO
+# else /* SYSVREL == 0 */
+#  define ECHO_STYLE BSD_ECHO
+# endif /* SYSVREL */
+#endif /* ECHO_STYLE */
+
 /*
  * The shell moves std in/out/diag and the old std input away from units
  * 0, 1, and 2 so that it is easy to set up these standards for invoked
