@@ -293,7 +293,7 @@ sigsetmask(mask)
 
     m = 0;
     for (i = 1; i <= MAXSIG; i++)
-	if (sigismember(&oset, i))
+	if (sigismember(&oset, i) == 1)
 	    SETBIT(m, i);
 
     return (m);
@@ -333,7 +333,7 @@ sigblock(mask)
     /* Return old mask to user. */
     m = 0;
     for (i = 1; i <= MAXSIG; i++)
-	if (sigismember(&oset, i))
+	if (sigismember(&oset, i) == 1)
 	    SETBIT(m, i);
 
     return (m);
