@@ -854,7 +854,7 @@ main(argc, argv)
 	/*
 	 * Source history before .login so that it is available in .login
 	 */
-	if ((cp = value(STRhistfile)) != NULL)
+	if ((cp = value(STRhistfile)) != STRNULL)
 	    loadhist[2] = cp;
 	dosource(loadhist, NULL);
 #ifndef LOGINFIRST
@@ -1181,7 +1181,7 @@ rechist()
     if (!fast) {
 	if (value(STRsavehist)[0] == '\0')
 	    return;
-	if ((hfile = value(STRhistfile)) == NULL) {
+	if ((hfile = value(STRhistfile)) == STRNULL) {
 	    hfile = Strcpy(buf, value(STRhome));
 	    (void) Strcat(buf, STRsldthist);
 	}
