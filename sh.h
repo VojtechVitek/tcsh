@@ -399,7 +399,9 @@ typedef int sigret_t;
 # include <sys/socket.h>
 # if (defined(_SS_SIZE) || defined(_SS_MAXSIZE)) && !defined(NO_SS_FAMILY)
 #  if !defined(__APPLE__) /* Damnit, where is getnameinfo() folks? */
-#   define INET6
+#   if !defined(sgi)
+#    define INET6
+#   endif /* sgi */
 #  endif /* __APPLE__ */
 # endif
 # include <sys/uio.h>	/* For struct iovec */
