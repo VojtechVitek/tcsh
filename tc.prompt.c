@@ -513,6 +513,20 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	    case 'L':
 		ClearToBottom();
 		break;
+
+	    case 'j':
+		{
+		    Char buf[128], *ebuf, *q;
+		    int njobs = -1;
+		    struct process *pp;
+		    for (pp = proclist.p_next; pp; pp = pp->p_next)
+			njobs++;
+		    /* make sure we have space */
+		    ebuf = Itoa(njobs, buf, 1, attributes);
+		    for (q = buf; q < ebuf; *p++ = *q++)
+			if (p >= ep) break;
+		    break;
+		}
 	    case '?':
 		if ((z = varval(STRstatus)) != STRNULL)
 		    for (; *z; *p++ = attributes | *z++)
