@@ -134,8 +134,8 @@ enthist(event, lp, docopy, mflg)
 		    px->Hnext = p->Hnext;
 		    n = p->Hnum + 1;
 		    hfree(p);
-		    for (;p != NULL; p = p->Hnext)
-			p->Href = p->Hnum = n--;
+		    for (p = px->Hnext; p != NULL; p = p->Hnext)
+			p->Href = n--;
 		    break;
 		}
 	}
