@@ -1282,13 +1282,11 @@ dosetenv(v, c)
 	/*
 	 * convert to canonical pathname (possibly resolving symlinks)
 	 */
-	Char *cp = dcanon(lp, lp);
-
-	set(STRhome, quote(cp));	/* cp memory used here */
+	lp = dcanon(lp, lp);
+	set(STRhome, quote(lp));	/* cp memory used here */
 
 	/* fix directory stack for new tilde home */
 	dtilde();
-	xfree((ptr_t) lp);
 	return;
     }
 
@@ -1308,8 +1306,8 @@ dosetenv(v, c)
      */
     if ((eq(lp, STRNULL) && (eq(vp, STRLINES) || eq(vp, STRCOLUMNS))) ||
 	eq(vp, STRTERMCAP)) {
-	check_window_size(1);
 	xfree((ptr_t) lp);
+	check_window_size(1);
 	return;
     }
 
@@ -1318,8 +1316,8 @@ dosetenv(v, c)
      */
     if (eq(vp, STRLINES) || eq(vp, STRCOLUMNS)) {
 	GotTermCaps = 0;
-	ed_Init();
 	xfree((ptr_t) lp);
+	ed_Init();
 	return;
     }
 #endif /* SIG_WINDOW */

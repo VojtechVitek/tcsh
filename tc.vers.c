@@ -55,6 +55,11 @@ gethosttype()
     hosttype = "amiga";
 # endif /* AMIX */
 
+# ifdef accel /* Celerity Accel */
+#  define _havehosttype_
+    hosttype = "celerityACCEL";
+# endif /* Celerity Accel */
+
 # ifdef _VMS_POSIX
 #  define _havehosttype_
    hosttype = "VMS-POSIX";

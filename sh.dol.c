@@ -541,7 +541,7 @@ Dgetdol()
 	    }
 	    if (subscr == 0) {
 		if (bitset) {
-		    dolp = ffile ? STR1 : STR0;
+		    dolp = dolzero ? STR1 : STR0;
 		    goto eatbrac;
 		}
 		if (ffile == 0)

@@ -1071,10 +1071,18 @@ xgetwd(pathname)
 		    continue;
 		(void) strcpy(cur_name_add, d->d_name);
 		if (lstat(nextpathptr, &st_next) == -1) {
+		    /*
+		     * We might not be able to stat() some path components
+		     * if we are using afs, but this is not an error as
+		     * long as we find the one we need
+		     */
+		    continue;
+#ifdef notdef
 		    (void) xsprintf(pathname, "getwd: Cannot stat \"%s\" (%s)",
 				    d->d_name, strerror(errno));
 		    (void) closedir(dp);
 		    return (NULL);
+#endif
 		}
 		/* check if we found it yet */
 		if (st_next.st_ino == st_cur.st_ino &&

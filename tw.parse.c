@@ -116,7 +116,7 @@ static	int	 isadirectory		__P((Char *, Char *));
 static  int      tw_collect_items	__P((COMMAND, int, Char *, Char *, 
 					     Char *, Char *, int));
 static  int      tw_collect		__P((COMMAND, int, Char *, Char *, 
-					     Char *, Char *, int, DIR *));
+					     Char **, Char *, int, DIR *));
 static	Char 	 tw_suffix		__P((int, Char *, Char *, Char *, 
 					     Char *));
 static	void 	 tw_fixword		__P((int, Char *, Char *, Char *, int));
@@ -1012,7 +1012,7 @@ static int
 tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
     COMMAND command;
     int looking;
-    Char *exp_dir, *exp_name, *target, *pat;
+    Char *exp_dir, *exp_name, **target, *pat;
     int flags;
     DIR *dir_fd;
 {
@@ -1020,7 +1020,7 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
     jmp_buf_t osetexit;
 
 #ifdef TDEBUG
-    xprintf("target = %S\n", target);
+    xprintf("target = %S\n", *target);
 #endif
     ni = 0;
     getexit(osetexit);
@@ -1037,7 +1037,7 @@ tw_collect(command, looking, exp_dir, exp_name, target, pat, flags, dir_fd)
 	    return(-1);
 	}
         if ((ni = tw_collect_items(command, looking, exp_dir, exp_name,
-			           target, pat, 
+			           *target, pat, 
 				   ni >= 0 ? flags : 
 					flags & ~TW_IGN_OK)) >= 0) {
 	    resexit(osetexit);
@@ -1316,7 +1316,7 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
     }
 
     numitems = tw_collect(command, looking, exp_dir, exp_name, 
-			  target, pat, flags, dir_fd);
+			  &target, pat, flags, dir_fd);
     if (numitems == -1)
 	return -1;
 

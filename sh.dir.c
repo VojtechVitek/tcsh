@@ -239,9 +239,8 @@ printdirs(dflag)
 	    xprintf("%d\t", idx++);
 	    cur = 0;
 	}
-	len = Strlen(hp);
 	if (!(dflag & DIR_LONG) && hp != NULL && !eq(hp, STRslash) &&
-	    Strncmp(hp, dp->di_name, len) == 0 &&
+	    (len = Strlen(hp), Strncmp(hp, dp->di_name, len) == 0) &&
 	    (dp->di_name[len] == '\0' || dp->di_name[len] == '/')) 
 	    len = Strlen(s = (dp->di_name + len)) + 2;
 	else
@@ -834,12 +833,13 @@ dcanon(cp, p)
 		continue;
 	p = sp;			/* save start of component */
 	slash = 0;
-	while (*++p)		/* find next slash or end of path */
-	    if (*p == '/') {
-		slash = 1;
-		*p = 0;
-		break;
-	    }
+	if (*p) 
+	    while (*++p)	/* find next slash or end of path */
+		if (*p == '/') {
+		    slash = 1;
+		    *p = 0;
+		    break;
+		}
 
 #ifdef apollo
 	if (&cp[1] == sp && sp[0] == '.' && sp[1] == '.' && sp[2] == '\0')

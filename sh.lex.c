@@ -1461,6 +1461,7 @@ readc(wanteof)
 top:
     aret = F_SEEK;
     if (alvecp) {
+	arun = 1;
 #ifdef DEBUG_INP
 	xprintf("alvecp %c\n", *alvecp & 0xff);
 #endif
@@ -1478,6 +1479,7 @@ top:
 	}
     }
     if (alvec) {
+	arun = 1;
 	if ((alvecp = *alvec) != 0) {
 	    alvec++;
 	    goto top;
@@ -1485,6 +1487,7 @@ top:
 	/* Infinite source! */
 	return ('\n');
     }
+    arun = 0;
     if (evalp) {
 	aret = E_SEEK;
 	if ((c = *evalp++) != 0)
@@ -1497,7 +1500,7 @@ top:
 	evalp = 0;
     }
     if (evalvec) {
-	if (evalvec == INVPTR) {
+	if (evalvec == INVPPTR) {
 	    doneinp = 1;
 	    reset();
 	}
@@ -1505,7 +1508,7 @@ top:
 	    evalvec++;
 	    goto top;
 	}
-	evalvec = INVPTR;
+	evalvec = INVPPTR;
 	return ('\n');
     }
     do {
@@ -1747,14 +1750,14 @@ bseek(l)
     switch (aret = l->type) {
     case E_SEEK:
 	evalvec = l->a_seek;
-	evalp = (Char *) l->f_seek;
+	evalp = l->c_seek;
 #ifdef DEBUG_SEEK
 	xprintf("seek to eval %x %x\n", evalvec, evalp);
 #endif
 	return;
     case A_SEEK:
 	alvec = l->a_seek;
-	alvecp = (Char *) l->f_seek;
+	alvecp = l->c_seek;
 #ifdef DEBUG_SEEK
 	xprintf("seek to alias %x %x\n", alvec, alvecp);
 #endif
@@ -1779,14 +1782,14 @@ struct Ain *l;
     switch (l->type = aret) {
     case E_SEEK:
 	l->a_seek = evalvec;
-	l->f_seek = (off_t) evalp;
+	l->c_seek = evalp;
 #ifdef DEBUG_SEEK
 	xprintf("tell eval %x %x\n", evalvec, evalp);
 #endif
 	return;
     case A_SEEK:
 	l->a_seek = alvec;
-	l->f_seek = (off_t) alvecp;
+	l->c_seek = alvecp;
 #ifdef DEBUG_SEEK
 	xprintf("tell alias %x %x\n", alvec, alvecp);
 #endif

@@ -694,11 +694,7 @@ exp6(vp, ignore)
 #endif
 		    break;
 
-		/* 
-		 * ARGH!!! sgi defines (-s == ! -z) Why? Can you change it? 
-		 * Here I am not going to be compatible; they should fix it!
-		 */
-		case 's':
+		case 'S':
 # ifdef S_ISSOCK
 		    i = S_ISSOCK(stb.st_mode);
 # else
@@ -748,6 +744,10 @@ exp6(vp, ignore)
 
 		case 'z':
 		    i = stb.st_size == 0;
+		    break;
+
+		case 's':
+		    i = stb.st_size != 0;
 		    break;
 
 		case 'e':

@@ -188,9 +188,9 @@ watch_login()
     }
     trim(vp = v->vec);
     if (blklen(vp) % 2)		/* odd # args: 1st == # minutes. */
-	interval = (number(*vp)) ? getn(*vp++) : MAILINTVL;
+	interval = (number(*vp)) ? (getn(*vp++) * 60) : MAILINTVL;
     (void) time(&t);
-    if (t - watch_period < interval * 60) {
+    if (t - watch_period < interval) {
 #ifdef BSDSIGS
 	(void) sigsetmask(omask);
 #else
