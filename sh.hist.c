@@ -379,7 +379,7 @@ fmthist(fmt, ptr, buf, bufsiz)
 		size_t len;
 
 		len = one_wctomb(xbuf, CHAR & *ip);
-		if ((size_t)((p - xbuf) + len) >= bufsiz)
+		if ((size_t)((p - buf) + len) >= bufsiz)
 		    break;
 		memcpy(p, xbuf, len);
 		p += len;
