@@ -240,6 +240,16 @@ struct	mesg mesg[] = {
 # endif /* apollo */
 #endif /* IBMAIX */
 
+
+/*
+**  In the UNIXpc these signal *ARE* used!!
+*/
+#ifdef UNIXPC
+/* 20 */	"WIND",		"Window status changed",
+/* 21 */	"PHONE", 	"Phone status changed",
+#endif
+
+
 # ifdef OREO
 #  define _sigextra_
 #  ifdef SUSPENDED
