@@ -463,6 +463,7 @@ enddef	:
 
 newdef	: defined(__NetBSD__) 
 comment	: NetBSD
+vendor	: defined(arm32)				: "acorn"
 vendor	: defined(alpha)				: "digital"
 vendor	: defined(amiga)				: "commodore"
 vendor	: defined(atari)				: "atari"
@@ -478,6 +479,7 @@ vendor	: defined(sun3)					: "sun"
 vendor	: defined(vax)					: "digital"
 hosttype: 						: "NetBSD"
 ostype	: 						: "NetBSD"
+machtype: defined(arm32)				: "arm32"
 machtype: defined(sparc)				: "sparc"
 machtype: defined(mc68020)				: "m68k"
 machtype: defined(M_i386)				: "i386"
