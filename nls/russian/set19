@@ -10,6 +10,6 @@ $set 19
 7 free(%lx) bad block index.
 8 %s current memory allocation:\nfree:\t
 9 \nused:\t
-10 \n\tTotal in use: %d, total free: %d\n
+10 \n\tВсего используется: %d, всего свободно: %d\n
 11 \tAllocated memory from 0x%lx to 0x%lx.  Real top at 0x%lx\n
 12 Allocated memory from 0x%lx to 0x%lx (%ld).\n
