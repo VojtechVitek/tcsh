@@ -1758,7 +1758,7 @@ doumask(v, c)
 #   define toset(a) ((a) + 1)
 #  endif /* aiws */
 # else /* BSDLIMIT */
-#  if (defined(BSD4_4) || defined(__linux__) || (HPUXVERSION >= 1100)) && !defined(__386BSD__)
+#  if (defined(BSD4_4) || defined(__linux__) || defined(__GNU__) || defined(__GLIBC__) || (HPUXVERSION >= 1100)) && !defined(__386BSD__)
     typedef rlim_t RLIM_TYPE;
 #  else
 #   if defined(SOLARIS2) || (defined(sgi) && SYSVREL > 3)
@@ -1810,7 +1810,7 @@ doumask(v, c)
 #  endif
 # endif /* SYSVREL > 3 && BSDLIMIT */
 
-# if defined(__linux__) && defined(RLIMIT_AS) && !defined(RLIMIT_VMEM)
+# if (defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)) && defined(RLIMIT_AS) && !defined(RLIMIT_VMEM)
 #  define RLIMIT_VMEM	RLIMIT_AS
 # endif
 

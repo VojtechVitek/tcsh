@@ -143,7 +143,7 @@ tw_str_add(sl, len)
 		    (Char *) xmalloc((size_t) (sl->tbuff * sizeof(Char)));
 	/* Re-thread the new pointer list, if changed */
 	if (ptr != NULL && ptr != sl->buff) {
-	    int offs = (int) (sl->buff - ptr);
+	    intptr_t offs = sl->buff - ptr;
 	    for (i = 0; i < sl->nlist; i++)
 		sl->list[i] += offs;
 	}

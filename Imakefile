@@ -41,12 +41,12 @@ ones.  Please send in your fixes and additions! */
 #  define ConfigH sysv4
 # endif
 
-# ifdef LinuxArchitecture
+# if defined(LinuxArchitecture) || defined(GNUArchitecture)
 #  define ConfigH linux
 # endif
 
 # ifdef AlphaArchitecture
-#  ifndef LinuxArchitecture
+#  if !defined(LinuxArchitecture) && !defined(GNUArchitecture)
 #    define ConfigH decosf1
 #  endif
 #  if !HasGcc

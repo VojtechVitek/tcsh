@@ -453,7 +453,7 @@
  * Also for RH6.2 on the alpha, defined TIOCGLTC, but does not have
  * struct ltchars
  */
-#if (defined(hpux) && defined(VSUSP) && defined(VDSUSP) && defined(VWERASE) && defined(VLNEXT)) || defined(__linux__)
+#if (defined(hpux) && defined(VSUSP) && defined(VDSUSP) && defined(VWERASE) && defined(VLNEXT)) || defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)
 # undef TIOCGLTC       /* not really needed */
 # undef TIOCSLTC
 #endif

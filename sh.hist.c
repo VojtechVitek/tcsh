@@ -373,7 +373,6 @@ fmthist(fmt, ptr, buf, bufsiz)
 	    (void) sprlex(ibuf, sizeof(ibuf) / sizeof(Char), &hp->Hlex);
 	    p = buf;
 	    ip = ibuf;
-#ifdef WIDE_STRINGS
 	    do {
 	        char xbuf[MB_LEN_MAX];
 		size_t len;
@@ -384,10 +383,6 @@ fmthist(fmt, ptr, buf, bufsiz)
 		memcpy(p, xbuf, len);
 		p += len;
 	    } while ((CHAR & *ip++) != 0);
-#else	    
-	    while (p < buf + bufsiz - 1 && (*p++ = (CHAR & *ip++)) != '\0')
-		continue;
-#endif
 	    if (p <= buf + bufsiz - 1)
 	        *p = '\0';
 	}

@@ -137,6 +137,19 @@ expand_lex(buf, bufsiz, sp0, from, to)
     for (i = 0; i < NCARGS; i++) {
 	if ((i >= from) && (i <= to)) {	/* if in range */
 	    for (s = sp->word; *s && d < e; s++) {
+
+		if (s[1] & QUOTE) {
+		    int l = NLSSize(s, -1);
+		    if (l > 1) {
+			while (l-- > 0) {
+			    if (d < e)
+				*d++ = (*s & TRIM);
+			    prev_c = *s++;
+			}
+			s--;
+			continue;
+		    }
+		}
 		/*
 		 * bugfix by Michael Bloom: anything but the current history
 		 * character {(PWP) and backslash} seem to be dealt with

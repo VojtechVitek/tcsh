@@ -823,13 +823,8 @@ unparsestring(str, buf, sep)
 	    *b++ = '\\';
 	    *b++ = (unsigned char) p;
 	}
-	else if (p == ' ' || (Isprint(p) && !Isspace(p))) {
-#ifdef WIDE_STRINGS
+	else if (p == ' ' || (Isprint(p) && !Isspace(p)))
 	    b += one_wctomb(b, p & CHAR);
-#else
-	    *b++ = (unsigned char) p;
-#endif
-	}
 	else {
 	    *b++ = '\\';
 	    *b++ = ((p >> 6) & 7) + '0';

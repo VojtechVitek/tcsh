@@ -226,9 +226,6 @@ pushback(string)
     Char   *string;
 {
     Char *p;
-#ifndef WIDE_STRINGS
-    char    c;
-#endif
 #ifdef TERMIO
 # ifdef POSIX
     struct termios tty, tty_normal;
@@ -259,7 +256,6 @@ pushback(string)
     (void) ioctl(SHOUT, TCSETAW, (ioctl_t) &tty);
 # endif /* POSIX */
 
-# ifdef WIDE_STRINGS
     for (p = string; *p != '\0'; p++) {
 	char buf[MB_LEN_MAX];
 	size_t i, len;
@@ -268,10 +264,6 @@ pushback(string)
 	for (i = 0; i < len; i++)
 	    (void) ioctl(SHOUT, TIOCSTI, (ioctl_t) &buf[i]);
     }
-# else
-    for (p = string; (c = *p) != '\0'; p++)
-	(void) ioctl(SHOUT, TIOCSTI, (ioctl_t) & c);
-# endif
 # ifdef POSIX
     (void) tcsetattr(SHOUT, TCSANOW, &tty_normal);
 # else

@@ -161,7 +161,7 @@ Char STRLANGBIG5[]	= { 'z', 'h', '_', 'T', 'W', '.', 'B', 'i', 'g', '5',
 			    '\0' };
 Char STRLANGEUCZH[]	= { '\0' };
 Char STRLANGEUCZHB[]	= { '\0' };
-#  elif defined(linux)
+#  elif defined(linux) || defined(__GNU__) || defined(__GLIBC__)
 Char STRLANGEUCJP[]	= { 'j', 'a', '_', 'J', 'P', '.', 'E', 'U', 'C', '-',
 			    'J', 'P', '\0' };
 Char STRLANGEUCKR[]	= { 'k', 'o', '_', 'K', 'R', '.', 'E', 'U', 'C', '\0' };
@@ -491,5 +491,4 @@ Char STRshwspace[]	= { ' ', '\t', '\0' };
 Char STRshwordsep[]	= { ' ', '\t', '&', '|', ';', '<', '>', '(', ')', '\0' };
 Char STRrepeat[]	= { 'r', 'e', 'p', 'e', 'a', 't', '\0' };
 
-eChar eSTRNULL[]	= { '\0' };
-eChar eSTReof[]		= { '^', 'D', '\b', '\b', '\0' };
+Char STReof[]		= { '^', 'D', '\b', '\b', '\0' };

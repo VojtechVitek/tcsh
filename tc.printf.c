@@ -254,21 +254,15 @@ doprnt(addchar, sfmt, ap)
 		    while (f_width-- > 0)
 			(*addchar) ((int) (pad | attributes));
 		for (i = 0; *Bp && i < prec; i++) {
-#ifdef WIDE_STRINGS
 		    char cbuf[MB_LEN_MAX];
 		    size_t pos, len;
-#endif
 
 		    if (fmt == 'Q' && *Bp & QUOTE)
 			(*addchar) ((int) ('\\' | attributes));
-#ifdef WIDE_STRINGS
 		    len = one_wctomb(cbuf, *Bp & CHAR);
 		    for (pos = 0; pos < len; pos++)
 			(*addchar) ((int) ((unsigned char)cbuf[pos]
 					   | attributes | (*Bp & ATTRIBUTES)));
-#else
-		    (*addchar) ((int) ((*Bp & TRIM) | attributes));
-#endif
 		    Bp++;
 		}
 		if (flush_left)

@@ -152,11 +152,7 @@ getstring(dp, sp, pd, f)
 	}
 	else
 	    sc = *s++ & CHAR;
-#ifdef WIDE_STRINGS
 	d += one_wctomb(d, sc);
-#else
-	*d++ = sc;
-#endif
     }
 
     pd->s = *dp;
@@ -177,7 +173,7 @@ parseLS_COLORS(value)
     size_t  i, len;
     const Char   *v;		/* pointer in value */
     char   *c;			/* pointer in colors */
-    Extension *e;		/* pointer in extensions */
+    Extension *volatile e;	/* pointer in extensions */
     jmp_buf_t osetexit;
 
     (void) &e;
