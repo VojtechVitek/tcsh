@@ -1091,12 +1091,12 @@ ColLen(cp)
 
 void
 Setutf8lit(cp, end)
-    Char *cp;
-    Char *end;
+    Char *cp, *end;
 {
-    Char c
+    Char c;
     int w, f;
-    for (end ? cp < end; : *cp != '\0') {
+
+    while (end ? cp < end : *cp != '\0') {
 	c = *cp;
 	if (!Ismbyte1(c)) {
 	    cp++;

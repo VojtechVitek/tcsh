@@ -1260,15 +1260,15 @@ autoset_dspmbyte(pcp)
 	{ STRLANGSJIS, STRsjis },
 	{ STRLANGSJISB, STRsjis },
 	{ STRLANGBIG5, STRbig5 },
-	{ STRSTARKUTF8, STRutf8 },
+	{ STRstarutfstar8, STRutf8 },
 	{ NULL, NULL }
     };
 #ifdef HAVE_NL_LANGINFO
     struct dspm_autoset_Table dspmc[] = {
-	{ STRSTARKUTF8, STRKUTF8 },
-	{ STRKEUC, STRKEUC },
-	{ STRGB2312, STRKEUC },
-	{ STRKBIG5, STRKBIG5 },
+	{ STRstarutfstar8, STRutf8` },
+	{ STReuc, STReuc },
+	{ STRGB2312, STReuc },
+	{ STRLANGBIG5, STRbig5 },
 	{ NULL, NULL }
     };
     Char *codeset;

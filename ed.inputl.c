@@ -439,7 +439,7 @@ Inputl()
 	    }
 #ifdef DSPMBYTE
 	    if (dspmbyte_utf8)
-		setutf8lit(InputBuf, LastChar);
+		Setutf8lit(InputBuf, LastChar);
 #endif
 	    if (NeedsRedraw) {
 		PastBottom();

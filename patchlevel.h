@@ -8,7 +8,7 @@
 #define ORIGIN "Astron"
 #define REV 6
 #define VERS 13
-#define PATCHLEVEL 02
-#define DATE "2004-08-04"
+#define PATCHLEVEL 03
+#define DATE "2004-11-20"
 
 #endif /* _h_patchlevel */
