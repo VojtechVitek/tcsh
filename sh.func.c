@@ -2514,11 +2514,13 @@ nlsinit()
 void
 nlsclose()
 {
+#ifdef NLS_CATALOGS
 #ifdef HAVE_ICONV
     if (catgets_iconv != (iconv_t)-1) {
 	iconv_close(catgets_iconv);
 	catgets_iconv = (iconv_t)-1;
     }
-#endif
+#endif /* HAVE_ICONV */
     catclose(catd);
+#endif /* NLS_CATALOGS */
 }
