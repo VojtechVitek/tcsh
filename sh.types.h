@@ -262,6 +262,7 @@ typedef char * caddr_t;
 #ifdef pyr
 # ifndef _PID_T
 #  define _PID_T
+   typedef short pid_t;
 # endif /* _PID_T */
 #endif /* pyr */
 

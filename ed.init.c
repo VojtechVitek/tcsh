@@ -634,7 +634,15 @@ static Char *Input_Line = NULL;
 int
 Load_input_line()
 {
-    long    chrs = 0;
+#ifdef SUNOS
+    long chrs = 0;
+#else
+    /* 
+     * *Everyone* else has an int, but SunOS wants long!
+     * This breaks where int != long (alpha)
+     */
+    int chrs = 0;
+#endif
 
     if (Input_Line)
 	xfree((ptr_t) Input_Line);

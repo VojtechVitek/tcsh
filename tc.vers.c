@@ -50,6 +50,11 @@ gethosttype()
     hosttype = HOSTTYPE;
 #else
 
+# ifdef __PARAGON__ /* Intel Paragon */
+#  define _havehosttype_
+    hosttype = "paragon";
+# endif /* __PARAGON__ */
+
 # ifdef AMIX /* Amiga UNIX */
 #  define _havehosttype_
     hosttype = "amiga";

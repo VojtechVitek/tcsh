@@ -66,10 +66,10 @@ unsigned short _cmap[256] = {
 	_CTR,		_CTR,		_CTR,		_CTR,
 
 /*	 32 sp		 33 !		 34 "		 35 #	*/
-	_SP|_META,	_PUN,		_Q|_PUN,	_META|_PUN,
+	_SP|_META,	_PUN,		_QF|_PUN,	_META|_PUN,
 
 /*	 36 $		 37 %		 38 &		 39 '	*/
-	_DOL|_PUN,	_PUN,		_META|_CMD|_PUN,_Q|_PUN,
+	_DOL|_PUN,	_PUN,		_META|_CMD|_PUN,_QF|_PUN,
 
 /*	 40 (		 41 )		 42 *		 43 +	*/
 	_META|_CMD|_PUN,_META|_PUN,	_GLOB|_PUN,	_PUN,
@@ -114,7 +114,7 @@ unsigned short _cmap[256] = {
 	_ESC|_PUN,	_PUN,		_PUN,		_PUN,
 
 /*	 96 `		 97 a		 98 b		 99 c	*/
-  _Q1|_GLOB|_META|_PUN,	_LET|_DOW|_XD,	_LET|_DOW|_XD,	_LET|_DOW|_XD,
+  _QB|_GLOB|_META|_PUN,	_LET|_DOW|_XD,	_LET|_DOW|_XD,	_LET|_DOW|_XD,
 
 /*	100 d		101 e		102 f		103 g	*/
 	_LET|_DOW|_XD,	_LET|_DOW|_XD,	_LET|_DOW|_XD,	_LET|_DOW,

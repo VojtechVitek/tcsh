@@ -62,7 +62,7 @@ extern	void		  xexit		__P((int));
 extern	void		  dinit		__P((Char *));
 extern	void		  dodirs	__P((Char **, struct command *));
 extern	Char		 *dcanon	__P((Char *, Char *));
-extern	void		  dtildepr	__P((Char *, Char *));
+extern	void		  dtildepr	__P((Char *));
 extern	void		  dtilde	__P((void));
 extern	void		  dochngd	__P((Char **, struct command *));
 extern	Char		 *dnormalize	__P((Char *, int));

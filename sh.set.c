@@ -578,6 +578,7 @@ setq(name, vec, p, flags)
 	    if (c->v_flags & VAR_READONLY)
 		stderror(ERR_READONLY|ERR_NAME, c->v_name);
 	    blkfree(c->vec);
+	    c->v_flags = flags;
 	    trim(c->vec = vec);
 	    return;
 	}

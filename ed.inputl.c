@@ -100,7 +100,15 @@ Inputl()
 
 #if defined(FIONREAD) && !defined(OREO)
     if (!Tty_raw_mode && MacroLvl < 0) {
-	long    chrs = 0;
+# ifdef SUNOS
+	long chrs = 0;
+# else
+	/* 
+	 * *Everyone* else has an int, but SunOS wants long!
+	 * This breaks where int != long (alpha)
+	 */
+	int chrs = 0;
+# endif
 
 	(void) ioctl(SHIN, FIONREAD, (ioctl_t) & chrs);
 	if (chrs == 0) {
@@ -224,6 +232,8 @@ Inputl()
 			    *LastChar-- = '\0';
 			    Cursor = LastChar;
 			    printprompt(3, NULL);
+			    ClearLines();
+			    ClearDisp();
 			    Refresh();
 			    break;
 			}
