@@ -1761,9 +1761,10 @@ process(catch)
 	 * Echo not only on VERBOSE, but also with history expansion. If there
 	 * is a lexical error then we forego history echo.
 	 */
-	if ((lex(&paraml) && !seterr && intty && !tellwhat && !Expand) ||
-	    adrof(STRverbose)) {
+	if ((lex(&paraml) && !seterr && intty && !tellwhat && !Expand && 
+	     !whyles) || adrof(STRverbose)) {
 	    haderr = 1;
+	    xprintf("here\n");
 	    prlex(&paraml);
 	    haderr = 0;
 	}
