@@ -55,7 +55,7 @@ extern int NLSStringWidth __P((Char *));
 #else
 # ifdef SHORT_STRINGS
 
-extern int NLSFrom __P((const Char *, int, NLSChar *));
+extern int NLSFrom __P((const Char *, size_t, NLSChar *));
 extern int NLSFinished __P((Char *, size_t, eChar));
 extern int NLSChars __P((Char *));
 extern int NLSStringWidth __P((Char *));
