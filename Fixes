@@ -111,7 +111,7 @@ V6.04.00, ...
  24. NEC SX3 "entry" is a reserved word!, changed entry to item...
      [this is as bad as cray typedefining "word" to int. Next thing I know,
       I'll have to prefix all the variables with tcsh_!]
- 23. 6.03.02 12/02/93
+ 23. xxx
  22. Protected all include files to avoid warnings from lcc.
  21. Finally resolved the job control problems with linux and ISC (from Beto)
  20. More HUP,XFSZ,XCPU fixes. (with Beto)
