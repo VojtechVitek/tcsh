@@ -205,6 +205,7 @@ doprnt(addchar, sfmt, ap)
 		(*addchar) ((int) (i | attributes));
 		break;
 
+#ifdef SHORT_STRINGS
 	    case 'S':
 	    case 'Q':
 		Bp = va_arg(ap, Char *);
@@ -226,6 +227,7 @@ doprnt(addchar, sfmt, ap)
 		    while (f_width-- > 0)
 			(*addchar) ((int) (' ' | attributes));
 		break;
+#endif /* SHORT_STRINGS */
 
 	    case 's':
 	    case 'q':
