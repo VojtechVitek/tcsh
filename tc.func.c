@@ -1187,6 +1187,17 @@ setalarm(lck)
     if ((vp = adrof(STRautologout)) != NULL && vp->vec != NULL) {
 	if ((cp = vp->vec[0]) != 0) {
 	    if ((logout_time = (unsigned) atoi(short2str(cp)) * 60) > 0) {
+#ifdef SOLARIS2
+		/*
+		 * Solaris alarm(2) uses a timer based in clock ticks
+		 * internally so it multiplies our value with CLK_TCK...
+		 * Of course that can overflow leading to unexpected
+		 * results, so we clip it here. Grr. Where is that
+		 * documented folks?
+		 */
+		if (logout_time >= 0x7fffffff / CLK_TCK)
+			logout_time = 0x7fffffff / CLK_TCK;
+#endif /* SOLARIS2 */
 		alrm_time = logout_time;
 		alm_fun = auto_logout;
 	    }
