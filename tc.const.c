@@ -375,6 +375,7 @@ Char STRrm[]		= { 'r', 'm', '\0' };
 Char STRimplicitcd[] = { 'i', 'm', 'p', 'l', 'i', 'c', 'i', 't',
                          'c', 'd', '\0' };
 Char STRkillring[] 	= { 'k', 'i', 'l', 'l', 'r', 'i', 'n', 'g', '\0' };
+Char STRkilldup[] 	= { 'k', 'i', 'l', 'l', 'd', 'u', 'p', '\0' };
 Char STRshlvl[]		= { 's', 'h', 'l', 'v', 'l', '\0' };
 Char STRKSHLVL[]	= { 'S', 'H', 'L', 'V', 'L', '\0' };
 Char STRLANG[]		= { 'L', 'A', 'N', 'G', '\0' };
