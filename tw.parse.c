@@ -642,10 +642,8 @@ t_search(word, wp, command, max_word_length, looking_for_command, list_max)
 			!looking_for_shellvar) || Strchr(word, '/');
 
     /* PWP: don't even bother when doing ALL of the commands */
-    if (looking_for_command && (*word == '\0')) {
-	Beep();
+    if (looking_for_command && (*word == '\0')) 
 	return (-1);
-    }
     tilded_dir[0] = '\0';
     dollar_dir[0] = '\0';
 
