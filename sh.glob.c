@@ -1027,9 +1027,9 @@ t_pmatch(string, pattern, estr, cs)
 	 */
 	patternc = *pattern++;
 	switch (patternc) {
-	case 0:
+	case '\0':
 	    *estr = string;
-	    return (stringc == 0 ? 2 : 1);
+	    return (stringc == '\0' ? 2 : 1);
 	case '?':
 	    if (stringc == 0)
 		return (0);
@@ -1086,8 +1086,10 @@ t_pmatch(string, pattern, estr, cs)
 		else 
 		    match = (stringc == (rangec & TRIM));
 	    }
-	    if (rangec == 0)
+	    if (rangec == '\0')
 		stderror(ERR_NAME | ERR_MISSING, ']');
+	    if ((!match) && (stringc == '\0'))
+		return (0);
 	    if (match == negate_range)
 		return (0);
 	    *estr = string;
