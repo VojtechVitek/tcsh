@@ -533,7 +533,6 @@ auto_lock()
 	return;
 
     setalarm(0);		/* Not for locking any more */
-    (void) sigset(SIGALRM, alrmcatch);
 #ifdef BSDSIGS
     (void) sigsetmask(sigblock(0) & ~(sigmask(SIGALRM)));
 #else /* !BSDSIGS */
@@ -765,7 +764,6 @@ aliasrun(cnt, s1, s2)
     struct wordent w, *new1, *new2;	/* for holding alias name */
     struct command *t = NULL;
     jmp_buf osetexit;
-    flush();
 
     getexit(osetexit);
     if (seterr) {
