@@ -2129,7 +2129,7 @@ print_by_column(dir, items, count, no_file_suffix)
  */
 int
 StrQcmp(str1, str2)
-    Char *str1, *str2;
+    const Char *str1, *str2;
 {
     for (; *str1 && samecase(*str1 & TRIM) == samecase(*str2 & TRIM); 
 	 str1++, str2++)
@@ -2168,7 +2168,8 @@ fcompare(file1, file2)
  */
 void
 catn(des, src, count)
-    Char *des, *src;
+    Char *des;
+    const Char *src;
     int count;
 {
     while (--count >= 0 && *des)

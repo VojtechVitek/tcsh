@@ -111,7 +111,7 @@ static sigmask_t tw_omask;
 static Char	*tw_str_add		__P((stringlist_t *, int));
 static void	 tw_str_free		__P((stringlist_t *));
 static Char     *tw_dir_next		__P((DIR *));
-static void	 tw_cmd_add 		__P((Char *name));
+static void	 tw_cmd_add 		__P((const Char *name));
 static void 	 tw_cmd_cmd		__P((void));
 static void	 tw_cmd_builtin		__P((void));
 static void	 tw_cmd_alias		__P((void));
@@ -206,7 +206,7 @@ tw_dir_next(dfd)
  */
 static void
 tw_cmd_add(name)
-    Char *name;
+    const Char *name;
 {
     int len;
 

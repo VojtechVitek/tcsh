@@ -50,11 +50,11 @@ extern	 int		  t_search		__P((Char *, Char *, COMMAND,
 #endif
 extern	 int		  starting_a_command	__P((Char *, Char *));
 extern	 void		  copyn			__P((Char *, Char *, int));
-extern	 void		  catn			__P((Char *, Char *, int));
+extern	 void		  catn			__P((Char *, const Char *, int));
 extern	 int		  fcompare		__P((Char **, Char **));
 extern	 void		  print_by_column	__P((Char *, Char *[], int, 
 						     int));
-extern	 int		  StrQcmp		__P((Char *, Char *));
+extern	 int		  StrQcmp		__P((const Char *, const Char *));
 extern	 Char		 *tgetenv		__P((Char *));
 
 /*

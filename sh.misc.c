@@ -199,24 +199,20 @@ strstr(s, t)
 #ifndef SHORT_STRINGS
 char   *
 strspl(cp, dp)
-    char   *cp, *dp;
+    const char *cp, *dp;
 {
     char   *ep;
-    char *p, *q;
+    size_t cl, dl;
 
     if (!cp)
 	cp = "";
     if (!dp)
 	dp = "";
-    for (p = cp; *p++ != '\0';)
-	continue;
-    for (q = dp; *q++ != '\0';)
-	continue;
-    ep = (char *) xmalloc((size_t) (((p - cp) + (q - dp) - 1) * sizeof(char)));
-    for (p = ep, q = cp; (*p++ = *q++) != '\0';)
-	continue;
-    for (p--, q = dp; (*p++ = *q++) != '\0';)
-	continue;
+    cl = strlen(cp);
+    dl = strlen(dp);
+    ep = (char *) xmalloc((cl + dl + 1) * sizeof(char));
+    memcpy(ep, cp, cl);
+    memcpy(ep + cl, dp, dl + 1);
     return (ep);
 }
 
@@ -507,7 +503,7 @@ udvar(name)
 
 int
 prefix(sub, str)
-    Char *sub, *str;
+    const Char *sub, *str;
 {
 
     for (;;) {

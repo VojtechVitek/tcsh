@@ -1630,7 +1630,7 @@ dounsetenv(v, c)
 
 void
 tsetenv(name, val)
-    Char   *name, *val;
+    const Char *name, *val;
 {
 #ifdef SETENV_IN_LIB
 /*
@@ -1649,6 +1649,7 @@ tsetenv(name, val)
     setenv(nameBuf, short2str(val), 1);
 #else /* !SETENV_IN_LIB */
     Char **ep = STR_environ;
+    const Char *ccp;
     Char *cp, *dp;
     Char   *blk[2];
     Char  **oep = ep;
@@ -1658,13 +1659,13 @@ tsetenv(name, val)
 #endif /* WINNT_NATIVE */
     for (; *ep; ep++) {
 #ifdef WINNT_NATIVE
-	for (cp = name, dp = *ep; *cp && Tolower(*cp & TRIM) == Tolower(*dp);
-				cp++, dp++)
+	for (ccp = name, dp = *ep; *ccp && Tolower(*ccp & TRIM) == Tolower(*dp);
+				ccp++, dp++)
 #else
-	for (cp = name, dp = *ep; *cp && (*cp & TRIM) == *dp; cp++, dp++)
+	for (ccp = name, dp = *ep; *ccp && (*ccp & TRIM) == *dp; ccp++, dp++)
 #endif /* WINNT_NATIVE */
 	    continue;
-	if (*cp != 0 || *dp != '=')
+	if (*ccp != 0 || *dp != '=')
 	    continue;
 	cp = Strspl(STRequal, val);
 	xfree((ptr_t) * ep);

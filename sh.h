@@ -83,11 +83,6 @@
 
 #ifdef SHORT_STRINGS
 # ifdef WIDE_STRINGS
-/* This belongs in config_f.h, but SIZEOF_WCHAR_T is only defined after
-   including config_h.h */
-#  if SIZEOF_WCHAR_T < 4
-#   error "wchar_t must be at least 4 bytes for WIDE_STRINGS"
-#  endif
 #include <wchar.h>
 typedef wchar_t Char;
 typedef unsigned long uChar;
@@ -629,6 +624,9 @@ EXTERN bool    arun IZERO;	/* Currently running multi-line-aliases */
 EXTERN int     implicit_cd IZERO;/* implicit cd enabled?(1=enabled,2=verbose) */
 EXTERN bool    inheredoc IZERO;	/* Currently parsing a heredoc */
 EXTERN bool    windowchg IZERO;	/* We received a window change event */
+#if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
+EXTERN bool    dspmbyte_ls;
+#endif
 
 /*
  * Global i/o info
