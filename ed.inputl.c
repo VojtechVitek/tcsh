@@ -241,8 +241,7 @@ Inputl()
 	    break;
 
 	case CC_CORRECT:
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf,
-			  SPELL) < 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, SPELL) < 0)
 		Beep();		/* Beep = No match/ambiguous */
 	    if (NeedsRedraw) {
 		ClearLines();
@@ -277,8 +276,7 @@ Inputl()
 	     * completion, independently of autolisting.
 	     */
 	    expnum = Cursor - InputBuf;
-	    switch (matchval = 
-		    tenematch(InputBuf, INBUFSIZE, Cursor-InputBuf, RECOGNIZE)) {
+	    switch (matchval = tenematch(InputBuf, Cursor-InputBuf, RECOGNIZE)){
 	    case 1:
 		if (non_unique_match && matchbeep &&
 		    (Strcmp(*(matchbeep->vec), STRnotunique) == 0))
@@ -315,7 +313,7 @@ Inputl()
 		if (autol && (Strcmp(*(autol->vec), STRambiguous) != 0 || 
 				     expnum == Cursor - InputBuf)) {
 		    PastBottom();
-		    (void) tenematch(InputBuf, INBUFSIZE, Cursor-InputBuf, LIST);
+		    (void) tenematch(InputBuf, Cursor-InputBuf, LIST);
 		}
 		break;
 	    }
@@ -332,7 +330,7 @@ Inputl()
 
 	case CC_LIST_CHOICES:
 	    /* should catch ^C here... */
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf, LIST) < 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, LIST) < 0)
 		Beep();
 	    Refresh();
 	    Argument = 1;
@@ -340,7 +338,7 @@ Inputl()
 	    break;
 
 	case CC_LIST_GLOB:
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf, GLOB) < 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, GLOB) < 0)
 		Beep();
 	    Refresh();
 	    Argument = 1;
@@ -348,8 +346,7 @@ Inputl()
 	    break;
 
 	case CC_EXPAND_GLOB:
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf,
-			  GLOB_EXPAND) <= 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, GLOB_EXPAND) <= 0)
 		Beep();		/* Beep = No match */
 	    if (NeedsRedraw) {
 		ClearLines();
@@ -362,8 +359,7 @@ Inputl()
 	    break;
 
 	case CC_NORMALIZE_PATH:
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf,
-			  PATH_NORMALIZE) <= 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, PATH_NORMALIZE) <= 0)
 		Beep();		/* Beep = No match */
 	    if (NeedsRedraw) {
 		ClearLines();
@@ -376,8 +372,7 @@ Inputl()
 	    break;
 
 	case CC_EXPAND_VARS:
-	    if (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf,
-			  VARS_EXPAND) <= 0)
+	    if (tenematch(InputBuf, Cursor - InputBuf, VARS_EXPAND) <= 0)
 		Beep();		/* Beep = No match */
 	    if (NeedsRedraw) {
 		ClearLines();
@@ -392,8 +387,7 @@ Inputl()
 	case CC_HELPME:
 	    xputchar('\n');
 	    /* should catch ^C here... */
-	    (void) tenematch(InputBuf, INBUFSIZE, LastChar - InputBuf,
-			     PRINT_HELP);
+	    (void) tenematch(InputBuf, LastChar - InputBuf, PRINT_HELP);
 	    Refresh();
 	    Argument = 1;
 	    DoingArg = 0;
@@ -682,7 +676,7 @@ SpellLine(cmdonly)
 	}
 	if (!Strchr(mismatch, *argptr) &&
 	    (!cmdonly || starting_a_command(argptr, InputBuf))) {
-	    switch (tenematch(InputBuf, INBUFSIZE, Cursor - InputBuf, SPELL)) {
+	    switch (tenematch(InputBuf, Cursor - InputBuf, SPELL)) {
 	    case 1:		/* corrected */
 		matchval = 1;
 		break;

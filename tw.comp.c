@@ -42,7 +42,7 @@ RCSID("$Id$")
 #include "ed.h"
 #include "tc.h"
 
-#define TDEBUG 
+/* #define TDEBUG */
 struct varent completions;
 
 static int 	 	  tw_result	__P((Char *, Char *));
