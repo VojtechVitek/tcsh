@@ -55,8 +55,8 @@ struct process {
     short unsigned p_flags;	/* various job status flags */
     char    p_reason;		/* reason for entering this state */
     int     p_index;		/* shorthand job index */
-    int     p_pid;
-    int     p_jobid;		/* pid of job leader */
+    pid_t   p_pid;
+    pid_t   p_jobid;		/* pid of job leader */
     /* if a job is stopped/background p_jobid gives its pgrp */
 #ifdef BSDTIMES
     struct timeval p_btime;	/* begin time */
