@@ -61,7 +61,7 @@ CFLAGS=-O2 $(INCLUDES) -g
 #CFLAGS= $(INCLUDES) -O -Olimit 2000
 
 # Intel Paragon OSF/1 with PGI compilers
-CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
+#CFLAGS=-O -Mnodebug -Mnoperfmon $(INCLUDES)
 
 # for silicon graphics (and other mips compilers) -- use the
 # global optimizer! (-O3).
@@ -417,13 +417,13 @@ tar.Z:
 	tar cvf - tcsh-${VERSION} | compress > tcsh-${VERSION}.tar.Z
 	rm -rf tcsh-${VERSION}
 
-tar.z:
-	rm -f tcsh-${VERSION}.tar.z
+tar.gz:
+	rm -f tcsh-${VERSION}.tar.gz
 	rm -rf tcsh-${VERSION} 
 	mkdir tcsh-${VERSION} tcsh-${VERSION}/config
 	cp ${ALLSRCS} tcsh-${VERSION}
 	cp ${CONFSRCS} tcsh-${VERSION}/config
-	tar cvf - tcsh-${VERSION} | gzip > tcsh-${VERSION}.tar.z
+	tar cvf - tcsh-${VERSION} | gzip > tcsh-${VERSION}.tar.gz
 	rm -rf tcsh-${VERSION}
 
 shar:	
