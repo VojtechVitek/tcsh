@@ -222,6 +222,13 @@ main(argc, argv)
 				   tempv[1][0] == '-' && tempv[1][1] == 'l' &&
 						tempv[1][2] == '\0');
 #endif
+
+#ifdef _VMS_POSIX
+    /* No better way to find if we are a login shell */
+    if (!loginsh) 
+	loginsh = (argc == 1 && getppid() == 1);
+#endif /* _VMS_POSIX */
+
     if (loginsh && **tempv != '-') {
 	/*
 	 * Mangle the argv space
@@ -1111,7 +1118,7 @@ untty()
 	(void) tcsetpgrp(FSHTTY, opgrp);
 	(void) resetdisc(FSHTTY);
     }
-#endif				/* BSDJOBS */
+#endif /* BSDJOBS */
 }
 
 void
@@ -1447,14 +1454,20 @@ int snum;
 #endif /* UNRELSIGS */
     rechist(NULL);
     recdirs(NULL);
-#ifdef POSIXJOBS
+
+#ifdef POSIXJOBS 
     /*
      * We kill the last foreground process group. It then becomes
      * responsible to propagate the SIGHUP to its progeny. 
      */
-    if (forepid != 0)
-	(void) killpg(forepid, SIGHUP);
-#endif
+    {
+	struct process *pp;
+	for (pp = proclist.p_next; pp; pp = pp->p_next)
+	    if (pp->p_procid == pp->p_jobid && (pp->p_flags & PFOREGND) != 0)
+		(void) killpg (pp->p_jobid, SIGHUP);
+    }
+#endif /* POSIXJOBS */
+
     xexit(snum);
 #ifndef SIGVOID
     return (snum);
@@ -1932,9 +1945,9 @@ xexit(i)
 	(void) ioctl(FSHTTY, TIOCCDTR, NULL);
 	(void) sleep(1);
 	(void) ioctl(FSHTTY, TIOCSDTR, NULL);
-#endif				/* TIOCCDTR */
+#endif /* TIOCCDTR */
     }
-#endif				/* TESLA */
+#endif /* TESLA */
 
     untty();
     _exit(i);

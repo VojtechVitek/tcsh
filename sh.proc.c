@@ -337,8 +337,6 @@ found:
 	    else
 		pp->p_flags |= PNEXITED;
 	}
-	if (forepid == pp->p_jobid)
-	    forepid = 0;
     }
     jobflags = 0;
     fp = pp;
@@ -1628,7 +1626,6 @@ pstart(pp, foregnd)
 #ifdef BSDJOBS
     if (foregnd) {
 	(void) tcsetpgrp(FSHTTY, pp->p_jobid);
-	forepid = pp->p_jobid;
     }
     /*
      * 1. child process of csh (shell script) receives SIGTTIN/SIGTTOU
@@ -2042,7 +2039,5 @@ pgetty(wanttty, pgrp)
 
     if (tpgrp > 0)
 	tpgrp = 0;		/* gave tty away */
-    if (wanttty > 0)
-	forepid = pgrp;
 #endif /* BSDJOBS */
 }

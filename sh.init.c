@@ -48,6 +48,7 @@ RCSID("$Id$")
 #define	INF	0x7fffffff
 
 struct	biltins bfunc[] = {
+    { ":",		dozip,		0,	INF, },
     { "@",		dolet,		0,	INF, },
     { "alias",		doalias,	0,	INF, },
     { "aliases",	doaliases,	0,	1, /* PWP */ },

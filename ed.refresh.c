@@ -855,9 +855,9 @@ update_line(old, new, cur_line)
 #endif /* DEBUG_UPDATE */
 	    so_write(nse, (nls - nse));
 #ifdef DEBUG_REFRESH
-	    dprintf("cleareol %d\n", (oe - old) - (ne - new));
+	    dprintf("cleareol %d\n", (oe - old) + fx - (ne - new));
 #endif /* DEBUG_UPDATE */
-	    ClearEOL((oe - old) - (ne - new));
+	    ClearEOL((oe - old) + fx - (ne - new));
 	}
     }
 

@@ -289,7 +289,7 @@ doexec(t)
 	        (void) signal(SIGQUIT,SIG_DFL);
 	    }
 
-	    if (gointr && eq(gointr, STRminus) {
+	    if (gointr && eq(gointr, STRminus)) {
 # ifdef JOBDEBUG
     	        xprintf("set SIGINT to SIG_IGN\n");
     	        xprintf("set SIGQUIT to SIG_IGN\n");

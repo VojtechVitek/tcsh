@@ -268,9 +268,9 @@ extern	void		  pcsecs	__P((clock_t));
 extern	void		  pcsecs	__P((time_t));
 # endif /* !POSIX */
 #endif /* BSDTIMES */
-#ifdef RLIMIT_CPU
+#ifdef BSDLIMIT
 extern	void		  psecs		__P((long));
-#endif /* RLIMIT_CPU */
+#endif /* BSDLIMIT */
 extern	int		  putpure	__P((int));
 extern	int		  putraw	__P((int));
 extern	void		  xputchar	__P((int));

@@ -227,7 +227,7 @@ PVSRCS= Makefile Makefile.vms
 AVSRCS= Fixes MAKEDIFFS MAKESHAR NewThings README FAQ \
 	WishList config_f.h eight-bit.me glob.3 patchlevel.h \
 	pathnames.h tcsh.man Ported src.desc Imakefile imake.config \
-	README.imake complete.tcsh vmsreadme.txt
+	README.imake complete.tcsh vmsreadme.txt termcap.vms
 VHSRCS=${PVSRCS} ${AVSRCS}
 
 CONFSRCS=config/config.* 

@@ -523,7 +523,7 @@ RunCommand(str)
 
     ClearLines();
     ClearDisp();
-    NeedsRedraw = 1;
+    NeedsRedraw = 0;
     Refresh();
 }
 

@@ -1185,7 +1185,7 @@ ClearEOL(num)			/* clear to end of line.  There are num */
 {
     register int i;
 
-    if (num == 0)
+    if (num <= 0)
 	return;
 
     if (T_CanCEOL && GoodStr(T_ce))

@@ -398,6 +398,17 @@ dowhich(v, c)
     lex[0].word = STRNULL;
     lex[2].word = STRret;
 
+    gflag = 0, tglob(v);
+    if (gflag) {
+	v = globall(v);
+	if (v == 0)
+	    stderror(ERR_NAME | ERR_NOMATCH);
+    }
+    else {
+	v = gargv = saveblk(v);
+	trim(v);
+    }
+
     while (*++v) {
 	if ((vp = adrof1(*v, &aliases)) != NULL) {
 	    xprintf("%S: \t aliased to ", *v);
@@ -409,6 +420,8 @@ dowhich(v, c)
 	    tellmewhat(lex);
 	}
     }
+    if (gargv)
+	blkfree(gargv), gargv = 0;
 }
 
 /* PWP: a hack to start up your stopped editor on a single keystroke */

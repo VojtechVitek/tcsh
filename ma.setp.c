@@ -264,7 +264,7 @@ register char **paths;
 	q = val;
 	for (;;) {
 	    q = index(p = q, ':');
-	    done = (*q == '\0');
+	    done = (q == NULL);
 	    if (!done)
 		*q++ = '\0';
 	    p = strsave(p);
@@ -367,7 +367,7 @@ char *localsyspath;
 	pe->pdirs = 0;
 	for (;;) {
 	    new = index(p = new, ':');
-	    done = (*new == '\0');
+	    done = (new == NULL);
 	    if (!done)
 		*new++ = '\0';
 	    p = strsave(p);

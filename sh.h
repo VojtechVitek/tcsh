@@ -97,15 +97,20 @@ typedef int sigret_t;
  *	BUFSIZE		The i/o buffering size; also limits word size
  *	MAILINTVL	How often to mailcheck; more often is more expensive
  */
-#ifndef BUFSIZE
-#define	BUFSIZE	1024		/* default buffer size */
+#ifdef BUFSIZE
+# if	   BUFSIZE < 4096
+#  undef   BUFSIZE
+#  define  BUFSIZE	4096	/* buffer size should be no less than this */
+# endif
+#else
+# define   BUFSIZE	4096
 #endif /* BUFSIZE */
 
 #define FORKSLEEP	10	/* delay loop on non-interactive fork failure */
 #define	MAILINTVL	600	/* 10 minutes */
 
 #ifndef INBUFSIZE
-# define INBUFSIZE	1024	/* Num input characters on the command line */
+# define INBUFSIZE    2*BUFSIZE /* Num input characters on the command line */
 #endif /* INBUFSIZE */
 
 
@@ -265,9 +270,9 @@ extern int setpgrp();
 #endif /* SYSVREL > 0 ||  _IBMR2 */
 
 #if !((defined(SUNOS4) || defined(_MINIX)) && defined(TERMIO))
-#ifndef _VMS_POSIX
-# include <sys/ioctl.h>
-#endif
+# if !defined(COHERENT) && !defined(_VMS_POSIX)
+#  include <sys/ioctl.h>
+# endif
 #endif 
 
 #if !defined(FIOCLEX) && defined(SUNOS4)
@@ -500,7 +505,6 @@ EXTERN struct tms shtimes;	/* shell and child times for process timing */
  */
 EXTERN Char   *doldol;		/* Character pid for $$ */
 EXTERN int     backpid;		/* pid of the last background job */
-EXTERN int     forepid;		/* pid of the last foreground job */
 
 /*
  * Ideally these should be uid_t, gid_t, pid_t. I cannot do that right now
