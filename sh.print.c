@@ -194,7 +194,7 @@ putpure(c)
 }
 
 void
-draino()
+drainoline()
 {
     linp = linbuf;
 }

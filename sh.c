@@ -693,7 +693,7 @@ main(argc, argv)
 	if ((tcp = getenv("SHELL")) != NULL) {
 	    sh_len = strlen(tcp);
 	    if ((sh_len >= 5 && strcmp(tcp + (sh_len - 5), "/tcsh") == 0) || 
-	        (sh_len >= 4 && strcmp(tcp + (sh_len - 4), "/csh") == 0))
+	        (!tcsh && sh_len >= 4 && strcmp(tcp + (sh_len - 4), "/csh") == 0))
 		set(STRshell, quote(SAVE(tcp)), VAR_READWRITE);
 	    else
 		sh_len = 0;
@@ -1849,7 +1849,7 @@ pintr1(wantnl)
 	(void) sighold(SIGINT);
     (void) sigrelse(SIGCHLD);
 #endif
-    draino();
+    drainoline();
 #if !defined(_VMS_POSIX) && !defined(WINNT)
     (void) endpwent();
 #endif /* !_VMS_POSIX && !WINNT */

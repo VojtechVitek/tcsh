@@ -265,7 +265,7 @@ extern struct command 	 *syntax	__P((struct wordent *,
 /*
  * sh.print.c
  */
-extern	void		  draino	__P((void));
+extern	void		  drainoline	__P((void));
 extern	void		  flush		__P((void));
 #ifdef BSDTIMES
 extern	void		  pcsecs	__P((long));

@@ -193,6 +193,10 @@ EXTF=mi.termios.c mi.wait.h mi.varargs.h vms.termcap.c
 #  endif
 # endif /* i386Isc */
 
+# ifdef OpenBSDArchitecture
+#  define ConfigH bsd4.4
+# endif /* OpenBsdArchitecture */
+
 # ifdef NetBSDArchitecture
 #  define ConfigH bsd4.4
 # endif /* NetBsdArchitecture */

@@ -692,8 +692,10 @@ extern int readlink __P((const char *, char *, size_t));
 extern void setgrent __P((void));
 extern void endgrent __P((void));
 # ifdef REMOTEHOST
+#  ifndef _SOCKLEN_T	/* Avoid Solaris 2.7 bogosity. */
 struct sockaddr;
 extern int getpeername __P((int, struct sockaddr *, int *));
+#  endif /* _SOCKLEN_T
 # endif /* REMOTEHOST */
 #endif /* SUNOS4 && __GNUC__ == 2 */
 
