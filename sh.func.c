@@ -727,21 +727,23 @@ dorepeat(v, kp)
     Char  **v;
     struct command *kp;
 {
-    register int i;
+    int i = 1;
 
 #ifdef BSDSIGS
     register sigmask_t omask = 0;
-
 #endif /* BSDSIGS */
 
-    i = getn(v[1]);
+    do {
+	i *= getn(v[1]);
+	lshift(v, 2);
+    } while (v[0] != NULL && Strcmp(v[0], STRrepeat) == 0);
+
     if (setintr)
 #ifdef BSDSIGS
 	omask = sigblock(sigmask(SIGINT)) & ~sigmask(SIGINT);
 #else /* !BSDSIGS */
 	(void) sighold(SIGINT);
 #endif /* BSDSIGS */
-    lshift(v, 2);
     while (i > 0) {
 	if (setintr)
 #ifdef BSDSIGS
