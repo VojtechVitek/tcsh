@@ -233,7 +233,7 @@ extern	int		  prefix	__P((Char *, Char *));
 extern	Char		**saveblk	__P((Char **));
 extern	void		  setzero	__P((char *, int));
 extern	Char		 *strip		__P((Char *));
-extern	char		 *strsave	__P((char *));
+extern	char		 *strsave	__P((const char *));
 extern	char		 *strspl	__P((char *, char *));
 #ifndef POSIX
 extern  char   	  	 *strstr	__P((const char *, const char *));
