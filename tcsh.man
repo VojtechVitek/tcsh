@@ -76,7 +76,7 @@
 .\"   used here if you can. In particular, please don't use nroff commands
 .\"   which aren't already used herein.
 .\" 
-.TH TCSH 1 "2 October 1998" "Astron 6.08.00"
+.TH TCSH 1 "25 October 1998" "Astron 6.08.01"
 .SH NAME
 tcsh \- C shell with file name completion and command line editing
 .SH SYNOPSIS
@@ -3535,6 +3535,18 @@ If set to `enhance', completion 1) ignores case and 2) considers
 periods, hyphens and underscores (`.', `\-' and `_') to be word
 separators and hyphens and underscores to be equivalent.
 .TP 8
+.B continue_args \fR(+)
+If set to a list of commands, the shell will continue the listed
+commands, instead of starting a new one.
+.TP 8
+.B continue_args \fR(+)
+Same as continue, but the shell will execute:
+.RS +8
+.nf
+    echo `pwd` $argv > ~/.<command-name>_pause; %<command-name>
+.fi
+.RE
+.TP 8
 .B correct \fR(+)
 If set to `cmd', commands are automatically spelling-corrected.
 If set to `complete', commands are automatically completed.
@@ -4850,7 +4862,7 @@ pipe(2), setrlimit(2), sigvec(2), stat(2), umask(2), vfork(2), wait(2),
 malloc(3), setlocale(3), tty(4), a.out(5), termcap(5), environ(7),
 termio(7), Introduction to the C Shell
 .SH VERSION
-This manual documents tcsh 6.08.00 (Astron) 1998-10-02.
+This manual documents tcsh 6.08.01 (Astron) 1998-10-25.
 .SH AUTHORS
 .PD 0
 .TP 2
