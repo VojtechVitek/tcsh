@@ -517,6 +517,23 @@ main(argc, argv)
 		nofile = 1;
 		break;
 
+#ifdef apollo
+	    case 'D':		/* -D	Define environment variable */
+		{
+		    register Char *cp, *dp;
+
+		    cp = str2short(tcp);
+		    if (dp = Strchr(cp, '=')) {
+			*dp++ = '\0';
+			Setenv(cp, dp);
+		    }
+		    else
+			Setenv(cp, STRNULL);
+		}
+		*tcp = '\0'; 	/* done with this argument */
+		break;
+#endif /* apollo */
+
 #ifdef CSHDIRS
 	    case 'd':		/* -d   Force load of ~/.cshdirs */
 		dflag++;
