@@ -334,4 +334,4 @@ int		(*outc)();
 		(*outc)(*cp++);
 	return(1);
 }
-#endif /* _VMS_POSIX */
+#endif /* _VMS_POSIX || _OSD_POSIX */
