@@ -263,7 +263,6 @@ pushback(string)
 # else
     (void) ioctl(SHOUT, TCSETAW, (ioctl_t) &tty_normal);
 # endif /* POSIX */
-    (void) sigsetmask(omask);
 #else
     (void) ioctl(SHOUT, TIOCGETP, (ioctl_t) & tty);
     tty_normal = tty;
