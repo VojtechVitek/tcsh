@@ -454,7 +454,7 @@ prefix(sub, str)
 	    return (1);
 	if (*str == 0)
 	    return (0);
-	if (*sub++ != *str++)
+	if ((*sub++ & TRIM) != (*str++ & TRIM))
 	    return (0);
     }
 }
