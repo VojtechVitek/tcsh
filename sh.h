@@ -609,7 +609,7 @@ extern bool    filec;
 #endif /* FILEC */
 
 extern char *seterr;		/* Error message from scanner/parser */
-#ifndef BSD4_4
+#if !defined(BSD4_4) && !defined(__linux__)
 extern int errno;		/* Error from C library routines */
 #endif
 extern int exitset;
