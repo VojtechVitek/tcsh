@@ -432,3 +432,6 @@ Char STRend[]           = { 'e', 'n', 'd', '\0' };
 #ifdef COLORCAT
 Char STRcolorcat[]	= { 'c', 'o', 'l', 'o', 'r', 'c', 'a', 't', '\0' };
 #endif
+
+Char STRshwspace[]	= { ' ', '\t', '\0' };
+Char STRshwordsep[]	= { ' ', '\t', '&', '|', ';', '<', '>', '(', ')', '\0' };
