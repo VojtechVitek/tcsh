@@ -736,7 +736,7 @@ splicepipe(t, cp)
 	}
     }
     else {
-	Char buf[BUFSIZ];
+	Char buf[BUFSIZE];
 
 	(void) Strcpy(buf, blk[1] = Dfix1(cp));
 	xfree((ptr_t) blk[1]);

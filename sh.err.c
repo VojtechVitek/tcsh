@@ -344,7 +344,7 @@ seterror(va_alist)
 
     if (seterr == 0) {
 	va_list va;
-	char    berr[BUFSIZ];
+	char    berr[BUFSIZE];
 #if __STDC__
 	va_start(va, id);
 #else

@@ -642,8 +642,8 @@ backeval(cp, literal)
     struct command faket;
     bool    hadnl;
     int     pvec[2], quoted;
-    Char   *fakecom[2], ibuf[BUFSIZ];
-    char    tibuf[BUFSIZ];
+    Char   *fakecom[2], ibuf[BUFSIZE];
+    char    tibuf[BUFSIZE];
 
     hadnl = 0;
     icnt = 0;
@@ -733,7 +733,7 @@ backeval(cp, literal)
 
 		ip = ibuf;
 		do
-		    icnt = read(pvec[0], tibuf, BUFSIZ);
+		    icnt = read(pvec[0], tibuf, BUFSIZE);
 		while (icnt == -1 && errno == EINTR);
 		if (icnt <= 0) {
 		    c = -1;

@@ -1006,7 +1006,7 @@ static char *
 apperr(st)
     status_$t *st;
 {
-    static char buf[BUFSIZ];
+    static char buf[BUFSIZE];
     short e_subl, e_modl, e_codel;
     error_$string_t e_sub, e_mod, e_code;
 

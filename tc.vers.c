@@ -407,7 +407,7 @@ gethosttype()
 void
 fix_version()
 {
-    char    version[BUFSIZ];
+    char    version[BUFSIZE];
 
 #ifdef SHORT_STRINGS
 # define SSSTR "8b"

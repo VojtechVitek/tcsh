@@ -62,7 +62,7 @@ printprompt(promptno, str)
     register char *cz;
     struct tm *t;
     time_t  lclock;
-    Char    buff[BUFSIZ];
+    Char    buff[BUFSIZE];
     static  Char *ocp = NULL, *ostr = NULL;
 
     (void) time(&lclock);
@@ -70,7 +70,7 @@ printprompt(promptno, str)
 
     PromptBuf[0] = '\0';
     p = PromptBuf;
-    ep = &PromptBuf[2*INBUFSIZ - 2];
+    ep = &PromptBuf[2*INBUFSIZE - 2];
     switch (promptno) {
     default:
     case 0:

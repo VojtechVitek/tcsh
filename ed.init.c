@@ -582,7 +582,7 @@ ResetInLine()
 {
     Cursor = InputBuf;		/* reset cursor */
     LastChar = InputBuf;
-    InputLim = &InputBuf[INBUFSIZ - 2];
+    InputLim = &InputBuf[INBUFSIZE - 2];
     Mark = InputBuf;
     MetaNext = 0;
     CurrentKeyMap = CcKeyMap;
@@ -613,9 +613,9 @@ Load_input_line()
 #ifdef FIONREAD
     (void) ioctl(SHIN, FIONREAD, &chrs);
     if (chrs > 0) {
-	char    buf[BUFSIZ];
+	char    buf[BUFSIZE];
 
-	chrs = read(SHIN, buf, (size_t) min(chrs, BUFSIZ - 1));
+	chrs = read(SHIN, buf, (size_t) min(chrs, BUFSIZE - 1));
 	if (chrs > 0) {
 	    buf[chrs] = '\0';
 	    Input_Line = Strsave(str2short(buf));

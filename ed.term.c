@@ -532,7 +532,7 @@ dosetty(v, t)
     int aflag = 0;
     Char *s;
     int z = EX_IO;
-    char cmdname[BUFSIZ];
+    char cmdname[BUFSIZE];
 
     setname(strcpy(cmdname, short2str(*v++)));
 

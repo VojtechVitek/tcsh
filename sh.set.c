@@ -684,12 +684,12 @@ static void
 exportpath(val)
     Char  **val;
 {
-    Char    exppath[BUFSIZ];
+    Char    exppath[BUFSIZE];
 
     exppath[0] = 0;
     if (val)
 	while (*val) {
-	    if (Strlen(*val) + Strlen(exppath) + 2 > BUFSIZ) {
+	    if (Strlen(*val) + Strlen(exppath) + 2 > BUFSIZE) {
 		xprintf("Warning: ridiculously long PATH truncated\n");
 		break;
 	    }

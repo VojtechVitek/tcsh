@@ -1090,7 +1090,7 @@ recdirs()
     int     fp, ftmp, oldidfds;
     int     cdflag = 0;
     extern int fast;
-    Char    buf[BUFSIZ];
+    Char    buf[BUFSIZE];
 
     if (!fast) {
 	if (!adrof(STRsavedirs))/* does it exist */

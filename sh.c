@@ -316,7 +316,7 @@ main(argc, argv)
      */
     {
 	char *cln, *cus;
-	Char    buff[BUFSIZ];
+	Char    buff[BUFSIZE];
 	struct passwd *pw;
 
 
@@ -912,7 +912,7 @@ main(argc, argv)
 	 */
 	{
 	    extern int bequiet;	/* make dirs shut up */
-	    Char    cshd[BUFSIZ];
+	    Char    cshd[BUFSIZE];
 	    struct stat st;
 
 	    (void) Strcpy(cshd, value(STRhome));
@@ -1224,7 +1224,7 @@ srcunit(unit, onlyown, hflg)
 void
 rechist()
 {
-    Char    buf[BUFSIZ], *hfile;
+    Char    buf[BUFSIZE], *hfile;
     int     fp, ftmp, oldidfds;
 
     if (!fast) {
@@ -1638,7 +1638,7 @@ dosource(t, c)
 {
     register Char *f;
     bool    hflg = 0;
-    char    buf[BUFSIZ];
+    char    buf[BUFSIZE];
 
     t++;
     if (*t && eq(*t, STRmh)) {

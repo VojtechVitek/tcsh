@@ -733,12 +733,12 @@ tenex(inputline, inputline_size)
     int     inputline_size;
 {
     register int numitems, num_read;
-    char    tinputline[BUFSIZ];
+    char    tinputline[BUFSIZE];
 
 
     setup_tty(ON);
 
-    while ((num_read = read(SHIN, tinputline, BUFSIZ)) > 0) {
+    while ((num_read = read(SHIN, tinputline, BUFSIZE)) > 0) {
 	int     i;
 	static Char delims[] = {' ', '\'', '"', '\t', ';', '&', '<',
 	'>', '(', ')', '|', '^', '%', '\0'};

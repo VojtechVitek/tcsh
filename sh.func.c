@@ -705,7 +705,7 @@ search(type, level, goal)
     register int level;
     Char   *goal;
 {
-    Char    wordbuf[BUFSIZ];
+    Char    wordbuf[BUFSIZE];
     register Char *aword = wordbuf;
     register Char *cp;
 
@@ -1245,7 +1245,7 @@ Setenv(name, val)
  * it is not needed anymore.
  */
 #undef setenv
-    char    nameBuf[BUFSIZ];
+    char    nameBuf[BUFSIZE];
     char   *cname = short2str(name);
 
     if (cname == NULL)
