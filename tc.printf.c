@@ -174,6 +174,11 @@ doprnt(addchar, sfmt, ap)
 			(*addchar) ((int) (' ' | attributes));
 		break;
 
+	    case 'p':
+		do_long = 1;
+		hash = 1;
+		fmt = 'x';
+		/*FALLTHROUGH*/
 	    case 'o':
 	    case 'x':
 	    case 'u':
