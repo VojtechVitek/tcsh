@@ -585,8 +585,8 @@ execute(t, wanttty, pipein, pipeout)
 		}
 
 	    }
-	}
 #endif /* VFORK */
+	}
 	if (pid != 0) {
 	    /*
 	     * It would be better if we could wait for the whole job when we
