@@ -475,7 +475,7 @@ pnote()
 
 static void
 pfree(pp)
-    struct process *pp;
+    struct proc *pp;
 {	
     xfree((ptr_t) pp->p_command);
     if (pp->p_cwd && --pp->p_cwd->di_count == 0)
