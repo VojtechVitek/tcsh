@@ -353,7 +353,7 @@ ed_Init()
 	nio.c_cc[VPAGE] = '\015';	/* ^M */
 # endif				/* VPAGE */
 
-# if defined(OREO) || defined(hpux) || defined(_IBMR2)
+# if (defined(OREO) || defined(hpux) || defined(_IBMR2)) && !defined(hp9000s500)
 
 	(void) ioctl(SHIN, TIOCGLTC, (ioctl_t) & nlc);
 	xlc = nlc;
@@ -511,7 +511,7 @@ ed_Init()
     xio.c_cc[VPAGE] = '\015';	/* ^M */
 # endif				/* VPAGE */
 
-# if defined(OREO) || defined(hpux) || defined(_IBMR2)
+# if (defined(OREO) || defined(hpux) || defined(_IBMR2)) && !defined(hp9000s500)
 #  ifdef VSUSP
     xlc.t_suspc = xio.c_cc[VSUSP];	/* stop process signal	 */
 #  else
@@ -787,7 +787,7 @@ Rawmode()
 	return (-1);
 # endif	/* POSIX */
 
-# if defined(OREO) || defined(hpux) || defined(_IBMR2)
+# if (defined(OREO) || defined(hpux) || defined(_IBMR2)) && !defined(hp9000s500)
     /* get and set the new local chars */
     if (ioctl(SHIN, TIOCGLTC, (ioctl_t) & testlc) < 0)
 	return (-1);
@@ -958,7 +958,7 @@ Cookedmode()
 # ifdef TERMIO
     if (ioctl(SHIN, TCSETAW, (ioctl_t) & nio) < 0)
 	return (-1);
-#  if defined(OREO) || defined(hpux) || defined(_IBMR2)
+# if (defined(OREO) || defined(hpux) || defined(_IBMR2)) && !defined(hp9000s500)
     if (ioctl(SHIN, TIOCSLTC, (ioctl_t) & nlc) < 0)
 	return (-1);
 #  endif				/* OREO || hpux || _IBMR2 */

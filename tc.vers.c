@@ -141,6 +141,10 @@ gethosttype()
    hosttype = str2short("hp9000s300");
 #  endif /* hp9000s300 */
 #  ifndef _havehosttype_
+# if defined(hp9000s500) && !defined(_havehosttype_)
+#  define _havehosttype_
+   hosttype = str2short("hp9000s500");
+# endif /* hp9000s500 */
 #   define _havehosttype_
    hosttype = str2short("hp");
 #  endif /* _havehosttype_ */

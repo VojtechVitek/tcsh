@@ -104,7 +104,7 @@ EXTERN struct termio nio;
 EXTERN struct termio xio;
 EXTERN struct termio testio;
 
-#  if defined(OREO) || defined(hpux) || defined(_IBMR2)
+#  if (defined(OREO) || defined(hpux) || defined(_IBMR2)) && !defined(hp9000s500)
 EXTERN struct ltchars nlc;
 EXTERN struct ltchars xlc;
 EXTERN struct ltchars testlc;

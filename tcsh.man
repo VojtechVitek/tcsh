@@ -1701,6 +1701,7 @@ The current possible values are:
 \fIhp300\fR		an HP 9000, series 300, running mtXinu
 \fIhp800\fR		an HP 9000, series 800, running mtXinu
 \fIhp9000s300\fR	an HP 9000, series 300, running hpux
+\fIhp9000s500\fR	an HP 9000, series 500, running hpux
 \fIhp9000s700\fR	an HP 9000, series 700, running hpux
 \fIhp9000s800\fR	an HP 9000, series 800, running hpux
 \fIhp\fR			an HP, running hpux

@@ -73,7 +73,9 @@ struct ucred {
 #  define CSUSP 032
 # endif	/* CSUSP */
 
-# include <sys/bsdtty.h>
+# ifndef hp9000s500
+#  include <sys/bsdtty.h>
+# endif
 
 # ifndef POSIX
 #  ifdef BSDJOBS
