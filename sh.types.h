@@ -190,6 +190,15 @@ extern char *sbrk();
 
 
 /***
+ *** Intel 386, ISC 386/ix v2.0.2
+ ***/
+#ifdef ISC202
+# ifndef _SIZE_T
+#  define _SIZE_T
+# endif /* _SIZE_T */
+#endif /* ISC202 */
+
+/***
  *** a PFU/Fujitsu A-xx computer SX/A Edition 60 or later
  ***/
 #ifdef SXA

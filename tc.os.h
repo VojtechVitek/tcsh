@@ -94,7 +94,7 @@ struct ucred {
 # endif	/* CSUSP */
 #endif /* ISC */
 #if defined(HYPERCUBE) || defined(u3b2) || defined (u3b5) || \
-    defined(ub15) || defined(u3b20d)
+    defined(ub15) || defined(u3b20d) || defined(ISC202)
 #ifdef TIOCGWINSZ
 /*
  * for struct winsiz
