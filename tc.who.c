@@ -193,7 +193,7 @@ watch_login(force)
 #endif
 
     v = adrof(STRwatch);
-    if (v == NULL && v->vec == NULL && !force) {
+    if ((v == NULL || v->vec == NULL) && !force) {
 #ifdef BSDSIGS
 	(void) sigsetmask(omask);
 #else
