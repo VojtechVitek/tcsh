@@ -39,6 +39,15 @@
 #ifdef HAVE_ICONV
 #include <iconv.h>
 #endif
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#endif
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
+#if !defined(HAVE_STDINT_H) && !defined(HAVE_INTTYPES_H)
+typedef unsigned long intptr_t;
+#endif
 
 #ifndef EXTERN
 # define EXTERN extern
