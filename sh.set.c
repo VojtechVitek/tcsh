@@ -424,6 +424,9 @@ getn(cp)
     register int n;
     int     sign;
 
+    if (!cp)			/* PWP: extra error checking */
+	stderror(ERR_NAME | ERR_BADNUM);
+
     sign = 0;
     if (cp[0] == '+' && cp[1])
 	cp++;
@@ -447,6 +450,9 @@ value1(var, head)
     struct varent *head;
 {
     register struct varent *vp;
+
+    if (!var || !head)		/* PWP: extra error checking */
+	return (STRNULL);
 
     vp = adrof1(var, head);
     return (vp == 0 || vp->vec[0] == 0 ? STRNULL : vp->vec[0]);

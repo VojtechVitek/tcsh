@@ -1210,7 +1210,8 @@ goodbye(v, c)
 void
 exitstat()
 {
-
+    register Char *cp;
+    register int i;
 #ifdef PROF
     monitor(0);
 #endif
@@ -1220,7 +1221,19 @@ exitstat()
      * unwarrantedly (sic).
      */
     child = 1;
-    xexit(getn(value(STRstatus)));
+
+    /* 
+     * PWP: do this step-by-step because we might get a bus error if
+     * status isn't set, so we call getn(NULL).
+     */
+    cp = value(STRstatus);
+
+    if (!cp)
+	i = 13;
+    else
+	i = getn(cp);
+
+    xexit(i);
 }
 
 /*
