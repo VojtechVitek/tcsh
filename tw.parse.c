@@ -51,29 +51,25 @@ RCSID("$Id$")
 #define DOT_NOT		1	/* Don't display dot or dot-dot	*/
 #define DOT_ALL		2	/* Display all dot files	*/
 
-/*  TW_COMMAND,	    TW_VARIABLE,   TW_LOGNAME,	     TW_FILE	*/
-/*  TW_DIRECTORY,   TW_VARLIST,	   TW_USER,	     TW_LITERAL	*/
-/*  TW_ALIAS,	    TW_SHELLVAR,   TW_ENVVAR, 	     TW_BINDING	*/
-/*  TW_WORDLIST							*/
+/*  TW_COMMAND	    TW_VARIABLE    TW_LOGNAME	     TW_FILE	*/
+/*  TW_DIRECTORY    TW_VARLIST	   TW_USER	     TW_ALIAS	*/
+/*  TW_SHELLVAR     TW_ENVVAR 	   TW_BINDING	     TW_WORDLIST*/
 static void (*tw_start_entry[]) __P((DIR *, Char *)) = {
     tw_cmd_start,   tw_var_start,  tw_logname_start, tw_file_start,
-    tw_file_start,  tw_vl_start,   tw_logname_start, tw_file_start,
-    tw_alias_start, tw_var_start,  tw_var_start,     tw_bind_start,
-    tw_wl_start
+    tw_file_start,  tw_vl_start,   tw_logname_start, tw_alias_start, 
+    tw_var_start,   tw_var_start,  tw_bind_start,    tw_wl_start
 };
 
 static Char * (*tw_next_entry[]) __P((Char *, int *)) = {
     tw_cmd_next,   tw_var_next,   tw_logname_next,  tw_file_next,
-    tw_file_next,  tw_var_next,   tw_logname_next,  tw_file_next,
-    tw_var_next,   tw_shvar_next, tw_envvar_next,   tw_bind_next,
-    tw_wl_next
+    tw_file_next,  tw_var_next,   tw_logname_next,  tw_var_next,   
+    tw_shvar_next, tw_envvar_next,tw_bind_next,     tw_wl_next
 };
 
 static void (*tw_end_entry[]) __P((void)) = {
     tw_dir_end,    tw_dir_end,    tw_logname_end,   tw_dir_end,
-    tw_dir_end,    tw_dir_end,    tw_logname_end,   tw_dir_end,
-    tw_dir_end,	   tw_dir_end,	  tw_dir_end,	    tw_dir_end,
-    tw_dir_end
+    tw_dir_end,    tw_dir_end,    tw_logname_end,   tw_dir_end,	 
+    tw_dir_end,	   tw_dir_end,    tw_dir_end, 	    tw_dir_end
 };
 
 /* #define TDEBUG */
@@ -765,15 +761,6 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat)
 	if (looking == TW_COMMAND && (*word == '\0')) 
 	    return (-1);
 	break;
-
-    case TW_LITERAL:
-	/*
-	 * Just paste in the pattern.
-	 */
-	copyn(word, pat, max_word_length);
-	if (adrof(STRaddsuffix))
-	    catn(word, STRspace, max_word_length);
-	return 1;
 
     case TW_VARLIST:
     case TW_WORDLIST:

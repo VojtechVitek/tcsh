@@ -62,9 +62,6 @@ CFLAGS=-O $(INCLUDES)
 # for at&t machines
 #CFLAGS= -O -Ksd $(INCLUDES)
 
-# for convexen
-#CFLAGS= $(INCLUDES) -ext -tm c1
-
 # Stardent Titan
 #CFLAGS = $(INCLUDES) -O -43
 

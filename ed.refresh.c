@@ -1097,8 +1097,10 @@ PutPlusOne(c)
 	CursorH = 0;
 	CursorV++;
 	OldvcV++;
-	(void) putraw('\r');
-	(void) putraw('\n');
+	if (!T_Margin) {
+	    (void) putraw('\r');
+	    (void) putraw('\n');
+	}
     }
 }
 
