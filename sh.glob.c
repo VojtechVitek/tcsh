@@ -473,7 +473,7 @@ globone(str, action)
 	vo = v;
 
     vl = libglob(vo);
-    if (gflg & G_CSH)
+    if ((gflg & G_CSH) && vl != vo)
 	blkfree(vo);
     if (vl == NULL) {
 	setname(short2str(str));
@@ -517,7 +517,7 @@ globall(v)
 
     if (!noglob && (gflg & G_GLOB)) {
 	vl = libglob(vo);
-	if (gflg & G_CSH)
+	if ((gflg & G_CSH) && vl != vo)
 	    blkfree(vo);
     }
 
