@@ -128,7 +128,7 @@ extern uid_t getuid(), geteuid();
 extern gid_t getgid(), getegid();
 extern sigmask_t sigblock();
 extern sigmask_t sigsetmask();
-#ifndef __hp9000s700
+#ifdef notdef	/* XXX: Not true for 8.0 */
 extern void sigpause();
 extern sigmask_t sigspace();
 #endif
@@ -141,7 +141,7 @@ extern void qsort();
 extern void free();
 extern unsigned int alarm();
 extern unsigned int sleep();
-#ifndef __hp9000s700
+#ifdef notdef	/* XXX: Not true for 8.0 */
 extern int lstat();
 extern int readlink();
 extern int sigvector();
@@ -352,6 +352,26 @@ extern char *sbrk();
 #  define _PID_T
 # endif /* _PID_T */
 #endif /* uts */
+
+/*
+ * UnixPC aka u3b1
+ */
+#ifdef UNIXPC
+# ifdef types_h
+#  ifndef _SIZE_T
+#   define _SIZE_T
+#  endif /* _SIZE_T */
+# endif /* types_h */
+#endif /* UNIXPC */
+
+/*
+ * NS32000 OPUS
+ */
+#ifdef OPUS
+# ifndef _SIZE_T
+#  define _SIZE_T
+# endif /* _SIZE_T */
+#endif /* OPUS */
 
 /***
  *** Catch all for non POSIX systems.

@@ -138,9 +138,6 @@ extern	char		 *xgetwd	__P((char *));
 extern	int	 	  gethostname	__P((char *, int));
 #define gethostname(a, b) xgethostname(a, b)
 #endif
-#ifdef iconuxv
-extern	int		  vfork		__P((void));
-#endif
 #ifdef apollo
 extern	void		  doinlib	__P((Char **, struct command *));
 extern	void		  dover		__P((Char **, struct command *));

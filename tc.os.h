@@ -94,6 +94,10 @@ struct ucred {
 # endif	/* CSUSP */
 #endif /* ISC */
 
+#ifdef ISC202
+# undef TIOCGWINSZ
+#endif /* ISC202 */
+
 /*
  * XXX: This will be changed soon to 
  * #if (SVID > 0) && defined(TIOCGWINSZ)
@@ -108,8 +112,14 @@ struct ucred {
 # include <sys/stream.h>
 # include <sys/ptem.h>
 #endif /* TIOCGWINSZ */
-# define NEEDgethostname
+# ifndef ODT
+#  define NEEDgethostname
+# endif /* ODT */
 #endif /* INTEL || att || isc || sco */
+
+#ifdef UNIXPC
+# define NEEDgethostname
+#endif /* UNIXPC */
 
 #ifdef IRIS4D
 # include <sys/time.h>
@@ -320,7 +330,9 @@ extern char *ttyname();
 
 # ifndef hpux
 extern int abort();
+# ifndef fps500
 extern int qsort();
+# endif /* fps500 */
 # else
 extern void abort();
 extern void qsort();
@@ -337,8 +349,10 @@ extern int sigvec();
 extern int sigpause();
 #  else	/* _AIX370 || MACH || NeXT || _AIXPS2 */
 #   if !defined(apollo) || !defined(__STDC__)
+# ifndef fps500
 extern sigret_t sigvec();
 extern void sigpause();
+# endif /* fps500 */
 #   endif /* !apollo || !__STDC__ */
 #  endif /* _AIX370 || MACH || NeXT || _AIXPS2 */
 extern sigmask_t sigblock();
@@ -400,8 +414,10 @@ extern int setpriority();
 extern int nice();
 # endif	/* !BSDNICE */
 
+# ifndef fps500
 extern void setpwent();
 extern void endpwent();
+# endif /* fps500 */
 extern struct passwd *getpwuid(), *getpwnam(), *getpwent();
 
 # ifndef getwd

@@ -165,6 +165,12 @@ EXTERN int Argument;		/* "universal" argument value */
 EXTERN KEYCMD LastCmd;		/* previous command executed */
 EXTERN Char KillBuf[INBUFSIZ];	/* kill buffer */
 EXTERN Char *LastKill;		/* points to end of kill buffer */
+
+EXTERN Char UndoBuf[INBUFSIZ];
+EXTERN Char *UndoPtr;
+EXTERN int  UndoSize;
+EXTERN int  UndoAction;
+
 EXTERN Char HistBuf[INBUFSIZ];	/* history buffer */
 EXTERN Char *LastHist;		/* points to end of history buffer */
 EXTERN int Hist_num;		/* what point up the history we are at now. */

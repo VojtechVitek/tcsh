@@ -177,6 +177,15 @@ extern	CCRETVAL	e_expand		__P((int));
 extern	CCRETVAL	e_expand_vars		__P((int));
 extern	CCRETVAL	e_toggle_hist		__P((int));
 extern  CCRETVAL        e_load_average		__P((int));
+extern  CCRETVAL        v_delprev		__P((int));
+extern  CCRETVAL        v_delmeta		__P((int));
+extern  CCRETVAL        v_wordback		__P((int));
+extern  CCRETVAL        v_endword		__P((int));
+extern  CCRETVAL        v_eword			__P((int));
+extern  CCRETVAL        v_undo			__P((int));
+extern  CCRETVAL        v_ush_meta		__P((int));
+extern  CCRETVAL        v_dsh_meta		__P((int));
+extern  CCRETVAL        v_repeat_srch		__P((int));
 
 /*
  * ed.inputl.c

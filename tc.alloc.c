@@ -324,7 +324,7 @@ calloc(i, j)
 	    *cp++ = 0;
 	while (--i);
 
-    return (scp);
+    return ((memalign_t) scp);
 #else
     if (i && j)
 	return ((memalign_t) 0);
@@ -413,12 +413,12 @@ realloc(cp, nbytes)
     if (was_alloced && (onb < (1 << (i + 3))) && (onb >= (1 << (i + 2))))
 	return ((memalign_t) cp);
     if ((res = malloc(nbytes)) == NULL)
-	return (NULL);
+	return ((memalign_t) NULL);
     if (cp != res)		/* common optimization */
 	mybcopy(cp, res, nbytes);
     if (was_alloced)
 	free(cp);
-    return (res);
+    return ((memalign_t) res);
 #else
     if (cp && nbytes)
 	return ((memalign_t) 0);

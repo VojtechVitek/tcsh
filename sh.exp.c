@@ -80,7 +80,7 @@ static	void	 etraci	__P((char *, int, Char ***));
 #endif
 
 int
-exp(vp)
+expr(vp)
     register Char ***vp;
 {
     return (exp0(vp, 0));

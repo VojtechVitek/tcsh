@@ -173,13 +173,14 @@ printprompt(promptno, str)
 	    case '~':		/* show ~ whenever possible - a la dirs */
 		{
 		    static Char *olddir = 0, *olduser = 0, *oldpath = 0;
+		    extern int tlength;	/* cache cleared */
 
 		    if (!(z = value(STRcwd)))
 			break;	/* no cwd, so don't do anything */
 		    /*
 		     * Have we changed directory?
 		     */
-		    if (olddir != z) {
+		    if (tlength == 0 || olddir != z) {
 			oldpath = olddir = z;
 			olduser = getusername(&oldpath);
 		    }

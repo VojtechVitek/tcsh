@@ -390,7 +390,8 @@ dochngd(v, c)
 	return;
     }
     else
-	cp = dfollow(*v);
+	if ((cp = dfollow(*v)) == NOSTR)
+	    return;
     dp = (struct directory *) xcalloc(sizeof(struct directory), 1);
     dp->di_name = cp;
     dp->di_count = 0;
@@ -544,7 +545,8 @@ dopushd(v, c)
 	    if (chdir(short2str(cp)) < 0)
 		stderror(ERR_NAME | ERR_CANTCHANGE);
 	    cp = Strsave(cp);	/* hmmm... PWP */
-	    cp = dfollow(cp);
+	    if ((cp = dfollow(cp)) == NOSTR)
+		return;
 	    dp = (struct directory *) xcalloc(sizeof(struct directory), 1);
 	    dp->di_name = cp;
 	    dp->di_count = 0;
@@ -589,7 +591,8 @@ dopushd(v, c)
     else {
 	register Char *ccp;
 
-	ccp = dfollow(*v);
+	if ((ccp = dfollow(*v)) == NOSTR)
+	    return;
 	dp = (struct directory *) xcalloc(sizeof(struct directory), 1);
 	dp->di_name = ccp;
 	dp->di_count = 0;

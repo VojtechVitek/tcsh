@@ -342,7 +342,7 @@ xset(cp, vp)
 	xfree((ptr_t) ** vp);
 	**vp = dp;
     }
-    return (putn(exp(vp)));
+    return (putn(expr(vp)));
 }
 
 static Char *
@@ -367,7 +367,7 @@ operate(op, vp, p)
     }
     *v++ = p;
     *v++ = 0;
-    i = exp(&vecp);
+    i = expr(&vecp);
     if (*vecp)
 	stderror(ERR_NAME | ERR_EXPRESSION);
     return (putn(i));

@@ -117,7 +117,6 @@
  */
 #undef SYSMALLOC
 
-
 /*
  * RCSID	This defines if we want rcs strings in the binary or not
  *

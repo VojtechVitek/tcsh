@@ -687,7 +687,7 @@ osinit()
 {
     extern ptr_t membot;
 
-    membot = (char *) sbrk(0);
+    membot = (ptr_t) sbrk(0);
 
 #ifdef OREO
     set42sig();
@@ -948,18 +948,6 @@ strrcpy(ptr, str)
 } /* end strrcpy */
 # endif /* hp9000s500 */
 #endif /* getwd */
-
-#ifdef iconuxv
-#include <sys/vendor.h>
-#include <sys/bsd_syscall.h>
-
-int
-vfork()
-{
-    return sys_local(VEND_ICON_BSD, 66);
-}
-
-#endif				/* iconuxv */
 
 #ifdef apollo
 /***

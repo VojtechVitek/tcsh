@@ -1131,7 +1131,13 @@ srcunit(unit, onlyown, hflg)
 
 /* PWP: think of this as like a LISP (unwind-protect ...) */
 /* thanks to Diana Smetters for pointing out how this _should_ be written */
+#ifdef cray
+    my_reenter = 1;		/* assume non-zero return val */
+    if (setexit() == 0) {
+	my_reenter = 0;		/* Oh well, we were wrong */
+#else
     if ((my_reenter = setexit()) == 0) {
+#endif
 	process(0);		/* 0 -> blow away on errors */
     }
 
@@ -1471,7 +1477,7 @@ process(catch)
 	     * read fresh stuff. Otherwise, we are rereading input and don't
 	     * need or want to prompt.
 	     */
-	    if (fseekp == feobp)
+	    if (fseekp == feobp && aret == F_SEEK)
 		printprompt(0, NULL);
 	    flush();
 	    setalarm();

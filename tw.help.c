@@ -124,7 +124,7 @@ do_help(command)
 	    }
 	    if (f != -1) {
 		/* so cat it to the terminal */
-		orig_intr = sigset(SIGINT, cleanf);
+		orig_intr = (sigret_t (*)()) sigset(SIGINT, cleanf);
 		while (f != -1 && (len = read(f, (char *) buf, 512)) != 0)
 		    (void) write(SHOUT, (char *) buf, (size_t) len);
 		(void) sigset(SIGINT, orig_intr);

@@ -255,6 +255,10 @@ loop:
     pid = wait3(&w.w_status, WNOHANG, &ru);
 #  endif /* !hpux */
 # else /* !BSDTIMES */
+# ifdef ODT  /* For Sco Unix 3.2.0 or ODT 1.0 */
+    pid = waitpid(-1, &w,
+	    (setintr && (intty || insource) ? WNOHANG | WUNTRACED : WNOHANG));
+# else /* !ODT */	    
 #  if SVID < 3
     /* no wait3, therefore no rusage */
     /* on Sys V, this may hang.  I hope it's not going to be a problem */
@@ -266,6 +270,7 @@ loop:
      */
     pid = wait(&w.w_status);
 #  endif /* SVID >= 3 */
+# endif /* ODT */
 # endif	/* BSDTIMES */
 # ifndef BSDSIGS
     (void) sigset(SIGCHLD, pchild);
@@ -1866,7 +1871,7 @@ pgetty(wanttty, pgrp)
      */
     if (wanttty >= 0)
 	if (setpgid(0, pgrp) == -1) {
-#  if !defined(ISC) && !defined(SCO)
+#  if !defined(ISC) && !defined(SCO) && !defined(cray)
 	    /* XXX: Wrong but why? */
 	    xprintf("tcsh: setpgid error (%s).\n", strerror(errno));
 	    xexit(0);

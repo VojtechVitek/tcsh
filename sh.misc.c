@@ -371,10 +371,10 @@ lshift(v, c)
     register Char **v;
     register int c;
 {
-    register Char **u = v;
+    register Char **u;
 
-    while (*u && --c >= 0)
-	xfree((ptr_t) * u++);
+    for (u = v; *u && --c >= 0; u++)
+	xfree((ptr_t) *u);
     (void) blkcpy(v, u);
 }
 
