@@ -77,6 +77,7 @@ static int pargc = 0;
  *
  */
 static	Char	 *globtilde	__P((Char **, Char *));
+static	Char     *handleone	__P((Char *, Char **, int));
 static	Char	**libglob	__P((Char **));
 static	Char	**globexpand	__P((Char **));
 static	int	  globbrace	__P((Char *, Char *, Char ***));
@@ -629,7 +630,7 @@ ginit()
 void
 rscan(t, f)
     register Char **t;
-    void    (*f) ();
+    void    (*f) __P((int));
 {
     register Char *p;
 

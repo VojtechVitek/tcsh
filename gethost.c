@@ -99,6 +99,11 @@ static const char *keyword[] =
 #define S_CODE		2
 #define S_KEYWORD	3
 
+static int findtoken __P((char *));
+static char *gettoken __P((char **, char  *));
+
+int main __P((int, char *[]));
+
 /* findtoken():
  *	Return the token number of the given token
  */

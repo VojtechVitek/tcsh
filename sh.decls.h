@@ -176,7 +176,7 @@ extern	int		  Gmatch	__P((Char *, Char *));
 extern	int		  Gnmatch	__P((Char *, Char *, Char **));
 extern	void		  ginit		__P((void));
 extern	Char		**globall	__P((Char **));
-extern	void		  rscan		__P((Char **, void (*)()));
+extern	void		  rscan		__P((Char **, void (*)(int)));
 extern	void		  tglob		__P((Char **));
 extern	void		  trim		__P((Char **));
 #ifdef FILEC

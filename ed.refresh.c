@@ -51,6 +51,7 @@ static int rprompt_h, rprompt_v;
 
 static	void	Draw 			__P((int));
 static	void	Vdraw 			__P((int));
+static	void	RefreshPromptpart	__P((Char *));
 static	void	update_line 		__P((Char *, Char *, int));
 static	void	str_insert		__P((Char *, int, int, Char *, int));
 static	void	str_delete		__P((Char *, int, int, int));

@@ -570,7 +570,7 @@ pjwait(pp)
     sigmask_t omask;
 #endif /* BSDSIGS */
 #ifdef UNRELSIGS
-    sigret_t (*inthandler)();
+    signalfun_t inthandler;
 #endif /* UNRELSIGS */
     while (pp->p_procid != pp->p_jobid)
 	pp = pp->p_friends;
@@ -2069,7 +2069,7 @@ setttypgrp(pgrp)
 	 * tcsetpgrp will set SIGTTOU to all the the processes in 
 	 * the background according to POSIX... We ignore this here.
 	 */
-	sigret_t (*old)() = sigset(SIGTTOU, SIG_IGN);
+	signalfun_t old = sigset(SIGTTOU, SIG_IGN);
 #endif
 	(void) tcsetpgrp(FSHTTY, pgrp);
 # ifdef POSIXJOBS

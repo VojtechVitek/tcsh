@@ -158,7 +158,7 @@
 # ifndef __GNUC__
 #  define RCSID(id) static char *rcsid = (id);
 # else
-#  define RCSID(id) static char *rcsid() { return rcsid(id); }
+#  define RCSID(id) static char *rcsid(const char *a) { return rcsid(a = id); }
 # endif /* !__GNUC__ */
 #else
 # define RCSID(id)	/* Nothing */

@@ -44,6 +44,7 @@ extern bool histvalid;
 extern Char histline[];
 Char HistLit = 0;
 
+static	bool	heq	__P((struct wordent *, struct wordent *));
 static	void	hfree	__P((struct Hist *));
 static	void	dohist1	__P((struct Hist *, int *, int));
 static	void	phist	__P((struct Hist *, int));
@@ -95,19 +96,19 @@ savehist(sp, mflg)
 
 static bool
 heq(a0, b0)
-struct wordent *a0, *b0;
+    struct wordent *a0, *b0;
 {
-  register struct wordent *a = a0->next, *b = b0->next;
+    struct wordent *a = a0->next, *b = b0->next;
 
-  for (;;)
-    {
-      if (Strcmp(a->word, b->word))
-        return 0;
-      a = a->next; b = b->next;
-      if (a == a0)
-	return (b == b0) ? 1 : 0;
-      if (b == b0)
-        return 0;
+    for (;;) {
+	if (Strcmp(a->word, b->word) != 0)
+	    return 0;
+	a = a->next;
+	b = b->next;
+	if (a == a0)
+	    return (b == b0) ? 1 : 0;
+	if (b == b0)
+	    return 0;
     } 
 }
 

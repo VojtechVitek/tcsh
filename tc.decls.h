@@ -238,7 +238,7 @@ extern	void		  tprintf	__P((int, Char *, Char *, size_t,
  */
 extern	time_t		  sched_next	__P((void));
 extern	void		  dosched	__P((Char **, struct command *));
-extern	void		  sched_run	__P((void));
+extern	void		  sched_run	__P((int));
 
 /*
  * tc.sig.c

@@ -87,6 +87,7 @@ static	Char	*c_number		__P((Char *, int *, int));
 static	Char	*c_expand		__P((Char *));
 static	void	 c_excl			__P((Char *));
 static	void	 c_substitute		__P((void));
+static	void	 c_delfini		__P((void));
 static	int	 c_hmatch		__P((Char *));
 static	void	 c_hsetpat		__P((void));
 #ifdef COMMENT
@@ -102,6 +103,7 @@ static  CCRETVAL v_repeat_srch		__P((int));
 static	CCRETVAL e_inc_search		__P((int));
 static	CCRETVAL v_search		__P((int));
 static	CCRETVAL v_csearch_fwd		__P((int, int, int));
+static	CCRETVAL v_action		__P((int));
 static	CCRETVAL v_csearch_back		__P((int, int, int));
 
 static void

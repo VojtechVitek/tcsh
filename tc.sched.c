@@ -193,8 +193,10 @@ dosched(v, c)
 /*
  * Execute scheduled events
  */
+/*ARGSUSED*/
 void
-sched_run()
+sched_run(n)
+    int n;
 {
     time_t   cur_time;
     register struct sched_event *tp, *tp1;
@@ -202,7 +204,6 @@ sched_run()
     struct command *t;
     Char  **v, *cp;
     extern Char GettingInput;
-
 #ifdef BSDSIGS
     sigmask_t omask;
 
@@ -210,6 +211,8 @@ sched_run()
 #else
     (void) sighold(SIGINT);
 #endif
+
+    USE(n);
 
     (void) time(&cur_time);
     tp = sched_ptr;

@@ -63,6 +63,7 @@ static	void	search		__P((int, int, Char *));
 static	int	getword		__P((Char *));
 static	void	toend		__P((void));
 static	void	xecho		__P((int, Char **));
+static	bool	islocale_var	__P((Char *));
 
 struct biltins *
 isbfunc(t)
@@ -1216,8 +1217,9 @@ done:
 }
 
 /* check whether an environment variable should invoke 'set_locale()' */
-static bool islocale_var(var)
-register Char *var;
+static bool
+islocale_var(var)
+    Char *var;
 {
     static Char *locale_vars[] = {
 	STRLANG,	STRLC_CTYPE,	STRLC_NUMERIC,	STRLC_TIME,
@@ -2091,7 +2093,7 @@ dosuspend(v, c)
 #ifdef BSDJOBS
     int     ctpgrp;
 
-    sigret_t (*old) ();
+    signalfun_t old;
 #endif /* BSDJOBS */
     
     USE(c);

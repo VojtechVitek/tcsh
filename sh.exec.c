@@ -565,8 +565,7 @@ execash(t, kp)
 #ifndef CLOSE_ON_EXEC
     int	    odidcch;
 #endif /* CLOSE_ON_EXEC */
-    sigret_t (*osigint) __P((int)), (*osigquit) __P((int)), 
-	(*osigterm) __P((int));
+    signalfun_t osigint, osigquit, osigterm;
 
     USE(t);
     if (chkstop == 0 && setintr)
