@@ -93,8 +93,14 @@ struct ucred {
 #  define CSUSP 032
 # endif	/* CSUSP */
 #endif /* ISC */
+
+/*
+ * XXX: This will be changed soon to 
+ * #if (SVID > 0) && defined(TIOCGWINSZ)
+ * If that breaks on your machine, let me know.
+ */
 #if defined(HYPERCUBE) || defined(u3b2) || defined (u3b5) || \
-    defined(ub15) || defined(u3b20d) || defined(ISC202)
+    defined(ub15) || defined(u3b20d) || defined(ISC202) || defined(SCO)
 #ifdef TIOCGWINSZ
 /*
  * for struct winsiz
@@ -103,7 +109,7 @@ struct ucred {
 # include <sys/ptem.h>
 #endif /* TIOCGWINSZ */
 # define NEEDgethostname
-#endif /* HYPERCUBE || att */
+#endif /* HYPERCUBE || att || isc || sco */
 
 #ifdef IRIS4D
 # include <sys/time.h>
