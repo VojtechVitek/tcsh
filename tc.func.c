@@ -1296,8 +1296,11 @@ rmstar(cp)
 			    tmp->next->prev = tmp->prev;
 			    xfree((ptr_t) tmp->word);
 			    del = tmp;
+			    tmp = tmp->next;
 			    xfree((ptr_t) del);
 			}
+			we = tmp;
+			continue;
 		    }
 		}
 	    }
