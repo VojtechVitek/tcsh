@@ -616,6 +616,12 @@ struct command *c;
 }
 
 # ifdef UTHOST
+size_t
+utmphostsize()
+{
+    return UTHOSTLEN;
+}
+
 char *
 utmphost()
 {

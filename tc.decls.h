@@ -329,6 +329,7 @@ extern	const char 	 *who_info	__P((ptr_t, int, char *, size_t));
 extern	void		  dolog		__P((Char **, struct command *));
 # ifdef UTHOST
 extern	char		 *utmphost	__P((void));
+extern	size_t		  utmphostsize	__P((void));
 # endif /* UTHOST */
 #endif /* HAVENOUTMP */
 
