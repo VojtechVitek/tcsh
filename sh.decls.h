@@ -179,8 +179,12 @@ extern	void		  trim		__P((Char **));
 extern	int		  sortscmp	__P((Char **, Char **));
 #endif
 
+#ifndef WINNT_NATIVE
+#ifdef NLS_CATALOGS
 #ifdef HAVE_ICONV
 extern	char		 *iconv_catgets	__P((nl_catd, int, int, const char *));
+#endif
+#endif
 #endif
 extern	void		  nlsinit	__P((void));
 extern	void	          nlsclose	__P((void));
