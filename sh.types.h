@@ -141,12 +141,6 @@ extern unsigned int sleep();
 # if HPUXVERSION < 800	/* XXX: Not true for 8.0 */
 extern void sigpause();
 extern sigmask_t sigspace();
-extern int lstat();
-extern int readlink();
-extern int sigvector();
-extern int gethostname();
-extern int ioctl();
-extern int nice();
 extern char *sbrk();
 # endif /* HPUXVERSION < 800 */
 #endif /* __hpux */
