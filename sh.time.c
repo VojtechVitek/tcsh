@@ -177,7 +177,8 @@ donice(v, c)
     else if (*v	== 0 &&	any("+-", cp[0]))
 	nval = getn(cp);
 #ifdef BSDNICE
-    (void) setpriority(PRIO_PROCESS, 0,	nval);
+    if (setpriority(PRIO_PROCESS, 0, nval) == -1 && errno)
+	stderror(ERR_SYSTEM, "setpriority", strerror(errno));
 #else /* BSDNICE */
     (void) nice(nval);
 #endif /* BSDNICE */

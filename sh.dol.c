@@ -114,7 +114,7 @@ Dfix(t)
 	    if (Ismbyte1(*p) && *(p + 1))
 		p ++;
 	    else
-#endif DSPMBYTE
+#endif /* DSPMBYTE */
 	    if (cmap(*p, _DOL | QUOTES)) {	/* $, \, ', ", ` */
 		Dfix2(t->t_dcom);	/* found one */
 		blkfree(t->t_dcom);

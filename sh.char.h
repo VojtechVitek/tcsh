@@ -58,6 +58,7 @@ extern short _enable_mbdisp;
 extern unsigned short _mbmap[];
 extern unsigned short _mbmap_euc[];
 extern unsigned short _mbmap_sjis[];
+extern unsigned short _mbmap_big5[];
 /* VARIABLE Check str */
 /* same compiler require #define even not define DSPMBYTE */
 #define _MB1	0x0001

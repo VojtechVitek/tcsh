@@ -571,7 +571,9 @@ execute(t, wanttty, pipein, pipeout)
 		    if (t->t_dflg & F_NICE) {
 			int nval = SIGN_EXTEND_CHAR(t->t_nice);
 # ifdef BSDNICE
-			(void) setpriority(PRIO_PROCESS, 0, nval);
+			if (setpriority(PRIO_PROCESS, 0, nval) == -1 && errno)
+				stderror(ERR_SYSTEM, "setpriority",
+				    strerror(errno));
 # else /* !BSDNICE */
 			(void) nice(nval);
 # endif /* BSDNICE */

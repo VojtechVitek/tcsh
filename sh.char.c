@@ -813,6 +813,59 @@ unsigned short _mbmap_sjis[256] = {
     _MB1|_MB2,	0,		0,		0,
 };
 
+unsigned short _mbmap_big5[256] = {
+/* first byte   0xa1 - 0xfe */
+/* second byte  0x40 - 0x7e, 0xa1 - 0xfe */
+/* 0x00 - 0x3f = 0 */
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+/* 0x40 - 0x7e = 2 */
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+    _MB2,	_MB2,		_MB2,		_MB2,
+						/* 0x7f - 0xa0 = 0 */
+    _MB2,	_MB2,		_MB2,		0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+		/* a1 - fe = 3 */
+    0,		_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,    
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,
+						/* 0xff = 0 */
+    _MB1|_MB2,	_MB1|_MB2,	_MB1|_MB2,	0,
+};
+
 #else /* !(defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)) */
 unsigned short _cmap[256] = {
 /*	  0 nul		  1 soh		  2 stx		  3 etx	*/

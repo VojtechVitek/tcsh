@@ -544,7 +544,7 @@ extern void		DebugFree	__P((ptr_t, char *, int));
 # if defined(SCO) && (SYSVREL > 3)
 #  include <sys/socket.h>
 # else
-#  define MAXHOSTNAMELEN 255
+#  define MAXHOSTNAMELEN 256
 # endif
 #endif /* MAXHOSTNAMELEN */
 

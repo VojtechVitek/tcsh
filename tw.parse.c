@@ -1318,6 +1318,9 @@ tw_list_items(looking, numitems, list_max)
     int max_items = 0;
     int max_rows = 0;
 
+    if (numitems == 0)
+	return;
+
     if ((ptr = varval(STRlistmax)) != STRNULL) {
 	while (*ptr) {
 	    if (!Isdigit(*ptr)) {
@@ -1594,7 +1597,12 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
     case TW_PATH | TW_DIRECTORY:
     case TW_PATH | TW_COMMAND:
 	if ((dir_fd = opendir(short2str(exp_dir))) == NULL) {
-	    xprintf("%S: %s\n", exp_dir, strerror(errno));
+ 	    if (command == RECOGNIZE)
+ 		xprintf("\n");
+ 	    xprintf("%S: %s", exp_dir, strerror(errno));
+ 	    if (command != RECOGNIZE)
+ 		xprintf("\n");
+ 	    NeedsRedraw = 1;
 	    return -1;
 	}
 	if (exp_dir[Strlen(exp_dir) - 1] != '/')
@@ -1779,6 +1787,13 @@ tilde(new, old)
 	    new[0] = '\0';
 	    return NULL;
 	}
+#ifdef apollo
+	/* Special case: if the home directory expands to "/", we do
+	 * not want to create "//" by appending a slash from o.
+	 */
+	if (new[0] == '/' && new[1] == '\0' && *o == '/')
+	    ++o;
+#endif /* apollo */
 	(void) Strcat(new, o);
 	return new;
 

@@ -70,6 +70,7 @@ static Variable variables[] = {
     VAR('&', "or", ""),		/* Orphanned symbolic link (defaults to ln) */
     VAR('|', "pi", "33"),	/* Named pipe (FIFO) */
     VAR('=', "so", "01;35"),	/* Socket */
+    VAR('>', "do", "01;35"),	/* Door (solaris fast ipc mechanism)  */
     VAR('#', "bd", "01;33"),	/* Block device */
     VAR('%', "cd", "01;33"),	/* Character device */
     VAR('*', "ex", "01;32"),	/* Executable file */
@@ -86,7 +87,7 @@ static Variable variables[] = {
 };
 
 enum FileType {
-    VDir, VSym, VOrph, VPipe, VSock, VBlock, VChr, VExe,
+    VDir, VSym, VOrph, VPipe, VSock, VDoor, VBlock, VChr, VExe,
     VFile, VNormal, VMiss, VLeft, VRight, VEnd
 };
 

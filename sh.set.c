@@ -1108,6 +1108,8 @@ update_dspmbyte_vars()
 	    iskcode = 1;
 	else if (eq(dstr1, STRKEUC))
 	    iskcode = 2;
+	else if (eq(dstr1, STRKBIG5))
+	    iskcode = 3;
 	else if ((dstr1[0] - '0') >= 0 && (dstr1[0] - '0') <= 3) {
 	    iskcode = 0;
 	}
@@ -1131,6 +1133,11 @@ update_dspmbyte_vars()
 		/* 2 ... euc */
 		_cmap[lp] = _cmap_mbyte[lp];
 		_mbmap[lp] = _mbmap_euc[lp];
+		break;
+	    case 3:
+		/* 3 ... big5 */
+		_cmap[lp] = _cmap_mbyte[lp];
+		_mbmap[lp] = _mbmap_big5[lp];
 		break;
 	    default:
 		xprintf(CGETS(18, 3,
@@ -1209,6 +1216,7 @@ autoset_dspmbyte(pcp)
 	{ STRLANGEUCKRB, STRKEUC },
 	{ STRLANGSJIS, STRKSJIS },
 	{ STRLANGSJISB, STRKSJIS },
+	{ STRLANGBIG5, STRKBIG5 },
 	{ NULL, NULL }
     };
 
