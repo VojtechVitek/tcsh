@@ -766,15 +766,21 @@ again:
 		    while (*pathv && pathv[0][0] == '/')
 			pathv++;
 		    if (*pathv) {
+			/*
+			 * We complete directories only on '.' should that
+			 * be changed?
+			 */
 			if (pathv[0][0] == '\0' ||
 			    (pathv[0][0] == '.' && pathv[0][1] == '\0')) {
 			    *tilded_dir = '\0';
 			    dir_fd = opendir(".");
+			    dir_ok = 1;	
 			}
 			else {
 			    copyn(tilded_dir, *pathv, FILSIZ);
 			    catn(tilded_dir, STRslash, FILSIZ);
 			    dir_fd = opendir(short2str(*pathv));
+			    dir_ok = 0;
 			}
 			pathv++;
 		    }
@@ -786,7 +792,6 @@ again:
 		 * conditional on recognize_only_executables?
 		 */
 		exec_check = 1;
-		dir_ok = 0;
 	    }
 	    else
 		next_command++;
@@ -849,7 +854,7 @@ again:
 		length++;
 
 	    /* safety check */
-	    items[numitems] = (Char *) xmalloc((size_t) (length * sizeof(Char)));
+	    items[numitems] = (Char *) xmalloc((size_t)(length * sizeof(Char)));
 
 	    copyn(items[numitems], entry, MAXNAMLEN);
 
@@ -956,16 +961,13 @@ again:
 				catn(word, STRspace, max_word_length);
 			}
 		    }
-		    else if (looking_for_file) {
+		    else if (looking_for_file || looking_for_command) {
 			if (isadirectory(tilded_dir, extended_name)) {
 			    catn(word, STRslash, max_word_length);
 			}
 			else {
 			    catn(word, STRspace, max_word_length);
 			}
-		    }
-		    else {	/* prob. looking for a command */
-			catn(word, STRspace, max_word_length);
 		    }
 		}
 	    }
