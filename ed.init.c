@@ -170,7 +170,7 @@ ed_Setup(rst)
     if (havesetup) 	/* if we have never been called */
 	return(0);
 
-#if defined(POSIX) && defined(_PC_VDISABLE)
+#if defined(POSIX) && defined(_PC_VDISABLE) && !defined(BSD4_4)
     { 
 	long pcret;
 
@@ -186,7 +186,7 @@ ed_Setup(rst)
 		    ttychars[EX_IO][rst] = vdisable;
 	    }
     }
-#else /* ! POSIX || !_PC_VDISABLE */
+#else /* ! POSIX || !_PC_VDISABLE && !defined(BSD4_4) */
     vdisable = _POSIX_VDISABLE;
 #endif /* POSIX && _PC_VDISABLE */
 	
