@@ -39,6 +39,12 @@
 
 #include "config.h"
 
+#ifndef HAVE_QUAD
+#ifdef __GNUC__
+#define HAVE_QUAD	1
+#endif
+#endif
+
 #ifndef EXTERN
 # define EXTERN extern
 #else /* !EXTERN */
