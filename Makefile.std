@@ -105,7 +105,7 @@ CFLAGS=-O2 $(INCLUDES) -g
 # AU/X 2.0 needs a flag for POSIX (read the config file)
 #DFLAGS=-Zp
 # Tektronix 4300 running UTek 4.0 (BSD 4.2) needs:
-#DFLAGS = -DUTek
+#DFLAGS = -DUTek -DBSD
 # VMS_POSIX needs:
 #DFLAGS=-D_VMS_POSIX
 # DEC/osf-1 on the alpha
@@ -305,7 +305,7 @@ tcsh.exe: tcsh
 
 gethost:  gethost.c sh.err.h tc.const.h sh.h
 	rm -f gethost
-	${CC} -o gethost ${LDFLAGS} ${CFLAGS} gethost.c ${LIBES} ${EXTRALIBS}
+	${CC} -o gethost ${LDFLAGS} ${CFLAGS} ${DFLAGS} gethost.c ${LIBES} ${EXTRALIBS}
 
 tc.defs.c:	gethost host.defs
 	@rm -f $@

@@ -162,9 +162,14 @@ extern	void	 	  fix_strcoll_bug	__P((void));
 extern	void	 	  osinit	__P((void));
 
 #ifdef NEEDmemmove
-extern void 		 *xmemmove	__P((ptr_t, const ptr_t, size_t));
+extern ptr_t 		 xmemmove	__P((ptr_t, const ptr_t, size_t));
 # define memmove(a, b, c) xmemmove((a), (b), (c))
 #endif /* NEEDmemmove */
+
+#ifdef NEEDmemset
+extern ptr_t 		 xmemset	__P((ptr_t, int, size_t));
+# define memset(a, b, c) xmemset((a), (b), (c))
+#endif /* NEEDmemset */
 
 
 #ifdef NEEDgetwd

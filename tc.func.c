@@ -1825,6 +1825,7 @@ static sigret_t
 palarm(snum)
     int snum;
 {
+    USE(snum);
 #ifdef UNRELSIGS
     if (snum)
 	(void) sigset(snum, SIG_IGN);

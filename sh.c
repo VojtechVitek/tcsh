@@ -1536,12 +1536,14 @@ int snum;
 	(void) sigset(snum, SIG_IGN);
 #endif /* UNRELSIGS */
 
-    set(STRlogout, STRhangup, VAR_READWRITE);
+    if (loginsh) {
+	set(STRlogout, STRhangup, VAR_READWRITE);
 #ifdef _PATH_DOTLOGOUT
-    (void) srcfile(_PATH_DOTLOGOUT, 0, 0, NULL);
+	(void) srcfile(_PATH_DOTLOGOUT, 0, 0, NULL);
 #endif
-    if (adrof(STRhome))
-	(void) srccat(varval(STRhome), STRsldtlogout);
+	if (adrof(STRhome))
+	    (void) srccat(varval(STRhome), STRsldtlogout);
+    }
 
     record();
 

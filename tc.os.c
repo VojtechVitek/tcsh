@@ -669,19 +669,35 @@ pr_stat_sub(p2, p1, pr)
 #endif /* _SEQUENT_ */
 
 
+#ifdef NEEDmemset
+/* This is a replacement for a missing memset function */
+ptr_t xmemset(loc, value, len)
+    ptr_t *loc;
+    int len;
+    size_t value;
+{
+    char *ptr = (char *) loc;
+  
+    while (len--)
+	*ptr++ = value;
+    return loc;
+}
+#endif /* NEEDmemset */
+
+
 #ifdef NEEDmemmove
 /* memmove():
  * 	This is the ANSI form of bcopy() with the arguments backwards...
  *	Unlike memcpy(), it handles overlaps between source and 
  *	destination memory
  */
-void*
+ptr_t
 xmemmove(vdst, vsrc, len)
     ptr_t vdst;
     const ptr_t vsrc;
     size_t len;
 {
-    const char *src = (char *) vsrc;
+    const char *src = (const char *) vsrc;
     char *dst = (char *) vdst;
 
     if (src == dst)

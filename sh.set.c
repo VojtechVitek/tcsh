@@ -84,6 +84,9 @@ update_vars(vp)
     else if (eq(vp, STRwordchars)) {
 	word_chars = varval(vp);
     }
+    else if (eq(vp, STRloginsh)) {
+	loginsh = 1;
+    }
     else if (eq(vp, STRsymlinks)) {
 	register Char *pn = varval(vp);
 
@@ -613,6 +616,8 @@ unset(v, c)
     }
     if (adrof(STRhistlit) == 0)
 	HistLit = 0;
+    if (adrof(STRloginsh) == 0)
+	loginsh = 0;
     if (adrof(STRwordchars) == 0)
 	word_chars = STR_WORD_CHARS;
     if (adrof(STRedit) == 0)

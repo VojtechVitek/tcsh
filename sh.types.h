@@ -432,6 +432,14 @@ typedef char * caddr_t;
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
+# ifndef _UID_T
+#  define _UID_T
+   typedef int uid_t;
+# endif /* _UID_T */
+# ifndef _GID_T
+#  define _GID_T
+   typedef int gid_t;
+# endif /* _GID_T */
 #endif /* UTek */
 
 /* 

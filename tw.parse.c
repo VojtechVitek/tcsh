@@ -315,11 +315,12 @@ tenematch(inputline, num_read, command)
 	 * We don't quote the last space if we had a unique match and 
 	 * addsuffix was set. Otherwise the last space was part of a word.
 	 */
+#ifdef notdef
 	if (*wp && InsertStr(quote_meta(wp, qu, search_ret == 1 &&
 			     is_set(STRaddsuffix) != NULL)) < 0)
 	    /* put it in the input buffer */
 	    return -1;		/* error inserting */
-#ifdef notdef
+#else
 	/* 
 	 * We really don't want to delete what we have currently, breaks
 	 * completion
@@ -608,7 +609,9 @@ is_prefixmatch(check, template)
                     } else if (MCH1 == '-') {
                         MCH2 = '_';
                     }
-                    for (;*template && (*template & TRIM) != MCH1 && (*template & TRIM) != MCH2; template++);
+                    for (;*template && (*template & TRIM) != MCH1 &&
+				       (*template & TRIM) != MCH2; template++)
+			continue;
                     if (!*template) {
 	                return (FALSE);
                     }

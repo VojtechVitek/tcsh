@@ -412,7 +412,15 @@ texec(sf, st)
     }
     if (errno == 0)
 #endif /* apollo */
-    (void) execv(f, t);
+    {
+#ifdef ISC_POSIX_EXEC_BUG
+	__setostype(0);		/* "0" is "__OS_SYSV" in <sys/user.h> */
+#endif /* ISC_POSIX_EXEC_BUG */
+	(void) execv(f, t);
+#ifdef ISC_POSIX_EXEC_BUG
+	__setostype(1);		/* "1" is "__OS_POSIX" in <sys/user.h> */
+#endif /* ISC_POSIX_EXEC_BUG */
+    }
 #ifdef VFORK
     Vt = 0;
 #endif /* VFORK */
@@ -487,7 +495,13 @@ texec(sf, st)
 #ifdef VFORK
 	Vt = t;
 #endif /* VFORK */
+#ifdef ISC_POSIX_EXEC_BUG
+	__setostype(0);		/* "0" is "__OS_SYSV" in <sys/user.h> */
+#endif /* ISC_POSIX_EXEC_BUG */
 	(void) execv(f, t);
+#ifdef ISC_POSIX_EXEC_BUG
+	__setostype(1);		/* "1" is "__OS_POSIX" in <sys/user.h> */
+#endif /* ISC_POSIX_EXEC_BUG */
 #ifdef VFORK
 	Vt = 0;
 #endif /* VFORK */

@@ -664,6 +664,10 @@ extern void bcopy	__P((const void *, void *, size_t));
 # define NEEDmemmove
 #endif /* !hpux && !COHERENT && (SYSVREL < 4 || _SEQUENT_) && !__386BSD__ && !memmove */
 
+#if defined(UTek)
+# define NEEDmemset
+#endif /* Utek */
+
 #if SYSVREL == 4
 # ifdef REMOTEHOST
 extern int getpeername();

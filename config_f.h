@@ -133,7 +133,7 @@
  * RCSID	This defines if we want rcs strings in the binary or not
  *
  */
-#if !defined(lint) && !defined(SABER)
+#if !defined(lint) && !defined(SABER) && !defined(__CLCC__)
 # ifndef __GNUC__
 #  define RCSID(id) static char *rcsid = (id);
 # else
