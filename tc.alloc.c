@@ -455,7 +455,8 @@ findbucket(freep, srchlen)
     int     srchlen;
 {
     register union overhead *p;
-    register int i, j;
+    register size_t i;
+    register int j;
 
     for (i = 0; i < NBUCKETS; i++) {
 	j = 0;
@@ -598,7 +599,7 @@ showall(v, c)
     struct command *c;
 {
 #ifndef SYSMALLOC
-    register int i, j;
+    register size_t i, j;
     register union overhead *p;
     int     totfree = 0, totused = 0;
 

@@ -2210,9 +2210,10 @@ tgetenv(str)
     Char   *str;
 {
     Char  **var;
-    int     len, res;
+    size_t  len;
+    int     res;
 
-    len = (int) Strlen(str);
+    len = Strlen(str);
     /* Search the STR_environ for the entry matching str. */
     for (var = STR_environ; var != NULL && *var != NULL; var++)
 	if (Strlen(*var) >= len && (*var)[len] == '=') {

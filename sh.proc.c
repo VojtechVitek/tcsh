@@ -173,7 +173,6 @@ int snum;
 # else /* !_SEQUENT_ */
     struct tms proctimes;
 
-    USE(snum);
     if (!timesdone) {
 	timesdone++;
 	(void) times(&shtimes);
@@ -181,6 +180,7 @@ int snum;
 # endif	/* !_SEQUENT_ */
 #endif /* !BSDTIMES */
 
+    USE(snum);
 #ifdef JOBDEBUG
     xprintf("pchild()\n");
 #endif	/* JOBDEBUG */

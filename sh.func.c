@@ -255,6 +255,7 @@ dofiletest(v, c)
 {
     Char **fileptr, *ftest, *res;
 
+    USE(c);
     if (*(ftest = *++v) != '-')
 	stderror(ERR_NAME | ERR_FILEINQ);
     ++v;

@@ -1731,6 +1731,7 @@ goodbye(v, c)
     Char **v;
     struct command *c;
 {
+    USE(v);
     USE(c);
     record();
 
@@ -1869,6 +1870,7 @@ sigret_t
 pintr(snum)
 int snum;
 {
+    USE(snum);
 #ifdef UNRELSIGS
     if (snum)
 	(void) sigset(snum, pintr);

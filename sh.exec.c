@@ -93,9 +93,9 @@ static int hashdebug = 0;
 # define hash(a, b)	(((a) * HSHMUL + (b)) % (hashlength))
 # define widthof(t)	(sizeof(t) * BITS_PER_BYTE)
 # define tbit(f, i, t)	(((t *) xhash)[(f)] &  \
-			 (1L << (i & (widthof(t) - 1))))
+			 (1UL << (i & (widthof(t) - 1))))
 # define tbis(f, i, t)	(((t *) xhash)[(f)] |= \
-			 (1L << (i & (widthof(t) - 1))))
+			 (1UL << (i & (widthof(t) - 1))))
 # define cbit(f, i)	tbit(f, i, unsigned char)
 # define cbis(f, i)	tbis(f, i, unsigned char)
 # define sbit(f, i)	tbit(f, i, unsigned short)

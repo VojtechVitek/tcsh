@@ -165,6 +165,7 @@ int     f;
     else
 	return (-1);
 # else
+    USE(f);
     return (0);
 # endif	/* TIOCGETD && NTTYDISC */
 #endif	/* !HAVE_DISC */
@@ -192,5 +193,6 @@ int f;
 # endif /* TIOCSETD && NTTYDISC */
 #endif /* !HAVE_DISC */
     }
+    USE(f);
     return (0);
 } /* end resetdisc */

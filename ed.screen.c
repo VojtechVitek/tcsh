@@ -55,7 +55,7 @@ RCSID("$Id$")
 
 static struct {
     char   *b_name;
-    int     b_rate;
+    speed_t b_rate;
 }       baud_rate[] = {
 
 #ifdef B0
@@ -784,17 +784,17 @@ static struct {
     int	    type;
 } arrow[] = {
 #define A_K_DN	0
-    { STRdown,	T_kd },
+    { STRdown,	T_kd, { 0 }, 0 },
 #define A_K_UP	1
-    { STRup,	T_ku },
+    { STRup,	T_ku, { 0 }, 0 },
 #define A_K_LT	2
-    { STRleft,	T_kl },
+    { STRleft,	T_kl, { 0 }, 0 },
 #define A_K_RT	3
-    { STRright, T_kr },
+    { STRright, T_kr, { 0 }, 0 },
 #define A_K_HO  4
-    { STRhome,  T_kh },
+    { STRhome,  T_kh, { 0 }, 0 },
 #define A_K_EN  5
-    { STRend,   T_at7}
+    { STRend,   T_at7, { 0 }, 0}
 };
 #define A_K_NKEYS 6
 

@@ -483,7 +483,6 @@ extern pid_t getpgrp __P((int));
 extern pid_t getpgrp __P((void));
 #  endif	/* BSD || SUNOS4 || IRISD || DGUX */
 # endif /* POSIX */
-extern pid_t setpgrp __P((pid_t, pid_t));
 #endif /* !WINNT_NATIVE */
 
 typedef sigret_t (*signalfun_t) __P((int));
