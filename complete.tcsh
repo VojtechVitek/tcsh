@@ -406,6 +406,18 @@ if ($?complete) then
 
     endif
 
+    #from Dan Nicolaescu <dann@ics.uci.edu>
+    if ( $?MODULESHOME ) then
+
+	alias Compl_module ' set q = "$MODULEPATH:as/:/ /" ; find $q -name .version -o -name .modulea\* -prune -o -print  | sed `echo "-e s@"$MODULEPATH:as%:%/\*@@g -e s@%"/\*@@g"`'
+
+	complete module 'p%1%(add load unload switch display avail use unuse update purge list clear help initadd initrm initswitch initlist initclear)%' \
+    'n%unload%`echo "$LOADEDMODULES:as/:/ /"`%' \
+    'n%{lo*,sw*,di*,he*,inita*,initr*,inits*}%`eval Compl_module`%' \
+    'N%{sw*,initsw*}%`eval Compl_module`%' 'C%-%(-append)%' 'n%{use,unu*,av*}%d%' 'n%-append%d%' \
+    'C%[^-]*%`eval Compl_module`%'
+    endif
+
     # these from Tom Warzeka <waz@quahog.npt.nuwc.navy.mil>
     # you may need to set the following variables for your host
     set _elispdir = /usr/local/share/emacs/20.2/lisp # GNU Emacs lisp directory
