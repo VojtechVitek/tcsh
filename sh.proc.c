@@ -1866,8 +1866,11 @@ pgetty(wanttty, pgrp)
      */
     if (wanttty >= 0)
 	if (setpgid(0, pgrp) == -1) {
-	    xprintf("tcsh: setpgid error.\n");
+#  if !defined(ISC) && !defined(SCO)
+	    /* XXX: Wrong but why? */
+	    xprintf("tcsh: setpgid error (%s).\n", strerror(errno));
 	    xexit(0);
+#  endif /* !ISC && !SCO */
 	}
 # endif /* POSIXJOBS */
 
@@ -1877,8 +1880,11 @@ pgetty(wanttty, pgrp)
 # ifndef POSIXJOBS
     if (wanttty >= 0)
 	if (setpgid(0, pgrp) == -1) {
-	    xprintf("tcsh: setpgid error.\n");
+#  if !defined(ISC) && !defined(SCO)
+	    /* XXX: Wrong but why? */
+	    xprintf("tcsh: setpgid error (%s).\n", strerror(errno));
 	    xexit(0);
+#  endif /* !ISC && !SCO */
 	}
 # else /* POSIXJOBS */
     if (wanttty > 0)
