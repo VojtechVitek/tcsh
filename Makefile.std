@@ -88,6 +88,7 @@ LIBES= -ltermcap		## BSD style things, hpux
 #LIBES= -ltermcap -lcs		## Mach
 #LIBES= -lcurses		## Sys V3 w/o networking (and Sys V4)
 #LIBES= -lcurses -lc /usr/ucblib/libucb.a ## Sys V4 with BSDTIMES
+#LIBES= -lcurses		## Sys V4 w/o BSDTIMES
 #LIBES= -lcurses -lnet		## Sys V3 with networking
 #LIBES= -lcurses -ldir		## Sys V2 w/o networking [needs directory lib]
 #LIBES= -lcurses -ldir -lnet	## Sys V2 with networking [needs directory lib]
