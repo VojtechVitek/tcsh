@@ -2107,7 +2107,12 @@ getremotehost()
 	    if ((sptr = strchr(name, ':')) != NULL)
 		*sptr = '\0';
 	    /* Leave IPv4 address as is */
-	    if (inet_aton(name, &addr))
+	    /*
+	     * we use inet_addr here, not inet_aton because many systems
+	     * have not caught up yet.
+	     */
+	    addr.s_addr = inet_addr(name);
+	    if (addr.s_addr != (unsigned long)~0)
 		host = name;
 	    else {
 		if (sptr != name) {
