@@ -96,6 +96,14 @@ int do_logout;
 bool    use_fork = 0;		/* use fork() instead of vfork()? */
 #endif /* convex */
 
+/*
+ * Magic pointer values. Used to specify other invalid conditions aside
+ * from null.
+ */
+static Char	INVCHAR;
+Char    *INVPTR = &INVCHAR;
+Char    **INVPPTR = &INVPTR;
+
 static int     nofile = 0;
 static bool    reenter = 0;
 static bool    nverbose = 0;
@@ -111,7 +119,6 @@ bool    tellwhat = 0;
 time_t  t_period;
 Char  *ffile = NULL;
 static time_t  chktim;		/* Time mail last checked */
-
 
 extern char **environ;
 

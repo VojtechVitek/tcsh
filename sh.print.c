@@ -52,7 +52,7 @@ static	void	p2dig	__P((int));
  * C Shell
  */
 
-#ifdef BSDLIMIT
+#if defined(BSDLIMIT) || defined(RLIMIT_CPU)
 void
 psecs(l)
     long    l;
@@ -195,6 +195,7 @@ void
 flush()
 {
     register int unit;
+    static int interrupted = 0;
 
     /* int lmode; */
 
@@ -202,6 +203,12 @@ flush()
 	return;
     if (GettingInput && !Tty_raw_mode && linp < &linbuf[sizeof linbuf - 10])
 	return;
+    if (interrupted) {
+	interrupted = 0;
+	linp = linbuf;		/* avoid resursion as stderror calls flush */
+	stderror(ERR_SILENT);
+    }
+    interrupted = 1;
     if (haderr)
 	unit = didfds ? 2 : SHDIAG;
     else
@@ -218,4 +225,5 @@ flush()
 #endif
     (void) write(unit, linbuf, (size_t) (linp - linbuf));
     linp = linbuf;
+    interrupted = 0;
 }

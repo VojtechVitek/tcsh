@@ -320,14 +320,16 @@ static char *errorlist[] =
 # endif /* convex */
 #endif /* apollo */
 #define ERR_COMPCOM	125
-    "Illegal completion: \"%s\"",
-#define ERR_COMPILL	126
-    "Illegal %s: '%c'",
-#define ERR_COMPINC	127
-    "Incomplete %s: \"%s\"",
-#define ERR_MFLAG	128
+    "\nInvalid completion: \"%s\"",
+#define ERR_COMPINV	126
+    "\nInvalid %s: '%c'",
+#define ERR_COMPMIS	127
+    "\nMissing separator '%c' after %s \"%s\"",
+#define ERR_COMPINC	128
+    "\nIncomplete %s: \"%s\"",
+#define ERR_MFLAG	129
     "No operand for -m flag",
-#define ERR_INVALID	129
+#define ERR_INVALID	130
     "Invalid Error"
 };
 

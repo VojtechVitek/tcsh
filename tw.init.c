@@ -928,7 +928,8 @@ tw_sig_next(dir, flags)
     int *flags;
 {
     char *ptr;
-    for (;tw_index < NSIG; tw_index++) {
+    extern int nsig;
+    for (;tw_index < nsig; tw_index++) {
 
 	if (mesg[tw_index].iname == NULL)
 	    continue;

@@ -135,22 +135,22 @@ spdist(s, t)
 }
 
 int
-spdir(extended_name, tilded_dir, entry, name)
+spdir(extended_name, tilded_dir, item, name)
     Char   *extended_name;
     Char   *tilded_dir;
-    Char   *entry;
+    Char   *item;
     Char   *name;
 {
     Char    path[MAXPATHLEN + 1];
     Char   *s;
     Char    oldch;
 
-    if (ISDOT(entry) || ISDOTDOT(entry))
+    if (ISDOT(item) || ISDOTDOT(item))
 	return 0;
 
-    for (s = name; *s != 0 && (*s & TRIM) == (*entry & TRIM); s++, entry++)
+    for (s = name; *s != 0 && (*s & TRIM) == (*item & TRIM); s++, item++)
 	continue;
-    if (*s == 0 || s[1] == 0 || *entry != 0)
+    if (*s == 0 || s[1] == 0 || *item != 0)
 	return 0;
 
     (void) Strcpy(path, tilded_dir);

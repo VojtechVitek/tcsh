@@ -1497,7 +1497,7 @@ top:
 	evalp = 0;
     }
     if (evalvec) {
-	if (evalvec == (Char **) 1) {
+	if (evalvec == INVPTR) {
 	    doneinp = 1;
 	    reset();
 	}
@@ -1505,18 +1505,18 @@ top:
 	    evalvec++;
 	    goto top;
 	}
-	evalvec = (Char **) 1;
+	evalvec = INVPTR;
 	return ('\n');
     }
     do {
-	if (arginp == (Char *) 1 || onelflg == 1) {
+	if (arginp == INVPTR || onelflg == 1) {
 	    if (wanteof)
 		return (-1);
 	    exitstat();
 	}
 	if (arginp) {
 	    if ((c = *arginp++) == 0) {
-		arginp = (Char *) 1;
+		arginp = INVPTR;
 		return ('\n');
 	    }
 	    return (c);
@@ -1567,7 +1567,14 @@ reread:
 		    if (ctpgrp)
 # endif /* _SEQUENT */
 		    (void) killpg((pid_t) ctpgrp, SIGHUP);
+# ifdef notdef
+		    /*
+		     * With the walking process group fix, this message
+		     * is now obsolete. As the foreground process group
+		     * changes, the shell needs to adjust. Well too bad.
+		     */
 		    xprintf("Reset tty pgrp from %d to %d\n", ctpgrp, tpgrp);
+# endif /* notdef */
 		    goto reread;
 		}
 #endif /* BSDJOBS */

@@ -1454,11 +1454,12 @@ dokill(v, c)
     register int signum, len = 0;
     register char *name;
     extern int T_Cols;
+    extern int nsig;
 
     v++;
     if (v[0] && v[0][0] == '-') {
 	if (v[0][1] == 'l') {
-	    for (signum = 1; signum <= NSIG; signum++) {
+	    for (signum = 1; signum <= nsig; signum++) {
 		if ((name = mesg[signum].iname) != NULL) {
 		    len += strlen(name) + 1;
 		    if (len >= T_Cols - 1) {
@@ -1477,7 +1478,7 @@ dokill(v, c)
 		stderror(ERR_NAME | ERR_BADSIG);
 	}
 	else {
-	    for (signum = 1; signum <= NSIG; signum++)
+	    for (signum = 1; signum <= nsig; signum++)
 		if (mesg[signum].iname &&
 		    eq(&v[0][1], str2short(mesg[signum].iname)))
 		    goto gotsig;

@@ -1002,6 +1002,9 @@ EXTERN Char  **STR_environ;
 
 extern int     dont_free;	/* Tell free that we are in danger if we free */
 
+extern Char    *INVPTR;
+extern Char    **INVPPTR;
+
 #include "tc.h"
 #include "sh.decls.h"
 

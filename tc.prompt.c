@@ -151,6 +151,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	    case 'T':		/* 24 hour format	 */
 	    case '@':
 	    case 't':		/* 12 hour am/pm format */
+	    case 'p':		/* With seconds	*/
+	    case 'P':
 		{
 		    char    ampm = 'a';
 		    int     hr = t->tm_hour;
@@ -159,7 +161,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 
 		    /* addition by Hans J. Albertsson */
 		    /* and another adapted from Justin Bur */
-		    if (adrof(STRampm) || *cp != 'T') {
+		    if (adrof(STRampm) || (*cp != 'T' && *cp != 'P')) {
 			if (hr >= 12) {
 			    if (hr > 12)
 				hr -= 12;
@@ -188,7 +190,19 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			    *p++ = attributes | '0';
 			    *p++ = attributes | buff[0];
 			}
-			if (adrof(STRampm) || *cp != 'T') {
+			if (*cp == 'p' || *cp == 'P') {
+			    *p++ = attributes | ':';
+			    Itoa(t->tm_sec, buff);
+			    if (buff[1]) {
+				*p++ = attributes | buff[0];
+				*p++ = attributes | buff[1];
+			    }
+			    else {
+				*p++ = attributes | '0';
+				*p++ = attributes | buff[0];
+			    }
+			}
+			if (adrof(STRampm) || (*cp != 'T' && *cp != 'P')) {
 			    *p++ = attributes | ampm;
 			    *p++ = attributes | 'm';
 			}

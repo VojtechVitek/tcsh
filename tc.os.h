@@ -78,7 +78,10 @@
 
 #ifdef OREO
 # include <sys/time.h>
-# include <sys/resource.h>
+# ifdef notdef
+  /* Don't include it, because it defines things we don't really have */
+#  include <sys/resource.h>	
+# endif
 # ifdef POSIX
 #  include <sys/tty.h>
 #  include <termios.h>

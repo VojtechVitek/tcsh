@@ -1307,6 +1307,8 @@ The available sequences are:
 %t or %@	Current time of day, in 12-hour, am/pm format.
 %T	Current time of day, in 24-hour format. 
 	(But see the \fIampm\fP shell variable below.)
+%p	Current time in 12-hour format, am/pm format with seconds.
+%P	Current time in 24-hour format, with seconds.
 \ec	`c' is parsed the same way as in bindkey.
 ^c	`c' is parsed the same way as in bindkey.
 %%	A single %.

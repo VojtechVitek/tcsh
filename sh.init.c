@@ -505,7 +505,7 @@ struct	mesg mesg[] = {
 /* 32 */	{ 0,		"Maximum number of signals"},
 # endif /* SCO && POSIX */
 
-# ifdef IRIS4D
+# if defined(IRIS4D) && (SYSVREL < 4)
 #  define _sigextra_
 /* 20 */	{ "STOP",	MSG_STOP		},
 /* 21 */	{ "TSTP",	MSG_TSTP		},
@@ -522,7 +522,7 @@ struct	mesg mesg[] = {
 /* 32 */	{ 0,		"Signal 32"		},
 # endif /* IRIS4D */
 
-# ifdef IRIS3D
+# if defined(IRIS3D) && (SYSVREL < 4)
 #  define _sigextra_
 /* 20 */	{ 0,		"Signal 20"		},
 /* 21 */	{ 0,		"Signal 21"		},
@@ -884,3 +884,5 @@ struct	mesg mesg[] = {
 /* 33 */	{ 0,		"Signal 33"		}
 #endif /* POSIX */
 };
+
+int	nsig = (sizeof(mesg) / sizeof(mesg[0])) - 1;
