@@ -134,8 +134,6 @@ static	void	print_who	__P((struct who *));
 void
 initwatch()
 {
-    register unsigned i;
-
     whohead.w_next = &whotail;
     whotail.w_prev = &whohead;
 #ifdef WHODEBUG
