@@ -192,7 +192,7 @@ update_vars(vp)
 #endif
 #ifdef NLS_CATALOGS
     else if (eq(vp, STRcatalog)) {
-	(void) catclose(catd);
+	nlsclose();
 	nlsinit();
     }
 #if defined(FILEC) && defined(TIOCSTI)
@@ -779,7 +779,7 @@ unset(v, c)
     update_dspmbyte_vars();
 #endif
 #ifdef NLS_CATALOGS
-    (void) catclose(catd);
+    nlsclose();
     nlsinit();
 #endif /* NLS_CATALOGS */
 }

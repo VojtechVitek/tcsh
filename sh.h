@@ -35,6 +35,10 @@
 
 #include "config.h"
 
+#ifdef HAVE_ICONV
+#include <iconv.h>
+#endif
+
 #ifndef HAVE_QUAD
 #ifdef __GNUC__
 #define HAVE_QUAD	1
@@ -1198,7 +1202,6 @@ extern char    *progname;
 extern int	tcsh;
 
 #include "tc.h"
-#include "sh.decls.h"
 
 /*
  * To print system call errors...
@@ -1245,7 +1248,11 @@ extern int errno, sys_nerr;
 #   define MCLoadBySet 0
 #  endif
 EXTERN nl_catd catd;
-#  define CGETS(b, c, d)	catgets(catd, b, c, d)
+#  ifdef HAVE_ICONV
+#   define CGETS(b, c, d)	iconv_catgets(catd, b, c, d)
+#  else
+#   define CGETS(b, c, d)	catgets(catd, b, c, d)
+#  endif
 #  define CSAVS(b, c, d)	strsave(CGETS(b, c, d))
 # else
 #  define CGETS(b, c, d)	d
@@ -1260,6 +1267,7 @@ EXTERN nl_catd catd;
 extern bool    filec;
 #endif /* FILEC */
 
+#include "sh.decls.h"
 /*
  * Since on some machines characters are unsigned, and the signed
  * keyword is not universally implemented, we treat all characters

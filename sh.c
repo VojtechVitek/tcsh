@@ -2386,7 +2386,7 @@ initdesc()
 {
 #ifdef NLS_BUGS
 #ifdef NLS_CATALOGS
-    (void)catclose(catd);
+    nlsclose(catd);
 #endif /* NLS_CATALOGS */
 #endif /* NLS_BUGS */
 
@@ -2461,7 +2461,7 @@ xexit(i)
      * because messages will stop working on the parent too.
      */
     if (child == 0)
-	(void) catclose(catd);
+	nlsclose();
 #endif /* NLS_CATALOGS */
 #ifdef WINNT_NATIVE
     nt_cleanup();

@@ -260,7 +260,7 @@ closem()
 
 #ifdef NLS_BUGS
 #ifdef NLS_CATALOGS
-    (void)catclose(catd);
+    nlsclose(catd);
 #endif /* NLS_CATALOGS */
 #endif /* NLS_BUGS */
 #ifdef YPBUGS
