@@ -187,6 +187,7 @@ typedef int sigret_t;
  * 0, 1, and 2 so that it is easy to set up these standards for invoked
  * commands.
  */
+#define	FSAFE	5		/* We keep the first 5 descriptors untouched */
 #define	FSHTTY	15		/* /dev/tty when manip pgrps */
 #define	FSHIN	16		/* Preferred desc for shell input */
 #define	FSHOUT	17		/* ... shell output */

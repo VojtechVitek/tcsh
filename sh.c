@@ -211,10 +211,9 @@ main(argc, argv)
     nlsinit();
 
 #ifdef MALLOC_TRACE
-     mal_setstatsfile(fdopen(dup2(open("/tmp/tcsh.trace", 
-				       O_WRONLY|O_CREAT|O_LARGEFILE, 0666), 25),
-				       "w"));
-     mal_trace(1);
+    mal_setstatsfile(fdopen(dmove(open("/tmp/tcsh.trace", 
+	O_WRONLY|O_CREAT|O_LARGEFILE, 0666), 25), "w"));
+    mal_trace(1);
 #endif /* MALLOC_TRACE */
 
 #if !(defined(BSDTIMES) || defined(_SEQUENT_)) && defined(POSIX)
