@@ -197,8 +197,8 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			/* prompt stuff */
     static Char *olddir = NULL, *olduser = NULL;
     extern int tlength;	/* cache cleared */
-    register int updirs;
-    int pdirs;
+    int updirs, pdirs;
+    size_t sz;
 
     for (; *cp; cp++) {
 	if (p >= ep)
@@ -533,7 +533,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 			if (p >= ep) break;
 		break;
 	    case '$':
-		pdirs = ep - p;
+		sz = ep - p;
 		(void) expdollar(&p, &cp, &pdirs, attributes);
 		break;
 	    case '%':

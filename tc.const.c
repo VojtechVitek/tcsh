@@ -139,6 +139,7 @@ Char STRprecmd[]	= { 'p', 'r', 'e', 'c', 'm', 'd', '\0' };
 Char STRcwdcmd[]	= { 'c', 'w', 'd', 'c', 'm', 'd', '\0' };
 Char STRperiodic[]	= { 'p', 'e', 'r', 'i', 'o', 'd', 'i', 'c', '\0' };
 Char STRtperiod[]	= { 't', 'p', 'e', 'r', 'i', 'o', 'd', '\0' };
+Char STRmf[]		= { '-', 'f', '\0' };
 Char STRml[]		= { '-', 'l', '\0' };
 Char STRslash[]		= { '/', '\0' };
 Char STRdotsl[]		= { '.', '/', '\0' };

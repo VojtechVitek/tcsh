@@ -214,12 +214,7 @@ tw_cmd_add(name)
 {
     int len;
 
-    if (name[0] == '#' || name[0] == '.')	/* emacs temp's, .files	*/
-	return;
     len = (int) Strlen(name) + 2;
-    if (name[len - 3] == '~')			/* No emacs backups */
-	return;
-    
     (void) Strcpy(tw_str_add(&tw_cmd, len), name);
 } /* end tw_cmd_add */
 
@@ -247,6 +242,7 @@ tw_cmd_cmd()
     register Char **pv;
     struct varent *v = adrof(STRpath);
     struct varent *recexec = adrof(STRrecognize_only_executables);
+    int len;
 
 
     if (v == NULL) /* if no path */
@@ -268,7 +264,10 @@ tw_cmd_cmd()
 	    name = str2short(dp->d_name);
 	    if (dp->d_ino == 0 || (recexec && !executable(dir, name, 0)))
 		continue;
-	    tw_cmd_add(name);
+            len = (int) Strlen(name) + 2;
+            if (name[0] == '#' || name[0] == '.' || name[len - 3] == '~') 
+                continue;    /* Emacs temp's and backups, .files */
+            tw_cmd_add(name);
 	}
 	(void) closedir(dirp);
 	if (recexec)

@@ -144,6 +144,7 @@ struct ucred {
 #  define CSUSP 032
 # endif	/* CSUSP */
 
+# include <signal.h>
 # if !defined(hp9000s500) && !(defined(SIGRTMAX) || defined(SIGRTMIN))
 /*
  * hpux < 7 || hpux >= 10

@@ -866,6 +866,8 @@ setDolp(cp)
 	    dolmod[i] = 0;
 
 	    do {
+		strip(lhsub);
+		strip(cp);
 		dp = Strstr(cp, lhsub);
 		if (dp) {
 		    np = (Char *) xmalloc((size_t)
@@ -879,6 +881,7 @@ setDolp(cp)
 		    dp = cp = np;
 		    didmod = 1;
 		} else {
+		    xprintf("No match on %Q\n", cp);
 		    /* should this do a seterror? */
 		    break;
 		}

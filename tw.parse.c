@@ -1703,6 +1703,7 @@ dollar(new, old)
 	    if (expdollar(&p, &old, &space, QUOTE) == NULL)
 		return NULL;
 	}
+    *new = '\0';
     return (new);
 } /* end dollar */
 
