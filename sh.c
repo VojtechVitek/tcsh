@@ -1764,7 +1764,6 @@ process(catch)
 	if ((lex(&paraml) && !seterr && intty && !tellwhat && !Expand && 
 	     !whyles) || adrof(STRverbose)) {
 	    haderr = 1;
-	    xprintf("here\n");
 	    prlex(&paraml);
 	    haderr = 0;
 	}
