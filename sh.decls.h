@@ -108,7 +108,7 @@ extern	int		  exp0		__P((Char ***, bool));
 /*
  * sh.file.c
  */
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 extern	int		  tenex		__P((Char *, int));
 #endif
 
@@ -175,7 +175,7 @@ extern	Char		**globall	__P((Char **));
 extern	void		  rscan		__P((Char **, void (*)(int)));
 extern	void		  tglob		__P((Char **));
 extern	void		  trim		__P((Char **));
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 extern	int		  sortscmp	__P((Char **, Char **));
 #endif
 extern	void		  nlsinit	__P((void));

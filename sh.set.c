@@ -182,7 +182,7 @@ update_vars(vp)
 	(void) catclose(catd);
 	nlsinit();
     }
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
     else if (eq(vp, STRfilec))
 	filec = 1;
 #endif
@@ -722,10 +722,10 @@ unset(v, c)
     did_edit = adrof(STRedit) != NULL;
     unset1(v, &shvhed);
 
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
     if (adrof(STRfilec) == 0)
 	filec = 0;
-#endif /* FILEC */
+#endif /* FILEC && TIOCSTI */
 
     if (adrof(STRhistchars) == 0) {
 	HIST = '!';

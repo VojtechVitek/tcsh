@@ -34,7 +34,7 @@
 
 RCSID("$Id$")
 
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 
 /*
  * Tenex style file name recognition, .. and more.
@@ -858,4 +858,4 @@ ignored(item)
 	    return (TRUE);
     return (FALSE);
 }
-#endif	/* FILEC */
+#endif	/* FILEC && TIOCSTI */

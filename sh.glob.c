@@ -1125,7 +1125,7 @@ Gcat(s1, s2)
 	continue;
 }
 
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 int
 sortscmp(a, b)
     register Char **a, **b;

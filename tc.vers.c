@@ -135,7 +135,7 @@ fix_version()
 #else
 # define CCATSTR ""
 #endif
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 # define FILECSTR ",filec"
 #else
 # define FILECSTR ""

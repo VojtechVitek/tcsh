@@ -1601,7 +1601,6 @@ reread:
 	    if (isatty(SHIN))
 #endif /* !WINNT_NATIVE */
 	    {
-		/* was 'short' for FILEC */
 #ifdef BSDJOBS
 		int     ctpgrp;
 #endif /* BSDJOBS */
@@ -1737,16 +1736,16 @@ bgetc()
 
     while (fseekp >= feobp) {
 	if ((editing
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 	    || filec
-#endif /* FILEC */
+#endif /* FILEC && TIOCSTI */
 	    ) && intty) {		/* then use twenex routine */
 	    fseekp = feobp;		/* where else? */
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 	    if (!editing)
 		c = numleft = tenex(InputBuf, BUFSIZE);
 	    else
-#endif /* FILEC */
+#endif /* FILEC && TIOCSTI */
 	    c = numleft = Inputl();	/* PWP: get a line */
 	    while (numleft > 0) {
 		off = (int) feobp % BUFSIZE;

@@ -163,6 +163,9 @@ struct ucred {
 #   define setpgrp(a, b) setpgrp2(a, b)
 #  endif /* BSDJOBS */
 # endif	/* POSIX */
+# ifndef TIOCSTI
+#  include <sys/strtio.h>
+# endif
 #endif /* hpux */
 
 /*

@@ -604,9 +604,9 @@ EXTERN int     onelflg IZERO;	/* 2 -> need line for -t, 1 -> exit on read */
 extern Char   *ffile;		/* Name of shell file for $0 */
 extern bool    dolzero;		/* if $?0 should return true... */
 
-#ifdef FILEC
+#if defined(FILEC) && defined(TIOCSTI)
 extern bool    filec;
-#endif /* FILEC */
+#endif /* FILEC && TIOCSTI */
 
 extern char *seterr;		/* Error message from scanner/parser */
 #if !defined(BSD4_4) && !defined(__linux__)
