@@ -1281,7 +1281,7 @@ GetTermCaps()
 	ptr = "dumb";
 #endif /* apollo */
 
-    if (!ptr || !ptr[0] || !strcmp(ptr, "wm"))
+    if (!ptr || !ptr[0] || !strcmp(ptr, "wm") || !strcmp(ptr,"dmx"))
 	ptr = "dumb";
 
     setzero(bp, TC_BUFSIZE);

@@ -106,6 +106,7 @@ extern	int		  find_cmd	__P((Char *, int));
 /*
  * sh.exp.c
  */
+extern  Char     *filetest       __P((Char *, Char ***, bool));
 extern	int	 	  expr		__P((Char ***));
 extern	int		  exp0		__P((Char ***, bool));
 
@@ -143,6 +144,7 @@ extern	void		  donohup	__P((Char **, struct command *));
 extern	void		  doonintr	__P((Char **, struct command *));
 extern	void		  doprintenv	__P((Char **, struct command *));
 extern	void		  dorepeat	__P((Char **, struct command *));
+extern	void		  dostat	__P((Char **, struct command *));
 extern	void		  dosetenv	__P((Char **, struct command *));
 extern	void		  dosuspend	__P((Char **, struct command *));
 extern	void		  doswbrk	__P((Char **, struct command *));

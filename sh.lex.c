@@ -1452,7 +1452,9 @@ readc(wanteof)
     bool    wanteof;
 {
     int c;
-    static  sincereal;
+    static  sincereal;	/* Number of real EOFs we've seen */
+    Char *ptr;		/* For STRignoreeof */
+    int numeof = 0;	/* Value of STRignoreeof */
 
 #ifdef DEBUG_INP
     xprintf("readc\n");
@@ -1461,6 +1463,19 @@ readc(wanteof)
 	peekread = 0;
 	return (c);
     }
+
+    /* Compute the value of EOFs */
+    if ((ptr = value(STRignoreeof)) != STRNULL) {
+	while (*ptr) {
+	    if (!Isdigit(*ptr)) {
+		numeof = 0;
+		break;
+	    }
+	    numeof = numeof * 10 + *ptr++ - '0';
+	}
+    } 
+    if (numeof < 1) numeof = 26;	/* Sanity check */
+
 top:
     aret = F_SEEK;
     if (alvecp) {
@@ -1562,7 +1577,7 @@ reread:
 		int     ctpgrp;
 #endif /* BSDJOBS */
 
-		if (++sincereal > 25)
+		if (++sincereal >= numeof)	/* Too many EOFs?  Bye! */
 		    goto oops;
 #ifdef BSDJOBS
 		if (tpgrp != -1 &&

@@ -818,9 +818,9 @@ xstrerror(i)
 {
     static char errbuf[40]; /* 64 bit num */
 
-    if (i >= 0 && i < sys_nerr) 
+    if (i >= 0 && i < sys_nerr) {
 	return sys_errlist[i];
-    else {
+    } else {
 	(void) xsprintf(errbuf, "Unknown Error: %d", i);
 	return errbuf;
     }

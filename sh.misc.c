@@ -81,7 +81,8 @@ strsave(s)
 	s = (const char *) "";
     for (p = (char *) s; *p++ != '\0';)
 	continue;
-    n = p = (char *) xmalloc((size_t) ((p - s) * sizeof(char)));
+    n = p = (char *) xmalloc((size_t)
+			     ((((const char *) p) - s) * sizeof(char)));
     while ((*p++ = *s++) != '\0')
 	continue;
     return (n);
@@ -168,7 +169,7 @@ saveblk(v)
     return (onewv);
 }
 
-#ifndef POSIX
+#if !defined(SHORT_STRINGS) && !defined(POSIX)
 char   *
 strstr(s, t)
     register const char *s, *t;
@@ -185,7 +186,7 @@ strstr(s, t)
     return (NULL);
 }
 
-#endif /* POSIX */
+#endif /* !SHORT_STRINGS && !POSIX */
 
 #ifndef SHORT_STRINGS
 char   *
@@ -211,7 +212,7 @@ strspl(cp, dp)
     return (ep);
 }
 
-#endif
+#endif /* !SHORT_STRINGS */
 
 Char  **
 blkspl(up, vp)

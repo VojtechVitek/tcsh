@@ -217,6 +217,45 @@ dozip(v, c)
     USE(v);
 }
 
+/*ARGSUSED*/
+void
+dostat(v, c)
+    Char **v;
+    struct command *c;
+{
+  Char **fileptr, *ftest, *res;
+
+  if ( *(ftest = *++v) != '-' ) stderror(ERR_NAME | ERR_FILEINQ);
+  ++v;
+  /*
+   * OK, I just copied the globbing from everywhere else.
+   */
+  gflag = 0;
+  tglob(v);
+  if (gflag) {
+    v = globall(v);
+    if (v == 0)
+      stderror(ERR_NAME | ERR_NOMATCH);
+  }
+  else
+    v = gargv = saveblk(v);
+  trim(v);
+
+  while (*(fileptr = v++)) {
+    xprintf("%S", res = filetest(ftest, &fileptr, 0));
+    xfree(res);
+    if ( *v ) xprintf(" ");
+  }
+  xprintf("\n");
+
+/* Likewise, copied. I hope it's right.. */
+  if (gargv) {
+    blkfree(gargv);
+    gargv = 0;
+  }
+
+}
+
 void
 prvars()
 {

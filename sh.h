@@ -270,9 +270,9 @@ extern int setpgrp();
 #define CSWTCH _POSIX_VDISABLE
 #endif
 
-#if !defined(FIOCLEX) && defined(SUNOS4)
+#if (!defined(FIOCLEX) && defined(SUNOS4)) || SYSVREL == 4
 # include <sys/filio.h>
-#endif /* !FIOCLEX && SUNOS4 */
+#endif /* (!FIOCLEX && SUNOS4) || SYSVREL == 4 */
 
 #if !defined(_MINIX) && !defined(COHERENT)
 # include <sys/file.h>
@@ -310,6 +310,7 @@ extern int setpgrp();
 # include <stdio.h>	/* So the fgetpwent() prototypes work */
 #endif /* hpux || sgi || OREO || COHERENT */
 #include <pwd.h>
+#include <grp.h>
 #ifdef PW_SHADOW
 # include <shadow.h>
 #endif /* PW_SHADOW */

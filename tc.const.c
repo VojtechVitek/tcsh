@@ -49,6 +49,9 @@ Char STRany[]           = { 'a', 'n', 'y', '\0' };
 Char STRstatus[]        = { 's', 't', 'a', 't', 'u', 's', '\0' };
 Char STR0[]             = { '0', '\0' };
 Char STR1[]             = { '1', '\0' };
+/* STRm1 would look too much like STRml IMHO */
+Char STRminus1[]	= { '-', '1', '\0' };
+Char STRcolon[]		= { ':', '\0' };
 Char STRNULL[]          = { '\0' };
 Char STRtcsh[]          = { 't', 'c', 's', 'h', '\0' };
 Char STRhome[]          = { 'h', 'o', 'm', 'e', '\0' };
@@ -102,7 +105,7 @@ Char STRsymhash[]       = { '#', ' ', '\0' };
 Char STRsymarrow[]      = { '>', ' ', '\0' };
 Char STRmquestion[]     = { '%', 'R', '?' | QUOTE, ' ', '\0' };
 Char STRKCORRECT[]      = { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R', 
-			    ' ', '(', 'y', '|', 'n', '|', 'e', ')', 
+			    ' ', '(', 'y', '|', 'n', '|', 'e', '|', 'a', ')', 
 			    '?' | QUOTE, ' ', '\0' };
 Char STRunalias[]       = { 'u', 'n', 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRalias[]         = { 'a', 'l', 'i', 'a', 's', '\0' };
@@ -216,6 +219,8 @@ Char STRQNULL[]		= { '\0' | QUOTE, '\0' };
 Char STRcorrect[]	= { 'c', 'o', 'r', 'r', 'e', 'c', 't', '\0' };
 Char STRcmd[]		= { 'c', 'm', 'd', '\0' };
 Char STRall[]		= { 'a', 'l', 'l', '\0' };
+Char STRcomplete[]	= { 'c', 'o', 'm', 'p', 'l', 'e', 't', 'e', '\0' };
+Char STRenhance[]	= { 'e', 'n', 'h', 'a', 'n', 'c', 'e', '\0' };
 Char STRautoexpand[]	= { 'a', 'u', 't', 'o', 'e', 'x', 'p', 'a', 'n', 'd',
 			    '\0' };
 Char STRautocorrect[]	= { 'a', 'u', 't', 'o', 'c', 'o', 'r', 'r', 'e', 'c',

@@ -102,6 +102,8 @@ extern int curchoice;
 
 extern int non_unique_match;
 
+extern int match_unique_match;
+
 #include "tw.decls.h"
 
 #endif /* _h_tw */
