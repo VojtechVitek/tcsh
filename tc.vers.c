@@ -348,6 +348,11 @@ gethosttype()
     hosttype = str2short("titan");
 # endif /* titan */
 
+# ifdef stellar
+#  define _havehosttype_
+    hosttype = str2short("stellar");
+# endif /* stellar */
+
 # ifdef sgi
 /* Iris 4D is in the mips section; these are the 68k machines. */
 #  ifdef m68000

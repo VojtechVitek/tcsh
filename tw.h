@@ -90,6 +90,7 @@
 #define equal(a, b)	(strcmp(a, b) == 0)
 
 #define is_set(var)	adrof(var)
+#define ismetahash(a)	(ismeta(a) && (a) != '#')
 
 #define BUILTINS	"/usr/local/lib/builtins/"	/* fake builtin bin */
 #define SEARCHLIST "HPATH"	/* Env. param for helpfile searchlist */

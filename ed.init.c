@@ -67,18 +67,20 @@ static unsigned char ttychars[NN_IO][C_NCC] = {
     {
 	CINTR,		 CQUIT, 	 CERASE, 	   CKILL,	
 	CEOF, 		 CEOL, 		 CEOL2, 	   CSWTCH, 
-	CERASE2,	 CSTART, 	 CSTOP,		   CWERASE,
-	CSUSP, 		 CDSUSP, 	 CREPRINT, 	   CDISCARD, 	   
-	CLNEXT,		 CSTATUS,	 CPAGE,		   CPGOFF,
-	CBRK, 		 CMIN, 		 CTIME
+	CDSWTCH,	 CERASE2,	 CSTART, 	   CSTOP,
+	CWERASE, 	 CSUSP, 	 CDSUSP, 	   CREPRINT,
+	CDISCARD, 	 CLNEXT,	 CSTATUS,	   CPAGE,
+	CPGOFF,		 CKILL2, 	 CBRK, 		   CMIN,
+	CTIME
     },
     {
 	CINTR, 		 CQUIT, 	  CERASE, 	   CKILL, 
 	_POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, 
-	CERASE2,	 CSTART, 	  CSTOP, 	   _POSIX_VDISABLE, 
-	_POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, CDISCARD, 	   
+	_POSIX_VDISABLE, CERASE2,	  CSTART, 	   CSTOP, 	   
 	_POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, 
-	_POSIX_VDISABLE, 1, 		 0
+	CDISCARD, 	 _POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, 
+	_POSIX_VDISABLE, _POSIX_VDISABLE, _POSIX_VDISABLE, 1,
+	0
     },
     {	
 	0,		 0,		  0,		   0,
@@ -86,7 +88,8 @@ static unsigned char ttychars[NN_IO][C_NCC] = {
 	0,		 0,		  0,		   0,
 	0,		 0,		  0,		   0,
 	0,		 0,		  0,		   0,
-	0,		 0,		  0
+	0,		 0,		  0,		   0,
+	0
     }
 };
 

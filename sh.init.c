@@ -367,6 +367,33 @@ struct	mesg mesg[] = {
 /* 32 */	"DIL",		"DIL signal",
 # endif /* hpux */
 
+# ifdef stellar
+#  define _sigextra_
+/* 20 */	"WINDOW", 	"Window changed",
+/* 21 */	"URG",		"Urgent condition on IO channel",
+/* 22 */	"POLL", 	"Pollable event occured",
+#  ifdef SUSPENDED
+/* 23 */	"STOP",		"Suspended (signal)",
+/* 24 */	"TSTP",		"Suspended",
+#  else /* SUSPENDED */
+/* 23 */	"STOP",		"Stopped (signal)",
+/* 24 */	"TSTP",		"Stopped",
+#  endif /* SUSPENDED */
+/* 25 */	"CONT",		"Continued",
+#  ifdef SUSPENDED
+/* 26 */	"TTIN", 	"Suspended (tty input)",
+/* 27 */	"TTOU", 	"Suspended (tty output)",
+#  else /* SUSPENDED */
+/* 26 */	"TTIN", 	"Stopped (tty input)",
+/* 27 */	"TTOU", 	"Stopped (tty output)",
+#  endif /* SUSPENDED */
+/* 28 */	"IO", 		"Asynchronous I/O (select)",
+/* 29 */	"XCPU",		"Cputime limit exceeded",
+/* 30 */	"XFSZ", 	"Filesize limit exceeded",
+/* 31 */	"VTALRM", 	"Virtual time alarm",
+/* 32 */	"PROF", 	"Profiling time alarm",
+# endif /* stellar */
+
 # if SVID > 3
 #  define _sigextra_
 /* 20 */	"WINCH", 	"Window change",

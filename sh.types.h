@@ -206,6 +206,14 @@ typedef char * caddr_t;
 # endif /* _SIZE_T */
 #endif /* SXA */
 
+/***
+ *** a stellar 2600, running stellix 2.3
+ ***/
+#ifdef stellar
+# ifndef _SIZE_T
+#  define _SIZE_T
+# endif /* _SIZE_T */
+#endif /* stellar */
 
 /***
  *** BSD systems, pre and post 4.3

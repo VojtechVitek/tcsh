@@ -48,11 +48,11 @@
 #define _PATH_USRBSD		"/usr/bsd"
 #define _PATH_BIN		"/bin"
 
-#if defined(convex) || defined(__convex__)
+#if defined(convex) || defined(__convex__) || defined(stellar)
 # define _PATH_DOTLOGIN		"/etc/login"
 # define _PATH_DOTLOGOUT	"/etc/logout"
 # define _PATH_DOTCSHRC		"/etc/cshrc"
-#endif /* convex || __convex__ */
+#endif /* convex || __convex__ || stellar */
 
 #if defined(sgi) || defined(OREO) || defined(cray)
 # define _PATH_DOTLOGIN		"/etc/cshrc"

@@ -1181,6 +1181,7 @@ GetSize(lins, cols)
     *lins = Val(T_li);
 
 #ifdef TIOCGWINSZ
+# define KNOWsize
 # ifndef lint
     {
 	struct winsize ws;	/* from 4.3 */
@@ -1195,6 +1196,7 @@ GetSize(lins, cols)
 # endif /* !lint */
 #else /* TIOCGWINSZ */
 # ifdef TIOCGSIZE
+#  define KNOWsize
     {
 	struct ttysize ts;	/* from Sun */
 
@@ -1223,7 +1225,7 @@ ChangeSize(lins, cols)
     Val(T_co) = (cols < 2) ? 80 : cols;
     Val(T_li) = (lins < 1) ? 24 : lins;
 
-#ifdef SIG_WINDOW
+#ifdef KNOWsize
     /*
      * We want to affect the environment only when we have a valid
      * setup, not when we get bad settings. Consider the following scenario:
@@ -1294,7 +1296,7 @@ ChangeSize(lins, cols)
 	    Setenv(STRTERMCAP, termcap);
 	}
     }
-#endif /* SIG_WINDOW */
+#endif /* KNOWsize */
 
     ReBufferDisplay();		/* re-make display buffers */
     ClearDisp();

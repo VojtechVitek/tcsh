@@ -211,9 +211,9 @@ extern int setpgrp();
 #endif /* POSIX */
 
 #if SVID > 0 || defined(_IBMR2) || defined(_MINIX)
-# if !defined(pyr) || !defined(aiws)
+# if !defined(pyr) && !defined(aiws) && !defined(stellar)
 #  include <time.h>
-# endif /* !aiws || !pyr */
+# endif /* !aiws && !pyr && !stellar */
 #endif /* SVID > 0 ||  _IBMR2 */
 
 #if !((defined(sun) || defined(_MINIX)) && defined(TERMIO))

@@ -64,7 +64,6 @@ static	int	getword		__P((Char *));
 static	int	keyword		__P((Char *));
 static	void	toend		__P((void));
 static	void	xecho		__P((int, Char **));
-static	void	Unsetenv	__P((Char *));
 
 struct biltins *
 isbfunc(t)
@@ -1239,6 +1238,12 @@ Setenv(name, val)
     Char   *name, *val;
 {
 #ifdef SETENV_IN_LIB
+/*
+ * XXX: This does not work right, since tcsh cannot track changes to
+ * the environment this way. (the builtin setenv without arguments does
+ * not print the right stuff neither does unsetenv). This was for Mach,
+ * it is not needed anymore.
+ */
 #undef setenv
     char    nameBuf[BUFSIZ];
     char   *cname = short2str(name);
@@ -1278,7 +1283,7 @@ Setenv(name, val)
 #endif /* SETENV_IN_LIB */
 }
 
-static void
+void
 Unsetenv(name)
     Char   *name;
 {

@@ -529,7 +529,7 @@ GetNextCommand(cmdnum, ch)
     KEYCMD  cmd = 0;
     int     num;
 
-    for (; cmd == 0 || cmd == F_XKEY;) {
+    while (cmd == 0 || cmd == F_XKEY) {
 	if ((num = GetNextChar(ch)) != 1) {	/* if EOF or error */
 	    return num;
 	}
@@ -669,10 +669,10 @@ SpellLine(cmdonly)
     endflag = 1;
     matchval = 0;
     do {
-	while (ismeta(*argptr) || iscmdmeta(*argptr))
+	while (ismetahash(*argptr) || iscmdmeta(*argptr))
 	    argptr++;
 	for (Cursor = argptr;
-	     *Cursor != '\0' && !ismeta(*Cursor) && !iscmdmeta(*Cursor);
+	     *Cursor != '\0' && !ismetahash(*Cursor) && !iscmdmeta(*Cursor);
 	     Cursor++);
 	if (*Cursor == '\0') {
 	    Cursor = LastChar;

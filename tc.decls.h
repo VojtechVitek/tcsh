@@ -95,6 +95,7 @@ extern	void		  continue_jobs	__P((struct wordent *));
 extern	Char		 *gettilde	__P((Char *));
 extern	Char		 *getusername	__P((Char **));
 extern	void		  doaliases	__P((Char **, struct command *));
+extern	void		  shlvl		__P((int));
 
 
 /*

@@ -122,6 +122,7 @@ extern	int		  tenex		__P((Char *, int));
  * sh.func.c
  */
 extern	void		  Setenv	__P((Char *, Char *));
+extern	void		  Unsetenv	__P((Char *));
 extern	void		  doalias	__P((Char **, struct command *));
 extern	void		  dobreak	__P((Char **, struct command *));
 extern	void		  docontin	__P((Char **, struct command *));
