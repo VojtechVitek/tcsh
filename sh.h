@@ -121,12 +121,12 @@ typedef int sigret_t;
  *	MAILINTVL	How often to mailcheck; more often is more expensive
  */
 #ifdef BUFSIZE
-# if	   BUFSIZE < 1024
+# if	   BUFSIZE < 4096
 #  undef   BUFSIZE
-#  define  BUFSIZE	1024	/* buffer size should be no less than this */
+#  define  BUFSIZE	4096	/* buffer size should be no less than this */
 # endif
 #else
-# define   BUFSIZE	1024
+# define   BUFSIZE	4096
 #endif /* BUFSIZE */
 
 #define FORKSLEEP	10	/* delay loop on non-interactive fork failure */
