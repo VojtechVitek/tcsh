@@ -1154,9 +1154,11 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
 	    flags |= TW_EXEC_CHK;
 	    flags |= TW_DIR_OK;
 	}
+#ifdef notdef
 	/* PWP: don't even bother when doing ALL of the commands */
 	if (looking == TW_COMMAND && (*word == '\0')) 
 	    return (-1);
+#endif
 	break;
 
     case TW_VARLIST:
