@@ -1524,6 +1524,7 @@ dokill(v, c)
 {
     register int signum, len = 0;
     register char *name;
+    Char *sigptr;
     extern int T_Cols;
     extern int nsig;
 
@@ -1544,8 +1545,17 @@ dokill(v, c)
 	    xputchar('\n');
 	    return;
 	}
-	if (Isdigit(v[0][1])) {
-	    signum = atoi(short2str(v[0] + 1));
+ 	sigptr = &v[0][1];
+ 	if (v[0][1] == 's') {
+ 	    if (v[1]) {
+ 		v++;
+ 		sigptr = &v[0][0];
+ 	    } else {
+ 		stderror(ERR_NAME | ERR_TOOFEW);
+ 	    }
+ 	}
+ 	if (Isdigit(*sigptr)) {
+ 	    signum = atoi(short2str(sigptr));
 	    if (signum < 0 || signum > (MAXSIG-1))
 		stderror(ERR_NAME | ERR_BADSIG);
 	}
@@ -1553,8 +1563,9 @@ dokill(v, c)
 	    for (signum = 0; signum <= nsig; signum++)
 		if (mesg[signum].iname &&
 		    eq(&v[0][1], str2short(mesg[signum].iname)))
+ 		    eq(sigptr, str2short(mesg[signum].iname)))
 		    goto gotsig;
-	    setname(short2str(&v[0][1]));
+ 	    setname(short2str(sigptr));
 	    stderror(ERR_NAME | ERR_UNKSIG);
 	}
 gotsig:
