@@ -843,7 +843,7 @@ backeval(cp, literal)
 	for (arginp = cp; *cp; cp++) {
 	    *cp &= TRIM;
 	    if (*cp == '\n' || *cp == '\r')
-		*cp = ';';
+		*cp = ' ';
 	}
 
         /*
