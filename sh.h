@@ -44,7 +44,12 @@ easily confused. */
 # define CONFIGH "config.h"
 #endif
 
-#include CONFIGH
+/*
+ * Avoid cpp bugs (CONFIGH is always defined at this point)
+ */
+#ifdef CONFIGH
+# include CONFIGH
+#endif
 
 #ifndef EXTERN
 # define EXTERN extern

@@ -851,7 +851,8 @@ main(argc, argv)
 
 
     if (intty && !arginp) 	
-	(void) ed_Setup(1);	/* Get the tty state, and set defaults */
+	(void) ed_Setup(editing);/* Get the tty state, and set defaults */
+				 /* Only alter the tty state if editing */
     
     /*
      * Set an exit here in case of an interrupt or error reading the shell
