@@ -30,7 +30,7 @@
 .\" SUCH DAMAGE.
 .\"
 .\" $Id$
-.TH TCSH 1 "16 May 1993" "Cornell 6.03.06"
+.TH TCSH 1 "25 June 1993" "Cornell 6.04.00"
 .SH NAME
 tcsh \- C shell with file name completion and command line editing
 .SH SYNOPSIS
@@ -3511,7 +3511,7 @@ I am certain that there are bugs.  Bugs (preferably with fixes)
 should be sent to Christos Zoulas (christos@ee.cornell.edu).
 .PP
 .SH VERSION
-This man page documents tcsh 6.03.06 (Cornell) 93/05/16.
+This man page documents tcsh 6.04.00 (Cornell) 93/06/25.
 .PP
 .SH AUTHORS
 Ken Greer, HP Labs, 1981
