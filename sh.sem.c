@@ -200,6 +200,13 @@ execute(t, wanttty, pipein, pipeout)
 		}
 		else
 		    break;
+	    else if (eq(t->t_dcom[0], STRhup))
+		if (t->t_dcom[1]) {
+		    t->t_dflg |= F_HUP;
+		    lshift(t->t_dcom, 1);
+		}
+		else
+		    break;
 	    else if (eq(t->t_dcom[0], STRtime))
 		if (t->t_dcom[1]) {
 		    t->t_dflg |= F_TIME;
@@ -277,7 +284,7 @@ execute(t, wanttty, pipein, pipeout)
 	    t->t_dflg &= ~(F_NICE);
 	if (((t->t_dflg & F_TIME) || ((t->t_dflg & F_NOFORK) == 0 &&
 	     (!_gv.bifunc || t->t_dflg &
-	      (F_PIPEOUT | F_AMPERSAND | F_NICE | F_NOHUP)))) ||
+	      (F_PIPEOUT | F_AMPERSAND | F_NICE | F_NOHUP | F_HUP)))) ||
 	/*
 	 * We have to fork for eval too.
 	 */
@@ -499,6 +506,8 @@ execute(t, wanttty, pipein, pipeout)
 
 		    if (t->t_dflg & F_NOHUP)
 			(void) signal(SIGHUP, SIG_IGN);
+		    if (t->t_dflg & F_HUP)
+			(void) signal(SIGHUP, SIG_DFL);
 		    if (t->t_dflg & F_NICE)
 # ifdef BSDNICE
 			(void) setpriority(PRIO_PROCESS, 0, t->t_nice);

@@ -279,19 +279,7 @@ phist(hp, hflg)
     int     hflg;
 {
 
-    if (hflg != HIST_ONLY) {
-	Char   *cp = str2short("%h\t%T\t%R\n");
-	Char buf[BUFSIZE];
-	struct varent *vp = adrof(STRhistory);
-
-	if (vp && vp->vec[0] && vp->vec[1])
-	    cp = vp->vec[1];
-
-	tprintf(FMT_HISTORY, buf, cp, BUFSIZE, NULL, hp->Htime, (ptr_t) hp);
-	for (cp = buf; *cp;)
-	    xputchar(*cp++);
-    }
-    else {
+    if (hflg & HIST_ONLY) {
 	/* 
 	 * Make file entry with history time in format:
 	 * "+NNNNNNNNNN" (10 digits, left padded with ascii '0') 
@@ -302,6 +290,18 @@ phist(hp, hflg)
 	    xprintf("%S\n", hp->histline);
 	else
 	    prlex(&hp->Hlex);
+    }
+    else {
+	Char   *cp = str2short("%h\t%T\t%R\n");
+	Char buf[BUFSIZE];
+	struct varent *vp = adrof(STRhistory);
+
+	if (vp && vp->vec[0] && vp->vec[1])
+	    cp = vp->vec[1];
+
+	tprintf(FMT_HISTORY, buf, cp, BUFSIZE, NULL, hp->Htime, (ptr_t) hp);
+	for (cp = buf; *cp;)
+	    xputchar(*cp++);
     }
 }
 

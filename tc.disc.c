@@ -183,7 +183,7 @@ int f;
     if (add_discipline) {
 	add_discipline = 0;
 #if defined(OREO) || defined(IRIS4D)
-	return (ioctl(f, TCSETAF, &otermiob));
+	return (ioctl(f, TCSETAF, (ioctl_t) & otermiob));
 #endif /* OREO || IRIS4D */
 
 #ifdef _IBMR2

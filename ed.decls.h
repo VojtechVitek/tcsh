@@ -124,7 +124,8 @@ extern	CCRETVAL	e_delprev		__P((int));
 extern	CCRETVAL	e_delnext		__P((int));
 /* added by mtk@ari.ncl.omron.co.jp (920818) */
 extern	CCRETVAL	e_delnext_eof		__P((int));	
-extern	CCRETVAL	e_list_delnext		__P((int));	/* for ^D */
+extern	CCRETVAL	e_delnext_list		__P((int));
+extern	CCRETVAL	e_delnext_list_eof	__P((int));	/* for ^D */
 extern	CCRETVAL	e_toend			__P((int));
 extern	CCRETVAL	e_tobeg			__P((int));
 extern	CCRETVAL	e_charback		__P((int));

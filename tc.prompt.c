@@ -530,7 +530,7 @@ tprintf(what, buf, fmt, siz, str, tim, info)
 	}
 	else if (*cp == '\\' || *cp == '^') 
 	    *p++ = attributes | parseescape(&cp);
-	else if (*cp == '!') {	/* EGS: handle '!'s in prompts */
+	else if (*cp == HIST) {	/* EGS: handle '!'s in prompts */
 	    if (what == FMT_HISTORY) 
 		fmthist('h', info, cbuff);
 	    else

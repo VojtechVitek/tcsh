@@ -79,7 +79,7 @@ Char *f, *t;
  *	debugging cause you'll mangle up the file descriptors!
  */
 static void
-#if __STDC__
+#ifdef FUNCPROTO
 dprintf(char *fmt, ...)
 #else
 dprintf(va_list)
@@ -92,7 +92,7 @@ dprintf(va_list)
     if ((dtty = getenv("DEBUGTTY"))) {
 	int o;
 	va_list va;
-#if __STDC__
+#ifdef FUNCPROTO
 	va_start(va, fmt);
 #else
 	char *fmt;

@@ -695,7 +695,10 @@ Dgetdol()
 	Char   *cp;
 	for (i = lwb - 1, length = 0; i < upb; i++)
 	    length += Strlen(vp->vec[i]);
+#ifdef notdef
+	/* We don't want that, since we can always compute it by adding $#xxx */
 	length += i - 1;	/* Add the number of spaces in */
+#endif
 	cp = putn(length);
 	addla(cp);
 	xfree((ptr_t) cp);

@@ -141,6 +141,7 @@ extern	void		  dologout	__P((Char **, struct command *));
 extern	void		  donewgrp	__P((Char **, struct command *));
 #endif
 extern	void		  donohup	__P((Char **, struct command *));
+extern	void		  dohup		__P((Char **, struct command *));
 extern	void		  doonintr	__P((Char **, struct command *));
 extern	void		  doprintenv	__P((Char **, struct command *));
 extern	void		  dorepeat	__P((Char **, struct command *));

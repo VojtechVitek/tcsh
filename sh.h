@@ -270,9 +270,9 @@ extern int setpgrp();
 #define CSWTCH _POSIX_VDISABLE
 #endif
 
-#if (!defined(FIOCLEX) && defined(SUNOS4)) || ((SYSVREL == 4) && !defined(_SEQUENT_))
+#if (!defined(FIOCLEX) && defined(SUNOS4)) || SYSVREL == 4
 # include <sys/filio.h>
-#endif /* (!FIOCLEX && SUNOS4) || (SYSVREL == 4 && !_SEQUENT_) */
+#endif /* (!FIOCLEX && SUNOS4) || SYSVREL == 4 */
 
 #if !defined(_MINIX) && !defined(COHERENT)
 # include <sys/file.h>

@@ -833,6 +833,7 @@ filetest(cp, vp, ignore)
 		xfree((ptr_t) strino);
 		xfree((ptr_t) ep);
 		return(strF);
+		break;
 		
 	    case 'L':
 		if ( *(ft + 1) ) {
@@ -858,10 +859,11 @@ filetest(cp, vp, ignore)
 		xfree((ptr_t) string);
 		xfree((ptr_t) ep);
 		return(Strsave(strF));
+		break;
 
 #else /* !S_ISLNK */
 		i = 0;
-		break;
+		break
 #endif /* S_ISLNK */
 		
 
@@ -877,6 +879,7 @@ filetest(cp, vp, ignore)
 		    *--string = '0';
 		xfree((ptr_t) ep);
 		return(Strsave(str2short(string)));
+		break;
 
 	    case 'U':
 		if (altout && (pw = getpwuid(st->st_uid))) {

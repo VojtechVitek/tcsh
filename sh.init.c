@@ -90,6 +90,7 @@ struct	biltins bfunc[] = {
     { "hashstat",	hashstat,	0,	0	},
 #endif
     { "history",	dohist,		0,	2	},
+    { "hup",		dohup,		0,	INF	},
     { "if",		doif,		1,	INF	},
 #ifdef apollo
     { "inlib", 		doinlib,	1,	INF	},

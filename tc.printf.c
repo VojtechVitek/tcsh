@@ -54,7 +54,7 @@ static	void	doprnt		__P((void (*) __P((int)), const char *, va_list));
 
 static void
 doprnt(addchar, sfmt, ap)
-    void    (*addchar)();
+    void    (*addchar) __P((int));
     const char   *sfmt;
     va_list ap;
 {
@@ -280,7 +280,7 @@ xaddchar(c)
 
 pret_t
 /*VARARGS*/
-#if __STDC__
+#ifdef FUNCPROTO
 xsprintf(char *str, const char *fmt, ...)
 #else
 xsprintf(va_alist)
@@ -288,7 +288,7 @@ xsprintf(va_alist)
 #endif
 {
     va_list va;
-#if __STDC__
+#ifdef FUNCPROTO
     va_start(va, fmt);
 #else
     char *str, *fmt;
@@ -310,7 +310,7 @@ xsprintf(va_alist)
 
 pret_t
 /*VARARGS*/
-#if __STDC__
+#ifdef FUNCPROTO
 xprintf(const char *fmt, ...)
 #else
 xprintf(va_alist)
@@ -318,7 +318,7 @@ xprintf(va_alist)
 #endif
 {
     va_list va;
-#if __STDC__
+#ifdef FUNCPROTO
     va_start(va, fmt);
 #else
     char   *fmt;
@@ -373,7 +373,7 @@ xvsprintf(str, fmt, va)
 #define FILE int
 #endif
 int 
-#if __STDC__
+#ifdef FUNCPROTO
 fprintf(FILE *fp, const char* fmt, ...)
 #else
 fprintf(va_alist)
@@ -381,7 +381,7 @@ fprintf(va_alist)
 #endif
 {
     va_list va;
-#if __STDC__
+#ifdef FUNCPROTO
     va_start(va, fmt);
 #else
     FILE *fp;

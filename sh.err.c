@@ -344,7 +344,7 @@ static char *errorlist[] =
  */
 void
 /*VARARGS1*/
-#if __STDC__
+#ifdef FUNCPROTO
 seterror(unsigned int id, ...)
 #else
 seterror(va_alist)
@@ -355,7 +355,7 @@ seterror(va_alist)
     if (seterr == 0) {
 	va_list va;
 	char    berr[BUFSIZE];
-#if __STDC__
+#ifdef FUNCPROTO
 	va_start(va, id);
 #else
 	unsigned int id;
@@ -392,7 +392,7 @@ seterror(va_alist)
  */
 void
 /*VARARGS*/
-#if __STDC__
+#ifdef FUNCPROTO
 stderror(unsigned int id, ...)
 #else
 stderror(va_alist)
@@ -404,7 +404,7 @@ stderror(va_alist)
     int flags;
     int vareturn;
 
-#if __STDC__
+#ifdef FUNCPROTO
     va_start(va, id);
 #else
     unsigned int id;

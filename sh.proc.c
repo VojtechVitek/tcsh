@@ -772,6 +772,8 @@ palloc(pid, t)
 	pp->p_flags |= PPTIME;
     if (t->t_dflg & F_BACKQ)
 	pp->p_flags |= PBACKQ;
+    if (t->t_dflg & F_HUP)
+	pp->p_flags |= PHUP;
     cmdp = command;
     cmdlen = 0;
     padd(t);
