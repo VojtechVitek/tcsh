@@ -162,8 +162,10 @@ extern char *sbrk();
  */
 # ifndef _SIZE_T
 #  define _SIZE_T
-   typedef unsigned int size_t;
 # endif /* _SIZE_T */
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
 #endif
 
 
