@@ -86,7 +86,7 @@ extern	void	MoveToChar		__P((int));
 extern	void	ClearEOL		__P((int));
 extern	void	Insert_write		__P((Char *, int));
 extern	void	DeleteChars		__P((int));
-extern	void	TellTC			__P((const char *));
+extern	void	TellTC			__P((void));
 extern	void	SetTC			__P((char *, char *));
 extern	void	EchoTC			__P((Char **));
 extern	int 	SetArrowKeys		__P((CStr *, XmapVal *, int));

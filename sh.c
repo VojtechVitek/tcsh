@@ -2335,16 +2335,18 @@ mailchk()
 			mailcount, filename);
 	}
 	else {
+	    char *type;
+	    
 	    if (stb.st_size == 0 || stb.st_atime > stb.st_mtime ||
 		(stb.st_atime <= chktim && stb.st_mtime <= chktim) ||
 		(loginsh && !new))
 		continue;
+	    type = strsave(new ? CGETS(11, 6, "new ") : "");
 	    if (cnt == 1)
-		xprintf(CGETS(11, 5, "You have %smail.\n"),
-			new ? CGETS(11, 6, "new ") : "");
+		xprintf(CGETS(11, 5, "You have %smail.\n"), type);
 	    else
-	        xprintf(CGETS(11, 7, "You have %smail in %s.\n"),
-			new ? CGETS(11, 6, "new ") : "", filename);
+	        xprintf(CGETS(11, 7, "You have %smail in %s.\n"), type);
+	    xfree(type);
 	}
     }
     chktim = t;
