@@ -199,7 +199,7 @@ Itoa(n, s, min_digits, attributes)
 
     un = n;
     if (n < 0) {
-	un = -un;
+	un = -n;
 	*s++ = '-';
     }
 
