@@ -68,9 +68,9 @@ RCSID("$Id$")
 #  define ut_time ut_xtime
 # endif /* __MVS__ */
 #else /* !HAVEUTMPX */
-# ifndef WINNT
+# ifndef WINNT_NATIVE
 #  include <utmp.h>
-# endif /* WINNT */
+# endif /* WINNT_NATIVE */
 #endif /* HAVEUTMPX */
 
 #ifndef BROKEN_CC
@@ -181,13 +181,13 @@ watch_login(force)
 #if defined(UTHOST) && defined(_SEQUENT_)
     char   *host, *ut_find_host();
 #endif
-#ifdef WINNT
+#ifdef WINNT_NATIVE
     static int ncbs_posted = 0;
     USE(utmp);
     USE(utmpfd);
     USE(sta);
     USE(wpnew);
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 
     /* stop SIGINT, lest our login list get trashed. */
 #ifdef BSDSIGS
@@ -214,7 +214,7 @@ watch_login(force)
 	interval = 0;
 	
     (void) time(&t);
-#ifdef WINNT
+#ifdef WINNT_NATIVE
 	/*
 	 * Since NCB_ASTATs take time, start em async at least 90 secs
 	 * before we are due -amol 6/5/97
@@ -226,7 +226,7 @@ watch_login(force)
  		ncbs_posted = 1;
 	    }
 	}
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
     if (t - watch_period < interval) {
 #ifdef BSDSIGS
 	(void) sigsetmask(omask);
@@ -236,9 +236,9 @@ watch_login(force)
 	return;			/* not long enough yet... */
     }
     watch_period = t;
-#ifdef WINNT
+#ifdef WINNT_NATIVE
     ncbs_posted = 0;
-#else /* !WINNT */
+#else /* !WINNT_NATIVE */
 
     /*
      * From: Michael Schroeder <mlschroe@immd4.informatik.uni-erlangen.de>
@@ -391,7 +391,7 @@ watch_login(force)
 # if defined(UTHOST) && defined(_SEQUENT_)
     endutent();
 # endif
-#endif /* !WINNT */
+#endif /* !WINNT_NATIVE */
 
     if (force || vp == NULL)
 	return;
@@ -635,7 +635,7 @@ utmphost()
 }
 # endif /* UTHOST */
 
-#ifdef WINNT
+#ifdef WINNT_NATIVE
 void add_to_who_list(name, mach_nm)
     char *name;
     char *mach_nm;
@@ -688,5 +688,5 @@ void add_to_who_list(name, mach_nm)
 	wp->who_prev = wpnew;	/* linked in now */
     }
 }
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 #endif /* HAVENOUTMP */

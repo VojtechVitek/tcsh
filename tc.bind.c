@@ -304,9 +304,9 @@ parsebind(s, str)
     case 'M':
     case 'X':
     case 'C':
-#ifdef WINNT
+#ifdef WINNT_NATIVE
     case 'N':
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 	if (s[1] != '-' || s[2] == '\0') {
 	    bad_spec(s);
 	    return NULL;
@@ -356,7 +356,7 @@ parsebind(s, str)
 #endif /* DSPMBYTE */
 	    *b = '\0';
 	    break;
-#ifdef WINNT
+#ifdef WINNT_NATIVE
 	case 'N' : case 'n':	/* NT */
 		{
 			Char bnt;
@@ -368,7 +368,7 @@ parsebind(s, str)
 				bad_spec(s);
 		}
 	    break;
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 
 	default:
 	    abort();

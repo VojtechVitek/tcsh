@@ -504,7 +504,7 @@ stderror(va_alist)
     /*
      * Go away if -e or we are a child shell
      */
-    if (exiterr || child)
+    if (!exitset || exiterr || child)
 	xexit(1);
 
     /*

@@ -1089,7 +1089,6 @@ newdef	: SYSVREL == 0
 ostype	: defined(BSD4_4)				: "bsd44"
 ostype	: defined(BSD)					: "bsd"
 ostype	: defined(POSIX)				: "posix"
-ostype	: defined(unix) || defined(__unix__)		: "unix"
 enddef	:
 
 

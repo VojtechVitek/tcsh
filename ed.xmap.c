@@ -788,11 +788,11 @@ unparsestring(str, buf, sep)
 
     b = buf;
     if (sep[0])
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 	*b++ = sep[0];
-#else /* WINNT */
+#else /* WINNT_NATIVE */
 	*b++ = CHAR & sep[0];
-#endif /* !WINNT */
+#endif /* !WINNT_NATIVE */
 
     for (l = 0; l < str->len; l++) {
 	p = str->buf[l];
@@ -834,11 +834,11 @@ unparsestring(str, buf, sep)
 	}
     }
     if (sep[0] && sep[1])
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 	*b++ = sep[1];
-#else /* WINNT */
+#else /* WINNT_NATIVE */
 	*b++ = CHAR & sep[1];
-#endif /* !WINNT */
+#endif /* !WINNT_NATIVE */
     *b++ = 0;
     return buf;			/* should check for overflow */
 }

@@ -38,7 +38,7 @@
 #ifndef _h_tc_sig
 #define _h_tc_sig
 
-#if (SYSVREL > 0) || defined(BSD4_4) || defined(_MINIX) || defined(DGUX) || defined(WINNT)
+#if (SYSVREL > 0) || defined(BSD4_4) || defined(_MINIX) || defined(DGUX) || defined(WINNT_NATIVE)
 # include <signal.h>
 # ifndef SIGCHLD
 #  define SIGCHLD SIGCLD
@@ -151,9 +151,9 @@ typedef struct sigvec sigvec_t;
 # define	sigmask(s)	(1 << ((s)-1))
 # ifdef POSIXSIGS
 #  define 	sigpause(a)	(void) bsd_sigpause(a)
-#  ifdef WINNT
+#  ifdef WINNT_NATIVE
 #   undef signal
-#  endif /* WINNT */
+#  endif /* WINNT_NATIVE */
 #  define 	signal(a, b)	bsd_signal(a, b)
 # endif /* POSIXSIGS */
 # ifndef _SEQUENT_

@@ -35,7 +35,7 @@
  * SUCH DAMAGE.
  */
 #include "sh.h"
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 
 RCSID("$Id$")
 
@@ -1140,11 +1140,11 @@ tty_printchar(s)
     xputchar('\n');
 }
 #endif /* DEBUG_TTY */
-#else /* WINNT */
+#else /* WINNT_NATIVE */
 int
 tty_cooked_mode(td)
     void *td;
 {
     return do_nt_check_cooked_mode();
 }
-#endif /* !WINNT */
+#endif /* !WINNT_NATIVE */

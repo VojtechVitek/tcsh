@@ -1065,9 +1065,9 @@ again:
     ocnt = BUFSIZE;
     obp = obuf;
     inheredoc = 1;
-#ifdef WINNT
+#ifdef WINNT_NATIVE
     __dup_stdin = 1;
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
     for (;;) {
 	/*
 	 * Read up a line

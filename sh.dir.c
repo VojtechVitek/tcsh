@@ -513,11 +513,11 @@ dgoto(cp)
     else
 	dp = cp;
 
-#ifdef WINNT
+#ifdef WINNT_NATIVE
     cp = SAVE(getcwd(NULL, 0));
-#else /* !WINNT */
+#else /* !WINNT_NATIVE */
     cp = dcanon(cp, dp);
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
     return cp;
 }
 

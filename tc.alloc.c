@@ -55,12 +55,12 @@ int dont_free = 0;
 # define NO_SBRK
 #endif
 
-#ifdef WINNT
+#ifdef WINNT_NATIVE
 # define malloc		fmalloc
 # define free		ffree
 # define calloc		fcalloc
 # define realloc	frealloc
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 
 #ifndef SYSMALLOC
 

@@ -865,7 +865,7 @@ xmemmove(vdst, vsrc, len)
 #endif /* NEEDmemmove */
 
 
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 #ifdef tcgetpgrp
 int
 xtcgetpgrp(fd)
@@ -893,7 +893,7 @@ xtcsetpgrp(fd, pgrp)
 }
 
 #endif	/* tcgetpgrp */
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 
 
 #ifdef YPBUGS
@@ -1003,16 +1003,16 @@ xstrerror(i)
 #endif /* strerror */
     
 #ifdef gethostname
-# if !defined(_MINIX) && !defined(__EMX__) && !defined(WINNT)
+# if !defined(_MINIX) && !defined(__EMX__) && !defined(WINNT_NATIVE)
 #  include <sys/utsname.h>
-# endif /* !_MINIX && !__EMX__ && !WINNT */
+# endif /* !_MINIX && !__EMX__ && !WINNT_NATIVE */
 
 int
 xgethostname(name, namlen)
     char   *name;
     int     namlen;
 {
-# if !defined(_MINIX) && !defined(__EMX__) && !defined(WINNT)
+# if !defined(_MINIX) && !defined(__EMX__) && !defined(WINNT_NATIVE)
     int     i, retval;
     struct utsname uts;
 

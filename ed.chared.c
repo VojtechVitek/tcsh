@@ -3337,11 +3337,11 @@ v_change_case(cc)
 
     USE(cc);
     if (Cursor < LastChar) {
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 	c = *Cursor;
 #else
 	c = CHAR & *Cursor;
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 	if (Isupper(c))
 	    *Cursor++ = Tolower(c);
 	else if (Islower(c))
@@ -3411,16 +3411,16 @@ e_tty_int(c)
     int c;
 {			
     USE(c);
-#if defined(_MINIX) || defined(WINNT)
+#if defined(_MINIX) || defined(WINNT_NATIVE)
     /* SAK PATCH: erase all of current line, start again */
     ResetInLine(0);		/* reset the input pointers */
     xputchar('\n');
     ClearDisp();
     return (CC_REFRESH);
-#else /* !_MINIX && !WINNT */
+#else /* !_MINIX && !WINNT_NATIVE */
     /* do no editing */
     return (CC_NORM);
-#endif /* _MINIX || WINNT */
+#endif /* _MINIX || WINNT_NATIVE */
 }
 
 /*
@@ -3868,7 +3868,7 @@ v_rsrch_back(c)
 			 F_DOWN_SEARCH_HIST : F_UP_SEARCH_HIST));
 }
 
-#ifndef WINNT
+#ifndef WINNT_NATIVE
 /* Since ed.defns.h  is generated from ed.defns.c, these empty 
    functions will keep the F_NUM_FNS consistent
  */
@@ -3916,7 +3916,7 @@ e_page_down(c)
     USE(c);
     return (CC_ERROR);
 }
-#endif /* !WINNT */
+#endif /* !WINNT_NATIVE */
 
 #ifdef notdef
 void

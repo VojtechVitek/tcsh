@@ -904,10 +904,10 @@ backeval(cp, literal)
 	    c = (*ip++ & TRIM);
 	    if (c == 0)
 		break;
-#ifdef WINNT
+#ifdef WINNT_NATIVE
 	    if (c == '\r')
 	    	c = ' ';
-#endif /* WINNT */
+#endif /* WINNT_NATIVE */
 	    if (c == '\n') {
 		/*
 		 * Continue around the loop one more time, so that we can eat
