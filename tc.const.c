@@ -203,6 +203,7 @@ Char STRautoexpand[]	= { 'a', 'u', 't', 'o', 'e', 'x', 'p', 'a', 'n', 'd',
 Char STRautocorrect[]	= { 'a', 'u', 't', 'o', 'c', 'o', 'r', 'r', 'e', 'c',
 			    't', '\0' };
 Char STRautolist[]	= { 'a', 'u', 't', 'o', 'l', 'i', 's', 't', '\0' };
+Char STRbeepcmd[]	= { 'b', 'e', 'e', 'p', 'c', 'm', 'd', '\0' };
 Char STRmatchbeep[]	= { 'm', 'a', 't', 'c', 'h', 'b', 'e', 'e', 'p', '\0' };
 Char STRnever[]		= { 'n', 'e', 'v', 'e', 'r', '\0' };
 Char STRnomatch[]	= { 'n', 'o', 'm', 'a', 't', 'c', 'h', '\0' };
