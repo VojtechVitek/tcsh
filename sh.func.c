@@ -1178,7 +1178,11 @@ xecho(sep, v)
 		    nonl = 1;
 		    goto done;
 		case 'e':
+#if 0			/* Windows does not understand \e */
 		    c = '\e';
+#else
+		    c = '\033';
+#endif
 		    break;
 		case 'f':
 		    c = '\f';
