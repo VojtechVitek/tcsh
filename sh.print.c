@@ -40,7 +40,7 @@ extern int Tty_eight_bit;
 
 int     lbuffed = 1;		/* true if line buffered */
 
-static	void	p2dig	__P((int));
+static	void	p2dig	__P((unsigned int));
 
 /*
  * C Shell
