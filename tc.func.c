@@ -2163,7 +2163,7 @@ getremotehost()
 	     * have not caught up yet.
 	     */
 	    addr.s_addr = inet_addr(name);
-	    if (addr.s_addr != (unsigned long)~0)
+	    if (addr.s_addr != (unsigned int)~0)
 		host = name;
 	    else {
 		if (sptr != name) {
