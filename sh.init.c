@@ -61,6 +61,9 @@ struct	biltins bfunc[] = {
     { "bindkey",	dobindkey,	0,	8	},
     { "break",		dobreak,	0,	0	},
     { "breaksw",	doswbrk,	0,	0	},
+#ifdef _OSD_POSIX
+    { "bs2cmd",		dobs2cmd,	1,	INF	},
+#endif /* OBSOLETE */
     { "builtins",	dobuiltins,	0,	0	},
 #ifdef KAI
     { "bye",		goodbye,	0,	0	},

@@ -62,6 +62,7 @@ docomplete(v, t)
 {
     register struct varent *vp;
     register Char *p;
+    Char **pp;
 
     USE(t);
     v++;
@@ -72,6 +73,15 @@ docomplete(v, t)
 	vp = adrof1(strip(p), &completions);
 	if (vp && vp->vec)
 	    tw_pr(vp->vec), xputchar('\n');
+	else
+	{
+#ifdef TDEBUG
+	    xprintf("tw_find(%s) \n", short2str(strip(p)));
+#endif /* TDEBUG */
+	    pp = tw_find(strip(p), &completions, FALSE);
+	    if (pp)
+		tw_pr(pp), xputchar('\n');
+	}
     }
     else
 	set1(strip(p), saveblk(v), &completions, VAR_READWRITE);

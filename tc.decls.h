@@ -141,6 +141,10 @@ extern	void 		  dodmmode	__P((Char **, struct command *));
 extern	void		  douniverse	__P((Char **, struct command *));
 #endif /* masscomp */
 
+#if defined(_OSD_POSIX) /* BS2000 */
+extern	void		  dobs2cmd	__P((Char **, struct command *));
+#endif /* _OSD_POSIX */
+
 #if defined(hcx)
 extern	void		  doatt		__P((Char **, struct command *));
 extern	void		  doucb		__P((Char **, struct command *));
