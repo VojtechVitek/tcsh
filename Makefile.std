@@ -52,7 +52,7 @@ LFLAGS=$(INCLUDES)
 CFLAGS=-g -O2 $(INCLUDES)
 
 # lucid c on suns
-#CFLAGS=-O5 -R $(INCLUDES)
+#CFLAGS=-O5 $(INCLUDES)
 
 # gcc 2.1 on linux
 #CFLAGS=-O6 -fomit-frame-pointer $(INCLUDES)
@@ -167,7 +167,7 @@ LIBES= -ltermcap 		## BSD style things, hpux
 
 # The -B tells gcc to use /bin/ld. This is to avoid using the gnu ld, which
 # on the suns does not know how to make dynamically linked binaries.
-CC=	gcc -Wall -B/bin/	 -ansi -pedantic
+CC=	gcc -Wall -B/bin/	# -ansi -pedantic
 #CC=	gcc -m486 -Wall # Generate code for Intel 486 (linux)
 #CC=	cc
 #CC=	occ
