@@ -112,15 +112,13 @@ set_color_context()
 {
     struct varent *vp = adrof(STRcolor);
 
-    if (!vp) {
+    if (vp == NULL || vp->vec == NULL) {
 	color_context_ls = FALSE;
 	color_context_lsmF = FALSE;
-    }
-    else if (!vp->vec[0] || vp->vec[0][0] == '\0') {
+    } else if (!vp->vec[0] || vp->vec[0][0] == '\0') {
 	color_context_ls = TRUE;
 	color_context_lsmF = TRUE;
-    }
-    else {
+    } else {
 	size_t i;
 
 	color_context_ls = FALSE;

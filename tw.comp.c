@@ -70,7 +70,7 @@ docomplete(v, t)
 	tw_prlist(&completions);
     else if (*v == 0) {
 	vp = adrof1(strip(p), &completions);
-	if (vp)
+	if (vp && vp->vec)
 	    tw_pr(vp->vec), xputchar('\n');
     }
     else
@@ -115,7 +115,8 @@ x:
 	if (p->v_parent == 0)	/* is it the header? */
 	    return;
 	xprintf("%s\t", short2str(p->v_name));
-	tw_pr(p->vec);
+	if (p->vec)
+	    tw_pr(p->vec);
 	xputchar('\n');
 	if (p->v_right) {
 	    p = p->v_right;

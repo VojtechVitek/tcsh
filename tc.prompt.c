@@ -616,7 +616,7 @@ expdollar(dstp, srcp, spp, attr)
 
     vp = adrof(var);
     val = (!vp) ? tgetenv(var) : NULL;
-    if (vp) {
+    if (vp && vp->vec) {
 	for (i = 0; vp->vec[i] != NULL; i++) {
 	    for (val = vp->vec[i]; *spp > 0 && *val; (*spp)--)
 		*dst++ = *val++ | attr;

@@ -823,7 +823,7 @@ recognize(exp_name, item, name_length, numitems, enhanced)
 #ifdef WINNT_NATIVE
     struct varent *vp;
     int igncase;
-    igncase = (vp = adrof(STRcomplete)) != NULL &&
+    igncase = (vp = adrof(STRcomplete)) != NULL && vp->vec != NULL &&
 	Strcmp(*(vp->vec), STRigncase) == 0;
 #endif /* WINNT_NATIVE */
 
@@ -989,7 +989,7 @@ tw_collect_items(command, looking, exp_dir, exp_name, target, pat, flags)
 	case RECOGNIZE_SCROLL:
 
 #ifdef WINNT_NATIVE
- 	    igncase = (vp = adrof(STRcomplete)) != NULL && 
+ 	    igncase = (vp = adrof(STRcomplete)) != NULL && vp->vec != NULL &&
 		Strcmp(*(vp->vec), STRigncase) == 0;
 #endif /* WINNT_NATIVE */
 	    enhanced = (vp = adrof(STRcomplete)) != NULL && !Strcmp(*(vp->vec),STRenhance);
@@ -1143,7 +1143,7 @@ tw_suffix(looking, exp_dir, exp_name, target, name)
 	/*
 	 * Don't consider array variables or empty variables
 	 */
-	if ((vp = adrof(exp_name)) != NULL) {
+	if ((vp = adrof(exp_name)) != NULL && vp->vec != NULL) {
 	    if ((ptr = vp->vec[0]) == NULL || *ptr == '\0' ||
 		vp->vec[1] != NULL) 
 		return ' ';

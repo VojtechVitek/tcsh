@@ -578,7 +578,7 @@ dfollow(cp)
     }
 
     if (cp[0] != '/' && !prefix(STRdotsl, cp) && !prefix(STRdotdotsl, cp)
-	&& (c = adrof(STRcdpath))) {
+	&& (c = adrof(STRcdpath)) && c->vec != NULL) {
 	Char  **cdp;
 	register Char *p;
 	Char    buf[MAXPATHLEN];
@@ -1209,7 +1209,7 @@ dsetstack()
     struct varent *vp;
     struct directory *dn, *dp;
 
-    if ((vp = adrof(STRdirstack)) == NULL)
+    if ((vp = adrof(STRdirstack)) == NULL || vp->vec == NULL)
 	return;
 
     /* Free the whole stack */

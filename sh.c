@@ -1491,7 +1491,7 @@ st_save(st, unit, hflg, al, av)
      */
     if (av != NULL && *av != NULL) {
 	struct varent *vp;
-	if ((vp = adrof(STRargv)) != NULL)
+	if ((vp = adrof(STRargv)) != NULL && vp->vec != NULL)
 	    st->argv = saveblk(vp->vec);
 	else
 	    st->argv = NULL;
@@ -2189,7 +2189,7 @@ mailchk()
     bool    new;
 
     v = adrof(STRmail);
-    if (v == 0)
+    if (v == NULL || v->vec == NULL)
 	return;
     (void) time(&t);
     vp = v->vec;

@@ -193,7 +193,7 @@ watch_login(force)
 #endif
 
     v = adrof(STRwatch);
-    if (v == NULL && !force) {
+    if (v == NULL && v->vec == NULL && !force) {
 #ifdef BSDSIGS
 	(void) sigsetmask(omask);
 #else
@@ -496,7 +496,7 @@ print_who(wp)
     struct varent *vp = adrof(STRwho);
     Char buf[BUFSIZE];
 
-    if (vp && vp->vec[0])
+    if (vp && vp->vec && vp->vec[0])
 	cp = vp->vec[0];
 
     tprintf(FMT_WHO, buf, cp, BUFSIZE, NULL, wp->who_time, (ptr_t) wp);

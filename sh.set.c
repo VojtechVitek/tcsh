@@ -550,7 +550,8 @@ value1(var, head)
 	return (STRNULL);
 
     vp = adrof1(var, head);
-    return (vp == 0 || vp->vec[0] == 0 ? STRNULL : vp->vec[0]);
+    return ((vp == NULL || vp->vec == NULL || vp->vec[0] == NULL) ?
+	STRNULL : vp->vec[0]);
 }
 
 static struct varent *
@@ -868,7 +869,7 @@ shift(v, c)
     else
 	(void) strip(name);
     argv = adrof(name);
-    if (argv == 0)
+    if (argv == NULL || argv->vec == NULL)
 	udvar(name);
     if (argv->vec[0] == 0)
 	stderror(ERR_NAME | ERR_NOMORE);

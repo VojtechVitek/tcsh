@@ -300,7 +300,7 @@ doalias(v, c)
 	plist(&aliases, VAR_ALL);
     else if (*v == 0) {
 	vp = adrof1(strip(p), &aliases);
-	if (vp)
+	if (vp && vp->vec)
 	    blkpr(vp->vec), xputchar('\n');
     }
     else {

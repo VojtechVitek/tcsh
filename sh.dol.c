@@ -645,7 +645,7 @@ Dgetdol()
 	dolp = (vp || getenv(short2str(name))) ? STR1 : STR0;
 	goto eatbrac;
     }
-    if (vp == 0) {
+    if (vp == NULL || vp->vec == NULL) {
 	np = str2short(getenv(short2str(name)));
 	if (np) {
 	    fixDolMod();

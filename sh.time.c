@@ -394,7 +394,7 @@ prusage(bs, es,	e, b)
     xprintf("t %lu\n", t);
 #endif /* TDEBUG */
 
-    if (vp && vp->vec[0] && vp->vec[1])
+    if (vp && vp->vec && vp->vec[0] && vp->vec[1])
 	cp = short2str(vp->vec[1]);
     for	(; *cp;	cp++)
 	if (*cp	!= '%')

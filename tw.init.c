@@ -241,7 +241,7 @@ tw_cmd_cmd()
     int len;
 
 
-    if (v == NULL) /* if no path */
+    if (v == NULL || v->vec == NULL) /* if no path */
 	return;
 
     for (pv = v->vec; *pv; pv++) {

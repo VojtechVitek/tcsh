@@ -253,7 +253,7 @@ doexec(t, do_glob)
      * If no path, no words in path, or a / in the filename then restrict the
      * command search.
      */
-    if (v == 0 || v->vec[0] == 0 || slash)
+    if (v == NULL || v->vec == NULL || v->vec[0] == NULL || slash)
 	pv = justabs;
     else
 	pv = v->vec;
@@ -472,7 +472,7 @@ texec(sf, st)
 	 * interpretation of the words at this point.
 	 */
 	    v = adrof1(STRshell, &aliases);
-	    if (v == 0) {
+	    if (v == NULL || v->vec == NULL) {
 		vp = lastsh;
 		vp[0] = adrof(STRshell) ? varval(STRshell) : STR_SHELLPATH;
 		vp[1] = NULL;
@@ -703,7 +703,7 @@ dohash(vv, c)
 	hashwidth = 0;
 	if (v == NULL)
 	    return;
-	for (pv = v->vec; *pv; pv++, hashwidth++)
+	for (pv = v->vec; pv && *pv; pv++, hashwidth++)
 	    continue;
 	if (hashwidth <= widthof(unsigned char))
 	    hashwidth = sizeof(unsigned char);
@@ -731,7 +731,7 @@ dohash(vv, c)
     havhash = 1;
     if (v == NULL)
 	return;
-    for (pv = v->vec; *pv; pv++, i++) {
+    for (pv = v->vec; pv && *pv; pv++, i++) {
 	if (!ABSOLUTEP(pv[0]))
 	    continue;
 	dirp = opendir(short2str(*pv));
@@ -851,7 +851,7 @@ iscommand(name)
     register int hashval, i;
 
     v = adrof(STRpath);
-    if (v == 0 || v->vec[0] == 0 || slash)
+    if (v == NULL || v->vec == NULL || v->vec[0] == NULL || slash)
 	pv = justabs;
     else
 	pv = v->vec;
@@ -1020,7 +1020,7 @@ tellmewhat(lexp, str)
 	bool    slash = any(short2str(sp->word), '/');
 
 	v = adrof(STRpath);
-	if (v == 0 || v->vec[0] == 0 || slash)
+	if (v == NULL || v->vec == NULL || v->vec[0] == NULL || slash)
 	    pv = justabs;
 	else
 	    pv = v->vec;
@@ -1108,7 +1108,8 @@ find_cmd(cmd, prt)
     if (prt && adrof1(cmd, &aliases)) {
 	if ((var = adrof1(cmd, &aliases)) != NULL) {
 	    xprintf(CGETS(13, 8, "%S is aliased to "), cmd);
-	    blkpr(var->vec);
+	    if (var->vec != NULL)
+		blkpr(var->vec);
 	    xputchar('\n');
 	    rval = 1;
 	}
@@ -1146,7 +1147,7 @@ find_cmd(cmd, prt)
 
     sv = Strspl(STRslash, cmd);
 
-    for (pv = var->vec, i = 0; *pv; pv++, i++) {
+    for (pv = var->vec, i = 0; pv && *pv; pv++, i++) {
 	if (havhash && !eq(*pv, STRdot)) {
 #ifdef FASTHASH
 	    if (!bit(hashval, i))

@@ -193,7 +193,7 @@ ed_Setup(rst)
     vdisable = (unsigned char) _POSIX_VDISABLE;
 #endif /* POSIX && _PC_VDISABLE && !BSD4_4 && !WINNT_NATIVE */
 	
-    if ((imode = adrof(STRinputmode)) != NULL) {
+    if ((imode = adrof(STRinputmode)) != NULL && imode->vec != NULL) {
 	if (!Strcmp(*(imode->vec), STRinsert))
 	    inputmode = MODE_INSERT;
 	else if (!Strcmp(*(imode->vec), STRoverwrite))
