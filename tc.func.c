@@ -341,7 +341,7 @@ dolist(v, c)
 	lastword = nextword;
 	for (cp = *v; cp; cp = *++v) {
 	    nextword = (struct wordent *) xcalloc(1, sizeof cmd);
-	    nextword->word = Strsave(cp);
+	    nextword->word = quote(Strsave(cp));
 	    lastword->next = nextword;
 	    nextword->prev = lastword;
 	    lastword = nextword;
