@@ -179,6 +179,7 @@ extern	CCRETVAL	e_toggle_hist		__P((int));
 extern  CCRETVAL        e_load_average		__P((int));
 extern  CCRETVAL        v_delprev		__P((int));
 extern  CCRETVAL        v_delmeta		__P((int));
+extern  CCRETVAL        v_wordfwd		__P((int));
 extern  CCRETVAL        v_wordback		__P((int));
 extern  CCRETVAL        v_endword		__P((int));
 extern  CCRETVAL        v_eword			__P((int));
