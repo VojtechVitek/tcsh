@@ -756,7 +756,7 @@ dobackp(cp, literal)
     pnleft = LONGBSIZE - 4;
     for (;;) {
 #if defined(DSPMBYTE)
-	for (lp = cp;; lp++) {
+	for (lp = cp;; lp++) { /* } */
 	    if (*lp == '`' &&
 		(lp-1 < cp || !Ismbyte2(*lp) || !Ismbyte1(*(lp-1)))) {
 		break;
@@ -843,8 +843,11 @@ backeval(cp, literal)
 	    blkfree(pargv), pargv = 0, pargsiz = 0;
 	/* mg, 21.dec.88 */
 	arginp = cp;
-	while (*cp)
-	    *cp++ &= TRIM;
+	for (arginp = cp; *cp; cp++) {
+	    *cp &= TRIM;
+	    if (*cp == '\n' || *cp == '\r')
+		*cp = ';';
+	}
 
         /*
 	 * In the child ``forget'' everything about current aliases or
