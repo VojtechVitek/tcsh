@@ -607,4 +607,6 @@ showall(v, c)
 	    (unsigned long) membot, (unsigned long) memtop, 
 	    (unsigned long) (memtop - membot));
 #endif /* SYSMALLOC */
+    USE(c);
+    USE(v);
 }

@@ -349,6 +349,7 @@ dobindkey(v, c)
     Char   *out;
     KEYCMD  cmd;
 
+    USE(c);
     if (!MapsAreInited)
 	ed_InitMaps();
 
@@ -500,7 +501,7 @@ parsecmd(str)
 
     for (fp = FuncNames; fp->name; fp++) {
 	if (strcmp(short2str(str), fp->name) == 0) {
-	    return fp->func;
+	    return (KEYCMD) fp->func;
 	}
     }
     xprintf("Bad command name: %S\n", str);
@@ -781,6 +782,7 @@ dobind(v, dummy)
     Char   *p, *l;
     Char    buf[1000];
 
+    USE(dummy);
     /*
      * Assume at this point that i'm given 2 or 3 args - 'bind', the f-name,
      * and the key; or 'bind' key to print the func for that key.

@@ -145,6 +145,8 @@ dotime(v, c)
     prusage(&times0, &times_dol, timedol, time0);
 # endif	/* _SEQUENT_ */
 #endif /* BSDTIMES */
+    USE(c);
+    USE(v);
 }
 
 /*
@@ -159,6 +161,7 @@ donice(v, c)
     register Char *cp;
     int     nval = 0;
 
+    USE(c);
     v++, cp = *v++;
     if (cp == 0)
 	nval = 4;

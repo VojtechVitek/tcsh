@@ -164,7 +164,7 @@ doset(v, c)
     int     subscr;
     int	    flags = VAR_READWRITE;
 
-
+    USE(c);
     v++;
     /*
      * Readonly addition From: Tim P. Starrin <noid@cyborg.larc.nasa.gov>
@@ -286,6 +286,7 @@ dolet(v, dummy)
     bool    hadsub;
     int     subscr;
 
+    USE(dummy);
     v++;
     p = *v++;
     if (p == 0) {
@@ -603,6 +604,7 @@ unset(v, c)
 {
     bool did_only;
 
+    USE(c);
     did_only = adrof(STRrecognize_only_executables) != NULL;
     unset1(v, &shvhed);
     if (adrof(STRhistchars) == 0) {
@@ -714,6 +716,7 @@ shift(v, c)
     register struct varent *argv;
     register Char *name;
 
+    USE(c);
     v++;
     name = *v;
     if (name == 0)

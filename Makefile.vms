@@ -104,7 +104,7 @@ LFLAGS=$(INCLUDES)
 #DFLAGS=-D_VMS_POSIX
 # DEC/osf-1 on the alpha
 #DFLAGS=-D_BSD
-DFLAGS=-DI_DEBUG	# Only for beta
+DFLAGS=
 
 
 ################################################################

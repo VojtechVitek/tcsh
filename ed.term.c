@@ -552,6 +552,7 @@ dosetty(v, t)
     int z = EX_IO;
     char cmdname[BUFSIZE];
 
+    USE(t);
     setname(strcpy(cmdname, short2str(*v++)));
 
     while (v && *v && v[0][0] == '-' && v[0][2] == '\0') 

@@ -196,6 +196,7 @@ dolist(v, c)
     int     i, k;
     struct stat st;
 
+    USE(c);
     if (*++v == NULL) {
 	(void) t_search(STRNULL, NULL, LIST, 0, TW_ZERO, 0, STRNULL, 0);
 	return;
@@ -351,7 +352,7 @@ dotelltc(v, c)
     register Char **v;
     struct command *c;
 {
-
+    USE(c);
     if (!GotTermCaps)
 	GetTermCaps();
 
@@ -403,6 +404,7 @@ dowhich(v, c)
     struct wordent lexp[3];
     struct varent *vp;
 
+    USE(c);
     lexp[0].next = &lexp[1];
     lexp[1].next = &lexp[2];
     lexp[2].next = &lexp[0];
@@ -1473,6 +1475,7 @@ doaliases(v, c)
     char    tbuf[BUFSIZE + 1], *tmp;
     extern bool output_raw;	/* PWP: in sh.print.c */
 
+    USE(c);
     v++;
     if (*v == 0) {
 	output_raw = 1;

@@ -75,6 +75,7 @@ dosched(v, c)
     struct tm *ltp;
     char   *timeline;
 
+    USE(c);
 /* This is a major kludge because of a gcc linker  */
 /* Problem.  It may or may not be needed for you   */
 #ifdef _MINIX

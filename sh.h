@@ -66,6 +66,8 @@ typedef char Char;
 # define SAVE(a) (strsave(a))
 #endif 
 
+/* Elide unused argument warnings */
+#define USE(a)	((void) (a))
 /*
  * If your compiler complains, then you can either
  * throw it away and get gcc or, use the following define

@@ -1429,6 +1429,7 @@ goodbye(v, c)
     Char **v;
     struct command *c;
 {
+    USE(c);
     rechist(NULL);
     recdirs(NULL);
 
@@ -1863,6 +1864,7 @@ dosource(t, c)
     extern int bequiet;
     char    buf[BUFSIZE];
 
+    USE(c);
     t++;
     if (*t && eq(*t, STRmh)) {
 	if (*++t == NULL)

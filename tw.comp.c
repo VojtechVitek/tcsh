@@ -67,6 +67,7 @@ docomplete(v, t)
     register struct varent *vp;
     register Char *p;
 
+    USE(t);
     v++;
     p = *v++;
     if (p == 0)
@@ -90,6 +91,7 @@ douncomplete(v, t)
     Char **v;
     struct command *t;
 {
+    USE(t);
     unset1(v, &completions);
 } /* end douncomplete */
 

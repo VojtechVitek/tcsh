@@ -1237,6 +1237,8 @@ t_search(word, wp, command, max_word_length, looking, list_max, pat, suf)
            *target;			/* Target to expand/correct/list */
     DIR    *dir_fd = NULL;	
 
+    USE(wp);
+
     /*
      * bugfix by Marty Grossman (grossman@CC5.BBN.COM): directory listing can
      * dump core when interrupted

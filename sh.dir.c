@@ -196,6 +196,7 @@ dodirs(v, c)
 {
     int dflag = skipargs(&v, "lvnSLc", "");
 
+    USE(c);
     if ((dflag & DIR_CLEAR) != 0) {
 	struct directory *dp, *fdp;
 	for (dp = dcwd->di_next; dp != dcwd; ) {
@@ -419,8 +420,9 @@ dochngd(v, c)
 {
     register Char *cp;
     register struct directory *dp;
-
     int dflag = skipargs(&v, "lvn", "[-|<dir>]");
+
+    USE(c);
     printd = 0;
     cp = (dflag & DIR_OLD) ? olddir : *v;
 
@@ -609,8 +611,9 @@ dopushd(v, c)
 {
     register struct directory *dp;
     register Char *cp;
-
     int dflag = skipargs(&v, "lvn", " [-|<dir>|+<n>]");
+    
+    USE(c);
     printd = 1;
     cp = (dflag & DIR_OLD) ? olddir : *v;
 
@@ -721,8 +724,9 @@ dopopd(v, c)
 {
     Char *cp;
     register struct directory *dp, *p = NULL;
-
     int dflag = skipargs(&v, "lvn", " [-|+<n>]");
+
+    USE(c);
     printd = 1;
     cp = (dflag & DIR_OLD) ? olddir : *v;
 

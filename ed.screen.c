@@ -334,6 +334,7 @@ TellTC(what)
 {
     struct termcapstr *t;
 
+    USE(what);
     xprintf("\n\tTcsh thinks your terminal has the\n");
     xprintf("\tfollowing characteristics:\n\n");
     xprintf("\tIt has %d columns and %d lines\n",

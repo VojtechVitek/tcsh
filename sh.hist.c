@@ -192,6 +192,7 @@ dohist(vp, c)
 {
     int     n, hflg = 0;
 
+    USE(c);
     if (getn(value(STRhistory)) == 0)
 	return;
     if (setintr)

@@ -673,6 +673,7 @@ int snum;
 {
     register Char **v;
 
+    USE(snum);
     if ((v = gargv) != 0) {
 	gargv = 0;
 	xfree((ptr_t) v);

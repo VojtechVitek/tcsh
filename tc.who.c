@@ -544,6 +544,8 @@ struct command *c;
     struct who *wp;
     struct varent *vp;
 
+    USE(v);
+    USE(c);
     if ((vp = adrof(STRwatch)) == NULL)
 	stderror(ERR_NOWATCH);
     blkpr(vp->vec);
