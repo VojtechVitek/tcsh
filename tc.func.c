@@ -69,7 +69,6 @@ static bool cwdcmd_active = 0;	/* PWP: for cwd_cmd */
 static bool beepcmd_active = 0;
 static signalfun_t alm_fun = NULL;
 
-static	void	 Reverse	__P((Char *));
 static	void	 auto_logout	__P((int));
 static	char	*xgetpass	__P((char *));
 static	void	 auto_lock	__P((int));
