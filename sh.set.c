@@ -1265,7 +1265,7 @@ autoset_dspmbyte(pcp)
     };
 #ifdef HAVE_NL_LANGINFO
     struct dspm_autoset_Table dspmc[] = {
-	{ STRstarutfstar8, STRutf8` },
+	{ STRstarutfstar8, STRutf8 },
 	{ STReuc, STReuc },
 	{ STRGB2312, STReuc },
 	{ STRLANGBIG5, STRbig5 },
