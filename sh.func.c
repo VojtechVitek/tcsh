@@ -2079,7 +2079,7 @@ plim(lp, hard)
     RLIM_TYPE limit;
     int     div = lp->limdiv;
 
-    xprintf("%s \t", lp->limname);
+    xprintf("%-13.13s", lp->limname);
 
 # ifndef BSDLIMIT
     limit = ulimit(lp->limconst, 0);
