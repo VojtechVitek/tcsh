@@ -1310,6 +1310,7 @@ recdirs(fname, def)
     struct directory *dp;
     unsigned int    num;
     Char   *snum;
+    Char    qname[MAXPATHLEN*2];
 
     if (fname == NULL && !def) 
 	return;
@@ -1345,10 +1346,10 @@ recdirs(fname, def)
 
 	if (cdflag == 0) {
 	    cdflag = 1;
-	    xprintf("cd '%S'\n", dp->di_name);
+	    xprintf("cd %S\n", quote_meta(qname, dp->di_name));
 	}
 	else
-	    xprintf("pushd '%S'\n", dp->di_name);
+	    xprintf("pushd %S\n", quote_meta(qname, dp->di_name));
 
 	if (num-- == 0)
 	    break;

@@ -53,7 +53,7 @@ struct process {
     struct process *p_friends;	/* next in job list (or self) */
     struct directory *p_cwd;	/* cwd of the job (only in head) */
     unsigned long p_flags;	/* various job status flags */
-    char    p_reason;		/* reason for entering this state */
+    unsigned char p_reason;	/* reason for entering this state */
     int     p_index;		/* shorthand job index */
     pid_t   p_procid;
     pid_t   p_jobid;		/* pid of job leader */

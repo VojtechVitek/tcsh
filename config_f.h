@@ -136,6 +136,13 @@
 #endif
 
 /*
+ * USE_ACCESS	Use access(2) rather than stat(2) when POSIX is defined.
+ *		POSIX says to use stat, but stat(2) is less accurate
+ *		than access(2) for determining file access.
+ */
+#undef USE_ACCESS
+
+/*
  * REMOTEHOST	Try to determine the remote host that we logged in from
  *		using first getpeername, and then the utmp file. If
  *		successful, set $REMOTEHOST to the name or address of the

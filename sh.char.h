@@ -74,7 +74,7 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 extern Char STRnokanji[];
 
 #define cmap(c, bits)	\
-	((((c) & QUOTE) || (c>127 && adrof(STRnokanji))) ? \
+	((((c) & QUOTE) || ((c & 0x80) && adrof(STRnokanji))) ? \
 	0 : (_cmap[(unsigned char)(c)] & (bits)))
 #else
 #define cmap(c, bits)	\

@@ -754,6 +754,7 @@ getexcl(sc)
 	uselastevent = 0;
 	lastev = eventno;
     }
+    else
 	lastev = eventno;
     hp = gethent(sc);
     if (hp == 0)

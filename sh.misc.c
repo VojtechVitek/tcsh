@@ -476,6 +476,21 @@ quote(cp)
     return (cp);
 }
 
+Char   *
+quote_meta(d, s)
+    Char   *d;
+    const Char   *s;
+{
+    Char *r = d;
+    while (*s != '\0') {
+	if (cmap(*s, _META | _DOL | _QF | _QB | _ESC | _GLOB))
+		*d++ = '\\';
+	*d++ = *s++;
+    }
+    *d = '\0';
+    return r;
+}
+
 void
 udvar(name)
     Char   *name;

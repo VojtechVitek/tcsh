@@ -90,7 +90,7 @@ sh_access(fname, mode)
     Char *fname;
     int mode;
 {
-#ifdef POSIX
+#if defined(POSIX) && !defined(USE_ACCESS)
     struct stat     statb;
 #endif /* POSIX */
     char *name = short2str(fname);
@@ -98,7 +98,7 @@ sh_access(fname, mode)
     if (*name == '\0')
 	return 1;
 
-#ifndef POSIX
+#if !defined(POSIX) || defined(USE_ACCESS)
     return access(name, mode);
 #else /* POSIX */
 

@@ -76,9 +76,9 @@ struct	biltins bfunc[] = {
     { "continue",	docontin,	0,	0	},
     { "default",	dozip,		0,	0	},
     { "dirs",		dodirs,		0,	INF	},
-#ifdef _CRAY
+#if defined(_CRAY) && !defined(_CRAYMPP)
     { "dmmode",		dodmmode,	0,	1	},
-#endif /* _CRAY */
+#endif /* _CRAY && !_CRAYMPP */
     { "echo",		doecho,		0,	INF	},
     { "echotc",		doechotc,	0,	INF	},
     { "else",		doelse,		0,	INF	},

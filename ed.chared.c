@@ -3321,7 +3321,11 @@ e_load_average(c)
     USE(c);
     PastBottom();
 #ifdef TIOCSTAT
-    if (ioctl(SHIN, TIOCSTAT, 0) < 0) 
+    /*
+     * Here we pass &c to the ioctl because some os's (NetBSD) expect it
+     * there even if they don't use it. (lukem@netbsd.org)
+     */
+    if (ioctl(SHIN, TIOCSTAT, (ioctl_t) &c) < 0) 
 #endif
 	xprintf(CGETS(5, 1, "Load average unavailable\n"));
     return(CC_REFRESH);

@@ -243,6 +243,7 @@ extern	Char		**saveblk	__P((Char **));
 extern	void		  setzero	__P((char *, int));
 extern	Char		 *strip		__P((Char *));
 extern	Char		 *quote		__P((Char *));
+extern	Char		 *quote_meta	__P((Char *, const Char *));
 extern	char		 *strsave	__P((const char *));
 extern	void		  udvar		__P((Char *));
 #ifndef POSIX

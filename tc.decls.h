@@ -134,9 +134,9 @@ extern	void		  domigrate	__P((Char **, struct command *));
 extern	void 		  dowarp	__P((Char **, struct command *));
 #endif /* WARP */
 
-#ifdef _CRAY
+#if defined(_CRAY) && !defined(_CRAYMPP)
 extern	void 		  dodmmode	__P((Char **, struct command *));
-#endif /* _CRAY */
+#endif /* _CRAY && !_CRAYMPP */
 
 #if defined(masscomp) || defined(hcx)
 extern	void		  douniverse	__P((Char **, struct command *));
@@ -227,6 +227,7 @@ extern	pret_t		  xvsprintf	__P((char *, const char *, va_list));
  */
 extern	void		  dateinit	__P((void));
 extern	void		  printprompt	__P((int, char *));
+extern  Char 		 *expdollar	__P((Char **, Char **, size_t *, int));
 extern	void		  tprintf	__P((int, Char *, Char *, size_t, 
 					     char *, time_t, ptr_t));
 

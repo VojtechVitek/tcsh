@@ -847,6 +847,7 @@ $topfile = 'TOPFILEHERE';
 $input = $ENV{'QUERY_STRING'};
 $input =~ s/^input=//;
 $input =~ s/\+/ /g;
+print "Status: 302 Found\n";
 if ($input ne '' && ($key = (grep(/^$input/,  @name))[0] ||
 			    (grep(/^$input/i, @name))[0] ||
 			    (grep( /$input/i, @name))[0]   )) {

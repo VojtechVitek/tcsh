@@ -531,7 +531,7 @@ done:
 /***
  *** CRAY ddmode <velo@sesun3.epfl.ch> (Martin Ouwehand EPFL-SIC/SE)
  ***/
-#ifdef _CRAY
+#if defined(_CRAY) && !defined(_CRAYMPP)
 void
 dodmmode(v, c)
     Char  **v;
@@ -566,7 +566,7 @@ dodmmode(v, c)
 	    }
     }
 }
-#endif /* _CRAY */
+#endif /* _CRAY && !_CRAYMPP */
 
 
 /***
