@@ -544,6 +544,8 @@ prusage(bs, es, e, b)
 		break;
 # endif	/* _SEQUENT_ */
 #endif /* BSDTIMES */
+	    default:
+		break;
 	    }
     xputchar('\n');
 }

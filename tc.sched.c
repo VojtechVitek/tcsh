@@ -76,6 +76,14 @@ dosched(v, c)
     char   *timeline;
     char   *ctime();
 
+/* This is a major kludge because of a gcc linker  */
+/* Problem.  It may or may not be needed for you   */
+#ifdef _MINIX
+    char kludge[10];
+    extern char *sprintf();
+    sprintf(kludge,"kludge");
+#endif /* _MINIX */
+
     v++;
     cp = *v++;
     if (cp == NULL) {

@@ -226,6 +226,9 @@ doprnt(addchar, sfmt, ap)
 	    case '%':
 		(*addchar) ((int) ('%' | attributes));
 		break;
+
+	    default:
+		break;
 	    }
 	    flush_left = 0, f_width = 0, prec = INF, hash = 0, do_long = 0;
 	    sign = 0;

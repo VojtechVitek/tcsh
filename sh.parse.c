@@ -130,6 +130,9 @@ asyn0(p1, p2)
 	    asyn3(p1, p);
 	    asyntax(p->next, p2);
 	    return;
+
+	default:
+	    break;
 	}
     if (l == 0)
 	asyn3(p1, p2);
@@ -287,6 +290,8 @@ syn0(p1, p2, flags)
 	    t->t_dcar = t1;
 	    t->t_dcdr = syntax(p, p2, flags);
 	    return (t);
+	default:
+	    break;
 	}
     if (l == 0)
 	return (syn1(p1, p2, flags));
@@ -331,6 +336,9 @@ syn1(p1, p2, flags)
 	    if (t->t_dcdr == 0)
 		t->t_dcdr = t->t_dcar, t->t_dcar = 0;
 	    return (t);
+
+	default:
+	    break;
 	}
     return (syn1a(p1, p2, flags));
 }
@@ -372,6 +380,9 @@ syn1a(p1, p2, flags)
 		return (t);
 	    }
 	    continue;
+
+	default:
+	    break;
 	}
     return (syn1b(p1, p2, flags));
 }
@@ -411,6 +422,9 @@ syn1b(p1, p2, flags)
 		return (t);
 	    }
 	    continue;
+
+	default:
+	    break;
 	}
     return (syn2(p1, p2, flags));
 }
@@ -458,6 +472,9 @@ syn2(p1, p2, flags)
 		p = pn;
 	    t->t_dcdr = syn2(p->next, p2, flags | P_IN);
 	    return (t);
+
+	default:
+	    break;
 	}
     return (syn3(p1, p2, flags));
 }
@@ -504,6 +521,8 @@ again:
 	case T_SWITCH:
 	case T_WHILE:
 	    specp = 1;
+	    break;
+	default:
 	    break;
 	}
     }
@@ -679,6 +698,8 @@ freesyn(t)
     case NODE_PIPE:
     case NODE_LIST:
 	freesyn(t->t_dcar), freesyn(t->t_dcdr);
+	break;
+    default:
 	break;
     }
     xfree((ptr_t) t);

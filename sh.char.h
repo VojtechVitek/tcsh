@@ -39,6 +39,9 @@
 #define _h_sh_char
 #include <ctype.h>
 
+#ifdef _MINIX
+# undef _SP
+#endif /* _MINIX */
 extern unsigned short _cmap[];
 
 #ifndef NLS

@@ -104,6 +104,10 @@ typedef struct sigvec sigvec_t;
 # endif	/* BSDJOBS */
 #endif /* SVID > 0 */
 
+#ifdef _MINIX
+#include <signal.h>
+#  define killpg(a, b) kill((a), (b))
+#endif /* _MINIX */
 
 #ifdef BSDSIGS
 /*
