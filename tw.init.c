@@ -39,13 +39,6 @@ RCSID("$Id$")
 #include "tc.h"
 #include "sh.proc.h"
 
-#if !defined(NSIG) && defined(SIGMAX)
-# define NSIG (SIGMAX+1)
-#endif /* !NSIG && SIGMAX */
-#if !defined(NSIG) && defined(_NSIG)
-# define NSIG _NSIG
-#endif /* !NSIG && _NSIG */
-
 #define TW_INCR	128
 
 typedef struct {

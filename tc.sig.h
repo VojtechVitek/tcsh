@@ -133,6 +133,9 @@ typedef struct sigvec sigvec_t;
 #if !defined(NSIG) && defined(_NSIG)
 # define NSIG _NSIG
 #endif /* !NSIG && _NSIG */
+#if !defined(NSIG)
+#define NSIG (sizeof(sigset_t) * 8)
+#endif /* !NSIG */
 #if !defined(MAXSIG) && defined(NSIG)
 # define MAXSIG NSIG
 #endif /* !MAXSIG && NSIG */
