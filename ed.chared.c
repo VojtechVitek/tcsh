@@ -117,7 +117,7 @@ static Char srch_char = 0;			/* Search target */
 
 /* all routines that start with c_ are private to this set of routines */
 static	void	 c_alternativ_key_map	__P((int));
-static	void	 c_insert		__P((int));
+void	 c_insert		__P((int));
 void	 c_delafter		__P((int));
 void	 c_delbefore		__P((int));
 static 	int	 c_to_class		__P((int));
@@ -172,7 +172,7 @@ c_alternativ_key_map(state)
     AltKeyMap = (Char) state;
 }
 
-static void
+void
 c_insert(num)
     int num;
 {
