@@ -49,7 +49,7 @@
 # include <inttypes.h>
 #endif
 
-#if !defined(HAVE_STDINT_H) && !defined(HAVE_INTTYPES_H)
+#if !defined(HAVE_STDINT_H) && !defined(HAVE_INTTYPES_H) && !defined(WINNT_NATIVE)
 typedef unsigned long intptr_t;
 #endif
 

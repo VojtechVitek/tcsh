@@ -158,10 +158,12 @@ dobindkey(v, c)
 	}
     }
 
+#ifndef WINNT_NATIVE
     if (in.buf[0] > 0xFF) {
 	bad_spec(in.buf);
 	return;
     }
+#endif
     ch = (uChar) in.buf[0];
 
     if (removeb) {

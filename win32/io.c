@@ -43,7 +43,7 @@
 #include "sh.h"
 #include "ntport.h"
 #include "signal.h"
-#include "config_f.h"
+//#include "config_f.h"
 
 #define CR 0x0d
 
@@ -60,7 +60,7 @@ unsigned short __nt_want_vcode=0,__nt_vcode=0;
 HANDLE __h_con_alarm=0;
 HANDLE __h_con_int=0;
 
-extern unsigned int NoNLSRebind;
+extern int NoNLSRebind;
 
 extern int OLDSTD, SHIN;
 /* 
