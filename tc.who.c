@@ -155,7 +155,7 @@ resetwatch()
 void
 watch_login()
 {
-    int     utmpfd, comp, alldone;
+    int     utmpfd, comp = -1, alldone;
 #ifdef BSDSIGS
     sigmask_t omask;
 #endif				/* BSDSIGS */
