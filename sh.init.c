@@ -44,7 +44,7 @@ RCSID("$Id$")
  * C shell
  */
 
-#define	INF	1000
+#define	INF	0x7fffffff
 
 struct	biltins bfunc[] = {
     { "@",	dolet,		0,	INF, },
