@@ -2267,6 +2267,7 @@ remotehost()
 }
 #endif /* REMOTEHOST */
 
+#ifndef WINNT_NATIVE
 /*
  * indicate if a terminal type is defined in terminfo/termcap
  * (by default the current term type). This allows ppl to look
@@ -2309,3 +2310,4 @@ dotermname(v, c)
 	set(STRstatus, Strsave(STR1), VAR_READWRITE);
     }
 }
+#endif /* WINNT_NATIVE */
