@@ -77,6 +77,8 @@ ones.  Please send in your fixes and additions! */
 #     define ConfigH sol23
 #    endif
 #    define NoCombineRegs
+#   else
+#    define ConfigH sol24
 #   endif
 #  endif
 # endif
