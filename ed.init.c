@@ -141,7 +141,7 @@ int snum;
     if (snum > 0)
       sigset(snum, window_change);
 #endif /* UNRELSIGS */
-    check_window_size(0);
+    windowchg = 1;
 #ifndef SIGVOID
     return (snum);
 #endif 

@@ -2119,8 +2119,10 @@ process(catch)
 	freelex(&paraml);
 	freesyn(savet), savet = NULL;
 #ifdef SIG_WINDOW
-	if (catch && intty && !whyles && !tellwhat)
-	    (void) window_change(0);	/* for window systems */
+	if (windowchg || (catch && intty && !whyles && !tellwhat)) {
+	    windowchg = 0;
+	    (void) check_window_size(0);	/* for window systems */
+	}
 #endif /* SIG_WINDOW */
 	set(STR_, Strsave(InputBuf), VAR_READWRITE | VAR_NOGLOB);
     }

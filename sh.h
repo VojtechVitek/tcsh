@@ -595,6 +595,7 @@ EXTERN bool    is2atty IZERO;	/* is file descriptor 2 a tty (didfds mode) */
 EXTERN bool    arun IZERO;	/* Currently running multi-line-aliases */
 EXTERN int     implicit_cd IZERO;/* implicit cd enabled?(1=enabled,2=verbose) */
 EXTERN bool    inheredoc IZERO;	/* Currently parsing a heredoc */
+EXTERN bool    windowchg IZERO;	/* We received a window change event */
 
 /*
  * Global i/o info
