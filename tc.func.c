@@ -2117,13 +2117,10 @@ getremotehost()
     char *sptr = NULL;
 #endif
 
-    if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1) {
 #ifdef INET6
-#if 0
-	int flag = 0;
-#else
+    if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1 &&
+	(saddr.ss_family == AF_INET6 || saddr.ss_family == AF_INET)) {
 	int flag = NI_NUMERICHOST;
-#endif
 
 #ifdef NI_WITHSCOPEID
 	flag |= NI_WITHSCOPEID;
@@ -2132,6 +2129,8 @@ getremotehost()
 		    NULL, 0, flag);
 	host = hbuf;
 #else
+    if (getpeername(SHIN, (struct sockaddr *) &saddr, &len) != -1 &&
+	saddr.ss_family == AF_INET) {
 #if 0
 	if ((hp = gethostbyaddr((char *)&saddr.sin_addr, sizeof(struct in_addr),
 				AF_INET)) != NULL)
