@@ -397,7 +397,7 @@ tw_dollar(str, wl, nwl, buffer, sep, msg)
     if (*sp++ == sep)
 	return sp;
 
-    stderror(ERR_COMPILL, msg, str);
+    stderror(ERR_COMPILL, msg, short2str(str));
     return --sp;
 } /* end tw_dollar */
 		
