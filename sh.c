@@ -135,6 +135,12 @@ main(argc, argv)
     sigvec_t osv;
 #endif /* BSDSIGS */
 
+#ifdef MALLOC_TRACE
+     mal_setstatsfile(fdopen(dup2(open("/tmp/tcsh.trace", 
+				       O_WRONLY|O_CREAT, 0666), 25), "w"));
+     mal_trace(1);
+#endif /* MALLOC_TRACE */
+
 #if !(defined(BSDTIMES) || defined(_SEQUENT_)) && defined(POSIX)
 # ifdef _SC_CLK_TCK
     clk_tck = (clock_t) sysconf(_SC_CLK_TCK);

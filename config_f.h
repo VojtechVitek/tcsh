@@ -110,7 +110,7 @@
  *		This can be much slower and no memory statistics will be
  *		provided.
  */
-#ifdef PURIFY
+#if defined(PURIFY) || defined(MALLOC_TRACE)
 # define SYSMALLOC
 #else
 # undef SYSMALLOC

@@ -115,7 +115,7 @@ LDFLAGS= 			## The simplest, suitable for all.
 ################################################################
 ## LIBES.  Pick one, or roll your own.
 ################################################################
-LIBES= -ltermcap		## BSD style things, hpux
+LIBES= -ltermcap 		## BSD style things, hpux
 #LIBES= -ltermc			## emx under OS/2
 #LIBES= -ltermcap -lsec		## Tek XD88/10 (UTekV) with PW_SHADOW
 #LIBES= -ltermcap -lsec		## Motorola MPC (sysV88) with PW_SHADOW

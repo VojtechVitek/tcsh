@@ -250,7 +250,11 @@ closem()
 #endif
     for (f = 0; f < NOFILE; f++)
 	if (f != SHIN && f != SHOUT && f != SHDIAG && f != OLDSTD &&
-	    f != FSHTTY)
+	    f != FSHTTY 
+#ifdef MALLOC_TRACE
+	    && f != 25
+#endif /* MALLOC_TRACE */
+	    )
 	    (void) close(f);
 }
 
