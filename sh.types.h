@@ -78,14 +78,16 @@
 #  define _SPEED_T
 # endif /* _SPEED_T */
 # ifndef SUNOS4
-#  ifndef _UID_T
-#   define _UID_T
-     typedef int uid_t;
-#  endif /* _UID_T */
-#  ifndef _GID_T
-#   define _GID_T
-     typedef int gid_t;
-#  endif /* _GID_T */
+#  ifndef MACH
+#   ifndef _UID_T
+#    define _UID_T
+      typedef int uid_t;
+#   endif /* _UID_T */
+#   ifndef _GID_T
+#    define _GID_T
+      typedef int gid_t;
+#   endif /* _GID_T */
+#  endif /* !MACH */
 # endif /* !SUNOS4 */
 #endif /* sun */
 

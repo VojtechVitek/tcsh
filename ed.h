@@ -68,7 +68,6 @@ extern PFCmd CcFuncTbl[];	/* table of available commands */
 extern KEYCMD CcKeyMap[];	/* keymap table, each index into above tbl */
 extern KEYCMD CcAltMap[];	/* Alt keymap table */
 extern KEYCMD CcEmacsMap[];	/* keymap table for Emacs default bindings */
-extern KEYCMD CcViMap[];	/* keymap table for Vi input mode defaults */
 extern KEYCMD CcViCmdMap[];	/* for Vi command mode defaults */
 extern struct KeyFuncs FuncNames[];	/* string names vs. CcFuncTbl indices */
 

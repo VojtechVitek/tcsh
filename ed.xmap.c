@@ -137,7 +137,7 @@ XmapCmd(cmd)
     int cmd;
 {
     static XmapVal xm;
-    xm.cmd = cmd;
+    xm.cmd = (KEYCMD) cmd;
     return &xm;
 }
 

@@ -156,11 +156,11 @@ Inputl()
 
 	case CC_REFRESH:
 	    Refresh();
-	    /* fall through */
+	    /*FALLTHROUGH*/
 	case CC_NORM:		/* normal char */
 	    Argument = 1;
 	    DoingArg = 0;
-	    /* fall through */
+	    /*FALLTHROUGH*/
 	case CC_ARGHACK:	/* Suggested by Rich Salz */
 	    /* <rsalz@pineapple.bbn.com> */
 	    break;		/* keep going... */
@@ -197,7 +197,7 @@ Inputl()
 		    CorrChar = LastChar;	/* Save the corrected end */
 		    LastChar = InputBuf;	/* Null the current line */
 		    Beep();
-		    printprompt(2, Change);
+		    printprompt(2, short2str(Change));
 		    Refresh();
 		    (void) read(SHIN, (char *) &tch, 1);
 		    ch = tch;
@@ -206,7 +206,7 @@ Inputl()
 			xprintf("yes\n");
 		    }
 		    else {
-			(void) copyn(InputBuf, Origin, INBUFSIZE);
+			copyn(InputBuf, Origin, INBUFSIZE);
 			LastChar = SaveChar;
 			if (ch == 'e') {
 			    xprintf("edit\n");
@@ -534,7 +534,7 @@ GetNextCommand(cmdnum, ch)
 	    return num;
 	}
 #ifdef	KANJI
-	if (*ch & META) {
+	if (!adrof(STRnokanji) && (*ch & META)) {
 	    MetaNext = 0;
 	    cmd = CcViMap[' '];
 	    break;

@@ -54,6 +54,7 @@ RCSID("$Id$")
 struct tms times0;
 #endif /* BSDTIMES */
 
+static 	void tvadd	__P((timeval_t *, timeval_t *));
 #if !defined(BSDTIMES) && !defined(_SEQUENT_)
 # ifdef POSIX
 static	void	pdtimet	__P((clock_t, clock_t));
@@ -561,7 +562,7 @@ pdeltat(t1, t0)
     xprintf("%ld.%03ld", td.tv_sec, td.tv_usec / 1000L);
 }
 
-void
+static void
 tvadd(tsum, t0)
     timeval_t *tsum, *t0;
 {

@@ -140,6 +140,7 @@ static Char *justabs[] = {STRNULL, 0};
 static	void	pexerr		__P((void));
 static	void	texec		__P((Char *, Char **));
 static	int	hashname	__P((Char *));
+static	int 	iscommand	__P((Char *));
 
 void
 doexec(t)
@@ -430,9 +431,12 @@ texec(sf, st)
 #endif
 	blkfree((Char **) t);
 	/* The sky is falling, the sky is falling! */
+	stderror(ERR_SYSTEM, f, strerror(errno));
+	break;
 
     case ENOMEM:
 	stderror(ERR_SYSTEM, f, strerror(errno));
+	break;
 
 #ifdef _IBMR2
     case 0:			/* execv fails and returns 0! */
@@ -450,6 +454,7 @@ texec(sf, st)
 	    Vexpath = expath;
 #endif
 	}
+	break;
     }
 }
 
@@ -605,7 +610,8 @@ dohash(vv, c)
 
     if (xhash)
        xfree((ptr_t) xhash);
-    xhash = (unsigned long *) xcalloc(hashlength * hashwidth, 1);
+    xhash = (unsigned long *) xcalloc((size_t) (hashlength * hashwidth), 
+				      (size_t) 1);
 #endif /* FASTHASH */
 
     (void) getusername(NULL);	/* flush the tilde cashe */
@@ -699,7 +705,7 @@ hashname(cp)
     return ((int) h);
 }
 
-int
+static int
 iscommand(name)
     Char   *name;
 {
@@ -780,12 +786,13 @@ executable(dir, name, dir_ok)
     }
     else
 	strname = short2str(name);
+    
     return (stat(strname, &stbuf) != -1 &&
-	    ((S_ISREG(stbuf.st_mode) &&
+	    ((dir_ok && S_ISDIR(stbuf.st_mode)) ||
+	     (S_ISREG(stbuf.st_mode) &&
     /* save time by not calling access() in the hopeless case */
 	      (stbuf.st_mode & (S_IXOTH | S_IXGRP | S_IXUSR)) &&
-	      access(strname, X_OK) == 0) ||
-	     (dir_ok && S_ISDIR(stbuf.st_mode))));
+	      access(strname, X_OK) == 0)));
 }
 
 void

@@ -243,7 +243,7 @@ static void
 xaddchar(c)
     int     c;
 {
-    *xstring++ = c;
+    *xstring++ = (char) c;
 }
 
 

@@ -54,7 +54,7 @@ char   *day_list[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 void
 printprompt(promptno, str)
     int     promptno;
-    Char   *str;
+    char   *str;
 {
     Char   *p, *z, *q, *ep, *cp;
     register Char attributes = 0;
@@ -63,7 +63,8 @@ printprompt(promptno, str)
     struct tm *t;
     time_t  lclock;
     Char    buff[BUFSIZE];
-    static  Char *ocp = NULL, *ostr = NULL;
+    static  Char *ocp = NULL;
+    static  char *ostr = NULL;
 
     (void) time(&lclock);
     t = localtime(&lclock);
@@ -91,6 +92,7 @@ printprompt(promptno, str)
 	    cp = value(STRprompt);
 	break;
     }
+
     if (promptno < 2) {
 	ocp = cp;
 	ostr = str;
@@ -221,7 +223,7 @@ printprompt(promptno, str)
 			break;
 		    }
 		}
-		/* fall through if ~ not matched */
+		/*FALLTHROUGH*/
 	    case '/':
 		if (z = value(STRcwd)) {
 		    while (*z) {

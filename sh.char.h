@@ -65,8 +65,14 @@ extern unsigned char _cmap_lower[], _cmap_upper[];
 #define	_CMD	0x2000		/* lex end of command chars, ;&(|` */
 #define _CTR	0x4000		/* control */
 
+#if defined(SHORT_STRINGS) && defined(KANJI)
+#define cmap(c, bits)	\
+	((((c) & QUOTE) || (c>127 && adrof(STRnokanji))) ? \
+	0 : (_cmap[(unsigned char)(c)] & (bits)))
+#else
 #define cmap(c, bits)	\
 	(((c) & QUOTE) ? 0 : (_cmap[(unsigned char)(c)] & (bits)))
+#endif
 
 #define isglob(c)	cmap(c, _GLOB)
 #define isspc(c)	cmap(c, _SP)

@@ -594,6 +594,7 @@ EchoTC(v)
 	/* This is wrong, but I will ignore it... */
 	if (verbose)
 	    stderror(ERR_NAME | ERR_TCARGS, cv, arg_need);
+	/*FALLTHROUGH*/
     case 2:
 	v++;
 	if (!*v || *v[0] == '\0') {
@@ -1059,7 +1060,6 @@ GetTermCaps()
     char    buf[TC_BUFSIZE];
     static char bp[TC_BUFSIZE];
     char   *area;
-    extern char *getenv();
     struct termcapstr *t;
 
 
@@ -1084,7 +1084,7 @@ GetTermCaps()
     ptr = getenv("TERM");
 
 #ifdef apollo
-    /*
+    /* 
      * If we are on a pad, we pretend that we are dumb. Otherwise the termcap
      * library will put us in a weird screen mode, thinking that we are going
      * to use curses

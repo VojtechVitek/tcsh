@@ -180,7 +180,7 @@ ed_Setup(rst)
 	if ((pcret = fpathconf(SHTTY, _PC_VDISABLE)) == -1L)
 	    vdisable = _POSIX_VDISABLE;
 	else 
-	    vdisable = pcret;
+	    vdisable = (unsigned char) pcret;
 	if (vdisable != _POSIX_VDISABLE && rst != 0)
 	    for (rst = 0; rst < C_NCC; rst++) {
 		if (ttychars[ED_IO][rst] == _POSIX_VDISABLE)

@@ -39,6 +39,8 @@
 RCSID("$Id$")
 
 static	int	renum	__P((int, int));
+static  Char  **blkend	__P((Char **));
+static  Char  **blkcat	__P((Char **, Char **));
 
 /*
  * C Shell
@@ -83,7 +85,7 @@ strsave(s)
     return (n);
 }
 
-Char  **
+static Char  **
 blkend(up)
     register Char **up;
 {

@@ -74,7 +74,6 @@ dosched(v, c)
     bool    relative;		/* time specified as +hh:mm */
     struct tm *ltp;
     char   *timeline;
-    char   *ctime();
 
 /* This is a major kludge because of a gcc linker  */
 /* Problem.  It may or may not be needed for you   */
@@ -89,7 +88,7 @@ dosched(v, c)
     if (cp == NULL) {
 	/* print list of scheduled events */
 	for (count = 1, tp = sched_ptr; tp; count++, tp = tp->t_next) {
-	    timeline = ctime(&tp->t_when);
+	    timeline = (char *) ctime(&tp->t_when);
 	    timeline[16] = '\0';
 	    xprintf("%6d\t%s\t", count, timeline);
 	    blkpr(tp->t_lex);

@@ -719,8 +719,7 @@ search(type, level, goal)
     }
     do {
 	if (intty && fseekp == feobp && aret == F_SEEK)
-	    printprompt(1, str2short(isrchx(type == T_BREAK ?
-					    zlast : type)));
+	    printprompt(1, isrchx(type == T_BREAK ? zlast : type));
 	/* xprintf("? "), flush(); */
 	aword[0] = 0;
 	(void) getword(aword);
@@ -841,7 +840,7 @@ getword(wp)
 	    if (c < 0)
 		goto past;
 	    if (wp) {
-		*wp++ = c;
+		*wp++ = (Char) c;
 		*wp = 0;	/* end the string b4 test */
 	    }
 	} while ((d || (!(kwd = keyword(owp)) && c != ' '
@@ -865,20 +864,25 @@ past:
 
     case T_IF:
 	stderror(ERR_NAME | ERR_NOTFOUND, "then/endif");
+	break;
 
     case T_ELSE:
 	stderror(ERR_NAME | ERR_NOTFOUND, "endif");
+	break;
 
     case T_BRKSW:
     case T_SWITCH:
 	stderror(ERR_NAME | ERR_NOTFOUND, "endsw");
+	break;
 
     case T_BREAK:
 	stderror(ERR_NAME | ERR_NOTFOUND, "end");
+	break;
 
     case T_GOTO:
 	setname(short2str(Sgoal));
 	stderror(ERR_NAME | ERR_NOTFOUND, "label");
+	break;
 
     default:
 	break;
@@ -932,7 +936,7 @@ void
 wfree()
 {
     struct Ain    o;
-    struct whyle *nwp;
+    struct whyle *nwp = NULL;
 
 #ifdef FDEBUG
     static char foo[] = "IAFE";
@@ -1030,10 +1034,10 @@ xecho(sep, v)
     }
     if (sep == ' ' && *v && eq(*v, STRmn))
 	nonl++, v++;
-    while (cp = *v++) {
+    while ((cp = *v++) != 0) {
 	register int c;
 
-	while (c = *cp++) {
+	while ((c = *cp++) != 0) {
 #if SYSVREL > 0
 #ifndef OREO
 	    if (c == '\\') {
@@ -1155,7 +1159,7 @@ dosetenv(v, c)
 	NLSMapsAreInited = 0;
 	ed_Init();
 	if (MapsAreInited && !NLSMapsAreInited)
-	    (void) ed_InitNLSMaps();
+	    ed_InitNLSMaps();
     }
     else if (eq(vp, STRNOREBIND)) {
 	NoNLSRebind = 1;
@@ -1191,7 +1195,7 @@ dounsetenv(v, c)
 	    maxi = i;
     }
 
-    name = (Char *) xmalloc((size_t) (maxi + 1) * sizeof(Char));
+    name = (Char *) xmalloc((size_t) ((maxi + 1) * sizeof(Char)));
 
     while (++v && *v) 
 	for (maxi = 1; maxi;)
@@ -1221,7 +1225,7 @@ dounsetenv(v, c)
 		    NLSMapsAreInited = 0;
 		    ed_Init();
 		    if (MapsAreInited && !NLSMapsAreInited)
-			(void) ed_InitNLSMaps();
+			ed_InitNLSMaps();
 
 		}
 		/*
@@ -1492,11 +1496,11 @@ getval(lp, v)
     Char  **v;
 {
 # if defined(convex) || defined(__convex__)
-    RLIM_TYPE restrict_limit();
+    RLIM_TYPE restrict_limit __P((double));
 # endif /* convex */
 
     register float f;
-    double  atof();
+    extern double  atof __P((const char *));
     static int lmin = 0x80000000, lmax = 0x7fffffff;
     Char   *cp = *v++;
 

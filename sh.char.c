@@ -137,7 +137,7 @@ unsigned short _cmap[256] = {
 /*	|		}		~		del	*/
 	_META|_CMD,	0,		0,		_CTR,
 
-#if defined(SHORT_STRINGS) && !defined(KANJI)
+#ifdef SHORT_STRINGS
 /****************************************************************/
 /* 128 - 255 The below is supposedly ISO 8859/1			*/
 /****************************************************************/
@@ -236,7 +236,7 @@ unsigned short _cmap[256] = {
 
 /*	udiaeresis	yacute		thorn		ydiaeresis	*/
 	_LET|_LOW,	_LET|_LOW,	_LET|_LOW,	_LET|_LOW,
-#endif /* SHORT_STRINGS && !KANJI */
+#endif /* SHORT_STRINGS */
 };
 
 #ifndef NLS

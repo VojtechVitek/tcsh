@@ -39,13 +39,16 @@
 
 #define TW_ZERO		-1
 #define TW_COMMAND	0
-#define TW_SHELLVAR	1
+#define TW_VARIABLE	1
 #define TW_LOGNAME	2
 #define TW_FILE		3
 #define TW_DIRECTORY	4
 #define TW_VARLIST	5
 #define TW_USER		6
 #define TW_LITERAL	7
+#define TW_ALIAS	8
+#define TW_SHELLVAR	9
+#define TW_ENVVAR	10
 
 #define TW_EXEC_OK	1
 #define TW_DIR_OK	2

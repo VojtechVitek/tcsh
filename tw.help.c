@@ -99,7 +99,7 @@ do_help(command)
 	    hpath = str2short(DEFAULTLIST);
 	thpath = hpath = Strsave(hpath);
 
-	while (1) {
+	for (;;) {
 	    if (!*hpath) {
 		xprintf("No help file for %s\n", short2str(name));
 		break;

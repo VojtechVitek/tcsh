@@ -442,9 +442,9 @@ stderror(va_alist)
 	seterr = NULL;
     }
 
-    if (v = pargv)
+    if ((v = pargv) != 0)
 	pargv = 0, blkfree(v);
-    if (v = gargv)
+    if ((v = gargv) != 0)
 	gargv = 0, blkfree(v);
 
     didfds = 0;			/* Forget about 0,1,2 */

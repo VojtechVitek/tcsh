@@ -93,7 +93,7 @@ str2short(src)
 
     if (sdst == (NULL)) {
 	dstsize = MALLOC_INCR;
-	sdst = (Char *) xmalloc((size_t) dstsize * sizeof(Char));
+	sdst = (Char *) xmalloc((size_t) (dstsize * sizeof(Char)));
     }
 
     dst = sdst;
@@ -103,7 +103,7 @@ str2short(src)
 	if (dst == edst) {
 	    dstsize += MALLOC_INCR;
 	    sdst = (Char *) xrealloc((ptr_t) sdst,
-				     (size_t) dstsize * sizeof(Char));
+				     (size_t) (dstsize * sizeof(Char)));
 	    edst = &sdst[dstsize];
 	    dst = &edst[-MALLOC_INCR];
 	}
@@ -125,7 +125,7 @@ short2str(src)
 
     if (sdst == NULL) {
 	dstsize = MALLOC_INCR;
-	sdst = (char *) xmalloc((size_t) dstsize * sizeof(char));
+	sdst = (char *) xmalloc((size_t) (dstsize * sizeof(char)));
     }
     dst = sdst;
     edst = &dst[dstsize];
@@ -134,7 +134,7 @@ short2str(src)
 	if (dst == edst) {
 	    dstsize += MALLOC_INCR;
 	    sdst = (char *) xrealloc((ptr_t) sdst,
-				     (size_t) dstsize * sizeof(char));
+				     (size_t) (dstsize * sizeof(char)));
 	    edst = &sdst[dstsize];
 	    dst = &edst[-MALLOC_INCR];
 	}
@@ -377,7 +377,7 @@ short2qstr(src)
 
     if (sdst == NULL) {
 	dstsize = MALLOC_INCR;
-	sdst = (char *) xmalloc((size_t) dstsize * sizeof(char));
+	sdst = (char *) xmalloc((size_t) (dstsize * sizeof(char)));
     }
     dst = sdst;
     edst = &dst[dstsize];
@@ -387,7 +387,7 @@ short2qstr(src)
 	    if (dst == edst) {
 		dstsize += MALLOC_INCR;
 		sdst = (char *) xrealloc((ptr_t) sdst,
-					 (size_t) dstsize * sizeof(char));
+					 (size_t) (dstsize * sizeof(char)));
 		edst = &sdst[dstsize];
 		dst = &edst[-MALLOC_INCR];
 	    }
@@ -396,7 +396,7 @@ short2qstr(src)
 	if (dst == edst) {
 	    dstsize += MALLOC_INCR;
 	    sdst = (char *) xrealloc((ptr_t) sdst,
-				     (size_t) dstsize * sizeof(char));
+				     (size_t) (dstsize * sizeof(char)));
 	    edst = &sdst[dstsize];
 	    dst = &edst[-MALLOC_INCR];
 	}

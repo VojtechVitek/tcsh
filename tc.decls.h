@@ -169,7 +169,7 @@ extern	void		  xvsprintf	__P((char *, char *, va_list));
 /*
  * tc.prompt.c
  */
-extern	void		  printprompt	__P((int, Char *));
+extern	void		  printprompt	__P((int, char *));
 
 /*
  * tc.sched.c

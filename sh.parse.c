@@ -260,7 +260,7 @@ syn0(p1, p2, flags)
 	case '|':
 	    if (p->word[1] == '|')
 		continue;
-	    /* fall into ... */
+	    /*FALLTHROUGH*/
 
 	case '>':
 	    if (p->next != p2 && eq(p->next->word, STRand))
