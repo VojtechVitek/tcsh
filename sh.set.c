@@ -1240,7 +1240,7 @@ autoset_dspmbyte(pcp)
 	return;
 
     for (i = 0; dspmt[i].n; i++) {
-	if (eq(pcp, dspmt[i].n)) {
+	if (Strcasecmp(pcp, dspmt[i].n) == 0) {
 	    set(CHECK_MBYTEVAR, Strsave(dspmt[i].v), VAR_READWRITE);
 	    update_dspmbyte_vars();
 	    break;

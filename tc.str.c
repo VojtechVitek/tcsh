@@ -309,6 +309,32 @@ s_strncmp(str1, str2, n)
     return(0);
 }
 
+int
+s_strcasecmp(str1, str2)
+    register const Char *str1, *str2;
+{
+    unsigned char c1, c2, l1 = 0, l2 = 0;
+    for (; *str1 && ((*str1 == *str2 && (l1 = l2 = 0) == 0) || 
+	((c1 = *str1) == *str1 && (c2 = *str2) == *str2 &&
+	(l1 = tolower(c1)) == (l2 = tolower(c2)))); str1++, str2++)
+	continue;
+    /*
+     * The following case analysis is necessary so that characters which look
+     * negative collate low against normal characters but high against the
+     * end-of-string NUL.
+     */
+    if (*str1 == '\0' && *str2 == '\0')
+	return (0);
+    else if (*str1 == '\0')
+	return (-1);
+    else if (*str2 == '\0')
+	return (1);
+    else if (l1 == l2)	/* They are zero when they are equal */
+	return (*str1 - *str2);
+    else
+	return (l1 - l2);
+}
+
 Char   *
 s_strsave(s)
     register const Char *s;

@@ -299,6 +299,7 @@ extern	size_t		  s_strlen	__P((const Char *));
 extern	int		  s_strcmp	__P((const Char *, const Char *));
 extern	int		  s_strncmp	__P((const Char *, const Char *, 
 					     size_t));
+extern	int		  s_strcasecmp	__P((const Char *, const Char *));
 extern	Char		 *s_strsave	__P((const Char *));
 extern	Char		 *s_strend	__P((const Char *));
 extern	Char		 *s_strstr	__P((const Char *, const Char *));
