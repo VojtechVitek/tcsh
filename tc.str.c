@@ -44,6 +44,10 @@ RCSID("$Id$")
 #define MALLOC_SURPLUS	0
 #endif
 
+#if !defined(HAVE_STDINT_H) && !defined(HAVE_INTTYPES_H)
+typedef unsigned lont intptr_t;
+#endif
+
 #ifdef WIDE_STRINGS
 size_t
 one_mbtowc(wchar_t *pwc, const char *s, size_t n)
