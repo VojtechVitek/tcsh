@@ -454,7 +454,7 @@ TellTC(what)
 			CGETS(7, 11, "does not have"));
 
     for (t = tstr; t->name != NULL; t++)
-	xprintf("\t%25s (%s) == %s\n", t->long_name, t->name,
+	xprintf("\t%36s (%s) == %s\n", t->long_name, t->name,
 		t->str && *t->str ? t->str : CGETS(7, 13, "(empty)"));
     xputchar('\n');
 }

@@ -233,6 +233,7 @@ extern  CCRETVAL        e_list_all		__P((int));
 extern  CCRETVAL        e_complete_all		__P((int));
 extern  CCRETVAL        e_complete_fwd		__P((int));
 extern  CCRETVAL        e_complete_back		__P((int));
+extern  CCRETVAL        e_dabbrev_expand	__P((int));
 
 /*
  * ed.inputl.c

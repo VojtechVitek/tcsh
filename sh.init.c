@@ -228,7 +228,7 @@ mesginit()
 #ifdef NLS_CATALOGS
     int i;
 
-    for (i = 0; i < NUMSIG + 1; i++) {
+    for (i = 0; i < NUMSIG; i++) {
 	xfree((ptr_t) mesg[i].pname);
 	mesg[i].pname = NULL;
     }
@@ -455,14 +455,16 @@ mesginit()
 #endif
 
 #ifdef SIGIO
+# if !defined(SIGPOLL) || SIGPOLL != SIGIO
     if (mesg[SIGIO].pname == NULL) {
 	mesg[SIGIO].iname = "IO";
-# ifdef cray
+#  ifdef cray
 	mesg[SIGIO].pname = CSAVS(2, 32, "Input/output possible signal");
-# else
+#  else
 	mesg[SIGIO].pname = CSAVS(2, 33, "Asynchronous I/O (select)");
-# endif
+#  endif
     }
+# endif
 #endif
 
 #ifdef SIGURG
@@ -657,7 +659,7 @@ mesginit()
     }
 #endif
 
-#ifdef SIGVTARLM
+#ifdef SIGVTALRM
     if (mesg[SIGVTALRM].pname == NULL) {
 	mesg[SIGVTALRM].iname = "VTALRM";
 	mesg[SIGVTALRM].pname = CSAVS(2, 60, "Virtual time alarm");

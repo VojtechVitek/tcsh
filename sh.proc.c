@@ -1548,7 +1548,7 @@ pkill(v, signum)
 #endif /* !BSDSIGS */
 
     /* Avoid globbing %?x patterns */
-    for (vp = v && vp && *vp; vp++)
+    for (vp = v; vp && *vp; vp++)
 	if (**vp == '%')
 	    quote(*vp);
 

@@ -265,7 +265,7 @@ closem()
 #ifdef YPBUGS
     /* suggested by Justin Bur; thanks to Karl Kleinpaste */
     fix_yp_bugs();
-#endif
+#endif /* YPBUGS */
     for (f = 0; f < NOFILE; f++)
 	if (f != SHIN && f != SHOUT && f != SHDIAG && f != OLDSTD &&
 	    f != FSHTTY 
@@ -273,7 +273,13 @@ closem()
 	    && f != 25
 #endif /* MALLOC_TRACE */
 	    )
+	  {
 	    (void) close(f);
+#ifdef NISPLUS
+	    if(f < 3)
+		(void) open(_PATH_DEVNULL, O_RDONLY);
+#endif /* NISPLUS */
+	  }
 }
 
 #ifndef CLOSE_ON_EXEC
@@ -311,6 +317,17 @@ donefds()
     (void) close(1);
     (void) close(2);
     didfds = 0;
+#ifdef NISPLUS
+    {
+	int fd = open(_PATH_DEVNULL, O_RDONLY);
+	(void) dup2(fd, 1);
+	(void) dup2(fd, 2);
+	if (fd != 0) {
+	    (void) dup2(fd, 0);
+	    (void) close(fd);
+	}
+    }
+#endif /*NISPLUS*/    
 }
 
 /*

@@ -231,6 +231,7 @@ dolist(v, c)
 	 */
 	static Char STRls[] = {'l', 's', '\0'};
 	static Char STRmCF[] = {'-', 'C', 'F', '\0', '\0' };
+	Char *lspath;
 	struct command *t;
 	struct wordent cmd, *nextword, *lastword;
 	Char   *cp;
@@ -249,21 +250,34 @@ dolist(v, c)
 	    seterr = NULL;
 	}
 
-	/* Look at showdots, to add -A to the flags if necessary */
-	if ((vp = adrof(STRshowdots)) != NULL) {
-	    if (vp->vec[0][0] == '-' && vp->vec[0][1] == 'A' &&
-		vp->vec[0][2] == '\0')
-		STRmCF[3] = 'A';
-	    else
-		STRmCF[3] = '\0';
+	lspath = STRls;
+	STRmCF[1] = 'C';
+	STRmCF[3] = '\0';
+	/* Look at listflags, to add -A to the flags, to get a path
+	   of ls if necessary */
+	if ((vp = adrof(STRlistflags)) != NULL && vp->vec[0] != STRNULL) {
+	    if (vp->vec[1] != STRNULL)
+		lspath = vp->vec[1];
+	    for (cp = vp->vec[0]; *cp; cp++)
+		switch (*cp) {
+		case 'x':
+		    STRmCF[1] = 'x';
+		    break;
+		case 'a':
+		    STRmCF[3] = 'a';
+		    break;
+		case 'A':
+		    STRmCF[3] = 'A';
+		    break;
+		default:
+		    break;
+		}
 	}
-	else
-	    STRmCF[3] = '\0';
 
 	cmd.word = STRNULL;
 	lastword = &cmd;
 	nextword = (struct wordent *) xcalloc(1, sizeof cmd);
-	nextword->word = Strsave(STRls);
+	nextword->word = Strsave(lspath);
 	lastword->next = nextword;
 	nextword->prev = lastword;
 	lastword = nextword;
@@ -1083,7 +1097,11 @@ rmstar(cp)
 			    "Do you really want to delete all files? [n/y] "));
 		    flush();
 		    (void) read(SHIN, &c, 1);
-		    doit = (c == 'Y' || c == 'y');
+		    /* 
+		     * Perhaps we should use the yesexpr from the
+		     * actual locale
+		     */
+		    doit = (strchr(CGETS(22, 14, "Yy"), c) != NULL);
 		    while (c != '\n')
 			(void) read(SHIN, &c, 1);
 		    if (!doit) {

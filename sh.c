@@ -730,7 +730,7 @@ main(argc, argv)
 		 * we put the command into a variable
 		 */
 		if (arginp != NULL)
-		  set(STRcommand, arginp, VAR_READWRITE);
+		  set(STRcommand, quote(Strsave(arginp)), VAR_READWRITE);
 
 		/*
 		 * * Give an error on -c arguments that end in * backslash to
@@ -1348,7 +1348,10 @@ st_save(st, unit, hflg, al, av)
     st->alvec		= alvec;
     st->onelflg		= onelflg;
     st->enterhist	= enterhist;
-    st->HIST		= HIST;
+    if (hflg)
+	st->HIST	= HIST;
+    else
+	st->HIST	= '\0';
     st->cantell		= cantell;
     cpybin(st->B, B);
 
@@ -1431,7 +1434,8 @@ st_restore(st, av)
     intty	= st->intty;
     whyles	= st->whyles;
     gointr	= st->gointr;
-    HIST	= st->HIST;
+    if (st->HIST != '\0')
+	HIST	= st->HIST;
     enterhist	= st->enterhist;
     cantell	= st->cantell;
 
@@ -2104,7 +2108,7 @@ mailchk()
 			new ? CGETS(11, 6, "new ") : "");
 	    else
 	        xprintf(CGETS(11, 7, "You have %smail in %s.\n"),
-			new ? CGETS(11, 6, "new ") : "");
+			new ? CGETS(11, 6, "new ") : "", filename);
 	}
     }
     chktim = t;
@@ -2211,6 +2215,9 @@ xexit(i)
 	}
     }
     untty();
+#ifdef NLS_CATALOGS
+    (void) catclose(catd);
+#endif /* NLS_CATALOGS */
     _exit(i);
 }
 
