@@ -1116,7 +1116,7 @@ x:
 }
 
 #if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
-int dspmbyte_ls;
+extern int dspmbyte_ls;
 
 void
 update_dspmbyte_vars()
