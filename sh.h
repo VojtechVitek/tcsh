@@ -1184,7 +1184,13 @@ extern int errno, sys_nerr;
    nl_catd catopen __P((const char *, int));
    int catclose __P((nl_catd));
 #  else
+#   ifdef __uxps__
+#    define gettxt gettxt_ds
+#   endif
 #   include <nl_types.h>
+#   ifdef __uxps__
+#    undef gettxt
+#   endif
 #  endif
 #  ifndef MCLoadBySet
 #   define MCLoadBySet 0

@@ -163,7 +163,9 @@ static	int		  srcfile	__P((char *, bool, int, Char **));
 static	sigret_t	  phup		__P((int));
 static	void		  srcunit	__P((int, bool, int, Char **));
 static	void		  mailchk	__P((void));
+#ifndef _PATH_DEFPATH
 static	Char	 	**defaultpath	__P((void));
+#endif
 static	void		  record	__P((void));
 static	void		  st_save	__P((struct saved_state *, int, int,
 					     Char **, Char **));
@@ -1280,6 +1282,16 @@ main(argc, argv)
     }
 
     /*
+     * dspkanji/dspmbyte autosetting
+     */
+    /* PATCH IDEA FROM Issei.Suzuki VERY THANKS */
+#if defined(DSPMBYTE)
+    if ((tcp = getenv("LANG")) != NULL && !adrof(CHECK_MBYTEVAR)) {
+	autoset_dspmbyte(str2short(tcp));
+    }
+#endif
+
+    /*
      * Now are ready for the -v and -x flags
      */
     if (nverbose)
@@ -2350,6 +2362,7 @@ xexit(i)
     _exit(i);
 }
 
+#ifndef _PATH_DEFPATH
 static Char **
 defaultpath()
 {
@@ -2399,6 +2412,7 @@ defaultpath()
     *blkp = NULL;
     return (blk);
 }
+#endif
 
 static void
 record()

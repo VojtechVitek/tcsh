@@ -117,7 +117,7 @@
  *		be used with SHORT_STRINGS
  *
  */
-#undef KANJI
+#define KANJI
 
 /*
  * NEWGRP	Provide a newgrp builtin.
@@ -129,7 +129,7 @@
  *		This can be much slower and no memory statistics will be
  *		provided.
  */
-#if defined(PURIFY) || defined(MALLOC_TRACE) || defined(_OSD_POSIX)
+#if defined(__MACHTEN__) || defined(PURIFY) || defined(MALLOC_TRACE) || defined(_OSD_POSIX)
 # define SYSMALLOC
 #else
 # undef SYSMALLOC
@@ -169,5 +169,18 @@
 #else
 # define RCSID(id)	/* Nothing */
 #endif /* !lint && !SABER */
+
+/*
+ * DSPMBYTE	add variable "dspmbyte" and display multi-byte string at
+ *		only output, when "dspmbyte" is set.
+ */
+#define DSPMBYTE
+
+/*
+ * MBYTEDEBUG	when "dspmbyte" is changed, set multi-byte checktable to
+ *		variable "mbytemap".
+ *		(use for multi-byte table check)
+ */
+#define MBYTEDEBUG
 
 #endif /* _h_config_f */

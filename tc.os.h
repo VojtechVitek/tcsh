@@ -502,14 +502,12 @@ struct ucred {
 #endif /* POSIX */
 
 
-#if SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux) && !defined(sinix)
-# define NEEDgetwd
-#endif /* SYSVREL > 0 && !OREO && !sgi && !linux && !sinix */
-
-#if defined(SOLARIS2) || defined(sinix) || defined(BSD4_4)
-# undef NEEDgetwd
-# define getwd(a)	getcwd(a, MAXPATHLEN)
+#if !defined(SOLARIS2) && !defined(sinix) && !defined(BSD4_4)
+# if SYSVREL > 0 && !defined(OREO) && !defined(sgi) && !defined(linux) && !defined(sinix)
+#  define NEEDgetcwd
+# endif /* SYSVREL > 0 && !OREO && !sgi && !linux && !sinix */
 #endif
+#define NEEDgetcwd
 
 #ifndef S_IFLNK
 # define lstat stat
@@ -666,14 +664,14 @@ extern struct authorization *getauthuid();
 #  endif /* PW_AUTH */
 # endif /* __STDC__ */
 
-# ifndef getwd
-extern char *getwd();
-# endif	/* getwd */
+# ifndef getcwd
+extern char *getcwd();
+# endif	/* getcwd */
 
 #else /* POSIX || !SUNOS4 || !UTekV || !sysV88 */
 
 # if (defined(SUNOS4) && !defined(__GNUC__)) || defined(_IBMR2) || defined(_IBMESA)
-extern char *getwd();
+extern char *getvwd();
 # endif	/* (SUNOS4 && ! __GNUC__) || _IBMR2 || _IBMESA */
 
 # ifdef SCO
@@ -748,7 +746,6 @@ extern char *sbrk __P((ssize_t));
 extern int ioctl __P((int, unsigned long, char *));
 extern pid_t vfork __P((void));
 extern int killpg __P((pid_t, int));
-extern char *getwd __P((char *));
 #endif /* __osf__ && __alpha && DECOSF1 < 200 */
 
 #endif /* _h_tc_os */

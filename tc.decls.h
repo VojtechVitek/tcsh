@@ -183,11 +183,11 @@ extern ptr_t 		 xmemset	__P((ptr_t, int, size_t));
 #endif /* NEEDmemset */
 
 
-#ifdef NEEDgetwd
-extern	char		 *xgetwd	__P((char *));
-# undef getwd
-# define getwd(a) xgetwd(a)
-#endif /* NEEDgetwd */
+#ifdef NEEDgetcwd
+extern	char		 *xgetcwd	__P((char *, size_t));
+# undef getcwd
+# define getcwd(a, b) xgetcwd((a), (b))
+#endif /* NEEDgetcwd */
 
 #ifdef NEEDgethostname
 extern	int	 	  xgethostname	__P((char *, int));

@@ -129,6 +129,11 @@ fix_version()
 #else /* ifndef COLOR_LS_F */
 # define COLORSTR ""
 #endif /* COLOR_LS_F */
+#ifdef DSPMBYTE
+# define DSPMSTR ",dspm"
+#else
+# define DSPMSTR ""
+#endif
 /* if you want your local version to say something */
 #ifndef LOCALSTR
 # define LOCALSTR ""
@@ -147,11 +152,11 @@ fix_version()
 
 
     (void) xsnprintf(version, sizeof(version),
-"tcsh %d.%.2d.%.2d (%s) %s (%S-%S-%S) options %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+"tcsh %d.%.2d.%.2d (%s) %s (%S-%S-%S) options %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
 	     REV, VERS, PATCHLEVEL, ORIGIN, DATE, machtype, vendor, ostype,
 	     SSSTR, NLSSTR, LFSTR, DLSTR, VISTR, DTRSTR, BYESTR,
 	     ALSTR, KANSTR, SMSTR, HBSTR, NGSTR, RHSTR, AFSSTR, NDSTR,
-	     COLORSTR, LOCALSTR);
+	     COLORSTR, DSPMSTR, LOCALSTR);
     set(STRversion, SAVE(version), VAR_READWRITE);
     (void) xsnprintf(version, sizeof(version), "%d.%.2d.%.2d",
 		     REV, VERS, PATCHLEVEL);
