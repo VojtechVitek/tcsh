@@ -210,6 +210,17 @@ extern char *sbrk();
 
 
 /***
+ *** Pyramid, BSD universe
+ *** In addition to the size_t
+ ***/
+#ifdef pyr
+# ifndef _PID_T
+#  define _PID_T
+# endif /* _PID_T */
+#endif /* pyr */
+
+
+/***
  *** rs6000, ibm370, ps2: running flavors of aix.
  ***/
 #ifdef IBMAIX
