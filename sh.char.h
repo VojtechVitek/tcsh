@@ -38,7 +38,6 @@
 #else
 # include <ctype.h>
 # ifdef SHORT_STRINGS
-#  include <wctype.h>
 #  ifdef HAVE_WCTYPE_H
 #   include <wctype.h>
 #  else
