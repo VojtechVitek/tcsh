@@ -295,6 +295,7 @@ printprompt(promptno, str)
 		    *p++ = attributes | '0';
 		    *p++ = attributes | buff[0];
 		}
+		break;
 	    case 'Y':
 		Itoa(t->tm_year + 1900, buff);
 		*p++ = attributes | buff[0];

@@ -406,9 +406,9 @@ Rawmode()
 
 	if ((tstty.d_t.c_oflag != extty.d_t.c_oflag) &&
 	    (tstty.d_t.c_oflag != edtty.d_t.c_oflag)) {
-	    tstty.d_t.c_oflag = tstty.d_t.c_oflag;
-	    tstty.d_t.c_oflag &= ~ttylist[EX_IO][M_OUTPUT].t_clrmask;
-	    tstty.d_t.c_oflag |=  ttylist[EX_IO][M_OUTPUT].t_setmask;
+	    extty.d_t.c_oflag = tstty.d_t.c_oflag;
+	    extty.d_t.c_oflag &= ~ttylist[EX_IO][M_OUTPUT].t_clrmask;
+	    extty.d_t.c_oflag |=  ttylist[EX_IO][M_OUTPUT].t_setmask;
 
 	    edtty.d_t.c_oflag = tstty.d_t.c_oflag;
 	    edtty.d_t.c_oflag &= ~ttylist[ED_IO][M_OUTPUT].t_clrmask;

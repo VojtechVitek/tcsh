@@ -602,6 +602,10 @@ main(argc, argv)
 		use_fork = 1;
 		break;
 #endif
+	    default:		/* Unknown command option */
+		exiterr = 1;
+		stderror(ERR_TCSHUSAGE, tcp-1);
+		break;
 
 	} while (*tcp);
 	tempv++, argc--;
@@ -1414,7 +1418,7 @@ pintr1(wantnl)
      * about that here.
      */
     if (gointr) {
-	search(T_GOTO, 0, gointr);
+	gotolab(gointr);
 	timflg = 0;
 	if (v = pargv)
 	    pargv = 0, blkfree(v);

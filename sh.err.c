@@ -313,7 +313,17 @@ static char *errorlist[] =
     "Malformed file inquiry",
 #define ERR_SELOVFL	125
     "Selector overflow",
-#define ERR_INVALID	126
+#define ERR_TCSHUSAGE   126
+#ifdef apollo
+    "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX -Dname[=value] ] [ argument ... ]",
+#else /* !apollo */
+# if defined(__convex__) || defined(convex)
+    "Unknown option: -%s\nUsage: tcsh [ -bcdefFilmnqstvVxX ] [ argument ... ]",
+# else /* rest */
+    "Unknown option: -%s\nUsage: tcsh [ -bcdefilmnqstvVxX ] [ argument ... ]",
+# endif /* __convex__ || convex */
+#endif /* apollo */
+#define ERR_INVALID	127
     "Invalid Error"
 };
 

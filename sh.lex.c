@@ -296,6 +296,8 @@ loop:
 	    if (c != HIST)
 		*wp++ = '\\', --i;
 	    c |= QUOTE;
+	default:
+	    break;
 	}
     c1 = 0;
     dolflg = DOALL;
@@ -919,10 +921,15 @@ dosub(sc, en, global)
 	    if ((global & 1) || didsub == 0) {
 		tword = subword(en->word, sc, &didsub);
 		if (global & 2) {
-		    while (didsub) {
+		    while (didsub && tword != STRNULL) {
 			otword = tword;
 			tword = subword(otword, sc, &didsub);
-			xfree((ptr_t) otword);
+			if (Strcmp(tword, otword) == 0) {
+			    xfree((ptr_t) otword);
+			    break;
+			}
+			else
+			    xfree((ptr_t) otword);
 		    }
 		    didsub = 1;
 		}
@@ -948,6 +955,7 @@ subword(cp, type, adid)
     register Char *wp, *mp, *np;
     register int i;
 
+    *adid = 0;
     switch (type) {
 
     case 'r':
@@ -1054,6 +1062,8 @@ domod(cp, type)
 		return (xp);
 	    }
 	return (Strsave(type == 'e' ? STRNULL : cp));
+    default:
+	break;
     }
     return (0);
 }

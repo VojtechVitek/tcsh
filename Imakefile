@@ -149,7 +149,7 @@ LIBSOCKET =
 #endif
 
 #if defined(SGIArchitecture) || defined(_IBMR2) || \
-	(defined(RtArchitecture) && defined(AIXArchitecture)) || \
+	(!defined(RtArchitecture) && defined(AIXArchitecture)) || \
 	defined(UseLibBSD)
 LIBBSD = -lbsd
 #else

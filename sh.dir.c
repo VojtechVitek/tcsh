@@ -117,10 +117,10 @@ dinit(hp)
 		    swd.st_ino == shp.st_ino)
 		    tcp = cwd;
 	    }
-	    cp = dcanon(str2short(tcp), STRNULL);
+	    cp = dcanon(SAVE(tcp), STRNULL);
 	}
 #else				/* S_IFLNK */
-	cp = dcanon(str2short(tcp), STRNULL);
+	cp = dcanon(SAVE(tcp), STRNULL);
 #endif				/* S_IFLNK */
     }
 

@@ -206,6 +206,7 @@ Inputl()
 			if (ch == 'e') {
 			    xprintf("edit\n");
 			    *LastChar-- = '\0';
+			    Cursor = LastChar;
 			    printprompt(0, NULL);
 			    Refresh();
 			    break;

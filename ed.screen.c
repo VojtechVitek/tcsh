@@ -622,7 +622,7 @@ bool    GotTermCaps = 0;
 void
 BindArrowKeys()
 {
-    KEYCMD *map;
+    KEYCMD *map, *dmap;
     int     i;
     char   *p;
     static struct {
@@ -638,11 +638,21 @@ BindArrowKeys()
     if (!GotTermCaps)
 	return;
     map = VImode ? CcAltMap : CcKeyMap;
+    dmap = VImode ? CcViCmdMap : CcEmacsMap;
 
     for (i = 0; i < 4; i++) {
 	p = tstr[ar[i].key].str;
 	if (p && *p) {
-	    if (p[1]) {
+	    /*
+	     * Assign the arrow keys only if:
+	     *
+	     * 1. They are multi-character arrow keys and the user 
+	     *    has not re-assigned the leading character, or 
+	     *    has re-assigned the leading character to be F_XKEY
+	     * 2. They are single arrow keys pointing to an unassigned key.
+	     */
+	    if (p[1] && (dmap[(unsigned char) *p] == map[(unsigned char) *p] ||
+			 map[(unsigned char) *p] == F_XKEY)) {
 		AddXkeyCmd(str2short(p), ar[i].fun);
 		map[(unsigned char) *p] = F_XKEY;
 	    }

@@ -519,6 +519,19 @@ exp6(vp, ignore)
 	    i = !access(short2str(ep), X_OK);
 	    break;
 
+	case 't':	/* SGI extension, true when file is a tty */
+	    {
+		int fd;
+
+		if ((fd = open(short2str(ep), O_RDONLY)) == -1)
+		    i = 0;
+		else {
+		    i = isatty(fd);
+		    (void) close(fd);
+		}
+	    }
+	    break;
+
 	default:
 	    if (
 #ifdef S_IFLNK

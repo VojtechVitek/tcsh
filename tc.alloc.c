@@ -161,8 +161,12 @@ malloc(nbytes)
     /*
      * SunOS localtime() overwrites the 9th byte on an 8 byte malloc()....
      * so we get one more...
+     * From Michael Schroeder: This is not true. It depends on the 
+     * timezone string. In Europe it can overwrite the 13th byte on a
+     * 12 byte malloc.
+     * So we punt and we always allocate an extra byte.
      */
-    if (nbytes == 8) nbytes++;
+    nbytes++;
 #endif
 
     nbytes = MEMALIGN(MEMALIGN(sizeof(union overhead)) + nbytes + RSLOP);
@@ -243,8 +247,6 @@ morecore(bucket)
     /* take 2k unless the block is bigger than that */
     rnu = (bucket <= 8) ? 11 : bucket + 3;
     nblks = 1 << (rnu - (bucket + 3));	/* how many blocks to get */
-    if (rnu < bucket)
-	rnu = bucket;
     memtop = (char *) sbrk(1 << rnu);	/* PWP */
     op = (union overhead *) memtop;
     memtop += 1 << rnu;
@@ -268,6 +270,7 @@ morecore(bucket)
 	op->ov_next = (union overhead *) (((caddr_t) op) + siz);
 	op = (union overhead *) (((caddr_t) op) + siz);
     }
+    op->ov_next = NULL;
 }
 
 #endif
@@ -406,8 +409,8 @@ realloc(cp, nbytes)
     onb = MEMALIGN(nbytes + MEMALIGN(sizeof(union overhead)) + RSLOP);
 
     /* avoid the copy if same size block */
-    if (was_alloced && (onb < (U_int) (1 << (i + 3))) && 
-	(onb >= (U_int) (1 << (i + 2))))
+    if (was_alloced && (onb <= (U_int) (1 << (i + 3))) && 
+	(onb > (U_int) (1 << (i + 2))))
 	return ((memalign_t) cp);
     if ((res = malloc(nbytes)) == NULL)
 	return ((memalign_t) NULL);
