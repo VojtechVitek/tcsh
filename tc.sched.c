@@ -47,7 +47,7 @@ extern int just_signaled;
 
 struct sched_event {
     struct sched_event *t_next;
-    long    t_when;
+    time_t t_when;
     Char  **t_lex;
 };
 static struct sched_event *sched_ptr = NULL;

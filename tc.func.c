@@ -762,7 +762,7 @@ setalarm()
     struct varent *vp;
     Char   *cp;
     unsigned alrm_time = 0;
-    long    cl, nl, sched_dif;
+    time_t cl, nl, sched_dif;
 
     if (vp = adrof(STRautologout)) {
 	if (cp = vp->vec[0])
