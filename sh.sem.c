@@ -675,6 +675,10 @@ execute(t, wanttty, pipein, pipeout, do_glob)
 	SHIN = -1;
 #ifndef CLOSE_ON_EXEC
 	didcch = 0;
+#else
+	(void) close_on_exec(FSHOUT, 1);
+	(void) close_on_exec(FSHDIAG, 1);
+	(void) close_on_exec(FOLDSTD, 1);
 #endif /* !CLOSE_ON_EXEC */
 	didfds = 0;
 	wanttty = -1;
