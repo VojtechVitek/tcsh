@@ -1085,12 +1085,16 @@ extern int	tcsh;
 /*
  * To print system call errors...
  */
-#ifndef linux
-#ifdef NEEDstrerror
+#ifdef __NetBSD__
+# include <errno.h>
+#else
+# ifndef linux
+#  ifdef NEEDstrerror
 extern char *sys_errlist[];
-#endif
+#  endif
 extern int errno, sys_nerr;
-#endif /* !linux */
+# endif /* !linux */
+#endif
 
 #ifdef NLS_CATALOGS
 # ifdef linux
