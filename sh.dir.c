@@ -1074,7 +1074,7 @@ dcanon(cp, p)
 	for (sp = NULL; *p2 && stat(short2str(p2), &statbuf) != -1;) {
 	    if (DEV_DEV_COMPARE(statbuf.st_dev, home_dev) &&
 			statbuf.st_ino == home_ino) {
-			found = 0;
+			found = 1;
 			break;
 	    }
 	    if ((sp = Strrchr(p2, '/')) != NULL)
