@@ -450,6 +450,17 @@ EchoTC(v)
     area = buf;
 
     setname("echotc");
+
+    tglob(v);
+    if (gflag) {
+	v = globall(v);
+	if (v == 0)
+	    stderror(ERR_NAME | ERR_NOMATCH);
+    }
+    else
+	v = gargv = saveblk(v);
+    trim(v);
+
     if (!*v || *v[0] == '\0')
 	return;
     if (v[0][0] == '-') {
@@ -577,6 +588,10 @@ EchoTC(v)
 	break;
     }
     flush();
+    if (gargv) {
+	blkfree(gargv);
+	gargv = 0;
+    }
 }
 
 bool    GotTermCaps = 0;
