@@ -165,7 +165,7 @@ static struct tcshtty {
 # define M_CONTROL	0
     { "", (ECHO|CRMOD|ANYP), (CBREAK|RAW|LCASE|VTDELAY|ALLDELAY) },
 # define M_LOCAL	1
-    { "", (LCRTBS|LCRTERA|LCRTKIL), (LPRTERA|LFLUSHO) };
+    { "", (LCRTBS|LCRTERA|LCRTKIL), (LPRTERA|LFLUSHO) },
 
 #endif /* TERMIO */
 };
