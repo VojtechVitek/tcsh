@@ -36,6 +36,8 @@
 
 #include "sh.h"
 
+#define NLSZEROT	((size_t)-1)
+
 #ifdef WIDE_STRINGS
 
 # define NLSSize(s, l) 1
@@ -62,7 +64,7 @@ extern int NLSTo __P((Char *, NLSChar));
 extern void NLSQuote __P((Char *));
 
 #define NLSSize(s, l) NLSFrom(s, l, (NLSChar *)0)
-#define TRIM_AND_EXTEND(s, c) (s += NLSFrom(s - 1, -1, &c) - 1)
+#define TRIM_AND_EXTEND(s, c) (s += NLSFrom(s - 1, NLSZEROT, &c) - 1)
 #define NLS_ILLEGAL 0x40000000
 
 
