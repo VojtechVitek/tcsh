@@ -304,11 +304,11 @@ extern char *sbrk();
 /***
  *** Intel 386, Hypercube
  ***/
-#ifdef HYPERCUBE
+#ifdef INTEL
 # ifndef _SIZE_T
 #  define _SIZE_T
 # endif /* _SIZE_T */
-#endif /* HYPERCUBE */
+#endif /* INTEL */
 
 /***
  *** Concurrent (Masscomp) running RTU 4.1A & RTU 5.0.
