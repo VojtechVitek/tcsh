@@ -1604,15 +1604,36 @@ fixio(fd, e)
 
 	e = 0;
 #ifdef TRY_AGAIN
-# if defined(F_SETFL) && defined(O_NDELAY)
+# ifdef F_SETFL
+/*
+ * Great! we have on suns 3 flavors and 5 names...
+ * I hope that will cover everything
+ */
+#  ifndef O_NONBLOCK
+#   define O_NONBLOCK 0
+#  endif
+#  ifndef O_NDELAY
+#   define O_NDELAY 0
+#  endif
+#  ifndef FNBIO
+#   define FNBIO 0
+#  endif
+#  ifndef FNNONBIO
+#   define FNNONBIO 0
+#  endif
+#  ifndef FNDELAY
+#   define FNDELAY 0
+#  endif
 	if ((e = fcntl(fd, F_GETFL, 0)) == -1)
 	    return -1;
 
-	if (fcntl(fd, F_SETFL, e & ~O_NDELAY) == -1)
+	e &= ~(O_NDELAY|O_NONBLOCK|FNBIO|FNONBIO|FNDELAY);
+
+	if (fcntl(fd, F_SETFL, e &) == -1)
 	    return -1;
 	else 
 	    e = 1;
-# endif /* F_SETFL && O_NDELAY */
+# endif /* F_SETFL */
 
 # ifdef FIONBIO
 	e = 0;
