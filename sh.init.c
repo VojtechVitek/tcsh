@@ -287,7 +287,7 @@ struct	mesg mesg[] = {
 /* 18 */	"CLD",		"Child exited",
 /* 19 */	0,		"Signal 19",
 /* 20 */	0,		"Signal 20",
-/* 21 */	"BREAK",	"Break (Ctrl-Break)"
+/* 21 */	"BREAK",	"Break (Ctrl-Break)",
 # endif /* __EMX__ */
 
 

@@ -469,8 +469,10 @@ smalloc(n)
 
     n = n ? n : 1;
 
+#ifndef _VMS_POSIX
     if (membot == NULL)
 	membot == (char*) sbrk(0);
+#endif /* !_VMS_POSIX */
 
     if ((ptr = malloc(n)) == (ptr_t) 0) {
 	child++;

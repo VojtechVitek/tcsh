@@ -1492,7 +1492,7 @@ doumask(v, c)
 #  endif /* RLIMIT_CPU */
 #  ifndef RLIM_INFINITY
 #   define RLIM_INFINITY	0x7fffffff
-#  endif RLIM_INFINITY
+#  endif /* RLIM_INFINITY */
 # endif /* hpux && BSDLIMIT */
 
 struct limits limits[] = 

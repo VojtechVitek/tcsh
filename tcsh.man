@@ -30,7 +30,7 @@
 .\" SUCH DAMAGE.
 .\"
 .\" $Id$
-.TH TCSH 1 "17 September 1992" "Cornell"
+.TH TCSH 1 "17 September 1992" "Cornell 6.02.11"
 .SH NAME
 tcsh \- C shell with file name completion and command line editing
 .SH SYNOPSIS

@@ -159,6 +159,9 @@ sh_access(fname, mode)
 	 *   3) getgroups(0, unused)
 	 * Then allocate and scan the groups array if one of these worked.
 	 */
+#  ifdef __386BSD__
+#   undef _SC_NGROUPS_MAX	/* 386/BSD does not have sysconf! */
+#  endif /* __386BSD__ */
 #  ifdef _SC_NGROUPS_MAX
 	if ((n = sysconf(_SC_NGROUPS_MAX)) == -1)
 #  endif /* _SC_NGROUPS_MAX */

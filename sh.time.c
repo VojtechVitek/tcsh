@@ -82,7 +82,12 @@ settimes()
     (void) get_process_stats(&time0, PS_SELF, &ru0, &ruch);
     ruadd(&ru0, &ruch);
 # else	/* _SEQUENT_ */
+#  ifndef COHERENT
     time0 = times(&times0);
+#  else /* !COHERENT */
+    time0 = HZ * time(NULL);
+    times(&times0);
+#  endif /* !COHERENT */
     times0.tms_stime += times0.tms_cstime;
     times0.tms_utime += times0.tms_cutime;
     times0.tms_cstime = 0;
@@ -127,7 +132,12 @@ dotime(v, c)
 
     struct tms times_dol;
 
+#ifndef COHERENT
     timedol = times(&times_dol);
+#else
+    timedol = HZ * time(NULL);
+    times(&times_dol);
+#endif
     times_dol.tms_stime += times_dol.tms_cstime;
     times_dol.tms_utime += times_dol.tms_cutime;
     times_dol.tms_cstime = 0;
