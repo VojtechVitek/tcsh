@@ -38,6 +38,7 @@
 RCSID("$Id$")
 
 #include "sh.h"
+#include "ed.h"
 
 /*
  * C shell
@@ -132,6 +133,7 @@ struct	biltins bfunc[] = {
     { "setspath",	dosetspath,	1,	INF, },
 #endif /* TCF */
     { "settc",	dosettc,	2,	2, },
+    { "setty",  dosetty,	0,      INF },
 #ifdef TCF
     { "setxvers",	dosetxvers,	0,	1, },
 #endif /* TCF */

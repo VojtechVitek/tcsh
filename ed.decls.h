@@ -46,6 +46,7 @@ extern	void	DeleteBack		__P((int));
 /*
  * ed.init.c
  */
+extern	void	dosetty			__P((Char **, struct command *));
 extern	void	check_window_size	__P((int));
 #ifdef SIG_WINDOW
 extern	sigret_t window_change		__P((int));
