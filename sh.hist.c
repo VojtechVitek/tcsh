@@ -376,7 +376,7 @@ fmthist(fmt, ptr, buf, bufsiz)
 	else {
 	    Char ibuf[INBUFSIZE], *ip;
 	    char *p;
-	    (void) sprlex(ibuf, sizeof(ibuf), &hp->Hlex);
+	    (void) sprlex(ibuf, sizeof(ibuf) / sizeof(Char), &hp->Hlex);
 	    for (p = buf, ip = ibuf; (*p++ = (CHAR & *ip++)) != '\0'; )
 		continue;
 	}
