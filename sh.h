@@ -222,7 +222,11 @@ extern int setpgrp();
 #ifdef DIRENT
 # include <dirent.h>
 #else
-# include <sys/dir.h>
+# ifdef hp9000s500
+#  include <ndir.h>
+# else
+#  include <sys/dir.h>
+# endif
 # define dirent direct
 #endif /* DIRENT */
 #ifdef hpux
@@ -746,7 +750,7 @@ extern int errno, sys_nerr;
 #define str2short(a) 		(a)
 #define blk2short(a) 		saveblk(a)
 #define short2blk(a) 		saveblk(a)
-#define short2str(a) 		(a)
+#define short2str(a) 		strip(a)
 #else
 #define Strchr(a, b)   	s_strchr(a, b)
 #define Strrchr(a, b) 		s_strrchr(a, b)
