@@ -169,7 +169,7 @@ TCOBJS=	tc.alloc.${SUF} tc.bind.${SUF} tc.const.${SUF} tc.disc.${SUF} \
 PVSRCS= Makefile
 AVSRCS= Fixes MAKEDIFFS MAKESHAR NewThings README FAQ \
 	WishList config_f.h eight-bit.me glob.3 patchlevel.h \
-	pathnames.h tcsh.man Ported src.desc Imakefile config.imake \
+	pathnames.h tcsh.man Ported src.desc Imakefile imake.config \
 	README.imake
 VHSRCS=${PVSRCS} ${AVSRCS}
 
