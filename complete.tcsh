@@ -141,7 +141,7 @@ if ($?complete) then
 		n/*/\`who\ \|\ grep\ \$:1\ \|\ awk\ \'\{\ print\ \$2\ \}\'\`/
 
     if ( -f $HOME/.netrc ) then
-	complete ftp    p@1@\`cat\ $HOME/.netrc\ \|\ \ awk\ \'\{\ print\ \$2\ \}\'\`@
+	complete ftp    p@1@'`cat $HOME/.netrc | awk '"'"'{print $2 }'"'"\`@
     else
 	set ftphosts=(ftp.uu.net prep.ai.mit.edu export.lcs.mit.edu \
 		      labrea.stanford.edu sumex-aim.stanford.edu \
