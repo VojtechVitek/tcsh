@@ -669,7 +669,7 @@ t_search(word, wp, command, max_word_length, looking_for_command, list_max)
 	    !(nd = dnormalize(*tilded_dir ? tilded_dir : STRdot)) ||
 	    ((dir_fd = opendir(short2str(nd))) == NULL)) {
 	    xfree((ptr_t) nd);
-	    if (SearchNoDirErr)
+	    if (command == SPELL || SearchNoDirErr)
 		return (-2);
 	    xprintf("\n%s unreadable\n",
 		    *tilded_dir ? short2str(tilded_dir) :
