@@ -49,6 +49,7 @@ if ($?_complete) then
     endif
     if ( -r $HOME/.ssh/known_hosts ) then
 	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
+	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ | sed -e 's/,/ /g'` >& /dev/null
 	set hosts=($hosts $f)
     endif
     unset f

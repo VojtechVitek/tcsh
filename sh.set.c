@@ -1112,6 +1112,10 @@ x:
     }
 }
 
+#ifdef DSPMBYTE
+bool dspmbyte_utf8;
+#endif
+
 #if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
 bool dspmbyte_ls;
 
@@ -1142,6 +1146,7 @@ update_dspmbyte_vars()
 	       "Warning: unknown multibyte display; using default(euc(JP))\n"));
 	    iskcode = 2;
 	}
+	dspmbyte_utf8 = iskcode == 4;
 	if (dstr1 && vp->vec[1] && eq(vp->vec[1], STRls))
 	  dspmbyte_ls = 1;
 	else

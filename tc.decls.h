@@ -79,6 +79,7 @@ extern	Char		 *expand_lex	__P((Char *, size_t, struct wordent *,
 extern	Char		 *sprlex	__P((Char *, size_t, struct wordent *));
 extern	Char		 *Itoa		__P((int, Char *, int, int));
 extern	void		  dolist	__P((Char **, struct command *));
+extern	void		  dotermname	__P((Char **, struct command *));
 extern	void		  dotelltc	__P((Char **, struct command *));
 extern	void		  doechotc	__P((Char **, struct command *));
 extern	void		  dosettc	__P((Char **, struct command *));

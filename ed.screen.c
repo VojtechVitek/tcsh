@@ -1116,8 +1116,17 @@ MoveToLine(where)		/* move to line <where> (first line == 0) */
 	while (del > 0) {
 	    if ((T_Margin & MARGIN_AUTO) && Display[CursorV][0] != '\0') {
 		/* move without newline */
+#ifdef DSPMBYTE
 		MoveToChar(TermH - 1);
+		if (Ismbyte2(Display[CursorV][CursorH])) {
+		    MoveToChar(TermH - 2);
+		    so_write(&Display[CursorV][CursorH], 2); /* updates CursorH/V*/
+		} else {
+		    so_write(&Display[CursorV][CursorH], 1); /* updates CursorH/V*/
+		}
+#else
 		so_write(&Display[CursorV][CursorH], 1); /* updates CursorH/V*/
+#endif
 		del--;
 	    }
 	    else {
@@ -1266,11 +1275,18 @@ so_write(cp, n)
 	    if (T_Margin & MARGIN_MAGIC) {
 		/* force the wrap to avoid the "magic" situation */
 		Char c;
-		if ((c = Display[CursorV][CursorH]) != '\0')
-		    so_write(&c, 1);
-		else
+		if ((c = Display[CursorV][CursorH]) != '\0') {
+		    so_write(&Display[CursorV][CursorH], 1);
+#ifdef DSPMBYTE
+		    if (CursorH > 0 && (c = Display[CursorV][CursorH]) != 0)
+			if (Ismbyte2(c))
+			    so_write(&Display[CursorV][CursorH], 1);
+#endif
+		}
+		else {
 		    (void) putraw(' ');
-		CursorH = 1;
+		    CursorH = 1;
+		}
 	    }
 	}
 	else			/* no wrap, but cursor stays on screen */
@@ -1352,10 +1368,7 @@ Insert_write(cp, num)		/* Puts terminal in insert character mode, */
     if (GoodStr(T_im) && GoodStr(T_ei)) { /* if I have insert mode */
 	(void) tputs(Str(T_im), 1, PUTPURE);
 
-	CursorH += num;
-	do 
-	    (void) putraw(*cp++);
-	while (--num);
+	so_write(cp, num);	/* this updates CursorH/V */
 
 	if (GoodStr(T_ip))	/* have to make num chars insert */
 	    (void) tputs(Str(T_ip), 1, PUTPURE);
@@ -1368,9 +1381,7 @@ Insert_write(cp, num)		/* Puts terminal in insert character mode, */
 	if (GoodStr(T_ic))	/* have to make num chars insert */
 	    (void) tputs(Str(T_ic), 1, PUTPURE);	/* insert a char */
 
-	(void) putraw(*cp++);
-
-	CursorH++;
+	so_write(cp++, 1);	/* this updates CursorH/V */
 
 	if (GoodStr(T_ip))	/* have to make num chars insert */
 	    (void) tputs(Str(T_ip), 1, PUTPURE);/* pad the inserted char */
