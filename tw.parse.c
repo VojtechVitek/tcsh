@@ -2088,6 +2088,7 @@ print_by_column(dir, items, count, no_file_suffix)
 		    Char f = items[i][w - 1];
 		    items[i][w - 1] = 0;
 		    print_with_color(items[i], w - 1, f);
+		    items[i][w - 1] = f;
 		}
 		else {
 		    /* Print filename followed by '/' or '*' or ' ' */
