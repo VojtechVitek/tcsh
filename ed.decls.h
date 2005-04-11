@@ -39,6 +39,7 @@
 extern	int	InsertStr		__P((Char *));
 extern	void	DeleteBack		__P((int));
 extern	void	SetKillRing		__P((int));
+extern	CCRETVAL GetHistLine		__P((void));
 
 /*
  * ed.init.c
@@ -238,6 +239,8 @@ extern  CCRETVAL	e_dosify_prev		__P((Char));
 extern  CCRETVAL	e_page_up			__P((Char));
 extern  CCRETVAL	e_page_down			__P((Char));
 extern  CCRETVAL	e_yank_pop		__P((Char));
+extern  CCRETVAL	e_newline_hold		__P((Char));
+extern  CCRETVAL	e_newline_down_hist	__P((Char));
 
 /*
  * ed.inputl.c

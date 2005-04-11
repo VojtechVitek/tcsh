@@ -122,3 +122,5 @@ $set 3
 119 (WIN32 only) Convert each '/' in previous word to '\\\\'
 120 (WIN32 only) Page visible console window up
 121 (WIN32 only) Page visible console window down
+122 Execute command and keep current line
+123 Execute command and move to next history line

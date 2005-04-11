@@ -132,13 +132,20 @@ Inputl()
 
     GettingInput = 1;
     NeedsRedraw = 0;
+    tellwhat = 0;
 
-    if (tellwhat) {
-	copyn(InputBuf, WhichBuf, INBUFSIZE);
-	LastChar = InputBuf + (LastWhich - WhichBuf);
-	Cursor = InputBuf + (CursWhich - WhichBuf);
-	tellwhat = 0;
-	Hist_num = HistWhich;
+    if (RestoreSaved) {
+	copyn(InputBuf, SavedBuf, INBUFSIZE);
+	LastChar = InputBuf + (LastSaved - SavedBuf);
+	Cursor = InputBuf + (CursSaved - SavedBuf);
+	Hist_num = HistSaved;
+	HistSaved = 0;
+	RestoreSaved = 0;
+    }
+    if (HistSaved) {
+	Hist_num = HistSaved;
+	GetHistLine();
+	HistSaved = 0;
     }
     if (Expand) {
 	(void) e_up_hist(0);
@@ -209,12 +216,7 @@ Inputl()
 
 	case CC_WHICH:		/* tell what this command does */
 	    tellwhat = 1;
-	    copyn(WhichBuf, InputBuf, INBUFSIZE);
-	    LastWhich = WhichBuf + (LastChar - InputBuf);
-	    CursWhich = WhichBuf + (Cursor - InputBuf);
 	    *LastChar++ = '\n';	/* for the benifit of CSH */
-	    HistWhich = Hist_num;
-	    Hist_num = 0;	/* for the history commands */
 	    num = (int) (LastChar - InputBuf);	/* number characters read */
 	    break;
 
