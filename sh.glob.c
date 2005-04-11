@@ -136,6 +136,17 @@ globequal(Char *new, Char *old)
      */
     if (old[1] == '-' && (old[2] == '\0' || old[2] == '/')) {
 	/* =- */
+	Char *olddir = varval (STRowd);
+
+	if (olddir && *olddir &&
+	    !dcwd->di_next->di_name && !dcwd->di_prev->di_name) {
+	    (void)Strcpy (new, olddir);
+	    for (d = &new[Strlen (new)], b = &old[2];
+		 d < &new[BUFSIZE - 1] && (*d++ = *b++) != (Char)0;)
+		continue;
+	    *d = (Char)0;
+	    return (new);
+	}
 	dig = -1;
 	b = &old[2];
     }
