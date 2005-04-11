@@ -1596,7 +1596,7 @@ GetSize(lins, cols)
     return (Val(T_co) != *cols || Val(T_li) != *lins);
 }
 
-#endif /* SIGWINDOW */
+#endif /* SIG_WINDOW */
 
 void
 ChangeSize(lins, cols)
