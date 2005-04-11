@@ -51,7 +51,7 @@ static struct sched_event *sched_ptr = NULL;
 
 
 time_t
-sched_next()
+sched_next(void)
 {
     if (sched_ptr)
 	return (sched_ptr->t_when);
@@ -60,9 +60,7 @@ sched_next()
 
 /*ARGSUSED*/
 void
-dosched(v, c)
-    Char **v;
-    struct command *c;
+dosched(Char **v, struct command *c)
 {
     struct sched_event *tp, *tp1, *tp2;
     time_t  cur_time;
@@ -196,8 +194,7 @@ dosched(v, c)
  */
 /*ARGSUSED*/
 void
-sched_run(n)
-    int n;
+sched_run(int n)
 {
     time_t   cur_time;
     struct sched_event *tp, *tp1;

@@ -232,7 +232,7 @@ struct mesg mesg[NUMSIG];	/* Arrays start at [0] so we initialize from */
 				/* 0 to 32 or 64, the max real signal number */
 
 void
-mesginit()
+mesginit(void)
 {
 
 #ifdef NLS_CATALOGS

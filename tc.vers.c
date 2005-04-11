@@ -43,7 +43,7 @@ RCSID("$Id$")
  *	options that might affect the user.
  */
 void
-fix_version()
+fix_version(void)
 {
 #ifdef WIDE_STRINGS
 # define SSSTR "wide"

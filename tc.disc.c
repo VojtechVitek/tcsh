@@ -63,8 +63,7 @@ static int oldisc;
 
 int
 /*ARGSUSED*/
-setdisc(f)
-int     f;
+setdisc(int f)
 {
 #ifdef IRIS4D
 # ifndef POSIX
@@ -174,8 +173,7 @@ int     f;
 
 int
 /*ARGSUSED*/
-resetdisc(f)
-int f;
+resetdisc(int f)
 {
     if (add_discipline) {
 	add_discipline = 0;

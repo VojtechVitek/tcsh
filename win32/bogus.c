@@ -150,9 +150,7 @@ int tty_geteightbit(void *ignore) {
 	return 1;
 }
 void
-dosetty(v, t)
-    Char **v;
-    struct command *t;
+dosetty(Char **v, struct command *t)
 {
 	xprintf("setty not supported in NT\n");
 }

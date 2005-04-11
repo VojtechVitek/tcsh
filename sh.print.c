@@ -40,7 +40,7 @@ extern int Tty_eight_bit;
 
 int     lbuffed = 1;		/* true if line buffered */
 
-static	void	p2dig	__P((unsigned int));
+static	void	p2dig	(unsigned int);
 
 /*
  * C Shell
@@ -48,8 +48,7 @@ static	void	p2dig	__P((unsigned int));
 
 #if defined(BSDLIMIT) || defined(RLIMIT_CPU)
 void
-psecs(l)
-    unsigned long    l;
+psecs(unsigned long l)
 {
     int i;
 
@@ -70,15 +69,14 @@ minsec:
 
 #endif
 
-void
-pcsecs(l)			/* PWP: print mm:ss.dd, l is in sec*100 */
+void			/* PWP: print mm:ss.dd, l is in sec*100 */
 #ifdef BSDTIMES
-    unsigned long    l;
+pcsecs(unsigned long l)
 #else /* BSDTIMES */
 # ifndef POSIX
-    time_t  l;
+pcsecs(time_t l)
 # else /* POSIX */
-    clock_t l;
+pcsecs(clock_t l)
 # endif /* POSIX */
 #endif /* BSDTIMES */
 {
@@ -102,8 +100,7 @@ minsec:
 }
 
 static void 
-p2dig(i)
-    unsigned int i;
+p2dig(unsigned i)
 {
 
     xprintf("%u%u", i / 10, i % 10);
@@ -139,8 +136,7 @@ xputwchar(Char c)
 #endif
 
 void
-xputchar(c)
-    int c;
+xputchar(int c)
 {
     int     atr = 0;
 
@@ -189,8 +185,7 @@ xputchar(c)
 }
 
 int
-putraw(c)
-    int c;
+putraw(int c)
 {
     if (haderr ? (didfds ? is2atty : isdiagatty) :
 	(didfds ? is1atty : isoutatty)) {
@@ -205,8 +200,7 @@ putraw(c)
 }
 
 int
-putpure(c)
-    int c;
+putpure(int c)
 {
     c &= CHAR;
 
@@ -217,13 +211,13 @@ putpure(c)
 }
 
 void
-drainoline()
+drainoline(void)
 {
     linp = linbuf;
 }
 
 void
-flush()
+flush(void)
 {
     int unit;
     static int interrupted = 0;

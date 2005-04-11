@@ -36,8 +36,7 @@ RCSID("$Id$")
 
 #ifdef SHORT_STRINGS
 int
-NLSWidth(c)
-    NLSChar c;
+NLSWidth(NLSChar c)
 {
 # ifdef HAVE_WCWIDTH
     int l; 
@@ -273,9 +272,7 @@ NLSChangeCase(Char *p, int mode)
 #endif
 
 int
-NLSClassify(c, nocomb)
-    NLSChar c;
-    int nocomb;
+NLSClassify(NLSChar c, int nocomb)
 {
     int w;
     if (c & NLS_ILLEGAL)
