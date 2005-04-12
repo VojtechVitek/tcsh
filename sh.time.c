@@ -296,8 +296,6 @@ prusage(struct process_stats *r0, struct process_stats *r1, timeval_t e,
 #  ifndef POSIX
 void
 prusage(structx tms *bs, struct tms *es, time_t e, time_t b)
-    time_t  e, b;
-
 #  else	/* POSIX */
 void
 prusage(structx tms *bs, struct tms *es, clock_t e, clock_t b)

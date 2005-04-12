@@ -1260,7 +1260,7 @@ extern int	NoNLSRebind;
 #   define MCLoadBySet 0
 #  endif
 EXTERN nl_catd catd;
-#  ifdef HAVE_ICONV
+#  if defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)
 #   define CGETS(b, c, d)	iconv_catgets(catd, b, c, d)
 #  else
 #   define CGETS(b, c, d)	catgets(catd, b, c, d)

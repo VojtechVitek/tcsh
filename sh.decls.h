@@ -179,10 +179,8 @@ extern	int		  sortscmp	(Char **, Char **);
 #endif
 
 #ifndef WINNT_NATIVE
-#ifdef NLS_CATALOGS
-#ifdef HAVE_ICONV
+#if defined(NLS_CATALOGS) && defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)
 extern	char		 *iconv_catgets	(nl_catd, int, int, const char *);
-#endif
 #endif
 #endif
 extern	void		  nlsinit	(void);
