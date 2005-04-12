@@ -207,7 +207,7 @@ sigpause(int what)
 #ifdef NEEDsignal
 /* turn into bsd signals */
 RETSIGTYPE
-(*xsignal(int s, singalfun_t a)) ()
+(*xsignal(int s, signalfun_t a)) ()
 {
     sigvec_t osv, sv;
 

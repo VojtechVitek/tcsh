@@ -295,10 +295,10 @@ prusage(struct process_stats *r0, struct process_stats *r1, timeval_t e,
 # else /* _SEQUENT_ */
 #  ifndef POSIX
 void
-prusage(structx tms *bs, struct tms *es, time_t e, time_t b)
+prusage(struct tms *bs, struct tms *es, time_t e, time_t b)
 #  else	/* POSIX */
 void
-prusage(structx tms *bs, struct tms *es, clock_t e, clock_t b)
+prusage(struct tms *bs, struct tms *es, clock_t e, clock_t b)
 #  endif /* POSIX */
 # endif	/* _SEQUENT_ */
 #endif /* BSDTIMES */
