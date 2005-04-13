@@ -562,7 +562,7 @@ tprintf(int what, Char *buf, const Char *fmt, size_t siz, const char *str,
 		 * No literal capability, so skip all chars in the literal
 		 * string
 		 */
-		while (*cp != '\0' && (*cp != '%' || cp[1] != '}'))
+		while (*cp != '\0' && (cp[-1] != '%' || *cp != '}'))
 		    cp++;
 #endif				/* LITERAL == 0 */
 		attributes |= LITERAL;
