@@ -262,7 +262,7 @@ NLSChangeCase(Char *p, int mode)
     if (!*p)
 	return 0;
     l2 = NLSTo((Char *)0, c2);
-    n = (Char *)xmalloc((size_t)((op - p + l2 + Strlen(p + l) + 1) * sizeof(Char)));
+    n = (Char *)xmalloc((size_t)((p - op + l2 + Strlen(p + l) + 1) * sizeof(Char)));
     if (p != op)
 	memcpy(n, op, (p - op) * sizeof(Char));
     NLSTo(n + (p - op), c2);
