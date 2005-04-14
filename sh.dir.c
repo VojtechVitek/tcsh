@@ -316,21 +316,30 @@ dnormalize(Char *cp, int expnd)
 	/*
 	 * count the number of "../xxx" or "xxx/../xxx" in the path
 	 */
-	for (dp=start; *dp && *(dp+1); dp++)
+	for (dp = start; *dp && *(dp + 1); dp++)
 	    if (IS_DOTDOT(start, dp))
 	        dotdot++;
+
 	/*
 	 * if none, we are done.
 	 */
         if (dotdot == 0)
-	    return (Strsave(cp));
-
+	    return (Strsave(start));
+	
+# ifdef notdef
 	/*
+	 * We disable this test because:
+	 * cd /tmp; mkdir dir1 dir2; cd dir2; ln -s /tmp/dir1; cd dir1;
+	 * echo ../../dir1 does not expand. We had enabled this before
+	 * because it was bothering people with expansions in compilation
+	 * lines like -I../../foo. Maybe we need some kind of finer grain
+	 * control?
+	 *
 	 * If the path doesn't exist, we are done too.
 	 */
-	if (lstat(short2str(cp), &sb) != 0 && errno == ENOENT)
-	    return (Strsave(cp));
-	
+	if (lstat(short2str(start), &sb) != 0 && errno == ENOENT)
+	    return (Strsave(start));
+# endif
 
 	cwd = (Char *) xmalloc((size_t) (((int) Strlen(dcwd->di_name) + 3) *
 					   sizeof(Char)));
@@ -349,7 +358,7 @@ dnormalize(Char *cp, int expnd)
 	/*
 	 * Ignore . and count ..'s
 	 */
-	for (;;) {
+	for (cp = start;;) {
 	    dotdot = 0;
 	    buf[0] = '\0';
 	    dp = buf; 
