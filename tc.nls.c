@@ -45,7 +45,7 @@ NLSWidth(NLSChar c)
     l = wcwidth(c);
     return l >= 0 ? l : 0;
 # else
-    return c != 0;
+    return Iswprint(c) != 0;
 # endif
 }
 #endif
