@@ -529,7 +529,7 @@ get_fd:
 	return fd;
 	
 }
-int nt_open(char *filename, int perms,...) { 
+int nt_open(const char *filename, int perms,...) { 
 
 	// ignore the bloody mode
 

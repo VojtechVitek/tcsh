@@ -56,6 +56,8 @@ extern void NT_ClearScreen(void) ;
 extern void NT_VisibleBell(void);
 extern void NT_WrapHorizontal(void);
 
+static int GetSize(int *lins, int *cols);
+
 int DisplayWindowHSize;
 	void
 terminit(void)

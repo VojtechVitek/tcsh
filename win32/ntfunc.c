@@ -348,7 +348,7 @@ void make_err_str(unsigned int error,char *buf,int size) {
 char dummy;
 char *nameBuf=&dummy, *valBuf=&dummy;
 
-void nt_set_env(Char *name, Char *val) {
+void nt_set_env(const Char *name, const Char *val) {
 	char *cname, *cval;
 	int len;
 
