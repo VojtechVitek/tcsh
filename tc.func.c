@@ -686,7 +686,7 @@ xgetpass(const char *prm)
 }
 	
 #ifndef NO_CRYPT
-#ifndef __STDC__
+#if !defined(__STDC__) || defined(SUNOS4)
     extern char *crypt ();
 #endif
 #ifdef __linux__
