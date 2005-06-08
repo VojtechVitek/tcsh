@@ -1153,6 +1153,8 @@ osinit(void)
 }
 
 #ifndef HAVE_STRERROR
+extern int sys_nerr;
+extern char *sys_errlist[];
 char *
 xstrerror(int i)
 {
