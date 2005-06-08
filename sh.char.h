@@ -264,7 +264,7 @@ extern tcshuc _cmap_lower[], _cmap_upper[];
 
 #endif /* !NLS */
 
-#if defined (SHORT_STRINGS) && defined (NLS)
+#if defined (WIDE_STRINGS) && defined (NLS)
 # define Iswcntrl(c) 	(((c) & QUOTE) ? 0 : iswcntrl(c))
 # define Iswprint(c) 	(((c) & QUOTE) ? 0 : iswprint(c))
 #else

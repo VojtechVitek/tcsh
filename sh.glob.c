@@ -1118,7 +1118,7 @@ t_pmatch(Char *string, Char *pattern, Char **estr, int cs)
 	default:
 	    TRIM_AND_EXTEND(pattern, patternc);
 	    if (cs ? patternc  != stringc
-#if defined (NLS) && defined (SHORT_STRINGS)
+#if defined (NLS) && defined (WIDE_STRINGS)
 		: towlower(patternc) != towlower(stringc))
 #else
 		: Tolower(patternc) != Tolower(stringc))
