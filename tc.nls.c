@@ -149,7 +149,7 @@ NLSFinished(Char *p, size_t l, eChar extra)
 	return -1;
     return r == i ? 1 : 2;
 #else
-    return 1;
+    return *p ? 2 : 1;
 #endif
 }
 
