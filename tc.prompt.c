@@ -537,7 +537,7 @@ tprintf(int what, Char *buf, const Char *fmt, size_t siz, const char *str,
 		    for (pp = proclist.p_next; pp; pp = pp->p_next)
 			njobs++;
 		    /* make sure we have space */
-		    ebuf = Itoa(njobs, buf, 1, attributes);
+		    ebuf = Itoa(njobs, xbuf, 1, attributes);
 		    for (xq = xbuf; xq < ebuf; *p++ = *xq++)
 			if (p >= ep) break;
 		    break;
