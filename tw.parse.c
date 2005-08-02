@@ -897,12 +897,7 @@ tw_collect_items(COMMAND command, int looking, Char *exp_dir, Char *exp_name,
 		if ((ext > 0) && (strcasecmp((char *)&item[ext], ".exe") == 0 ||
 				  strcasecmp((char *)&item[ext], ".bat") == 0 ||
 				  strcasecmp((char *)&item[ext], ".com") == 0))
-		    {
-			item[ext] = '\0';
-#if defined(__CYGWIN__)
-			strlwr((char *)item);
-#endif /* __CYGWIN__ */
-		    }
+		    item[ext] = '\0';
 	    }
 #endif /* _UWIN || __CYGWIN__ */
 	    exec_check = flags & TW_EXEC_CHK;

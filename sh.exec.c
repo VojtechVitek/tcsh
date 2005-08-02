@@ -760,13 +760,11 @@ dohash(Char **vv, struct command *c)
 		size_t	ext = strlen(dp->d_name) - 4;
 		if ((ext > 0) && (strcasecmp(&dp->d_name[ext], ".exe") == 0 ||
 				  strcasecmp(&dp->d_name[ext], ".bat") == 0 ||
-				  strcasecmp(&dp->d_name[ext], ".com") == 0))
-		    {
-			dp->d_name[ext] = '\0';
-#if defined(__CYGWIN__)
-			strlwr(dp->d_name);
+				  strcasecmp(&dp->d_name[ext], ".com") == 0)) {
+#ifdef __CYGWIN__
+		    strlwr((char *)item);
 #endif /* __CYGWIN__ */
-		    }
+		    dp->d_name[ext] = '\0';
 	    }
 #endif /* _UWIN || __CYGWIN__ */
 # ifdef FASTHASH
