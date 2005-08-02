@@ -645,12 +645,13 @@ EchoTC(Char **v)
 	flush();
 	return;
     }
-    else if (strcmp(cv, "rows") == 0 || strcmp(cv, "lines") == 0) {
+    else if (strcmp(cv, "rows") == 0 || strcmp(cv, "lines") == 0 ||
+	strcmp(cv, "li") == 0) {
 	xprintf(fmtd, Val(T_li));
 	flush();
 	return;
     }
-    else if (strcmp(cv, "cols") == 0) {
+    else if (strcmp(cv, "cols") == 0 || strcmp(cv, "co") == 0) {
 	xprintf(fmtd, Val(T_co));
 	flush();
 	return;
