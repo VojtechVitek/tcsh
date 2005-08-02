@@ -250,7 +250,7 @@ printdirs(int dflag)
 	    len = (int) (Strlen(s) + 1);
 
 	cur += len;
-	if ((dflag & DIR_LINE) && cur >= T_Cols - 1 && len < T_Cols) {
+	if ((dflag & DIR_LINE) && cur >= TermH - 1 && len < TermH) {
 	    xputchar('\n');
 	    cur = len;
 	}

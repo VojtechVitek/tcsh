@@ -635,7 +635,7 @@ dosetty(Char **v, struct command *t)
 
 	    if (x != '\0' || aflag) {
 		cu = strlen(m->m_name) + (x != '\0') + 1;
-		if (len + cu >= T_Cols) {
+		if (len + cu >= TermH) {
 		    xprintf("\n%*s", st, "");
 		    len = st + cu;
 		}

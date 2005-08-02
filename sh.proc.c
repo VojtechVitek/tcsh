@@ -1493,7 +1493,7 @@ dokill(Char **v, struct command *c)
 	    for (signum = 0; signum <= nsig; signum++) {
 		if ((name = mesg[signum].iname) != NULL) {
 		    len += strlen(name) + 1;
-		    if (len >= T_Cols - 1) {
+		    if (len >= TermH - 1) {
 			xputchar('\n');
 			len = strlen(name) + 1;
 		    }
