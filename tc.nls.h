@@ -53,7 +53,7 @@ extern int NLSStringWidth (Char *);
 #define NLS_ILLEGAL INVALID_BYTE
 
 #else
-# ifdef SHORT_STRINGS
+# if defined(SHORT_STRINGS) && defined(NLS)
 
 extern int NLSFrom (const Char *, size_t, NLSChar *);
 extern int NLSFinished (Char *, size_t, eChar);

@@ -1208,7 +1208,7 @@ autoset_dspmbyte(Char *pcp)
 	{ STRstarutfstar8, STRutf8 },
 	{ NULL, NULL }
     };
-#ifdef HAVE_NL_LANGINFO
+#if defined(HAVE_NL_LANGINFO) && defined(CODESET)
     struct dspm_autoset_Table dspmc[] = {
 	{ STRstarutfstar8, STRutf8 },
 	{ STReuc, STReuc },

@@ -90,8 +90,8 @@ typedef unsigned long intptr_t;
 #endif
 
 #ifdef SHORT_STRINGS
-#include <wchar.h>
 # ifdef WIDE_STRINGS
+#include <wchar.h>
 typedef wchar_t Char;
 typedef unsigned long uChar;
 typedef wint_t eChar; /* Can contain any Char value or CHAR_ERR */

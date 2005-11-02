@@ -38,10 +38,12 @@
 #else
 # include <ctype.h>
 # ifdef SHORT_STRINGS
-#  ifdef HAVE_WCTYPE_H
-#   include <wctype.h>
-#  else
-#   include <wchar.h>
+#  ifdef WIDE_STRINGS
+#   ifdef HAVE_WCTYPE_H
+#    include <wctype.h>
+#   else
+#    include <wchar.h>
+#   endif
 #  endif
 # endif
 #endif

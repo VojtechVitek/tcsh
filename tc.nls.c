@@ -34,7 +34,7 @@
 
 RCSID("$Id$")
 
-#ifdef SHORT_STRINGS
+#if defined(SHORT_STRINGS) && defined(NLS)
 int
 NLSWidth(NLSChar c)
 {
@@ -50,7 +50,7 @@ NLSWidth(NLSChar c)
 }
 #endif
 
-#if defined (WIDE_STRINGS) || !defined (SHORT_STRINGS)
+#if defined(WIDE_STRINGS) || (defined(SHORT_STRINGS) && !defined(NLS))
 Char *
 NLSChangeCase(Char *p, int mode)
 {
@@ -99,7 +99,7 @@ NLSStringWidth(Char *s)
     return w;
 }
 
-#elif defined (SHORT_STRINGS)
+#elif defined (SHORT_STRINGS) && defined(NLS)
 
 int
 NLSFrom(const Char *p, size_t l, NLSChar *cp)
