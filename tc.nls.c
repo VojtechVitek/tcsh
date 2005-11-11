@@ -87,14 +87,16 @@ NLSExtend(Char *from, int max, int num)
 int
 NLSStringWidth(Char *s)
 {
-    int w = 0, c;
+    int w = 0, c, l;
     while (*s) {
 	c = *s++;
 #ifdef HAVE_WCWIDTH
-	w += wcwidth(c);
+	if ((l = wcwidth(c)) < 0)
+		l = 2;
 #else
-	w += Iswprint(c) != 0;
+	l = Iswprint(c) != 0;
 #endif
+	w += l;
     }
     return w;
 }
