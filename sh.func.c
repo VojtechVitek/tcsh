@@ -2441,6 +2441,16 @@ nlsclose(void)
 	catgets_iconv = (iconv_t)-1;
     }
 #endif /* HAVE_ICONV && HAVE_NL_LANGINFO */
-    catclose(catd);
+    if (catd != (nl_catd)-1) {
+	/*
+	 * catclose can call other functions which can call longjmp
+	 * making us re-enter this code. Prevent infinite recursion
+	 * by resetting catd. Problem reported and solved by:
+	 * Gerhard Niklasch
+	 */
+	nl_catd oldcatd = catd;
+	catd = (nl_catd)-1;
+	catclose(oldcatd);
+    }
 #endif /* NLS_CATALOGS */
 }
