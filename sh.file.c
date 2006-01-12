@@ -509,8 +509,8 @@ free_items(Char **items, size_t numitems)
     size_t i;
 
     for (i = 0; i < numitems; i++)
-	xfree((ptr_t) items[i]);
-    xfree((ptr_t) items);
+	xfree(items[i]);
+    xfree(items);
 }
 
 #ifdef BSDSIGS

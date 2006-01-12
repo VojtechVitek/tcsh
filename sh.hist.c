@@ -141,10 +141,10 @@ enthist(int event, struct wordent *lp, int docopy, int mflg)
 	}
     }
 
-    np = p ? p : (struct Hist *) xmalloc((size_t) sizeof(*np));
+    np = p ? p : xmalloc(sizeof(*np));
 
     /* Pick up timestamp set by lex() in Htime if reading saved history */
-    if (Htime != (time_t) 0) {
+    if (Htime != 0) {
 	np->Htime = Htime;
 	Htime = 0;
     }
@@ -202,8 +202,8 @@ hfree(struct Hist *hp)
 
     freelex(&hp->Hlex);
     if (hp->histline)
-	xfree((ptr_t) hp->histline);
-    xfree((ptr_t) hp);
+	xfree(hp->histline);
+    xfree(hp);
 }
 
 
@@ -311,7 +311,7 @@ phist(struct Hist *hp, int hflg)
 	     * "+NNNNNNNNNN" (10 digits, left padded with ascii '0') 
 	     */
 
-	    xprintf("#+%010lu\n", hp->Htime);
+	    xprintf("#+%010lu\n", (unsigned long)hp->Htime);
 
 	if (HistLit && hp->histline)
 	    xprintf("%S\n", hp->histline);
@@ -433,7 +433,7 @@ rechist(Char *fname, int ref)
     (void) close(fp);
     SHOUT = ftmp;
     didfds = oldidfds;
-    xfree((ptr_t) fname);
+    xfree(fname);
 }
 
 

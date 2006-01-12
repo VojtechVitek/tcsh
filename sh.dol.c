@@ -381,8 +381,7 @@ Dgetdol(void)
 	if (dimen || bitset || length)
 	    stderror(ERR_SYNTAX);
 	if (backpid != 0) {
-	    if (dolbang) 
-		xfree((ptr_t) dolbang);
+	    xfree(dolbang);
 	    setDolp(dolbang = putn(backpid));
 	}
 	goto eatbrac;

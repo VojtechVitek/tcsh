@@ -145,7 +145,7 @@ NLSFinished(const Char *p, size_t l, eChar extra)
     if (extra != CHAR_ERR)
         b[i++] = extra;
     memset(&state, 0, sizeof(state));
-    r = mbrtowc((wchar_t *)&c, b, i, (mbstate_t *)&state);
+    r = mbrtowc(&c, b, i, &state);
     if (r == (size_t)-2)
 	return 0;
     if (r == (size_t)-1 || (size_t)wctomb(back, c) != r ||
@@ -279,11 +279,10 @@ NLSChangeCase(const Char *p, int mode)
     if (!*p)
 	return 0;
     l2 = NLSTo((Char *)0, c2);
-    n = (Char *)xmalloc((size_t)((p - op + l2 + Strlen(p + l) + 1) * sizeof(Char)));
-    if (p != op)
-	memcpy(n, op, (p - op) * sizeof(Char));
+    n = xmalloc(((p - op + l2 + Strlen(p + l) + 1) * sizeof(Char)));
+    memcpy(n, op, (p - op) * sizeof(Char));
     NLSTo(n + (p - op), c2);
-    memcpy(n + (p - op + l2), p + l, (Strlen(p + l) + 1) * sizeof(Char));
+    Strcpy(n + (p - op + l2), p + l);
     return n;
 #else
     Char *n = Strsave(p);

@@ -695,7 +695,7 @@ GetNextCommand(KEYCMD *cmdnum, Char *ch)
 	    XmapVal val;
 	    CStr cstr;
 	    cstr.buf = ch;
-	    cstr.len = Strlen(ch);
+	    cstr.len = 1;
 	    switch (GetXkey(&cstr, &val)) {
 	    case XK_CMD:
 		cmd = val.cmd;

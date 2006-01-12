@@ -62,7 +62,7 @@ sig_ch_queue(void)
     flush();
 #  endif /* JOBDEBUG */
     stk_ptr++;
-    stk[stk_ptr].s_pid = (pid_t) wait(&stk[stk_ptr].s_w);
+    stk[stk_ptr].s_pid = wait(&stk[stk_ptr].s_w);
     stk[stk_ptr].s_errno = errno;
     (void) signal(SIGCHLD, sig_ch_queue);
 }

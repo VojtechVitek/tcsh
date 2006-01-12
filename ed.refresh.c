@@ -136,10 +136,7 @@ static int MakeLiteral(Char *str, int len, Char addlit)
 	int add = 256;
 	while (len + addlitlen + 1 + (LIT_FACTOR - 1) > add)
 	    add *= 2;
-	if (litptr)
-	    newlitptr = (Char *)xrealloc(litptr, (litalloc + add) * sizeof(Char));
-	else
-	    newlitptr = (Char *)xmalloc((litalloc + add) * sizeof(Char));
+	newlitptr = xrealloc(litptr, (litalloc + add) * sizeof(Char));
 	if (!newlitptr)
 	    return '?';
 	litptr = newlitptr;
@@ -264,7 +261,7 @@ Vdraw(Char c, int width)	/* draw char c onto V lines */
        that "span line breaks". */
     while (vcursor_h + width > TermH)
 	Vdraw(' ', 1);
-    Vdisplay[vcursor_v][vcursor_h] = (Char) c;
+    Vdisplay[vcursor_v][vcursor_h] = c;
     if (width)
 	vcursor_h++;		/* advance to next place */
     while (--width > 0)
@@ -586,8 +583,8 @@ update_line(Char *old, Char *new, int cur_line)
     /*
      * Find the end of both old and new
      */
-    while (*o)
-	o++;
+    o = Strend(o);
+
     /* 
      * Remove any trailing blanks off of the end, being careful not to
      * back up past the beginning.
@@ -599,9 +596,8 @@ update_line(Char *old, Char *new, int cur_line)
     }
     oe = o;
     *oe = (Char) 0;
-  
-    while (*n)
-	n++;
+
+    n = Strend(n);
 
     /* remove blanks from end of new */
     while (nfd < n) {

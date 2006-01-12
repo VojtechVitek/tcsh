@@ -246,8 +246,8 @@ initpaths(char **paths)
 	    return(-1);
 	}
 	*val++ = '\0';
-	pe = (struct pelem *)xmalloc((unsigned)(sizeof(struct pelem)));
-	setzero((char *) pe, sizeof(struct pelem));
+	pe = xmalloc(sizeof(struct pelem));
+	setzero(pe, sizeof(struct pelem));
 	if (pathhead == NULL)
 	    pathhead = pathend = pe;
 	else {

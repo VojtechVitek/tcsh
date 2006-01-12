@@ -638,7 +638,7 @@ unparsekey(int c)		/* 'c' -> "c", '^C' -> "^" + "C" */
 	    *cp++ = _toebcdic[_toascii[c]|0100]
 	}
 	else {
-	    xsnprintf(cp, 3, "\\%3.3o", c);
+	    xsnprintf(cp, 4, "\\%03.3o", c);
 	    cp += 4;
 	}
 #endif /* IS_ASCII */

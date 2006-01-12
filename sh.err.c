@@ -188,7 +188,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_BADCOLORVAR	134
 #define NO_ERRORS	135
 
-static const char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
+static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
 /*
  * Init the elst depending on the locale
@@ -197,10 +197,10 @@ void
 errinit(void)
 {
 #ifdef NLS_CATALOGS
-    int i;
+    size_t i;
 
     for (i = 0; i < NO_ERRORS; i++)
-	xfree((ptr_t) elst[i]);
+	xfree(elst[i]);
 #  if defined(__FreeBSD__) || defined(hpux)
 #  define NLS_MAXSET 30
     for (i = 1; i <= NLS_MAXSET; i++)
@@ -459,7 +459,7 @@ stderror(unsigned int id, ...)
 	return;
 
     if (seterr) {
-	xfree((ptr_t) seterr);
+	xfree(seterr);
 	seterr = NULL;
     }
 
