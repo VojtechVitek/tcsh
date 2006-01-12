@@ -146,7 +146,7 @@ SetTC(char *what, char *how)
 	void
 EchoTC(Char **v)
 {
-
+    Char **globbed;
     char    cv[BUFSIZE];/*FIXBUF*/
     int     verbose = 0, silent = 0, gflag;
     static char *fmts = "%s\n", *fmtd = "%d\n";
@@ -162,11 +162,13 @@ EchoTC(Char **v)
             stderror(ERR_NAME | ERR_NOMATCH);
     }
     else
-        v = gargv = saveblk(v);
+        v = saveblk(v);
+    globbed = v;
+    cleanup_push(globbed, blk_cleanup);
     trim(v);
 
     if (!*v || *v[0] == '\0')
-        return;
+        goto end;
     if (v[0][0] == '-') {
         switch (v[0][1]) {
             case 'v':
@@ -182,26 +184,28 @@ EchoTC(Char **v)
         v++;
     }
     if (!*v || *v[0] == '\0')
-        return;
+        goto end;
     (void) strcpy(cv, short2str(*v));
 
     GetSize(&li,&co);
 
     if(!lstrcmp(cv,"rows") || !lstrcmp(cv,"lines") ) {
         xprintf(fmtd,T_Lines);
-        return;
+        goto end;
     }
     else if(!lstrcmp(cv,"cols") ) {
         xprintf(fmtd,T_ActualWindowSize);
-        return;
+        goto end;
     }
     else if(!lstrcmp(cv,"buffer") ) {
         xprintf(fmtd,T_Cols);
-        return;
+        goto end;
     }
     else
         stderror(ERR_SYSTEM, "EchoTC","Sorry, this function is not supported");
 
+ end:
+    cleanup_until(globbed);
 }
 
 int    GotTermCaps = 0;

@@ -471,6 +471,45 @@ short2qstr(const Char *src)
     return (sdst);
 }
 
+static void
+bb_store(struct blk_buf *bb, Char *str)
+{
+    if (bb->len == bb->size) { /* Keep space for terminating NULL */
+	if (bb->size == 0)
+	    bb->size = 16; /* Arbitrary */
+	else
+	    bb->size *= 2;
+	bb->vec = xrealloc(bb->vec, bb->size * sizeof (*bb->vec));
+    }
+    bb->vec[bb->len] = str;
+}
+
+void
+bb_append(struct blk_buf *bb, Char *str)
+{
+    bb_store(bb, str);
+    bb->len++;
+}
+
+void
+bb_cleanup(void *xbb)
+{
+    struct blk_buf *bb;
+    size_t i;
+
+    bb = xbb;
+    for (i = 0; i < bb->len; i++)
+	xfree(bb->vec[i]);
+    xfree(bb->vec);
+}
+
+Char **
+bb_finish(struct blk_buf *bb)
+{
+    bb_store(bb, NULL);
+    return xrealloc(bb->vec, (bb->len + 1) * sizeof (*bb->vec));
+}
+
 #define DO_STRBUF(STRBUF, CHAR, STRLEN)				\
 static void							\
 STRBUF##_store1(struct STRBUF *buf, CHAR c)			\
@@ -524,6 +563,15 @@ STRBUF##_finish(struct STRBUF *buf)				\
 {								\
     STRBUF##_append1(buf, 0);					\
     return xrealloc(buf->s, buf->len * sizeof(*buf->s));	\
+}								\
+								\
+void								\
+STRBUF##_cleanup(void *xbuf)					\
+{								\
+    struct STRBUF *buf;						\
+								\
+    buf = xbuf;							\
+    xfree(buf->s);						\
 }								\
 								\
 const struct STRBUF STRBUF##_init; /* = STRBUF##_INIT; */

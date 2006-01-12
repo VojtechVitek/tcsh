@@ -52,9 +52,6 @@ const struct biltins bfunc[] = {
     { "att",		doatt,		0,	INF	},
 #endif /* _CX_UX */
     { "bg",		dobg,		0,	INF	},
-#ifdef OBSOLETE
-    { "bind",		dobind,		0,	2	},
-#endif /* OBSOLETE */
     { "bindkey",	dobindkey,	0,	8	},
     { "break",		dobreak,	0,	0	},
     { "breaksw",	doswbrk,	0,	0	},

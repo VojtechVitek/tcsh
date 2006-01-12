@@ -476,19 +476,6 @@ extern void qsort();
 extern void perror();
 #endif
 
-# ifdef BSDSIGS
-#  if !defined(_AIX370) && !defined(MACH) && !defined(NeXT) && !defined(_AIXPS2) && !defined(ardent) && !defined(SUNOS4) && !defined(HPBSD) && !defined(__MACHTEN__)
-#   if (!defined(apollo) || !defined(__STDC__)) && !defined(__DGUX__) && !defined(fps500)
-extern RETSIGTYPE sigvec();
-#ifndef _CX_UX
-extern void sigpause();
-#endif /* _CX_UX */
-#   endif /* (!apollo || !__STDC__) && !__DGUX__ && !fps500 */
-#  endif /* _AIX370 || MACH || NeXT || _AIXPS2 || ardent || SUNOS4 || HPBSD */
-extern sigmask_t sigblock();
-extern sigmask_t sigsetmask();
-# endif	/* BSDSIGS */
-
 # ifdef BSD
 extern uid_t getuid(), geteuid();
 extern gid_t getgid(), getegid();

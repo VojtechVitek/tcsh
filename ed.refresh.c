@@ -96,7 +96,7 @@ dprintf(char *fmt, ...)
 	va_start(va, fmt);
 
 	if (fd == -1)
-	    fd = open(dtty, O_RDWR);
+	    fd = xopen(dtty, O_RDWR);
 	o = SHOUT;
 	flush();
 	SHOUT = fd;
@@ -291,6 +291,8 @@ RefreshPromptpart(Char *buf)
     NLSChar c;
     int l, w;
 
+    if (buf == NULL)
+	return;
     for (cp = buf; *cp; ) {
 	if (*cp & LITERAL) {
 	    Char *litstart = cp;
@@ -1127,7 +1129,7 @@ RefCursor(void)
     v = 0;
     th = TermH;			/* optimize for speed */
 
-    for (cp = Prompt; *cp; ) {	/* do prompt */
+    for (cp = Prompt; cp != NULL && *cp; ) {	/* do prompt */
 	if (*cp & LITERAL) {
 	    cp++;
 	    continue;

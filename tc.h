@@ -67,4 +67,14 @@ struct Strbuf {
 extern const struct strbuf strbuf_init;
 extern const struct Strbuf Strbuf_init;
 
+/* A string vector in progress */
+struct blk_buf
+{
+    Char **vec;
+    size_t len;			/* Valid strings */
+    size_t size;		/* Allocated space for string pointers */
+};
+
+#define BLK_BUF_INIT { NULL, 0, 0 }
+
 #endif /* _h_tc */
