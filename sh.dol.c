@@ -485,9 +485,10 @@ Dgetdol(void)
 	    (void) sigrelse(SIGINT);
 #endif /* BSDSIGS */
 	    np = wbuf;
-	    while (force_read(OLDSTD, cbuf + cbp++, 1) == 1) {
+	    while (force_read(OLDSTD, cbuf + cbp, 1) == 1) {
 	        int len;
 
+		cbp++;
 		len = normal_mbtowc(np, cbuf, cbp);
 		if (len == -1) {
 		    reset_mbtowc();
