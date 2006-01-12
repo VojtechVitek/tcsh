@@ -852,7 +852,7 @@ setDolp(Char *cp)
     if (dolnmod == 0 || dolmcnt == 0) {
 #endif /* COMPAT */
 	for (dp = cp; *dp; dp++) {
-	    if (NLSSize(dp, -1) != 1) {
+	    if (NLSSize(dp, NLSZEROT) != 1) {
 		addla(cp);
 		return;
 	    }

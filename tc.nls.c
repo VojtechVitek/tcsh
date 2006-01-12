@@ -160,7 +160,7 @@ NLSChars(Char *s)
 {
     int l;
     for (l = 0; *s; l++)
-        s += NLSSize(s, -1);
+        s += NLSSize(s, NLSZEROT);
     return l;
 }
 
@@ -246,7 +246,7 @@ NLSQuote(Char *cp)
 {
     int l;
     while (*cp) {
-	l = NLSSize(cp, -1);
+	l = NLSSize(cp, NLSZEROT);
 	cp++;
 	while (l-- > 1)
 	    *cp++ |= QUOTE;

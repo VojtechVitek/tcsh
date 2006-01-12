@@ -578,7 +578,7 @@ insert_meta(Char *cp, Char *cpend, Char *word, int closequotes)
 	    if (in_sync && *cp++ != w)
 		in_sync = 0;
 	    *bptr++ = w;
-	    l = NLSSize(wptr, -1);
+	    l = NLSSize(wptr, NLSZEROT);
 	    while (--l > 0) {
 		wptr++;
 		w = *wptr & ~QUOTE;

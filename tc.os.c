@@ -832,7 +832,7 @@ dobs2cmd(Char **v, struct command *c)
     faket.t_drit = 0;
     faket.t_dspr = 0;
     faket.t_dcom = fakecom;
-    fakecom[0] = STRbs2cmd;
+    fakecom[0] = (Char *)STRbs2cmd;
     fakecom[1] = 0;
 
     mypipe(pvec);

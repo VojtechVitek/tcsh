@@ -192,7 +192,7 @@ tprintf(int what, Char *buf, const Char *fmt, size_t siz, const char *str,
     for (; *cp; cp++) {
 	if (p >= ep)
 	    break;
-	l = NLSSize(cp, -1);
+	l = NLSSize(cp, NLSZEROT);
 	if (l > 1) {
 	    while (l--)
 		*p++ = attributes | *cp++;
