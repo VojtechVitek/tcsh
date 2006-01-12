@@ -76,8 +76,8 @@ char * nt_cgets(int set, int msgnum, char *def) {
 
 	int rc;
 	int mesg;
-	static char oembuf[256];
-	WCHAR buffer[256];
+	static char oembuf[256];/*FIXBUF*/
+	WCHAR buffer[256];/*FIXBUF*/
 
 
 

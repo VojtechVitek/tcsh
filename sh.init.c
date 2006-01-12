@@ -41,15 +41,12 @@ RCSID("$Id$")
  * C shell
  */
 
-#define	INF	0x7fffffff
+#define	INF INT_MAX
 
-struct	biltins bfunc[] = {
+const struct biltins bfunc[] = {
     { ":",		dozip,		0,	INF	},
     { "@",		dolet,		0,	INF	},
     { "alias",		doalias,	0,	INF	},
-#ifdef OBSOLETE
-    { "aliases",	doaliases,	0,	1,	},
-#endif /* OBSOLETE */
     { "alloc",		showall,	0,	1	},
 #if defined(_CX_UX)
     { "att",		doatt,		0,	INF	},

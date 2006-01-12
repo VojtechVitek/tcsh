@@ -177,7 +177,7 @@ int fork(void) {
 
 	int rc;
 	size_t stacksize;
-	char modname[512];
+	char modname[512];/*FIXBUF*/
 	HANDLE  hProc,hThread, hArray[2];
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;

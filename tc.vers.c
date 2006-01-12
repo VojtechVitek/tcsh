@@ -146,10 +146,10 @@ fix_version(void)
 #ifndef LOCALSTR
 # define LOCALSTR ""
 #endif /* LOCALSTR */
-    char    version[BUFSIZE];
-    Char    *machtype = tgetenv(STRMACHTYPE);
-    Char    *vendor   = tgetenv(STRVENDOR);
-    Char    *ostype   = tgetenv(STROSTYPE);
+    char    *version;
+    const Char *machtype = tgetenv(STRMACHTYPE);
+    const Char *vendor   = tgetenv(STRVENDOR);
+    const Char *ostype   = tgetenv(STROSTYPE);
 
     if (vendor == NULL)
 	vendor = STRunknown;
@@ -159,14 +159,15 @@ fix_version(void)
 	ostype = STRunknown;
 
 
-    (void) xsnprintf(version, sizeof(version),
+    version = xasprintf(
 "tcsh %d.%.2d.%.2d (%s) %s (%S-%S-%S) options %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
 	     REV, VERS, PATCHLEVEL, ORIGIN, DATE, machtype, vendor, ostype,
 	     SSSTR, NLSSTR, LFSTR, DLSTR, VISTR, DTRSTR, BYESTR,
 	     ALSTR, KANSTR, SMSTR, HBSTR, NGSTR, RHSTR, AFSSTR, NDSTR,
 	     COLORSTR, DSPMSTR, CCATSTR, FILECSTR, LOCALSTR);
     set(STRversion, SAVE(version), VAR_READWRITE);
-    (void) xsnprintf(version, sizeof(version), "%d.%.2d.%.2d",
-		     REV, VERS, PATCHLEVEL);
+    xfree(version);
+    version = xasprintf("%d.%.2d.%.2d", REV, VERS, PATCHLEVEL);
     set(STRtcsh, SAVE(version), VAR_READWRITE);
+    xfree(version);
 }

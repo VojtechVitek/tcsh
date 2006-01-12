@@ -294,7 +294,7 @@ HANDLE open_enum(char *server, WIN32_FIND_DATA *fdata) {
 		return INVALID_HANDLE_VALUE;
 	
 	hnet = heap_alloc(sizeof(nethandle_t));
-	hnet->netres = heap_alloc(1024);
+	hnet->netres = heap_alloc(1024);/*FIXBUF*/
 	hnet->henum = henum;
 
 

@@ -88,22 +88,6 @@
 # endif /* POSIX */
 #endif /* OREO */
 
-#ifndef NCARGS
-# ifdef _SC_ARG_MAX
-#  define NCARGS sysconf(_SC_ARG_MAX)
-# else /* !_SC_ARG_MAX */
-#  ifdef ARG_MAX
-#   define NCARGS ARG_MAX
-#  else /* !ARG_MAX */
-#   ifdef _MINIX
-#    define NCARGS 80
-#   else /* !_MINIX */
-#    define NCARGS 1024
-#   endif /* _MINIX */
-#  endif /* ARG_MAX */
-# endif /* _SC_ARG_MAX */
-#endif /* NCARGS */
-
 #ifdef convex
 # include <sys/dmon.h>
 #endif /* convex */

@@ -271,8 +271,8 @@ extern	int	 GetXkey		(CStr *, XmapVal *);
 extern	void	 ResetXmap		(void);
 extern	int	 DeleteXkey		(CStr *);
 extern	void	 PrintXkey		(CStr *);
-extern	int	 printOne		(CStr *, XmapVal *, int);
+extern	void	 printOne		(const Char *, const XmapVal *, int);
 extern	eChar		  parseescape	(const Char **);
-extern	unsigned char    *unparsestring	(CStr *, unsigned char *, Char *);
+extern	unsigned char    *unparsestring	(const CStr *, const Char *);
 
 #endif /* _h_ed_decls */

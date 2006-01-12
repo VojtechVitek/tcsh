@@ -347,7 +347,7 @@ rcmd(char *localsyspath)	/* reset path with localsyspath */
     int n, done;
     char *new, *p;
     struct pelem *pe;
-    char newbuf[MAXPATHLEN+1];
+    char newbuf[MAXPATHLEN+1];/*FIXBUF*/
 
     for (pe = pathhead; pe; pe = pe->pnext) {
 	new = newbuf;
@@ -390,7 +390,7 @@ icmd(char *path, char *localsyspath)	/* insert path before localsyspath */
     int n;
     char *new;
     struct pelem *pe;
-    char newbuf[MAXPATHLEN+1];
+    char newbuf[MAXPATHLEN+1];/*FIXBUF*/
 
     for (pe = pathhead; pe; pe = pe->pnext) {
 	if (sflag)
@@ -454,7 +454,7 @@ insert(struct pelem *pe, int loc, char *key)
 {
     int i;
     char *new;
-    char newbuf[2000];
+    char newbuf[2000];/*FIXBUF*/
 
     if (sflag) {		/* add suffix */
 	new = newbuf;
@@ -556,7 +556,7 @@ static void
 change(struct pelem *pe, int loc, char *key)
 {
     char *new;
-    char newbuf[MAXPATHLEN+1];
+    char newbuf[MAXPATHLEN+1];/*FIXBUF*/
 
     if (sflag) {		/* append suffix */
 	new = newbuf;
@@ -578,7 +578,7 @@ locate(struct pelem *pe, char *key)
 {
     int i;
     char *realkey;
-    char keybuf[MAXPATHLEN+1];
+    char keybuf[MAXPATHLEN+1];/*FIXBUF*/
 
     if (sflag) {
 	realkey = keybuf;

@@ -172,7 +172,6 @@ pretty */
 #define NOFILE                64
 #define ARG_MAX               1024
 #define MAXSIG                NSIG
-#define NCARGS                ARG_MAX
 
 /*
 mode Value	Checks File For

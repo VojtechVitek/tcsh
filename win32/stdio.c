@@ -197,13 +197,13 @@ int nt_access(char *filename, int mode) {
 	
 	DWORD attribs=(DWORD)-1, bintype;
 	int tries=0;
-	char buf[512];
+	char buf[512];/*FIXBUF*/
 
 	if (!filename) {
 		errno = ENOENT;
 		return -1;
 	}
-	sprintf(buf,"%s",filename);
+	sprintf(buf,"%s",filename);/*FIXME: buffer overflow*/
 retry:
 	attribs = GetFileAttributes(buf);
 	tries++;

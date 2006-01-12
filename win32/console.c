@@ -168,7 +168,7 @@ int nt_ClearEOL( void) {
 	CONSOLE_SCREEN_BUFFER_INFO scrbuf;
 	HANDLE hStdout =ghstdout ;
 	DWORD numwrote;
-	char errbuf[128];
+	char errbuf[128];/*FIXME: uninitialized*/
 	int num=0;
 	COORD savepos;
 

@@ -623,7 +623,7 @@ ResetInLine(int macro)
 {
     Cursor = InputBuf;		/* reset cursor */
     LastChar = InputBuf;
-    InputLim = &InputBuf[INBUFSIZE - 2];
+    InputLim = &InputBuf[INBUFSIZE - 2];/*FIXBUF*/
     Mark = InputBuf;
     MetaNext = 0;
     CurrentKeyMap = CcKeyMap;

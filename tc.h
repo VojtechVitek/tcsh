@@ -41,11 +41,30 @@
 #include "tc.sig.h"
 #include "tc.decls.h"
 
-extern int tlength;
+extern size_t tlength;
 
 #define FMT_PROMPT	0
 #define FMT_WHO		1
 #define FMT_HISTORY	2
 #define FMT_SCHED	3
+
+struct strbuf {
+    char *s;
+    size_t len;			/* Valid characters */
+    size_t size;		/* Allocated characters */
+};
+
+struct Strbuf {
+    Char *s;
+    size_t len;			/* Valid characters */
+    size_t size;		/* Allocated characters */
+};
+
+/* We don't have explicit initializers for variables with static storage
+   duration, so these values should be equivalent to default initialization. */
+#define strbuf_INIT { NULL, 0, 0 }
+#define Strbuf_INIT { NULL, 0, 0 }
+extern const struct strbuf strbuf_init;
+extern const struct Strbuf Strbuf_init;
 
 #endif /* _h_tc */

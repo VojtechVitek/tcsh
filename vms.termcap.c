@@ -51,8 +51,8 @@ tgetent(char *bp, char *name)
 	char	*termfile;
 	char	*cp,
 		*ptr,		/* temporary pointer */
-		tmp[1024];	/* buffer for terminal name */
-	short	len = strlen(name);
+		tmp[1024];	/* buffer for terminal name *//*FIXBUF*/
+	size_t	len = strlen(name);
 
 	capab = bp;
 
@@ -77,7 +77,7 @@ tgetent(char *bp, char *name)
 		and then append the next line. */
 		while (*(cp = &bp[strlen(bp) - 2]) == '\\')
 			fgets(cp, 1024, fp);
-		
+
 		/* Skip over any spaces or tabs */
 		for (++cp ; ISSPACE(*cp) ; cp++);
 
@@ -118,7 +118,6 @@ sscanf to look at aliases.  These are delimited by '|'. */
 	sleep(1);
 #endif /* DEBUG */
 	return(0);
-	
 }
 
 /*

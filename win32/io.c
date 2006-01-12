@@ -479,8 +479,8 @@ int stringtable_read(int fd, char * buf, int howmany) {
 	static int read_once = 0;
 	static long resline;
 	static long strpos;
-	static char oembuf[256];
-	WCHAR buffer[256];
+	static char oembuf[256];/*FIXBUF*/
+	WCHAR buffer[256];/*FIXBUF*/
 
 
 	if (read_once) {

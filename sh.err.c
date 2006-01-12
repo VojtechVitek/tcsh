@@ -373,18 +373,14 @@ void
 /*VARARGS1*/
 seterror(unsigned int id, ...)
 {
-
     if (seterr == 0) {
 	va_list va;
-	char    berr[BUFSIZE];
-	va_start(va, id);
 
+	va_start(va, id);
 	if (id >= sizeof(elst) / sizeof(elst[0]))
 	    id = ERR_INVALID;
-	xvsnprintf(berr, sizeof(berr), elst[id], va);
+	seterr = xvasprintf(elst[id], va);
 	va_end(va);
-
-	seterr = strsave(berr);
     }
 }
 

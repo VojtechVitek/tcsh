@@ -68,7 +68,7 @@ void nt_init(void) {
 
 #ifdef SECURE_CD
 	{
-		char temp[512];
+		char temp[512];/*FIXBUF*/
 		extern char gcurr_drive;
 		if(!GetCurrentDirectory(512,temp))
 			ExitProcess((DWORD)-1);
@@ -161,7 +161,7 @@ char * forward_slash_get_cwd(char * path, int maxlen) {
 }
 void getmachine (void) {
 
-	char temp[256];
+	char temp[256];/*FIXBUF*/
 	char *vendor, *ostype;
 	OSVERSIONINFO osver;
 	SYSTEM_INFO sysinfo;
