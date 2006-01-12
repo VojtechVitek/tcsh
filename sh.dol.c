@@ -508,14 +508,23 @@ Dgetdol(void)
 		np++;
 	    }
 	    while (cbp != 0) {
-	        *np = (unsigned char)*cbuf;
+		int len;
+
+		len = normal_mbtowc(np, cbuf, cbp);
+		if (len == -1) {
+		    reset_mbtowc();
+		    *np = (unsigned char)*cbuf | INVALID_BYTE;
+		}
+		if (len <= 0)
+		    len = 1;
+		if (cbp != (size_t)len)
+		    memmove(cbuf, cbuf + len, cbp - len);
+		cbp -= len;
 		if (np >= &wbuf[BUFSIZE - 1])
 		    stderror(ERR_LTOOLONG);
 		if (*np == '\n')
 		    break;
 		np++;
-		cbp--;
-		memmove(cbuf, cbuf + 1, cbp);
 	    }
 	    *np = 0;
 #ifdef BSDSIGS
