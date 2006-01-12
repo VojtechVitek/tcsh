@@ -283,10 +283,12 @@ execute(struct command *t, int wanttty, int *pipein, int *pipeout, int do_glob)
 	     * Check if we have a builtin function and remember which one.
 	     */
 	    bifunc = isbfunc(t);
- 	    if (noexec && bifunc) {
+ 	    if (noexec) {
 		/*
 		 * Continue for builtins that are part of the scripting language
 		 */
+		if (bifunc == NULL)
+		    break;
 		if (bifunc->bfunct != (bfunc_t)dobreak	&&
 		    bifunc->bfunct != (bfunc_t)docontin	&&
 		    bifunc->bfunct != (bfunc_t)doelse	&&
