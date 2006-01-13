@@ -2128,7 +2128,7 @@ e_dabbrev_expand(Char c)
     Char *cp, *ncp, *bp;
     struct Hist *hp;
     int arg = 0, i;
-    size_t len;
+    size_t len = 0;
     int found = 0;
     Char *hbuf;
     static int oldevent, hist, word;
