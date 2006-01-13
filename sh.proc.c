@@ -1028,7 +1028,7 @@ pprint(struct process *pp, int flag)
 			int free_ptr;
 
 			free_ptr = 0;
-			ptr = (char *)mesg[pp->p_reason & ASCII].pname;
+			ptr = (char *)(intptr_t)mesg[pp->p_reason & ASCII].pname;
 			if (ptr == NULL) {
 			    ptr = xasprintf("%s %d", CGETS(17, 5, "Signal"),
 					    pp->p_reason & ASCII);
