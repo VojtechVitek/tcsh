@@ -384,7 +384,6 @@ static size_t cleanup_stack_size; /* = 0 */
 
 /* fn() will be run with all signals blocked, so it should not do anything
    risky. */
-extern char *memtop, *membot;
 void
 cleanup_push_internal(void *var, void (*fn) (void *),
 #ifdef CLEANUP_DEBUG
@@ -393,9 +392,6 @@ cleanup_push_internal(void *var, void (*fn) (void *),
 )
 {
     struct cleanup_entry *ce;
-
-    if (fn == xfree && (var < (void *)membot || var > (void *)memtop))
-	abort();
 
     if (cleanup_sp == cleanup_stack_size) {
 	if (cleanup_stack_size == 0)
