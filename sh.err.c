@@ -189,7 +189,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_BADCOLORVAR	134
 #define NO_ERRORS	135
 
-static char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
+static const char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
 /*
  * Init the elst depending on the locale
@@ -371,6 +371,10 @@ struct cleanup_entry
 {
     void *var;
     void (*fn) (void *);
+#ifdef CLEANUP_DEBUG
+    const char *file;
+    size_t line;
+#endif
 };
 
 static struct cleanup_entry *cleanup_stack; /* = NULL; */
@@ -380,10 +384,18 @@ static size_t cleanup_stack_size; /* = 0 */
 
 /* fn() will be run with all signals blocked, so it should not do anything
    risky. */
+extern char *memtop, *membot;
 void
-cleanup_push(void *var, void (*fn) (void *))
+cleanup_push_internal(void *var, void (*fn) (void *),
+#ifdef CLEANUP_DEBUG
+    const char *file, size_t line
+#endif
+)
 {
     struct cleanup_entry *ce;
+
+    if (fn == xfree && (var < (void *)membot || var > (void *)memtop))
+	abort();
 
     if (cleanup_sp == cleanup_stack_size) {
 	if (cleanup_stack_size == 0)
@@ -396,6 +408,10 @@ cleanup_push(void *var, void (*fn) (void *))
     ce = cleanup_stack + cleanup_sp;
     ce->var = var;
     ce->fn = fn;
+#ifdef CLEANUP_DEBUG
+    ce->file = file;
+    ce->line = line;
+#endif
     cleanup_sp++;
 }
 
