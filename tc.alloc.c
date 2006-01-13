@@ -42,6 +42,9 @@
 
 RCSID("$Id$")
 
+#undef RCHECK
+#undef DEBUG
+
 static char   *memtop = NULL;		/* PWP: top of current memory */
 static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
 
@@ -54,6 +57,7 @@ int dont_free = 0;
 # define realloc	frealloc
 #endif /* WINNT_NATIVE */
 
+#ifndef DEBUG
 static void
 out_of_memory (void)
 {
@@ -62,11 +66,9 @@ out_of_memory (void)
     write(didfds ? 2 : SHDIAG, msg, strlen(msg));
     _exit(1);
 }
+#endif
 
 #ifndef SYSMALLOC
-
-#undef RCHECK
-#undef DEBUG
 
 #ifdef SX
 extern void* sbrk();
