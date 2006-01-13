@@ -487,7 +487,7 @@ execute(struct command *t, int wanttty, int *pipein, int *pipeout, int do_glob)
 		    Vdp = 0;
 		    xfree(Vexpath);
 		    Vexpath = 0;
-		    blkfree(Vt);
+		    blk_cleanup(Vt);
 		    Vt = 0;
 		    /* this is from pfork() */
 		    palloc(pid, t);
