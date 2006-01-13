@@ -42,8 +42,8 @@
 
 RCSID("$Id$")
 
-#undef RCHECK
-#undef DEBUG
+#define RCHECK
+#define DEBUG
 
 static char   *memtop = NULL;		/* PWP: top of current memory */
 static char   *membot = NULL;		/* PWP: bottom of allocatable memory */
@@ -154,14 +154,14 @@ static	void	morecore	(int);
 # define CHECK(a, str, p) \
     if (a) { \
 	xprintf(str, p);	\
-	xprintf(" (memtop = %lx membot = %lx)\n", memtop, membot);	\
+	xprintf(" (memtop = %p membot = %p)\n", memtop, membot);	\
 	abort(); \
     }
 #else
 # define CHECK(a, str, p) \
     if (a) { \
 	xprintf(str, p);	\
-	xprintf(" (memtop = %lx membot = %lx)\n", memtop, membot);	\
+	xprintf(" (memtop = %p membot = %p)\n", memtop, membot);	\
 	return; \
     }
 #endif
@@ -209,7 +209,7 @@ malloc(size_t nbytes)
 	out_of_memory();
 #else
 	showall(NULL, NULL);
-	xprintf(CGETS(19, 1, "nbytes=%d: Out of memory\n"), nbytes);
+	xprintf(CGETS(19, 1, "nbytes=%zu: Out of memory\n"), nbytes);
 	abort();
 #endif
 	/* fool lint */
@@ -309,22 +309,22 @@ free(ptr_t cp)
     if (cp == NULL || dont_free)
 	return;
     CHECK(!memtop || !membot,
-	  CGETS(19, 2, "free(%lx) called before any allocations."), cp);
+	  CGETS(19, 2, "free(%p) called before any allocations."), cp);
     CHECK(cp > (ptr_t) memtop,
-	  CGETS(19, 3, "free(%lx) above top of memory."), cp);
+	  CGETS(19, 3, "free(%p) above top of memory."), cp);
     CHECK(cp < (ptr_t) membot,
-	  CGETS(19, 4, "free(%lx) below bottom of memory."), cp);
+	  CGETS(19, 4, "free(%p) below bottom of memory."), cp);
     op = (union overhead *) (((caddr_t) cp) - MEMALIGN(sizeof(union overhead)));
     CHECK(op->ov_magic != MAGIC,
-	  CGETS(19, 5, "free(%lx) bad block."), cp);
+	  CGETS(19, 5, "free(%p) bad block."), cp);
 
 #ifdef RCHECK
     if (op->ov_index <= 13)
 	CHECK(*(U_int *) ((caddr_t) op + op->ov_size + 1 - RSLOP) != RMAGIC,
-	      CGETS(19, 6, "free(%lx) bad range check."), cp);
+	      CGETS(19, 6, "free(%p) bad range check."), cp);
 #endif
     CHECK(op->ov_index >= NBUCKETS,
-	  CGETS(19, 7, "free(%lx) bad block index."), cp);
+	  CGETS(19, 7, "free(%p) bad block index."), cp);
     size = op->ov_index;
     op->ov_next = nextf[size];
     nextf[size] = op;
@@ -584,12 +584,12 @@ showall(Char **v, struct command *c)
     for (i = 0; i < NBUCKETS; i++) {
 	for (j = 0, p = nextf[i]; p; p = p->ov_next, j++)
 	    continue;
-	xprintf(" %4d", j);
+	xprintf(" %4zd", j);
 	totfree += j * (1 << (i + 3));
     }
     xprintf(CGETS(19, 9, "\nused:\t"));
     for (i = 0; i < NBUCKETS; i++) {
-	xprintf(" %4u", nmalloc[i]);
+	xprintf(" %4d", nmalloc[i]);
 	totused += nmalloc[i] * (1 << (i + 3));
     }
     xprintf(CGETS(19, 10, "\n\tTotal in use: %d, total free: %d\n"),
