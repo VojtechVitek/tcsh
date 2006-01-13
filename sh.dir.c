@@ -345,7 +345,6 @@ dnormalize(const Char *cp, int expnd)
  	int     dotdot = 0;
 	Char   *dp, *cwd;
 	const Char *start = cp;
-	struct stat sb;
 # ifdef HAVE_SLASHSLASH
 	int slashslash;
 # endif /* HAVE_SLASHSLASH */
@@ -364,6 +363,7 @@ dnormalize(const Char *cp, int expnd)
 	    return (Strsave(start));
 	
 # ifdef notdef
+	struct stat sb;
 	/*
 	 * We disable this test because:
 	 * cd /tmp; mkdir dir1 dir2; cd dir2; ln -s /tmp/dir1; cd dir1;
