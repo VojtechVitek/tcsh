@@ -385,9 +385,9 @@ static size_t cleanup_stack_size; /* = 0 */
 /* fn() will be run with all signals blocked, so it should not do anything
    risky. */
 void
-cleanup_push_internal(void *var, void (*fn) (void *),
+cleanup_push_internal(void *var, void (*fn) (void *)
 #ifdef CLEANUP_DEBUG
-    const char *file, size_t line
+    , const char *file, size_t line
 #endif
 )
 {
