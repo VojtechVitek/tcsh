@@ -252,10 +252,9 @@ doexec(struct command *t, int do_glob)
     else
 	pv = v->vec;
     sav = Strspl(STRslash, *av);/* / command name for postpending */
-#ifdef notdef
+#ifndef VFORK
     cleanup_push(sav, xfree);
-#endif
-#ifdef VFORK
+#else /* VFORK */
     Vsav = sav;
 #endif /* VFORK */
     hashval = havhash ? hashname(*av) : 0;
@@ -285,21 +284,19 @@ doexec(struct command *t, int do_glob)
 	    texec(*av, av);
 	else {
 	    dp = Strspl(*pv, sav);
-#ifdef notdef
+#ifndef VFORK
 	    cleanup_push(dp, xfree);
-#endif
-#ifdef VFORK
+#else /* VFORK */
 	    Vdp = dp;
 #endif /* VFORK */
 
 	    texec(dp, av);
-#ifdef VFORK
-	    Vdp = 0;
-#endif /* VFORK */
-#ifdef notdef
+#ifndef VFORK
 	    cleanup_until(dp);
-#endif
+#else /* VFORK */
+	    Vdp = 0;
 	    xfree(dp);
+#endif /* VFORK */
 	}
 #ifdef VFORK
 	misses++;
@@ -310,12 +307,13 @@ cont:
     } while (*pv);
 #ifdef VFORK
     hits--;
-    Vsav = 0;
 #endif /* VFORK */
-#ifdef notdef
+#ifndef VFORK
     cleanup_until(sav);
-#endif
+#else /* VFORK */
+    Vsav = 0;
     xfree(sav);
+#endif /* VFORK */
     pexerr();
 }
 
