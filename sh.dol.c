@@ -827,7 +827,6 @@ setDolp(Char *cp)
 	     */
 	    dolmod.s[i] = rhsub[-1] = (Char) delim;
         } else {
-	    int didmod = 0;
 
 	    do {
 		if ((dp = domod(cp, dolmod.s[i])) != NULL) {
