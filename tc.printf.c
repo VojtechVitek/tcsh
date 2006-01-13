@@ -390,7 +390,7 @@ xvasprintf(const char *fmt, va_list va)
     char *buf;
 
     buf = NULL;
-    size = 64; /* Arbitrary */
+    size = 2048; /* Arbitrary */
     for (;;) {
 	buf = xrealloc(buf, size);
 	xstring = buf;
