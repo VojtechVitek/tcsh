@@ -1719,12 +1719,12 @@ bseek(struct Ain *l)
 	fseekp = l->f_seek;
 #ifdef WIDE_STRINGS
 	if (cantell) {
-	    if (fseekp >= fbobp) {
+	    if (fseekp >= fbobp && feobp >= fbobp) {
 		size_t i;
 		off_t o;
 
 		o = fbobp;
-		for (i = 0; i < feobp - fbobp; i++) {
+		for (i = 0; i < (size_t)(feobp - fbobp); i++) {
 		    if (fseekp == o) {
 			fseekp = fbobp + i;
 			return;
@@ -1771,7 +1771,7 @@ btell(struct Ain *l)
 	    size_t i;
 	    
 	    l->f_seek = fbobp;
-	    for (i = 0; i < fseekp - fbobp; i++)
+	    for (i = 0; i < (size_t)(fseekp - fbobp); i++)
 		l->f_seek += fclens[i];
 	} else
 #endif
