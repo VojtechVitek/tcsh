@@ -778,7 +778,8 @@ search(int type, int level, Char *goal)
 	    printprompt(1, isrchx(type == TC_BREAK ? zlast : type));
 	/* xprintf("? "), flush(); */
 	(void) getword(&word);
-	switch (word.s ? srchx(word.s) : -1) {
+	Strbuf_terminate(&word);
+	switch (srchx(word.s)) {
 
 	case TC_ELSE:
 	    if (level == 0 && type == TC_IF)
