@@ -430,10 +430,10 @@ char   *
 strend(const char *cp)
 {
     if (!cp)
-	return ((char *)cp);
+	return ((char *)(intptr_t)cp);
     while (*cp)
 	cp++;
-    return ((char *)cp);
+    return ((char *)(intptr_t)cp);
 }
 
 Char   *
@@ -556,12 +556,12 @@ xdup2(int fildes, int fildes2)
 #endif
 
 struct group *
-xgetgrgid(gid_t gid)
+xgetgrgid(gid_t xgid)
 {
     struct group *res;
 
     errno = 0;
-    while ((res = getgrgid(gid)) == NULL && errno == EINTR) {
+    while ((res = getgrgid(xgid)) == NULL && errno == EINTR) {
 	handle_pending_signals();
 	errno = 0;
     }
@@ -582,12 +582,12 @@ xgetpwnam(const char *name)
 }
 
 struct passwd *
-xgetpwuid(uid_t uid)
+xgetpwuid(uid_t xuid)
 {
     struct passwd *res;
 
     errno = 0;
-    while ((res = getpwuid(uid)) == NULL && errno == EINTR) {
+    while ((res = getpwuid(xuid)) == NULL && errno == EINTR) {
 	handle_pending_signals();
 	errno = 0;
     }
