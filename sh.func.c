@@ -49,7 +49,6 @@ static iconv_t catgets_iconv; /* Or (iconv_t)-1 */
 /*
  * C shell
  */
-extern char **environ;
 
 extern int MapsAreInited;
 extern int NLSMapsAreInited;

@@ -446,7 +446,7 @@ typedef void pret_t;
 
 #include "sh.types.h"
 
-#ifndef __NetBSD__ /* XXX */
+#if !defined(__NetBSD__) && !defined(__linux__) /* XXX */
 #ifndef WINNT_NATIVE
 # ifndef GETPGRP_VOID
 extern pid_t getpgrp (int);
@@ -1168,6 +1168,9 @@ extern int	use_fork;
 #endif
 extern int	tellwhat;
 extern int	NoNLSRebind;
+#ifndef __linux__
+extern char   **environ;
+#endif
 
 #include "tc.h"
 

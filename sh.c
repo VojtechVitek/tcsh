@@ -113,7 +113,6 @@ int	exitset = 0;
 static time_t  chktim;		/* Time mail last checked */
 char *progname;
 int tcsh;
-extern char **environ;
 
 /*
  * This preserves the input state of the shell. It is used by
