@@ -185,7 +185,7 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
     Char   *z, *q;
     Char    attributes = 0;
     static int print_prompt_did_ding = 0;
-    char *cz;
+    char *cz, *scz = NULL;
 
     Char *p;
     const Char *cp = fmt;
@@ -314,7 +314,7 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 	    case 'm':
 #ifndef HAVENOUTMP
 		if (what == FMT_WHO)
-		    cz = who_info(info, 'm');
+		    scz = cz = who_info(info, 'm');
 		else 
 #endif /* HAVENOUTMP */
 		    cz = getenv("HOST");
@@ -326,8 +326,8 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 			cz += one_mbtowc(&wc, cz, MB_LEN_MAX);
 			Strbuf_append1(&buf, wc | attributes);
 		    }
-		if (what == FMT_WHO)
-		    xfree(cz);
+		if (scz)
+		    xfree(scz);
 		break;
 
 			/* lukem: new directory prompt code */
