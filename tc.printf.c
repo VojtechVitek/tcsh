@@ -395,6 +395,10 @@ xvasprintf(const char *fmt, va_list va)
 	buf = xrealloc(buf, size);
 	xstring = buf;
 	xestring = buf + size - 1;
+	/*
+	 * XXX: this breaks on some platforms where va_list gets modified.
+	 * is the solution va_copy? At least x86_64 seems to suffer from it.
+	 */
 	doprnt(xaddchar, fmt, va);
 	if (xstring < xestring)
 	    break;
