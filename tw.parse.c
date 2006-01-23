@@ -1760,6 +1760,7 @@ t_search(struct Strbuf *word, COMMAND command, int looking, int list_max,
 	break;
 
     case SPELL:
+	Strbuf_terminate(&exp_name);
 	tw_fixword(looking, word, dir.s, exp_name.s);
 	break;
 
