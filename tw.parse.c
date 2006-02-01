@@ -1734,6 +1734,7 @@ t_search(struct Strbuf *word, COMMAND command, int looking, int list_max,
 	if (numitems <= 0) 
 	    break;
 
+	Strbuf_terminate(&exp_name);
 	tw_fixword(looking, word, dir.s, exp_name.s);
 
 	if (!match_unique_match && is_set(STRaddsuffix) && numitems == 1) {
