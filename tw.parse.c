@@ -312,7 +312,7 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	    cleanup_push(rword, xfree);
 	    if (slshp != STRNULL)
 		*slshp = '\0';
-	    wordbuf.len = 0;
+	    wordbuf = Strbuf_init;
 	    Strbuf_append(&wordbuf, qline.s + wordp);
 	    Strbuf_terminate(&wordbuf);
 	    cleanup_push(&wordbuf, Strbuf_cleanup);
