@@ -288,7 +288,7 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 			size_t i;
 
 			for (i = 0; STRDING[i] != 0; i++)
-			    Strbuf_append1(&buf, attributes | STRDING[i++]);
+			    Strbuf_append1(&buf, attributes | STRDING[i]);
 			print_prompt_did_ding = 1;
 		    }
 		}
