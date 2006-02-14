@@ -2429,7 +2429,7 @@ nlsinit(void)
 #ifdef NLS_CATALOGS
     static const char default_catalog[] = "tcsh";
 
-    char *catalog = (char *)default_catalog;
+    char *catalog = (char *)(intptr_t)default_catalog;
 
     if (adrof(STRcatalog) != NULL)
 	catalog = xasprintf("tcsh.%s", short2str(varval(STRcatalog)));

@@ -201,7 +201,7 @@ errinit(void)
     size_t i;
 
     for (i = 0; i < NO_ERRORS; i++)
-	xfree(elst[i]);
+	xfree((char *)(intptr_t)elst[i]);
 #  if defined(__FreeBSD__) || defined(hpux)
 #  define NLS_MAXSET 30
     for (i = 1; i <= NLS_MAXSET; i++)

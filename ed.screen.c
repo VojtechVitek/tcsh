@@ -190,10 +190,10 @@ terminit(void)
     int i;
 
     for (i = 0; i < T_str + 1; i++)
-	xfree((ptr_t) tstr[i].long_name);
+	xfree((ptr_t)(intptr_t)tstr[i].long_name);
 
     for (i = 0; i < T_val + 1; i++)
-	xfree((ptr_t) tval[i].long_name);
+	xfree((ptr_t)(intptr_t)tval[i].long_name);
 #endif
 
     tstr[T_al].name = "al";

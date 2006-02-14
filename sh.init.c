@@ -233,7 +233,7 @@ mesginit(void)
     int i;
 
     for (i = 0; i < NUMSIG; i++) {
-        xfree((char *)mesg[i].pname);
+        xfree((char *)(intptr_t)mesg[i].pname);
 	mesg[i].pname = NULL;
     }
 #endif /* NLS_CATALOGS */

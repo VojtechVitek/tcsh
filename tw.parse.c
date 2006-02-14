@@ -980,8 +980,10 @@ tw_collect_items(COMMAND command, int looking, struct Strbuf *exp_dir,
 		assert(sizeof(char) == sizeof (Char)); 
 		if ((ext > 0) && (strcasecmp((char *)&item.s[ext], ".exe") == 0 ||
 				  strcasecmp((char *)&item.s[ext], ".bat") == 0 ||
-				  strcasecmp((char *)&item.s[ext], ".com") == 0))
-		    item.s[ext] = '\0';
+				  strcasecmp((char *)&item.s[ext], ".com") == 0)) {
+		    item.len = ext;
+		    Strbuf_terminate(&item);
+		}
 	    }
 #endif /* _UWIN || __CYGWIN__ */
 	    exec_check = flags & TW_EXEC_CHK;

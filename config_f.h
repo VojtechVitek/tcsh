@@ -69,7 +69,9 @@
  *		if you don't have <nl_types.h>, you don't want
  *		to define this.
  */
-#undef NLS_CATALOGS
+#ifdef HAVE_CATGETS
+# define NLS_CATALOGS
+#endif
 
 /*
  * LOGINFIRST   Source ~/.login before ~/.cshrc

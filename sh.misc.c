@@ -611,6 +611,7 @@ xopen(const char *path, int oflag, ...)
 	   promotions". "int" is the best guess we have, "mode_t" used to be
 	   "unsigned short", which we obviously can't use. */
 	mode = va_arg(ap, int);
+	va_end(ap);
 	while ((res = open(path, oflag, mode)) == -1 && errno == EINTR)
 	    handle_pending_signals();
     }

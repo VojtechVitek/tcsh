@@ -1132,7 +1132,7 @@ editinit(void)
     int i;
 
     for (i = 0; i < F_NUM_FUNCNAMES; i++)
-	xfree((ptr_t) FuncNames[i].desc);
+	xfree((ptr_t)(intptr_t)FuncNames[i].desc);
 #endif
 
     f = FuncNames;

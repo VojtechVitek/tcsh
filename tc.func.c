@@ -650,10 +650,12 @@ xgetpass(const char *prm)
 }
 
 #ifndef NO_CRYPT
-#if !defined(__STDC__) || defined(SUNOS4)
+#ifndef __NetBSD__
+#if !HAVE_DECL_CRYPT
     extern char *crypt ();
 #endif
-#ifdef __linux__
+#endif
+#ifdef HAVE_CRYPT_H
 #include <crypt.h>
 #endif
 #endif
@@ -678,7 +680,7 @@ auto_lock(void)
 
 #undef XCRYPT
 
-#if defined(HAVE_AUTH_H)
+#if defined(HAVE_AUTH_H) && defined(HAVE_GETAUTHUID)
 
     struct authorization *apw;
     extern char *crypt16 (const char *, const char *);
