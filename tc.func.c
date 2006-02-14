@@ -111,18 +111,6 @@ expand_lex(const struct wordent *sp0, int from, int to)
     for (i = 0; ; i++) {
 	if ((i >= from) && (i <= to)) {	/* if in range */
 	    for (s = sp->word; *s; s++) {
-
-		if (s[1] & QUOTE) {
-		    int l = NLSSize(s, -1);
-		    if (l > 1) {
-			while (l-- > 0) {
-			    Strbuf_append1(&buf, *s & TRIM);
-			    prev_c = *s++;
-			}
-			s--;
-			continue;
-		    }
-		}
 		/*
 		 * bugfix by Michael Bloom: anything but the current history
 		 * character {(PWP) and backslash} seem to be dealt with

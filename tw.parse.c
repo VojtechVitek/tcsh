@@ -585,7 +585,7 @@ insert_meta(const Char *cp, const Char *cpend, const Char *word,
     Char qu = 0;
     int ndel = (int) (cp ? cpend - cp : 0);
     Char w, wq;
-    int l, res;
+    int res;
 
     for (wptr = word;;) {
 	if (cp >= cpend)
@@ -649,14 +649,6 @@ insert_meta(const Char *cp, const Char *cpend, const Char *word,
 	    if (in_sync && *cp++ != w)
 		in_sync = 0;
 	    Strbuf_append1(&buffer, w);
-	    l = NLSSize(wptr, NLSZEROT);
-	    while (--l > 0) {
-		wptr++;
-		w = *wptr & ~QUOTE;
-		if (in_sync && *cp++ != w)
-		    in_sync = 0;
-		Strbuf_append1(&buffer, w);
-	    }
 	}
 	wptr++;
 	if (cmap(qu, _ESC))

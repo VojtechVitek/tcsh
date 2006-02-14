@@ -261,13 +261,13 @@ extern	void		  sched_run	(void);
 #ifdef WIDE_STRINGS
 extern	size_t		  one_mbtowc	(wchar_t *, const char *, size_t);
 extern	size_t		  one_wctomb	(char *, wchar_t);
+extern  int		  rt_mbtowc	(wchar_t *, const char *, size_t);
 #else
 #define one_mbtowc(PWC, S, N) \
 	((void)(N), *(PWC) = (unsigned char)*(S), (size_t)1)
 #define one_wctomb(S, WCHAR) (*(S) = (WCHAR), (size_t)1)
 #endif
 #ifdef SHORT_STRINGS
-extern  int		  rt_mbtowc	(wchar_t *, const char *, size_t);
 extern	Char		 *s_strchr	(const Char *, int);
 extern	Char		 *s_strrchr	(const Char *, int);
 extern	Char		 *s_strcat	(Char *, const Char *);
@@ -289,7 +289,9 @@ extern	Char		 *str2short	(const char *);
 extern	Char		**blk2short	(char **);
 extern	char		 *short2str	(const Char *);
 extern	char		**short2blk	(Char **);
-#endif /* SHORT_STRINGS */
+#else /* !SHORT_STRINGS */
+extern	char		 *caching_strip	(const char *);
+#endif
 extern	char		 *short2qstr	(const Char *);
 
 extern	void		  bb_append	(struct blk_buf *, Char *);

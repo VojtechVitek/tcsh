@@ -196,17 +196,9 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
     static Char *olduser = NULL;
     int updirs;
     size_t pdirs;
-    int l;
 
     cleanup_push(&buf, Strbuf_cleanup);
     for (; *cp; cp++) {
-	l = NLSSize(cp, NLSZEROT);
-	if (l > 1) {
-	    while (l--)
-		Strbuf_append1(&buf, attributes | *cp++);
-	    cp--;
-	    continue;
-	}
 	if ((*cp == '%') && ! (cp[1] == '\0')) {
 	    cp++;
 	    switch (*cp) {

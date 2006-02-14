@@ -516,7 +516,7 @@ Dgetdol(void)
 		if (ffile == 0)
 		    stderror(ERR_DOLZERO);
 		if (length) {
-		    length = NLSChars(ffile);
+		    length = Strlen(ffile);
 		    addla(putn(length));
 		}
 		else {
@@ -678,7 +678,7 @@ Dgetdol(void)
 	int i;
 
 	for (i = lwb - 1, length = 0; i < upb; i++)
-	    length += NLSChars(vp->vec[i]);
+	    length += Strlen(vp->vec[i]);
 #ifdef notdef
 	/* We don't want that, since we can always compute it by adding $#xxx */
 	length += i - 1;	/* Add the number of spaces in */
@@ -766,12 +766,6 @@ setDolp(Char *cp)
     size_t i;
 
     if (dolmod.len == 0 || dolmcnt == 0) {
-	for (dp = cp; *dp; dp++) {
-	    if (NLSSize(dp, NLSZEROT) != 1) {
-		addla(Strsave(cp));
-		return;
-	    }
-	}
 	dolp = cp;
 	return;
     }
