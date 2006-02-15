@@ -57,7 +57,7 @@ int dont_free = 0;
 # define realloc	frealloc
 #endif /* WINNT_NATIVE */
 
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(SYSMALLOC)
 static void
 out_of_memory (void)
 {

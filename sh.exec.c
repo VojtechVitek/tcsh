@@ -724,9 +724,12 @@ dohash(Char **vv, struct command *c)
 				  strcasecmp(&dp->d_name[ext], ".bat") == 0 ||
 				  strcasecmp(&dp->d_name[ext], ".com") == 0)) {
 #ifdef __CYGWIN__
-		    strlwr((char *)item);
+		    /* Also store the variation with extension. */
+		    hashval = hashname(str2short(dp->d_name));
+		    bis(hashval, i);
 #endif /* __CYGWIN__ */
 		    dp->d_name[ext] = '\0';
+		}
 	    }
 #endif /* _UWIN || __CYGWIN__ */
 # ifdef FASTHASH

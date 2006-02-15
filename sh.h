@@ -403,7 +403,9 @@ typedef int eChar;
 # if (defined(_SS_SIZE) || defined(_SS_MAXSIZE)) && defined(HAVE_STRUCT_SOCKADDR_STORAGE_SS_FAMILY)
 #  if !defined(__APPLE__) /* Damnit, where is getnameinfo() folks? */
 #   if !defined(sgi)
-#    define INET6
+#    if !defined(__CYGWIN__)
+#     define INET6
+#    endif /* __CYGWIN__ */
 #   endif /* sgi */
 #  endif /* __APPLE__ */
 # endif
