@@ -358,15 +358,16 @@ dolist(Char **v, struct command *c)
 		for (cp = tmp; *cp; cp++)
 		    Strbuf_append1(&buf, (*cp | QUOTE));
 		Strbuf_terminate(&buf);
+		dp = &buf.s[buf.len - 1];
 		if (
 #ifdef WINNT_NATIVE
-		    (dp[-1] != (Char) (':' | QUOTE)) &&
+		    (*dp != (Char) (':' | QUOTE)) &&
 #endif /* WINNT_NATIVE */
-		    (dp[-1] != (Char) ('/' | QUOTE)))
-		    *dp++ = '/';
-		else 
-		    dp[-1] &= TRIM;
-		*dp = '\0';
+		    (*dp != (Char) ('/' | QUOTE))) {
+		    Strbuf_append1(&buf, '/');
+		    Strbuf_terminate(&buf);
+		} else 
+		    *dp &= TRIM;
 		(void) t_search(&buf, LIST, TW_ZERO, 0, STRNULL, 0);
 		i = k + 1;
 	    }
