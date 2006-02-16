@@ -2385,11 +2385,7 @@ iconv_catgets(nl_catd ctd, int set_id, int msg_id, const char *s)
     static size_t buf_size = 0;
   
     char *orig, *dest, *p;
-#ifdef __NetBSD__
-    const char *src;
-#else
-    char *src;
-#endif
+    ICONV_CONST char *src;
     size_t src_size, dest_size;
   
     orig = xcatgets(ctd, set_id, msg_id, s);
