@@ -639,10 +639,8 @@ xgetpass(const char *prm)
 }
 
 #ifndef NO_CRYPT
-#ifndef __NetBSD__
 #if !HAVE_DECL_CRYPT
     extern char *crypt ();
-#endif
 #endif
 #ifdef HAVE_CRYPT_H
 #include <crypt.h>
