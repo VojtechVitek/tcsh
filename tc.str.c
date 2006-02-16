@@ -593,7 +593,7 @@ STRBUF##_cleanup(void *xbuf)					\
     xfree(buf->s);						\
 }								\
 								\
-const struct STRBUF STRBUF##_init; /* = STRBUF##_INIT; */
+const struct STRBUF STRBUF##_init /* = STRBUF##_INIT; */
 
 DO_STRBUF(strbuf, char, strlen);
 DO_STRBUF(Strbuf, Char, Strlen);
