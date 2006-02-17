@@ -1075,7 +1075,7 @@ fix_yp_bugs(void)
 void
 fix_strcoll_bug(void)
 {
-#if defined(NLS) && !defined(NOSTRCOLL)
+#if defined(NLS) && defined(HAVE_STRCOLL)
     /*
      * SunOS4 checks the file descriptor from openlocale() for <= 0
      * instead of == -1. Someone should tell sun that file descriptor 0

@@ -1722,7 +1722,7 @@ collate(const Char *a, const Char *b)
     char *sb = strip(strsave(b));
 #endif /* SHORT_STRINGS */
 
-#if defined(NLS) && !defined(NOSTRCOLL)
+#if defined(NLS) && defined(HAVE_STRCOLL)
     errno = 0;	/* strcoll sets errno, another brain-damage */
 
     rv = strcoll(sa, sb);
@@ -1739,7 +1739,7 @@ collate(const Char *a, const Char *b)
     }
 #else
     rv = strcmp(sa, sb);
-#endif /* NLS && !NOSTRCOLL */
+#endif /* NLS && HAVE_STRCOLL */
 
     xfree(sa);
     xfree(sb);
