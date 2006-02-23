@@ -1530,26 +1530,32 @@ wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
     ssize_t res, r;
     size_t partial;
     
-    assert (nchars <= sizeof(cbuf)/sizeof(*cbuf));
+    if (nchars == 0)
+	return 0;
+    assert (nchars <= sizeof(cbuf) / sizeof(*cbuf));
     USE(use_fclens);
     res = 0;
     partial = 0;
     do {
 	size_t i;
+	size_t len = nchars > partial ? nchars - partial : 1;
+
+	if (partial + len >= sizeof(cbuf) / sizeof(*cbuf))
+	    break;
 	
-	r = xread(fildes, cbuf + partial,
-		  nchars > partial ? nchars - partial : 1);
+	r = xread(fildes, cbuf + partial, len);
+		  
 	if (partial == 0 && r <= 0)
 	    break;
 	partial += r;
 	i = 0;
-	while (i < partial) {
+	while (i < partial && nchars != 0) {
 	    int len;
 
 	    len = normal_mbtowc(buf + res, cbuf + i, partial - i);
 	    if (len == -1) {
 	        reset_mbtowc();
-		if (partial < MB_LEN_MAX && r > 0)
+		if ((partial - i) < MB_LEN_MAX && r > 0)
 		    /* Maybe a partial character and there is still a chance
 		       to read more */
 		    break;
@@ -1568,7 +1574,7 @@ wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
 	if (i != partial)
 	    memmove(cbuf, cbuf + i, partial - i);
 	partial -= i;
-    } while (partial != 0);
+    } while (partial != 0 && nchars > 0);
     /* Throwing away possible partial multibyte characters on error */
     return res != 0 ? res : r;
 }
