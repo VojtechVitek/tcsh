@@ -32,7 +32,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 Char STRlogout[]	= { 'l', 'o', 'g', 'o', 'u', 't', '\0' };
 Char STRautologout[]	= { 'a', 'u', 't', 'o', 'l', 'o', 'g', 'o', 'u', 't', 

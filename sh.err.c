@@ -34,7 +34,7 @@
 #include "sh.h"
 #include <assert.h>
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 /*
  * C Shell

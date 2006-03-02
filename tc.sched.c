@@ -34,7 +34,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "ed.h"
 #include "tw.h"

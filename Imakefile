@@ -1,5 +1,5 @@
 XCOMM
-XCOMM $Id$
+XCOMM $tcsh$
 XCOMM
 XCOMM Imakefile for tcsh 6.12
 XCOMM Marc Horowitz, MIT SIPB

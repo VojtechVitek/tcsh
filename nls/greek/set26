@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.who.c
 $set 26 
 1 δε μπορώ να κάνω stat το %s. Παρακαλώ δώστε "unset watch".\n

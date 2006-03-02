@@ -34,7 +34,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #ifdef lint
 #undef va_arg

@@ -33,7 +33,7 @@
 #include "sh.h"
 #ifndef WINNT_NATIVE
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "ed.h"
 

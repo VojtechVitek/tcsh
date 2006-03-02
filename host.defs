@@ -33,7 +33,7 @@ newcode	:
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 endcode	:
 

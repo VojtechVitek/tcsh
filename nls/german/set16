@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.lex.c
 $set 16
 1 Setze Prozeﬂgruppe des Terminals von %d auf %d\n

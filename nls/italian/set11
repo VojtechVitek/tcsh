@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.c
 $set 11 
 1 Attenzione: accesso negato al terminale (%s).\n

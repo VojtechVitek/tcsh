@@ -33,7 +33,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #ifdef OREO
 #include <compat.h>

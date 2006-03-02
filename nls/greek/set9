@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ ed.xmap.c
 $set 9
 1 AddXkey: δεν επιτρέπεται μηδενικό extended-key.\n

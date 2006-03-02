@@ -33,7 +33,7 @@
 #include "sh.h"
 #include "ed.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 /*
  * C Shell - directory management

@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.exec.c
 $set 13
 1 hash=%-4d dir=%-2d prog=%s\n

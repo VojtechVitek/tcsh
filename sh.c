@@ -39,7 +39,7 @@ char    copyright[] =
  All rights reserved.\n";
 #endif /* not lint */
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "tc.h"
 #include "ed.h"

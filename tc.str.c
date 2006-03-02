@@ -35,7 +35,7 @@
 
 #include <limits.h>
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #define MALLOC_INCR	128
 #ifdef WIDE_STRINGS

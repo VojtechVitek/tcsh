@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.who.c
 $set 26 
 1 No se puede completar stat %s.  Por favor, ejecute "unset watch".\n

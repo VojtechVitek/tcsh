@@ -4,7 +4,7 @@
  *
  */
 #include "sh.h"
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #if defined(_MINIX) && !defined(_MINIX_VMD)
 

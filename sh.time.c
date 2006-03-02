@@ -32,7 +32,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #ifdef SUNOS4
 # include <machine/param.h>

@@ -33,7 +33,7 @@
 #include "sh.h"
 #include "tw.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "patchlevel.h"
 

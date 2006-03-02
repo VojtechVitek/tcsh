@@ -40,7 +40,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #define RCHECK
 #define DEBUG

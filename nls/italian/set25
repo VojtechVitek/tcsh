@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.sig.c
 $set 25 
 1 ourwait %d\n

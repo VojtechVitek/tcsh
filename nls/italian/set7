@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ ed.screen.c
 $set 7
 1 \n\tLa tcsh ipotizza che il tuo terminale abbia\n

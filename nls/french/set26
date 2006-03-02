@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.who.c
 $set 26 
 1 ne peut effectuer stat %s.  S.V.P effectuez "unset watch".\n

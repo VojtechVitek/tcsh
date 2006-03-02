@@ -9,7 +9,7 @@
  *	A public domain implementation of the termcap(3) routines.
  */
 #include "sh.h"
-RCSID("$Id$")
+RCSID("$tcsh$")
 #if defined(_VMS_POSIX) || defined(_OSD_POSIX)
 /*    efth      1988-Apr-29
 

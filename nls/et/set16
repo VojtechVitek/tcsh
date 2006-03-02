@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.lex.c
 $set 16 
 1 Seadsin tty pgrp numbrilt %d numbrile %d\n

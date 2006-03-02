@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.alloc.c
 $set 19 
 1 nbytes=%d: Se ha agotado la memoria\n

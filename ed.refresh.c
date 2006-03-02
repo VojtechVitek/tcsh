@@ -32,7 +32,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "ed.h"
 /* #define DEBUG_UPDATE */

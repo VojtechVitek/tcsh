@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.who.c
 $set 26 
 1 Testaaminen ei onnistu: stat(%s).  Ole hyvä ja suorita "unset watch".\n

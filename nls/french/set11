@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.c
 $set 11 
 1 Attention: pas d'accès au tty (%s).\n

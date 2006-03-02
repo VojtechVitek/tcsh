@@ -32,7 +32,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 static	int	renum	(int, int);
 static  Char  **blkend	(Char **);

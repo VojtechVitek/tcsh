@@ -1,5 +1,5 @@
 #
-# $Id$
+# $tcsh$
 # example file using the new completion code
 #
 # Debian GNU/Linux

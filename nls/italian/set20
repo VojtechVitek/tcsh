@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.bind.c
 $set 20 
 1 Nome di tasto non corretto `%S'\n

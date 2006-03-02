@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.lex.c
 $set 16 
 1 Reset tty pgrp from %d to %d\n

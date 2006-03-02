@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ vms.termcap.c
 $set 31 
 1 No se puede abrir TERMCAP: [%s]\n

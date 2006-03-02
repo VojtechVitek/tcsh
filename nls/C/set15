@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.func.c
 $set 15 
 1 %s: %s: Can't %s%s limit\n

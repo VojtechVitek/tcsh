@@ -33,7 +33,7 @@
  */
 #include "sh.h"
 
-RCSID("$Id$")
+RCSID("$tcsh$")
 
 #include "tc.h"
 #include "tw.h"

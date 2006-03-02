@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ sh.proc.c
 $set 17 
 1 BUG: ¡en espera de un trabajo en segundo plano!\n

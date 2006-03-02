@@ -1,4 +1,4 @@
-$ $Id$
+$ $tcsh$
 $ tc.who.c
 $set 26 
 1 Ei saa lugeda %s atribuute.  Anna käsk "unset watch".\n
