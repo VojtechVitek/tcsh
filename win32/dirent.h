@@ -65,7 +65,7 @@ typedef struct {
 	struct dirent *dd_buf;
 }DIR;
 
-DIR *opendir(char*);
+DIR *opendir(const char*);
 struct dirent *readdir(DIR*);
 int closedir(DIR*);
 void rewinddir(DIR*);

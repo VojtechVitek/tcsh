@@ -40,8 +40,9 @@ RCSID("$tcsh$")
 #include "tc.h"
 #ifdef WINNT_NATIVE
 #include "nt.const.h"
-#endif /* WINNT_NATIVE */
+#else /* WINNT_NATIVE */
 #include <sys/wait.h>
+#endif /* WINNT_NATIVE */
 
 #ifdef AFS
 #include <afs/stds.h>

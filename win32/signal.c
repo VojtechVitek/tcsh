@@ -204,6 +204,20 @@ int sigsuspend(const sigset_t *mask) {
 	return -1;
 
 }
+int sigrelse(int signal) {
+	sigset_t omask = {0};
+
+	sigaddset(&omask,signal);
+
+	return sigprocmask(SIG_UNBLOCK,&omask,NULL);
+}
+int sighold(int signal) {
+	sigset_t omask = {0};
+
+	sigaddset(&omask,signal);
+
+	return sigprocmask(SIG_BLOCK,&omask,NULL);
+}
 int sigaction(int signo, const struct sigaction *act, struct sigaction *oact) {
 
 	if (SIGBAD(signo)) {

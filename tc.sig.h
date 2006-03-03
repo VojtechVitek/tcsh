@@ -99,7 +99,7 @@
 # define MAXSIG NSIG
 #endif /* !MAXSIG && NSIG */
 
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(WINNT_NATIVE)
 # define	sigignore(s)	signal(s, SIG_IGN)
 # define	sigset(s, a)	signal(s, a)
 #endif /* __CYGWIN__ */

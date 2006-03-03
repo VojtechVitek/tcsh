@@ -675,7 +675,7 @@ main(int argc, char **argv)
 	 * default isn't appropriate (sg).
 	 */
 
-	int sh_len = 0;
+	size_t sh_len = 0;
 
 	if ((tcp = getenv("SHELL")) != NULL) {
 	    sh_len = strlen(tcp);
@@ -698,12 +698,17 @@ main(int argc, char **argv)
 #ifdef WINNT_NATIVE
     {
 	char *tmp;
-	if ((tmp = getenv("TMP")) != NULL)
+	Char *tmp2;
+	if ((tmp = getenv("TMP")) != NULL) {
 	    tmp = xasprintf("%s/%s", tmp, "sh");
-	else
-	    tmp = SAVE(""); /* FIXME: something different? */
-	shtemp = Strspl(tmp, doldol);	/* For << */
+	    tmp2 = SAVE(tmp);
 	xfree(tmp);
+    }
+	else {
+	    tmp2 = SAVE(""); 
+	}
+	shtemp = Strspl(tmp2, doldol);	/* For << */
+	xfree(tmp2);
     }
 #else /* !WINNT_NATIVE */
     shtemp = Strspl(STRtmpsh, doldol);	/* For << */

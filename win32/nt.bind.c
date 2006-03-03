@@ -1277,75 +1277,75 @@ KEYCMD  CcViCmdMap[] = {
     F_UNASSIGNED		/* DEL */
 };
 static void
-nt_bad_spec(Char *str)
+nt_bad_spec(const Char *str)
 {
     xprintf(CGETS(20, 4, "Bad key spec %S\n"), str);
 }
-Char nt_translate_bindkey(Char*s) {
-	extern int lstricmp(char*,char*);
-	char *str = short2str(s);
-	short fkey;
-	char corm; /* 1 for ctrl map, 2 for meta map, 3 for shift map*/
-	Char keycode = 0;
+Char nt_translate_bindkey(const Char*s) {
+    extern int lstricmp(char*,char*);
+    char *str = short2str(s);
+    short fkey;
+    char corm; /* 1 for ctrl map, 2 for meta map, 3 for shift map*/
+    Char keycode = 0;
 
-	corm = 0;
+    corm = 0;
 
-	if (str[0] == 'C') 
-		corm= 1;
-	else if (str[0] == 'M')
-		corm = 2;
-	else if (str[0] == 'S') /*shift keymap by avner.lottem@intel.com*/
-		corm = 3;
+    if (str[0] == 'C') 
+	corm= 1;
+    else if (str[0] == 'M')
+	corm = 2;
+    else if (str[0] == 'S') /*shift keymap by avner.lottem@intel.com*/
+	corm = 3;
 
-	if (corm)
-		str += 2; /* skip C- or M- or S-*/
-	
-	fkey = atoi(str);
-	if (fkey !=0) {
-		keycode = (NT_SPECIFIC_BINDING_OFFSET+ (fkey-1) );
+    if (corm)
+	str += 2; /* skip C- or M- or S-*/
+
+    fkey = atoi(str);
+    if (fkey !=0) {
+	keycode = (NT_SPECIFIC_BINDING_OFFSET+ (fkey-1) );
+    }
+    else {
+	if (!lstrcmpi("pgup",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN);
 	}
-	else {
-		if (!lstrcmpi("pgup",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN);
-		}
-		else if (!lstrcmpi("pgdown",str)) {
-			keycode = (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 1);
-		}
-		else if (!lstrcmpi("end",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 2);
-		}
-		else if (!lstrcmpi("home",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 3);
-		}
-		else if (!lstrcmpi("left",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 4);
-		}
-		else if (!lstrcmpi("up",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 5);
-		}
-		else if (!lstrcmpi("right",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 6);
-		}
-		else if (!lstrcmpi("down",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 7);
-		}
-		else if (!lstrcmpi("ins",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET + INS_DEL_MAPPING_BEGIN );
-		}
-		else if (!lstrcmpi("del",str)) {
-			keycode =  (NT_SPECIFIC_BINDING_OFFSET +INS_DEL_MAPPING_BEGIN +1 );
-		}
-		else
-			nt_bad_spec(s);
+	else if (!lstrcmpi("pgdown",str)) {
+	    keycode = (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 1);
 	}
-	if (keycode && corm) {
-		if (corm == 1)
-			keycode +=  CTRL_KEY_OFFSET;
-		else if (corm == 2)
-			keycode +=  ALT_KEY_OFFSET;
-		else if (corm == 3)
-			keycode +=  SHIFT_KEY_OFFSET;
+	else if (!lstrcmpi("end",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 2);
 	}
+	else if (!lstrcmpi("home",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 3);
+	}
+	else if (!lstrcmpi("left",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 4);
+	}
+	else if (!lstrcmpi("up",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 5);
+	}
+	else if (!lstrcmpi("right",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 6);
+	}
+	else if (!lstrcmpi("down",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + KEYPAD_MAPPING_BEGIN + 7);
+	}
+	else if (!lstrcmpi("ins",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET + INS_DEL_MAPPING_BEGIN );
+	}
+	else if (!lstrcmpi("del",str)) {
+	    keycode =  (NT_SPECIFIC_BINDING_OFFSET +INS_DEL_MAPPING_BEGIN +1 );
+	}
+	else
+	    nt_bad_spec(s);
+    }
+    if (keycode && corm) {
+	if (corm == 1)
+	    keycode +=  CTRL_KEY_OFFSET;
+	else if (corm == 2)
+	    keycode +=  ALT_KEY_OFFSET;
+	else if (corm == 3)
+	    keycode +=  SHIFT_KEY_OFFSET;
+    }
 
-	return keycode;
+    return keycode;
 }

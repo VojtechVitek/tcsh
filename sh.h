@@ -597,7 +597,7 @@ EXTERN clock_t clk_tck;
 #  endif /* POSIX */
 EXTERN struct tms shtimes;	/* shell and child times for process timing */
 # endif /* _SEQUENT_ */
-EXTERN long seconds0;
+EXTERN time_t seconds0;
 #endif /* BSDTIMES */
 
 #ifndef HZ

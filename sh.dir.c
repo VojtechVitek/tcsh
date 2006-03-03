@@ -65,7 +65,7 @@ agetcwd(void)
 
     len = MAXPATHLEN;
     buf = xmalloc(len);
-    while (getcwd(buf, len) == NULL) {
+    while (getcwd(buf, (int)len) == NULL) {
 	int err;
 
 	err = errno;
@@ -121,10 +121,10 @@ dinit(Char *hp)
 	}
     }
     else {
+	Char *copy;
 #ifdef S_IFLNK
 	struct stat swd, shp;
 	int swd_ok;
-	Char *copy;
 
 	swd_ok = stat(tcp, &swd) == 0;
 	/*

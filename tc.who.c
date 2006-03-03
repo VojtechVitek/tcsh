@@ -226,7 +226,7 @@ watch_login(int force)
 	 * before we are due -amol 6/5/97
 	 */
 	if (!ncbs_posted) {
-	    unsigned long tdiff = t - watch_period;
+	    time_t tdiff = t - watch_period;
 	    if (!watch_period || ((tdiff  > 0) && (tdiff > (interval - 90)))) {
 		start_ncbs(vp);
  		ncbs_posted = 1;
