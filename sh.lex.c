@@ -1527,7 +1527,7 @@ static ssize_t
 wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
 {
     char cbuf[BUFSIZE + 1];
-    ssize_t res, r;
+    ssize_t res, r = 0;
     size_t partial;
     
     if (nchars == 0)
@@ -1550,10 +1550,10 @@ wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
 	partial += r;
 	i = 0;
 	while (i < partial && nchars != 0) {
-	    int len;
+	    int tlen;
 
-	    len = normal_mbtowc(buf + res, cbuf + i, partial - i);
-	    if (len == -1) {
+	    tlen = normal_mbtowc(buf + res, cbuf + i, partial - i);
+	    if (tlen == -1) {
 	        reset_mbtowc();
 		if ((partial - i) < MB_LEN_MAX && r > 0)
 		    /* Maybe a partial character and there is still a chance
@@ -1561,13 +1561,13 @@ wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
 		    break;
 		buf[res] = (unsigned char)cbuf[i] | INVALID_BYTE;
 	    }
-	    if (len <= 0)
-		len = 1;
+	    if (tlen <= 0)
+		tlen = 1;
 #ifdef WIDE_STRINGS
 	    if (use_fclens)
-		fclens[res] = len;
+		fclens[res] = tlen;
 #endif
-	    i += len;
+	    i += tlen;
 	    res++;
 	    nchars--;
 	}

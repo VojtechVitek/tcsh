@@ -2206,7 +2206,7 @@ StrQcmp(const Char *str1, const Char *str2)
 int
 fcompare(const void *xfile1, const void *xfile2)
 {
-    const Char **file1 = xfile1, **file2 = xfile2;
+    const Char *const *file1 = xfile1, *const *file2 = xfile2;
 
     return collate(*file1, *file2);
 } /* end fcompare */
