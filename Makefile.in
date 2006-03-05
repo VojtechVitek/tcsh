@@ -231,7 +231,8 @@ LIBES= @LIBS@	 			 ## This is set by autoconf.
 #
 
 EXTRAFLAGS = @HESDEF@ $(AFSDEF)
-EXTRALIBS = @HESLIB@ $(AFSLIB)
+EXTRALIBS = @HESLIB@ $(AFSLIB) @LIBICONV@
+
 
 
 # The difficult choice of a c-compiler...
