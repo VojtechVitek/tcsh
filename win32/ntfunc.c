@@ -772,6 +772,8 @@ void try_shell_ex(char **argv,int exitsuccess, BOOL throw_ok) {/*FIXRESET*/
 }
 #ifdef NTDBG
 void dodebugbreak(Char **vc, struct command *c) {
+	UNREFERENCED_PARAMETER(vc);
+	UNREFERENCED_PARAMETER(c);
 	DebugBreak();
 }
 #endif NTDBG

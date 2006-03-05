@@ -69,13 +69,13 @@ BLDTYPE=retail
 !if "$(BLDTYPE)" == "debug"
 
 
-NTLDFLAGS=  -entry:silly_entry 
+NTLDFLAGS=  -entry:silly_entry  -debug
 NTCFLAGS = -Zi -DNTDBG   -Od
 LIBES= user32.lib advapi32.lib kernel32.lib $(DEBUG_CRTLIBS) strsafe.lib
 
 !else if "$(BLDTYPE)" == "retail"
 
-NTLDFLAGS=  -entry:silly_entry 
+NTLDFLAGS=  -entry:silly_entry  -debug
 NTCFLAGS = -Zi -O2 
 LIBES= user32.lib advapi32.lib kernel32.lib  $(CRTLIBS) strsafe.lib
 

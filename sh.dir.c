@@ -65,7 +65,7 @@ agetcwd(void)
 
     len = MAXPATHLEN;
     buf = xmalloc(len);
-    while (getcwd(buf, (int)len) == NULL) {
+    while (getcwd(buf, len) == NULL) {
 	int err;
 
 	err = errno;

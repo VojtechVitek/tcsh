@@ -133,7 +133,7 @@ void caseify_pwd(char *curwd) {
 
 }
 static char defcwd[MAX_PATH];
-char * forward_slash_get_cwd(char * path, int maxlen) {
+char * forward_slash_get_cwd(char * path, size_t maxlen) {
 
 	char *ptemp;
 	Char *vp;
@@ -144,7 +144,7 @@ char * forward_slash_get_cwd(char * path, int maxlen) {
 		maxlen = MAX_PATH;
 	}
 
-	rc = GetCurrentDirectory(maxlen,path);
+	rc = GetCurrentDirectory((DWORD)maxlen,path);
 	if (rc > maxlen) {
 		errno = ERANGE;
 		return NULL;
