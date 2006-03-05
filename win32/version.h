@@ -5,9 +5,9 @@
 /* remember to change both instance of the version -amol */
 
 #ifdef NTDBG
-#define LOCALSTR ",nt-rev-8.00-debug"
+#define LOCALSTR ",nt-rev-8.01-debug"
 #else
-#define LOCALSTR ",nt-rev-8.00" 
+#define LOCALSTR ",nt-rev-8.01" 
 								//patches
 #endif NTDBG
 

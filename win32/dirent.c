@@ -65,7 +65,7 @@ static int inode= 1; // useless piece that some unix programs need
 DIR * opendir(const char *inbuf) {
 
     DIR *dptr;
-    WIN32_FIND_DATA fdata;
+    WIN32_FIND_DATA fdata = {0};
     char *tmp  = NULL;
     char *buf = NULL;
     int is_net=0;
@@ -208,7 +208,7 @@ void rewinddir(DIR *dptr) {
 }
 struct dirent *readdir(DIR *dir) {
 
-	WIN32_FIND_DATA fdata;
+	WIN32_FIND_DATA fdata = {0};
 	HANDLE hfind;
 	char *tmp ;
 
@@ -333,7 +333,7 @@ int enum_next_share(DIR *dir) {
 	nethandle_t *hnet;
 	char *tmp,*p1;
 	HANDLE henum;
-	int count, breq,ret;
+	DWORD count, breq,ret;
 
 	hnet = (nethandle_t*)(dir->dd_fd);
 	henum = hnet->henum;

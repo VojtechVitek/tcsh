@@ -69,8 +69,8 @@ dprintf(char *format, ...)
  */
 int fork_copy_user_mem(HANDLE hproc) {
 	
-	DWORD bytes,rc;
-	size_t size;
+	SIZE_T bytes,rc;
+	SIZE_T size;
 
 	size =(char*)&bookend2 - (char*)&bookend1;
 	rc =WriteProcessMemory(hproc,&bookend1,&bookend1,
@@ -171,9 +171,13 @@ int is_9x_gui(char *prog) {
 	char *pathbuf;
 	char *pext;
 	
-	pathbuf=heap_alloc(MAX_PATH);
+	pathbuf=heap_alloc(MAX_PATH+1);
+	if(!pathbuf)
+		return 0;
 
-	progpath=heap_alloc(MAX_PATH<<1);
+	progpath=heap_alloc((MAX_PATH<<1)+1);
+	if(!progpath)
+		return 0;
 
 	if (GetEnvironmentVariable("PATH",pathbuf,MAX_PATH) ==0) {
 		goto failed;

@@ -228,10 +228,13 @@ struct timeval{
 	long tv_sec;
 	long tv_usec;
 };
+struct termios;
+/*
 struct timezone{
 	int tz_minuteswest;
 	int dsttime;
 };
+*/
 struct rusage {
 
 	 struct timeval ru_utime; /* user time used */
@@ -317,10 +320,10 @@ extern char* concat_args_and_quote(char **,char**,char **,unsigned int *, char *
 
 extern int is_nt_executable(char*,char*);
 /* io.c */
-extern int  force_read(int, unsigned char*,int);
-extern int  nt_read(int, unsigned char*,int);
-extern int  nt_write(int, const unsigned char*,int);
-extern int stringtable_read(int,char*,int);
+extern int  force_read(int, unsigned char*,size_t);
+extern int  nt_read(int, unsigned char*,size_t);
+extern int  nt_write(int, const unsigned char*,size_t);
+extern int stringtable_read(int,char*,size_t);
 
 /* tparse.c */
 extern int  tc_putc(char,FILE*);
@@ -428,6 +431,7 @@ extern void start_ncbs(short **);
 extern void cleanup_netbios(void);
 
 /* ntfunc.c */
+struct command;
 extern void dostart(short **,struct command *);
 extern void docls(short **,struct command *);
 extern void dotitle(short **, struct command * ) ;
@@ -447,7 +451,7 @@ extern int nt_feed_to_cmd(char*,char**);
 extern short nt_translate_bindkey(const short*);
 
 extern struct biltins *nt_check_additional_builtins(short *);
-extern void nt_print_builtins(unsigned int);
+extern void nt_print_builtins(size_t);
 
 /* ps.c */
 extern void init_plister(void);
@@ -496,6 +500,8 @@ struct utmp {
 	char ut_host[UT_HOSTSIZE]; /* hostname for rlogin */
 	long ut_addr;  /*ipaddr of remote host */
 };
+
+
 #define ut_name ut_user
 #define killpg kill
 
