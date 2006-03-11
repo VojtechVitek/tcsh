@@ -841,13 +841,13 @@ dobs2cmd(Char **v, struct command *c)
 /*        closem();*/
 	sigrelse(SIGINT);
 #ifdef SIGTSTP
-        (void) sigignore(SIGTSTP);
+        signal(SIGTSTP, SIG_IGN);
 #endif
 #ifdef SIGTTIN
-        (void) sigignore(SIGTTIN);
+        signal(SIGTTIN, SIG_IGN);
 #endif
 #ifdef SIGTTOU
-        (void) sigignore(SIGTTOU);
+        signal(SIGTTOU, SIG_IGN);
 #endif
         xexit(bs2cmdlist(cmd));
     }
@@ -1114,7 +1114,7 @@ osinit(void)
 #ifdef OREO
     set42sig();
     setcompat(getcompat() & ~COMPAT_EXEC);
-    sigignore(SIGIO);		/* ignore SIGIO */
+    signal(SIGIO, SIG_IGN);		/* ignore SIGIO */
 #endif /* OREO */
 
 #ifdef aiws

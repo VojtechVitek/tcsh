@@ -141,8 +141,9 @@ do_help(const Char *command)
 		sigaction(SIGINT, NULL, &orig_intr);
 		cleanup_push(&orig_intr, sigint_cleanup);
 		sigprocmask(SIG_UNBLOCK, NULL, &orig_mask);
-		sigset(SIGINT, cleanf);
 		cleanup_push(&orig_mask, sigprocmask_cleanup);
+		signal(SIGINT, cleanf);
+		sigrelse(SIGINT);
 		while ((len = xread(f, buf, sizeof(buf))) > 0)
 		    (void) xwrite(SHOUT, buf, len);
 		cleanup_until(&f);

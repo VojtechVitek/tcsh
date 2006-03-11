@@ -261,8 +261,9 @@ ed_Setup(int rst)
 	tty_setchar(&extty, ttychars[EX_IO]);
 
 # ifdef SIG_WINDOW
-    (void) sigset(SIG_WINDOW, window_change);	/* for window systems */
-# endif 
+    signal(SIG_WINDOW, window_change);	/* for window systems */
+    sigrelse(SIG_WINDOW);
+# endif
 #else /* WINNT_NATIVE */
 # ifdef DEBUG
     if (rst)

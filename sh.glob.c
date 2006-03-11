@@ -754,13 +754,13 @@ backeval(struct blk_buf *bb, struct Strbuf *word, Char *cp, int literal)
 	    if (seterr)
 		stderror(ERR_OLD);
 #ifdef SIGTSTP
-	    (void) sigignore(SIGTSTP);
+	    signal(SIGTSTP, SIG_IGN);
 #endif
 #ifdef SIGTTIN
-	    (void) sigignore(SIGTTIN);
+	    signal(SIGTTIN, SIG_IGN);
 #endif
 #ifdef SIGTTOU
-	    (void) sigignore(SIGTTOU);
+	    signal(SIGTTOU, SIG_IGN);
 #endif
 	    execute(t, -1, NULL, NULL, TRUE);
 

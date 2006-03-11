@@ -1790,7 +1790,7 @@ pfork(struct command *t, int wanttty)
 	    (void) signal(SIGQUIT, SIG_IGN);
 	}
 #ifdef OREO
-	sigignore(SIGIO);	/* ignore SIGIO in child too */
+	signal(SIGIO, SIG_IGN);	/* ignore SIGIO in child too */
 #endif /* OREO */
 
 	pgetty(wanttty, pgrp);
@@ -1910,7 +1910,7 @@ setttypgrp(int pgrp)
 	 * the background according to POSIX... We ignore this here.
 	 */
 	sigaction(SIGTTOU, NULL, &old);
-	sigset(SIGTTOU, SIG_IGN);
+	signal(SIGTTOU, SIG_IGN);
 #endif
 	(void) tcsetpgrp(FSHTTY, pgrp);
 # ifdef POSIXJOBS

@@ -1651,10 +1651,14 @@ goodbye(Char **v, struct command *c)
     if (loginsh) {
 	size_t omark;
 
-	(void) sigset(SIGQUIT, SIG_IGN);
-	(void) sigset(SIGINT, SIG_IGN);
-	(void) sigset(SIGTERM, SIG_IGN);
-	(void) sigset(SIGHUP, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	sigrelse(SIGQUIT);
+	signal(SIGINT, SIG_IGN);
+	sigrelse(SIGINT);
+	signal(SIGTERM, SIG_IGN);
+	sigrelse(SIGTERM);
+	signal(SIGHUP, SIG_IGN);
+	sigrelse(SIGHUP);
 	phup_disabled = 1;
 	setintr = 0;		/* No interrupts after "logout" */
 	/* Trap errors inside .logout */

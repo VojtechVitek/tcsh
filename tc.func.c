@@ -613,7 +613,8 @@ xgetpass(const char *prm)
 
     sigprocmask(SIG_UNBLOCK, NULL, &omask);
     sigaction(SIGINT, NULL, &sigint);
-    sigset(SIGINT, SIG_IGN);
+    signal(SIGINT, SIG_IGN);
+    sigrelse(SIGINT);
     cleanup_push(&sigint, sigint_cleanup);
     cleanup_push(&omask, sigprocmask_cleanup);
     (void) Rawmode();	/* Make sure, cause we want echo off */
@@ -2000,7 +2001,8 @@ remotehost(void)
     if (pid == 0) {
 	xclose(fds[0]);
 	/* Don't get stuck if the resolver does not work! */
-	sigset(SIGALRM, palarm);
+	signal(SIGALRM, palarm);
+	sigrelse(SIGALRM);
 	(void) alarm(2);
 	getremotehost(fds[1]);
 	/*NOTREACHED*/
