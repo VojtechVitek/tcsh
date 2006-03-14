@@ -148,24 +148,16 @@ EchoTC(Char **v)
 {
 	Char **globbed;
 	char    cv[BUFSIZE];/*FIXBUF*/
-	int     verbose = 0, silent = 0, gflag;
+	int     verbose = 0, silent = 0;
 	static char *fmts = "%s\n", *fmtd = "%d\n";
 	int li,co;
 
 
 	setname("echotc");
 
-	gflag = tglob(v);
-	if (gflag) {
-		v = globall(v, gflag);
-		if (v == 0)
-			stderror(ERR_NAME | ERR_NOMATCH);
-	}
-	else
-		v = saveblk(v);
+	v = glob_all_or_error(v);
 	globbed = v;
 	cleanup_push(globbed, blk_cleanup);
-	trim(v);
 
 	if (!v || !*v || *v[0] == '\0')
 		goto end;

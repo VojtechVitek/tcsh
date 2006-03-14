@@ -1422,7 +1422,7 @@ static void
 pkill(Char **v, int signum)
 {
     struct process *pp, *np;
-    int jobflags = 0, err1 = 0, gflag;
+    int jobflags = 0, err1 = 0;
     pid_t     pid;
     Char *cp, **vp, **globbed;
 
@@ -1438,16 +1438,7 @@ pkill(Char **v, int signum)
 	if (**vp == '%')
 	    (void) quote(*vp);
 
-    gflag = tglob(v);
-    if (gflag) {
-	v = globall(v, gflag);
-	if (v == 0)
-	    stderror(ERR_NAME | ERR_NOMATCH);
-    }
-    else {
-	v = saveblk(v);
-	trim(v);
-    }
+    v = glob_all_or_error(v);
     globbed = v;
     cleanup_push(globbed, blk_cleanup);
 

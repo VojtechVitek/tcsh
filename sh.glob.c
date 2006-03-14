@@ -548,6 +548,23 @@ globall(Char **v, int gflg)
     return vl;
 }
 
+Char **
+glob_all_or_error(Char **v)
+{
+    int gflag;
+
+    gflag = tglob(v);
+    if (gflag) {
+	v = globall(v, gflag);
+	if (v == NULL)
+	    stderror(ERR_NAME | ERR_NOMATCH);
+    } else {
+	v = saveblk(v);
+	trim(v);
+    }
+    return v;
+}
+
 void
 rscan(Char **t, void (*f) (Char))
 {

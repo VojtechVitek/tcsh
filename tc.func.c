@@ -193,7 +193,7 @@ void
 dolist(Char **v, struct command *c)
 {
     Char **globbed;
-    int     i, k, gflag;
+    int     i, k;
     struct stat st;
 
     USE(c);
@@ -206,17 +206,9 @@ dolist(Char **v, struct command *c)
 	cleanup_until(&word);
 	return;
     }
-    gflag = tglob(v);
-    if (gflag) {
-	v = globall(v, gflag);
-	if (v == 0)
-	    stderror(ERR_NAME | ERR_NOMATCH);
-    }
-    else
-	v = saveblk(v);
+    v = glob_all_or_error(v);
     globbed = v;
     cleanup_push(globbed, blk_cleanup);
-    trim(v);
     for (k = 0; v[k] != NULL && v[k][0] != '-'; k++)
 	continue;
     if (v[k]) {

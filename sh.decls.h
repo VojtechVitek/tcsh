@@ -191,6 +191,7 @@ extern	int		  Gmatch	(const Char *, const Char *);
 extern	int		  Gnmatch	(const Char *, const Char *,
 					 const Char **);
 extern	Char		**globall	(Char **, int);
+extern	Char		**glob_all_or_error(Char **);
 extern	void		  rscan		(Char **, void (*)(Char));
 extern	int		  tglob		(Char **);
 extern	void		  trim		(Char **);
