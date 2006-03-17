@@ -496,8 +496,12 @@ globone(Char *str, int action)
 	vo = v;
 
     vl = libglob(vo);
-    if ((gflg & G_CSH) && vl != vo)
-	cleanup_until(vo);
+    if (gflg & G_CSH) {
+    	if (vl != vo)
+	    cleanup_until(vo);
+	else
+	    cleanup_ignore(vo);
+    }
     if (vl == NULL) {
 	setname(short2str(str));
 	stderror(ERR_NAME | ERR_NOMATCH);
