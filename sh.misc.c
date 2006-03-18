@@ -527,6 +527,8 @@ areadlink(const char *path)
 void
 xclose(int fildes)
 {
+    if (fildes < 0)
+	return;
     while (close(fildes) == -1 && errno == EINTR)
 	handle_pending_signals();
 }
