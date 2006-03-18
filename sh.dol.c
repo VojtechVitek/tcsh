@@ -941,8 +941,10 @@ again:
 	    if (unlink(tmp) == -1) {
 		(void) gettimeofday(&tv, NULL);
 		xfree(shtemp);
-		shtemp = Strspl(STRtmpsh, putn((((int)tv.tv_sec) ^ 
-		    ((int)tv.tv_usec) ^ ((int)getpid())) & 0x00ffffff));
+		mbp = putn((((int)tv.tv_sec) ^ 
+		    ((int)tv.tv_usec) ^ ((int)getpid())) & 0x00ffffff);
+		shtemp = Strspl(STRtmpsh, mbp);
+		xfree(mbp);
 	    }
 	    goto again;
 	}
