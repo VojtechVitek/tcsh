@@ -177,8 +177,12 @@ blk_indirect_cleanup(void *xptr)
 Char  **
 saveblk(Char **v)
 {
-    Char **newv = xcalloc(blklen(v) + 1, sizeof(Char **));
-    Char  **onewv = newv;
+    Char **newv, **onewv;
+
+    if (v == NULL)
+	return NULL;
+
+    onewv = newv = xcalloc(blklen(v) + 1, sizeof(Char **));
 
     while (*v)
 	*newv++ = Strsave(*v++);
