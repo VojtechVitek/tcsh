@@ -849,7 +849,6 @@ setDolp(Char *cp)
     }
 
     addla(cp);
-    xfree(cp);
 
     dolp = STRNULL;
     if (seterr)
