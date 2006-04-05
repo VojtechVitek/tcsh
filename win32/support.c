@@ -63,6 +63,10 @@ void path_slashify(char *pstr) {
 		pstr++;
 	}
 }
+
+void do_nothing(const wchar_t *p1, const wchar_t *p2, const wchar_t*p3,
+		unsigned int p4, uintptr_t p5) {
+}
 void nt_init(void) {
 
 
@@ -76,6 +80,7 @@ void nt_init(void) {
 	}
 #endif SECURE_CD
 
+	_set_invalid_parameter_handler(do_nothing);
 	init_stdio();
 	nt_init_signals();
 	nt_term_init();
