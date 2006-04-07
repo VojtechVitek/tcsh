@@ -69,7 +69,7 @@ DIR * opendir(const char *inbuf) {
     char *tmp  = NULL;
     char *buf = NULL;
     int is_net=0;
-	int had_error = 1;
+    int had_error = 0;
     size_t buflen;
 
     buflen = lstrlen(inbuf) + 1;
@@ -115,7 +115,7 @@ DIR * opendir(const char *inbuf) {
     dptr->dd_fd = INVALID_HANDLE_VALUE;
     if (!dptr){
 	errno = ENOMEM;
-	had_error =1
+	had_error =1;
 	goto done;
     }
 
@@ -134,7 +134,7 @@ DIR * opendir(const char *inbuf) {
 	else
 	    errno = ENOENT;	
 
-	had_error =1
+	had_error =1;
 	goto done;
     }
     memset(dptr->orig_dir_name,0,sizeof(dptr->orig_dir_name));

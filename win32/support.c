@@ -66,6 +66,11 @@ void path_slashify(char *pstr) {
 
 void do_nothing(const wchar_t *p1, const wchar_t *p2, const wchar_t*p3,
 		unsigned int p4, uintptr_t p5) {
+        UNREFERENCED_PARAMETER(p1);
+        UNREFERENCED_PARAMETER(p2);
+        UNREFERENCED_PARAMETER(p3);
+        UNREFERENCED_PARAMETER(p4);
+        UNREFERENCED_PARAMETER(p5);
 }
 void nt_init(void) {
 
