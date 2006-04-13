@@ -72,7 +72,7 @@ static HANDLE hsigsusp;
 static int __is_suspended = 0;
 static HANDLE __halarm=0;
 
-extern HANDLE __h_con_alarm,__h_con_int;
+extern HANDLE __h_con_alarm,__h_con_int, __h_con_hup;
 
 // must be done before fork;
 void nt_init_signals(void) {
@@ -95,6 +95,7 @@ void nt_init_signals(void) {
 	hsigsusp = CreateEvent(NULL,FALSE,FALSE,NULL);
 	__h_con_alarm=CreateEvent(NULL,FALSE,FALSE,NULL);
 	__h_con_int=CreateEvent(NULL,FALSE,FALSE,NULL);
+	__h_con_hup=CreateEvent(NULL,FALSE,FALSE,NULL);
 	if (!hsigsusp)
 		abort();
 
@@ -107,6 +108,7 @@ void nt_cleanup_signals(void) {
 	CloseHandle(hsigsusp);
 	CloseHandle(__h_con_alarm);
 	CloseHandle(__h_con_int);
+	CloseHandle(__h_con_hup);
 	CloseHandle(__halarm);
 }
 int sigaddset(sigset_t *set, int signo) {
@@ -243,6 +245,10 @@ int ctrl_handler(DWORD event) {
 
 	if (event == CTRL_C_EVENT || event == CTRL_BREAK_EVENT) {
 		SetEvent(__h_con_int);
+		return TRUE;
+	}
+	if (event == CTRL_CLOSE_EVENT) {
+		SetEvent(__h_con_hup);
 		return TRUE;
 	}
 
