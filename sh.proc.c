@@ -406,7 +406,7 @@ found:
 	    }
 	}
     }
-#if defined(BSDJOBS) || defined(HAVEwait3)
+#if defined(BSDJOBS) || defined(HAVEwait3) ||defined(WINNT_NATIVE)
     goto loop;
 #endif /* BSDJOBS || HAVEwait3 */
  end:
