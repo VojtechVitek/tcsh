@@ -436,10 +436,15 @@ unsigned int alarm(unsigned int seconds) {
 	static unsigned int prev_val=0;
 	HANDLE ht;
 	DWORD tid;
+	SECURITY_ATTRIBUTES secd;
+
+	secd.nLength=sizeof(secd);
+	secd.lpSecurityDescriptor=NULL;
+	secd.bInheritHandle=TRUE;
 
 
 	if (!__halarm) {
-		__halarm=CreateEvent(NULL,FALSE,FALSE,NULL);
+		__halarm=CreateEvent(&secd,FALSE,FALSE,NULL);
 	}
 	if(__alarm_set )
 		SetEvent(__halarm);
