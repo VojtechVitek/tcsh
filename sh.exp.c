@@ -499,7 +499,7 @@ exp6(Char ***vp, int ignore)
 	(*vp)++;
 	ccode = exp0(vp, ignore);
 	etraci("exp6 () ccode", ccode, vp);
-	if (*vp == 0 || **vp == 0 || ***vp != ')')
+	if (**vp == 0 || ***vp != ')')
 	    stderror(ERR_NAME | ERR_EXPRESSION);
 	(*vp)++;
 	return (putn(ccode));
