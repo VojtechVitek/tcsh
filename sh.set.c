@@ -64,8 +64,13 @@ static void
 update_vars(Char *vp)
 {
     if (eq(vp, STRpath)) {
-	exportpath(adrof(STRpath)->vec);
-	dohash(NULL, NULL);
+	struct varent *p = adrof(STRpath); 
+	if (p == NULL)
+	    stderror(ERR_NAME | ERR_UNDVAR);
+	else {
+	    exportpath(p->vec);
+	    dohash(NULL, NULL);
+	}
     }
     else if (eq(vp, STRhistchars)) {
 	Char *pn = varval(vp);
