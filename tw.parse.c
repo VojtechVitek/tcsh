@@ -434,7 +434,7 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	int found;
 
 	found = !cmd_expand(qline.s + wordp, &p);
-	cleanup_push(p, xfree);
+	
 	if (!found) {
 	    xfree(p);
 	    search_ret = 0;
