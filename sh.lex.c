@@ -1575,7 +1575,9 @@ wide_read(int fildes, Char *buf, size_t nchars, int use_fclens)
 	    memmove(cbuf, cbuf + i, partial - i);
 	partial -= i;
     } while (partial != 0 && nchars > 0);
-    /* Throwing away possible partial multibyte characters on error */
+    /* Throwing away possible partial multibyte characters on error if the
+       stream is not seekable */
+    lseek(fildes, -(off_t)partial, L_INCR);
     return res != 0 ? res : r;
 }
 
