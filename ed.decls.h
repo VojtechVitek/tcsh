@@ -105,6 +105,8 @@ extern	int	GetSize			(int *, int *);
 #endif /* SIG_WINDOW */
 extern	void	ClearToBottom		(void);
 extern	void	GetTermCaps		(void);
+extern	void	StartHighlight		(void);
+extern	void	StopHighlight		(void);
 
 /*
  * ed.defns.c

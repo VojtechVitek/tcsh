@@ -98,17 +98,13 @@ NLSClassify(Char c, int nocomb)
     if (c & INVALID_BYTE)
 	return NLSCLASS_ILLEGAL;
     w = NLSWidth(c);
-    if (w > 0 || (Isprint(c) && !nocomb))
+    if ((w > 0 && !(Iscntrl(c) && (c & CHAR) < 0x100)) || (Isprint(c) && !nocomb))
 	return w;
-    if (Iscntrl(c) && c < 0x100) {
+    if (Iscntrl(c) && (c & CHAR) < 0x100) {
 	if (c == '\n')
 	    return NLSCLASS_NL;
 	if (c == '\t')
 	    return NLSCLASS_TAB;
-#ifndef ASCII
-	if (!Isupper(_toebcdic[_toascii[c]|0100]) && !strchr("@[\\]^_", _toebcdic[_toascii[c]|0100]))
-	    return NLSCLASS_ILLEGAL;
-#endif
 	return NLSCLASS_CTRL;
     }
     if (c >= 0x1000000)

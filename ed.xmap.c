@@ -578,28 +578,14 @@ unparsech(struct Strbuf *buf, Char ch)
 	Strbuf_append1(buf, '@');
     }
     else if (Iscntrl(ch)) {
-#ifdef IS_ASCII
 	Strbuf_append1(buf, '^');
 	if (ch == CTL_ESC('\177'))
 	    Strbuf_append1(buf, '?');
 	else
+#ifdef IS_ASCII
 	    Strbuf_append1(buf, ch | 0100);
 #else
-	if (ch == CTL_ESC('\177')) {
-	    Strbuf_append1(buf, '^');
-	    Strbuf_append1(buf, '?');
-	}
-	else if (Isupper(_toebcdic[_toascii[ch]|0100])
-		 || strchr("@[\\]^_", _toebcdic[_toascii[ch]|0100]) != NULL) {
-	    Strbuf_append1(buf, '^');
 	    Strbuf_append1(buf, _toebcdic[_toascii[ch]|0100]);
-	}
-	else {
-	    Strbuf_append1(buf, '\\');
-	    Strbuf_append1(buf, ((ch >> 6) & 7) + '0');
-	    Strbuf_append1(buf, ((ch >> 3) & 7) + '0');
-	    Strbuf_append1(buf, (ch & 7) + '0');
-	}
 #endif
     }
     else if (ch == '^') {
@@ -739,26 +725,14 @@ unparsestring(const CStr *str, const Char *sep)
     for (l = 0; l < str->len; l++) {
 	p = str->buf[l];
 	if (Iscntrl(p)) {
-#ifdef IS_ASCII
 	    *b++ = '^';
 	    if (p == CTL_ESC('\177'))
 		*b++ = '?';
 	    else
+#ifdef IS_ASCII
 		*b++ = (unsigned char) (p | 0100);
 #else
-	    if (_toascii[p] == '\177' || Isupper(_toebcdic[_toascii[p]|0100])
-		 || strchr("@[\\]^_", _toebcdic[_toascii[p]|0100]) != NULL)
-	    {
-		*b++ = '^';
-		*b++ = (_toascii[p] == '\177') ? '?' : _toebcdic[_toascii[p]|0100];
-	    }
-	    else
-	    {
-		*b++ = '\\';
-		*b++ = ((p >> 6) & 7) + '0';
-		*b++ = ((p >> 3) & 7) + '0';
-		*b++ = (p & 7) + '0';
-	    }
+		*b++ = _toebcdic[_toascii[p]|0100];
 #endif
 	}
 	else if (p == '^' || p == '\\') {

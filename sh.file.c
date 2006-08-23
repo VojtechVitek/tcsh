@@ -697,7 +697,7 @@ tenex(Char *inputline, size_t inputline_size)
 	tinputline[num_read] = 0;
 	Strcpy(inputline, str2short(tinputline));/*FIXBUF*/
 	num_read = Strlen(inputline);
-	last_Char = inputline[num_read - 1] & ASCII;
+	last_Char = CTL_ESC(ASC(inputline[num_read - 1]) & ASCII);
 
 	if (last_Char == '\n' || (size_t)num_read == inputline_size)
 	    break;

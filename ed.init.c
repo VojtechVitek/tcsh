@@ -583,6 +583,7 @@ ResetInLine(int macro)
     LastChar = InputBuf;
     InputLim = &InputBuf[INBUFSIZE - 2];/*FIXBUF*/
     Mark = InputBuf;
+    MarkIsSet = 0;
     MetaNext = 0;
     CurrentKeyMap = CcKeyMap;
     AltKeyMap = 0;
@@ -590,6 +591,7 @@ ResetInLine(int macro)
     DoingArg = 0;
     Argument = 1;
     LastCmd = F_UNASSIGNED;	/* previous command executed */
+    IncMatchLen = 0;
     if (macro)
 	MacroLvl = -1;		/* no currently active macros */
 }

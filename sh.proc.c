@@ -1032,10 +1032,10 @@ pprint(struct process *pp, int flag)
 			int free_ptr;
 
 			free_ptr = 0;
-			ptr = (char *)(intptr_t)mesg[pp->p_reason & ASCII].pname;
+			ptr = (char *)(intptr_t)mesg[pp->p_reason & 0177].pname;
 			if (ptr == NULL) {
 			    ptr = xasprintf("%s %d", CGETS(17, 5, "Signal"),
-					    pp->p_reason & ASCII);
+					    pp->p_reason & 0177);
 			    cleanup_push(ptr, xfree);
 			    free_ptr = 1;
 			}
