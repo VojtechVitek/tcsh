@@ -1594,13 +1594,16 @@ bgetc(void)
 	    (void) lseek(SHIN, fseekp, L_SET);
 	}
 	if (fseekp == feobp) {
+#ifdef WIDE_STRINGS
 	    off_t bytes;
 	    size_t i;
 
 	    bytes = fbobp;
 	    for (i = 0; i < (size_t)(feobp - fbobp); i++)
 		bytes += fclens[i];
-	    fbobp = fseekp = feobp = bytes;
+	    fseekp = feobp = bytes;
+#endif
+	    fbobp = feobp;
 	    c = wide_read(SHIN, fbuf[0], BUFSIZE, 1);
 #ifdef convex
 	    if (c < 0)
