@@ -368,7 +368,6 @@ fmthist(int fmt, ptr_t ptr)
 	buf = xmalloc(1);
 	buf[0] = '\0';
 	return buf;
-	break;
     }
 }
 

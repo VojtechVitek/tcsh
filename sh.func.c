@@ -497,7 +497,7 @@ doexit(Char **v, struct command *c)
      */
     v++;
     if (*v) {
-	set(STRstatus, putn(expr(&v)), VAR_READWRITE);
+	setv(STRstatus, putn(expr(&v)), VAR_READWRITE);
 	if (*v)
 	    stderror(ERR_NAME | ERR_EXPRESSION);
     }
@@ -659,7 +659,7 @@ doagain(void)
 	dobreak(NULL, NULL);
 	return;
     }
-    set(whyles->w_fename, quote(Strsave(*whyles->w_fe++)), VAR_READWRITE);
+    setv(whyles->w_fename, quote(Strsave(*whyles->w_fe++)), VAR_READWRITE);
     bseek(&whyles->w_start);
 }
 
@@ -1342,7 +1342,7 @@ dosetenv(Char **v, struct command *c)
     if (eq(vp, STRKTERM)) {
 	char *t;
 
-	set(STRterm, quote(lp), VAR_READWRITE);	/* lp memory used here */
+	setv(STRterm, quote(lp), VAR_READWRITE);	/* lp memory used here */
 	cleanup_ignore(lp);
 	cleanup_until(lp);
 	t = short2str(lp);
@@ -1365,7 +1365,7 @@ dosetenv(Char **v, struct command *c)
 	cleanup_ignore(lp);
 	cleanup_until(lp);
 	cleanup_push(canon, xfree);
-	set(STRhome, quote(canon), VAR_READWRITE); /* lp memory used here */
+	setv(STRhome, quote(canon), VAR_READWRITE); /* lp memory used here */
 	cleanup_ignore(canon);
 	cleanup_until(canon);
 
@@ -1375,21 +1375,21 @@ dosetenv(Char **v, struct command *c)
     }
 
     if (eq(vp, STRKSHLVL)) {
-	set(STRshlvl, quote(lp), VAR_READWRITE); /* lp memory used here */
+	setv(STRshlvl, quote(lp), VAR_READWRITE); /* lp memory used here */
 	cleanup_ignore(lp);
 	cleanup_until(lp);
 	return;
     }
 
     if (eq(vp, STRKUSER)) {
-	set(STRuser, quote(lp), VAR_READWRITE);	/* lp memory used here */
+	setv(STRuser, quote(lp), VAR_READWRITE);	/* lp memory used here */
 	cleanup_ignore(lp);
 	cleanup_until(lp);
 	return;
     }
 
     if (eq(vp, STRKGROUP)) {
-	set(STRgroup, quote(lp), VAR_READWRITE); /* lp memory used here */
+	setv(STRgroup, quote(lp), VAR_READWRITE); /* lp memory used here */
 	cleanup_ignore(lp);
 	cleanup_until(lp);
 	return;

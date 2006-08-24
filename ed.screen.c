@@ -1402,13 +1402,14 @@ GetTermCaps(void)
 
 
 #ifdef SIG_WINDOW
-    sigset_t omask;
+    sigset_t oset, set;
     int     lins, cols;
 
     /* don't want to confuse things here */
-    sigprocmask(SIG_BLOCK, NULL, &omask);
-    (void) sighold(SIG_WINDOW);
-    cleanup_push(&omask, sigprocmask_cleanup);
+    sigemptyset(&set);
+    sigaddset(&set, SIG_WINDOW);
+    (void)sigprocmask(SIG_BLOCK, &set, &oset);
+    cleanup_push(&oset, sigprocmask_cleanup);
 #endif /* SIG_WINDOW */
     area = buf;
 
@@ -1506,7 +1507,7 @@ GetTermCaps(void)
     (void) GetSize(&lins, &cols);	/* get the correct window size */
     ChangeSize(lins, cols);
 
-    cleanup_until(&omask);		/* can change it again */
+    cleanup_until(&oset);		/* can change it again */
 #else /* SIG_WINDOW */
     ChangeSize(Val(T_li), Val(T_co));
 #endif /* SIG_WINDOW */

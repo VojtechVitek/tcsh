@@ -371,7 +371,7 @@ extern	Char		 *putn		(int);
 extern	int		  getn		(Char *);
 extern	Char		 *value1	(Char *, struct varent *);
 extern	void		  setcopy	(const Char *, const Char *, int);
-extern	void		  set		(const Char *, Char *, int);
+extern	void		  setv		(const Char *, Char *, int);
 extern	void		  set1		(const Char *, Char **,
 					 struct varent *, int);
 extern	void		  setq		(const Char *, Char **,

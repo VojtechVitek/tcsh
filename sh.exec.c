@@ -238,9 +238,14 @@ doexec(struct command *t, int do_glob)
      * We must do this AFTER any possible forking (like `foo` in glob) so that
      * this shell can still do subprocesses.
      */
-    (void) sigrelse(SIGINT);
+    {
+	sigset_t set;
+	sigemptyset(&set);
+	sigaddset(&set, SIGINT);
+	sigaddset(&set, SIGCHLD);
+	sigprocmask(SIG_UNBLOCK, &set, NULL);
+    }
     pintr_disabled = 0;
-    (void) sigrelse(SIGCHLD);
     pchild_disabled = 0;
 
     /*
