@@ -113,16 +113,16 @@ extern tcshuc _cmap_lower[], _cmap_upper[];
 
 #ifdef WIDE_STRINGS
 # define cmap(c, bits)	\
-	((c < 0) ? 0 : \
+	(((c) < 0) ? 0 : \
 	((c) & QUOTE) || (c) >= 0x0080 ? 0 : (_cmap[(tcshuc)ASC(c)] & (bits)))
 #elif defined(SHORT_STRINGS) && defined(KANJI)
 #  define cmap(c, bits)	\
-	((c < 0) ? 0 : \
+	(((c) < 0) ? 0 : \
 	(((c) & QUOTE) || ((ASC(c) & 0x80) && adrof(STRnokanji))) ? \
 	0 : (_cmap[(tcshuc)ASC(c)] & (bits)))
 #else /* SHORT_STRINGS && KANJI */
 # define cmap(c, bits)	\
-	((c < 0) ? 0 : \
+	(((c) < 0) ? 0 : \
 	((c) & QUOTE) ? 0 : (_cmap[(tcshuc)ASC(c)] & (bits)))
 #endif /* SHORT_STRINGS && KANJI */
 
