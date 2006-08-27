@@ -628,3 +628,9 @@ void set_attributes(const unsigned char *color) {
 			| ((wAttributes & 0x00f0) >> 4) | ((wAttributes & 0x000f) << 4);
 	SetConsoleTextAttribute(ghstdout, wAttributes);
 }
+void StartHighlight(void)
+{
+}
+void StopHighlight(void)
+{
+}

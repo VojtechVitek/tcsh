@@ -1049,7 +1049,7 @@ re_cp:
 		if(!gui_app) {
 			WaitForSingleObject(pi.hProcess,INFINITE);
 			(void)GetExitCodeProcess(pi.hProcess,&exitcode);
-			set(STRstatus, putn(exitcode), VAR_READWRITE);/*FIXRESET*/
+			setv(STRstatus, putn(exitcode), VAR_READWRITE);/*FIXRESET*/
 		}
 		retval = 0;
 		CloseHandle(pi.hProcess);
