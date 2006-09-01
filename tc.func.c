@@ -1811,7 +1811,8 @@ hashbang(int fd, Char ***vp)
 			ws = real;
 		}
 #endif /* !WINNT_NATIVE */
-		bb_append(&sarg, SAVE(ws));
+		if (ws)
+		    bb_append(&sarg, SAVE(ws));
 	    }
 	    if (sarg.len > 0) {
 		*vp = bb_finish(&sarg);
