@@ -799,17 +799,20 @@ setDolp(Char *cp)
 	    }
 	    dolmod.s[i] = 0;
 
+	    strip(lhsub);
+	    strip(cp);
+	    dp = cp;
 	    do {
-		strip(lhsub);
-		strip(cp);
-		dp = Strstr(cp, lhsub);
+		dp = Strstr(dp, lhsub);
 		if (dp) {
+		    ptrdiff_t diff = dp - cp;
 		    np = xmalloc((Strlen(cp) + 1 - lhlen + rhlen) *
 				 sizeof(Char));
-		    (void) Strncpy(np, cp, dp - cp);
-		    (void) Strcpy(np + (dp - cp), rhsub);
-		    (void) Strcpy(np + (dp - cp) + rhlen, dp + lhlen);
+		    (void) Strncpy(np, cp, diff);
+		    (void) Strcpy(np + diff, rhsub);
+		    (void) Strcpy(np + diff + rhlen, dp + lhlen);
 
+		    dp = np + diff + 1;
 		    xfree(cp);
 		    cp = np;
 		    didmod = 1;
