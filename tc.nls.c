@@ -107,10 +107,12 @@ NLSClassify(Char c, int nocomb)
 	    return NLSCLASS_TAB;
 	return NLSCLASS_CTRL;
     }
+#ifdef WIDE_STRINGS
     if (c >= 0x1000000)
 	return NLSCLASS_ILLEGAL4;
     if (c >= 0x10000)
 	return NLSCLASS_ILLEGAL3;
+#endif
     if (c >= 0x100)
 	return NLSCLASS_ILLEGAL2;
     return NLSCLASS_ILLEGAL;
