@@ -494,6 +494,7 @@ pjwait(struct process *pp)
     fp = pp;
     sigemptyset(&set);
     sigaddset(&set, SIGINT);
+    sigaddset(&set, SIGCHLD);
     (void)sigprocmask(SIG_BLOCK, &set, &oset);
     cleanup_push(&oset, sigprocmask_cleanup);
     pause_mask = oset;
@@ -506,7 +507,7 @@ pjwait(struct process *pp)
 	while ((fp = (fp->p_friends)) != pp);
 	if ((jobflags & PRUNNING) == 0)
 	    break;
-	jobdebug_xprintf(("%d starting to isgsuspend for SIGCHLD on %d\n",
+	jobdebug_xprintf(("%d starting to sigsuspend for SIGCHLD on %d\n",
 			  getpid(), fp->p_procid));
 	sigsuspend(&pause_mask);
     }
