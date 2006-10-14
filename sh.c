@@ -163,10 +163,10 @@ int
 main(int argc, char **argv)
 {
     int batch = 0;
-    int nexececho = 0;
+    volatile int nexececho = 0;
     int nofile = 0;
-    int nverbose = 0;
-    int rdirs = 0;
+    volatile int nverbose = 0;
+    volatile int rdirs = 0;
     int quitit = 0;
     Char *cp;
 #ifdef AUTOLOGOUT

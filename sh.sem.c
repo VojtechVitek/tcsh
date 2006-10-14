@@ -84,10 +84,11 @@ static	void		 chkclob	(const char *);
 
 /*VARARGS 1*/
 void
-execute(struct command *t, int wanttty, int *pipein, int *pipeout, int do_glob)
+execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
+    int do_glob)
 {
     int    forked = 0;
-    const struct biltins *bifunc;
+    const struct biltins * volatile bifunc;
     pid_t pid = 0;
     int     pv[2];
     sigset_t set;

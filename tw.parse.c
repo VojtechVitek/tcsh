@@ -1292,7 +1292,7 @@ tw_collect(COMMAND command, int looking, struct Strbuf *exp_dir,
 	   struct Strbuf *exp_name, Char *target, Char *pat, int flags,
 	   DIR *dir_fd)
 {
-    int ni;
+    volatile int ni;
     jmp_buf_t osetexit;
 
 #ifdef TDEBUG
