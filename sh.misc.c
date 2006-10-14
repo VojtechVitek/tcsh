@@ -172,6 +172,7 @@ blk_indirect_cleanup(void *xptr)
 
     ptr = xptr;
     blkfree(*ptr);
+    xfree(ptr);
 }
 
 Char  **
