@@ -395,6 +395,7 @@ Char STRnotunique[]	= { 'n', 'o', 't', 'u', 'n', 'i', 'q', 'u', 'e', '\0' };
 Char STRret[]		= { '\n', '\0' };
 Char STRnobeep[]	= { 'n', 'o', 'b', 'e', 'e', 'p', '\0' };
 Char STRnoding[]	= { 'n', 'o', 'd', 'i', 'n', 'g', '\0' };
+Char STRpadhour[]	= { 'p', 'a', 'd', 'h', 'o', 'u', 'r', '\0' };
 Char STRnoambiguous[]	= { 'n', 'o', 'a', 'm', 'b', 'i', 'g', 'u', 'o', 'u', 
 			    's', '\0' };
 Char STRvisiblebell[]	= { 'v', 'i', 's', 'i', 'b', 'l', 'e', 'b', 'e', 'l', 
