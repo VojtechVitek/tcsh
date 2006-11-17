@@ -262,7 +262,7 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 			 * Pad hour to 2 characters if padhour is set,
 			 * by ADAM David Alan Martin
 			 */
-			Itoa(hr, p, adrof(STRpadhour) ? 2 : 0, attributes);
+			p = Itoa(hr, adrof(STRpadhour) ? 2 : 0, attributes);
 			Strbuf_append(&buf, p);
 			xfree(p);
 			Strbuf_append1(&buf, attributes | ':');
