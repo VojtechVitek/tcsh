@@ -254,6 +254,8 @@ TryNode(XmapNode *ptr, CStr *str, XmapVal *val, int ntype)
     str->buf++;
     str->len--;
     if (str->len == 0) {
+	size_t len;
+
 	/* we're there */
 	if (ptr->next != NULL) {
 	    PutFreeNode(ptr->next);	/* lose longer Xkeys with this prefix */
@@ -281,10 +283,9 @@ TryNode(XmapNode *ptr, CStr *str, XmapVal *val, int ntype)
 	case XK_STR:
 	case XK_EXE:
 	    ptr->val.str.len = val->str.len;
-	    ptr->val.str.buf = xmalloc(ptr->val.str.len
-				       * sizeof(*ptr->val.str.buf));
-	    (void) memcpy(ptr->val.str.buf, val->str.buf,
-			  ptr->val.str.len * sizeof(*ptr->val.str.buf));
+	    len = (val->str.len + 1) * sizeof(*ptr->val.str.buf);
+	    ptr->val.str.buf = xmalloc(len);
+	    (void) memcpy(ptr->val.str.buf, val->str.buf, len);
 	    break;
 	default:
 	    abort();
