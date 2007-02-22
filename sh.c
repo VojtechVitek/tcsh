@@ -1634,6 +1634,7 @@ srcunit(int unit, int onlyown, int hflg, Char **av)
      */
     if (setintr) {
 	cleanup_until(&pintr_disabled);
+	pintr_disabled++;
 	cleanup_push(&pintr_disabled, disabled_cleanup);
     }
 
