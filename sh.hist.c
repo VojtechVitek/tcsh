@@ -353,13 +353,13 @@ fmthist(int fmt, ptr_t ptr)
 	else {
 	    Char *istr, *ip;
 	    char *p;
+
 	    istr = sprlex(&hp->Hlex);
 	    buf = xmalloc(Strlen(istr) * MB_LEN_MAX + 1);
-	    p = buf;
-	    ip = istr;
-	    do
+
+	    for (p = buf, ip = istr; *ip != '\0'; ip++)
 		p += one_wctomb(p, CHAR & *ip);
-	    while ((CHAR & *ip++) != 0);
+
 	    *p = '\0';
 	    xfree(istr);
 	    return buf;
