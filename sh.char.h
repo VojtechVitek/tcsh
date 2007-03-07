@@ -137,9 +137,12 @@ extern tcshuc _cmap_lower[], _cmap_upper[];
 		         (iswalnum((tcshuc) (c)) || (c) == '_'))
 #else
 #define letter(c)	(((Char)(c) & QUOTE) ? 0 :  \
-			 (isalpha((tcshuc) (c)) || (c) == '_'))
+			 ((isalpha((tcshuc) (c)) && !(cmap((c), _PUN))) \
+			  || (c) == '_'))
 #define alnum(c)	(((Char)(c) & QUOTE) ? 0 :  \
-		         (isalnum((tcshuc) (c)) || (c) == '_'))
+		         ((isalnum((tcshuc) (c)) && !(cmap((c), _PUN))) \
+			  || (c) == '_'))
+
 #endif
 
 #if defined(DSPMBYTE)
