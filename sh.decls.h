@@ -357,7 +357,7 @@ extern  struct process   *pfind		(Char *);
 /*
  * sh.sem.c
  */
-extern	void		  execute	(struct command *, int, int *,
+extern	void		  execute	(struct command *, volatile int, int *,
 					 int *, int);
 extern	void		  mypipe	(int *);
 
