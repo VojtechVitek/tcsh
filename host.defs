@@ -520,6 +520,15 @@ machtype: defined(M_i386)				: "i386"
 enddef	:
 
 
+newdef  : defined(__MidnightBSD__)
+comment : MidnightBSD
+vendor  : defined(M_intel)                              : "intel"
+hosttype:                                               : "MidnightBSD"
+ostype  :                                               : "MidnightBSD"
+machtype: defined(M_i386)                               : "i386"
+enddef  :
+
+
 newdef	: defined(__386BSD__)
 comment	: Bill Jolitz's 386BSD
 vendor	: defined(M_intel)				: "intel"

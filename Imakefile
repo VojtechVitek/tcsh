@@ -211,6 +211,10 @@ EXTF=mi.termios.c mi.wait.h mi.varargs.h vms.termcap.c
 #  define ConfigH bsd4.4
 # endif /* FreeBsdArchitecture */
 
+# ifdef MidnightBSDArchitecture
+#  define ConfigH bsd4.4
+# endif /* MidnightBsdArchitecture */
+
 # ifdef i386SVR4Architecture
 #  define ConfigH sysv4
 #  ifdef DELL

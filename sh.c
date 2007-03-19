@@ -1854,15 +1854,19 @@ process(int catch)
     jmp_buf_t osetexit;
     /* PWP: This might get nuked my longjmp so don't make it a register var */
     size_t omark;
+    int didexitset = 0;
 
     getexit(osetexit);
     omark = cleanup_push_mark();
-    exitset++;
     for (;;) {
 	struct command *t;
 	int hadhist, old_pintr_disabled;
 
-	(void) setexit();
+	(void)setexit();
+	if (didexitset == 0) {
+	    exitset++;
+	    didexitset++;
+	}
 	pendjob();
 
 	justpr = enterhist;	/* execute if not entering history */
@@ -2026,9 +2030,9 @@ process(int catch)
     cmd_done:
 	cleanup_until(&paraml);
     }
-    exitset--;
     cleanup_pop_mark(omark);
     resexit(osetexit);
+    exitset--;
 }
 
 /*ARGSUSED*/
