@@ -42,7 +42,7 @@ RCSID("$tcsh$")
 static	Char			*agetcwd	(void);
 static	void			 dstart		(const char *);
 static	struct directory	*dfind		(Char *);
-static	Char 			*dfollow	(Char *);
+static	Char 			*dfollow	(Char *, int);
 static	void 	 	 	 printdirs	(int);
 static	Char 			*dgoto		(Char *);
 static	void 	 	 	 dnewcwd	(struct directory *, int);
@@ -523,7 +523,7 @@ dochngd(Char **v, struct command *c)
 	return;
     }
     else
-	if ((cp = dfollow(cp)) == NULL)
+	if ((cp = dfollow(cp, dflag & DIR_OLD)) == NULL)
 	    return;
     dp = xcalloc(sizeof(struct directory), 1);
     dp->di_name = cp;
@@ -588,13 +588,13 @@ dgoto(Char *cp)
  * dfollow - change to arg directory; fall back on cdpath if not valid
  */
 static Char *
-dfollow(Char *cp)
+dfollow(Char *cp, int old)
 {
     Char *dp;
     struct varent *c;
     int serrno;
 
-    cp = globone(cp, G_ERROR);
+    cp = old ? Strsave(cp) : globone(cp, G_ERROR);
     cleanup_push(cp, xfree);
 #ifdef apollo
     if (Strchr(cp, '`')) {
@@ -712,7 +712,7 @@ dopushd(Char **v, struct command *c)
 		stderror(ERR_NAME | ERR_NOHOMEDIR);
 	    if (chdir(short2str(cp)) < 0)
 		stderror(ERR_NAME | ERR_CANTCHANGE);
-	    if ((cp = dfollow(cp)) == NULL)
+	    if ((cp = dfollow(cp, dflag & DIR_OLD)) == NULL)
 		return;
 	    dp = xcalloc(sizeof(struct directory), 1);
 	    dp->di_name = cp;
@@ -758,7 +758,7 @@ dopushd(Char **v, struct command *c)
     else {
 	Char *ccp;
 
-	if ((ccp = dfollow(cp)) == NULL)
+	if ((ccp = dfollow(cp, dflag & DIR_OLD)) == NULL)
 	    return;
 	dp = xcalloc(sizeof(struct directory), 1);
 	dp->di_name = ccp;
