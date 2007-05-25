@@ -141,7 +141,8 @@ int is_gui(char *exename) {
     // read from the coffheaderoffset;
     overlap.Offset = dh.doshdr.e_lfanew;
 
-	if (!ReadFile (hImage, &ntSignature, sizeof(ULONG), &bytes,&overlap)){
+	if (!ReadFile (hImage, &ntSignature, sizeof(ULONG), &bytes,&overlap)
+		&& GetLastError() != ERROR_IO_PENDING){
         goto done;
 	}
     if(!GetOverlappedResult(hImage,&overlap,&bytes,TRUE) ) {
@@ -154,7 +155,8 @@ int is_gui(char *exename) {
                             sizeof(IMAGE_FILE_HEADER);
 
 	if (!ReadFile(hImage, &optionalhdr,IMAGE_SIZEOF_NT_OPTIONAL_HEADER,
-                &bytes,&overlap)) {
+                &bytes,&overlap)
+		&& GetLastError() != ERROR_IO_PENDING) {
 		goto done;
 	}
 
