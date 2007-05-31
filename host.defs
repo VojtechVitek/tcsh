@@ -1070,6 +1070,12 @@ ostype	:						: "sysv4"
 machtype:						: "sparc"
 enddef	:
 
+newdef	: defined(__CYGWIN__)
+comment	: Cygwin
+hosttype:						: "i386-cygwin"
+ostype	:						: "cygwin"
+enddef	:
+
 newdef  : defined(_UWIN)
 comment : AT&T Research Unix for Windows
 vendor  :               				: "att"
