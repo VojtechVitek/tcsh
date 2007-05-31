@@ -402,9 +402,6 @@ texec(Char *sf, Char **st)
 	 */
 	if ((fd = xopen(f, O_RDONLY|O_LARGEFILE)) != -1) {
 	    int nread;
-#ifdef O_TEXT
-	    setmode(fd, O_TEXT);
-#endif
 	    if ((nread = xread(fd, pref, 2)) == 2) {
 		if (!isprint((unsigned char)pref[0]) &&
 		    (pref[0] != '\n' && pref[0] != '\t')) {

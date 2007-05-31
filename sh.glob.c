@@ -842,10 +842,10 @@ backeval(struct blk_buf *bb, struct Strbuf *word, Char *cp, int literal)
 	    c = (*ip++ & TRIM);
 	    if (c == 0)
 		break;
-#ifdef WINNT_NATIVE
+#if defined(WINNT_NATIVE) || defined(__CYGWIN__)
 	    if (c == '\r')
 	    	c = ' ';
-#endif /* WINNT_NATIVE */
+#endif /* WINNT_NATIVE || __CYGWIN__ */
 	    if (c == '\n') {
 		/*
 		 * Continue around the loop one more time, so that we can eat

@@ -120,7 +120,6 @@ pretty */
 #define write(f,b,n)          nt_write((f),(b),(n))
 #define creat(f,m)            nt_creat((f),(m))
 #define _exit(a)              ExitProcess((a))
-#define setmode(a,b)          /* ignore*/
 
 #define chdir(a)              nt_chdir(a)
 

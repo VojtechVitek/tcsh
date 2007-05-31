@@ -1773,9 +1773,9 @@ hashbang(int fd, Char ***vp)
 	switch (*p) {
 	case ' ':
 	case '\t':
-#ifdef WINNT_NATIVE
+#if defined(WINNT_NATIVE) || defined (__CYGWIN__)
 	case '\r':
-#endif /* WINNT_NATIVE */
+#endif /* WINNT_NATIVE || __CYGWIN__ */
 	    if (ws) {	/* a blank after a word.. save it */
 		*p = '\0';
 #ifdef WINNT_NATIVE
