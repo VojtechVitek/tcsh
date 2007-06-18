@@ -39,8 +39,8 @@ if ($?_complete) then
     set noglob
     if ( ! $?hosts ) set hosts
     foreach f ("$HOME/.hosts" /usr/local/etc/csh.hosts "$HOME/.rhosts" /etc/hosts.equiv)
-        if ( -r $f ) then
-	    set hosts = ($hosts `grep -v "+" $f | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
+        if ( -r "$f" ) then
+	    set hosts = ($hosts `grep -v "+" "$f" | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
 	endif
     end
     if ( -r "$HOME/.netrc" ) then
