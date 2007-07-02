@@ -433,7 +433,7 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	Char *p;
 	int found;
 
-	found = !cmd_expand(qline.s + wordp, &p);
+	found = cmd_expand(qline.s + wordp, &p);
 	
 	if (!found) {
 	    xfree(p);
