@@ -88,6 +88,13 @@
 # endif /* POSIX */
 #endif /* OREO */
 
+#ifdef __QNXNTO__
+#include <sys/resource.h>
+#include <fcntl.h>
+#undef O_TEXT
+#undef O_BINARY
+#endif
+
 #ifdef convex
 # include <sys/dmon.h>
 #endif /* convex */

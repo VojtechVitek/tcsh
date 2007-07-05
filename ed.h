@@ -43,6 +43,11 @@
 # define NT_NUM_KEYS	256
 #endif /* WINNT_NATIVE */
 
+#ifdef __QNXNTO__
+#undef min
+#undef max
+#endif
+
 /****************************************************************************/
 /* stuff for the different states returned by the character editor routines */
 /****************************************************************************/

@@ -234,7 +234,11 @@ pushback(const Char *string)
     (void) ioctl(SHOUT, TCSETAW, (ioctl_t) &tty);
 # endif /* POSIX */
     tty_normal = tty;
-    tty.c_lflag &= ~(ECHOKE | ECHO | ECHOE | ECHOK | ECHONL | ECHOPRT | ECHOCTL);
+    tty.c_lflag &= ~(ECHOKE | ECHO | ECHOE | ECHOK | ECHONL |
+#ifndef __QNXNTO__
+	ECHOPRT |
+#endif
+	ECHOCTL);
 # ifdef POSIX
     (void) xtcsetattr(SHOUT, TCSANOW, &tty);
 # else
@@ -390,7 +394,9 @@ retype(void)
     (void) ioctl(SHOUT, TCGETA, (ioctl_t) &tty);
 # endif /* POSIX */
 
+#ifndef __QNXNTO__
     tty.c_lflag |= PENDIN;
+#endif
 
 # ifdef POSIX
     (void) xtcsetattr(SHOUT, TCSANOW, &tty);
