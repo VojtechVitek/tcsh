@@ -800,6 +800,7 @@ setDolp(Char *cp)
 	    dolmod.s[i] = 0;
 
 	    strip(lhsub);
+	    strip(rhsub);
 	    strip(cp);
 	    dp = cp;
 	    do {
