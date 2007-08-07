@@ -525,6 +525,7 @@ getn(Char *cp)
 {
     int n;
     int     sign;
+    int base;
 
     if (!cp)			/* PWP: extra error checking */
 	stderror(ERR_NAME | ERR_BADNUM);
@@ -538,9 +539,19 @@ getn(Char *cp)
 	if (!Isdigit(*cp))
 	    stderror(ERR_NAME | ERR_BADNUM);
     }
+
+    if (cp[0] == '0' && cp[1])
+	base = 8;
+    else
+	base = 10;
+
     n = 0;
     while (Isdigit(*cp))
-	n = n * 10 + *cp++ - '0';
+    {
+	if (base == 8 && *cp >= '8')
+	    stderror(ERR_NAME | ERR_BADNUM);
+	n = n * base + *cp++ - '0';
+    }
     if (*cp)
 	stderror(ERR_NAME | ERR_BADNUM);
     return (sign ? -n : n);
