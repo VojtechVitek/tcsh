@@ -688,7 +688,8 @@ dorepeat(Char **v, struct command *kp)
 	reexecute(kp);
 	--i;
     }
-    cleanup_until(&pintr_disabled);
+    if (setintr && pintr_disabled == 1)
+        cleanup_until(&pintr_disabled);
     donefds();
 }
 
