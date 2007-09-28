@@ -593,16 +593,17 @@ stderror(unsigned int id, ...)
 	if (id >= sizeof(elst) / sizeof(elst[0]))
 	    id = ERR_INVALID;
 
-	/*
-	 * Must flush before we print as we wish output before the error to go
-	 * on (some form of) standard output, while output after goes on (some
-	 * form of) diagnostic output. If didfds then output will go to 1/2
-	 * else to FSHOUT/FSHDIAG. See flush in sh.print.c.
-	 */
-	flush();/*FIXRESET*/
-	haderr = 1;			/* Now to diagnostic output */
 
 	if (!(flags & ERR_SILENT)) {
+	    /*
+	     * Must flush before we print as we wish output before the error
+	     * to go * on (some form of) standard output, while output after
+	     * goes on (some * form of) diagnostic output. If didfds then
+	     * output will go to 1/2 * else to FSHOUT/FSHDIAG. See flush in
+	     * sh.print.c.
+	     */
+	    flush();/*FIXRESET*/
+	    haderr = 1;			/* Now to diagnostic output */
 	    if (flags & ERR_NAME)
 		xprintf("%s: ", bname);/*FIXRESET*/
 	    if ((flags & ERR_OLD)) {
