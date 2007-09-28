@@ -552,6 +552,7 @@ EXTERN int    havhash IZERO;	/* path hashing is available */
 EXTERN int    editing IZERO;	/* doing filename expansion and line editing */
 EXTERN int    noediting IZERO;	/* initial $term defaulted to noedit */
 EXTERN int    bslash_quote IZERO;/* PWP: tcsh-style quoting?  (in sh.c) */
+EXTERN int    compat_expr IZERO;/* csh-style expressions? */
 EXTERN int    isoutatty IZERO;	/* is SHOUT a tty */
 EXTERN int    isdiagatty IZERO;/* is SHDIAG a tty */
 EXTERN int    is1atty IZERO;	/* is file descriptor 1 a tty (didfds mode) */

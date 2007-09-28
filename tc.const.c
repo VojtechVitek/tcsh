@@ -353,6 +353,8 @@ Char STRKTERM[]		= { 'T', 'E', 'R', 'M', '\0' };
 Char STRKHOME[]		= { 'H', 'O', 'M', 'E', '\0' };
 Char STRbackslash_quote[] = { 'b', 'a', 'c', 'k', 's', 'l', 'a', 's', 'h', '_',
 			     'q', 'u', 'o', 't', 'e', '\0' };
+Char STRcompat_expr[]	= { 'c', 'o', 'm', 'p', 'a', 't', '_', 'e', 'x', 'p',
+			     'r', '\0' };
 Char STRRparen[]	= { ')', '\0' };
 Char STRmail[]		= { 'm', 'a', 'i', 'l', '\0' };
 #ifndef HAVENOUTMP

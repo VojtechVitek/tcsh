@@ -326,7 +326,14 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	 * Don't run if we're not in a tty
 	 * Don't run if we're not really executing 
 	 */
-	if (t->t_dtyp == NODE_COMMAND && !bifunc && !noexec && intty) {
+	/*
+	 * CR  -  Charles Ross Aug 2005
+	 * added "isoutatty".
+	 * The new behavior is that the jobcmd won't be executed
+	 * if stdout (SHOUT) isnt attached to a tty.. IE when
+	 * redirecting, or using backquotes etc..
+	 */
+	if (t->t_dtyp == NODE_COMMAND && !bifunc && !noexec && intty && isoutatty) {
 	    Char *cmd = unparse(t);
 
 	    cleanup_push(cmd, xfree);

@@ -174,6 +174,9 @@ update_vars(Char *vp)
     else if (eq(vp, STRbackslash_quote)) {
 	bslash_quote = 1;
     }
+    else if (eq(vp, STRcompat_expr)) {
+	compat_expr = 1;
+    }
     else if (eq(vp, STRdirstack)) {
 	dsetstack();
     }
@@ -761,6 +764,8 @@ unset(Char **v, struct command *c)
 	editing = 0;
     if (adrof(STRbackslash_quote) == 0)
 	bslash_quote = 0;
+    if (adrof(STRcompat_expr) == 0)
+	compat_expr = 0;
     if (adrof(STRsymlinks) == 0)
 	symlinks = 0;
     if (adrof(STRimplicitcd) == 0)

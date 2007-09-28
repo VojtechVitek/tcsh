@@ -45,8 +45,10 @@ RCSID("$tcsh$")
 extern int MapsAreInited;
 
 /* mismatched first character */
-static Char mismatch[] = 
-    {'!', '^' , '\\', '-', '%', '\0', '"', '\'', '`', '\0' };
+static Char mismatch[] = { '\\', '-', '%', '\0' };
+/* don't Strchr() for '\0', obey current history character settings */
+#define MISMATCH(c) ((c) == '\0' || (c) == HIST || (c) == HISTSUB || \
+			Strchr(mismatch, (c)))
 
 static	int	Repair		(void);
 static	int	GetNextCommand	(KEYCMD *, Char *);
@@ -845,10 +847,7 @@ SpellLine(int cmdonly)
 		Cursor--;
 	    endflag = 0;
 	}
-	/* Obey current history character settings */
-	mismatch[0] = HIST;
-	mismatch[1] = HISTSUB;
-	if (!Strchr(mismatch, *argptr) &&
+	if (!MISMATCH(*argptr) &&
 	    (!cmdonly || starting_a_command(argptr, InputBuf))) {
 #ifdef WINNT_NATIVE
 	    /*
@@ -926,7 +925,7 @@ CompleteLine(void)
 		Cursor--;
 	    endflag = 0;
 	}
-	if (!Strchr(mismatch, *argptr) && starting_a_command(argptr, InputBuf)) {
+	if (!MISMATCH(*argptr) && starting_a_command(argptr, InputBuf)) {
 	    tmatch = tenematch(InputBuf, Cursor - InputBuf, RECOGNIZE);
 	    if (tmatch <= 0) {
                 return 0;
