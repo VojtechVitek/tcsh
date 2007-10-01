@@ -452,8 +452,12 @@ Char STRTERMCAP[]	= { 'T', 'E', 'R', 'M', 'C', 'A', 'P', '\0'};
 #endif /* SIG_WINDOW  || _VMS_POSIX */
 
 #if defined (_OSD_POSIX)  /* BS2000 needs this variable set to "SHELL" */
-Char STRPROGRAM_ENVIRONMENT[]		= { 'P', 'R', 'O', 'G', 'R', 'A', 'M', '_', 'E', 'N', 'V', 'I', 'R', 'O', 'N', 'M', 'E', 'N', 'T', '\0'};
+Char STRPROGRAM_ENVIRONMENT[] = { 'P', 'R', 'O', 'G', 'R', 'A', 'M',
+			    '_', 'E', 'N', 'V', 'I', 'R', 'O', 'N', 'M',
+			    'E', 'N', 'T', '\0'};
 #endif /* _OSD_POSIX */
+Char STRCOMMAND_LINE[]	= { 'C', 'O', 'M', 'M', 'A', 'N', 'D', '_', 'L', 'I',
+			    'N', 'E', '\0' };
 
 #ifdef WARP
 Char STRwarp[]		= { 'w', 'a', 'r', 'p', '\0' };

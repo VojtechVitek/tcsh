@@ -630,7 +630,9 @@ tw_complete(const Char *line, Char **word, Char **pat, int looking, eChar *suf)
 	default:
 	    abort();		       /* Cannot happen */
 	}
+	tsetenv(STRCOMMAND_LINE, line);
 	res = tw_result(com, pat);
+	Unsetenv(STRCOMMAND_LINE);
 	cleanup_until(buf);
 	return res;
     }
