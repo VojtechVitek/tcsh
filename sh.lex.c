@@ -368,7 +368,7 @@ loop:
 		else {
 		    if (bslash_quote &&
 			((c == '\'') || (c == '"') ||
-			 (c == '\\'))) {
+			 (c == '\\') || (c == '$'))) {
 			c |= QUOTE;
 		    }
 		    else {
