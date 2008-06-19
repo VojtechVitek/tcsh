@@ -667,6 +667,7 @@ dobackp(Char *cp, int literal)
 	    }
 	if (!*rp) {
 	oops:
+	    cleanup_until(&bb);
 	    stderror(ERR_UNMATCHED, '`');
 	}
 	ep = Strnsave(lp, rp - lp);
