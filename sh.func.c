@@ -2287,11 +2287,11 @@ doeval(Char **v, struct command *c)
 	process(0);
     }
 
-    if (my_reenter == 0)
+    if (my_reenter == 0) {
 	cleanup_until(&state);
-
-    if (gv)
-	cleanup_until(gv);
+	if (gv)
+	    cleanup_until(gv);
+    }
 
     resexit(osetexit);
     if (my_reenter)
