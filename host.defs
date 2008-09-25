@@ -1012,6 +1012,9 @@ hosttype:						: "clipper"
 machtype:						: "clipper"
 enddef	:
 
+newdef : defined(__QNX__)
+ostype :						: "qnx"
+enddef :
 
 newdef	: (defined(SNI) || defined(sinix)) && !defined(_OSD_POSIX)
 comment	: Fujitsu Siemens Computers (former "Siemens Nixdorf Informationssysteme"): SINIX aka. ReliantUNIX, a SVR4 derivative
