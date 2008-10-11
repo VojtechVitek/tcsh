@@ -64,7 +64,7 @@ struct passwd * getpwnam(const char *name) {
 
 	if (pass_bogus.pw_name == NULL) {
 		GetUserName(username,&size);
-		if (_dupenv_s(&ptr,&esize,"HOME") ){
+		if (_dupenv_s(&ptr,&esize,"HOME") == 0){
 			StringCbCopy(homedir,sizeof(homedir),ptr);
 			pass_bogus.pw_dir = &homedir[0];
 			free(ptr);
@@ -91,7 +91,7 @@ struct passwd * getpwuid(uid_t myuid) {
 	UNREFERENCED_PARAMETER(myuid);
 	if (pass_bogus.pw_name == NULL) {
 		GetUserName(username,&size);
-		if (_dupenv_s(&ptr,&esize,"HOME") ){
+		if (_dupenv_s(&ptr,&esize,"HOME") == 0){
 			StringCbCopy(homedir,sizeof(homedir),ptr);
 			pass_bogus.pw_dir = &homedir[0];
 			free(ptr);
