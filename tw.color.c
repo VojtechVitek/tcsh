@@ -85,6 +85,7 @@ static Variable variables[] = {
     VAR(NOS, "tw", ""),		/* Sticky and other writable dir (+t,o+w) */
     VAR(NOS, "ow", ""),		/* Other writable dir (o+w) but not sticky */
     VAR(NOS, "st", ""),		/* Sticky dir (+t) but not other writable */
+    VAR(NOS, "rs", "0"),	/* Reset to normal color */
 };
 
 enum FileType {
