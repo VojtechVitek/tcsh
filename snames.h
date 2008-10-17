@@ -38,6 +38,7 @@
 #define	e_delwordnext		edelwrdnext
 #define	e_delwordprev		edelwrdprev
 #define	e_expand		eexp
+#define	e_expand_history_rne	eexphistrne
 #define	e_expand_history	eexphistory
 #define	e_expand_vars		eexpvars
 #define	e_tty_starto		ettystarto
