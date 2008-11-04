@@ -404,8 +404,8 @@ Inputl(void)
 		nr_history_exp += ExpandHistory();
 
 	    /* try normal expansion only if no history references were found */
-	    if (Strcmp(autoexpand, STRonlyhistory) == 0 &&
-		nr_history_exp == 0) {
+	    if (nr_history_exp == 0 ||
+		Strcmp(autoexpand, STRonlyhistory) != 0) {
 		/*
 		 * Modified by Martin Boyer (gamin@ireq-robot.hydro.qc.ca):
 		 * A separate variable now controls beeping after
