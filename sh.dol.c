@@ -587,9 +587,13 @@ Dgetdol(void)
 
 	    cleanup_until(name);
 	    fixDolMod();
-	    xfree(env_val);
-	    env_val = Strsave(np);
-	    setDolp(env_val);
+	    if (length) {
+		    addla(putn(Strlen(np)));
+	    } else {
+		    xfree(env_val);
+		    env_val = Strsave(np);
+		    setDolp(env_val);
+	    }
 	    goto eatbrac;
 	}
 	udvar(name->s);
