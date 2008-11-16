@@ -956,8 +956,8 @@ static struct wordent
 	if (c == '\n') {
 	nl:
 	    tmp->len = 0;
-	    Strbuf_terminate(tmp);
 	    Strbuf_append1(tmp, (Char) c);
+	    Strbuf_terminate(tmp);
 	    histent->word = Strsave(tmp->s);
 	    return histent;
 	}
