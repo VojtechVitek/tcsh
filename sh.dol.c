@@ -819,8 +819,8 @@ setDolp(Char *cp)
 		dp = Strstr(dp, lhsub);
 		if (dp) {
 		    ptrdiff_t diff = dp - cp;
-		    np = xmalloc((Strlen(cp) + 1 - lhlen + rhlen) *
-				 sizeof(Char));
+		    size_t len = (Strlen(cp) + 1 - lhlen + rhlen);
+		    np = xmalloc(len * sizeof(Char));
 		    (void) Strncpy(np, cp, diff);
 		    (void) Strcpy(np + diff, rhsub);
 		    (void) Strcpy(np + diff + rhlen, dp + lhlen);
@@ -828,7 +828,10 @@ setDolp(Char *cp)
 		    dp = np + diff + 1;
 		    xfree(cp);
 		    cp = np;
+		    cp[--len] = '\0';
 		    didmod = 1;
+		    if (diff >= len)
+			break;
 		} else {
 		    /* should this do a seterror? */
 		    break;
