@@ -52,6 +52,7 @@ extern	void		  done		(int);
 #else
 extern	void		  xexit		(int);
 #endif
+extern	int		  grabpgrp	(int, pid_t);
 
 /*
  * sh.dir.c
