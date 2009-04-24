@@ -139,6 +139,7 @@ struct saved_state {
     Char	  HIST;
     int	  cantell;
     struct Bin	  B;
+    int		  justpr;
 };
 
 static	int		  srccat	(Char *, Char *);
@@ -1470,6 +1471,7 @@ st_save(struct saved_state *st, int unit, int hflg, Char **al, Char **av)
     st->alvec		= alvec;
     st->onelflg		= onelflg;
     st->enterhist	= enterhist;
+    st->justpr		= justpr;
     if (hflg)
 	st->HIST	= HIST;
     else
@@ -1568,6 +1570,7 @@ st_restore(void *xst)
 	HIST	= st->HIST;
     enterhist	= st->enterhist;
     cantell	= st->cantell;
+    justpr	= st->justpr;
 
     if (st->argv != NULL)
 	setq(STRargv, st->argv, &shvhed, VAR_READWRITE);
