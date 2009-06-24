@@ -888,8 +888,8 @@ search(int type, int level, Char *goal)
     cleanup_until(&word);
 }
 
-static struct wordent 
-*histgetword(struct wordent *histent) 
+static struct wordent *
+histgetword(struct wordent *histent) 
 {
     int found = 0, first;
     eChar c, d;
