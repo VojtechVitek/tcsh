@@ -1640,6 +1640,7 @@ goodbye(Char **v, struct command *c)
 	size_t omark;
 	sigset_t set;
 
+	sigemptyset(&set);
 	signal(SIGQUIT, SIG_IGN);
 	sigaddset(&set, SIGQUIT);
 	sigprocmask(SIG_UNBLOCK, &set, NULL);
