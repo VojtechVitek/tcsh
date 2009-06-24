@@ -9,6 +9,6 @@
 #define REV 6
 #define VERS 16
 #define PATCHLEVEL 1
-#define DATE "2009-06-21"
+#define DATE "2009-06-24"
 
 #endif /* _h_patchlevel */
