@@ -675,6 +675,8 @@ static Char *cmdstr;
 static size_t cmdmax;
 static size_t cmdlen;
 static Char *cmdp;
+#define CMD_INIT 1024
+#define CMD_INCR 64
 
 static void
 morecommand(size_t s)
@@ -683,7 +685,7 @@ morecommand(size_t s)
     ptrdiff_t d;
 
     cmdmax += s;
-    ncmdstr = xrealloc(cmdstr, cmdmax);
+    ncmdstr = xrealloc(cmdstr, cmdmax * sizeof(*cmdstr));
     d = ncmdstr - cmdstr;
     cmdstr = ncmdstr;
     cmdp += d;
@@ -696,7 +698,7 @@ Char *
 unparse(struct command *t)
 {
     if (cmdmax == 0)
-	morecommand(1024);
+	morecommand(CMD_INIT);
     cmdp = cmdstr;
     cmdlen = 0;
     padd(t);
@@ -725,7 +727,7 @@ palloc(pid_t pid, struct command *t)
     if (t->t_dflg & F_HUP)
 	pp->p_flags |= PHUP;
     if (cmdmax == 0)
-	morecommand(1024);
+	morecommand(CMD_INIT);
     cmdp = cmdstr;
     cmdlen = 0;
     padd(t);
@@ -869,7 +871,7 @@ pads(Char *cp)
 
     i = Strlen(cp);
 
-    len = cmdlen + i + 100;
+    len = cmdlen + i + CMD_INCR;
     if (len >= cmdmax)
 	morecommand(len);
     (void) Strcpy(cmdp, cp);
