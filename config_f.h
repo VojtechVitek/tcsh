@@ -144,9 +144,9 @@
  *		provided.
  */
 #if defined(__MACHTEN__) || defined(PURIFY) || defined(MALLOC_TRACE) || defined(_OSD_POSIX) || defined(__MVS__)
-// # define SYSMALLOC
+# define SYSMALLOC
 #else
-// # undef SYSMALLOC
+# undef SYSMALLOC
 #endif
 
 /*
