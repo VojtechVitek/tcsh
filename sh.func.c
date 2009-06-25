@@ -940,7 +940,7 @@ histgetword(struct wordent *histent)
 	    
 	    Strbuf_append1(tmp, (Char) c);
 	    
-	    if (!first && !d && c == '(') {
+	    if (!first && !d && c == '(' && !e) {
 		break;
 	    }
 	    first = 0;

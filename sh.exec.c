@@ -1066,7 +1066,7 @@ find_cmd(Char *cmd, int prt)
     int hashval, i, ex, rval = 0;
 
     if (prt && any(short2str(cmd), '/')) {
-	xprintf(CGETS(13, 7, "where: / in command makes no sense\n"));
+	xprintf("%s", CGETS(13, 7, "where: / in command makes no sense\n"));
 	return rval;
     }
 
@@ -1129,7 +1129,7 @@ find_cmd(Char *cmd, int prt)
 	ex = executable(*pv, sv, 0);
 #ifdef FASTHASH
 	if (!ex && (hashdebug & 2)) {
-	    xprintf(CGETS(13, 10, "hash miss: "));
+	    xprintf("%s", CGETS(13, 10, "hash miss: "));
 	    ex = 1;	/* Force printing */
 	}
 #endif /* FASTHASH */

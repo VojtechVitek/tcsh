@@ -1491,7 +1491,7 @@ reread:
 		if (adrof(STRignoreeof)) {
 			/* If so, tell the user to use exit or logout */
 		    if (loginsh) {
-				xprintf(CGETS(16, 2,
+				xprintf("%s", CGETS(16, 2,
 					"\nUse \"logout\" to logout.\n"));
 		   	} else {
 				xprintf(CGETS(16, 3,

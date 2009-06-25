@@ -52,7 +52,7 @@ one_mbtowc(wchar_t *pwc, const char *s, size_t n)
 
     len = rt_mbtowc(pwc, s, n);
     if (len == -1) {
-        mbtowc(NULL, NULL, 0);
+        reset_mbtowc(NULL, NULL, 0);
 	*pwc = (unsigned char)*s | INVALID_BYTE;
     }
     if (len <= 0)

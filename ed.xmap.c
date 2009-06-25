@@ -216,12 +216,13 @@ AddXkey(const CStr *Xkey, XmapVal *val, int ntype)
     cs.buf = Xkey->buf;
     cs.len = Xkey->len;
     if (Xkey->len == 0) {
-	xprintf(CGETS(9, 1, "AddXkey: Null extended-key not allowed.\n"));
+	xprintf("%s", CGETS(9, 1, "AddXkey: Null extended-key not allowed.\n"));
 	return;
     }
 
     if (ntype == XK_CMD && val->cmd == F_XKEY) {
-	xprintf(CGETS(9, 2, "AddXkey: sequence-lead-in command not allowed\n"));
+	xprintf("%s",
+	    CGETS(9, 2, "AddXkey: sequence-lead-in command not allowed\n"));
 	return;
     }
 
@@ -318,7 +319,8 @@ DeleteXkey(const CStr *Xkey)
 
     s = *Xkey;
     if (s.len == 0) {
-	xprintf(CGETS(9, 3, "DeleteXkey: Null extended-key not allowed.\n"));
+	xprintf("%s",
+	        CGETS(9, 3, "DeleteXkey: Null extended-key not allowed.\n"));
 	return (-1);
     }
 
@@ -669,7 +671,7 @@ parseescape(const Char **ptr)
 		    val = (val << 3) | (ch - '0');
 		}
 		if ((val & ~0xff) != 0) {
-		    xprintf(CGETS(9, 9,
+		    xprintf("%s", CGETS(9, 9,
 			    "Octal constant does not fit in a char.\n"));
 		    return 0;
 		}
