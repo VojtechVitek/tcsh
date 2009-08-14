@@ -2143,6 +2143,7 @@ mailchk(void)
 
 	    if (mailcount == 0)
 		continue;
+	    (void)closedir(mailbox);
 
 	    if (cnt == 1)
 		xprintf(CGETS(11, 3, "You have %d mail messages.\n"),
