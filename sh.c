@@ -319,7 +319,6 @@ main(int argc, char **argv)
 	setNS(STRloginsh);
     }
 
-    AsciiOnly = 1;
     NoNLSRebind = getenv("NOREBIND") != NULL;
 #ifdef NLS
 # ifdef SETLOCALEBUG
@@ -336,13 +335,19 @@ main(int argc, char **argv)
     fix_strcoll_bug();
 # endif /* STRCOLLBUG */
 
-    {
+    /*
+     * On solaris ISO8859-1 contains no printable characters in the upper half
+     * so we need to test only for MB_CUR_MAX == 1, otherwise for multi-byte
+     * locales we are always AsciiOnly == 0.
+     */
+    if (MB_CUR_MAX == 1) {
 	int     k;
 
-	for (k = 0200; k <= 0377 && !Isprint(CTL_ESC(k)); k++)
+	for (k = 0200; k <= 0377 && !isprint(CTL_ESC(k)); k++)
 	    continue;
-	AsciiOnly = MB_CUR_MAX == 1 && k > 0377;
-    }
+	AsciiOnly = k > 0377;
+    } else
+	AsciiOnly = 0;
 #else
     AsciiOnly = getenv("LANG") == NULL && getenv("LC_CTYPE") == NULL;
 #endif				/* NLS */
