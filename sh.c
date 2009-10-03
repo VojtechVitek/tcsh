@@ -1293,6 +1293,8 @@ main(int argc, char **argv)
      */
     process(setintr);
 
+    /* Take care of these (especially HUP) here instead of inside flush. */
+    handle_pending_signals();
     /*
      * Mop-up.
      */
@@ -2023,6 +2025,7 @@ process(int catch)
     cleanup_pop_mark(omark);
     resexit(osetexit);
     exitset--;
+    handle_pending_signals();
 }
 
 /*ARGSUSED*/
