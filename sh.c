@@ -160,6 +160,40 @@ static	void		  st_restore	(void *);
 
 	int		  main		(int, char **);
 
+#ifndef LOCALEDIR
+#define LOCALEDIR "/usr/share/locale"
+#endif
+
+static void
+add_localedir_to_nslpath(const char *path)
+{
+    static const char msgs[] = "/%L/LC_MESSAGES/%N.cat";
+    char *old = getenv("NLSPATH");
+    char *new;
+    size_t len = 0;
+
+    if (path == NULL)
+        return;
+
+    if (old != NULL)
+        len += strlen(old);
+
+    len += strlen(path) + sizeof(msgs);
+
+    new = xcalloc(len, 1);
+
+    if (old != NULL) {
+        (void)strncat(new, old, len);
+        (void)strncat(new, ":", len);
+    }
+
+    (void)strncat(new, path, len);
+    (void)strncat(new, msgs, len);
+
+    tsetenv(STRNLSPATH, str2short(new));
+    free(new);
+}
+
 int
 main(int argc, char **argv)
 {
@@ -191,6 +225,8 @@ main(int argc, char **argv)
     (void) setlocale(LC_CTYPE, ""); /* for iscntrl */
 # endif /* LC_CTYPE */
 #endif /* NLS */
+
+    add_localedir_to_nslpath(LOCALEDIR);
 
     nlsinit();
 
