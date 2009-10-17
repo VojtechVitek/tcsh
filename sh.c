@@ -226,6 +226,9 @@ main(int argc, char **argv)
 # endif /* LC_CTYPE */
 #endif /* NLS */
 
+    STR_environ = blk2short(environ);
+    environ = short2blk(STR_environ);	/* So that we can free it */
+
     add_localedir_to_nslpath(LOCALEDIR);
 
     nlsinit();
@@ -299,8 +302,6 @@ main(int argc, char **argv)
     STR_SHELLPATH = SAVE(_PATH_CSHELL);
 # endif
 #endif
-    STR_environ = blk2short(environ);
-    environ = short2blk(STR_environ);	/* So that we can free it */
     STR_WORD_CHARS = SAVE(WORD_CHARS);
 
     HIST = '!';
