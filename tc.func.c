@@ -1928,7 +1928,7 @@ getremotehost(int dest_fd)
 				(ptr = strstr(domain, s)) != NULL) {
 			        char *cbuf;
 
-				cbuf = strspl(name, ptr);
+				cbuf = strspl(name, ptr + strlen(s));
 				if (getaddrinfo(cbuf, NULL, &hints, &res) != 0)
 				    res = NULL;
 				xfree(cbuf);
