@@ -114,7 +114,7 @@ typedef int eChar;
 # define SAVE(a) (strsave(a))
 #endif
 
-#if !defined(__inline) && !defined(__GNUC__)
+#if !defined(__inline) && !defined(__GNUC__) && !defined(_MSC_VER)
 #define __inline
 #endif
 /* Elide unused argument warnings */
