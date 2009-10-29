@@ -114,10 +114,13 @@ typedef int eChar;
 # define SAVE(a) (strsave(a))
 #endif
 
+#if !defined(__inline) && !defined(__GNUC__)
+#define __inline
+#endif
 /* Elide unused argument warnings */
 #define USE(a)	(void) (a)
 #define TCSH_IGNORE(a)	ignore((intptr_t)a)
-static inline void ignore(intptr_t a)
+static __inline void ignore(intptr_t a)
 {
     USE(a);
 }
