@@ -664,31 +664,31 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 #endif /* !CLOSE_ON_EXEC */
 	didfds = 0;
 	wanttty = -1;
-	t->t_dspr->t_dflg |= t->t_dflg & F_NOINTERRUPT;
+	t->t_dspr->t_dflg |= t->t_dflg & (F_NOINTERRUPT | F_BACKQ);
 	execute(t->t_dspr, wanttty, NULL, NULL, do_glob);
 	exitstat();
 
     case NODE_PIPE:
 #ifdef BACKPIPE
 	t->t_dcdr->t_dflg |= F_PIPEIN | (t->t_dflg &
-			(F_PIPEOUT | F_AMPERSAND | F_NOFORK | F_NOINTERRUPT));
+	    (F_PIPEOUT | F_AMPERSAND | F_NOFORK | F_NOINTERRUPT | F_BACKQ));
 	execute(t->t_dcdr, wanttty, pv, pipeout, do_glob);
-	t->t_dcar->t_dflg |= F_PIPEOUT |
-	    (t->t_dflg & (F_PIPEIN | F_AMPERSAND | F_STDERR | F_NOINTERRUPT));
+	t->t_dcar->t_dflg |= F_PIPEOUT | (t->t_dflg &
+	    (F_PIPEIN | F_AMPERSAND | F_STDERR | F_NOINTERRUPT | F_BACKQ));
 	execute(t->t_dcar, wanttty, pipein, pv, do_glob);
 #else /* !BACKPIPE */
-	t->t_dcar->t_dflg |= F_PIPEOUT |
-	    (t->t_dflg & (F_PIPEIN | F_AMPERSAND | F_STDERR | F_NOINTERRUPT));
+	t->t_dcar->t_dflg |= F_PIPEOUT | (t->t_dflg &
+	    (F_PIPEIN | F_AMPERSAND | F_STDERR | F_NOINTERRUPT | F_BACKQ));
 	execute(t->t_dcar, wanttty, pipein, pv, do_glob);
 	t->t_dcdr->t_dflg |= F_PIPEIN | (t->t_dflg &
-			(F_PIPEOUT | F_AMPERSAND | F_NOFORK | F_NOINTERRUPT));
+	    (F_PIPEOUT | F_AMPERSAND | F_NOFORK | F_NOINTERRUPT | F_BACKQ));
 	execute(t->t_dcdr, wanttty, pv, pipeout, do_glob);
 #endif /* BACKPIPE */
 	break;
 
     case NODE_LIST:
 	if (t->t_dcar) {
-	    t->t_dcar->t_dflg |= t->t_dflg & F_NOINTERRUPT;
+	    t->t_dcar->t_dflg |= t->t_dflg & (F_NOINTERRUPT | F_BACKQ);
 	    execute(t->t_dcar, wanttty, NULL, NULL, do_glob);
 	    /*
 	     * In strange case of A&B make a new job after A
@@ -699,7 +699,7 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	}
 	if (t->t_dcdr) {
 	    t->t_dcdr->t_dflg |= t->t_dflg &
-		(F_NOFORK | F_NOINTERRUPT);
+		(F_NOFORK | F_NOINTERRUPT | F_BACKQ);
 	    execute(t->t_dcdr, wanttty, NULL, NULL, do_glob);
 	}
 	break;
@@ -707,7 +707,7 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
     case NODE_OR:
     case NODE_AND:
 	if (t->t_dcar) {
-	    t->t_dcar->t_dflg |= t->t_dflg & F_NOINTERRUPT;
+	    t->t_dcar->t_dflg |= t->t_dflg & (F_NOINTERRUPT | F_BACKQ);
 	    execute(t->t_dcar, wanttty, NULL, NULL, do_glob);
 	    if ((getn(varval(STRstatus)) == 0) !=
 		(t->t_dtyp == NODE_AND)) {
@@ -716,7 +716,7 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	}
 	if (t->t_dcdr) {
 	    t->t_dcdr->t_dflg |= t->t_dflg &
-		(F_NOFORK | F_NOINTERRUPT);
+		(F_NOFORK | F_NOINTERRUPT | F_BACKQ);
 	    execute(t->t_dcdr, wanttty, NULL, NULL, do_glob);
 	}
 	break;
