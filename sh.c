@@ -164,8 +164,9 @@ static	void		  st_restore	(void *);
 #define LOCALEDIR "/usr/share/locale"
 #endif
 
+#ifdef NLS_CATALOGS
 static void
-add_localedir_to_nslpath(const char *path)
+add_localedir_to_nlspath(const char *path)
 {
     static const char msgs[] = "/%L/LC_MESSAGES/%N.cat";
     char *old = getenv("NLSPATH");
@@ -193,6 +194,7 @@ add_localedir_to_nslpath(const char *path)
     tsetenv(STRNLSPATH, str2short(new));
     free(new);
 }
+#endif
 
 int
 main(int argc, char **argv)
@@ -229,7 +231,9 @@ main(int argc, char **argv)
     STR_environ = blk2short(environ);
     environ = short2blk(STR_environ);	/* So that we can free it */
 
-    add_localedir_to_nslpath(LOCALEDIR);
+#ifdef NLS_CATALOGS
+    add_localedir_to_nlspath(LOCALEDIR);
+#endif
 
     nlsinit();
 
