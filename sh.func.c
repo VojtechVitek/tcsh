@@ -1967,7 +1967,7 @@ struct limits limits[] =
 # endif /* RLIMIT_RTPRIO */ 
 
 # ifdef RLIMIT_RTTIME 
-    { RLIMIT_RTTIME,	"maxrttime",	1,	""		}, 
+    { RLIMIT_RTTIME,	"maxrttime",	1,	"usec"		}, 
 # endif /* RLIMIT_RTTIME */ 
 
     { -1, 		NULL, 		0, 	NULL		}
