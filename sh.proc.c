@@ -562,7 +562,7 @@ pjwait(struct process *pp)
     if ((reason != 0) && (adrof(STRprintexitvalue)) && 
 	(pp->p_flags & PBACKQ) == 0)
 	xprintf(CGETS(17, 2, "Exit %d\n"), reason);
-    reason_str = putn((long long)reason);
+    reason_str = putn((tcsh_number_t)reason);
     cleanup_push(reason_str, xfree);
     setv(STRstatus, reason_str, VAR_READWRITE);
     cleanup_ignore(reason_str);

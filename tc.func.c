@@ -1035,7 +1035,7 @@ aliasrun(int cnt, Char *s1, Char *s2)
     cleanup_until(&w);
     pendjob();
     /* Restore status */
-    setv(STRstatus, putn((long long)status), VAR_READWRITE);
+    setv(STRstatus, putn((tcsh_number_t)status), VAR_READWRITE);
 }
 
 void

@@ -1258,7 +1258,7 @@ gethent(Char sc)
 	    lastev = hp->Hnum;
 	    return (&hp->Hlex);
 	}
-    np = putn((long long)event);
+    np = putn((tcsh_number_t)event);
     seterror(ERR_NOEVENT, short2str(np));
     xfree(np);
     return (0);
