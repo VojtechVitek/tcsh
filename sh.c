@@ -743,7 +743,7 @@ main(int argc, char **argv)
 	parseLS_COLORS(str2short(tcp));
 #endif /* COLOR_LS_F */
 
-    doldol = putn((int) getpid());	/* For $$ */
+    doldol = putn((long long)getpid());	/* For $$ */
 #ifdef WINNT_NATIVE
     {
 	char *tmp;

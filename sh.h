@@ -119,8 +119,8 @@ typedef int eChar;
 #endif
 /* Elide unused argument warnings */
 #define USE(a)	(void) (a)
-#define TCSH_IGNORE(a)	ignore((intptr_t)a)
-static __inline void ignore(intptr_t a)
+#define TCSH_IGNORE(a)	tcsh_ignore((intptr_t)a)
+static __inline void tcsh_ignore(intptr_t a)
 {
     USE(a);
 }
