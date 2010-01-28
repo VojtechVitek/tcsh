@@ -93,7 +93,11 @@ ones.  Please send in your fixes and additions! */
 #      if (OSMinorVersion < 6)
 #       define ConfigH sol24
 #      else
-#       define ConfigH sol26
+#       if (OSMinorVersion < 9)
+#        define ConfigH sol26
+#       else
+#        define ConfigH sol29
+#       endif
 #      endif
 #     endif
 #    endif
