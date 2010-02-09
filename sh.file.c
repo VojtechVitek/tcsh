@@ -594,7 +594,7 @@ again:				/* search for matches */
 static int
 compare(const void *p, const void *q)
 {
-#ifdef WIDE_STRINGS
+#if defined (WIDE_STRINGS) && !defined (UTF16_STRING)
     errno = 0;
 
     return (wcscoll(*(Char *const *) p, *(Char *const *) q));
