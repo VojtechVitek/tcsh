@@ -233,8 +233,8 @@ unsigned short _cmap[256] = {
 
 /*	252 udiaeresis	253 yacute	254 thorn	255 ydiaeresis	*/
 	_LET|_DOW,	_LET|_DOW,	_LET|_DOW,	_LET|_DOW,
-};
 #endif /* SHORT_STRINGS */
+};
 
 #if defined(KANJI) && defined(SHORT_STRINGS) && defined(DSPMBYTE)
 /* original table */
