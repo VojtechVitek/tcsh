@@ -42,7 +42,7 @@ NLSWidth(Char c)
     int l;
     if (c & INVALID_BYTE)
 	return 1;
-    l = wcwidth(c);
+    l = wcwidth((wchar_t) c);
     return l >= 0 ? l : 0;
 # else
     return iswprint(c) != 0;
@@ -58,7 +58,7 @@ NLSStringWidth(const Char *s)
     while (*s) {
 	c = *s++;
 #ifdef HAVE_WCWIDTH
-	if ((l = wcwidth(c)) < 0)
+	if ((l = wcwidth((wchar_t) c)) < 0)
 		l = 2;
 #else
 	l = iswprint(c) != 0;
