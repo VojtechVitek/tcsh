@@ -89,7 +89,11 @@ typedef unsigned long intptr_t;
 #ifdef SHORT_STRINGS
 # ifdef WIDE_STRINGS
 #include <wchar.h>
+#  ifdef UTF16_STRINGS
+typedef wint_t Char;
+#  else
 typedef wchar_t Char;
+#endif
 typedef unsigned long uChar;
 typedef wint_t eChar; /* Can contain any Char value or CHAR_ERR */
 #define CHAR_ERR WEOF /* Pretty please, use bit 31... */
@@ -1099,7 +1103,7 @@ EXTERN Char    PRCHROOT;	/* Prompt symbol for root */
 #define short2blk(a) 		saveblk(a)
 #define short2str(a) 		caching_strip(a)
 #else
-#ifdef WIDE_STRINGS
+#ifndef UTF16_STRINGS
 #define Strchr(a, b)		wcschr(a, b)
 #define Strrchr(a, b)		wcsrchr(a, b)
 #define Strcat(a, b)  		wcscat(a, b)
