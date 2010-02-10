@@ -83,17 +83,11 @@ rt_mbtowc(Char *pwc, const char *s, size_t n)
 {
     int ret;
     char back[MB_LEN_MAX];
-#ifdef UTF16_STRINGS
     wchar_t tmp;
 
     ret = mbtowc(&tmp, s, n);
-#else
-    ret = mbtowc(pwc, s, n);
-#endif
     if (ret > 0) {
-#ifdef UTF16_STRINGS
 	*pwc = tmp;
-#endif
       	if (wctomb(back, *pwc) != ret || memcmp(s, back, ret) != 0)
 	    ret = -1;
     }
