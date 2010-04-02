@@ -832,11 +832,11 @@ c_eword(Char *p, Char *high, int n)
 	while ((p < high) && Isspace(*p)) 
 	    p++;
 
-	if (Isalnum(*p))
-	    while ((p < high) && Isalnum(*p)) 
+	if (isword(*p))
+	    while ((p < high) && isword(*p)) 
 		p++;
 	else
-	    while ((p < high) && !(Isspace(*p) || Isalnum(*p)))
+	    while ((p < high) && !(Isspace(*p) || isword(*p)))
 		p++;
     }
 
