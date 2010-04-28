@@ -214,7 +214,7 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 		break;
 	    case '#':
 		Strbuf_append1(&buf,
-			       attributes | ((uid == 0) ? PRCHROOT : PRCH));
+			       attributes | ((uid == 0 || euid == 0) ? PRCHROOT : PRCH));
 		break;
 	    case '!':
 	    case 'h':
@@ -457,6 +457,11 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 			while (*z)
 			    Strbuf_append1(&buf, attributes | *z++);
 		}
+		break;
+	    case 'N':
+		if ((z = varval(STReuser)) != STRNULL)
+		    while (*z)
+			Strbuf_append1(&buf, attributes | *z++);
 		break;
 	    case 'l':
 #ifndef HAVENOUTMP

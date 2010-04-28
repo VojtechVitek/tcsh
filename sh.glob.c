@@ -431,6 +431,12 @@ libglob(Char **vl)
     char   *ptr;
     int     nonomatch = adrof(STRnonomatch) != 0, magic = 0, match = 0;
 
+    if (adrof(STRglobdot))
+       gflgs |= GLOB_DOT;
+
+    if (adrof(STRglobstar))
+       gflgs |= GLOB_STAR;
+
     if (!vl || !vl[0])
 	return(vl);
 
