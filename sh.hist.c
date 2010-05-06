@@ -422,8 +422,18 @@ rechist(Char *fname, int ref)
     oldidfds = didfds;
     didfds = 0;
     if ((shist = adrof(STRsavehist)) != NULL && shist->vec != NULL)
-	if (shist->vec[1] && eq(shist->vec[1], STRmerge))
+	if (shist->vec[1] && eq(shist->vec[1], STRmerge)) {
+	    /*
+	     * Unset verbose while we read the history file. From:
+	     * jbastian@redhat.com (Jeffrey Bastian)
+	     */
+	    Char *verb = varval(STRverbose);
+	    if (verb != STRNULL)
+		unsetv(STRverbose);
 	    loadhist(fname, 1);
+	    if (verb != STRNULL)
+		setv(STRverbose, verb, VAR_READWRITE);
+	}
     fp = xcreat(short2str(fname), 0600);
     if (fp == -1) {
 	didfds = oldidfds;
