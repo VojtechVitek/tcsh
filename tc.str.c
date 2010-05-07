@@ -121,7 +121,10 @@ rt_mbtowc(Char *pwc, const char *s, size_t n)
 #endif
       	if (wctomb(back, *pwc) != ret || memcmp(s, back, ret) != 0)
 	    ret = -1;
-    }
+
+    } else if (ret == -2)
+	ret = -1;
+
     return ret;
 }
 #endif
