@@ -205,9 +205,11 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	/* Don't quote '/' to make the recognize stuff work easily */
 	/* Don't quote '$' in double quotes */
 
-	if (cmap(*cp, _ESC) && cp < str_end - 1 && cp[1] == HIST)
+	if (cmap(*cp, _ESC) && cp < str_end - 1 && cp[1] == HIST &&
+	    HIST != '\0')
 	    Strbuf_append1(&qline, *++cp | QUOTE);
-	else if (qu && (tricky(*cp) || *cp == '~') && !(qu == '\"' && tricky_dq(*cp)))
+	else if (qu && (tricky(*cp) || *cp == '~') &&
+	    !(qu == '\"' && tricky_dq(*cp)))
 	    Strbuf_append1(&qline, *cp | QUOTE);
 	else
 	    Strbuf_append1(&qline, *cp);
@@ -640,8 +642,9 @@ insert_meta(const Char *cp, const Char *cpend, const Char *word,
 	    Strbuf_append1(&buffer, w);
 	    Strbuf_append1(&buffer, qu);
 	} else if (wq &&
-		   ((!qu && (tricky(w) || (w == HISTSUB && buffer.len == 0))) ||
-		    (!cmap(qu, _ESC) && w == HIST))) {
+		   ((!qu && (tricky(w) || (w == HISTSUB && HISTSUB != '\0'
+		       && buffer.len == 0))) ||
+		    (!cmap(qu, _ESC) && w == HIST && HIST != '\0'))) {
 	    in_sync = 0;
 	    Strbuf_append1(&buffer, '\\');
 	    Strbuf_append1(&buffer, w);

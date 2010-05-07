@@ -76,13 +76,19 @@ update_vars(Char *vp)
 	Char *pn = varval(vp);
 
 	HIST = *pn++;
-	HISTSUB = *pn;
+	if (HIST)
+	    HISTSUB = *pn;
+	else
+	    HISTSUB = HIST;
     }
     else if (eq(vp, STRpromptchars)) {
 	Char *pn = varval(vp);
 
 	PRCH = *pn++;
-	PRCHROOT = *pn;
+	if (PRCH)
+	    PRCHROOT = *pn;
+	else
+	    PRCHROOT = PRCH;
     }
     else if (eq(vp, STRhistlit)) {
 	HistLit = 1;

@@ -118,7 +118,7 @@ expand_lex(const struct wordent *sp0, int from, int to)
 		 * elsewhere.
 		 */
 		if ((*s & QUOTE)
-		    && (((*s & TRIM) == HIST) ||
+		    && (((*s & TRIM) == HIST && HIST != '\0') ||
 			(((*s & TRIM) == '\'') && (prev_c != '\\')) ||
 			(((*s & TRIM) == '\"') && (prev_c != '\\')) ||
 			(((*s & TRIM) == '\\') && (prev_c != '\\')))) {
