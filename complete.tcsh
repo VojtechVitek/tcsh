@@ -636,7 +636,7 @@ if ($?_complete) then
     complete nmap	'n@-e@`ifconfig -l`@' 'p/*/$hostnames/'
     complete perldoc 	'n@*@`\ls -1 /usr/libdata/perl/5.*/pod | sed s%\\.pod.\*\$%%`@'
     complete postfix    'n/*/(start stop reload abort flush check)/'
-    complete postmap	'n/1/(hash: regexp:)' 'c/hash:/f/' 'c/regexp:/f/'
+    complete postmap	'n/1/(hash: regexp:)/' 'c/hash:/f/' 'c/regexp:/f/'
     complete rcsdiff	'p@1@`\ls -1a RCS | sed -e "s/\(.*\),v/\1/"`@'
     complete X		'c/-/(I a ac allowMouseOpenFail allowNonLocalModInDev \
 			allowNonLocalXvidtune ar1 ar2 audit auth bestRefresh \
