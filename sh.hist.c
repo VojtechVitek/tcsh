@@ -375,7 +375,7 @@ void
 rechist(Char *fname, int ref)
 {
     Char    *snum;
-    int     fp, ftmp, oldidfds;
+    int     fp, ftmp, oldidfds, oHistLit;
     struct varent *shist;
     static Char   *dumphist[] = {STRhistory, STRmhT, 0, 0};
 
@@ -443,7 +443,10 @@ rechist(Char *fname, int ref)
     ftmp = SHOUT;
     SHOUT = fp;
     dumphist[2] = snum;
+    oHistLit = HistLit;
+    HistLit = 1;
     dohist(dumphist, NULL);
+    HistLit = oHistLit;
     xclose(fp);
     SHOUT = ftmp;
     didfds = oldidfds;
