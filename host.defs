@@ -434,6 +434,21 @@ machtype: defined(M_i386)				: "i386"
 enddef	:
 
 
+newdef	: defined(__gnu_hurd__)
+comment : GNU/HURD
+vendor	: defined(M_intel)				: "intel"
+hosttype: defined(M_i686)				: "i686"
+hosttype: defined(M_i586)				: "i586"
+hosttype: defined(M_i486)				: "i486"
+hosttype: defined(M_i386)				: "i386"
+ostype	:						: "gnu"
+machtype: defined(M_i686)				: "i686-pc-gnu"
+machtype: defined(M_i586)				: "i586-pc-gnu"
+machtype: defined(M_i486)				: "i486-pc-gnu"
+machtype: defined(M_i386)				: "i386-pc-gnu"
+enddef	:
+
+
 newdef	: defined(linux) || defined(__GNU__) || defined(__GLIBC__)
 comment	: Linus Torvalds's linux
 vendor	: defined(M_intel)				: "intel"
