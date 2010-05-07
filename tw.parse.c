@@ -1070,14 +1070,16 @@ tw_collect_items(COMMAND command, int looking, struct Strbuf *exp_dir,
 
 	    if ((vp = adrof(STRcomplete)) != NULL && vp->vec != NULL)
 		for (cp = vp->vec; *cp; cp++) {
-		    if (Strcmp(*cp, STRigncase) == 0)
+		    if (Strcmp(*cp, STREnhance) == 0)
+			enhanced = 2;
+		    else if (Strcmp(*cp, STRigncase) == 0)
 			igncase = 1;
-		    if (Strcmp(*cp, STRenhance) == 0)
+		    else if (Strcmp(*cp, STRenhance) == 0)
 			enhanced = 1;
 		}
 
 	    if (enhanced || igncase) {
-	        if (!is_prefixmatch(target, item.s, igncase))
+	        if (!is_prefixmatch(target, item.s, enhanced))
 		    break;
      	    } else {
 	        if (!is_prefix(target, item.s))
