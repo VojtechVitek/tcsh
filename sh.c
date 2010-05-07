@@ -964,6 +964,8 @@ main(int argc, char **argv)
 
 	    case ' ':
 	    case '\t':
+	    case '\r':
+	    case '\n':
 		/* 
 		 * for O/S's that don't do the argument parsing right in 
 		 * "#!/foo -f " scripts
