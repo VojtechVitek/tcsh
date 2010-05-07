@@ -51,6 +51,7 @@ struct process {
     unsigned long p_flags;	/* various job status flags */
     unsigned char p_reason;	/* reason for entering this state */
     int     p_index;		/* shorthand job index */
+    pid_t   p_parentid;		/* parent pid */
     pid_t   p_procid;
     pid_t   p_jobid;		/* pid of job leader */
     /* if a job is stopped/background p_jobid gives its pgrp */

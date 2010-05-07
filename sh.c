@@ -2316,12 +2316,13 @@ xexit(int i)
 
     {
 	struct process *pp, *np;
-
+	pid_t mypid = getpid();
 	/* Kill all processes marked for hup'ing */
 	for (pp = proclist.p_next; pp; pp = pp->p_next) {
 	    np = pp;
-	    do 
-		if ((np->p_flags & PHUP) && np->p_jobid != shpgrp) {
+	    do
+		if ((np->p_flags & PHUP) && np->p_jobid != shpgrp &&
+		    np->p_parentid == mypid) {
 		    if (killpg(np->p_jobid, SIGHUP) != -1) {
 			/* In case the job was suspended... */
 #ifdef SIGCONT

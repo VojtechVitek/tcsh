@@ -719,6 +719,7 @@ palloc(pid_t pid, struct command *t)
 
     pp = xcalloc(1, sizeof(struct process));
     pp->p_procid = pid;
+    pp->p_parentid = shpgrp;
     pp->p_flags = ((t->t_dflg & F_AMPERSAND) ? 0 : PFOREGND) | PRUNNING;
     if (t->t_dflg & F_TIME)
 	pp->p_flags |= PPTIME;
