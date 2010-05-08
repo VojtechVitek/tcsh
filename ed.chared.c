@@ -730,8 +730,6 @@ c_excl(Char *p)
 	    ++nr_exp;
 	}
     }
-
-    return nr_exp;
 }
 
 

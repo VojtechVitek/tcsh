@@ -963,9 +963,6 @@ histgetword(struct wordent *histent)
 	}
     }
     
-    unreadc(c);
-    return histent;
-
 past:
     switch (Stype) {
 
