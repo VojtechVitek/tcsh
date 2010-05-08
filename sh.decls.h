@@ -270,7 +270,9 @@ extern	void		  setzero	(void *, size_t);
 extern	Char		 *strip		(Char *);
 extern	Char		 *quote		(Char *);
 extern	const Char	 *quote_meta	(struct Strbuf *, const Char *);
+#ifndef SHORT_STRINGS
 extern	char		 *strnsave	(const char *, size_t);
+#endif
 extern	char		 *strsave	(const char *);
 extern	void		  udvar		(Char *);
 #ifndef POSIX

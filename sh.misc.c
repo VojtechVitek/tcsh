@@ -60,6 +60,7 @@ setzero(void *p, size_t size)
     memset(p, 0, size);
 }
 
+#ifndef SHORT_STRINGS
 char *
 strnsave(const char *s, size_t len)
 {
@@ -70,6 +71,7 @@ strnsave(const char *s, size_t len)
     r[len] = '\0';
     return r;
 }
+#endif
 
 char   *
 strsave(const char *s)
