@@ -47,7 +47,7 @@ RCSID("$tcsh$")
  * some QUOTEing may have occurred already, so we dont "trim()" here.
  */
 
-static Char Dpeekc;		/* Peek for DgetC */
+static eChar Dpeekc;		/* Peek for DgetC */
 static eChar Dpeekrd;		/* Peek for Dreadc */
 static Char *Dcp, *const *Dvp;	/* Input vector for Dreadc */
 
@@ -317,7 +317,7 @@ Dword(struct blk_buf *bb)
 static eChar
 DgetC(int flag)
 {
-    Char c;
+    eChar c;
 
 top:
     if ((c = Dpeekc) != 0) {
@@ -887,7 +887,7 @@ unDredc(eChar c)
 static eChar
 Dredc(void)
 {
-    Char c;
+    eChar c;
 
     if ((c = Dpeekrd) != 0) {
 	Dpeekrd = 0;
