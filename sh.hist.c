@@ -846,6 +846,8 @@ findHistHashTable(struct wordent *lp, unsigned hashval)
     unsigned deleted = 0;		/* number of deleted entries skipped */
     unsigned hi = hashval;
     struct Hist *hp;
+    if (!histHashTable)
+	return NULL;
     while ((hi = hash2tableIndex(hi, histHashTableLength)),
            (hp = histHashTable[hi]) != emptyHTE) {
         if (hp == deletedHTE)
