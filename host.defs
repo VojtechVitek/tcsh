@@ -289,6 +289,7 @@ ostype	: defined(SUNOS4)				: "sunos4"
 ostype	: defined(SOLARIS2)				: "solaris"
 machtype: defined(mc68010) || defined(__mc68010__)	: "m68k"
 machtype: defined(mc68020) || defined(__mc68020__)	: "m68k"
+machtype: defined(__sparcv9)				: "sparcv9"
 machtype: defined(sparc) || defined(__sparc__)		: "sparc"
 machtype: defined(M_i386)				: "i386"
 enddef	:
