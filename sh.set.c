@@ -867,10 +867,11 @@ unsetv1(struct varent *p)
     balance(pp, f, 1);
 }
 
+/* Set variable name to NULL. */
 void
-setNS(Char *cp)
+setNS(const Char *varName)
 {
-    setcopy(cp, STRNULL, VAR_READWRITE);
+    setcopy(varName, STRNULL, VAR_READWRITE);
 }
 
 /*ARGSUSED*/
