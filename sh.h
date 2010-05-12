@@ -1047,11 +1047,12 @@ extern struct limits {
  */
 EXTERN struct Hist {
     struct wordent Hlex;
-    int     Hnum;
+    int     Hnum;		 /* eventno when inserted into history list  */
     int     Href;
     time_t  Htime;
     Char   *histline;
-    struct Hist *Hnext;
+    struct Hist *Hnext, *Hprev;         /* doubly linked list */
+    unsigned Hhash;                     /* hash value of command line */
 }       Histlist IZERO_STRUCT;
 
 EXTERN struct wordent paraml;	/* Current lexical word list */
