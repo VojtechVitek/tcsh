@@ -290,7 +290,7 @@ main(int argc, char **argv)
 	t = t ? t + 1 : argv[0];
 	if (*t == '-') t++;
 	progname = strsave((t && *t) ? t : tcshstr);    /* never want a null */
-	tcsh = strcmp(progname, tcshstr) == 0;
+	tcsh = strncmp(progname, tcshstr, sizeof(tcshstr) - 1) == 0;
     }
 
     /*
@@ -310,8 +310,8 @@ main(int argc, char **argv)
 
     HIST = '!';
     HISTSUB = '^';
-    PRCH = '>';
-    PRCHROOT = '#';
+    PRCH = tcsh ? '>' : '%';	/* to replace %# in $prompt for normal users */
+    PRCHROOT = '#';		/* likewise for root */
     word_chars = STR_WORD_CHARS;
     bslash_quote = 0;		/* PWP: do tcsh-style backslash quoting? */
 
@@ -1074,10 +1074,7 @@ main(int argc, char **argv)
      * Set up the prompt.
      */
     if (prompt) {
-	if (tcsh)
-	    setcopy(STRprompt, STRdeftcshprompt, VAR_READWRITE);
-	else
-	    setcopy(STRprompt, STRdefcshprompt, VAR_READWRITE);
+	setcopy(STRprompt, STRdefprompt, VAR_READWRITE);
 	/* that's a meta-questionmark */
 	setcopy(STRprompt2, STRmquestion, VAR_READWRITE);
 	setcopy(STRprompt3, STRKCORRECT, VAR_READWRITE);

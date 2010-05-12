@@ -757,7 +757,7 @@ unset(Char **v, struct command *c)
     if (adrof(STRignoreeof) == 0)
 	numeof = 0;
     if (adrof(STRpromptchars) == 0) {
-	PRCH = '>';
+	PRCH = tcsh ? '>' : '%';
 	PRCHROOT = '#';
     }
     if (adrof(STRhistlit) == 0)
