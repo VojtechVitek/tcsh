@@ -928,7 +928,7 @@ dosub(Char sc, struct wordent *en, int global)
      * ANSI mode HP/UX compiler chokes on
      * return &enthist(HIST_PURGE, &lexi, 0)->Hlex;
      */
-    hst = enthist(HIST_PURGE, &lexi, 0, 0);
+    hst = enthist(HIST_PURGE, &lexi, 0, 0, -1);
     return &(hst->Hlex);
 }
 
