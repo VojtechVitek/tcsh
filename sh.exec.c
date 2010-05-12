@@ -77,7 +77,7 @@ static Char *expath;		/* Path for exerr */
 /*
  * xhash is an array of hash buckets which are used to hash execs.  If
  * it is allocated (havhash true), then to tell if ``name'' is
- * (possibly) presend in the i'th component of the variable path, look
+ * (possibly) present in the i'th component of the variable path, look
  * at the [hashname(name)] bucket of size [hashwidth] bytes, in the [i
  * mod size*8]'th bit.  The cache size is defaults to a length of 1024
  * buckets, each 1 byte wide.  This implementation guarantees that
