@@ -549,7 +549,7 @@ getn(const Char *cp)
 	    stderror(ERR_NAME | ERR_BADNUM);
     }
 
-    if (cp[0] == '0' && cp[1])
+    if (cp[0] == '0' && cp[1] && is_set(STRparseoctal))
 	base = 8;
     else
 	base = 10;

@@ -512,3 +512,5 @@ Char STRrepeat[]	= { 'r', 'e', 'p', 'e', 'a', 't', '\0' };
 Char STReof[]		= { '^', 'D', '\b', '\b', '\0' };
 Char STRonlyhistory[]	= { 'o', 'n', 'l', 'y', 'h', 'i', 's', 't', 'o', 'r',
 			    'y', '\0' };
+Char STRparseoctal[]	= { 'p', 'a', 'r', 's', 'e', 'o', 'c', 't', 'a', 'l',
+			    '\0' };
