@@ -212,11 +212,12 @@ extern  int	  	  t_pmatch	(const Char *, const Char *,
  * sh.hist.c
  */
 extern	void	 	  dohist	(Char **, struct command *);
-extern  struct Hist 	 *enthist	(int, struct wordent *, int, int);
+extern  struct Hist 	 *enthist	(int, struct wordent *, int, int, int);
 extern	void	 	  savehist	(struct wordent *, int);
 extern	char		 *fmthist	(int, ptr_t);
 extern	void		  rechist	(Char *, int);
 extern	void		  loadhist	(Char *, int);
+extern	void		  displayHistStats(const char *);
 
 /*
  * sh.init.c
@@ -382,7 +383,7 @@ extern	void		  setq		(const Char *, Char **,
 extern	void		  unset		(Char **, struct command *);
 extern	void		  unset1	(Char *[], struct varent *);
 extern	void		  unsetv	(Char *);
-extern	void		  setNS		(Char *);
+extern	void		  setNS		(const Char *);
 extern	void		  shift		(Char **, struct command *);
 extern	void		  plist		(struct varent *, int);
 extern	Char		 *unparse	(struct command *);
