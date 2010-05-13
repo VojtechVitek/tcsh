@@ -507,12 +507,12 @@ void sigchild_thread(struct thread_args *args) {
 	GetExitCodeProcess(args->hproc,&exitcode);
 	CloseHandle(args->hproc);
 	sig_child_callback(args->pid,exitcode);
-	ffree(args);
     dprintf("exiting sigchild thread for pid %d\n",args->pid);
+	heap_free(args);
 }
 void start_sigchild_thread(HANDLE hproc, DWORD pid) {
 
-	struct thread_args *args=fmalloc(sizeof(struct thread_args));
+	struct thread_args *args=heap_alloc(sizeof(struct thread_args));
 	DWORD tid;
 	HANDLE hthr;
 	args->hproc = hproc;
