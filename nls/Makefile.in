@@ -13,6 +13,8 @@ all:	$(CATALOGS)
 
 install:	$(INSTALLED)
 
+catalogs: all
+
 @localedir@/%/LC_MESSAGES/tcsh.cat:	%.cat
 	mkdir -p $(@D)
 	$(INSTALL) $< $@

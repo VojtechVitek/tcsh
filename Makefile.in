@@ -688,7 +688,7 @@ shar:
 	rm -rf tcsh-${VERSION}
 
 catalogs:
-	@(cd nls; make catalogs)
+	@(cd nls; ${MAKE} catalogs)
 
 tcsh-${VERSION}.tar.Z:
 	rm -rf tcsh-${VERSION} 
