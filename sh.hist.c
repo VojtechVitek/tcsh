@@ -375,9 +375,10 @@ static unsigned
 hashhist(struct wordent *h0)
 {
     struct hashValue s;
-    initializeHash(&s);
     struct wordent *firstWord = h0->next;
     struct wordent *h = firstWord;
+
+    initializeHash(&s);
     for (; h != h0; h = h->next) {
         if (h->word[0] == '\n')
             break;                      /* don't hash newline */
