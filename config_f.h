@@ -50,7 +50,7 @@
  * WIDE_STRINGS	Represent strings using wide characters
  *		Allows proper function in multibyte encodings like UTF-8
  */
-#if defined (SHORT_STRINGS) && defined (NLS) && defined (HAVE_MBRTOWC) && !defined (WINNT_NATIVE) && !defined(_OSD_POSIX)
+#if defined (SHORT_STRINGS) && defined (NLS) && !defined (WINNT_NATIVE) && !defined(_OSD_POSIX)
 # define WIDE_STRINGS
 # if SIZEOF_WCHAR_T < 4
 #  define UTF16_STRINGS
