@@ -4,6 +4,7 @@ LOCALES=	C et finnish french german greek italian ja pl russian \
 		spanish ukrainian
 GENCAT=		gencat
 INSTALL=	ginstall
+RM?=		rm
 
 prefix=@prefix@
 datarootdir=@datarootdir@
