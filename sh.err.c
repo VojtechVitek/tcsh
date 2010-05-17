@@ -187,7 +187,8 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_BADJOB	132
 #define ERR_INVALID	133
 #define ERR_BADCOLORVAR	134
-#define NO_ERRORS	135
+#define ERR_EOF		135
+#define NO_ERRORS	136
 
 static const char *elst[NO_ERRORS] INIT_ZERO_STRUCT;
 
@@ -364,6 +365,7 @@ errinit(void)
     elst[ERR_READONLY] = CSAVS(1, 135, "$%S is read-only");
     elst[ERR_BADJOB] = CSAVS(1, 136, "No such job (badjob)");
     elst[ERR_BADCOLORVAR] = CSAVS(1, 137, "Unknown colorls variable `%c%c'");
+    elst[ERR_EOF] = CSAVS(1, 138, "Unexpected end of file");
 }
 
 /* Cleanup data. */

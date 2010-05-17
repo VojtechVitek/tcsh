@@ -781,6 +781,8 @@ backeval(struct blk_buf *bb, struct Strbuf *word, Char *cp, int literal)
 		stderror(ERR_OLD);
 	    alias(&paraml);
 	    t = syntax(paraml.next, &paraml, 0);
+	    if (t == NULL)
+		return;
 	    cleanup_push(t, syntax_cleanup);
 	    /* The F_BACKQ flag must set so the job output is correct if
 	     * printexitvalue is set.  If it's not set, the job output

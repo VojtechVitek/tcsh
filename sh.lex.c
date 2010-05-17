@@ -460,7 +460,13 @@ getC1(int flag)
 		setexclp(exclnxt->word);
 	    continue;
 	}
-	c = readc(0);
+	c = readc(1);
+
+	/* Catch EOF in the middle of a line.  (An EOF at the beginning of
+	 * a line would have been processed by the readc(0) in lex().) */
+	if (c == CHAR_ERR)
+	    stderror(ERR_EOF);
+
 	if (c == '$' && (flag & DODOL)) {
 	    getdol();
 	    continue;
