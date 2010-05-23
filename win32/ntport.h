@@ -157,6 +157,8 @@ pretty */
 #define setpgrp(a,b) (-1)
 #define tcsetattr(a,b,c) 0
 
+#define inline __inline
+
 #undef stdin
 #undef stdout
 #undef stderr
@@ -223,6 +225,7 @@ typedef unsigned char u_char;
 typedef size_t caddr_t;
 typedef int sig_atomic_t;
 typedef int mode_t;
+typedef UINT32 uint32_t;
 
 struct timeval{
 	long tv_sec;

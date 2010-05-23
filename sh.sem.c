@@ -232,8 +232,7 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 		    if (strchr("+-", t->t_dcom[1][0])) {
 			if (t->t_dcom[2]) {
 			    setname("nice");
-			    t->t_nice =
-				getn(t->t_dcom[1]);
+			    t->t_nice = (unsigned char)getn(t->t_dcom[1]);
 			    lshift(t->t_dcom, 2);
 			    t->t_dflg |= F_NICE;
 			}
