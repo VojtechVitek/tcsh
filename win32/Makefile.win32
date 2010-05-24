@@ -95,10 +95,7 @@ ED=	ed
 RM=	-del
 #
 # Resources. which icon you want to use.
-#NTRES = BSDLOGO
-# Go Ky !
-
-NTRES = WILDCAT
+NTRES = BSDLOGO
 
 ASSRCS=	sh.c sh.dir.c sh.dol.c sh.err.c sh.exec.c sh.char.c \
 	sh.exp.c sh.file.c sh.func.c sh.glob.c sh.hist.c sh.init.c \
