@@ -419,8 +419,21 @@ int nt_stat(const char *filename, struct stat *stbuf) {
 			(*(filename+1) && *(filename+1) == ':' && !*(filename+2)) ) {
 		return _stat("C:/",(struct _stat *)stbuf);
 	}
-	else 
-		return _stat(filename,(struct _stat *)stbuf);
+        else  {
+            char *last = (char*)filename + strlen(filename) -1;
+            int rc = 0;
+            BOOL lastslash = (*last == '/');
+            if(lastslash)
+            {
+                *last = 0;
+            }
+            rc =  _stat(filename,(struct _stat *)stbuf);
+            if(lastslash)
+            {
+                *last = '/';
+            }
+            return rc;
+        }
 }
 //
 // replacement for creat that makes handle non-inheritable. 
