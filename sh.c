@@ -1979,9 +1979,11 @@ process(int catch)
 	/*
 	 * Echo not only on VERBOSE, but also with history expansion. If there
 	 * is a lexical error then we forego history echo.
+	 * Do not echo if we're only entering history (source -h).
 	 */
 	if ((hadhist && !seterr && intty && !tellwhat && !Expand && !whyles) ||
-	    adrof(STRverbose)) {
+	    (!enterhist && adrof(STRverbose)))
+	{
 	    int odidfds = didfds;
 	    haderr = 1;
 	    didfds = 0;
