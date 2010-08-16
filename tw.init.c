@@ -234,10 +234,14 @@ tw_cmd_cmd(void)
 #if defined(_UWIN) || defined(__CYGWIN__)
 	    /* Turn foo.{exe,com,bat} into foo since UWIN's readdir returns
 	     * the file with the .exe, .com, .bat extension
+	     *
+	     * Same for Cygwin, but only for .exe and .com extension.
 	     */
 	    len = strlen(dp->d_name);
 	    if (len > 4 && (strcmp(&dp->d_name[len - 4], ".exe") == 0 ||
+#ifndef __CYGWIN__
 		strcmp(&dp->d_name[len - 4], ".bat") == 0 ||
+#endif /* !__CYGWIN__ */
 		strcmp(&dp->d_name[len - 4], ".com") == 0))
 		dp->d_name[len - 4] = '\0';
 #endif /* _UWIN || __CYGWIN__ */

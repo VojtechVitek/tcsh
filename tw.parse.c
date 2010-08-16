@@ -987,9 +987,15 @@ tw_collect_items(COMMAND command, int looking, struct Strbuf *exp_dir,
 	    /*
 	     * Turn foo.{exe,com,bat,cmd} into foo since UWIN's readdir returns
 	     * the file with the .exe, .com, .bat, .cmd extension
+	     *
+	     * Same for Cygwin, but only for .exe and .com extension.
 	     */
 	    {
+#ifdef __CYGWIN__
+		static const char *rext[] = { ".exe", ".com" };
+#else
 		static const char *rext[] = { ".exe", ".bat", ".com", ".cmd" };
+#endif
 		size_t exti = Strlen(item.s);
 
 		if (exti > 4) {

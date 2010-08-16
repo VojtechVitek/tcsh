@@ -727,11 +727,15 @@ dohash(Char **vv, struct command *c)
 #if defined(_UWIN) || defined(__CYGWIN__)
 	    /* Turn foo.{exe,com,bat} into foo since UWIN's readdir returns
 	     * the file with the .exe, .com, .bat extension
+	     *
+	     * Same for Cygwin, but only for .exe and .com extension.
 	     */
 	    {
 		ssize_t	ext = strlen(dp->d_name) - 4;
 		if ((ext > 0) && (strcasecmp(&dp->d_name[ext], ".exe") == 0 ||
+#ifndef __CYGWIN__
 				  strcasecmp(&dp->d_name[ext], ".bat") == 0 ||
+#endif
 				  strcasecmp(&dp->d_name[ext], ".com") == 0)) {
 #ifdef __CYGWIN__
 		    /* Also store the variation with extension. */
