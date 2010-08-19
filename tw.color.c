@@ -86,7 +86,8 @@ static Variable variables[] = {
     VAR(NOS, "ow", ""),		/* Other writable dir (o+w) but not sticky */
     VAR(NOS, "st", ""),		/* Sticky dir (+t) but not other writable */
     VAR(NOS, "rs", "0"),	/* Reset to normal color */
-    VAR(NOS, "hl", "44;37"),    /* Reg file extra hard links */
+    VAR(NOS, "hl", "44;37"),    /* Reg file extra hard links, obsolete? */
+    VAR(NOS, "mh", "44;37"),    /* Reg file extra hard links */
     VAR(NOS, "ca", "30;41"),    /* File with capability */
 };
 
