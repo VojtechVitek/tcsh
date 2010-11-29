@@ -159,7 +159,7 @@ extern int phup_disabled;
 extern int pintr_disabled;
 
 extern void sigset_interrupting(int, void (*) (int));
-extern void handle_pending_signals(void);
+extern int handle_pending_signals(void);
 
 extern void queue_alrmcatch(int);
 extern void queue_pchild(int);
