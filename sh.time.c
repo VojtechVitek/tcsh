@@ -515,7 +515,7 @@ prusage(struct tms *bs, struct tms *es, clock_t e, clock_t b)
 #  ifdef _OSD_POSIX
 		xprintf("0",0);
 #  else
-		xprintf("%ld", (long)(r1->ru_maxrss / 2L));
+		xprintf("%ld", (long)r1->ru_maxrss);
 #  endif
 # endif	/* convex */
 #endif /* SUNOS4 */
@@ -610,7 +610,7 @@ prusage(struct tms *bs, struct tms *es, clock_t e, clock_t b)
 		break;
 
 	    case 'M':
-		xprintf("%ld", (long)(r1->ps_maxrss / 2));
+		xprintf("%ld", (long)r1->ps_maxrss);
 		break;
 
 	    case 'F':
