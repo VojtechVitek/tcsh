@@ -101,7 +101,20 @@ rt_mbtowc(Char *pwc, const char *s, size_t n)
     char back[MB_LEN_MAX];
     wchar_t tmp;
 #if defined(UTF16_STRINGS) && defined(HAVE_MBRTOWC)
+# if defined(AUTOSET_KANJI)
+    static mbstate_t mb_zero, mb;
+    /*
+     * Workaround the Shift-JIS endcoding that translates unshifted 7 bit ASCII!
+     */
+    if (!adrof(STRnokanji) && n && pwc && s && (*s == '\\' || *s == '~') &&
+	!memcmp(&mb, &mb_zero, sizeof(mb)))
+    {
+	*pwc = *s;
+	return 1;
+    }
+# else
     mbstate_t mb;
+# endif
 
     memset (&mb, 0, sizeof mb);
     ret = mbrtowc(&tmp, s, n, &mb);

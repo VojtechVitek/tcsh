@@ -802,7 +802,14 @@ main(int argc, char **argv)
       nt_autoset_dspmbyte();
 #endif /* WINNT_NATIVE */
 #endif
-
+#if defined(AUTOSET_KANJI) 
+# if defined(NLS) && defined(LC_CTYPE)
+    if (setlocale(LC_CTYPE, NULL) != NULL || getenv("LANG") != NULL)
+# else
+    if (getenv("LANG") != NULL)
+# endif
+	autoset_kanji();
+#endif /* AUTOSET_KANJI */
     fix_version();		/* publish the shell version */
 
     if (argc > 1 && strcmp(argv[1], "--version") == 0) {

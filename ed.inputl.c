@@ -683,7 +683,7 @@ GetNextCommand(KEYCMD *cmdnum, Char *ch)
 #ifdef DSPMBYTE
 	     _enable_mbdisp &&
 #else
-	     MB_LEN_MAX == 1 &&
+	     MB_CUR_MAX == 1 &&
 #endif
 	     !adrof(STRnokanji) && (*ch & META)) {
 	    MetaNext = 0;

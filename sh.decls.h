@@ -391,6 +391,9 @@ extern	Char		 *unparse	(struct command *);
 extern	void 		  update_dspmbyte_vars	(void);
 extern	void		  autoset_dspmbyte	(const Char *);
 #endif
+#if defined(AUTOSET_KANJI)
+extern	void		  autoset_kanji	(void);
+#endif
 
 /*
  * sh.time.c

@@ -1423,6 +1423,9 @@ dosetenv(Char **v, struct command *c)
 # ifdef LC_CTYPE
 	(void) setlocale(LC_CTYPE, ""); /* for iscntrl */
 # endif /* LC_CTYPE */
+# if defined(AUTOSET_KANJI)
+        autoset_kanji();
+# endif /* AUTOSET_KANJI */
 # ifdef NLS_CATALOGS
 #  ifdef LC_MESSAGES
 	(void) setlocale(LC_MESSAGES, "");
