@@ -128,6 +128,8 @@ rt_mbtowc(Char *pwc, const char *s, size_t n)
 
     } else if (ret == -2)
 	ret = -1;
+    else if (ret == 0)
+	*pwc = '\0';
 
     return ret;
 }
