@@ -1584,3 +1584,25 @@ isapad(void)
     return(res);
 }
 #endif
+
+#ifdef __ANDROID__
+#include <stdio.h>
+/* Android (<= 2.1?) has an incomplete ttyname implementation. */
+char *
+ttyname(int fd)
+{
+    char path[64];
+    ssize_t siz;
+    static char ttyname[32];
+
+    if (!isatty(fd))
+	return NULL;
+
+    (void)snprintf(path, sizeof(path), "/proc/self/fd/%d", fd);
+    siz = readlink(path, ttyname, sizeof(ttyname));
+    if (siz < 0 || siz == sizeof(ttyname))
+	return NULL;
+    ttyname[siz] = '\0';
+    return ttyname;
+}
+#endif /* __ANDROID__ */

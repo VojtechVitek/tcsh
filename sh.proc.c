@@ -48,7 +48,9 @@ RCSID("$tcsh$")
 #endif /* aiws */
 
 #if defined(_BSD) || (defined(IRIS4D) && __STDC__) || defined(__lucid) || defined(linux) || defined(__GNU__) || defined(__GLIBC__)
-# define BSDWAIT
+# if !defined(__ANDROID__)
+#  define BSDWAIT
+# endif
 #endif /* _BSD || (IRIS4D && __STDC__) || __lucid || glibc */
 #ifndef WTERMSIG
 # define WTERMSIG(w)	(((union wait *) &(w))->w_termsig)
@@ -221,7 +223,11 @@ loop:
 #   ifdef hpux
     pid = wait3(&w.w_status, WNOHANG, 0);
 #   else	/* !hpux */
+#     ifndef BSDWAIT
+    pid = wait3(&w, WNOHANG, &ru);
+#     else
     pid = wait3(&w.w_status, WNOHANG, &ru);
+#     endif /* BSDWAIT */
 #   endif /* !hpux */
 #  else /* !BSDTIMES */
 #   ifdef ODT  /* For Sco Unix 3.2.0 or ODT 1.0 */

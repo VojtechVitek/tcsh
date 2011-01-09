@@ -664,7 +664,7 @@ tw_grpname_start(DIR *dfd, const Char *pat)
 {
     USE(pat);
     SETDIR(dfd)
-#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE)
+#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE) && !defined (__ANDROID__)
     (void) setgrent();	/* Open group file */
 #endif /* !_VMS_POSIX && !_OSD_POSIX && !WINNT_NATIVE */
 } /* end tw_grpname_start */
@@ -688,7 +688,7 @@ tw_grpname_next(struct Strbuf *res, struct Strbuf *dir, int *flags)
     USE(flags);
     USE(dir);
     pintr_disabled++;
-#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE)
+#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE) && !defined(__ANDROID__)
     errno = 0;
     while ((gr = getgrent()) == NULL && errno == EINTR) {
 	handle_pending_signals();
@@ -719,7 +719,7 @@ tw_grpname_end(void)
 #ifdef YPBUGS
     fix_yp_bugs();
 #endif
-#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE)
+#if !defined(_VMS_POSIX) && !defined(_OSD_POSIX) && !defined(WINNT_NATIVE) && !defined (__ANDROID__)
    (void) endgrent();
 #endif /* !_VMS_POSIX && !_OSD_POSIX && !WINNT_NATIVE */
 } /* end tw_grpname_end */

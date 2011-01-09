@@ -552,7 +552,13 @@ main(int argc, char **argv)
     if ((tcp = getenv("HOME")) != NULL)
 	cp = quote(SAVE(tcp));
     else
+#ifdef __ANDROID__
+	/* On Android, $HOME usually isn't set.  Default to the sdcard root
+	   dir as home to enable loading user RC files. */
+	cp = quote(SAVE("/sdcard"));
+#else
 	cp = NULL;
+#endif
 
     if (cp == NULL)
 	fast = 1;		/* No home -> can't read scripts */

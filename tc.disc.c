@@ -43,7 +43,7 @@ RCSID("$tcsh$")
 
 static int add_discipline = 0;	/* Did we add a line discipline	 */
 
-#if defined(IRIS4D) || defined(OREO) || defined(sonyrisc)
+#if defined(IRIS4D) || defined(OREO) || defined(sonyrisc) || defined(__ANDROID__)
 # define HAVE_DISC
 # ifndef POSIX
 static struct termio otermiob;
