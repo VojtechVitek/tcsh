@@ -228,7 +228,7 @@ void
 doset(Char **v, struct command *c)
 {
     Char *p;
-    Char   *vp, op;
+    Char   *vp;
     Char  **vecp;
     int    hadsub;
     int     subscr;
@@ -268,27 +268,26 @@ doset(Char **v, struct command *c)
     do {
 	hadsub = 0;
 	vp = p;
-	if (letter(*p))
-	    for (; alnum(*p); p++)
-		continue;
-	if (vp == p || !letter(*vp))
+	if (!letter(*p))
 	    stderror(ERR_NAME | ERR_VARBEGIN);
+	do {
+	    p++;
+	} while (alnum(*p));
 	if (*p == '[') {
 	    hadsub++;
 	    p = getinx(p, &subscr);
 	}
-	if ((op = *p) != 0) {
-	    *p++ = 0;
-	    if (*p == 0 && *v && **v == '(')
+	if (*p != '\0' && *p != '=')
+	    stderror(ERR_NAME | ERR_VARALNUM);
+	if (*p == '=') {
+	    *p++ = '\0';
+	    if (*p == '\0' && *v != NULL && **v == '(')
 		p = *v++;
 	}
 	else if (*v && eq(*v, STRequal)) {
-	    op = '=', v++;
-	    if (*v)
+	    if (*++v != NULL)
 		p = *v++;
 	}
-	if (op && op != '=')
-	    stderror(ERR_NAME | ERR_SYNTAX);
 	if (eq(p, STRLparen)) {
 	    Char **e = v;
 
