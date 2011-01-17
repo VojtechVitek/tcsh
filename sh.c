@@ -2230,7 +2230,7 @@ mailchk(void)
 	else {
 	    char *type;
 	    
-	    if (stb.st_size == 0 || stb.st_atime > stb.st_mtime ||
+	    if (stb.st_size == 0 || stb.st_atime >= stb.st_mtime ||
 		(stb.st_atime <= chktim && stb.st_mtime <= chktim) ||
 		(loginsh && !new))
 		continue;
