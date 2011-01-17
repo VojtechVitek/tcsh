@@ -2025,12 +2025,13 @@ remotehost(void)
     }
     wait_options = 0;
  done:
+    cleanup_push(&hostname, strbuf_cleanup);
     xclose(fds[0]);
     while ((wait_res = waitpid(pid, &status, wait_options)) == -1
 	   && errno == EINTR)
 	handle_pending_signals();
-    cleanup_push(&hostname, strbuf_cleanup);
-    if (wait_res == pid && WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+    if (hostname.len > 0 && wait_res == pid && WIFEXITED(status)
+	   && WEXITSTATUS(status) == 0) {
 	strbuf_terminate(&hostname);
 	tsetenv(STRREMOTEHOST, str2short(hostname.s));
     }
