@@ -35,6 +35,7 @@
 # 1. edit configure.in and fix the version
 # 2. edit patchlevel.h and fix the version.
 # 3. edit tcsh.man and fix the version [2 places]
+# 4. edit tests/packages.m4 and fix the version [2 places]
 # 4. run autoreconf -f -i
 # 5. mention the release in Fixes
 # 6. cvs commit
