@@ -643,9 +643,13 @@ dfollow(Char *cp, int old)
 	Char  **cdp;
 
 	for (cdp = c->vec; *cdp; cdp++) {
+	    size_t len = Strlen(*cdp);
 	    buf.len = 0;
-	    Strbuf_append(&buf, *cdp);
-	    Strbuf_append1(&buf, '/');
+	    if (len > 0) {
+		Strbuf_append(&buf, *cdp);
+		if ((*cdp)[len - 1] != '/')
+		    Strbuf_append1(&buf, '/');
+	    }
 	    Strbuf_append(&buf, cp);
 	    Strbuf_terminate(&buf);
 	    /*
