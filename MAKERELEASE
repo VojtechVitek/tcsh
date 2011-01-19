@@ -36,8 +36,9 @@
 # 2. edit patchlevel.h and fix the version.
 # 3. edit tcsh.man and fix the version [2 places]
 # 4. run autoreconf -f -i
-# 5. cvs commit
-# 6. cvs tag TCSHX_YY_ZZ
+# 5. mention the release in Fixes
+# 6. cvs commit
+# 7. cvs tag TCSHX_YY_ZZ
 #
 # 20050303  Kimmo Suominen
 #
