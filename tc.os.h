@@ -601,4 +601,8 @@ extern int killpg (pid_t, int);
 # endif
 #endif
 
+#if defined(__CYGWIN__) && !defined(NO_CRYPT)
+extern char *cygwin_xcrypt(struct passwd *, const char *, const char *);
+#endif /* __CYGWIN__ && !NO_CRYPT */
+
 #endif /* _h_tc_os */

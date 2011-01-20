@@ -1606,3 +1606,20 @@ ttyname(int fd)
     return ttyname;
 }
 #endif /* __ANDROID__ */
+
+#if defined(__CYGWIN__) && !defined(NO_CRYPT)
+#undef CHAR		/* Collides with Win32 API */
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <sys/cygwin.h>
+char *
+cygwin_xcrypt(struct passwd *pw, const char *password, const char *expected_pwd)
+{
+    static char invalid_password[] = "\377";
+    HANDLE token = cygwin_logon_user(pw, password);
+    if (token == INVALID_HANDLE_VALUE)
+	return invalid_password;
+    CloseHandle(token);
+    return expected_pwd;
+}
+#endif /* __CYGWIN__ && !NO_CRYPT */

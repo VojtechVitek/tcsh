@@ -671,7 +671,7 @@ auto_lock(void)
     struct authorization *apw;
     extern char *crypt16 (const char *, const char *);
 
-# define XCRYPT(a, b) crypt16(a, b)
+# define XCRYPT(pw, a, b) crypt16(a, b)
 
     if ((pw = xgetpwuid(euid)) != NULL &&	/* effective user passwd  */
         (apw = getauthuid(euid)) != NULL) 	/* enhanced ultrix passwd */
@@ -681,7 +681,7 @@ auto_lock(void)
 
     struct spwd *spw;
 
-# define XCRYPT(a, b) crypt(a, b)
+# define XCRYPT(pw, a, b) crypt(a, b)
 
     if ((pw = xgetpwuid(euid)) != NULL)	{	/* effective user passwd  */
 	errno = 0;
@@ -695,7 +695,12 @@ auto_lock(void)
 
 #else
 
-#define XCRYPT(a, b) crypt(a, b)
+
+#ifdef __CYGWIN__
+# define XCRYPT(pw, a, b) cygwin_xcrypt(pw, a, b)
+#else
+# define XCRYPT(pw, a, b) crypt(a, b)
+#endif
 
 #if !defined(__MVS__)
     if ((pw = xgetpwuid(euid)) != NULL)	/* effective user passwd  */
@@ -727,7 +732,7 @@ auto_lock(void)
 #endif
 	pp = xgetpass("Password:");
 
-	crpp = XCRYPT(pp, srpp);
+	crpp = XCRYPT(pw, pp, srpp);
 	if ((strcmp(crpp, srpp) == 0)
 #ifdef AFS
 	    || (ka_UserAuthenticateGeneral(KA_USERAUTH_VERSION,
