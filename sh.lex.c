@@ -465,7 +465,7 @@ getC1(int flag)
 	/* Catch EOF in the middle of a line.  (An EOF at the beginning of
 	 * a line would have been processed by the readc(0) in lex().) */
 	if (c == CHAR_ERR)
-	    stderror(ERR_EOF);
+	    c = '\n';
 
 	if (c == '$' && (flag & DODOL)) {
 	    getdol();

@@ -1010,7 +1010,7 @@ again:
 
 	/* Catch EOF in the middle of a line. */
 	if (c == CHAR_ERR && lbuf.len != 0)
-	    stderror(ERR_EOF);
+	    c = '\n';
 
 	/*
 	 * Check for EOF or compare to terminator -- before expansion
