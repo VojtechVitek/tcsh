@@ -91,8 +91,9 @@ extern	void		  cleanup_push_internal(void *, void (*fn) (void *)
 #define cleanup_push(v, f) cleanup_push_internal(v, f)
 #endif
 );
+extern	int		  cleanup_reset(void);
 extern	void		  cleanup_ignore(void *);
-extern	void		  cleanup_until	(void *);
+extern	void		  cleanup_until(void *);
 extern	void		  cleanup_until_mark(void);
 extern	size_t		  cleanup_push_mark(void);
 extern	void		  cleanup_pop_mark(size_t);

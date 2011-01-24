@@ -451,6 +451,12 @@ cleanup_until(void *last_var)
     abort();
 }
 
+int
+cleanup_reset(void)
+{
+    return cleanup_sp > cleanup_mark;
+}
+
 void
 cleanup_until_mark(void)
 {
