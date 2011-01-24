@@ -222,7 +222,8 @@ drainoline(void)
 void
 flush(void)
 {
-    int unit;
+    int unit, oldexitset = exitset;
+    unsigned int errid = ERR_SILENT;
     static int interrupted = 0;
 
     /* int lmode; */
@@ -231,10 +232,14 @@ flush(void)
 	return;
     if (GettingInput && !Tty_raw_mode && linp < &linbuf[sizeof linbuf - 10])
 	return;
+    if (handle_intr) {
+	errid |= ERR_INTERRUPT;
+	exitset = 1;
+    }
     if (interrupted) {
 	interrupted = 0;
 	linp = linbuf;		/* avoid recursion as stderror calls flush */
-	stderror(ERR_SILENT);
+	stderror(errid);
     }
     interrupted = 1;
     if (haderr)
@@ -286,13 +291,15 @@ flush(void)
 	case EDQUOT:
 #endif
 	/* Nothing to do, but die */
-	    xexit(1);
-	    break;
+	    if (handle_intr == 0)
+		xexit(1);
+	    /*FALLTHROUGH*/
 	default:
-	    stderror(ERR_SILENT);
+	    stderror(errid);
 	    break;
 	}
 
+    exitset = oldexitset;
     linp = linbuf;
     interrupted = 0;
 }

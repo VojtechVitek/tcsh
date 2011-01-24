@@ -569,6 +569,7 @@ EXTERN int    neednote IZERO;	/* Need to pnotify() */
 EXTERN int    noexec IZERO;	/* Don't execute, just syntax check */
 EXTERN int    pjobs IZERO;	/* want to print jobs if interrupted */
 EXTERN int    setintr IZERO;	/* Set interrupts on/off -> Wait intr... */
+EXTERN int    handle_intr IZERO;/* Are we currently handling an interrupt? */
 EXTERN int    havhash IZERO;	/* path hashing is available */
 EXTERN int    editing IZERO;	/* doing filename expansion and line editing */
 EXTERN int    noediting IZERO;	/* initial $term defaulted to noedit */

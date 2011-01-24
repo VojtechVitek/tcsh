@@ -51,6 +51,7 @@ char   *seterr = NULL;	/* Holds last error if there was one */
 #define ERR_NAME	0x10000000
 #define ERR_SILENT	0x20000000
 #define ERR_OLD		0x40000000
+#define ERR_INTERRUPT	0x80000000
 
 #define ERR_SYNTAX	0
 #define ERR_NOTALLOWED	1
@@ -604,7 +605,8 @@ stderror(unsigned int id, ...)
 	     * will go to 1/2 else to FSHOUT/FSHDIAG. See flush in sh.print.c.
 	     */
 	    flush();/*FIXRESET*/
-	    haderr = 1;			/* Now to diagnostic output */
+	    if (!(flags & ERR_INTERRUPT))
+		haderr = 1;		/* Now to diagnostic output */
 	    if (flags & ERR_NAME)
 		xprintf("%s: ", bname);/*FIXRESET*/
 	    if ((flags & ERR_OLD)) {
@@ -645,5 +647,6 @@ stderror(unsigned int id, ...)
     if (tpgrp > 0)
 	(void) tcsetpgrp(FSHTTY, tpgrp);
 #endif
-    reset();			/* Unwind */
+	    if (!(flags & ERR_INTERRUPT))
+	reset();		/* Unwind */
 }

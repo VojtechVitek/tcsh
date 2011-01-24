@@ -352,6 +352,20 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	Strbuf_append(&wordbuf, qline.s + wordp);
 	Strbuf_terminate(&wordbuf);
 	cleanup_push(&wordbuf, Strbuf_cleanup);
+
+	/*
+	 * Don't try to spell things that we know they are correct.
+	 * Trying to spell can hang when we have NFS mounted hung
+	 * volumes.
+	 */
+	if ((looking == TW_COMMAND) && (*wordbuf.s == '/')) {
+	    if (executable(NULL, wordbuf.s, 0)) {
+		cleanup_until(&wordbuf);
+		search_ret = 0;
+		goto end;
+	    }
+	}
+
 	search_ret = spell_me(&wordbuf, looking, pat, suf);
 	qline.len = wordp;
 	Strbuf_append(&qline, wordbuf.s);

@@ -1276,9 +1276,9 @@ rechist(Char *fname, int ref)
 	    loadhist(fname, 1);
 
     fp = xcreat(short2str(fname), 0600);
+    cleanup_until(fname);
     if (fp == -1) {
 	didfds = oldidfds;
-	cleanup_until(fname);
 	return;
     }
     ftmp = SHOUT;
@@ -1288,7 +1288,6 @@ rechist(Char *fname, int ref)
     xclose(fp);
     SHOUT = ftmp;
     didfds = oldidfds;
-    cleanup_until(fname);
 }
 
 
