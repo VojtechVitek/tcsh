@@ -628,10 +628,19 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	 * possible stopping
 	 */
 	if (bifunc) {
-	    func(t, bifunc);
-	    if (forked)
+	    if (forked) {
+		func(t, bifunc);
 		exitstat();
-	    else {
+	    } else {
+		jmp_buf_t oldexit;
+		int ohaderr = haderr;
+
+		getexit(oldexit);
+		if (setexit() == 0)
+		    func(t, bifunc);
+		resexit(oldexit);
+		haderr = ohaderr;
+
 		if (adrof(STRprintexitvalue)) {
 		    int rv = getn(varval(STRstatus));
 		    if (rv != 0)
