@@ -90,6 +90,8 @@ typedef unsigned long intptr_t;
 # define BSDJOBS
 #endif 
 
+#define TMP_TEMPLATE ".XXXXXX"
+
 #ifdef SHORT_STRINGS
 # ifdef WIDE_STRINGS
 #include <wchar.h>
@@ -361,9 +363,6 @@ typedef long tcsh_number_t;
 #if !defined(O_RDONLY) || !defined(O_NDELAY)
 # include <fcntl.h>
 #endif 
-#ifndef O_LARGEFILE
-# define O_LARGEFILE 0
-#endif
 
 #include <errno.h>
 

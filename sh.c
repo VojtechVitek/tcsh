@@ -810,7 +810,7 @@ main(int argc, char **argv)
 	char *tmpdir = getenv ("TMPDIR");
 	if (!tmpdir)
 	    tmpdir = "/tmp";
-	shtemp = Strspl(SAVE(tmpdir), SAVE("/sh.XXXXXX")); /* For << */
+	shtemp = Strspl(SAVE(tmpdir), SAVE("/sh" TMP_TEMPLATE)); /* For << */
     }
 #else /* !HAVE_MKSTEMP */
     shtemp = Strspl(STRtmpsh, doldol);	/* For << */

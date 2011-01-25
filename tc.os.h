@@ -361,6 +361,18 @@ struct ucred {
 #ifndef O_RDWR
 # define O_RDWR		2
 #endif /* O_RDWR */
+#ifndef O_TEMPORARY
+# define O_TEMPORARY	0
+#endif /* O_TEMPORARY */
+#ifndef O_EXCL
+# define O_EXCL		0
+#endif /* O_EXCL */
+#ifndef O_LARGEFILE
+# define O_LARGEFILE	0
+#endif /* O_LARGEFILE */
+#ifndef O_CREAT
+# define O_CREAT	0
+#endif /* O_CREAT */
 
 /*
  * Lseek()
