@@ -1620,6 +1620,6 @@ cygwin_xcrypt(struct passwd *pw, const char *password, const char *expected_pwd)
     if (token == INVALID_HANDLE_VALUE)
 	return invalid_password;
     CloseHandle(token);
-    return expected_pwd;
+    return (char *) expected_pwd;
 }
 #endif /* __CYGWIN__ && !NO_CRYPT */

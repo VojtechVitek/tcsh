@@ -607,6 +607,7 @@ install.man: tcsh.man
 	chmod 444 ${DESTMAN}/tcsh.${MANSECT}
 
 install.cygwin: install install.man
+	make -C nls install DESTDIR=${DESTDIR}
 	-mkdir -p ${DESTDIR}${prefix}/share/doc/tcsh
 	cp ${srcdir}/FAQ ${srcdir}/Fixes ${DESTDIR}${prefix}/share/doc/tcsh
 	cp ${srcdir}/NewThings ${srcdir}/README ${DESTDIR}${prefix}/share/doc/tcsh
