@@ -33,7 +33,7 @@
 #ifndef _h_pathnames
 #define _h_pathnames
 
-#if defined(BSD4_4) || defined(__linux__)
+#ifdef HAVE_PATHS_H
 # include <paths.h>
 #endif
 

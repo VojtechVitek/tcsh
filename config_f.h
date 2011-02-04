@@ -58,17 +58,6 @@
 #endif
 
 /*
- * NLS_CATALOGS:Use Native Language System catalogs for
- *		international messages.
- *		Routines like catopen() are needed
- *		if you don't have <nl_types.h>, you don't want
- *		to define this.
- */
-#if defined (NLS) && defined (HAVE_CATGETS)
-# define NLS_CATALOGS
-#endif
-
-/*
  * LOGINFIRST   Source ~/.login before ~/.cshrc
  */
 #undef LOGINFIRST
