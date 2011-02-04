@@ -1,8 +1,8 @@
 $ $tcsh$
 $ sh.c
 $set 11 
-1 Attention: pas d'accès au tty (%s).\n
-2 Ainsi pas de contrôle de job dans ce shell.\n
+1 Attention: pas d'accÃ¨s au tty (%s).\n
+2 Ainsi pas de contrÃ´le de job dans ce shell.\n
 3 Vous avez %d messages courrier (mail).\n
 4 Vous avez %d messages courrier (mail) dans %s.\n
 5 Vous avez du %scourrier.\n

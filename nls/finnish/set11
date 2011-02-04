@@ -1,10 +1,10 @@
 $ $tcsh$
 $ sh.c
 $set 11 
-1 Varoitus: ei yhteytt‰ p‰‰tteeseen (%s).\n
-2 Niinp‰ t‰ss‰ komentotulkissa ei ole tˆiden hallintaa.\n
-3 Sinulla on %d s‰hkˆpostiviesti‰.\n
-4 Sinulla on %d viesti‰ tiedostossa %s.\n
+1 Varoitus: ei yhteytt√§ p√§√§tteeseen (%s).\n
+2 Niinp√§ t√§ss√§ komentotulkissa ei ole t√∂iden hallintaa.\n
+3 Sinulla on %d s√§hk√∂postiviesti√§.\n
+4 Sinulla on %d viesti√§ tiedostossa %s.\n
 5 Sinulla on %spostia.\n
 6 uutta 
 7 Sinulla on %spostia tiedostossa %s.\n

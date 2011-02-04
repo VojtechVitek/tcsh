@@ -2,8 +2,8 @@ $ $tcsh$
 $ sh.lex.c
 $set 16 
 1 Seadsin tty pgrp numbrilt %d numbrile %d\n
-2 \nKasuta töö lõpetamiseks käsku "logout".\n
-3 \nKasuta "exit" käsku %s katkestamiseks.\n
+2 \nKasuta tÃ¶Ã¶ lÃµpetamiseks kÃ¤sku "logout".\n
+3 \nKasuta "exit" kÃ¤sku %s katkestamiseks.\n
 4 seek to eval %x %x\n
 5 seek to alias %x %x\n
 6 seek to file %x\n

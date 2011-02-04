@@ -3,8 +3,8 @@ $ sh.proc.c
 $set 17
 1 FEHLER: Warte auf Hintergrund-Job!\n
 2 Exitcode %d\n
-3 FEHLER: Prozeﬂ "flushed" zum zweitenmal
-4 L‰uft
+3 FEHLER: Proze√ü "flushed" zum zweitenmal
+4 L√§uft
 5 Signal 
 6 Exitcode %-25d
 7 Fertig

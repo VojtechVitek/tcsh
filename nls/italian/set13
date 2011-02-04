@@ -8,6 +8,6 @@ $set 13
 5 %S: comando interno della shell.\n
 6 %S: comando non trovato.\n
 7 where: / non ha senso all'interno di un comando\n
-8 %S è un alias per 
-9 %S è un comando interno\n
+8 %S Ã¨ un alias per 
+9 %S Ã¨ un comando interno\n
 10 errore di hash: 

@@ -8,5 +8,5 @@ $set 9
 5 Some extended keys too long for internal print buffer
 6 Enumerate: BUG!! Null ptr passed\n!
 7 keine Eingabe
-8 Es muﬂ noch etwas folgen: %c\n
-9 Oktal-Konstante paﬂt nicht in ein Zeichen.\n
+8 Es mu√ü noch etwas folgen: %c\n
+9 Oktal-Konstante pa√üt nicht in ein Zeichen.\n

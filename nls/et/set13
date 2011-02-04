@@ -5,9 +5,9 @@ $set 13
 2 %d hash buckets of %d bits each\n
 3 debug mask = 0x%08x\n
 4 %d hits, %d misses, %d%%\n
-5 %S: k‰suinterpretaatori sisek‰sk.\n
-6 %S: K‰sku pole.\n
-7 where: / k‰sunimes on mıttetu\n
+5 %S: k√§suinterpretaatori sisek√§sk.\n
+6 %S: K√§sku pole.\n
+7 where: / k√§sunimes on m√µttetu\n
 8 %S on tegelikult 
-9 %S on sisek‰sk\n
+9 %S on sisek√§sk\n
 10 hash miss: 

@@ -4,9 +4,9 @@ $set 9
 1 AddXkey: Null extended-key not allowed.\n
 2 AddXkey: sequence-lead-in command not allowed\n
 3 DeleteXkey: Null extended-key not allowed.\n
-4 Sitomaton laajennettu n‰pp‰in "%S"\n
-5 Jotkin laajennetut n‰pp‰imet ovat liian pitki‰ sis‰iseen tulostuspuskurille
-6 Enumerate: VIKA!! V‰litetty null-osoitin\n!
-7 ei syˆtett‰
+4 Sitomaton laajennettu n√§pp√§in "%S"\n
+5 Jotkin laajennetut n√§pp√§imet ovat liian pitki√§ sis√§iseen tulostuspuskurille
+6 Enumerate: VIKA!! V√§litetty null-osoitin\n!
+7 ei sy√∂tett√§
 8 Jotain on seurattava: %c\n
 9 Oktaalivakio ei mahdu char-tyypin muuttujaan.\n
