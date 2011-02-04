@@ -2632,7 +2632,7 @@ nlsinit(void)
 #if defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)
     /* xcatgets (), not CGETS, the charset name should be in ASCII anyway. */
     catgets_iconv = iconv_open (nl_langinfo (CODESET),
-				xcatgets(catd, 255, 1, "ASCII"));
+				xcatgets(catd, 255, 1, "UTF-8"));
 #endif /* HAVE_ICONV && HAVE_NL_LANGINFO */
 #endif /* NLS_CATALOGS */
 #ifdef WINNT_NATIVE
