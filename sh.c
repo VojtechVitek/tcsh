@@ -170,17 +170,26 @@ add_localedir_to_nlspath(const char *path)
 {
     static const char msgs_LOC[] = "/%L/LC_MESSAGES/%N.cat";
     static const char msgs_lang[] = "/%l/LC_MESSAGES/%N.cat";
-    char *old = getenv("NLSPATH");
+    char *old;
     char *new, *new_p;
-    size_t len = 0;
+    size_t len;
     int add_LOC = 1;
     int add_lang = 1;
+    char trypath[MAXPATHLEN];
+    struct stat st;
 
     if (path == NULL)
         return;
 
-    if (old != NULL)
-        len += strlen(old) + 1;	/* don't forget the colon. */
+    (void) xsnprintf(trypath, sizeof(trypath), "%s/en/LC_MESSAGES/tcsh.cat",
+	path);
+    if (stat(trypath, &st) == -1)
+	return;
+
+    if ((old = getenv("NLSPATH")) != NULL)
+        len = strlen(old) + 1;	/* don't forget the colon. */
+    else
+	len = 0;
 
     len += 2 * strlen(path) +
 	   sizeof(msgs_LOC) + sizeof(msgs_lang); /* includes the extra colon */
