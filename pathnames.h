@@ -33,7 +33,7 @@
 #ifndef _h_pathnames
 #define _h_pathnames
 
-#ifdef BSD4_4
+#if defined(BSD4_4) || defined(__linux__)
 # include <paths.h>
 #endif
 
@@ -84,7 +84,7 @@
 # endif /* !_PATH_DOTLOGIN */
 #endif /* sgi || OREO || cray || AMIX || CDC */
 
-#if (defined(_CRAYCOM) || defined(Lynx)) && !defined(_PATH_TCSHELL)
+#if (defined(_CRAYCOM) || defined(Lynx) || defined(__linux__)) && !defined(_PATH_TCSHELL)
 # define _PATH_TCSHELL		"/bin/tcsh"		/* 1st class shell */
 #endif /* _CRAYCOM && !_PATH_TCSHELL */
 

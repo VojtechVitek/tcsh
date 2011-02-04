@@ -1229,7 +1229,7 @@ autoset_dspmbyte(const Char *pcp)
 	{ STRLANGEUCJPB, STReuc },
 	{ STRLANGEUCKRB, STReuc },
 	{ STRLANGEUCZHB, STReuc },
-#ifdef linux
+#ifdef __linux__
 	{ STRLANGEUCJPC, STReuc },
 #endif
 	{ STRLANGSJIS, STRsjis },

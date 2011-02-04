@@ -39,7 +39,7 @@
  * We try to use the system's wait.h when we can...
  */
 
-#if SYSVREL > 0 && !defined(linux) && !defined(__GNU__) && !defined(__GLIBC__)
+#if SYSVREL > 0 && !defined(__linux__) && !defined(__GNU__) && !defined(__GLIBC__)
 # ifdef hpux
 #  ifndef __hpux
 #   define NEEDwait

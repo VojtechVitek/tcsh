@@ -39,6 +39,9 @@
  * SUCH DAMAGE.
  */
 #include "sh.h"
+#ifdef HAVE_MALLINFO
+#include <malloc.h>
+#endif
 
 RCSID("$tcsh$")
 
@@ -598,13 +601,27 @@ showall(Char **v, struct command *c)
 	    "\tAllocated memory from 0x%lx to 0x%lx.  Real top at 0x%lx\n"),
 	    (unsigned long) membot, (unsigned long) memtop,
 	    (unsigned long) sbrk(0));
-#else
+#else /* SYSMALLOC */
+#ifndef HAVE_MALLINFO
 #ifdef HAVE_SBRK
     memtop = sbrk(0);
 #endif /* HAVE_SBRK */
     xprintf(CGETS(19, 12, "Allocated memory from 0x%lx to 0x%lx (%ld).\n"),
 	    (unsigned long) membot, (unsigned long) memtop, 
 	    (unsigned long) (memtop - membot));
+#else /* HAVE_MALLINFO */
+    struct mallinfo mi;
+
+    mi = mallinfo();
+    xprintf(CGETS(19, 13, "%s current memory allocation:\n"), progname);
+    xprintf(CGETS(19, 14, "Total space allocated from system: %d\n"), mi.arena);
+    xprintf(CGETS(19, 15, "Number of non-inuse chunks: %d\n"), mi.ordblks);
+    xprintf(CGETS(19, 16, "Number of mmapped regions: %d\n"), mi.hblks);
+    xprintf(CGETS(19, 17, "Total space in mmapped regions: %d\n"), mi.hblkhd);
+    xprintf(CGETS(19, 18, "Total allocated space: %d\n"), mi.uordblks);
+    xprintf(CGETS(19, 19, "Total non-inuse space: %d\n"), mi.fordblks);
+    xprintf(CGETS(19, 20, "Top-most, releasable space: %d\n"), mi.keepcost);
+#endif /* HAVE_MALLINFO */
 #endif /* SYSMALLOC */
     USE(c);
     USE(v);

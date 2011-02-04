@@ -163,7 +163,7 @@ Char STRLANGBIG5[]	= { 'z', 'h', '_', 'T', 'W', '.', 'B', 'i', 'g', '5',
 			    '\0' };
 Char STRLANGEUCZH[]	= { '\0' };
 Char STRLANGEUCZHB[]	= { '\0' };
-#  elif defined(linux) || defined(__GNU__) || defined(__GLIBC__)
+#  elif defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)
 Char STRLANGEUCJP[]	= { 'j', 'a', '_', 'J', 'P', '.', 'E', 'U', 'C', '-',
 			    'J', 'P', '\0' };
 Char STRLANGEUCKR[]	= { 'k', 'o', '_', 'K', 'R', '.', 'E', 'U', 'C', '\0' };
