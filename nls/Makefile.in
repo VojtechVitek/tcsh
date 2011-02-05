@@ -2,7 +2,7 @@
 
 LOCALES=	C et finnish french german greek italian ja pl russian \
 		spanish ukrainian
-GENCAT=		gencat
+GENCAT=		@GENCAT@
 INSTALL=	@INSTALL@
 RM?=		rm
 VPATH=@srcdir@
