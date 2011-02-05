@@ -256,7 +256,6 @@ typedef long tcsh_number_t;
 # include <locale.h>
 #endif /* NLS */
 
-
 #if !defined(_MINIX) && !defined(_VMS_POSIX) && !defined(WINNT_NATIVE) && !defined(__MVS__)
 # include <sys/param.h>
 #endif /* !_MINIX && !_VMS_POSIX && !WINNT_NATIVE && !__MVS__ */
@@ -1210,31 +1209,18 @@ extern char   **environ;
 
 #ifndef WINNT_NATIVE
 # ifdef NLS_CATALOGS
-#  if defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)
-#   include <locale.h>
-#   include <langinfo.h>
+#  ifdef HAVE_FEATURES_H
 #   include <features.h>
 #  endif
-#  ifdef SUNOS4
-   /* Who stole my nl_types.h? :-( 
-    * All this stuff is in the man pages, but nowhere else?
-    * This does not link right now...
-    */
-   typedef void *nl_catd; 
-   extern const char * catgets (nl_catd, int, int, const char *);
-   nl_catd catopen (const char *, int);
-   int catclose (nl_catd);
-#  else
-#   ifdef __uxps__
-#    define gettxt gettxt_ds
-#   endif
-#   include <nl_types.h>
-#   ifdef __uxps__
-#    undef gettxt
-#   endif
+#  ifdef HAVE_NL_LANGINFO
+#   include <langinfo.h>
 #  endif
-#  ifndef MCLoadBySet
-#   define MCLoadBySet 0
+#  ifdef __uxps__
+#   define gettxt gettxt_ds
+#  endif
+#  include <nl_types.h>
+#  ifdef __uxps__
+#   undef gettxt
 #  endif
 EXTERN nl_catd catd;
 #  if defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)

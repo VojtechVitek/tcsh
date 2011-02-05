@@ -41,8 +41,7 @@ RCSID("$tcsh$")
 #include "nt.const.h"
 #endif /* WINNT_NATIVE */
 
-#if defined (NLS_CATALOGS) && defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)
-#include <langinfo.h>
+#if defined (NLS_CATALOGS) && defined(HAVE_ICONV)
 static iconv_t catgets_iconv; /* Or (iconv_t)-1 */
 #endif
 
@@ -2626,7 +2625,18 @@ nlsinit(void)
 
     if (adrof(STRcatalog) != NULL)
 	catalog = xasprintf("tcsh.%s", short2str(varval(STRcatalog)));
+#ifdef NL_CAT_LOCALE /* POSIX-compliant. */
+    /*
+     * Check if LC_MESSAGES is set in the environment and use it, if so.
+     * If not, fall back to the setting of LANG.
+     */
+    catd = catopen(catalog, tgetenv(STRLC_MESSAGES) ? NL_CAT_LOCALE : 0);
+#else /* pre-POSIX */
+# ifndef MCLoadBySet
+#  define MCLoadBySet 0
+#  endif
     catd = catopen(catalog, MCLoadBySet);
+#endif
     if (catalog != default_catalog)
 	xfree(catalog);
 #if defined(HAVE_ICONV) && defined(HAVE_NL_LANGINFO)
