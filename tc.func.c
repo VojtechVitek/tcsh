@@ -1944,6 +1944,7 @@ getremotehost(int dest_fd)
 		    if (res != NULL) {
 			if (res->ai_canonname != NULL) {
 			    strncpy(hbuf, res->ai_canonname, sizeof(hbuf));
+			    hbuf[sizeof(hbuf) - 1] = '\0';
 			    host = hbuf;
 			}
 			freeaddrinfo(res);
