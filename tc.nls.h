@@ -34,8 +34,6 @@
 #ifndef _h_tc_nls
 #define _h_tc_nls
 
-#include "sh.h"
-
 #ifdef WIDE_STRINGS
 extern int NLSWidth(Char);
 extern int NLSStringWidth (const Char *);
