@@ -632,7 +632,7 @@ filetest(Char *cp, Char ***vp, int ignore)
     int altout = 0;
     Char *ft = cp, *dp, *ep, *strdev, *strino, *strF, *str, valtest = '\0',
     *errval = STR0;
-    char *string, string0[8];
+    char *string, string0[MB_LEN_MAX + 1];
     time_t footime;
     struct passwd *pw;
     struct group *gr;
