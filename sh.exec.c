@@ -141,7 +141,7 @@ static int hits, misses;
 /* Dummy search path for just absolute search when no path */
 static Char *justabs[] = {STRNULL, 0};
 
-static	void	pexerr		(void);
+static	void	pexerr		(void) __attribute__((__noreturn__));
 static	void	texec		(Char *, Char **);
 int	hashname	(Char *);
 static	int 	iscommand	(Char *);

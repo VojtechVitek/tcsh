@@ -34,7 +34,7 @@
 #ifndef WINNT_NATIVE
 
 RCSID("$tcsh$")
-
+#include <assert.h>
 #include "ed.h"
 
 int didsetty = 0;

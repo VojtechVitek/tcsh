@@ -223,7 +223,6 @@ void
 flush(void)
 {
     int unit, oldexitset = exitset;
-    unsigned int errid = ERR_SILENT;
     static int interrupted = 0;
 
     /* int lmode; */
@@ -232,14 +231,16 @@ flush(void)
 	return;
     if (GettingInput && !Tty_raw_mode && linp < &linbuf[sizeof linbuf - 10])
 	return;
-    if (handle_intr) {
-	errid |= ERR_INTERRUPT;
+    if (handle_intr)
 	exitset = 1;
-    }
+
     if (interrupted) {
 	interrupted = 0;
 	linp = linbuf;		/* avoid recursion as stderror calls flush */
-	stderror(errid);
+	if (handle_intr)
+	    fixerror();
+	else
+	    stderror(ERR_SILENT);
     }
     interrupted = 1;
     if (haderr)
@@ -295,7 +296,10 @@ flush(void)
 		xexit(1);
 	    /*FALLTHROUGH*/
 	default:
-	    stderror(errid);
+	    if (handle_intr)
+		fixerror();
+	    else
+		stderror(ERR_SILENT);
 	    break;
 	}
 

@@ -33,6 +33,7 @@
  */
 #include "sh.h"
 
+#include <assert.h>
 #include <limits.h>
 
 RCSID("$tcsh$")
