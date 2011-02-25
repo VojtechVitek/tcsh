@@ -633,6 +633,7 @@ dosetty(Char **v, struct command *t)
 		i = m->m_type;
 		st = len = strlen(ttylist[z][m->m_type].t_name);
 	    }
+	    assert(i != -1);
 
 	    x = (ttylist[z][i].t_setmask & m->m_value) ? '+' : '\0';
 	    x = (ttylist[z][i].t_clrmask & m->m_value) ? '-' : x;
