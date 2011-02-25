@@ -2259,8 +2259,10 @@ mailchk(void)
 		continue;
 
 	    /* skip . and .. */
-	    if (!readdir(mailbox) || !readdir(mailbox))
+	    if (!readdir(mailbox) || !readdir(mailbox)) {
+		(void)closedir(mailbox);
 		continue;
+	    }
 
 	    while (readdir(mailbox))
 		mailcount++;
