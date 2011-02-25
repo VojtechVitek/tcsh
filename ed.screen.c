@@ -1625,7 +1625,8 @@ ChangeSize(int lins, int cols)
 		(void) Strcat(backup + len, p);
 		xfree(p);
 		ptr = Strchr(ptr, ':');
-		(void) Strcat(backup, ptr);
+		if (ptr)
+		    (void) Strcat(backup, ptr);
 	    }
 
 	    /* now do lines */
