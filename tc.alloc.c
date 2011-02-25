@@ -590,7 +590,7 @@ showall(Char **v, struct command *c)
 	xprintf(" %4zd", j);
 	totfree += j * (1 << (i + 3));
     }
-    xprintf(CGETS(19, 9, "\nused:\t"));
+    xprintf("\n%s:\t", CGETS(19, 9, "used"));
     for (i = 0; i < NBUCKETS; i++) {
 	xprintf(" %4d", nmalloc[i]);
 	totused += nmalloc[i] * (1 << (i + 3));
