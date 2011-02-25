@@ -2347,8 +2347,14 @@ initdesc(void)
 #ifndef CLOSE_ON_EXEC
     didcch = 0;			/* Havent closed for child */
 #endif /* CLOSE_ON_EXEC */
-    isdiagatty = isatty(SHDIAG);
-    isoutatty = isatty(SHOUT);
+    if (SHDIAG >= 0)
+	isdiagatty = isatty(SHDIAG);
+    else
+    	isdiagatty = 0;
+    if (SHDIAG >= 0)
+	isoutatty = isatty(SHOUT);
+    else
+    	isoutatty = 0;
 #ifdef NLS_BUGS
 #ifdef NLS_CATALOGS
     nlsinit();
