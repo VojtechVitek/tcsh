@@ -587,6 +587,7 @@ dowhile(Char **v, struct command *c)
 	nwp->w_start = lineloc;
 	nwp->w_end.type = TCSH_F_SEEK;
 	nwp->w_end.f_seek = 0;
+	nwp->w_end.a_seek = 0;
 	nwp->w_next = whyles;
 	whyles = nwp;
 	zlast = TC_WHILE;
@@ -763,6 +764,7 @@ search(int type, int level, Char *goal)
 	struct Ain a;
 	a.type = TCSH_F_SEEK;
 	a.f_seek = 0;
+	a.a_seek = 0;
 	bseek(&a);
     }
     cleanup_push(&word, Strbuf_cleanup);
