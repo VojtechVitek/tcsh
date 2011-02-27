@@ -1640,7 +1640,7 @@ fixio(int fd, int e)
 # endif /* !EWOULDBLOCK || EWOULDBLOCK != EAGAIN */
 #endif /* POSIX && EAGAIN */
 
-	e = 0;
+	e = -1;
 #ifdef FDRETRY
 # ifdef F_SETFL
 /*
@@ -1688,19 +1688,17 @@ fixio(int fd, int e)
 	if (fcntl(fd, F_SETFL, e) == -1)
 	    return -1;
 	else 
-	    e = 1;
+	    e = 0;
 # endif /* F_SETFL */
 
 # ifdef FIONBIO
 	e = 0;
 	if (ioctl(fd, FIONBIO, (ioctl_t) &e) == -1)
 	    return -1;
-	else
-	    e = 1;
 # endif	/* FIONBIO */
 
 #endif /* FDRETRY */
-	return e ? 0 : -1;
+	return e;
 
     case EINTR:
 	return 0;

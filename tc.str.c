@@ -393,17 +393,19 @@ s_strcasecmp(const Char *str1, const Char *str2)
 {
 #ifdef WIDE_STRINGS
     wint_t l1 = 0, l2 = 0;
-    for (; *str1 && ((*str1 == *str2 && (l1 = l2 = 0) == 0) || 
-	(l1 = towlower(*str1)) == (l2 = towlower(*str2))); str1++, str2++)
-	continue;
-    
+    for (; *str1; str1++, str2++)
+	if (*str1 == *str2)
+	    l1 = l2 = 0;
+	else if ((l1 = towlower(*str1)) != (l2 = towlower(*str2)))
+	    break;
 #else
     unsigned char c1, c2, l1 = 0, l2 = 0;
-    for (; *str1 && ((*str1 == *str2 && (l1 = l2 = 0) == 0) || 
-	((c1 = (unsigned char)*str1) == *str1 &&
-	 (c2 = (unsigned char)*str2) == *str2 &&
-	(l1 = tolower(c1)) == (l2 = tolower(c2)))); str1++, str2++)
-	continue;
+    for (; *str1; str1++, str2++)
+	if (*str1 == *str2)
+		l1 = l2 = 0;
+	else if ((l1 = tolower((unsigned char)*str1)) !=
+	    (l2 = tolower((unsigned char)*str2)))
+	    break;
 #endif
     /*
      * The following case analysis is necessary so that characters which look

@@ -520,7 +520,7 @@ globone(Char *str, int action)
 	xfree(vl);
 	return (Strsave(STRNULL));
     }
-    if (vl[1]) 
+    if (vl && vl[1]) 
 	return (handleone(str, vl, action));
     else {
 	str = strip(*vl);
