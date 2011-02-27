@@ -513,3 +513,5 @@ Char STRonlyhistory[]	= { 'o', 'n', 'l', 'y', 'h', 'i', 's', 't', 'o', 'r',
 			    'y', '\0' };
 Char STRparseoctal[]	= { 'p', 'a', 'r', 's', 'e', 'o', 'c', 't', 'a', 'l',
 			    '\0' };
+Char STRli[]		= { 'l', 'i', '#', '\0' };
+Char STRco[]		= { 'c', 'o', '#', '\0' };
