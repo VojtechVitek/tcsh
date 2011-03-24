@@ -918,6 +918,7 @@ pendjob(void)
 
     if (pcurrjob && (pcurrjob->p_flags & (PFOREGND | PSTOPPED)) == 0) {
 	pp = pcurrjob;
+	pcurrjob = NULL;
 	while (pp->p_procid != pp->p_jobid)
 	    pp = pp->p_friends;
 	xprintf("[%d]", pp->p_index);
