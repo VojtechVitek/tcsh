@@ -2112,9 +2112,14 @@ process(int catch)
 	 * Parse the words of the input into a parse tree.
 	 */
 	t = syntax(paraml.next, &paraml, 0);
-	cleanup_push(t, syntax_cleanup);
-	if (seterr)
+	/*
+	 * We cannot cleanup push here, because cd /blah; echo foo
+	 * would rewind t on the chdir error, and free the rest of the command
+	 */
+	if (seterr) {
+	    freesyn(t);
 	    stderror(ERR_OLD);
+	}
 
 	postcmd();
 	/*
@@ -2122,6 +2127,7 @@ process(int catch)
 	 * <mlschroe@immd4.informatik.uni-erlangen.de> was execute(t, tpgrp);
 	 */
 	execute(t, (tpgrp > 0 ? tpgrp : -1), NULL, NULL, TRUE);
+	freesyn(t);
 
 	/*
 	 * Made it!
