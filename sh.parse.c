@@ -677,6 +677,9 @@ freesyn(struct command *t)
     default:
 	break;
     }
+#ifdef DEBUG
+    memset(t, 0, sizeof(*t));
+#endif
     xfree(t);
 }
 
