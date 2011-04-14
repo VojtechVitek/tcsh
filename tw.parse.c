@@ -359,7 +359,7 @@ tenematch(Char *inputline, int num_read, COMMAND command)
 	 * Trying to spell can hang when we have NFS mounted hung
 	 * volumes.
 	 */
-	if ((looking == TW_COMMAND) && ABSOLUTEP(wordbuf.s)) {
+	if ((looking == TW_COMMAND) && Strchr(wordbuf.s, '/') != NULL) {
 	    if (executable(NULL, wordbuf.s, 0)) {
 		cleanup_until(&wordbuf);
 		search_ret = 0;
