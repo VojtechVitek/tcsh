@@ -106,6 +106,9 @@ update_vars(Char *vp)
     else if (eq(vp, STRloginsh)) {
 	loginsh = 1;
     }
+    else if (eq(vp, STRanyerror)) {
+	anyerror = 1;
+    }
     else if (eq(vp, STRsymlinks)) {
 	Char *pn = varval(vp);
 
@@ -763,6 +766,8 @@ unset(Char **v, struct command *c)
 	HistLit = 0;
     if (adrof(STRloginsh) == 0)
 	loginsh = 0;
+    if (adrof(STRanyerror) == 0)
+	anyerror = 0;
     if (adrof(STRwordchars) == 0)
 	word_chars = STR_WORD_CHARS;
     if (adrof(STRedit) == 0)

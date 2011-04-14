@@ -103,6 +103,7 @@ struct process {
 #define	PNEEDNOTE	(1<<15)	/* notify as soon as practical */
 #define PBACKQ		(1<<16)	/* Process is `` evaluation */
 #define PHUP		(1<<17)	/* Process is marked for SIGHUP on exit */
+#define PBRACE		(1<<18)	/* Process is {} evaluation */
 
 /* defines for arguments to pprint */
 #define	NUMBER		01
