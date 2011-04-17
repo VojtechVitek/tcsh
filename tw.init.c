@@ -404,7 +404,7 @@ tw_cmd_next(struct Strbuf *res, struct Strbuf *dir, int *flags)
      * We need to process relatives in the path.
      */
     while ((tw_cmd_state.dfd == NULL ||
-	    (ret = tw_dir_next(res, tw_cmd_state.dfd)) == 0) &&
+	    (res->len = 0, ret = tw_dir_next(res, tw_cmd_state.dfd)) == 0) &&
 	   *tw_cmd_state.pathv != NULL) {
 
         CLRDIR(tw_cmd_state.dfd)
@@ -412,6 +412,7 @@ tw_cmd_next(struct Strbuf *res, struct Strbuf *dir, int *flags)
 	while (*tw_cmd_state.pathv && tw_cmd_state.pathv[0][0] == '/')
 	    tw_cmd_state.pathv++;
 	if ((ptr = *tw_cmd_state.pathv) != 0) {
+	    res->len = 0;
 	    Strbuf_append(res, ptr);
 	    ret = 1;
 	    /*
