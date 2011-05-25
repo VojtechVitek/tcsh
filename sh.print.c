@@ -285,6 +285,12 @@ flush(void)
 	 */
 	case ESTALE:
 #endif
+#ifdef ENOENT
+	/*
+	 * Deal with SoFS bogocity: returns ENOENT instead of ESTALE.
+	 */
+	case ENOENT:
+#endif
 	/*
 	 * Over our quota, writing the history file
 	 */
