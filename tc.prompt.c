@@ -534,6 +534,8 @@ tprintf(int what, const Char *fmt, const char *str, time_t tim, ptr_t info)
 
 		    for (pp = proclist.p_next; pp; pp = pp->p_next)
 			njobs++;
+		    if (njobs == -1)
+			njobs++;
 		    p = Itoa(njobs, 1, attributes);
 		    Strbuf_append(&buf, p);
 		    xfree(p);
