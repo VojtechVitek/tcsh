@@ -174,7 +174,7 @@ Itoa(int n, size_t min_digits, Char attributes)
     do {
 	*p++ = un % 10 + '0';
 	un /= 10;
-    } while ((pad && --min_digits > 0) || un != 0);
+    } while ((pad && (ssize_t)--min_digits > 0) || un != 0);
 
     res = xmalloc((p - buf + 2) * sizeof(*res));
     s = res;
