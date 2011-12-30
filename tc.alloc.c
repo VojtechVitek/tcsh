@@ -441,6 +441,28 @@ realloc(ptr_t cp, size_t nbytes)
 #endif /* !lint */
 }
 
+/*
+ * On linux, _nss_nis_setnetgrent() calls this function to determine
+ * the usable size of the pointer passed, but this is not a portable
+ * API, so we cannot use our malloc replacement without providing one.
+ * Thanks a lot glibc!
+ */
+#ifdef __linux__
+#define M_U_S_CONST
+#else
+#define M_U_S_CONST
+#endif
+size_t malloc_usable_size(M_U_S_CONST void *);
+size_t
+malloc_usable_size(M_U_S_CONST void *ptr)
+{
+    const union overhead *op = (const union overhead *)
+	(((const char *) ptr) - MEMALIGN(sizeof(*op)));
+    if (op->ov_magic == MAGIC)
+	    return 1 << (op->ov_index + 2);
+    else
+	    return 0;
+}
 
 
 #ifndef lint
