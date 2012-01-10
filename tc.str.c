@@ -399,7 +399,7 @@ s_strcasecmp(const Char *str1, const Char *str2)
 	else if ((l1 = towlower(*str1)) != (l2 = towlower(*str2)))
 	    break;
 #else
-    unsigned char c1, c2, l1 = 0, l2 = 0;
+    unsigned char l1 = 0, l2 = 0;
     for (; *str1; str1++, str2++)
 	if (*str1 == *str2)
 		l1 = l2 = 0;
