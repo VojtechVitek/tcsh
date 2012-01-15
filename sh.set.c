@@ -528,7 +528,7 @@ putn1(tcsh_number_t n)
 {
     if (n > 9)
 	putn1(n / 10);
-    *putp++ = n % 10 + '0';
+    *putp++ = (Char)(n % 10 + '0');
 }
 
 tcsh_number_t
