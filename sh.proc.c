@@ -594,6 +594,7 @@ dowait(Char **v, struct command *c)
 {
     struct process *pp;
     sigset_t pause_mask;
+    int opintr_disabled, gotsig;
 
     USE(c);
     USE(v);
@@ -608,7 +609,11 @@ loop:
 	    pp->p_flags & PRUNNING) {
 	    (void)handle_pending_signals();
 	    sigsuspend(&pause_mask);
-	    if (handle_pending_signals())
+	    opintr_disabled = pintr_disabled;
+	    pintr_disabled = 0;
+	    gotsig = handle_pending_signals();
+	    pintr_disabled = opintr_disabled;
+	    if (gotsig)
 		break;
 	    goto loop;
 	}
