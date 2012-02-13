@@ -1,3 +1,30 @@
+  6. V6.18.01 - 20120214
+  5. fix interruptible wait again
+  4. ignore bogus compiler overflow message
+  3. cleanup ifdefs in utmp code, and provide default array entries
+  2. Ignore #machine entries in host.defs
+  1. Detect missing ) in gethost.c (Corinna Vinschen)
+
+104. V6.18.00 - 20120114
+103. remove unused variables.
+102. Make gethost use definitions for x __x__ and __x automatically.
+101. More utmp fixes
+100. V6.17.10 - 20120105
+ 99. Add more FreeBSD/NetBSD machines
+ 98. Add portability wrapper for gencat
+ 97. Fix warning for write in SYSMALLOC systems.
+ 96. V6.17.09 - 20120102
+ 95. revert gencat handling to pre-cygwin fixes (without the env settings)
+ 94. remove stray endutent()
+ 93. V6.17.08 - 20111230
+ 92. Remove - from gencat
+ 91. Provide support for malloc_usable_size() so that linux works again
+     without SYSMALLOC
+ 90. Add support for FreeBSD's utmpx.
+ 89. V6.17.07 - 20111227
+ 88. Fix debian bug #645238: tcsh segfaults when prompt includes %j and
+     there are more than 10 jobs.
+ 87. PR/155: Default $anyerror to set for backward compatibility
  86. PR/149: Don't print -1 in %j (Vojtech Vitek)
  85. handle -- on chdir commands as the end of options processing so that
      they can process a directory like -x without resorting to ./-x
