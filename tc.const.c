@@ -450,12 +450,12 @@ Char STRLC_MONETARY[]	= { 'L', 'C', '_', 'M', 'O', 'N', 'E', 'T', 'A',
 			    'R', 'Y', '\0' };
 Char STRNOREBIND[] 	= { 'N', 'O', 'R', 'E', 'B', 'I', 'N', 'D', '\0' };
 
-#if defined(SIG_WINDOW) || defined (_VMS_POSIX)	 
+#if defined(SIG_WINDOW) || defined(SIGWINCH) || defined(SIGWINDOW) || defined (_VMS_POSIX)	 
 /* atp - problem with declaration of str{lines,columns} in sh.func.c (1277) */
 Char STRLINES[]		= { 'L', 'I', 'N', 'E', 'S', '\0'};
 Char STRCOLUMNS[]	= { 'C', 'O', 'L', 'U', 'M', 'N', 'S', '\0'};
 Char STRTERMCAP[]	= { 'T', 'E', 'R', 'M', 'C', 'A', 'P', '\0'};
-#endif /* SIG_WINDOW  || _VMS_POSIX */
+#endif /* SIG_WINDOW  || SIGWINCH || SIGWINDOW || _VMS_POSIX */
 
 #if defined (_OSD_POSIX)  /* BS2000 needs this variable set to "SHELL" */
 Char STRPROGRAM_ENVIRONMENT[] = { 'P', 'R', 'O', 'G', 'R', 'A', 'M',
