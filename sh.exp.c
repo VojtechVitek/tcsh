@@ -322,7 +322,7 @@ exp2c(Char ***vp, int ignore)
 	cleanup_push(p2, xfree);
 	etracc("exp2c p2", p2, vp);
 	if (!(ignore & TEXP_IGNORE))
-	    switch (i) {
+	    switch ((int)i) {
 
 	    case EQEQ:
 		i = eq(p1, p2);
@@ -367,7 +367,7 @@ exp3(Char ***vp, int ignore)
 	cleanup_push(p2, xfree);
 	etracc("exp3 p2", p2, vp);
 	if (!(ignore & TEXP_IGNORE))
-	    switch (i) {
+	    switch ((int)i) {
 
 	    case GTR:
 		i = egetn(p1) > egetn(p2);
@@ -632,7 +632,7 @@ filetest(Char *cp, Char ***vp, int ignore)
     int altout = 0;
     Char *ft = cp, *dp, *ep, *strdev, *strino, *strF, *str, valtest = '\0',
     *errval = STR0;
-    char *string, string0[7 * MB_LEN_MAX + 1];
+    char *string, string0[22 + MB_LEN_MAX + 1];	// space for 64 bit octal
     time_t footime;
     struct passwd *pw;
     struct group *gr;
