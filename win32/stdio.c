@@ -420,18 +420,18 @@ int nt_stat(const char *filename, struct stat *stbuf) {
 		return _stat("C:/",(struct _stat *)stbuf);
 	}
         else  {
-            char *last = (char*)filename + strlen(filename) -1;
-            int rc = 0;
-            BOOL lastslash = (*last == '/');
+	    size_t len = strlen(filename);
+            char *last = (char*)filename + len - 1;
+            int rc;
+	    /* Possible X: and X:/ strings */
+	    BOOL root = (len <= 3 && *(filename + 1) == ':');
+	    /* exclude X:/ strings */
+	    BOOL lastslash = ((*last == '/') && !root);
             if(lastslash)
-            {
-                *last = 0;
-            }
-            rc =  _stat(filename,(struct _stat *)stbuf);
+                *last = '\0';
+            rc = _stat(filename,(struct _stat *)stbuf);
             if(lastslash)
-            {
                 *last = '/';
-            }
             return rc;
         }
 }
